@@ -19,3 +19,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/admin', 'AdminsController@index')->name('admin');
+
+Route::get('/admin/posts', 'PostsController@index');
+Route::get('/admin/posts/create', 'PostsController@create');
+Route::post('/posts', 'PostsController@store');

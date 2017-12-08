@@ -1,20 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Form } from "../components/Form";
+import { FormPost } from "../components/Form";
 
 
 class FormContainer extends React.Component {
     render() {
-        return (
-            <div>
-                <Form />
-
-            </div>
-        )
+        return <FormPost />
     }
 }
 
 ReactDOM.render(
     <FormContainer />,
     document.getElementById('form')
-)
+);

@@ -1,29 +1,34 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                @include('layouts.sidebar')
+            </div>
+            <div class="col-md-10 col-md-offset-2">
+                @component('layouts.panel')
+                    @slot('heading')
+                        Dashboard
+                    @endslot
 
-        </div>
-        <div class="col-md-10 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                    @slot('body')
+                        @if (session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                        <p>
+                            Welcome back {{ Auth::user()->name }} !
+                        </p>
+                        <a href="/admin/posts/create">
+                            <button class="btn btn-primary">Create a Post</button>
+                            <div id="buttonCreate"></div>
+                        </a>
+                    @endslot
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    Welcome back {{ Auth::user()->name }} !
-                    <div id="form"></div>
-                    <div id="button"></div>
-                    
-                </div>
+                @endcomponent
             </div>
         </div>
     </div>
-</div>
 @endsection

@@ -11,7 +11,7 @@ class ButtonContainer extends React.Component {
     render() {
         return (
             <div>
-                <PrimaryButton text="Publish" />
+                <PrimaryButton text="Create" />
             </div>
         )
     }
@@ -19,6 +19,5 @@ class ButtonContainer extends React.Component {
 
 ReactDOM.render(
     <ButtonContainer />,
-    document.getElementById('button')
-)
-
+    document.getElementById('buttonCreate')
+);
