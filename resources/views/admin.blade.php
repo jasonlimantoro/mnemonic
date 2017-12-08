@@ -1,9 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-10 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
 
@@ -15,6 +18,9 @@
                     @endif
 
                     Welcome back {{ Auth::user()->name }} !
+                    <div id="form"></div>
+                    <div id="button"></div>
+                    
                 </div>
             </div>
         </div>

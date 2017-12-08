@@ -8,7 +8,7 @@
         <title>Laravel</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        {{--  <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">  --}}
 
         <!-- Styles -->
         <style>
@@ -78,7 +78,7 @@
                 </div>
             @endif
 
-            <div class="content">
+            {{--  <div class="content">
                 <div class="title m-b-md">
                     Laravel
                 </div>
@@ -90,7 +90,15 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+            </div>  --}}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h1>Post List</h1>
+                    </div>
+                </div>
             </div>
+                
         </div>
     </body>
 </html>
