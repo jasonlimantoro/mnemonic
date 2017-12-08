@@ -28,8 +28,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <a class="navbar-brand" href="{{ url()->current() }}">
+                        {{ config('app.name', 'Laravel') }} Admin Page
                     </a>
                 </div>
 
@@ -62,6 +62,9 @@
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
+                                    </li>
+                                    <li>
+                                        <a href="/">Visit Website</a>
                                     </li>
                                 </ul>
                             </li>

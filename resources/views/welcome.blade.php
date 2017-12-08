@@ -70,7 +70,7 @@
                 <div class="top-right links">
                     {{--  only if authenticated  --}}
                     @auth
-                        <a href="{{ url('/admin') }}">Home</a>
+                        <a href="{{ url('/admin') }}">Backend</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>
