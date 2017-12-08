@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// To display login and registration button
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'AdminsController@index')->name('admin');
