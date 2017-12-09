@@ -19,8 +19,10 @@
 
         {{--  Front end navigation  --}}
         @includeWhen(!\Request::is('admin*'), 'layouts.navbar')
-
-        @yield('content')
+        
+        <div class="container-fluid">
+            @yield('content')
+        </div>
 
         <!-- Scripts -->
         <script src="{{ asset('js/main.js') }}"></script>

@@ -17,10 +17,11 @@ class PostsController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
-        return view('posts.index');
+        $posts = Post::latest()->get();
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -41,10 +42,18 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        // validate the form
+        $this->validate(request(), [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
+
         // create a new post
         Post::create([
             'title' => request('title'),
-            'body' => request('body')
+            'body' => request('body'),
+            'user_id' => auth()->id()
         ]);
 
         return redirect('/admin');
@@ -56,9 +65,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(Post $post)
+    {   
+        return view('posts.show', compact('post'));
     }
 
     /**
