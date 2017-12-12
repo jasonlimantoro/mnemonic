@@ -14,11 +14,8 @@
         <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     </head>
     <body>
-        {{--  Administration header  --}}
-        @includeWhen(\Request::is('admin*'), 'layouts.header')
-
         {{--  Front end navigation  --}}
-        @includeWhen(!\Request::is('admin*'), 'layouts.navbar')
+        @include('layouts.navbar')
         
         <div class="container-fluid">
             @yield('content')
