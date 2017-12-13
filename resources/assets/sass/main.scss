@@ -8,5 +8,9 @@
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
+// base
+@import "base/normalize";
+
+// components
 @import "components/sidebar";
 @import "components/header";

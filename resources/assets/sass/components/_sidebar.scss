@@ -1,27 +1,19 @@
-a, a:hover, a:focus {
-    color: inherit;
-    text-decoration: none;
-    transition: all 0.3s;
-}
-
-// .navbar {
-//     padding: 15px 10px;
-//     background: #fff;
-//     border: none;
-//     border-radius: 0;
-//     margin-bottom: 40px;
-//     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-// }
-
-.navbar-btn {
-    box-shadow: none;
-    outline: none !important;
+.navbar {
+    // padding: 15px 10px;
+    background: #fff;
     border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
-
 
 i, span {
     display: inline-block;
+}
+
+.sidebar-toggle {
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 /* ---------------------------------------------------
@@ -38,6 +30,11 @@ i, span {
     background: black;
     color: #fff;
     transition: all 0.3s;
+    a, a:hover, a:focus {
+        color: inherit;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
     ul {
         &.components {
             padding: 20px 0;
@@ -59,7 +56,7 @@ i, span {
                 display: block;
                 &:hover {
                     color: black;
-                    background: #fff;
+                    background: $brand-info;
                 }
                 i {
                     margin-right: 10px;
