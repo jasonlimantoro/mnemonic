@@ -56,7 +56,7 @@ class PostsController extends Controller
             'user_id' => auth()->id()
         ]);
 
-        return redirect('/admin');
+        return redirect(route('admin'));
     }
 
     /**
