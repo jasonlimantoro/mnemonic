@@ -4,5 +4,7 @@
     </a>
 
     <p> {{ $post->body }} </p>
+
+    by {{ $post->user->name }} on {{ $post->created_at->toFormattedDateString() }}
 </div>
 
