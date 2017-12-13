@@ -18,8 +18,8 @@
                         Welcome back {{ Auth::user()->name }} !
                     </p>
                     <a href="/admin/posts/create">
-                        <button class="btn btn-primary">Create a Post</button>
-                        {{--  <div id="buttonCreate"></div>  --}}
+                        {{--  <button class="btn btn-primary">Create a Post</button>  --}}
+                        <div id="ButtonContainer" class="__react-root"></div>
                     </a>
                 @endslot
 

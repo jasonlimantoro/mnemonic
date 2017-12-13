@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { PrimaryButton, SuccessButton } from "../components/Button";
 
-class ButtonContainer extends React.Component {
+export class ButtonContainer extends React.Component {
     popUp() {
         let msg = "blah";
         alert(msg);
@@ -11,13 +11,13 @@ class ButtonContainer extends React.Component {
     render() {
         return (
             <div>
-                <PrimaryButton text="Create" />
+                <PrimaryButton text="Create a Post" />
             </div>
         )
     }
 }
 
-ReactDOM.render(
-    <ButtonContainer />,
-    document.getElementById('buttonCreate')
-);
+// ReactDOM.render(
+//     <ButtonContainer />,
+//     document.getElementById('buttonCreate')
+// );

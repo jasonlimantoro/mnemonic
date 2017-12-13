@@ -9,7 +9,7 @@
                 @endslot
 
                 @slot('body')
-                    <div id="form">
+                    <div id="FormContainer" class="__react-root">
 
                     </div>
                 @endslot

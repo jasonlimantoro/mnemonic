@@ -3,13 +3,13 @@ import ReactDOM from "react-dom";
 import { FormPost } from "../components/Form";
 
 
-class FormContainer extends React.Component {
+export class FormContainer extends React.Component {
     render() {
         return <FormPost />
     }
 }
 
-ReactDOM.render(
-    <FormContainer />,
-    document.getElementById('form')
-);
+// ReactDOM.render(
+//     <FormContainer />,
+//     document.getElementById('form')
+// );

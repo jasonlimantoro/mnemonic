@@ -8939,11 +8939,39 @@ module.exports = __webpack_require__(321);
 
 /***/ }),
 /* 137 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_dom__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__containers_ButtonContainer__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__containers_FormContainer__ = __webpack_require__(164);
 __webpack_require__(138);
-// require('./containers/ButtonContainer');
-__webpack_require__(164);
+
+
+
+
+
+
+var APPS = {
+  ButtonContainer: __WEBPACK_IMPORTED_MODULE_2__containers_ButtonContainer__["a" /* ButtonContainer */],
+  FormContainer: __WEBPACK_IMPORTED_MODULE_3__containers_FormContainer__["a" /* FormContainer */]
+};
+
+function renderAppInElement(el) {
+  var App = APPS[el.id];
+  if (!App) return;
+
+  // get props from elements data attribute, like the post_id
+  var props = Object.assign({}, el.dataset);
+
+  __WEBPACK_IMPORTED_MODULE_0_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(App, props), el);
+}
+
+document.querySelectorAll('.__react-root').forEach(renderAppInElement);
 
 /***/ }),
 /* 138 */
@@ -39878,7 +39906,7 @@ module.exports = function spread(callback) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormContainer; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(12);
@@ -39915,7 +39943,10 @@ var FormContainer = function (_React$Component) {
     return FormContainer;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
-__WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(FormContainer, null), document.getElementById('form'));
+// ReactDOM.render(
+//     <FormContainer />,
+//     document.getElementById('form')
+// );
 
 /***/ }),
 /* 165 */
@@ -69092,6 +69123,72 @@ var SuccessButton = function SuccessButton(props) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 322 */,
+/* 323 */,
+/* 324 */,
+/* 325 */,
+/* 326 */,
+/* 327 */,
+/* 328 */,
+/* 329 */,
+/* 330 */,
+/* 331 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ButtonContainer; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Button__ = __webpack_require__(320);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+var ButtonContainer = function (_React$Component) {
+    _inherits(ButtonContainer, _React$Component);
+
+    function ButtonContainer() {
+        _classCallCheck(this, ButtonContainer);
+
+        return _possibleConstructorReturn(this, (ButtonContainer.__proto__ || Object.getPrototypeOf(ButtonContainer)).apply(this, arguments));
+    }
+
+    _createClass(ButtonContainer, [{
+        key: "popUp",
+        value: function popUp() {
+            var msg = "blah";
+            alert(msg);
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "div",
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Button__["a" /* PrimaryButton */], { text: "Create a Post" })
+            );
+        }
+    }]);
+
+    return ButtonContainer;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+// ReactDOM.render(
+//     <ButtonContainer />,
+//     document.getElementById('buttonCreate')
+// );
 
 /***/ })
 /******/ ]);

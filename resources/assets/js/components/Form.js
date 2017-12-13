@@ -1,6 +1,6 @@
 import React from "react";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import { PrimaryButton } from "./Button";
+import { PrimaryButton, SuccessButton } from "./Button";
 
 function FieldGroup ( {id, label, ...props}) {
     return (
