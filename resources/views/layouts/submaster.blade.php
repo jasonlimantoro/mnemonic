@@ -40,6 +40,18 @@
                     $('#sidebar').toggleClass('active');
                 });
 
+                // get the current page
+                path = window.location.href;
+
+                // if path is empty
+                if (path == '') {
+                    path = 'http://mnemonic.dev/admin';
+                }
+
+                target = $('li a[href="'+ path + '"]').parent();
+
+                target.addClass('active');
+
             });
         </script>
         {{--  page-specific scripts  --}}

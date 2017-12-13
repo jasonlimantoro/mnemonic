@@ -19,7 +19,7 @@
                     </p>
                     <a href="/admin/posts/create">
                         <button class="btn btn-primary">Create a Post</button>
-                        <div id="buttonCreate"></div>
+                        {{--  <div id="buttonCreate"></div>  --}}
                     </a>
                 @endslot
 
