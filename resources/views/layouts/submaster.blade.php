@@ -47,8 +47,9 @@
                 if (path == '') {
                     path = 'http://mnemonic.dev/admin';
                 }
-
-                target = $('li a[href="'+ path + '"]').parent();
+                
+                // sidebar is targeted
+                target = $('#sidebar li a[href="'+ path + '"]').parents('li');
 
                 target.addClass('active');
 
