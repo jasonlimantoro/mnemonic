@@ -9,7 +9,7 @@
                 @endslot
 
                 @slot('body')
-                    Home body
+                    <div id="FormContainer"></div>
                 @endslot
             @endcomponent
         </div>

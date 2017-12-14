@@ -3,18 +3,14 @@ Route::get('/', 'PostsController@index')->name('home');
 // To display login and registration button
 Auth::routes();
 
-Route::get('/posts', 'PostsController@index');
-Route::get('/admin/posts/create', 'PostsController@create');
-Route::post('/posts', 'PostsController@store');
-Route::get('/posts/{post}', 'PostsController@show');
 
 // Routing for backend
 
 // Pages
 Route::get('/admin', 'BackendController@index')->name('admin');
-Route::get('/admin/pages/home', 'BackendController@home');
-Route::get('/admin/pages/about-us', 'BackendController@about');
-Route::get('/admin/pages/galleries', 'BackendController@gallery');
+Route::get('/admin/pages/1', 'BackendController@home');
+Route::get('/admin/pages/2', 'BackendController@about');
+Route::get('/admin/pages/3', 'BackendController@gallery');
 
 // Themes
 Route::get('/admin/themes/photo-slideshow', 'BackendController@slideshow');
@@ -32,3 +28,9 @@ Route::get('/admin/settings/site-info', 'BackendController@site');
 Route::get('/admin/settings/social-media-and-seo', 'BackendController@social');
 Route::get('/admin/settings/manage-admin', 'BackendController@manageAdmin');
 Route::get('/admin/settings/manage-roles', 'BackendController@manageRoles');
+
+Route::get('/posts', 'PostsController@index');
+Route::get('/admin/posts/create', 'PostsController@create');
+Route::post('/posts', 'PostsController@store');
+Route::get('/posts/{post}', 'PostsController@show');
+Route::get('/admin/posts/{post}/edit', 'PostsController@edit');

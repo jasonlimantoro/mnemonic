@@ -9,7 +9,7 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function page() {
+    public function page() { //$post->page
         return $this->belongsTo(Page::class);
     }
 }

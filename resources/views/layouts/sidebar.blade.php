@@ -17,13 +17,13 @@
 			</a>
 			<ul class="collapse list-unstyled" id="pageSubmenu">
 					<li>
-						<a href="{{ route('admin') }}/pages/home">Home</a>
+						<a href="{{ route('admin') }}/pages/1">Home</a>
 					</li>
 					<li>
-						<a href="{{ route('admin') }}/pages/about-us">About Us</a>
+						<a href="{{ route('admin') }}/pages/2">About Us</a>
 					</li>
 					<li>
-						<a href="{{ route('admin') }}/pages/galleries">Galleries</a>
+						<a href="{{ route('admin') }}/pages/3">Galleries</a>
 					</li>
 			</ul>
 		</li>

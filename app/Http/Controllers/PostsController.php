@@ -21,7 +21,13 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Post::latest()->get();
-        return view('posts.index', compact('posts'));
+        return view('posts.frontend.index', compact('posts'));
+    }
+
+    public function backendIndex($pageName)
+    {
+        $posts = Post::latest()->get();
+        return view('posts.backend.index', compact(['posts','pageName']));
     }
 
     /**
@@ -31,7 +37,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('posts.backend.create');
     }
 
     /**
@@ -67,7 +73,7 @@ class PostsController extends Controller
      */
     public function show(Post $post)
     {   
-        return view('posts.show', compact('post'));
+        return view('posts.frontend.show', compact('post'));
     }
 
     /**
@@ -76,9 +82,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('posts.backend.edit', compact('post'));
     }
 
     /**

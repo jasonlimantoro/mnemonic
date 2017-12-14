@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\PagesController;
+use App\Page;
 
 class BackendController extends Controller
 {
@@ -27,15 +29,21 @@ class BackendController extends Controller
     }
 
     public function home() {
-        return view('backend.pages.home');
+        $pageInstance = new PagesController();
+        $page = Page::find(1);
+        return $pageInstance->show($page);
     }
 
     public function about() {
-        return view('backend.pages.about-us');
+        $pageInstance = new PagesController();
+        $page = Page::find(2);
+        return $pageInstance->show($page);
     }
 
     public function gallery() {
-        return view('backend.pages.galleries');
+        $pageInstance = new PagesController();
+        $page = Page::find(3);
+        return $pageInstance->show($page);
     }
 
     public function slideshow() {
