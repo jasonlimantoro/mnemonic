@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import { FormPost } from "../components/Form";
 
 
-export class FormContainer extends React.Component {
+export class FormforHome extends React.Component {
     render() {
-        return <FormPost />
+        return <FormPost action="/admin/pages/1/post" />
     }
 }
 

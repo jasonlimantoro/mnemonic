@@ -2,12 +2,12 @@ require('./bootstrap');
 
 import ReactDOM from "react-dom";
 import React from "react";
-import { UpdateButton, PublishButton } from './containers/ButtonContainer';
-import { FormContainer } from './containers/FormContainer';
+import { UpdateButton, PublishButton, AddNewPostButton } from './containers/ButtonContainer';
+import { FormforHome } from './containers/FormContainer';
 
 const APPS = {
-    UpdateButton, PublishButton,
-    FormContainer
+    UpdateButton, PublishButton, AddNewPostButton,
+    FormforHome
 };
 
 function renderAppInElement(el) {

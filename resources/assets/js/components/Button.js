@@ -9,6 +9,11 @@ export const PrimaryButton = (props) => {
 
 export const SuccessButton = (props) => {
     return (
-        <Button type={props.type} bsStyle="success" onClick={props.onClick}>{props.text} </Button>
+        <div>
+            <Button type={props.type} bsStyle="success" onClick={props.onClick}>
+                {props.children}
+                {props.text}
+            </Button>
+        </div>
     )
 }

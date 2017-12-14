@@ -5,7 +5,7 @@
         <div class="col-md-12">
             @component('layouts.panel')
                 @slot('heading')
-                    Dashboard
+                    <h1>Dashboard</h1>
                 @endslot
 
                 @slot('body')

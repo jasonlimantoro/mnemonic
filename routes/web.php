@@ -32,8 +32,8 @@ Route::get('/admin/settings/manage-roles', 'BackendController@manageRoles');
 
 // Form routes for posts
 Route::get('/posts', 'PostsController@index');
-Route::get('/admin/posts/create', 'PostsController@create');
-Route::post('/posts', 'PostsController@store');
+Route::get('/admin/pages/{page}/posts/create', 'PostsController@create');
+Route::post('/admin/pages/{page}/post', 'PostsController@store');
 Route::get('/posts/{post}', 'PostsController@show');
 Route::get('/admin/posts/{post}/edit', 'PostsController@edit');
 Route::post('admin/posts/{post}/update', 'PostsController@update');

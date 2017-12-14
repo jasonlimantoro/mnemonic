@@ -13,7 +13,7 @@ function FieldGroup ( {id, label, ...props}) {
 
 export const FormPost = (props) => {
     return (
-        <form method="POST" action="/posts">
+        <form method="POST" action={props.action}>
             <FieldGroup
                 id = "formControlsTitle"
                 type = "text"
@@ -28,7 +28,9 @@ export const FormPost = (props) => {
                 <FormControl 
                     componentClass="textarea" 
                     placeholder="Enter Body" 
-                    name="body" 
+                    name="body"
+                    cols="30"
+                    rows="10"
                 /> {props.bodyValue}
             </FormGroup>
 

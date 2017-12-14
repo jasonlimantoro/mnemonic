@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Page;
 
 class PostsController extends Controller
 {
@@ -24,20 +25,20 @@ class PostsController extends Controller
         return view('posts.frontend.index', compact('posts'));
     }
 
-    public function backendIndex($pageName)
-    {
-        $posts = Post::latest()->get();
-        return view('posts.backend.index', compact(['posts','pageName']));
-    }
+    // public function backendIndex($pageName)
+    // {
+    //     $posts = Post::latest()->get();
+    //     return view('posts.backend.index', compact(['posts','pageName']));
+    // }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Page $page)
     {
-        return view('posts.backend.create');
+        return view('posts.backend.create', compact('page'));
     }
 
     /**
@@ -46,7 +47,7 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Page $page)
     {
         // validate the form
         $this->validate(request(), [
@@ -54,15 +55,17 @@ class PostsController extends Controller
             'body' => 'required'
         ]);
 
-
         // create a new post
         Post::create([
+            'user_id' => auth()->id(),
+            'page_id' => $page->id,
             'title' => request('title'),
-            'body' => request('body'),
-            'user_id' => auth()->id()
+            'body' => request('body')
         ]);
 
-        return redirect(route('admin'));
+        \Session::flash('success_msg', 'Post is added succesfully');
+
+        return redirect()->back();
     }
 
     /**

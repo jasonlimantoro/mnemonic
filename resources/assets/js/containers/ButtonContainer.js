@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { PrimaryButton, SuccessButton } from "../components/Button";
+import { PlusIcon } from "../components/Icon";
 
 export class UpdateButton extends React.Component {
     popUp() {
@@ -10,10 +11,8 @@ export class UpdateButton extends React.Component {
 
     render() {
         return (
-            <div>
-                <PrimaryButton text="Update" type="submit" />
-            </div>
-        )
+            <PrimaryButton text="Update" type="submit" />
+        );
     }
 }
 
@@ -21,6 +20,19 @@ export class PublishButton extends React.Component {
     render() {
         return (
             <PrimaryButton text="Publish" type="submit" />
+            
+        );
+    }
+}
+
+export class AddNewPostButton extends React.Component {
+    render() {
+        return (
+            <div>
+                <SuccessButton text="Add New Post">
+                    <PlusIcon />
+                </SuccessButton>
+            </div>
         );
     }
 }

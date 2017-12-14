@@ -1,9 +1,10 @@
 @extends('layouts.submaster')
 
 @section('content')
-    @component('layouts.panel')
+    @component('layouts.panel', ['page' => $post->page])
         @slot('heading')
-            A place to edit post {{ $post->id }}
+            <h1>{{ $post->page->title }}</h1>
+            Edit Post: <strong> {{ $post->title }} </strong>
         @endslot
 
         @slot('body')
