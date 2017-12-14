@@ -20,11 +20,16 @@ export const FormPost = (props) => {
                 label = "Title"
                 placeholder = "Enter title"
                 name = "title"
+                value = {props.titleValue}
             />
 
             <FormGroup controlId="formControlsTextarea">
                 <ControlLabel>Body</ControlLabel>
-                <FormControl componentClass="textarea" placeholder="Enter Body" name="body" />
+                <FormControl 
+                    componentClass="textarea" 
+                    placeholder="Enter Body" 
+                    name="body" 
+                /> {props.bodyValue}
             </FormGroup>
 
             <PrimaryButton type="submit" text="Publish" />

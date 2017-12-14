@@ -96,7 +96,17 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+        $updatedPost = $request->all();
+        Post::find($id)->update($updatedPost);
+
+        //store status message
+        \Session::flash('success_msg', 'Post updated successfully!');
+
+        return redirect()->back();
     }
 
     /**

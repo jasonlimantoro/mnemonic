@@ -2,11 +2,11 @@ require('./bootstrap');
 
 import ReactDOM from "react-dom";
 import React from "react";
-import { ButtonContainer } from './containers/ButtonContainer';
+import { UpdateButton, PublishButton } from './containers/ButtonContainer';
 import { FormContainer } from './containers/FormContainer';
 
 const APPS = {
-    ButtonContainer,
+    UpdateButton, PublishButton,
     FormContainer
 };
 

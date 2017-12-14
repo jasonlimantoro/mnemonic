@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { PrimaryButton, SuccessButton } from "../components/Button";
 
-export class ButtonContainer extends React.Component {
+export class UpdateButton extends React.Component {
     popUp() {
         let msg = "blah";
         alert(msg);
@@ -11,13 +11,16 @@ export class ButtonContainer extends React.Component {
     render() {
         return (
             <div>
-                <PrimaryButton text="Create a Post" />
+                <PrimaryButton text="Update" type="submit" />
             </div>
         )
     }
 }
 
-// ReactDOM.render(
-//     <ButtonContainer />,
-//     document.getElementById('buttonCreate')
-// );
+export class PublishButton extends React.Component {
+    render() {
+        return (
+            <PrimaryButton text="Publish" type="submit" />
+        );
+    }
+}
