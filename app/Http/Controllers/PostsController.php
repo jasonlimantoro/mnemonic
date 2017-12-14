@@ -87,7 +87,9 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.backend.edit', compact('post'));
+        // page in which the post belongsTo
+        $page = $post->page;
+        return view('posts.backend.edit', compact('post', 'page'));
     }
 
     /**

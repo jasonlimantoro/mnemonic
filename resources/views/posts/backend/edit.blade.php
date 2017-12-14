@@ -1,9 +1,13 @@
 @extends('layouts.submaster')
 
 @section('content')
-    @component('layouts.panel', ['page' => $post->page])
+    @component('layouts.panel')
         @slot('heading')
-            <h1>{{ $post->page->title }}</h1>
+            <a href="/admin/pages/{{ $page->id }}" class="btn btn-primary">
+                <i class="fa fa-angle-left"></i>
+                Show All Posts
+            </a>
+            <h1>{{ $page->title }}</h1>
             Edit Post: <strong> {{ $post->title }} </strong>
         @endslot
 

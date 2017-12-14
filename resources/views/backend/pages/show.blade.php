@@ -1,8 +1,11 @@
 @extends('layouts.submaster')
 
 @section('content')
-    @component('layouts.panel', ['page' => $page])
+    @component('layouts.panel')
         @slot('heading')
+            {{--  <a href="/admin/pages/{{ $page->id }}" class="btn btn-primary">
+                <i class="fa fa-angle-left"></i>
+            </a>  --}}
             <h1 class="title">{{ $page->title }} 
                 <a href="/admin/pages/{{ $page->id }}/posts/create" class="pull-right">
                     <div class="__react-root" id="AddNewPostButton">

@@ -3,8 +3,12 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @component('layouts.panel', ['page' => $page])
+            @component('layouts.panel')
                 @slot('heading')
+                    <a href="/admin/pages/{{ $page->id }}" class="btn btn-primary">
+                        <i class="fa fa-angle-left"></i>
+                        Show All Posts
+                    </a>
                     <h1>{{ $page->title }}</h1>
                     <p>Create a post for <strong>{{ $page->title }}</strong> page</p>
                 @endslot
