@@ -3,16 +3,13 @@
 @section('content')
     @component('layouts.panel')
         @slot('heading')
-            <a href="/admin/pages/{{ $page->id }}" class="btn btn-primary">
-                <i class="fa fa-angle-left"></i>
-                Show All Posts
-            </a>
+            @include('layouts.show-all-post-btn')
             <h1>{{ $page->title }}</h1>
             Edit Post: <strong> {{ $post->title }} </strong>
         @endslot
 
         @slot('body')
-            <form action="{{ route('admin') }}/posts/{{ $post->id }}/update" method="POST">
+            <form action="{{ route('post.update',['post' => $post->id]) }}" method="POST">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label for="title">Title</label>

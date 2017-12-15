@@ -5,10 +5,7 @@
         <div class="col-md-12">
             @component('layouts.panel')
                 @slot('heading')
-                    <a href="{{ route('pages.show', ['page' => $page->id]) }}" class="btn btn-primary">
-                        <i class="fa fa-angle-left"></i>
-                        Show All Posts
-                    </a>
+                    @include('layouts.show-all-post-btn')
                     <h1>{{ $page->title }}</h1>
                     <p>Create a post for <strong>{{ $page->title }}</strong> page</p>
                 @endslot
