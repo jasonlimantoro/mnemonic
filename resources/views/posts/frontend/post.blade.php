@@ -1,12 +1,10 @@
 <div class="blog-post">
-    <a href="/posts/{{ $post->id }}">
-        <h2> {{ $post->title }}  </h2>
-    </a>
-
+    <h2>{{ $post->title }}</h2>
     <p> {{ $post->body }} </p>
-
-    by {{ $post->user->name }} on {{ $post->created_at->toFormattedDateString() }}
     
+    <a href="{{ route('post.read', ['post' => $post->id ]) }}">
+        <p>Read More</p>
+    </a>
     <hr>
 </div>
 

@@ -69372,7 +69372,6 @@ var SearchBox = function (_React$Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(FieldGroup, {
                     id: "formControlsSearch",
                     type: "text",
-                    label: "Search",
                     placeholder: this.props.placeholder,
                     name: "search",
                     onChange: this.handleChange,

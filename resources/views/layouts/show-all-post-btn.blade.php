@@ -1,5 +1,5 @@
 @php
-    $page = $post->page
+
 @endphp
 
 <a href="{{ route('pages.show', ['page' => $page->id]) }}" class="btn btn-danger">

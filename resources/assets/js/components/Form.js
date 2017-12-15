@@ -54,7 +54,6 @@ export class SearchBox extends React.Component {
                 <FieldGroup
                     id = "formControlsSearch"
                     type = "text"
-                    label = "Search"
                     placeholder = {this.props.placeholder}
                     name = "search"
                     onChange = {this.handleChange}

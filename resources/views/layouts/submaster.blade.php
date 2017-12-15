@@ -56,6 +56,7 @@
 
                 target.addClass('active');
 
+                $('[data-toggle="tooltip"]').tooltip();   
             });
         </script>
         {{--  page-specific scripts  --}}

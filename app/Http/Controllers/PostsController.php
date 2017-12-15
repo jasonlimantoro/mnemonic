@@ -25,12 +25,6 @@ class PostsController extends Controller
         return view('posts.frontend.index', compact('posts'));
     }
 
-    // public function backendIndex($pageName)
-    // {
-    //     $posts = Post::latest()->get();
-    //     return view('posts.backend.index', compact(['posts','pageName']));
-    // }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -51,8 +45,8 @@ class PostsController extends Controller
     {
         // validate the form
         $this->validate(request(), [
-            'title' => 'required|',
-            'body' => 'required|'
+            'title' => 'required',
+            'body' => 'required'
         ]);
 
         // create a new post
@@ -76,7 +70,8 @@ class PostsController extends Controller
      */
     public function show(Post $post)
     {   
-        return view('posts.backend.show', compact('post'));
+        $page = $post->page;
+        return view('posts.backend.show', compact('post', 'page'));
     }
 
     /**
@@ -125,5 +120,9 @@ class PostsController extends Controller
         $post->delete();
         \Session::flash('success_msg', 'Post is deleted successfully');
         return redirect()->back();
+    }
+
+    public function read(Post $post) {
+        return view('posts.frontend.read', compact('post'));
     }
 }
