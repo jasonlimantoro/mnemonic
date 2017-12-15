@@ -4,10 +4,12 @@ import ReactDOM from "react-dom";
 import React from "react";
 import { UpdateButton, PublishButton, AddNewPostButton } from './containers/ButtonContainer';
 import { FormforHome } from './containers/FormContainer';
+import { DeletePostIcon } from "./containers/IconContainer";
 
 const APPS = {
     UpdateButton, PublishButton, AddNewPostButton,
-    FormforHome
+    FormforHome,
+    DeletePostIcon
 };
 
 function renderAppInElement(el) {

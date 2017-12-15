@@ -14,10 +14,8 @@
                 @endslot
 
                 @slot('body')
-                    <form method="POST" action="/admin/pages/{{ $page->id }}/post">
+                    <form method="POST" action="{{ route('post.store', ['page' => $page->id ]) }}">
                         {{ csrf_field() }}
-                        @include('layouts.success')
-                        @include('layouts.error')
                         <div class="form-group">
                             <label for="title">Title</label>
                             <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title">

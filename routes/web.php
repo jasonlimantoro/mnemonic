@@ -31,9 +31,10 @@ Route::get('/admin/settings/manage-roles', 'BackendController@manageRoles');
 
 
 // Form routes for posts
-Route::get('/posts', 'PostsController@index');
-Route::get('/admin/pages/{page}/posts/create', 'PostsController@create');
-Route::post('/admin/pages/{page}/post', 'PostsController@store');
-Route::get('/posts/{post}', 'PostsController@show');
-Route::get('/admin/posts/{post}/edit', 'PostsController@edit');
-Route::post('admin/posts/{post}/update', 'PostsController@update');
+Route::get('/posts', 'PostsController@index')->name('post.index');
+Route::get('/admin/pages/{page}/posts/create', 'PostsController@create')->name('post.create');
+Route::post('/admin/pages/{page}/post', 'PostsController@store')->name('post.store');
+Route::get('/posts/{post}', 'PostsController@show')->name('post.show');
+Route::get('/admin/posts/{post}/edit', 'PostsController@edit')->name('post.edit');
+Route::post('/admin/posts/{post}/update', 'PostsController@update')->name('post.update');
+Route::get('/admin/posts/{post}/delete', 'PostsController@destroy')->name('post.delete');

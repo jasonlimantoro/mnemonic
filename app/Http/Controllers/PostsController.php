@@ -120,8 +120,10 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        \Session::flash('success_msg', 'Post is deleted successfully');
+        return redirect()->back();
     }
 }

@@ -25,6 +25,8 @@
             <div class="container">
                 <div id="content">
                     @include('layouts.header')
+                    @include('layouts.success')
+                    @include('layouts.error')
                     @yield('content')
                 </div>
             </div>

@@ -14,8 +14,6 @@
         @slot('body')
             <form action="{{ route('admin') }}/posts/{{ $post->id }}/update" method="POST">
                 {{ csrf_field() }}
-                @include('layouts.success')
-                @include('layouts.error')
                 <div class="form-group">
                     <label for="title">Title</label>
                     <input type="text" class="form-control" id="title" name="title" value="{{ $post->title }}">

@@ -7,7 +7,7 @@
                 <i class="fa fa-angle-left"></i>
             </a>  --}}
             <h1 class="title">{{ $page->title }} 
-                <a href="/admin/pages/{{ $page->id }}/posts/create" class="pull-right">
+                <a href="route('post.create', ['page' => $page->id ])" class="pull-right">
                     <div class="__react-root" id="AddNewPostButton">
                     </div>
                 </a>
@@ -15,11 +15,8 @@
         @endslot
 
         @slot('body')
-            @foreach($posts as $post)
-                @include('posts.backend.post')
-                {{--  <h2> <a href="{{ route('admin') }}/posts/{{ $post->id }}/edit"> {{ $post->title }} </a></h2>
-                <p>{{ $post->body }}</p>  --}}
-            @endforeach
+            @include('posts.backend.index')
         @endslot
+
     @endcomponent
 @endsection
