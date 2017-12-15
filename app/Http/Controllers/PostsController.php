@@ -76,7 +76,7 @@ class PostsController extends Controller
      */
     public function show(Post $post)
     {   
-        return view('posts.frontend.show', compact('post'));
+        return view('posts.backend.show', compact('post'));
     }
 
     /**

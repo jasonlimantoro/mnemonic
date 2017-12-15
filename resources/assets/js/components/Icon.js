@@ -17,3 +17,9 @@ export const EditIcon = (props) => {
         <i className="fa fa-pencil-square-o" style={props.style}></i>
     );
 }
+
+export const InfoIcon = (props) => {
+    return (
+        <i className="fa fa-info-circle" style={props.style}></i>
+    );
+}

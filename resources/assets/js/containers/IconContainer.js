@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { TrashIcon, EditIcon } from "../components/Icon";
+import { TrashIcon, EditIcon, InfoIcon } from "../components/Icon";
 
 const style = {
     'fontSize' : '24px',
@@ -15,5 +15,11 @@ export class DeletePostIcon extends React.Component {
 export class EditPostIcon extends React.Component {
     render() {
         return <EditIcon style={style} />
+    }
+}
+
+export class InfoPostIcon extends React.Component {
+    render() {
+        return <InfoIcon style={style} />
     }
 }

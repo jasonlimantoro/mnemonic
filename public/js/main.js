@@ -8969,9 +8969,10 @@ ToggleButton.propTypes = propTypes;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return PlusIcon; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return TrashIcon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return PlusIcon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return TrashIcon; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditIcon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return InfoIcon; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 
@@ -8986,6 +8987,10 @@ var TrashIcon = function TrashIcon(props) {
 
 var EditIcon = function EditIcon(props) {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-pencil-square-o", style: props.style });
+};
+
+var InfoIcon = function InfoIcon(props) {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-info-circle", style: props.style });
 };
 
 /***/ }),
@@ -9020,7 +9025,7 @@ __webpack_require__(140);
 var APPS = {
   UpdateButton: __WEBPACK_IMPORTED_MODULE_2__containers_ButtonContainer__["c" /* UpdateButton */], PublishButton: __WEBPACK_IMPORTED_MODULE_2__containers_ButtonContainer__["b" /* PublishButton */], AddNewPostButton: __WEBPACK_IMPORTED_MODULE_2__containers_ButtonContainer__["a" /* AddNewPostButton */],
   FormforHome: __WEBPACK_IMPORTED_MODULE_3__containers_FormContainer__["a" /* FormforHome */], Search: __WEBPACK_IMPORTED_MODULE_3__containers_FormContainer__["b" /* Search */],
-  DeletePostIcon: __WEBPACK_IMPORTED_MODULE_4__containers_IconContainer__["a" /* DeletePostIcon */], EditPostIcon: __WEBPACK_IMPORTED_MODULE_4__containers_IconContainer__["b" /* EditPostIcon */]
+  DeletePostIcon: __WEBPACK_IMPORTED_MODULE_4__containers_IconContainer__["a" /* DeletePostIcon */], EditPostIcon: __WEBPACK_IMPORTED_MODULE_4__containers_IconContainer__["b" /* EditPostIcon */], InfoPostIcon: __WEBPACK_IMPORTED_MODULE_4__containers_IconContainer__["c" /* InfoPostIcon */]
 };
 
 function renderAppInElement(el) {
@@ -57334,7 +57339,7 @@ var AddNewPostButton = function (_React$Component3) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     __WEBPACK_IMPORTED_MODULE_2__components_Button__["b" /* SuccessButton */],
                     { text: "Add New Post" },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Icon__["b" /* PlusIcon */], null)
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Icon__["c" /* PlusIcon */], null)
                 )
             );
         }
@@ -69470,12 +69475,6 @@ var SearchPost = function (_React$Component) {
         };
         return _this;
     }
-    // componentDidMount() {
-    //     this.setState({
-    //         'columnName': this.props.selectedOption
-    //     });
-    // }
-
 
     _createClass(SearchPost, [{
         key: 'componentWillReceiveProps',
@@ -69495,7 +69494,7 @@ var SearchPost = function (_React$Component) {
             tr = table.getElementsByTagName('tr');
             var columnIndex = this.state.columnIndex;
             for (var i = 1; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName('td')[columnIndex];
+                td = tr[i].getElementsByClassName('post-data')[columnIndex];
                 if (td) {
                     if (td.innerText.toUpperCase().indexOf(filter) > -1) {
                         tr[i].style.display = '';
@@ -69537,6 +69536,7 @@ var SearchPost = function (_React$Component) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DeletePostIcon; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return EditPostIcon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return InfoPostIcon; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(11);
@@ -69570,7 +69570,7 @@ var DeletePostIcon = function (_React$Component) {
     _createClass(DeletePostIcon, [{
         key: "render",
         value: function render() {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Icon__["c" /* TrashIcon */], { style: style });
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Icon__["d" /* TrashIcon */], { style: style });
         }
     }]);
 
@@ -69594,6 +69594,25 @@ var EditPostIcon = function (_React$Component2) {
     }]);
 
     return EditPostIcon;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+var InfoPostIcon = function (_React$Component3) {
+    _inherits(InfoPostIcon, _React$Component3);
+
+    function InfoPostIcon() {
+        _classCallCheck(this, InfoPostIcon);
+
+        return _possibleConstructorReturn(this, (InfoPostIcon.__proto__ || Object.getPrototypeOf(InfoPostIcon)).apply(this, arguments));
+    }
+
+    _createClass(InfoPostIcon, [{
+        key: "render",
+        value: function render() {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Icon__["b" /* InfoIcon */], { style: style });
+        }
+    }]);
+
+    return InfoPostIcon;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 /***/ }),

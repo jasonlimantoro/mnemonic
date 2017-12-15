@@ -8,11 +8,7 @@ export class SearchPost extends React.Component {
             'columnIndex': 0
         }
     }
-    // componentDidMount() {
-    //     this.setState({
-    //         'columnName': this.props.selectedOption
-    //     });
-    // }
+
     componentWillReceiveProps(nextprops) {
         const col = (nextprops.selectedOption === 'title') ? 0: 1;
         this.setState({
@@ -28,7 +24,7 @@ export class SearchPost extends React.Component {
         tr = table.getElementsByTagName('tr');
         var columnIndex = this.state.columnIndex;
         for (let i = 1; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName('td')[columnIndex];
+            td = tr[i].getElementsByClassName('post-data')[columnIndex];
             if (td) {
                 if (td.innerText.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = '';
