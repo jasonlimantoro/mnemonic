@@ -8578,3 +8578,32 @@ span {
   }
 }
 
+.table {
+  table-layout: fixed;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.table td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table .col.title {
+  width: 30%;
+}
+
+.table .col.body {
+  width: 60%;
+}
+
+.post .body {
+  color: black;
+}
+
+.post .body .info {
+  font-size: 12px;
+  color: grey;
+}
+

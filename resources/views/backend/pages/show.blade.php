@@ -15,8 +15,12 @@
         @endslot
 
         @slot('body')
-            @include('posts.backend.index')
+            <h2>Your Published Posts</h2>
         @endslot
+
+        @component('layouts.table')
+            @include('posts.backend.index')
+        @endcomponent
 
     @endcomponent
 @endsection

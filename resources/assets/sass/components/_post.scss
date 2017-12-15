@@ -1,0 +1,9 @@
+.post {
+    .body {
+        color: black;
+        .info {
+            font-size: $font-size-base - 2;
+            color: grey;
+        }
+    }
+}

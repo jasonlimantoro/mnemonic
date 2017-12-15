@@ -6,4 +6,6 @@
     <div class="panel-body">
         {{ $body }}
     </div>
+
+    {{ $slot }}
 </div>

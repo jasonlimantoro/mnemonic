@@ -12,3 +12,9 @@ export const TrashIcon = (props) => {
         <i className="fa fa-trash-o" style={props.style}></i>
     );
 }
+
+export const EditIcon = (props) => {
+    return (
+        <i className="fa fa-pencil-square-o" style={props.style}></i>
+    );
+}

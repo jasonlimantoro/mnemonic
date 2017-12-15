@@ -1,0 +1,18 @@
+.table {
+    table-layout: fixed;
+    width: 100%;
+    white-space: nowrap;
+    td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .col {
+        &.title {
+            width: 30%;
+        }
+        &.body {
+            width: 60%;
+        }
+    }
+}
