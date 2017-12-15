@@ -16,6 +16,7 @@
 
         @slot('body')
             <h2>Your Published Posts</h2>
+            <div id="Search" class="__react-root"></div>
         @endslot
 
         @component('layouts.table')

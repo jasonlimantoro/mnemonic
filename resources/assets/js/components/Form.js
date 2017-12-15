@@ -38,3 +38,27 @@ export const FormPost = (props) => {
         </form>
     )
 }
+
+export class SearchBox extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleChange = this.handleChange.bind(this)
+    }
+    handleChange(e) {
+        const value = e.target.value;
+        this.props.onChange(value);
+    }
+    render () {
+        return(
+            <FieldGroup
+                id = "formControlsSearch"
+                type = "text"
+                label = "Search"
+                placeholder = {this.props.placeholder}
+                name = "search"
+                onChange = {this.handleChange}
+                value = {this.props.value}
+            />
+        )
+    }
+}

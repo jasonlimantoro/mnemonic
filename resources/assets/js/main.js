@@ -3,12 +3,12 @@ require('./bootstrap');
 import ReactDOM from "react-dom";
 import React from "react";
 import { UpdateButton, PublishButton, AddNewPostButton } from './containers/ButtonContainer';
-import { FormforHome } from './containers/FormContainer';
+import { FormforHome, Search } from './containers/FormContainer';
 import { DeletePostIcon, EditPostIcon } from "./containers/IconContainer";
 
 const APPS = {
     UpdateButton, PublishButton, AddNewPostButton,
-    FormforHome,
+    FormforHome, Search,
     DeletePostIcon, EditPostIcon
 };
 

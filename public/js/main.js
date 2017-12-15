@@ -8974,21 +8974,18 @@ ToggleButton.propTypes = propTypes;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditIcon; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-
 
 
 var PlusIcon = function PlusIcon(props) {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-plus', style: props.style });
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-plus", style: props.style });
 };
 
 var TrashIcon = function TrashIcon(props) {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-trash-o', style: props.style });
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-trash-o", style: props.style });
 };
 
 var EditIcon = function EditIcon(props) {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-pencil-square-o', style: props.style });
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-pencil-square-o", style: props.style });
 };
 
 /***/ }),
@@ -9022,7 +9019,7 @@ __webpack_require__(140);
 
 var APPS = {
   UpdateButton: __WEBPACK_IMPORTED_MODULE_2__containers_ButtonContainer__["c" /* UpdateButton */], PublishButton: __WEBPACK_IMPORTED_MODULE_2__containers_ButtonContainer__["b" /* PublishButton */], AddNewPostButton: __WEBPACK_IMPORTED_MODULE_2__containers_ButtonContainer__["a" /* AddNewPostButton */],
-  FormforHome: __WEBPACK_IMPORTED_MODULE_3__containers_FormContainer__["a" /* FormforHome */],
+  FormforHome: __WEBPACK_IMPORTED_MODULE_3__containers_FormContainer__["a" /* FormforHome */], Search: __WEBPACK_IMPORTED_MODULE_3__containers_FormContainer__["b" /* Search */],
   DeletePostIcon: __WEBPACK_IMPORTED_MODULE_4__containers_IconContainer__["a" /* DeletePostIcon */], EditPostIcon: __WEBPACK_IMPORTED_MODULE_4__containers_IconContainer__["b" /* EditPostIcon */]
 };
 
@@ -69151,11 +69148,13 @@ var Well = function (_React$Component) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormforHome; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Search; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Form__ = __webpack_require__(322);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_SearchPost__ = __webpack_require__(335);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -69163,6 +69162,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -69187,10 +69187,43 @@ var FormforHome = function (_React$Component) {
     return FormforHome;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
-// ReactDOM.render(
-//     <FormContainer />,
-//     document.getElementById('form')
-// );
+var Search = function (_React$Component2) {
+    _inherits(Search, _React$Component2);
+
+    function Search(props) {
+        _classCallCheck(this, Search);
+
+        var _this2 = _possibleConstructorReturn(this, (Search.__proto__ || Object.getPrototypeOf(Search)).call(this, props));
+
+        _this2.state = {
+            'searchValue': '',
+            'placeholder': 'Search post title'
+        };
+        _this2.changeSearchValue = _this2.changeSearchValue.bind(_this2);
+        return _this2;
+    }
+
+    _createClass(Search, [{
+        key: "changeSearchValue",
+        value: function changeSearchValue(newValue) {
+            this.setState({
+                'searchValue': newValue
+            });
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "div",
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Form__["b" /* SearchBox */], { onChange: this.changeSearchValue, value: this.state.searchValue, placeholder: this.state.placeholder }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_SearchPost__["a" /* SearchPost */], { value: this.state.searchValue })
+            );
+        }
+    }]);
+
+    return Search;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 /***/ }),
 /* 322 */
@@ -69198,10 +69231,19 @@ var FormforHome = function (_React$Component) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormPost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return SearchBox; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Button__ = __webpack_require__(91);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 
@@ -69258,6 +69300,42 @@ var FormPost = function FormPost(props) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Button__["a" /* PrimaryButton */], { type: "submit", text: "Publish" })
     );
 };
+
+var SearchBox = function (_React$Component) {
+    _inherits(SearchBox, _React$Component);
+
+    function SearchBox(props) {
+        _classCallCheck(this, SearchBox);
+
+        var _this = _possibleConstructorReturn(this, (SearchBox.__proto__ || Object.getPrototypeOf(SearchBox)).call(this, props));
+
+        _this.handleChange = _this.handleChange.bind(_this);
+        return _this;
+    }
+
+    _createClass(SearchBox, [{
+        key: "handleChange",
+        value: function handleChange(e) {
+            var value = e.target.value;
+            this.props.onChange(value);
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(FieldGroup, {
+                id: "formControlsSearch",
+                type: "text",
+                label: "Search",
+                placeholder: this.props.placeholder,
+                name: "search",
+                onChange: this.handleChange,
+                value: this.props.value
+            });
+        }
+    }]);
+
+    return SearchBox;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 /***/ }),
 /* 323 */
@@ -69330,6 +69408,86 @@ var EditPostIcon = function (_React$Component2) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 325 */,
+/* 326 */,
+/* 327 */,
+/* 328 */,
+/* 329 */,
+/* 330 */,
+/* 331 */,
+/* 332 */,
+/* 333 */,
+/* 334 */,
+/* 335 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPost; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var SearchPost = function (_React$Component) {
+    _inherits(SearchPost, _React$Component);
+
+    function SearchPost(props) {
+        _classCallCheck(this, SearchPost);
+
+        return _possibleConstructorReturn(this, (SearchPost.__proto__ || Object.getPrototypeOf(SearchPost)).call(this, props));
+    }
+
+    _createClass(SearchPost, [{
+        key: 'filter',
+        value: function filter() {
+            var input, filter, table, tr, td;
+            // input = document.getElementById('Search');
+            filter = this.props.value.toUpperCase();
+            table = document.getElementsByClassName('table')[0];
+            tr = table.getElementsByTagName('tr');
+
+            for (var i = 1; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName('td')[0];
+                if (td) {
+                    if (td.innerText.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = '';
+                    } else tr[i].style.display = 'none';
+                }
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                null,
+                this.filter(),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'p',
+                    null,
+                    ' Best match for: ',
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'strong',
+                        null,
+                        this.props.value
+                    ),
+                    ' '
+                )
+            );
+        }
+    }]);
+
+    return SearchPost;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 /***/ })
 /******/ ]);
