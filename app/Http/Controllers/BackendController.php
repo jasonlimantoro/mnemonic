@@ -28,21 +28,8 @@ class BackendController extends Controller
         return view('backend.admin');
     }
 
-    public function home() {
+    public function showPage (Page $page) {
         $pageInstance = new PagesController();
-        $page = Page::find(1);
-        return $pageInstance->show($page);
-    }
-
-    public function about() {
-        $pageInstance = new PagesController();
-        $page = Page::find(2);
-        return $pageInstance->show($page);
-    }
-
-    public function gallery() {
-        $pageInstance = new PagesController();
-        $page = Page::find(3);
         return $pageInstance->show($page);
     }
 

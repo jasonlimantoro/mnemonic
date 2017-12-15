@@ -1,5 +1,5 @@
 <!-- Sidebar Holder -->
-<nav id="sidebar">
+<nav id="sidebar" class="active">
 	<div class="sidebar-header">
 		<a href="{{ route('admin') }}"> 
 			<h3>Mnemonic</h3>
@@ -16,15 +16,19 @@
 				Pages
 			</a>
 			<ul class="collapse list-unstyled" id="pageSubmenu">
-					<li>
-						<a href="{{ route('admin') }}/pages/1">Home</a>
-					</li>
-					<li>
-						<a href="{{ route('admin') }}/pages/2">About Us</a>
-					</li>
-					<li>
-						<a href="{{ route('admin') }}/pages/3">Galleries</a>
-					</li>
+					{{--  Needed for sidebar  --}}
+					@php
+						$pages = App\Page::orderBy('id', 'asc')->get();
+					@endphp
+
+					@foreach($pages as $page)
+						<li>
+							<a href="{{ route('admin') }}/pages/{{ $page->id }}">
+								{{ $page->title }}
+							</a>
+						</li>
+					@endforeach
+					
 			</ul>
 		</li>
 

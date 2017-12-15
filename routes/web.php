@@ -8,9 +8,7 @@ Auth::routes();
 
 // Pages
 Route::get('/admin', 'BackendController@index')->name('admin');
-Route::get('/admin/pages/1', 'BackendController@home');
-Route::get('/admin/pages/2', 'BackendController@about');
-Route::get('/admin/pages/3', 'BackendController@gallery');
+Route::get('/admin/pages/{page}', 'BackendController@showPage')->name('pages.show');
 
 // Themes
 Route::get('/admin/themes/photo-slideshow', 'BackendController@slideshow');

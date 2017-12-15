@@ -7,7 +7,7 @@
                 <i class="fa fa-angle-left"></i>
             </a>  --}}
             <h1 class="title">{{ $page->title }} 
-                <a href="route('post.create', ['page' => $page->id ])" class="pull-right">
+                <a href="{{ route('post.create', ['page' => $page->id ]) }}" class="pull-right">
                     <div class="__react-root" id="AddNewPostButton">
                     </div>
                 </a>

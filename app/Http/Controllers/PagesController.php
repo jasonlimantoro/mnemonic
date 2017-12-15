@@ -44,7 +44,7 @@ class PagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($page)
+    public function show(Page $page)
     {   
         $posts = $page->posts()->latest()->get();
         return view('backend.pages.show', compact('page', 'posts'));
