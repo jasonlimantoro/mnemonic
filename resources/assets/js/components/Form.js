@@ -1,5 +1,5 @@
 import React from "react";
-import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { FormGroup, FormControl, ControlLabel, Radio } from "react-bootstrap";
 import { PrimaryButton, SuccessButton } from "./Button";
 
 function FieldGroup ( {id, label, ...props}) {
@@ -50,15 +50,56 @@ export class SearchBox extends React.Component {
     }
     render () {
         return(
-            <FieldGroup
-                id = "formControlsSearch"
-                type = "text"
-                label = "Search"
-                placeholder = {this.props.placeholder}
-                name = "search"
-                onChange = {this.handleChange}
-                value = {this.props.value}
-            />
+            <div>
+                <FieldGroup
+                    id = "formControlsSearch"
+                    type = "text"
+                    label = "Search"
+                    placeholder = {this.props.placeholder}
+                    name = "search"
+                    onChange = {this.handleChange}
+                    value = {this.props.value}
+                />
+            </div>
+        )
+    }
+}
+
+export class RadioButton extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleChange = this.handleChange.bind(this)
+    }
+    handleChange(e) {
+        const value = e.target.value;
+        this.props.onChange(value);
+    }
+
+    render () {
+        return(
+            <div>
+                <FormGroup>
+                    <Radio 
+                        name="radioGroup" 
+                        inline
+                        value = "title"
+                        defaultChecked
+                        onChange = {this.handleChange}
+                    >
+                        Title
+                    </Radio>
+                    {' '}
+                    <Radio 
+                        name="radioGroup"
+                        inline
+                        value = "body"
+                        checked = {this.props.selectedOption === 'body'}
+                        onChange = {this.handleChange}
+                    >
+                        Body
+                    </Radio>
+                </FormGroup>
+            </div>
         )
     }
 }
