@@ -77,6 +77,7 @@ export class RadioButton extends React.Component {
     render () {
         return(
             <div>
+                Search Parameters:
                 <FormGroup>
                     <Radio 
                         name="radioGroup" 
