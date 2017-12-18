@@ -8607,3 +8607,53 @@ span {
   color: grey;
 }
 
+.navbar {
+  margin-bottom: 0;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
+
+.navbar .navbar-collapse .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.navbar .navbar-collapse .navbar-nav .navbar-logo-center img {
+  height: 50px;
+}
+
+.navbar .navbar-collapse .navbar-nav a:not(.navbar-logo-center) {
+  padding: 30px 15px;
+}
+
+@media (max-width: 767px) {
+  .navbar-header .navbar-toggle {
+    margin-top: 20px;
+  }
+
+  .navbar-header a.navbar-brand {
+    height: auto;
+  }
+
+  .navbar-header a.navbar-brand img {
+    height: 50px;
+  }
+}
+
+.auth {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  background-color: black;
+}
+
