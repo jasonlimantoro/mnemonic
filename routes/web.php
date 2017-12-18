@@ -1,35 +1,19 @@
 <?php
 /*
     |--------------------------------------------------------------------------
-    | Frontend
-    |--------------------------------------------------------------------------
-    |
-    |
-*/
-// To display login and registration button
-Auth::routes();
-
-Route::get('/', 'FrontendController@home')->name('home');
-Route::get('/about-us', 'FrontendController@about');
-Route::get('/galleries', 'FrontendController@gallery');
-Route::get('/{page_title}/{post_title}', 'PostsController@read')->name('post.read');
-
-
-/*
-    |--------------------------------------------------------------------------
     | Backend
     |--------------------------------------------------------------------------
     |
     |
 */
-
-// Pages
+// Websites
 Route::get('/admin', 'BackendController@index')->name('admin');
+Route::get('/admin/main-carousel', 'BackendController@carousel');
 Route::get('/admin/pages/{page}', 'BackendController@showPage')->name('pages.show');
+Route::get('/admin/galleries', 'BackendController@gallery');
 
+Route::post('/upload', 'CarouselController@upload');
 
-// Themes
-Route::get('/admin/themes/photo-slideshow', 'BackendController@slideshow');
 
 // Wedding
 Route::get('/admin/wedding/groom-and-bride', 'BackendController@couple');
@@ -54,3 +38,21 @@ Route::get('/admin/posts/{post}/edit', 'PostsController@edit')->name('post.edit'
 Route::post('/admin/posts/{post}/update', 'PostsController@update')->name('post.update');
 Route::get('/admin/posts/{post}/delete', 'PostsController@destroy')->name('post.delete');
 Route::get('/admin/posts/{post}', 'PostsController@show')->name('post.show');
+
+
+/*
+    |--------------------------------------------------------------------------
+    | Frontend
+    |--------------------------------------------------------------------------
+    |
+    |
+*/
+// To display login and registration button
+Auth::routes();
+
+Route::get('/', 'FrontendController@home')->name('home');
+Route::get('/about-us', 'FrontendController@about');
+Route::get('/galleries', 'FrontendController@gallery');
+Route::get('/{page_title}/{post_title}', 'PostsController@read')->name('post.read');
+
+

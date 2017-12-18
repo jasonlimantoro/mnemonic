@@ -8578,6 +8578,10 @@ span {
   }
 }
 
+.navbar.navbar-backend {
+  margin-bottom: 40px;
+}
+
 .table {
   table-layout: fixed;
   width: 100%;

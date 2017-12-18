@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PagesController;
 use App\Page;
+use App\Http\Controllers\CarouselController;
 
 class BackendController extends Controller
 {
@@ -34,7 +35,8 @@ class BackendController extends Controller
     }
 
     public function carousel() {
-        return view('backend.website.carousel');
+        $carouselInstance = new CarouselController();
+        return $carouselInstance->showCarouselForm();
     }
 
     public function gallery() {

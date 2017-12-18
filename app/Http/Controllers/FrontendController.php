@@ -20,6 +20,6 @@ class FrontendController extends Controller
     }
 
     public function gallery() {
-        return $this->postInstance->index(3);
+        // return $this->postInstance->index(3);
     }
 }
