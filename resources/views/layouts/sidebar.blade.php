@@ -10,6 +10,7 @@
 	<ul class="list-unstyled components">
 		<li><a href="{{ route('admin') }}">Dashboard</a></li>
 		<li class="header">Website</li>
+		<li><a href="{{ route('admin') }}/main-carousel">Main Carousel</a></li>
 		<li>
 			<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
 				<i class="glyphicon glyphicon-duplicate"></i>
@@ -23,7 +24,7 @@
 
 					@foreach($pages as $page)
 						<li>
-							<a href="{{ route('admin') }}/pages/{{ $page->id }}">
+							<a href="{{ route('pages.show', ['page' => $page->id ]) }}">
 								{{ $page->title }}
 							</a>
 						</li>
@@ -31,9 +32,8 @@
 					
 			</ul>
 		</li>
-
-		<li class="header">Theme</li>
-		<li><a href="{{ route('admin') }}/themes/photo-slideshow">Photo Slideshow</a></li>
+		<li><a href="{{ route('admin') }}/galleries">Galleries</a></li>
+		
 		<li class="header">Wedding</li>
 		<li>
 			<a href="#weddingSubmenu" data-toggle="collapse" aria-expanded="false">

@@ -7,7 +7,7 @@
             <h2>List of Posts</h2>
             <div class="row">
                 @foreach($posts as $post)
-                        @include('posts.frontend.post')
+                    @include('posts.frontend.post')
                 @endforeach
             </div>
         </div>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-backend">
     <div class="container-fluid">
         <div class="navbar-header">
             <span class="glyphicon glyphicon-menu-hamburger sidebar-toggle" id="sidebarCollapse" role="button"></span>
