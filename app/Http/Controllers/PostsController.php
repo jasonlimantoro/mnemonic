@@ -19,10 +19,11 @@ class PostsController extends Controller
         $this->middleware('auth')->except(['index', 'read']);
     }
 
-    public function index()
+    public function index($page_id)
     {
-        $posts = Post::latest()->get();
-        return view('posts.frontend.index', compact('posts'));
+        $posts = Post::where('page_id', '=', $page_id)->latest()->get();
+        $page = $posts->first()->page;
+        return view('posts.frontend.index', compact('posts', 'page'));
     }
 
     /**
@@ -122,7 +123,8 @@ class PostsController extends Controller
         return redirect()->back();
     }
 
-    public function read(Post $post) {
-        return view('posts.frontend.read', compact('post'));
+    public function read($page_title, Post $post) {
+        $page = $post->page;
+        return view('posts.frontend.read', compact('post', 'page'));
     }
 }

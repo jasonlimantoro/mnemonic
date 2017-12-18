@@ -1,14 +1,31 @@
 <?php
-Route::get('/', 'PostsController@index')->name('home');
+/*
+    |--------------------------------------------------------------------------
+    | Frontend
+    |--------------------------------------------------------------------------
+    |
+    |
+*/
 // To display login and registration button
 Auth::routes();
 
+Route::get('/', 'FrontendController@home')->name('home');
+Route::get('/about-us', 'FrontendController@about');
+Route::get('/{page_title}/{post}', 'PostsController@read')->name('post.read');
 
-// Routing for backend
+
+/*
+    |--------------------------------------------------------------------------
+    | Backend
+    |--------------------------------------------------------------------------
+    |
+    |
+*/
 
 // Pages
 Route::get('/admin', 'BackendController@index')->name('admin');
 Route::get('/admin/pages/{page}', 'BackendController@showPage')->name('pages.show');
+
 
 // Themes
 Route::get('/admin/themes/photo-slideshow', 'BackendController@slideshow');
@@ -30,9 +47,6 @@ Route::get('/admin/settings/manage-roles', 'BackendController@manageRoles');
 
 // Form routes for posts
 Route::get('/posts', 'PostsController@index')->name('post.index');
-Route::get('/posts/{post}', 'PostsController@read')->name('post.read');
-
-
 Route::get('/admin/pages/{page}/posts/create', 'PostsController@create')->name('post.create');
 Route::post('/admin/pages/{page}/post', 'PostsController@store')->name('post.store');
 Route::get('/admin/posts/{post}/edit', 'PostsController@edit')->name('post.edit');
