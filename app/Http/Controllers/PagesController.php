@@ -47,7 +47,7 @@ class PagesController extends Controller
     public function show(Page $page)
     {   
         $posts = $page->posts()->latest()->get();
-        return view('backend.pages.show', compact('page', 'posts'));
+        return view('backend.website.pages.show', compact('page', 'posts'));
     }
 
     /**

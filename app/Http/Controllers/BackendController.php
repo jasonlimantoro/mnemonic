@@ -33,8 +33,12 @@ class BackendController extends Controller
         return $pageInstance->show($page);
     }
 
-    public function slideshow() {
-        return view('backend.themes.photo-slideshow');
+    public function carousel() {
+        return view('backend.website.carousel');
+    }
+
+    public function gallery() {
+        return view('backend.website.galleries');
     }
 
     public function couple() {
