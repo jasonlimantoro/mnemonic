@@ -11,7 +11,8 @@ Auth::routes();
 
 Route::get('/', 'FrontendController@home')->name('home');
 Route::get('/about-us', 'FrontendController@about');
-Route::get('/{page_title}/{post}', 'PostsController@read')->name('post.read');
+Route::get('/galleries', 'FrontendController@gallery');
+Route::get('/{page_title}/{post_title}', 'PostsController@read')->name('post.read');
 
 
 /*

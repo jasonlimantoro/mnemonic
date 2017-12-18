@@ -45,10 +45,14 @@ class PostsController extends Controller
     public function store(Request $request, Page $page)
     {
         // validate the form
-        $this->validate(request(), [
-            'title' => 'required',
+        $rules = [
+            'title' => 'required|unique:posts,title',
             'body' => 'required'
-        ]);
+        ];
+        $customMessages = [
+            'title.unique' => 'The :attribute field must be unique! Either delete the post with the same title or use another title!'
+        ];
+        $this->validate($request, $rules, $customMessages);
 
         // create a new post
         Post::create([
@@ -123,8 +127,21 @@ class PostsController extends Controller
         return redirect()->back();
     }
 
-    public function read($page_title, Post $post) {
+    public function read($page_title, $post_title) {
+        $formatted_post_title = title_case(str_replace('-', ' ', $post_title));
+        $post = Post::where('title', $formatted_post_title)->get()[0];
         $page = $post->page;
         return view('posts.frontend.read', compact('post', 'page'));
+    }
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'title.unique' => 'This title has already been taken! Please either delete that post or use another title!'
+        ];
     }
 }

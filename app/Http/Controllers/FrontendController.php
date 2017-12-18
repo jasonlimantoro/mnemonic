@@ -18,4 +18,8 @@ class FrontendController extends Controller
     public function about() {
         return $this->postInstance->index(2);
     }
+
+    public function gallery() {
+        return $this->postInstance->index(3);
+    }
 }
