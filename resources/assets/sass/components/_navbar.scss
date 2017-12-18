@@ -1,0 +1,37 @@
+.navbar {
+    margin-bottom: 0;
+    .navbar-collapse {
+        text-align: center;
+        .navbar-nav {
+            display: inline-block;
+            float: none;
+            vertical-align: top;
+            .navbar-logo-center {
+                img {
+                    height: 50px;
+                }
+            }
+            a:not(.navbar-logo-center) {
+                padding: 30px 15px;
+            }
+        }
+    }
+}
+
+@include general-query(desktop) {
+
+}
+
+@include general-query(mobile) {
+    .navbar-header {
+        .navbar-toggle {
+            margin-top: 20px;
+        }
+        a.navbar-brand {
+            height: auto;
+            img {
+                height: 50px;
+            }
+        }
+    }
+}
