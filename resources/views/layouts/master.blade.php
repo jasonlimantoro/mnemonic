@@ -14,8 +14,12 @@
         <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     </head>
     <body>
-        {{--  Front end navigation  --}}
-        @include('layouts.navbar')
+
+        @if(Route::current()->getName() !== 'login' and Route::current()->getName() !== 'register' )
+            {{--  Front end navigation  --}}
+            @include('layouts.navbar')
+
+        @endif
         
         <div class="container-fluid">
             @yield('content')
