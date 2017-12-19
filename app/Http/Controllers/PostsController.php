@@ -26,7 +26,13 @@ class PostsController extends Controller
         if ($page_id == 1) {
             // Home
             // All uploaded images
-            $slides = \Storage::disk('uploads')->files('/uploads/carousel');
+            $slides = collect(\File::files(public_path('uploads/carousel')))
+                        ->sortBy(function($image){
+                            return $image->getcTime();
+                        })
+                        ->map(function($image){
+                            return $image->getBaseName();
+                        });
             return view('posts.frontend.index', compact('posts', 'page', 'slides'));
         }
         else {

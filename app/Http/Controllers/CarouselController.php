@@ -10,7 +10,13 @@ class CarouselController extends Controller
 {
     public function showCarouselForm () {
         // All uploaded images
-        $images = \Storage::disk('uploads')->files('/uploads/carousel');
+        $images = collect(\File::files(public_path('uploads/carousel')))
+                    ->sortBy(function($image){
+                        return $image->getcTime();
+                    })
+                    ->map(function($image){
+                        return $image->getBaseName();
+                    });
 
         return view('backend.website.carousel-form', compact('images'));
     }
