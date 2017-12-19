@@ -13,10 +13,13 @@
                     <h3>Your Carousel Images</h3>
                     <div class="row">
                         @foreach($images as $image)
+                            @php
+                                $filename = str_after($image, 'uploads/carousel/');
+                            @endphp
                             <div class="col-md-4">
                                 @component('layouts.thumbnail')
                                     @slot('thumbnailImage')
-                                        <img src="{{ asset($image) }}" alt="carousel-image" class="img-responsive">
+                                        <img src="{{ url('/imagecache/fit/' . $filename) }}" alt="carousel-image" class="img-responsive">
                                     @endslot
 
                                     @slot('thumbnailCaption')
