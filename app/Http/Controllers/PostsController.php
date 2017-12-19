@@ -23,7 +23,16 @@ class PostsController extends Controller
     {
         $posts = Post::where('page_id', '=', $page_id)->latest()->get();
         $page = $posts->first()->page;
-        return view('posts.frontend.index', compact('posts', 'page'));
+        if ($page_id == 1) {
+            // Home
+            // All uploaded images
+            $slides = \Storage::disk('uploads')->files('/uploads/carousel');
+            return view('posts.frontend.index', compact('posts', 'page', 'slides'));
+        }
+        else {
+            // about
+            return view('posts.frontend.about', compact('posts', 'page'));
+        }
     }
 
     /**
