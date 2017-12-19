@@ -32,8 +32,16 @@ class CarouselController extends Controller
         //                 $imageRequest,
         //                 $fileName
         //             );
-        
-        $path = Image::make($imageRequest)->resize(300, 200)->save($fileDestination);
+
+        // Create a Canvas
+        $canvas = Image::canvas(2000, 1000);
+        // Resize the image given constraints
+        $img = Image::make($imageRequest)->resize(2000, 1000, function($constraint){
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        });
+        // Insert the image to the canvas and save it
+        $canvas->insert($img, 'center')->save($fileDestination);
 
         \Session::flash('success_msg', 'Image is successfully uploaded!');
         return back();

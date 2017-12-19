@@ -10,7 +10,7 @@
 
         @slot('tableBody')
             @foreach($posts as $post)
-                    @include('posts.backend.post')
+                @include('posts.backend.post')
             @endforeach
         @endslot
 
