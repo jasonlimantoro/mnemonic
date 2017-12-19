@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use App\Filters\CarouselFilter;
 
-class CarouselController extends Controller
+class CarouselImagesController extends Controller
 {
-    public function showCarouselForm () {
+    public function index () {
         // All uploaded images
         $images = collect(\File::files(public_path('uploads/carousel')))
                     ->sortBy(function($image){
@@ -18,7 +18,7 @@ class CarouselController extends Controller
                         return $image->getBaseName();
                     });
 
-        return view('backend.website.carousel-form', compact('images'));
+        return view('backend.website.carousel.index', compact('images'));
     }
 
     public function upload(Request $request) {

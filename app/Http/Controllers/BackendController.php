@@ -35,8 +35,8 @@ class BackendController extends Controller
     }
 
     public function carousel() {
-        $carouselInstance = new CarouselController();
-        return $carouselInstance->showCarouselForm();
+        $carouselInstance = new CarouselImagesController();
+        return $carouselInstance->index();
     }
 
     public function gallery() {

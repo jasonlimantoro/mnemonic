@@ -12,7 +12,7 @@ Route::get('/admin/main-carousel', 'BackendController@carousel');
 Route::get('/admin/pages/{page}', 'BackendController@showPage')->name('pages.show');
 Route::get('/admin/galleries', 'BackendController@gallery');
 
-Route::post('/upload', 'CarouselController@upload');
+Route::post('/upload', 'CarouselImagesController@upload');
 
 
 // Wedding
