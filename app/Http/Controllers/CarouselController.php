@@ -30,7 +30,7 @@ class CarouselController extends Controller
         $img = Image::make($imageRequest);
 
         // applyFilter CarouselFilter
-        $img->filter(new CarouselFilter($fileDestination))->save($fileDestination);
+        $img->filter(new CarouselFilter())->save($fileDestination);
 
         \Session::flash('success_msg', 'Image is successfully uploaded!');
         return back();
