@@ -148,15 +148,5 @@ class PostsController extends Controller
         $page = $post->page;
         return view('posts.frontend.read', compact('post', 'page'));
     }
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-            'title.unique' => 'This title has already been taken! Please either delete that post or use another title!'
-        ];
-    }
+
 }
