@@ -14,7 +14,7 @@
         @endphp
             <tr>
                 <td>
-                    <img src="{{ url('/imagecache/fit/' . $filename) }}" alt="carousel-image" class="img-responsive">
+                    <img src="{{ url('/imagecache/fit/' . $image) }}" alt="carousel-image" class="img-responsive">
                 </td>
 
                 <td>
@@ -48,7 +48,7 @@
                     </div>
                     <div>
                         <a 
-                            href="#" 
+                            href="{{ route('carousel.delete', ['image' => $image]) }}" 
                             id="DeletePostIcon" 
                             class="__react-root" 
                             role="button"

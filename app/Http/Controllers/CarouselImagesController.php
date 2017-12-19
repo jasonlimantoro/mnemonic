@@ -41,4 +41,13 @@ class CarouselImagesController extends Controller
         \Session::flash('success_msg', 'Image is successfully uploaded!');
         return back();
     }
+
+    public function destroy($image) {
+        $filePath = 'uploads/carousel/' . $image;
+        \Storage::disk('uploads')->delete($filePath);
+
+        \Session::flash('success_msg', 'Image is successfully deleted!');
+
+        return back();
+    }
 }

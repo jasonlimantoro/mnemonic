@@ -8,12 +8,13 @@
 */
 // Websites
 Route::get('/admin', 'BackendController@index')->name('admin');
-Route::get('/admin/main-carousel', 'BackendController@carousel');
+
+Route::get('/admin/main-carousel', 'BackendController@carousel')->name('carousel.index');
+Route::post('/upload', 'CarouselImagesController@upload');
+Route::get('/admin/main-carousel/{image}/delete', 'CarouselImagesController@destroy')->name('carousel.delete');
+
 Route::get('/admin/pages/{page}', 'BackendController@showPage')->name('pages.show');
 Route::get('/admin/galleries', 'BackendController@gallery');
-
-Route::post('/upload', 'CarouselImagesController@upload');
-
 
 // Wedding
 Route::get('/admin/wedding/groom-and-bride', 'BackendController@couple');
