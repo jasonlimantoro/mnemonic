@@ -18,7 +18,7 @@
                 </td>
 
                 <td>
-                    <p>A place to show caption</p>
+                    A place to show post
                 </td>
                 
                 <td class="text-center">
