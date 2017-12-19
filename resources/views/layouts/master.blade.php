@@ -27,5 +27,7 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/main.js') }}"></script>
+
+        @yield('scripts')
     </body>
 </html>
