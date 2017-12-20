@@ -9,9 +9,6 @@
 
     @slot('tableBody')
         @foreach($images as $image)
-        @php
-            $filename = str_after($image, 'uploads/carousel/');
-        @endphp
             <tr>
                 <td>
                     <img src="{{ url('/imagecache/fit/' . $image) }}" alt="carousel-image" class="img-responsive">

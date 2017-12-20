@@ -22,13 +22,10 @@
 
         @slot('carouselSlides')
             @foreach($slides as $slide)
-                @php
-                    $filename = str_after($slide, 'uploads/carousel/');
-                @endphp
                 @if ($loop->first)
                     {{-- This is the first iteration --}}
                     <div class="item active">
-                        <img src="{{ url('/imagecache/fit/' . $filename) }}" alt="slide" class="img-responsive">
+                        <img src="{{ url('/imagecache/fit/' . $slide) }}" alt="slide" class="img-responsive">
                         <div class="carousel-caption">
                             ...
                         </div>
@@ -36,7 +33,7 @@
 
                 @else
                     <div class="item">
-                        <img src="{{ url('/imagecache/fit/' . $filename) }}" alt="slide" class="img-responsive">
+                        <img src="{{ url('/imagecache/fit/' . $slide) }}" alt="slide" class="img-responsive">
                         <div class="carousel-caption">
                             ...
                         </div>
