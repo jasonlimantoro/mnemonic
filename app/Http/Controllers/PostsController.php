@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Page;
+use App\Http\Controllers\CarouselImagesController;
 
 class PostsController extends Controller
 {
@@ -25,14 +26,11 @@ class PostsController extends Controller
         $page = $posts->first()->page;
         if ($page_id == 1) {
             // Home
+            
             // All uploaded images
-            $slides = collect(\File::files(public_path('uploads/carousel')))
-                        ->sortBy(function($image){
-                            return $image->getcTime();
-                        })
-                        ->map(function($image){
-                            return $image->getBaseName();
-                        });
+            $carouselInstance = new CarouselImagesController();
+            $slides = $carouselInstance->images;
+
             return view('posts.frontend.index', compact('posts', 'page', 'slides'));
         }
         else {
@@ -68,15 +66,10 @@ class PostsController extends Controller
             'title.unique' => 'The :attribute field must be unique! Either delete the post with the same title or use another title!'
         ];
         $this->validate($request, $rules, $customMessages);
-
-        // create a new post
-        Post::create([
-            'user_id' => auth()->id(),
-            'page_id' => $page->id,
-            'title' => request('title'),
-            'body' => request('body')
-        ]);
-
+        
+        // add a new post to a page
+        $page->addPost(request('title'), request('body'), auth()->id());
+        
         \Session::flash('success_msg', 'Post is added succesfully');
 
         return redirect()->back();
