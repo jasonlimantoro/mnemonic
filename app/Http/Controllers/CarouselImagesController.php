@@ -8,17 +8,19 @@ use App\Filters\CarouselFilter;
 
 class CarouselImagesController extends Controller
 {
-    public function index () {
+    public function __construct() {
         // All uploaded images
-        $images = collect(\File::files(public_path('uploads/carousel')))
-                    ->sortBy(function($image){
-                        return $image->getcTime();
-                    })
-                    ->map(function($image){
-                        return $image->getBaseName();
-                    });
+        $this->images = collect(\File::files(public_path('uploads/carousel')))
+                        ->sortBy(function($image){
+                            return $image->getcTime();
+                        })
+                        ->map(function($image){
+                            return $image->getBaseName();
+                        });
+    }
+    public function index () {
 
-        return view('backend.website.carousel.index', compact('images'));
+        return view('backend.website.carousel.index')->with('images', $this->images);
     }
 
     public function upload(Request $request) {
