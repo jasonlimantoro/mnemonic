@@ -16,6 +16,7 @@ class CreateCarouselImagesTable extends Migration
         Schema::create('carouselImages', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('carousel_id');
+            $table->text('caption');
             $table->string('url_asset');
             $table->string('url_cache');
             $table->timestamps();
