@@ -63,11 +63,3 @@
         </div>
     </div>
 @endsection
-
-@section('scripts')
-    {{--  <script>
-        $(document).ready(function(){
-            $('.item').first().addClass('active');
-        });
-    </script>  --}}
-@endsection
