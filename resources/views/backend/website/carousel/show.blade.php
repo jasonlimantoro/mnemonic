@@ -5,6 +5,10 @@
         <div class="col-md-12">
             @component('layouts.panel')
                 @slot('heading')
+                    <a href="{{ route('carousel.index') }}" class="btn btn-primary">
+                        <i class="fa fa-angle-left"></i>
+                        Back
+                    </a>
                    <h1> Main Carousel </h1>
                 @endslot
 
