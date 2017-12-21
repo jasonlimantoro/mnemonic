@@ -102,11 +102,10 @@ class CarouselImagesController extends Controller
     public function destroy(CarouselImage $image) {
 
         // Delete the asset file
-        \Storage::disk('uploads')->delete($image->url_asset);
+        \Storage::disk('uploads')->delete('/uploads/carousel/' . $image->file_name);
         
-        // Delete from the databse
+        // Delete the record from database
         $image->delete();
-
 
         \Session::flash('success_msg', 'Image is successfully deleted!');
 
