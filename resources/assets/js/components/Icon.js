@@ -8,11 +8,11 @@ export const PlusIcon = (props) => {
 
 export const TrashIcon = (props) => {
     return (
-        <i className="fa fa-trash-o" style={props.style}></i>
+        <i className="fa fa-trash-o" style={props.style} onClick={props.handleClick}></i>
     );
 }
 
-export const EditIcon = (props) => {
+export const PencilIcon = (props) => {
     return (
         <i className="fa fa-pencil-square-o" style={props.style}></i>
     );

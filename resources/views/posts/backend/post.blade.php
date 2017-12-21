@@ -11,7 +11,7 @@
         <div>
             <a 
                 href="{{ route('post.show', ['post' => $post->id ]) }}" 
-                id="InfoPostIcon" 
+                id="ShowIcon" 
                 class="__react-root" 
                 role="button"
                 data-toggle="tooltip"
@@ -23,7 +23,7 @@
         <div>
             <a 
                 href="{{ route('post.edit', ['post' => $post->id ]) }}" 
-                id="EditPostIcon" 
+                id="EditIcon" 
                 class="__react-root" 
                 role="button"
                 data-toggle="tooltip"
@@ -35,7 +35,7 @@
         <div>
             <a 
                 href="{{ route('post.delete', ['post' => $post->id ]) }}" 
-                id="DeletePostIcon" 
+                id="DeleteIcon" 
                 class="__react-root" 
                 role="button"
                 data-toggle="tooltip"

@@ -1,24 +1,32 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { TrashIcon, EditIcon, InfoIcon } from "../components/Icon";
+import { TrashIcon, PencilIcon, InfoIcon } from "../components/Icon";
 
 const style = {
     'fontSize' : '24px',
     'color': 'black'
 };
-export class DeletePostIcon extends React.Component {
+
+export class DeleteIcon extends React.Component {
+    confirmDelete(e) {
+        // Confirmation for any delete action
+        if (!confirm('Are you sure you want to delete?')){
+            e.preventDefault();
+            return false;
+        }
+    }
     render(){
-        return <TrashIcon style={style} />
+        return <TrashIcon style={style} handleClick={this.confirmDelete} />
     }
 }
 
-export class EditPostIcon extends React.Component {
+export class EditIcon extends React.Component {
     render() {
-        return <EditIcon style={style} />
+        return <PencilIcon style={style} />
     }
 }
 
-export class InfoPostIcon extends React.Component {
+export class ShowIcon extends React.Component {
     render() {
         return <InfoIcon style={style} />
     }

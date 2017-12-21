@@ -8971,8 +8971,8 @@ ToggleButton.propTypes = propTypes;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return PlusIcon; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return TrashIcon; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EditIcon; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return InfoIcon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return PencilIcon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InfoIcon; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 
@@ -8982,10 +8982,10 @@ var PlusIcon = function PlusIcon(props) {
 };
 
 var TrashIcon = function TrashIcon(props) {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-trash-o", style: props.style });
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-trash-o", style: props.style, onClick: props.handleClick });
 };
 
-var EditIcon = function EditIcon(props) {
+var PencilIcon = function PencilIcon(props) {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fa fa-pencil-square-o", style: props.style });
 };
 
@@ -9025,7 +9025,7 @@ __webpack_require__(140);
 var APPS = {
   UpdateButton: __WEBPACK_IMPORTED_MODULE_2__containers_ButtonContainer__["c" /* UpdateButton */], PublishButton: __WEBPACK_IMPORTED_MODULE_2__containers_ButtonContainer__["b" /* PublishButton */], AddNewPostButton: __WEBPACK_IMPORTED_MODULE_2__containers_ButtonContainer__["a" /* AddNewPostButton */],
   FormforHome: __WEBPACK_IMPORTED_MODULE_3__containers_FormContainer__["a" /* FormforHome */], Search: __WEBPACK_IMPORTED_MODULE_3__containers_FormContainer__["b" /* Search */],
-  DeletePostIcon: __WEBPACK_IMPORTED_MODULE_4__containers_IconContainer__["a" /* DeletePostIcon */], EditPostIcon: __WEBPACK_IMPORTED_MODULE_4__containers_IconContainer__["b" /* EditPostIcon */], InfoPostIcon: __WEBPACK_IMPORTED_MODULE_4__containers_IconContainer__["c" /* InfoPostIcon */]
+  DeleteIcon: __WEBPACK_IMPORTED_MODULE_4__containers_IconContainer__["a" /* DeleteIcon */], EditIcon: __WEBPACK_IMPORTED_MODULE_4__containers_IconContainer__["b" /* EditIcon */], ShowIcon: __WEBPACK_IMPORTED_MODULE_4__containers_IconContainer__["c" /* ShowIcon */]
 };
 
 function renderAppInElement(el) {
@@ -69534,9 +69534,9 @@ var SearchPost = function (_React$Component) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DeletePostIcon; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return EditPostIcon; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return InfoPostIcon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DeleteIcon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return EditIcon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return ShowIcon; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(11);
@@ -69558,61 +69558,71 @@ var style = {
     'fontSize': '24px',
     'color': 'black'
 };
-var DeletePostIcon = function (_React$Component) {
-    _inherits(DeletePostIcon, _React$Component);
 
-    function DeletePostIcon() {
-        _classCallCheck(this, DeletePostIcon);
+var DeleteIcon = function (_React$Component) {
+    _inherits(DeleteIcon, _React$Component);
 
-        return _possibleConstructorReturn(this, (DeletePostIcon.__proto__ || Object.getPrototypeOf(DeletePostIcon)).apply(this, arguments));
+    function DeleteIcon() {
+        _classCallCheck(this, DeleteIcon);
+
+        return _possibleConstructorReturn(this, (DeleteIcon.__proto__ || Object.getPrototypeOf(DeleteIcon)).apply(this, arguments));
     }
 
-    _createClass(DeletePostIcon, [{
+    _createClass(DeleteIcon, [{
+        key: "confirmDelete",
+        value: function confirmDelete(e) {
+            // Confirmation for any delete action
+            if (!confirm('Are you sure you want to delete?')) {
+                e.preventDefault();
+                return false;
+            }
+        }
+    }, {
         key: "render",
         value: function render() {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Icon__["d" /* TrashIcon */], { style: style });
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Icon__["d" /* TrashIcon */], { style: style, handleClick: this.confirmDelete });
         }
     }]);
 
-    return DeletePostIcon;
+    return DeleteIcon;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
-var EditPostIcon = function (_React$Component2) {
-    _inherits(EditPostIcon, _React$Component2);
+var EditIcon = function (_React$Component2) {
+    _inherits(EditIcon, _React$Component2);
 
-    function EditPostIcon() {
-        _classCallCheck(this, EditPostIcon);
+    function EditIcon() {
+        _classCallCheck(this, EditIcon);
 
-        return _possibleConstructorReturn(this, (EditPostIcon.__proto__ || Object.getPrototypeOf(EditPostIcon)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (EditIcon.__proto__ || Object.getPrototypeOf(EditIcon)).apply(this, arguments));
     }
 
-    _createClass(EditPostIcon, [{
+    _createClass(EditIcon, [{
         key: "render",
         value: function render() {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Icon__["a" /* EditIcon */], { style: style });
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Icon__["b" /* PencilIcon */], { style: style });
         }
     }]);
 
-    return EditPostIcon;
+    return EditIcon;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
-var InfoPostIcon = function (_React$Component3) {
-    _inherits(InfoPostIcon, _React$Component3);
+var ShowIcon = function (_React$Component3) {
+    _inherits(ShowIcon, _React$Component3);
 
-    function InfoPostIcon() {
-        _classCallCheck(this, InfoPostIcon);
+    function ShowIcon() {
+        _classCallCheck(this, ShowIcon);
 
-        return _possibleConstructorReturn(this, (InfoPostIcon.__proto__ || Object.getPrototypeOf(InfoPostIcon)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (ShowIcon.__proto__ || Object.getPrototypeOf(ShowIcon)).apply(this, arguments));
     }
 
-    _createClass(InfoPostIcon, [{
+    _createClass(ShowIcon, [{
         key: "render",
         value: function render() {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Icon__["b" /* InfoIcon */], { style: style });
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Icon__["a" /* InfoIcon */], { style: style });
         }
     }]);
 
-    return InfoPostIcon;
+    return ShowIcon;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 /***/ }),

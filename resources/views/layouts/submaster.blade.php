@@ -60,7 +60,7 @@
             });
         </script>
         {{--  page-specific scripts  --}}
-		@yield('script')
+		@yield('scripts')
 	</body>
 
 </html>

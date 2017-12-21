@@ -22,7 +22,7 @@
                     <div>
                         <a 
                             href="{{ route('carousel.image.show', ['image' => $image->id ]) }}" 
-                            id="InfoPostIcon" 
+                            id="ShowIcon" 
                             class="__react-root" 
                             role="button"
                             data-toggle="tooltip"
@@ -34,7 +34,7 @@
                     <div>
                         <a 
                             href="{{ route('carousel.image.edit', ['image' => $image->id ]) }}" 
-                            id="EditPostIcon" 
+                            id="EditIcon" 
                             class="__react-root" 
                             role="button"
                             data-toggle="tooltip"
@@ -46,7 +46,7 @@
                     <div>
                         <a 
                             href="{{ route('carousel.image.delete', ['image' => $image->id ]) }}" 
-                            id="DeletePostIcon" 
+                            id="DeleteIcon" 
                             class="__react-root" 
                             role="button"
                             data-toggle="tooltip"
