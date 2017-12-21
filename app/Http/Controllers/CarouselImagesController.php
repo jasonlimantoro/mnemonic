@@ -60,35 +60,41 @@ class CarouselImagesController extends Controller
 
     public function update(Request $request, $carouselId = 1, CarouselImage $image) {
         $rules = [
-            'image' => 'required|image'
+            'image' => 'image',
         ];
         $this->validate($request, $rules);
 
-        // Gathering information
-        $imageRequest = $request->file('image');
-        $fileName = $imageRequest->getClientOriginalName();
-        $fileDestination = public_path('uploads/carousel/' . $fileName);
-        $url_asset = asset('uploads/carousel/' . $fileName);
-        $url_cache = url('/imagecache/fit/' . $fileName);
-
-        // create an Image instance
-        $img = Image::make($imageRequest);
-
-        // applyFilter CarouselFilter
-        $img->filter(new CarouselFilter())->save($fileDestination);
-        
-        // array of attributes that needs to be updated
+        // only caption
         $updatedData = [
-            'caption' => $request->caption,
-            'file_name' => $fileName,
-            'url_asset' => $url_asset,
-            'url_cache' => $url_cache
+            'caption' => $request->caption
         ];
-
+        
+        if ($request->hasFile('image')){
+            // Gathering information
+            $imageRequest = $request->file('image');
+            $fileName = $imageRequest->getClientOriginalName();
+            $fileDestination = public_path('uploads/carousel/' . $fileName);
+            $url_asset = asset('uploads/carousel/' . $fileName);
+            $url_cache = url('/imagecache/fit/' . $fileName);
+    
+            // create an Image instance
+            $img = Image::make($imageRequest);
+    
+            // applyFilter CarouselFilter
+            $img->filter(new CarouselFilter())->save($fileDestination);
+            
+            // array of attributes that needs to be updated
+            $updatedData = [
+                'caption' => $request->caption,
+                'file_name' => $fileName,
+                'url_asset' => $url_asset,
+                'url_cache' => $url_cache
+            ];
+        }
+        
         // update the database
         $image->update($updatedData);
-
-        \Session::flash('success_msg', 'Images updated sucessfully!');
+        \Session::flash('success_msg', 'Updated sucessfully!');
 
         return back();
     }
