@@ -16,6 +16,10 @@ Route::post('/admin/main-carousel/{carouselId}/upload', 'CarouselImagesControlle
 Route::get('/admin/main-carousel/{image}/delete', 'CarouselImagesController@destroy')
         ->name('carousel.image.delete');
 
+Route::get('/admin/main-carousel/{image}/show', 'CarouselImagesController@show')
+        ->name('carousel.image.show');
+
+
 Route::get('/admin/pages/{page}', 'BackendController@showPage')->name('pages.show');
 Route::get('/admin/galleries', 'BackendController@gallery');
 

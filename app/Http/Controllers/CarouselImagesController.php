@@ -13,11 +13,11 @@ class CarouselImagesController extends Controller
         // All uploaded images
         $this->images = CarouselImage::oldest()->get();
     }
-    public function index ($carouselId = 1) {
+    public function index($carouselId = 1) {
 
         $mainCarouselImages = $this->images->where('carousel_id', $carouselId);
 
-        return view('backend.website.carousel.index')->with('images', $mainCarouselImages);
+        return view('backend.website.carousel.main')->with('images', $mainCarouselImages);
     }
 
     public function upload(Request $request, $carouselId = 1) {
@@ -48,6 +48,10 @@ class CarouselImagesController extends Controller
 
         \Session::flash('success_msg', 'Image is successfully uploaded!');
         return back();
+    }
+
+    public function show(CarouselImage $image) {
+        return view('backend.website.carousel.show', compact('image'));
     }
 
     public function destroy(CarouselImage $image) {
