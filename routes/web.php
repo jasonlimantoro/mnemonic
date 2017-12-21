@@ -9,8 +9,10 @@
 // Websites
 Route::get('/admin', 'BackendController@index')->name('admin');
 
-Route::get('/admin/main-carousel', 'BackendController@carousel')->name('carousel.index');
-Route::post('/admin/main-carousel/{carouselId}/upload', 'CarouselImagesController@upload')
+Route::get('/admin/main-carousel', 'BackendController@carousel')
+        ->name('carousel.index');
+        
+Route::post('/admin/main-carousel/{carousel?}/upload', 'CarouselImagesController@upload')
         ->name('carousel.image.upload');
 
 Route::get('/admin/main-carousel/{image}/delete', 'CarouselImagesController@destroy')
@@ -18,6 +20,12 @@ Route::get('/admin/main-carousel/{image}/delete', 'CarouselImagesController@dest
 
 Route::get('/admin/main-carousel/{image}/show', 'CarouselImagesController@show')
         ->name('carousel.image.show');
+
+Route::get('/admin/main-carousel/{image}/edit', 'CarouselImagesController@edit')
+        ->name('carousel.image.edit');
+
+Route::post('/admin/main-carousel/{carousel?}/{image}/update', 'CarouselImagesController@update')
+        ->name('carousel.image.update');
 
 
 Route::get('/admin/pages/{page}', 'BackendController@showPage')->name('pages.show');

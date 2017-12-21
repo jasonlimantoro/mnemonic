@@ -119,7 +119,7 @@ class PostsController extends Controller
         //store status message
         \Session::flash('success_msg', 'Post updated successfully!');
 
-        return redirect()->back();
+        return back();
     }
 
     /**

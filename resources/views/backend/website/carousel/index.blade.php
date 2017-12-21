@@ -33,7 +33,7 @@
                     </div>
                     <div>
                         <a 
-                            href="#" 
+                            href="{{ route('carousel.image.edit', ['image' => $image->id ]) }}" 
                             id="EditPostIcon" 
                             class="__react-root" 
                             role="button"
