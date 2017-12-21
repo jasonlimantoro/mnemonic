@@ -25,23 +25,16 @@
                 @if ($loop->first)
                     {{-- This is the first iteration --}}
                     <div class="item active">
-                        <img src="{{ url('/imagecache/fit/' . $slide) }}" alt="slide" class="img-responsive">
-                        <div class="carousel-caption">
-                            ...
-                        </div>
-                    </div>
-
                 @else
+                    {{--  The remaining iteration  --}}
                     <div class="item">
-                        <img src="{{ url('/imagecache/fit/' . $slide) }}" alt="slide" class="img-responsive">
-                        <div class="carousel-caption">
-                            ...
-                        </div>
-                    </div>
                 @endif
-                
+                    <img src="{{ $slide->url_cache }}" alt="slide" class="img-responsive">
+                    <div class="carousel-caption">
+                        {{ $slide->caption }}
+                    </div>
+                </div>
             @endforeach
-            
         @endslot
     @endcomponent
 

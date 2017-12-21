@@ -11,11 +11,11 @@
         @foreach($images as $image)
             <tr>
                 <td>
-                    <img src="{{ url('/imagecache/fit/' . $image) }}" alt="carousel-image" class="img-responsive">
+                    <img src="{{ $image->url_cache }}" alt="carousel-image" class="img-responsive">
                 </td>
 
                 <td>
-                    A place to show post
+                    {{ $image->caption }}
                 </td>
                 
                 <td class="text-center">
@@ -45,7 +45,7 @@
                     </div>
                     <div>
                         <a 
-                            href="{{ route('carousel.delete', ['image' => $image]) }}" 
+                            href="{{ route('carousel.image.delete', ['image' => $image->id ]) }}" 
                             id="DeletePostIcon" 
                             class="__react-root" 
                             role="button"

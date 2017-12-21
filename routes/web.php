@@ -10,8 +10,11 @@
 Route::get('/admin', 'BackendController@index')->name('admin');
 
 Route::get('/admin/main-carousel', 'BackendController@carousel')->name('carousel.index');
-Route::post('/upload', 'CarouselImagesController@upload');
-Route::get('/admin/main-carousel/{image}/delete', 'CarouselImagesController@destroy')->name('carousel.delete');
+Route::post('/admin/main-carousel/{carouselId}/upload', 'CarouselImagesController@upload')
+        ->name('carousel.image.upload');
+
+Route::get('/admin/main-carousel/{image}/delete', 'CarouselImagesController@destroy')
+        ->name('carousel.image.delete');
 
 Route::get('/admin/pages/{page}', 'BackendController@showPage')->name('pages.show');
 Route::get('/admin/galleries', 'BackendController@gallery');
