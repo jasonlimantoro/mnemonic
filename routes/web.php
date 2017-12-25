@@ -29,7 +29,10 @@ Route::post('/admin/main-carousel/{carousel?}/{image}/update', 'CarouselImagesCo
 
 
 Route::get('/admin/pages/{page}', 'BackendController@showPage')->name('pages.show');
+
 Route::get('/admin/galleries', 'BackendController@gallery');
+Route::get('/admin/galleries/album', 'BackendController@album');
+Route::get('/admin/galleries/album/{album}/show', 'AlbumsController@show')->name('albums.show');
 
 // Wedding
 Route::get('/admin/wedding/groom-and-bride', 'BackendController@couple');

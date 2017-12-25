@@ -5,7 +5,7 @@
         <div class="col-md-12">
             @component('layouts.panel')
                 @slot('heading')
-                    Gallery pictures
+                    <h1>Galleries</h1>
                 @endslot
 
                 @slot('body')
@@ -19,18 +19,20 @@
                             <div class="col-md-4">
                                 @component('layouts.thumbnail')
                                     @slot('thumbnailImage')
-                                        <img src="{{ $image->url_cache }}" alt="image" class="img-responsive">
+                                        <img src="{{ $image->url_asset }}" alt="image" class="img-responsive">
                                     @endslot
 
                                     @slot('thumbnailCaption')
-                                        @if($albumName == '')
+                                        {{--  @if($albumName == '')
                                             @php
                                                 $albumName = 'Uncategorized'
                                             @endphp
                                             
-                                        @endif
-                                        
-                                        Album: {{ $albumName }}
+                                        @endif  --}}
+                                        Album: 
+                                        <a href="{{ route('albums.show', ['album' => $albumID ]) }}">
+                                            {{ $albumName }}
+                                        </a>
                                     @endslot
                                 @endcomponent
                             </div>

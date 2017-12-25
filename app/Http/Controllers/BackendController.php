@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\PagesController;
 use App\Page;
 use App\Http\Controllers\CarouselController;
+use App\Http\Controllers\AlbumsController;
+
 use Illuminate\Support\Facades\DB;
 
 class BackendController extends Controller
@@ -49,6 +51,11 @@ class BackendController extends Controller
         $galleryImages = $albumImages->union($carouselImages)->get();
 
         return view('backend.website.galleries', compact('galleryImages'));
+    }
+
+    public function album(){
+        $albumInstance = new AlbumsController();
+        return $albumInstance->index();
     }
 
     public function couple() {
