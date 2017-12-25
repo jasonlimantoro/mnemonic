@@ -11,6 +11,11 @@
                 @slot('body')
                     <div class="row">
                         @foreach($galleryImages as $image)
+                            @php
+                                $albumID = $image->album_id;
+                                $albumName = App\Album::find($albumID)['name'];
+                            @endphp
+
                             <div class="col-md-4">
                                 @component('layouts.thumbnail')
                                     @slot('thumbnailImage')
@@ -18,8 +23,14 @@
                                     @endslot
 
                                     @slot('thumbnailCaption')
-                                        Album: {{ $image->album_id }} <br>
-                                        Carousel: {{ $image->carousel_id }}
+                                        @if($albumName == '')
+                                            @php
+                                                $albumName = 'Uncategorized'
+                                            @endphp
+                                            
+                                        @endif
+                                        
+                                        Album: {{ $albumName }}
                                     @endslot
                                 @endcomponent
                             </div>
