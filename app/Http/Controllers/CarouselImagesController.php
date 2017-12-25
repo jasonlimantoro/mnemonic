@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use App\Filters\CarouselFilter;
 use App\CarouselImage;
+use App\Carousel;
 
 class CarouselImagesController extends Controller
 {
@@ -24,7 +25,7 @@ class CarouselImagesController extends Controller
         return view('backend.website.carousel.form');
     }
 
-    public function upload(Request $request, $carouselId = 1) {
+    public function store(Request $request, Carousel $carousel) {
         $rules = [
             'image' => 'required|image'
         ];
@@ -41,15 +42,15 @@ class CarouselImagesController extends Controller
         // applyFilter CarouselFilter
         $img->filter(new CarouselFilter())->save($fileDestination);
 
-        // save to the database
-        CarouselImage::create([
-            'carousel_id' => $carouselId,
-            'caption' => $request->caption,
-            'file_name' => $fileName,
-            'url_asset' => asset('uploads/carousel/' . $fileName),
-            'url_cache' => url('/imagecache/fit/' . $fileName)
-        ]);
 
+        // add image to the carousel
+        $carousel->addImage(
+            $request->caption,
+            $fileName,
+            asset('uploads/carousel/' . $fileName),
+            url('/imagecache/fit/' . $fileName)
+        );
+        
         \Session::flash('success_msg', 'Image is successfully uploaded!');
         return back();
     }
@@ -103,7 +104,7 @@ class CarouselImagesController extends Controller
         return back();
     }
 
-    public function destroy(CarouselImage $image) {
+    public function destroy(Carousel $carousel, CarouselImage $image) {
 
         // Delete the asset file
         \Storage::disk('uploads')->delete('/uploads/carousel/' . $image->file_name);

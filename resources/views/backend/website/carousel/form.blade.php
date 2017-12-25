@@ -17,7 +17,7 @@
                 @endslot
 
                 @slot('body')
-                    <form method="POST" action="{{ route('carousel.image.upload', ['carousel' => 1]) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('carousel.image.store', ['carousel' => 1]) }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="inputImage">Upload More Images</label>
