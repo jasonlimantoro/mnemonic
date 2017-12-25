@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\PagesController;
 use App\Page;
 use App\Http\Controllers\CarouselController;
+use Illuminate\Support\Facades\DB;
 
 class BackendController extends Controller
 {
@@ -40,7 +41,14 @@ class BackendController extends Controller
     }
 
     public function gallery() {
-        return view('backend.website.galleries');
+        $albumImages = DB::table('album_images')
+                        ->selectRaw('album_id, NULL as carousel_id, file_name, url_asset, url_cache');
+
+        $carouselImages = DB::table('carousel_images')
+                        ->selectRaw('NULL, carousel_id, file_name, url_asset, url_cache');
+        $galleryImages = $albumImages->union($carouselImages)->get();
+
+        return view('backend.website.galleries', compact('galleryImages'));
     }
 
     public function couple() {
