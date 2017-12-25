@@ -4,8 +4,25 @@
     <div class="row">
         <div class="col-md-12">
             @component('layouts.panel', ['backButton' => '', 'addButton' => ''])
+                @slot('backButton')
+                    @component('layouts.backButton', [
+                        'text' => 'Back',
+                        'url' => url()->previous()
+                    ])
+                        
+                    @endcomponent
+                @endslot
                 @slot('title')
                     {{ $album->name}}
+                @endslot
+
+                @slot('addButton')
+                    @component('layouts.addButton', [
+                        'url' => '#',
+                        'item' => 'images'
+                    ])
+                        
+                    @endcomponent
                 @endslot
 
                 @slot('body')
