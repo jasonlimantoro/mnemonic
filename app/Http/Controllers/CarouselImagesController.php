@@ -13,11 +13,15 @@ class CarouselImagesController extends Controller
         // All uploaded images
         $this->images = CarouselImage::oldest()->get();
     }
-    public function index($carouselId = 1) {
+    public function index($carousel = 1) {
 
-        $mainCarouselImages = $this->images->where('carousel_id', $carouselId);
+        $mainCarouselImages = $this->images->where('carousel_id', $carousel);
 
         return view('backend.website.carousel.main')->with('images', $mainCarouselImages);
+    }
+
+    public function create() {
+        return view('backend.website.carousel.form');
     }
 
     public function upload(Request $request, $carouselId = 1) {
@@ -50,15 +54,15 @@ class CarouselImagesController extends Controller
         return back();
     }
 
-    public function show(CarouselImage $image) {
+    public function show($carousel = 1, CarouselImage $image) {
         return view('backend.website.carousel.show', compact('image'));
     }
 
-    public function edit(CarouselImage $image) {
+    public function edit($carousel=1, CarouselImage $image) {
         return view('backend.website.carousel.edit', compact('image'));
     }
 
-    public function update(Request $request, $carouselId = 1, CarouselImage $image) {
+    public function update(Request $request, $carousel = 1, CarouselImage $image) {
         $rules = [
             'image' => 'image',
         ];

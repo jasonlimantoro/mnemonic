@@ -11,7 +11,7 @@
                     @component('layouts.addButton',
                     [
                         'item' => 'Images', 
-                        'url' => '#'
+                        'url' => route('carousel.image.create', ['carousel' => 1])
                     ])
                     @endcomponent
                 @endslot
@@ -20,7 +20,7 @@
                     <h3>Your Carousel Images</h3>
                     @include('backend.website.carousel.index')
                     
-                    @include('backend.website.carousel.form')
+                    {{--  @include('backend.website.carousel.form')  --}}
                 @endslot
             @endcomponent
         </div>

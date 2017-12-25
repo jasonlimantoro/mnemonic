@@ -5,10 +5,11 @@
         <div class="col-md-12">
             @component('layouts.panel', ['backButton' => '', 'addButton' => ''])
                 @slot('backButton')
-                    <a href="{{ route('carousel.index') }}" class="btn btn-primary">
-                        <i class="fa fa-angle-left"></i>
-                        Back
-                    </a>
+                    @component('layouts.backButton', [
+                        'text' => 'back',
+                        'url' => route('carousel.index', ['carousel' => 1]),
+                    ])
+                    @endcomponent
                 @endslot
                 @slot('title')
                    Main Carousel

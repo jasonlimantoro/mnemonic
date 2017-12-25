@@ -21,7 +21,7 @@
                 <td class="text-center">
                     <div>
                         <a 
-                            href="{{ route('carousel.image.show', ['image' => $image->id ]) }}" 
+                            href="{{ route('carousel.image.show', [ 'carousel' => 1, 'image' => $image->id ]) }}" 
                             id="ShowIcon" 
                             class="__react-root" 
                             role="button"
@@ -33,7 +33,7 @@
                     </div>
                     <div>
                         <a 
-                            href="{{ route('carousel.image.edit', ['image' => $image->id ]) }}" 
+                            href="{{ route('carousel.image.edit', [ 'carousel' => 1, 'image' => $image->id ]) }}" 
                             id="EditIcon" 
                             class="__react-root" 
                             role="button"
@@ -45,7 +45,7 @@
                     </div>
                     <div>
                         <a 
-                            href="{{ route('carousel.image.delete', ['image' => $image->id ]) }}" 
+                            href="{{ route('carousel.image.delete', [ 'carousel' => 1, 'image' => $image->id ]) }}" 
                             id="DeleteIcon" 
                             class="__react-root" 
                             role="button"

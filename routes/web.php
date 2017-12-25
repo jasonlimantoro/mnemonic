@@ -9,22 +9,25 @@
 // Websites
 Route::get('/admin', 'BackendController@index')->name('admin');
 
-Route::get('/admin/main-carousel', 'BackendController@carousel')
+Route::get('/admin/carousel/{carousel}', 'BackendController@carousel')
         ->name('carousel.index');
         
-Route::post('/admin/main-carousel/{carousel?}/upload', 'CarouselImagesController@upload')
+Route::get('/admin/carousel/{carousel}/image/create', 'CarouselImagesController@create')
+        ->name('carousel.image.create');
+        
+Route::post('/admin/carousel/{carousel?}/image/upload', 'CarouselImagesController@upload')
         ->name('carousel.image.upload');
 
-Route::get('/admin/main-carousel/{image}/delete', 'CarouselImagesController@destroy')
+Route::get('/admin/carousel/{carousel?}/{image}/delete', 'CarouselImagesController@destroy')
         ->name('carousel.image.delete');
 
-Route::get('/admin/main-carousel/{image}/show', 'CarouselImagesController@show')
+Route::get('/admin/carousel/{carousel?}/{image}/show', 'CarouselImagesController@show')
         ->name('carousel.image.show');
 
-Route::get('/admin/main-carousel/{image}/edit', 'CarouselImagesController@edit')
+Route::get('/admin/carousel/{carousel?}{image}/edit', 'CarouselImagesController@edit')
         ->name('carousel.image.edit');
 
-Route::post('/admin/main-carousel/{carousel?}/{image}/update', 'CarouselImagesController@update')
+Route::post('/admin/carousel/{carousel?}/{image}/update', 'CarouselImagesController@update')
         ->name('carousel.image.update');
 
 

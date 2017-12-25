@@ -5,7 +5,11 @@
         <div class="col-md-12">
             @component('layouts.panel', ['backButton' => '', 'addButton' => ''])
                 @slot('backButton')
-                    @include('layouts.show-all-post-btn')
+                   @component('layouts.backButton', [
+                        'text' => 'Show All Posts in ' .  $page->title,
+                        'url' => route('pages.show', ['page' => $page->id])
+                    ])
+                    @endcomponent
                 @endslot
                 
                 @slot('title')
