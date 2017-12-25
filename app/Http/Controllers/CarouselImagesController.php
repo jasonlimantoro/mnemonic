@@ -42,7 +42,7 @@ class CarouselImagesController extends Controller
             'carousel_id' => $carouselId,
             'caption' => $request->caption,
             'file_name' => $fileName,
-            'url_asset' => asset('uploads/carousel' . $fileName),
+            'url_asset' => asset('uploads/carousel/' . $fileName),
             'url_cache' => url('/imagecache/fit/' . $fileName)
         ]);
 
