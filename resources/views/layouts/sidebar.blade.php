@@ -32,7 +32,13 @@
 					
 			</ul>
 		</li>
-		<li><a href="{{ route('admin') }}/galleries">Galleries</a></li>
+		<li>
+			<a href="#galleriesSubmenu" data-toggle="collapse" aria-expanded="false">Galleries</a>
+			<ul class="collapse list-unstyled" id="galleriesSubmenu">
+				<li><a href="{{ route('admin') }}/galleries">View all photos</a></li>
+				<li><a href="{{ route('admin') }}/galleries/album">Manage Album</a></li>
+			</ul>
+		</li>
 		
 		<li class="header">Wedding</li>
 		<li>
