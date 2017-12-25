@@ -3,11 +3,9 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @component('layouts.panel')
-                @slot('heading')
-                    <h1>
-                        {{ $album->name}}
-                    </h1>
+            @component('layouts.panel', ['backButton' => '', 'addButton' => ''])
+                @slot('title')
+                    {{ $album->name}}
                 @endslot
 
                 @slot('body')

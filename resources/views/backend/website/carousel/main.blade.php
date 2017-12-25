@@ -3,10 +3,17 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @component('layouts.panel')
-                @slot('heading')
-                   <h1>Main Carousel</h1>
-                   <p>Upload images for the carousel in your home page</p>
+            @component('layouts.panel', ['backButton' => '', 'addButton' => ''])
+                @slot('title')
+                   Main Carousel
+                @endslot
+                @slot('addButton')
+                    @component('layouts.addButton',
+                    [
+                        'item' => 'Images', 
+                        'url' => '#'
+                    ])
+                    @endcomponent
                 @endslot
 
                 @slot('body')

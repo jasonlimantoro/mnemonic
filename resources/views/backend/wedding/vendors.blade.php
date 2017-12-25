@@ -3,8 +3,8 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @component('layouts.panel')
-                @slot('heading')
+            @component('layouts.panel', ['backButton' => '', 'addButton' => ''])
+                @slot('title')
                     Vendors page
                 @endslot
 

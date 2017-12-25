@@ -1,14 +1,19 @@
 @extends('layouts.submaster')
 
 @section('content')
-    @component('layouts.panel')
-        @slot('heading')
-            <h1 class="title">{{ $page->title }} 
-                <a href="{{ route('post.create', ['page' => $page->id ]) }}" class="pull-right btn btn-success">
-                    <i class="fa fa-plus"></i>
-                    Add a New Post
-                </a>
-            </h1>
+    @component('layouts.panel', ['addButton' => '', 'backButton' => ''])
+        @slot('title')
+            {{ $page->title }} 
+        @endslot
+
+        @slot('addButton')
+            @component('layouts.addButton', 
+                [
+                    'item' => "Post", 
+                    'url' => route('post.create', ['page' => $page->id ])
+                ])
+            @endcomponent
+
         @endslot
 
         @slot('body')

@@ -3,11 +3,13 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @component('layouts.panel')
-                @slot('heading')
+            @component('layouts.panel', ['backButton' => '', 'addButton' => ''])
+                @slot('backButton')
                     @include('layouts.show-all-post-btn')
-                    <h1>{{ $page->title }}</h1>
-                    <p>Create a post for <strong>{{ $page->title }}</strong> page</p>
+                @endslot
+
+                @slot('title')
+                    {{ $page->title }}
                 @endslot
 
                 @slot('body')

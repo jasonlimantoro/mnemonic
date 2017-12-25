@@ -1,11 +1,13 @@
 @extends('layouts.submaster')
 
 @section('content')
-    @component('layouts.panel')
-        @slot('heading')
+    @component('layouts.panel', ['backButton' => '', 'addButton' => ''])
+        @slot('backButton')
             @include('layouts.show-all-post-btn')
-            <h1>{{ $page->title }}</h1>
-            Edit Post: <strong> {{ $post->title }} </strong>
+        @endslot
+        
+        @slot('title')
+            {{ $page->title }}
         @endslot
 
         @slot('body')
