@@ -2,12 +2,11 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use App\AlbumImage;
 
 class Album extends Model
 {
-    public function image(){
+    public function images(){
         return $this->hasMany(AlbumImage::class);
     }
 }
