@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\AlbumImage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,7 +17,9 @@ class DatabaseSeeder extends Seeder
             PagesTableSeeder::class,
             PostsTableSeeder::class,
             CarouselImagesTableSeeder::class,
-            CarouselsTableSeeder::class
+            CarouselsTableSeeder::class,
+            AlbumImagesTableSeeder::class,
+            AlbumsTableSeeder::class
         ]);
     }
 }
