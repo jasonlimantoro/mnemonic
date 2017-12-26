@@ -42,14 +42,16 @@ class CarouselImagesController extends Controller
         // applyFilter CarouselFilter
         $img->filter(new CarouselFilter())->save($fileDestination);
 
+        // Eloquent model instance
+        $carouselImage = new CarouselImage ([
+            'caption' => $request->caption,
+            'file_name' => $fileName,
+            'url_asset' => asset('uploads/carousel/' . $fileName),
+            'url_cache' => url('/imagecache/fit/' . $fileName)
+        ]);
 
-        // add image to the carousel
-        $carousel->addImage(
-            $request->caption,
-            $fileName,
-            asset('uploads/carousel/' . $fileName),
-            url('/imagecache/fit/' . $fileName)
-        );
+        // add the instance to the carousel
+        $carousel->addImage($carouselImage);
         
         \Session::flash('success_msg', 'Image is successfully uploaded!');
         return back();
@@ -107,10 +109,12 @@ class CarouselImagesController extends Controller
     public function destroy(Carousel $carousel, CarouselImage $image) {
 
         // Delete the asset file
-        \Storage::disk('uploads')->delete('/uploads/carousel/' . $image->file_name);
+        // \Storage::disk('uploads')->delete('/uploads/carousel/' . $image->file_name);
         
         // Delete the record from database
-        $image->delete();
+        // $image->delete();
+        $carousel->removeImage($carousel, $image);
+        
 
         \Session::flash('success_msg', 'Image is successfully deleted!');
 
