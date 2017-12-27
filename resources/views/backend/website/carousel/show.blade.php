@@ -6,7 +6,7 @@
             @component('layouts.panel', ['backButton' => '', 'addButton' => ''])
                 @slot('backButton')
                     @component('layouts.backButton', [
-                        'text' => 'back',
+                        'text' => 'Back',
                         'url' => route('carousel.index', ['carousel' => 1]),
                     ])
                     @endcomponent

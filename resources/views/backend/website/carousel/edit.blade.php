@@ -11,10 +11,6 @@
                     ])
                         
                     @endcomponent
-                    <a href="{{ route('carousel.index', ['carousel' => 1]) }}" class="btn btn-primary">
-                        <i class="fa fa-angle-left"></i>
-                        Back
-                    </a>
                 @endslot
                 @slot('title')
                     Main Carousel

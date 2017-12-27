@@ -18,9 +18,6 @@ Route::get('/admin/carousel/{carousel}/image/create', 'CarouselImagesController@
 Route::post('/admin/carousel/{carousel}/image/store', 'CarouselImagesController@store')
         ->name('carousel.image.store');
 
-Route::get('/admin/carousel/{carousel}/{image}/delete', 'CarouselImagesController@destroy')
-        ->name('carousel.image.delete');
-
 Route::get('/admin/carousel/{carousel}/{image}/show', 'CarouselImagesController@show')
         ->name('carousel.image.show');
 
@@ -30,11 +27,17 @@ Route::get('/admin/carousel/{carousel}{image}/edit', 'CarouselImagesController@e
 Route::post('/admin/carousel/{carousel}/{image}/update', 'CarouselImagesController@update')
         ->name('carousel.image.update');
 
+Route::get('/admin/carousel/{carousel}/{image}/delete', 'CarouselImagesController@destroy')
+        ->name('carousel.image.delete');
 
-Route::get('/admin/pages/{page}', 'BackendController@showPage')->name('pages.show');
+
+Route::get('/admin/pages/{page}', 'BackendController@showPage')
+        ->name('pages.show');
 
 Route::get('/admin/galleries', 'BackendController@gallery');
-Route::get('/admin/galleries/{image}/delete', 'ImagesController@destroy')->name('galleries.image.delete');
+
+Route::get('/admin/galleries/{image}/delete', 'ImagesController@destroy')
+        ->name('galleries.image.delete');
 
 Route::get('/admin/galleries/album', 'BackendController@album');
 Route::get('/admin/galleries/album/{album}/show', 'AlbumsController@show')->name('albums.show');

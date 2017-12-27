@@ -50,7 +50,7 @@
                             class="__react-root" 
                             role="button"
                             data-toggle="tooltip"
-                            title="Delete this image"
+                            title="Remove this image from the carousel"
                             data-placement="top"
                             >
                         </a>

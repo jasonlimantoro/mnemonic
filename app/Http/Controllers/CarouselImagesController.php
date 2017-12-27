@@ -3,20 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
+// use Intervention\Image\Facades\Image;
 use App\Filters\CarouselFilter;
 use App\CarouselImage;
 use App\Carousel;
+use App\Image;
 
 class CarouselImagesController extends Controller
 {
     public function __construct() {
         // All uploaded images
-        $this->images = CarouselImage::oldest()->get();
+        $this->images = Image::whereNotNull('carousel_id')->oldest()->get();
     }
-    public function index($carousel = 1) {
+    public function index($carousel) {
 
-        $mainCarouselImages = $this->images->where('carousel_id', $carousel);
+        $mainCarouselImages = $this->images->where('carousel_id', $carousel->id);
 
         return view('backend.website.carousel.main')->with('images', $mainCarouselImages);
     }
@@ -34,19 +35,19 @@ class CarouselImagesController extends Controller
         // Gathering information
         $imageRequest = $request->file('image');
         $fileName = $imageRequest->getClientOriginalName();
-        $fileDestination = public_path('uploads/carousel/' . $fileName);
+        $fileDestination = public_path('uploads/' . $fileName);
         
         // create an Image instance
-        $img = Image::make($imageRequest);
+        $img = \Image::make($imageRequest);
 
         // applyFilter CarouselFilter
         $img->filter(new CarouselFilter())->save($fileDestination);
 
         // Eloquent model instance
-        $carouselImage = new CarouselImage ([
+        $carouselImage = new Image ([
             'caption' => $request->caption,
             'file_name' => $fileName,
-            'url_asset' => asset('uploads/carousel/' . $fileName),
+            'url_asset' => asset('uploads/' . $fileName),
             'url_cache' => url('/imagecache/fit/' . $fileName)
         ]);
 
@@ -57,15 +58,15 @@ class CarouselImagesController extends Controller
         return back();
     }
 
-    public function show($carousel = 1, CarouselImage $image) {
+    public function show(Carousel $carousel, Image $image) {
         return view('backend.website.carousel.show', compact('image'));
     }
 
-    public function edit($carousel=1, CarouselImage $image) {
+    public function edit(Carousel $carousel, Image $image) {
         return view('backend.website.carousel.edit', compact('image'));
     }
 
-    public function update(Request $request, $carousel = 1, CarouselImage $image) {
+    public function update(Request $request, Carousel $carousel, Image $image) {
         $rules = [
             'image' => 'image',
         ];
@@ -85,7 +86,7 @@ class CarouselImagesController extends Controller
             $url_cache = url('/imagecache/fit/' . $fileName);
     
             // create an Image instance
-            $img = Image::make($imageRequest);
+            $img = \Image::make($imageRequest);
     
             // applyFilter CarouselFilter
             $img->filter(new CarouselFilter())->save($fileDestination);
@@ -106,17 +107,11 @@ class CarouselImagesController extends Controller
         return back();
     }
 
-    public function destroy(Carousel $carousel, CarouselImage $image) {
+    public function destroy(Carousel $carousel, Image $image) {
 
-        // Delete the asset file
-        // \Storage::disk('uploads')->delete('/uploads/carousel/' . $image->file_name);
-        
-        // Delete the record from database
-        // $image->delete();
         $carousel->removeImage($carousel, $image);
         
-
-        \Session::flash('success_msg', 'Image is successfully deleted!');
+        \Session::flash('success_msg', 'Image is successfully removed from the carousel!');
 
         return back();
     }

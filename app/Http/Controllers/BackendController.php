@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PagesController;
 use App\Page;
+use App\Carousel;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\AlbumsController;
@@ -38,9 +39,9 @@ class BackendController extends Controller
         return $pageInstance->show($page);
     }
 
-    public function carousel() {
+    public function carousel(Carousel $carousel) {
         $carouselInstance = new CarouselImagesController();
-        return $carouselInstance->index(1);
+        return $carouselInstance->index($carousel);
     }
 
     public function gallery() {

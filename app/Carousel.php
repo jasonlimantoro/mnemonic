@@ -12,12 +12,12 @@ class Carousel extends Model
     public function addImage($carouselImage){
         
         // if the file exists but carousel_id is NULL
-        $detached = CarouselImage::where('file_name', $carouselImage->file_name)
+        $detached = Image::where('file_name', $carouselImage->file_name)
                                     ->whereNull('carousel_id')
                                     ->first();
         if ($detached) {
             // set the carousel_id to 1
-            $this->attach($record = $detached);
+            $this->attach($record = $detached, $carouselImage->caption);
         }
         else {
             // a new record
@@ -27,7 +27,7 @@ class Carousel extends Model
 
     public function removeImage($carousel, $image) {
         // detach image from the carousel
-        $record = $this->images()->find($image->id);
+        $record = $image;
         $this->detach($record);
     }
 
@@ -37,9 +37,10 @@ class Carousel extends Model
         ]);
     }
 
-    public function attach($record){
+    public function attach($record, $caption){
         $record->update([
-            'carousel_id' => 1
+            'carousel_id' => $this->id,
+            'caption' => $caption
         ]);
     }
 }
