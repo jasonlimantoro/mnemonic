@@ -5,13 +5,13 @@
         <div class="col-md-12">
             @component('layouts.panel', ['backButton' => '', 'addButton' => ''])
                 @slot('title')
-                    Galleries
+                    Gallery
                 @endslot
 
                 @slot('addButton')
                     @component('layouts.addButton', [
                         'item' => 'Images',
-                        'url' => "#"
+                        'url' => route('galleries.image.create')
                     ])
                         
                     @endcomponent

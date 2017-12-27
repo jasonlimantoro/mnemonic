@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Image;
+use App\Carousel;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
-use App\Carousel;
 
 class ImagesController extends Controller
 {
@@ -23,7 +23,7 @@ class ImagesController extends Controller
     public function index()
     {
         $galleryImages = $this->images;
-        return view('backend.website.galleries', compact('galleryImages'));
+        return view('backend.website.galleries.index', compact('galleryImages'));
     }
 
     /**
@@ -33,7 +33,7 @@ class ImagesController extends Controller
      */
     public function create()
     {
-        return view('backend.website.carousel.form');
+        return view('backend.website.galleries.create');
     }
 
     /**
@@ -42,37 +42,35 @@ class ImagesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Carousel $carousel)
+    public function store(Request $request)
     {
-        $rules = [
-            'image' => 'required|image'
-        ];
-        $this->validate($request, $rules);
+       $rules = [
+           'image' => 'required | image'
+       ];
 
-        // Gathering information
-        $imageRequest = $request->file('image');
-        $fileName = $imageRequest->getClientOriginalName();
-        $fileDestination = public_path('uploads/' . $fileName);
-        
-        // create an Image instance
-        $img = Image::make($imageRequest);
+       $this->validate($request, $rules);
 
-        // applyFilter CarouselFilter
-        $img->filter(new CarouselFilter())->save($fileDestination);
+       // Gathering information
+       $imageRequest = $request->file('image');
+       $fileName = $imageRequest->getClientOriginalName();
+       $fileDestination = public_path('uploads/' . $fileName);
 
-        // Eloquent model instance
-        $carouselImage = new CarouselImage ([
-            'caption' => $request->caption,
-            'file_name' => $fileName,
-            'url_asset' => asset('uploads/carousel/' . $fileName),
-            'url_cache' => url('/imagecache/fit/' . $fileName)
-        ]);
+       // create an Image instance
+       $img = \Image::make($imageRequest);
 
-        // add the instance to the carousel
-        $carousel->addImage($carouselImage);
-        
-        \Session::flash('success_msg', 'Image is successfully uploaded!');
-        return back();
+       // save it to file system
+       $img->save($fileDestination);
+       
+       // Record in database
+       Image::create([
+           'file_name' => $fileName,
+           'url_asset' => asset('uploads/' . $fileName),
+           'url_cache' => url('imagecache/original/' . $fileName)
+       ]);
+
+       Session::flash('success_msg', 'Image is successfully uploaded!');
+
+       return back();
     }
 
     /**
@@ -83,7 +81,7 @@ class ImagesController extends Controller
      */
     public function show(Carousel $carousel, Image $image)
     {
-        return view('backend.website.carousel.show', compact('image'));
+
     }
 
     /**
@@ -94,7 +92,7 @@ class ImagesController extends Controller
      */
     public function edit(Carousel $carousel, Image $image)
     {
-        return view('backend.website.carousel.edit', compact('image'));
+
     }
 
     /**
@@ -106,44 +104,7 @@ class ImagesController extends Controller
      */
     public function update(Request $request, Carousel $carousel, Image $image)
     {
-        $rules = [
-            'image' => 'image',
-        ];
-        $this->validate($request, $rules);
-
-        // only caption
-        $updatedData = [
-            'caption' => $request->caption
-        ];
         
-        if ($request->hasFile('image')){
-            // Gathering information
-            $imageRequest = $request->file('image');
-            $fileName = $imageRequest->getClientOriginalName();
-            $fileDestination = public_path('uploads/' . $fileName);
-            $url_asset = asset('uploads/' . $fileName);
-            $url_cache = url('/imagecache/fit/' . $fileName);
-    
-            // create an Image instance
-            $img = Image::make($imageRequest);
-    
-            // applyFilter CarouselFilter
-            $img->filter(new CarouselFilter())->save($fileDestination);
-            
-            // array of attributes that needs to be updated
-            $updatedData = [
-                'caption' => $request->caption,
-                'file_name' => $fileName,
-                'url_asset' => $url_asset,
-                'url_cache' => $url_cache
-            ];
-        }
-        
-        // update the database
-        $image->update($updatedData);
-        \Session::flash('success_msg', 'Updated sucessfully!');
-
-        return back();
     }
 
     /**

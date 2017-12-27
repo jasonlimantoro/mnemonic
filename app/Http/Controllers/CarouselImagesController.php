@@ -40,7 +40,7 @@ class CarouselImagesController extends Controller
         // create an Image instance
         $img = \Image::make($imageRequest);
 
-        // applyFilter CarouselFilter
+        // applyFilter CarouselFilter and save it to file system
         $img->filter(new CarouselFilter())->save($fileDestination);
 
         // Eloquent model instance
