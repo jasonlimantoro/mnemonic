@@ -50,7 +50,7 @@ return [
 
         'uploads' => [
             'driver' => 'local',
-            'root' => public_path(),
+            'root' => public_path('uploads'),
         ],
 
         'public' => [
