@@ -28,6 +28,16 @@
                             <label for="inputImage">Upload Images to Gallery</label>
                             <input type="file" name="image" id="inputImage">
                         </div>
+
+                        <div class="form-group">
+                            <label for="inputAlbum">Assign to Album</label>
+                            <select name="album" id="inputAlbum" class="form-control">
+                                <option selected disabled>Select Album</option>
+                                @foreach ($albums as $album)
+                                    <option value="{{ $album->id }}">{{ $album->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         
                         <button type="submit" class="btn btn-primary">Upload</button>
 

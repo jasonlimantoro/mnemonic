@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Image;
 use App\Carousel;
+use App\Album;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
@@ -33,7 +34,8 @@ class ImagesController extends Controller
      */
     public function create()
     {
-        return view('backend.website.galleries.create');
+        $albums = Album::all();
+        return view('backend.website.galleries.create', compact('albums'));
     }
 
     /**
@@ -45,7 +47,8 @@ class ImagesController extends Controller
     public function store(Request $request)
     {
        $rules = [
-           'image' => 'required | image'
+           'image' => 'required | image',
+           'album' => 'required'
        ];
 
        $this->validate($request, $rules);
@@ -54,15 +57,17 @@ class ImagesController extends Controller
        $imageRequest = $request->file('image');
        $fileName = $imageRequest->getClientOriginalName();
        $fileDestination = public_path('uploads/' . $fileName);
+       $assignedAlbum = $request->album;
 
        // create an Image instance
        $img = \Image::make($imageRequest);
 
        // save it to file system
        $img->save($fileDestination);
-       
+
        // Record in database
        Image::create([
+           'album_id' => $assignedAlbum,
            'file_name' => $fileName,
            'url_asset' => asset('uploads/' . $fileName),
            'url_cache' => url('imagecache/original/' . $fileName)
