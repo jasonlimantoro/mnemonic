@@ -29,14 +29,9 @@
                                     @slot('thumbnailCaption')
                                         Name: {{ $image->file_name }} <br>
                                         Album: 
-                                        @if ($image->album !== NULL)
                                             <a href="{{ route('albums.show', ['album' => $image->album_id ]) }}">
                                                 {{ $image->album->name }}
                                             </a>
-                                        @else
-                                            <i>Uncategorized</i>
-                                        @endif
-
                                         <div>
                                             <a 
                                                 href="{{ route('galleries.image.delete',['image' => $image->id ]) }}" 
