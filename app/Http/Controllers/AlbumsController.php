@@ -9,7 +9,7 @@ class AlbumsController extends Controller
 {
 
     public function __construct() {
-        $this->albums = Album::all();
+        $this->albums = Album::oldest()->get();
     }
     /**
      * Display a listing of the resource.
