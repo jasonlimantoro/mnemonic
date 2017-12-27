@@ -42,6 +42,19 @@
                                         <a href="{{ route('albums.show', ['album' => $albumID ]) }}">
                                             {{ $albumName }}
                                         </a>
+
+                                        <div>
+                                            <a 
+                                                href="#" 
+                                                id="DeleteIcon" 
+                                                class="__react-root" 
+                                                role="button"
+                                                data-toggle="tooltip"
+                                                title="Delete this image"
+                                                data-placement="top"
+                                                >
+                                            </a>
+                                        </div>
                                     @endslot
                                 @endcomponent
                             </div>
