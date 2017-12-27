@@ -1,12 +1,12 @@
 <?php
 
 namespace App;
-use App\CarouselImage;
+use App\Image;
 
 class Carousel extends Model
 {
     public function images() {
-        return $this->hasMany(CarouselImage::class);
+        return $this->hasMany(Image::class);
     }
 
     public function addImage($carouselImage){

@@ -2,11 +2,11 @@
 
 namespace App;
 
-use App\AlbumImage;
+use App\Image;
 
 class Album extends Model
 {
     public function images(){
-        return $this->hasMany(AlbumImage::class);
+        return $this->hasMany(Image::class);
     }
 }
