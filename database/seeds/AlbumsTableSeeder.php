@@ -30,6 +30,12 @@ class AlbumsTableSeeder extends Seeder
                     'description' => 'Our Graduation moments',
                     'created_at' => NOW(),
                     'updated_at' => NOW()
+                ],
+                [
+                    'name' => 'Uncategorized',
+                    'description' => NULL,
+                    'created_at' => NOW(),
+                    'updated_at' => NOW()
                 ]
             ]
         );
