@@ -15,7 +15,7 @@ class CreateImagesTable extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('album_id')->nullable();
+            $table->integer('album_id')->nullable()->default(4);
             $table->integer('carousel_id')->nullable();
             $table->string('caption')->nullable();
             $table->string('file_name');
