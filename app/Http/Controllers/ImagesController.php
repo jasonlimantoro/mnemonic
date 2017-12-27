@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Image;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 class ImagesController extends Controller
 {
+
+    public function __construct(){
+        // All uploaded images
+        $this->images = Image::oldest()->get();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,8 @@ class ImagesController extends Controller
      */
     public function index()
     {
-        //
+        $galleryImages = $this->images;
+        return view('backend.website.galleries', compact('galleryImages'));
     }
 
     /**
@@ -80,6 +88,14 @@ class ImagesController extends Controller
      */
     public function destroy(Image $image)
     {
-        //
+        // Delete from the filesystem
+        Storage::disk('uploads')->delete($image->file_name);
+
+        // Delete from the database
+        $image->delete();
+
+        Session::flash('success_msg', 'Images are successfully deleted!');
+
+        return back();
     }
 }

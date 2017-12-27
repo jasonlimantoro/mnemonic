@@ -34,6 +34,8 @@ Route::post('/admin/carousel/{carousel}/{image}/update', 'CarouselImagesControll
 Route::get('/admin/pages/{page}', 'BackendController@showPage')->name('pages.show');
 
 Route::get('/admin/galleries', 'BackendController@gallery');
+Route::get('/admin/galleries/{image}/delete', 'ImagesController@destroy')->name('galleries.image.delete');
+
 Route::get('/admin/galleries/album', 'BackendController@album');
 Route::get('/admin/galleries/album/{album}/show', 'AlbumsController@show')->name('albums.show');
 

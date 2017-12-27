@@ -20,15 +20,10 @@
                 @slot('body')
                     <div class="row">
                         @foreach($galleryImages as $image)
-                            @php
-                                $albumID = $image->album_id;
-                                $albumName = App\Album::find($albumID)['name'];
-                            @endphp
-
                             <div class="col-md-4">
                                 @component('layouts.thumbnail')
                                     @slot('thumbnailImage')
-                                        <img src="{{ $image->url_asset }}" alt="image" class="img-responsive">
+                                        <img src="{{ $image->url_cache }}" alt="image" class="img-responsive">
                                     @endslot
 
                                     @slot('thumbnailCaption')
@@ -38,14 +33,15 @@
                                             @endphp
                                             
                                         @endif  --}}
+                                        Name: {{ $image->file_name }} <br>
                                         Album: 
-                                        <a href="{{ route('albums.show', ['album' => $albumID ]) }}">
-                                            {{ $albumName }}
+                                        <a href="{{ route('albums.show', ['album' => $image->album_id ]) }}">
+                                            {{ $image->album['name'] }}
                                         </a>
 
                                         <div>
                                             <a 
-                                                href="#" 
+                                                href="{{ route('galleries.image.delete',['image' => $image->id ]) }}" 
                                                 id="DeleteIcon" 
                                                 class="__react-root" 
                                                 role="button"

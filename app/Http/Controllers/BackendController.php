@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PagesController;
 use App\Page;
+use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\AlbumsController;
 
@@ -43,14 +44,8 @@ class BackendController extends Controller
     }
 
     public function gallery() {
-        $albumImages = DB::table('album_images')
-                        ->selectRaw('album_id, file_name, url_asset, url_cache');
-
-        $carouselImages = DB::table('carousel_images')
-                        ->selectRaw('NULL, file_name, url_asset, url_cache');
-        $galleryImages = $albumImages->union($carouselImages)->get();
-
-        return view('backend.website.galleries', compact('galleryImages'));
+        $imageInstance = new ImagesController();
+        return $imageInstance->index();
     }
 
     public function album(){
