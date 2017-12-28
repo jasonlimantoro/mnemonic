@@ -13,6 +13,7 @@ class ImagesController extends Controller
 {
 
     public function __construct(){
+        $this->middleware('auth');
         // All uploaded images
         $this->images = Image::oldest()->get();
     }
