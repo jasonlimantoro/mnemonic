@@ -2,10 +2,10 @@ import React from "react";
 import { FormGroup, FormControl, ControlLabel, Radio } from "react-bootstrap";
 import { PrimaryButton, SuccessButton } from "./Button";
 
-function FieldGroup ( {id, label, ...props}) {
+function FieldGroup ( {id, label, labelClass, ...props}) {
     return (
         <FormGroup controlId={id}>
-            <ControlLabel>{label}</ControlLabel>
+            <ControlLabel className={labelClass}>{label}</ControlLabel>
             <FormControl {...props} />
         </FormGroup>
     )
@@ -102,4 +102,35 @@ export class RadioButton extends React.Component {
             </div>
         )
     }
+}
+
+export const InputFile = (props) => {
+    return (
+        <div>
+
+            <FieldGroup 
+                id="inputFile"
+                type="file"
+                label= {props.label}
+                labelClass= {props.labelClass}
+                name= {props.name}
+                style={props.style}
+            />
+        </div>
+    );
+}
+
+export const TextArea = (props) => {
+    return (
+        <div>
+            <FieldGroup
+                componentClass = "textarea"
+                name = {props.name}
+                label = {props.label}
+                placeholder = {props.placeholder}
+                rows = "10"
+                cols = "30"
+            />
+        </div>
+    )
 }

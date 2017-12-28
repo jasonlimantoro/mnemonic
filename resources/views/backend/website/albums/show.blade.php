@@ -13,7 +13,7 @@
                     @endcomponent
                 @endslot
                 @slot('title')
-                    {{ $album->name}}
+                    Album: {{ $album->name}}
                 @endslot
 
                 @slot('addButton')

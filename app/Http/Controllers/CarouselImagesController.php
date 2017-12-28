@@ -23,7 +23,7 @@ class CarouselImagesController extends Controller
     }
 
     public function create() {
-        return view('backend.website.carousel.form');
+        return view('backend.website.carousel.create');
     }
 
     public function store(Request $request, Carousel $carousel) {

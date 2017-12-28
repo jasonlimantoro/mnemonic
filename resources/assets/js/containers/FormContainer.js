@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { FormPost, SearchBox, RadioButton } from "../components/Form";
+import { FormPost, SearchBox, RadioButton, InputFile, TextArea } from "../components/Form";
 import { SearchPost } from "../components/SearchPost";
+import { PrimaryButton, SuccessButton } from "../components/Button";
 
 
 export class FormforHome extends React.Component {
@@ -67,5 +68,33 @@ export class Search extends React.Component {
                 />
             </div>
         )
+    }
+}
+
+export class CarouselForm extends React.Component {
+    render() {
+        const style = {
+            'opacity': 0,
+            'display': 'inline'
+        };
+        return (
+            <div>
+
+                <InputFile 
+                    label = "Upload an Image"
+                    labelClass = "btn btn-success"
+                    name = "image"
+                    style ={style} 
+                />
+                <TextArea 
+                    name="caption" 
+                    label="Enter Caption"
+                    placeholder="Enter something amazing"
+                />
+                <PrimaryButton text="Publish" type="submit" />
+
+            </div>
+
+        );
     }
 }
