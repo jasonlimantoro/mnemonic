@@ -56970,7 +56970,7 @@ var UpdateButton = function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Button__["a" /* PrimaryButton */], { text: "Update", type: "submit" });
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Button__["b" /* PrimaryButton */], { text: "Update", type: "submit" });
         }
     }]);
 
@@ -56989,7 +56989,7 @@ var PublishButton = function (_React$Component2) {
     _createClass(PublishButton, [{
         key: "render",
         value: function render() {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Button__["a" /* PrimaryButton */], { text: "Publish", type: "submit" });
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Button__["b" /* PrimaryButton */], { text: "Publish", type: "submit" });
         }
     }]);
 
@@ -57012,7 +57012,7 @@ var AddNewPostButton = function (_React$Component3) {
                 "div",
                 null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    __WEBPACK_IMPORTED_MODULE_2__components_Button__["b" /* SuccessButton */],
+                    __WEBPACK_IMPORTED_MODULE_2__components_Button__["c" /* SuccessButton */],
                     { text: "Add New Post" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Icon__["c" /* PlusIcon */], null)
                 )
@@ -57028,8 +57028,11 @@ var AddNewPostButton = function (_React$Component3) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PrimaryButton; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return SuccessButton; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return PrimaryButton; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return SuccessButton; });
+/* unused harmony export InfoButton */
+/* unused harmony export WarningButton */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DangerButton; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__ = __webpack_require__(180);
@@ -57040,8 +57043,7 @@ var PrimaryButton = function PrimaryButton(props) {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["a" /* Button */],
         { type: props.type, bsStyle: "primary", onClick: props.onClick },
-        props.text,
-        " "
+        props.text
     );
 };
 
@@ -57052,9 +57054,32 @@ var SuccessButton = function SuccessButton(props) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["a" /* Button */],
             { type: props.type, bsStyle: "success", onClick: props.onClick },
-            props.children,
             props.text
         )
+    );
+};
+
+var InfoButton = function InfoButton(props) {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["a" /* Button */],
+        { type: props.type, bsStyle: "info", onClick: props.onClick },
+        props.text
+    );
+};
+
+var WarningButton = function WarningButton(props) {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["a" /* Button */],
+        { type: props.type, bsStyle: "warning", onClick: props.onClick },
+        props.text
+    );
+};
+
+var DangerButton = function DangerButton(props) {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["a" /* Button */],
+        { type: props.type, bsStyle: "danger", onClick: props.onClick },
+        props.text
     );
 };
 
@@ -57130,7 +57155,7 @@ var SuccessButton = function SuccessButton(props) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__MenuItem__ = __webpack_require__(271);
 /* unused harmony reexport MenuItem */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__Modal__ = __webpack_require__(272);
-/* unused harmony reexport Modal */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_33__Modal__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__ModalBody__ = __webpack_require__(121);
 /* unused harmony reexport ModalBody */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__ModalFooter__ = __webpack_require__(122);
@@ -57172,7 +57197,7 @@ var SuccessButton = function SuccessButton(props) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__ProgressBar__ = __webpack_require__(307);
 /* unused harmony reexport ProgressBar */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__Radio__ = __webpack_require__(308);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_54__Radio__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_54__Radio__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__ResponsiveEmbed__ = __webpack_require__(309);
 /* unused harmony reexport ResponsiveEmbed */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__Row__ = __webpack_require__(310);
@@ -63481,7 +63506,7 @@ Modal.Dialog = __WEBPACK_IMPORTED_MODULE_18__ModalDialog__["a" /* default */];
 Modal.TRANSITION_DURATION = 300;
 Modal.BACKDROP_TRANSITION_DURATION = 150;
 
-/* unused harmony default export */ var _unused_webpack_default_export = (Object(__WEBPACK_IMPORTED_MODULE_22__utils_bootstrapUtils__["a" /* bsClass */])('modal', Object(__WEBPACK_IMPORTED_MODULE_22__utils_bootstrapUtils__["b" /* bsSizes */])([__WEBPACK_IMPORTED_MODULE_25__utils_StyleConfig__["c" /* Size */].LARGE, __WEBPACK_IMPORTED_MODULE_25__utils_StyleConfig__["c" /* Size */].SMALL], Modal)));
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_22__utils_bootstrapUtils__["a" /* bsClass */])('modal', Object(__WEBPACK_IMPORTED_MODULE_22__utils_bootstrapUtils__["b" /* bsSizes */])([__WEBPACK_IMPORTED_MODULE_25__utils_StyleConfig__["c" /* Size */].LARGE, __WEBPACK_IMPORTED_MODULE_25__utils_StyleConfig__["c" /* Size */].SMALL], Modal)));
 
 /***/ }),
 /* 273 */
@@ -69162,6 +69187,7 @@ var Well = function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Form__ = __webpack_require__(322);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_SearchPost__ = __webpack_require__(323);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Button__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Modal__ = __webpack_require__(335);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -69169,6 +69195,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -69251,12 +69278,12 @@ var Search = function (_React$Component2) {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "div",
                 null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Form__["d" /* SearchBox */], {
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Form__["c" /* SearchBox */], {
                     onChange: this.changeSearchValue,
                     value: this.state.searchValue,
                     placeholder: this.state.placeholder
                 }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Form__["c" /* RadioButton */], {
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Form__["b" /* RadioButton */], {
                     onChange: this.changeSelectedOption,
                     selectedOption: this.state.selectedOption
                 }),
@@ -69274,34 +69301,51 @@ var Search = function (_React$Component2) {
 var CarouselForm = function (_React$Component3) {
     _inherits(CarouselForm, _React$Component3);
 
-    function CarouselForm() {
+    function CarouselForm(props) {
         _classCallCheck(this, CarouselForm);
 
-        return _possibleConstructorReturn(this, (CarouselForm.__proto__ || Object.getPrototypeOf(CarouselForm)).apply(this, arguments));
+        var _this3 = _possibleConstructorReturn(this, (CarouselForm.__proto__ || Object.getPrototypeOf(CarouselForm)).call(this, props));
+
+        _this3.state = {
+            'modalShow': false
+        };
+        _this3.closeModal = _this3.closeModal.bind(_this3);
+        _this3.showModal = _this3.showModal.bind(_this3);
+        return _this3;
     }
 
     _createClass(CarouselForm, [{
+        key: "closeModal",
+        value: function closeModal() {
+            this.setState({
+                'modalShow': false
+            });
+        }
+    }, {
+        key: "showModal",
+        value: function showModal() {
+            this.setState({
+                'modalShow': true
+            });
+        }
+    }, {
         key: "render",
         value: function render() {
-            var style = {
+            var inputStyle = {
                 'opacity': 0,
                 'display': 'inline'
             };
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "div",
                 null,
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Form__["b" /* InputFile */], {
-                    label: "Upload an Image",
-                    labelClass: "btn btn-success",
-                    name: "image",
-                    style: style
-                }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Form__["e" /* TextArea */], {
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Button__["b" /* PrimaryButton */], { text: "Upload Image", onClick: this.showModal }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_Modal__["a" /* DefaultModal */], { show: this.state.modalShow, onHide: this.closeModal }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Form__["d" /* TextArea */], {
                     name: "caption",
                     label: "Enter Caption",
                     placeholder: "Enter something amazing"
                 }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Button__["a" /* PrimaryButton */], { text: "Publish", type: "submit" })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Button__["b" /* PrimaryButton */], { text: "Publish", type: "submit" })
             );
         }
     }]);
@@ -69315,10 +69359,10 @@ var CarouselForm = function (_React$Component3) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormPost; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return SearchBox; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return RadioButton; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return InputFile; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return TextArea; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return SearchBox; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return RadioButton; });
+/* unused harmony export InputFile */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return TextArea; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__ = __webpack_require__(180);
@@ -69385,7 +69429,7 @@ var FormPost = function FormPost(props) {
             " ",
             props.bodyValue
         ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Button__["a" /* PrimaryButton */], { type: "submit", text: "Publish" })
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Button__["b" /* PrimaryButton */], { type: "submit", text: "Publish" })
     );
 };
 
@@ -69457,7 +69501,7 @@ var RadioButton = function (_React$Component2) {
                     __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* FormGroup */],
                     null,
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Radio */],
+                        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* Radio */],
                         {
                             name: "radioGroup",
                             inline: true,
@@ -69469,7 +69513,7 @@ var RadioButton = function (_React$Component2) {
                     ),
                     ' ',
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Radio */],
+                        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* Radio */],
                         {
                             name: "radioGroup",
                             inline: true,
@@ -69704,6 +69748,106 @@ var ShowIcon = function (_React$Component3) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 326 */,
+/* 327 */,
+/* 328 */,
+/* 329 */,
+/* 330 */,
+/* 331 */,
+/* 332 */,
+/* 333 */,
+/* 334 */,
+/* 335 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DefaultModal; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Button__ = __webpack_require__(179);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+
+
+
+
+var DefaultModal = function DefaultModal(props) {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Modal */],
+        _extends({}, props, { bsSize: "large", "aria-labelledby": "contained-modal-title-lg" }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Modal */].Header,
+            { closeButton: true },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Modal */].Title,
+                { id: "contained-modal-title-lg" },
+                "Modal heading "
+            )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Modal */].Body,
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "h4",
+                null,
+                "Wrapped Text"
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "p",
+                null,
+                "Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros."
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "p",
+                null,
+                "Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "p",
+                null,
+                "Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla."
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "p",
+                null,
+                "Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros."
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "p",
+                null,
+                "Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "p",
+                null,
+                "Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla."
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "p",
+                null,
+                "Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros."
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "p",
+                null,
+                "Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor."
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "p",
+                null,
+                "Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla."
+            )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* Modal */].Footer,
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Button__["a" /* DangerButton */], { onClick: props.onHide, text: "Close" })
+        )
+    );
+};
 
 /***/ })
 /******/ ]);

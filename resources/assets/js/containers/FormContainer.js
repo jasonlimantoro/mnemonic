@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { FormPost, SearchBox, RadioButton, InputFile, TextArea } from "../components/Form";
 import { SearchPost } from "../components/SearchPost";
 import { PrimaryButton, SuccessButton } from "../components/Button";
+import { DefaultModal } from "../components/Modal";
 
 
 export class FormforHome extends React.Component {
@@ -72,20 +73,42 @@ export class Search extends React.Component {
 }
 
 export class CarouselForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            'modalShow' : false
+        };
+        this.closeModal = this.closeModal.bind(this);
+        this.showModal = this.showModal.bind(this);
+    }
+    closeModal() {
+        this.setState({
+            'modalShow' : false
+        });
+    }
+
+    showModal() {
+        this.setState({
+            'modalShow' : true
+        });
+    }
+
     render() {
-        const style = {
+        const inputStyle = {
             'opacity': 0,
             'display': 'inline'
         };
         return (
             <div>
+                <PrimaryButton text="Upload Image" onClick={this.showModal} />
 
-                <InputFile 
+                <DefaultModal show={this.state.modalShow} onHide={this.closeModal} />
+                {/* <InputFile 
                     label = "Upload an Image"
                     labelClass = "btn btn-success"
                     name = "image"
-                    style ={style} 
-                />
+                    style ={inputStyle} 
+                /> */}
                 <TextArea 
                     name="caption" 
                     label="Enter Caption"
