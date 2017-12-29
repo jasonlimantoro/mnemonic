@@ -13,7 +13,7 @@ class ImagesController extends Controller
 {
 
     public function __construct(){
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['showJSON']);
         // All uploaded images
         $this->images = Image::oldest()->get();
     }
@@ -130,5 +130,9 @@ class ImagesController extends Controller
         Session::flash('success_msg', 'Images are successfully deleted!');
 
         return back();
+    }
+
+    public function showJSON(){
+        return $this->images;
     }
 }
