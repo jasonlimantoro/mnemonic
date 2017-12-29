@@ -23,7 +23,7 @@
                             <div class="col-md-4">
                                 @component('layouts.thumbnail')
                                     @slot('thumbnailImage')
-                                        <img src="{{ $image->url_cache }}" alt="image" class="img-responsive">
+                                        <img src="/imagecache/gallery/{{ $image->file_name }}" alt="image" class="img-responsive">
                                     @endslot
 
                                     @slot('thumbnailCaption')
