@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { FormPost, SearchBox, RadioButton, InputFile, TextArea } from "../components/Form";
 import { SearchPost } from "../components/SearchPost";
 import { PrimaryButton, SuccessButton } from "../components/Button";
-import { DefaultModal } from "../components/Modal";
+import { GalleryModal } from "../components/Modal";
 
 
 export class FormforHome extends React.Component {
@@ -102,13 +102,8 @@ export class CarouselForm extends React.Component {
             <div>
                 <PrimaryButton text="Upload Image" onClick={this.showModal} />
 
-                <DefaultModal show={this.state.modalShow} onHide={this.closeModal} />
-                {/* <InputFile 
-                    label = "Upload an Image"
-                    labelClass = "btn btn-success"
-                    name = "image"
-                    style ={inputStyle} 
-                /> */}
+                <GalleryModal show={this.state.modalShow} onHide={this.closeModal} />
+                
                 <TextArea 
                     name="caption" 
                     label="Enter Caption"

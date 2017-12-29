@@ -1,24 +1,32 @@
 import React from "react";
-import { Modal } from "react-bootstrap";
+import { Modal, Tabs, Tab } from "react-bootstrap";
 import { DangerButton } from "./Button";
+import { GalleryTabs } from "./Tab";
+import { InputFile } from "./Form";
 
-export const DefaultModal = (props) => {
+export const GalleryModal = (props) => {
+    const inputStyle = {
+        'opacity': 0,
+        'display': 'inline'
+    };
     return (
         <Modal {...props} bsSize="large" aria-labelledby="contained-modal-title-lg">
             <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-lg">Modal heading </Modal.Title>
+                <Modal.Title id="contained-modal-title-lg"> Media </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h4>Wrapped Text</h4>
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                <GalleryTabs
+                    uploadContent = {
+                        <InputFile 
+                            label = "Upload an Image"
+                            labelClass = "btn btn-success"
+                            name = "image"
+                            style ={inputStyle}
+                        />
+                    }
+                    
+                />
+
             </Modal.Body>
             <Modal.Footer>
                 <DangerButton onClick={props.onHide} text="Close" />
