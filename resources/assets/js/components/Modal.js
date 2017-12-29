@@ -3,6 +3,7 @@ import { Modal, Tabs, Tab } from "react-bootstrap";
 import { DangerButton } from "./Button";
 import { GalleryTabs } from "./Tab";
 import { InputFile } from "./Form";
+import { Request } from "./Request";
 
 export const GalleryModal = (props) => {
     const inputStyle = {
@@ -25,11 +26,15 @@ export const GalleryModal = (props) => {
                         />
                     }
                     
+                    galleryContent = {
+                        <Request source="https://mnemonic.dev/gallery-images" />
+                    }
+                    
                 />
 
             </Modal.Body>
             <Modal.Footer>
-                <DangerButton onClick={props.onHide} text="Close" />
+                <DangerButton text="Publish" />
             </Modal.Footer>
         </Modal>
     );

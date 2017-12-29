@@ -5,7 +5,7 @@ export const GalleryTabs = (props) => {
     return (
         <Tab.Container id="tabs-with-dropdown" defaultActiveKey="uploads">
             <Row className="clearfix">
-                <Col sm={12}>
+                <Col md={12}>
                     <Nav bsStyle="tabs" style={{marginBottom: 20}}>
                         <NavItem eventKey="uploads">
                             Uploads
@@ -15,7 +15,7 @@ export const GalleryTabs = (props) => {
                         </NavItem>
                     </Nav>
                 </Col>
-                <Col sm={12}>
+                <Col md={12}>
                     <Tab.Content animation>
                         <Tab.Pane eventKey="uploads">
                             Upload images from your local computer
