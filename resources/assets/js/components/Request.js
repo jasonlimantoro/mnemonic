@@ -31,10 +31,11 @@ export class Request extends React.Component {
             <div>
                 <h1>Gallery</h1>
                 {this.state.images.map(function(image){
+                    var galleryCacheUrl = '/imagecache/gallery/' + image.file_name;
                     return (
                         <div key={image.id}>
                             <ThumbnailGallery 
-                                sourceImage={image.url_asset}
+                                sourceImage={galleryCacheUrl}
                                 title={image.file_name}
                                 description={image.created_at}
                             />
