@@ -69836,11 +69836,12 @@ var Request = function (_React$Component) {
                     "Gallery"
                 ),
                 this.state.images.map(function (image) {
+                    var galleryCacheUrl = '/imagecache/gallery/' + image.file_name;
                     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         "div",
                         { key: image.id },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Thumbnail__["a" /* ThumbnailGallery */], {
-                            sourceImage: image.url_asset,
+                            sourceImage: galleryCacheUrl,
                             title: image.file_name,
                             description: image.created_at
                         })
@@ -69990,12 +69991,28 @@ var ThumbnailGallery = function (_React$Component) {
     function ThumbnailGallery(props) {
         _classCallCheck(this, ThumbnailGallery);
 
-        return _possibleConstructorReturn(this, (ThumbnailGallery.__proto__ || Object.getPrototypeOf(ThumbnailGallery)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (ThumbnailGallery.__proto__ || Object.getPrototypeOf(ThumbnailGallery)).call(this, props));
+
+        _this.handleClick = _this.handleClick.bind(_this);
+        _this.state = {
+            isActive: false
+        };
+        return _this;
     }
 
     _createClass(ThumbnailGallery, [{
+        key: "handleClick",
+        value: function handleClick() {
+            this.setState(function (prevState) {
+                return {
+                    isActive: !prevState.isActive
+                };
+            });
+        }
+    }, {
         key: "render",
         value: function render() {
+            var activeClass = this.state.isActive ? 'active' : '';
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "div",
                 null,
@@ -70004,9 +70021,9 @@ var ThumbnailGallery = function (_React$Component) {
                     { xs: 6, md: 4 },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["l" /* Thumbnail */],
-                        { src: this.props.sourceImage, alt: "242x200" },
+                        { src: this.props.sourceImage, className: 'thumbnail-gallery ' + activeClass, alt: "242x200", onClick: this.handleClick },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "h3",
+                            "strong",
                             null,
                             this.props.title
                         ),

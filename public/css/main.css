@@ -8661,3 +8661,8 @@ span {
   background-color: black;
 }
 
+.thumbnail-gallery:hover,
+.thumbnail-gallery.active {
+  border: solid 1px red;
+}
+
