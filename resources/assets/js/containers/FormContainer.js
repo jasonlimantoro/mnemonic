@@ -102,6 +102,7 @@ export class CarouselForm extends React.Component {
             <div>
                 <PrimaryButton text="Upload Image" onClick={this.showModal} />
 
+                <div className="preview">No file uploaded</div>
                 <GalleryModal show={this.state.modalShow} onHide={this.closeModal} />
                 
                 <TextArea 

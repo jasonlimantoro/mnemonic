@@ -104,20 +104,31 @@ export class RadioButton extends React.Component {
     }
 }
 
-export const InputFile = (props) => {
-    return (
-        <div>
+export class InputFile extends React.Component {
+    constructor(props){
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+    }
 
-            <FieldGroup 
-                id="inputFile"
-                type="file"
-                label= {props.label}
-                labelClass= {props.labelClass}
-                name= {props.name}
-                style={props.style}
-            />
-        </div>
-    );
+    handleChange(e) {
+        const files = e.target.files;
+        this.props.onChange(files);
+    }
+    render(){
+        return (
+            <div>
+                <FieldGroup 
+                    id="inputFile"
+                    type="file"
+                    label= {this.props.label}
+                    labelClass= {this.props.labelClass}
+                    name= {this.props.name}
+                    style={this.props.style}
+                    onChange = {this.handleChange}
+                />
+            </div>
+        );
+    }
 }
 
 export const TextArea = (props) => {

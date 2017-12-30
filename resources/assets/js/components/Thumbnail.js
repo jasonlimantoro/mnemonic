@@ -15,6 +15,7 @@ export class ThumbnailGallery extends React.Component {
             isActive : !prevState.isActive
         }));
     }
+
     render() {
         var activeClass = this.state.isActive ? 'active' : '';
         return (
