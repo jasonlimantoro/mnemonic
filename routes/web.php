@@ -89,12 +89,3 @@ Route::get('/about-us', 'FrontendController@about');
 Route::get('/galleries', 'FrontendController@gallery');
 Route::get('/{page_title}/{post_title}', 'PostsController@read')->name('post.read');
 
-/*
-    |--------------------------------------------------------------------------
-    | Database
-    |--------------------------------------------------------------------------
-    |
-    |
-*/
-
-Route::get('/gallery-images', 'ImagesController@showJSON')->name('images.json');

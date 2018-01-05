@@ -47,7 +47,7 @@ export class GalleryModal extends React.Component {
                         }
                         
                         galleryContent = {
-                            <Request source="https://mnemonic.dev/gallery-images" />
+                            <Request source="/api/images" />
                         }
                         
                     />
