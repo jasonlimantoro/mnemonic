@@ -4,20 +4,20 @@ import { DangerButton } from "./Button";
 import { GalleryTabs } from "./Tab";
 import { InputFile } from "./Form";
 import { RequestImages } from "./Request";
-import { DisplayImages } from "./DisplayImage";
+import { DisplayImagesFromInputFile } from "./DisplayImage";
 
-export class GalleryModal extends React.Component {
+export class UploadModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            files : []
+            file : {}
         };
         this.addFile = this.addFile.bind(this);
     }
 
     addFile(newFile) {
         this.setState({
-            files: newFile
+            file: newFile
         });
     }
     render(){
@@ -42,7 +42,7 @@ export class GalleryModal extends React.Component {
                                     onChange = {this.addFile}
                                 />
 
-                                <DisplayImages files={this.state.files} displayOutside={true} />
+                                <DisplayImagesFromInputFile file={this.state.file} displayOutside={true} />
                             </div>
                         }
                         

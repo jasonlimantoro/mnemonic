@@ -7,7 +7,10 @@ export class RequestImages extends React.Component {
         super(props);
         this.state = {
             'images' : [],
-            'selectedImageId': null
+            'selectedImage': {
+                id: null,
+                fromGallery: true
+            }
         };
         this.requestData = this.requestData.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -25,7 +28,7 @@ export class RequestImages extends React.Component {
 
     handleClick(image){
         this.setState({
-            selectedImageId: image.id
+            selectedImage: image
         });
     }
 
@@ -39,11 +42,12 @@ export class RequestImages extends React.Component {
                 <h1>Gallery</h1>
                 {this.state.images.map(function(image){
                     const galleryCacheUrl = '/imagecache/gallery/' + image.file_name;
-                    const isActive = this.state.selectedImageId == image.id;
+                    const isActive = this.state.selectedImage.id == image.id;
                     return (
                         <div className="col-md-4 col-xs-6" key={image.id}>
                             <div className="thumbnail-container" onClick={() => this.handleClick(image)}>  
-                                <ThumbnailGallery 
+                                <ThumbnailGallery
+                                    selectedImage = {this.state.selectedImage}
                                     isActive = {isActive}
                                     sourceImage={galleryCacheUrl}
                                     title={image.file_name}

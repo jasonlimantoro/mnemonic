@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { FormPost, SearchBox, RadioButton, InputFile, TextArea } from "../components/Form";
 import { SearchPost } from "../components/SearchPost";
 import { PrimaryButton, SuccessButton } from "../components/Button";
-import { GalleryModal } from "../components/Modal";
+import { UploadModal } from "../components/Modal";
 import { DisplayImages } from "../components/DisplayImage";
 
 
@@ -104,7 +104,7 @@ export class CarouselForm extends React.Component {
                 <PrimaryButton text="Upload Image" onClick={this.showModal} />
 
                 <div className="preview" style={{marginTop:20}}>No file uploaded</div>
-                <GalleryModal show={this.state.modalShow} onHide={this.closeModal} />
+                <UploadModal show={this.state.modalShow} onHide={this.closeModal} />
                 
                 <TextArea 
                     name="caption" 

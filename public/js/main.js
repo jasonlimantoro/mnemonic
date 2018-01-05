@@ -9262,7 +9262,8 @@ var TextArea = function TextArea(props) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DisplayImages; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DisplayImagesFromInputFile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return DisplayImagesFromSelectedGallery; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -9275,56 +9276,58 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var DisplayImages = function (_React$Component) {
-    _inherits(DisplayImages, _React$Component);
+function DisplayOutside(file) {
+    var fromGallery = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
 
-    function DisplayImages(props) {
-        _classCallCheck(this, DisplayImages);
+    var preview = document.querySelector('.preview');
 
-        return _possibleConstructorReturn(this, (DisplayImages.__proto__ || Object.getPrototypeOf(DisplayImages)).call(this, props));
+    while (preview.firstChild) {
+        preview.removeChild(preview.firstChild);
     }
 
-    _createClass(DisplayImages, [{
-        key: 'DisplayOutside',
-        value: function DisplayOutside() {
-            var files = this.props.files;
-            var preview = document.querySelector('.preview');
-
-            while (preview.firstChild) {
-                preview.removeChild(preview.firstChild);
-            }
-
-            if (files.length === 0) {
-                var para = document.createElement('p');
-                para.textContent = "No file uploaded";
-                preview.appendChild(para);
-            } else {
-                for (var i = 0; i < files.length; i++) {
-                    var divItem = document.createElement('div');
-                    var para = document.createElement('p');
-                    para.textContent = files[i].name;
-                    var img = document.createElement('img');
-                    img.src = window.URL.createObjectURL(files[i]);
-                    img.classList.add('img-responsive');
-
-                    divItem.appendChild(img);
-                    divItem.appendChild(para);
-
-                    preview.appendChild(divItem);
-                }
-            }
+    if (!file) {
+        var para = document.createElement('p');
+        para.textContent = "No file uploaded";
+        preview.appendChild(para);
+    } else {
+        var divItem = document.createElement('div');
+        var para = document.createElement('p');
+        para.textContent = file.name;
+        var img = document.createElement('img');
+        if (fromGallery) {
+            img.src = file.url_cache;
+        } else {
+            // from input file
+            img.src = window.URL.createObjectURL(file);
         }
-    }, {
+        img.classList.add('img-responsive');
+
+        divItem.appendChild(img);
+        divItem.appendChild(para);
+
+        preview.appendChild(divItem);
+    }
+}
+var DisplayImagesFromInputFile = function (_React$Component) {
+    _inherits(DisplayImagesFromInputFile, _React$Component);
+
+    function DisplayImagesFromInputFile(props) {
+        _classCallCheck(this, DisplayImagesFromInputFile);
+
+        return _possibleConstructorReturn(this, (DisplayImagesFromInputFile.__proto__ || Object.getPrototypeOf(DisplayImagesFromInputFile)).call(this, props));
+    }
+
+    _createClass(DisplayImagesFromInputFile, [{
         key: 'render',
         value: function render() {
-            var files = this.props.files;
+            var file = this.props.file;
             var preview = "No images uploaded";
-            if (files.length > 0) {
-                var src = window.URL.createObjectURL(files[0]);
+            if (file.length > 0) {
+                var src = window.URL.createObjectURL(file[0]);
                 preview = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: src, className: 'img-responsive', alt: 'temp' });
             }
             if (this.props.displayOutside) {
-                this.DisplayOutside();
+                DisplayOutside(file[0], false);
             }
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'p',
@@ -9334,13 +9337,33 @@ var DisplayImages = function (_React$Component) {
         }
     }]);
 
-    return DisplayImages;
+    return DisplayImagesFromInputFile;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
-DisplayImages.defaultProps = {
-    files: [],
+DisplayImagesFromInputFile.defaultProps = {
+    file: [],
     displayOutside: false
 };
+
+var DisplayImagesFromSelectedGallery = function (_React$Component2) {
+    _inherits(DisplayImagesFromSelectedGallery, _React$Component2);
+
+    function DisplayImagesFromSelectedGallery(props) {
+        _classCallCheck(this, DisplayImagesFromSelectedGallery);
+
+        return _possibleConstructorReturn(this, (DisplayImagesFromSelectedGallery.__proto__ || Object.getPrototypeOf(DisplayImagesFromSelectedGallery)).call(this, props));
+    }
+
+    _createClass(DisplayImagesFromSelectedGallery, [{
+        key: 'render',
+        value: function render() {
+            DisplayOutside(this.props.file, true);
+            return null;
+        }
+    }]);
+
+    return DisplayImagesFromSelectedGallery;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 /***/ }),
 /* 141 */
@@ -69664,7 +69687,7 @@ var CarouselForm = function (_React$Component3) {
                     { className: "preview", style: { marginTop: 20 } },
                     "No file uploaded"
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_Modal__["a" /* GalleryModal */], { show: this.state.modalShow, onHide: this.closeModal }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_Modal__["a" /* UploadModal */], { show: this.state.modalShow, onHide: this.closeModal }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Form__["e" /* TextArea */], {
                     name: "caption",
                     label: "Enter Caption",
@@ -69769,7 +69792,7 @@ var SearchPost = function (_React$Component) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GalleryModal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UploadModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__ = __webpack_require__(33);
@@ -69796,26 +69819,26 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var GalleryModal = function (_React$Component) {
-    _inherits(GalleryModal, _React$Component);
+var UploadModal = function (_React$Component) {
+    _inherits(UploadModal, _React$Component);
 
-    function GalleryModal(props) {
-        _classCallCheck(this, GalleryModal);
+    function UploadModal(props) {
+        _classCallCheck(this, UploadModal);
 
-        var _this = _possibleConstructorReturn(this, (GalleryModal.__proto__ || Object.getPrototypeOf(GalleryModal)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (UploadModal.__proto__ || Object.getPrototypeOf(UploadModal)).call(this, props));
 
         _this.state = {
-            files: []
+            file: {}
         };
         _this.addFile = _this.addFile.bind(_this);
         return _this;
     }
 
-    _createClass(GalleryModal, [{
+    _createClass(UploadModal, [{
         key: "addFile",
         value: function addFile(newFile) {
             this.setState({
-                files: newFile
+                file: newFile
             });
         }
     }, {
@@ -69851,7 +69874,7 @@ var GalleryModal = function (_React$Component) {
                                 style: inputStyle,
                                 onChange: this.addFile
                             }),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__DisplayImage__["a" /* DisplayImages */], { files: this.state.files, displayOutside: true })
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__DisplayImage__["a" /* DisplayImagesFromInputFile */], { file: this.state.file, displayOutside: true })
                         ),
 
                         galleryContent: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Request__["a" /* RequestImages */], { source: "/api/images" })
@@ -69867,7 +69890,7 @@ var GalleryModal = function (_React$Component) {
         }
     }]);
 
-    return GalleryModal;
+    return UploadModal;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 /***/ }),
@@ -69964,7 +69987,10 @@ var RequestImages = function (_React$Component) {
 
         _this.state = {
             'images': [],
-            'selectedImageId': null
+            'selectedImage': {
+                id: null,
+                fromGallery: true
+            }
         };
         _this.requestData = _this.requestData.bind(_this);
         _this.handleClick = _this.handleClick.bind(_this);
@@ -69985,7 +70011,7 @@ var RequestImages = function (_React$Component) {
         key: "handleClick",
         value: function handleClick(image) {
             this.setState({
-                selectedImageId: image.id
+                selectedImage: image
             });
         }
     }, {
@@ -70008,7 +70034,7 @@ var RequestImages = function (_React$Component) {
                     var _this2 = this;
 
                     var galleryCacheUrl = '/imagecache/gallery/' + image.file_name;
-                    var isActive = this.state.selectedImageId == image.id;
+                    var isActive = this.state.selectedImage.id == image.id;
                     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         "div",
                         { className: "col-md-4 col-xs-6", key: image.id },
@@ -70018,6 +70044,7 @@ var RequestImages = function (_React$Component) {
                                     return _this2.handleClick(image);
                                 } },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Thumbnail__["a" /* ThumbnailGallery */], {
+                                selectedImage: this.state.selectedImage,
                                 isActive: isActive,
                                 sourceImage: galleryCacheUrl,
                                 title: image.file_name,
@@ -70042,6 +70069,7 @@ var RequestImages = function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__DisplayImage__ = __webpack_require__(140);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -70049,6 +70077,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -70066,6 +70095,11 @@ var ThumbnailGallery = function (_React$Component) {
         key: "render",
         value: function render() {
             var activeClass = this.props.isActive ? 'active' : '';
+            var display = '';
+            if (this.props.isActive) {
+                display = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__DisplayImage__["b" /* DisplayImagesFromSelectedGallery */], { file: this.props.selectedImage });
+            }
+
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["l" /* Thumbnail */],
                 {
@@ -70082,7 +70116,8 @@ var ThumbnailGallery = function (_React$Component) {
                     "p",
                     null,
                     this.props.description
-                )
+                ),
+                display
             );
         }
     }]);
