@@ -69854,7 +69854,7 @@ var GalleryModal = function (_React$Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__DisplayImage__["a" /* DisplayImages */], { files: this.state.files, displayOutside: true })
                         ),
 
-                        galleryContent: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Request__["a" /* Request */], { source: "/api/images" })
+                        galleryContent: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Request__["a" /* RequestImages */], { source: "/api/images" })
 
                     })
                 ),
@@ -69936,7 +69936,7 @@ var GalleryTabs = function GalleryTabs(props) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Request; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RequestImages; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(86);
@@ -69954,29 +69954,38 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var Request = function (_React$Component) {
-    _inherits(Request, _React$Component);
+var RequestImages = function (_React$Component) {
+    _inherits(RequestImages, _React$Component);
 
-    function Request(props) {
-        _classCallCheck(this, Request);
+    function RequestImages(props) {
+        _classCallCheck(this, RequestImages);
 
-        var _this = _possibleConstructorReturn(this, (Request.__proto__ || Object.getPrototypeOf(Request)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (RequestImages.__proto__ || Object.getPrototypeOf(RequestImages)).call(this, props));
 
         _this.state = {
-            'images': []
+            'images': [],
+            'selectedImageId': null
         };
         _this.requestData = _this.requestData.bind(_this);
+        _this.handleClick = _this.handleClick.bind(_this);
         return _this;
     }
 
-    _createClass(Request, [{
+    _createClass(RequestImages, [{
         key: "requestData",
         value: function requestData() {
-            var th = this;
+            // var th = this;
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(this.props.source).then(function (result) {
-                th.setState({
+                this.setState({
                     'images': result.data
                 });
+            }.bind(this));
+        }
+    }, {
+        key: "handleClick",
+        value: function handleClick(image) {
+            this.setState({
+                selectedImageId: image.id
             });
         }
     }, {
@@ -69996,22 +70005,32 @@ var Request = function (_React$Component) {
                     "Gallery"
                 ),
                 this.state.images.map(function (image) {
+                    var _this2 = this;
+
                     var galleryCacheUrl = '/imagecache/gallery/' + image.file_name;
+                    var isActive = this.state.selectedImageId == image.id;
                     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         "div",
-                        { key: image.id },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Thumbnail__["a" /* ThumbnailGallery */], {
-                            sourceImage: galleryCacheUrl,
-                            title: image.file_name,
-                            description: image.created_at
-                        })
+                        { className: "col-md-4 col-xs-6", key: image.id },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "div",
+                            { className: "thumbnail-container", onClick: function onClick() {
+                                    return _this2.handleClick(image);
+                                } },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Thumbnail__["a" /* ThumbnailGallery */], {
+                                isActive: isActive,
+                                sourceImage: galleryCacheUrl,
+                                title: image.file_name,
+                                description: image.created_at
+                            })
+                        )
                     );
-                })
+                }.bind(this))
             );
         }
     }]);
 
-    return Request;
+    return RequestImages;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 /***/ }),
@@ -70040,48 +70059,29 @@ var ThumbnailGallery = function (_React$Component) {
     function ThumbnailGallery(props) {
         _classCallCheck(this, ThumbnailGallery);
 
-        var _this = _possibleConstructorReturn(this, (ThumbnailGallery.__proto__ || Object.getPrototypeOf(ThumbnailGallery)).call(this, props));
-
-        _this.handleClick = _this.handleClick.bind(_this);
-        _this.state = {
-            isActive: false
-        };
-        return _this;
+        return _possibleConstructorReturn(this, (ThumbnailGallery.__proto__ || Object.getPrototypeOf(ThumbnailGallery)).call(this, props));
     }
 
     _createClass(ThumbnailGallery, [{
-        key: "handleClick",
-        value: function handleClick() {
-            this.setState(function (prevState) {
-                return {
-                    isActive: !prevState.isActive
-                };
-            });
-        }
-    }, {
         key: "render",
         value: function render() {
-            var activeClass = this.state.isActive ? 'active' : '';
+            var activeClass = this.props.isActive ? 'active' : '';
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "div",
-                null,
+                __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["l" /* Thumbnail */],
+                {
+                    src: this.props.sourceImage,
+                    className: 'thumbnail-gallery ' + activeClass,
+                    alt: "242x200"
+                },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Col */],
-                    { xs: 6, md: 4 },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["l" /* Thumbnail */],
-                        { src: this.props.sourceImage, className: 'thumbnail-gallery ' + activeClass, alt: "242x200", onClick: this.handleClick },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "strong",
-                            null,
-                            this.props.title
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "p",
-                            null,
-                            this.props.description
-                        )
-                    )
+                    "strong",
+                    null,
+                    this.props.title
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "p",
+                    null,
+                    this.props.description
                 )
             );
         }

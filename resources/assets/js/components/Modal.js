@@ -3,7 +3,7 @@ import { Modal, Tabs, Tab } from "react-bootstrap";
 import { DangerButton } from "./Button";
 import { GalleryTabs } from "./Tab";
 import { InputFile } from "./Form";
-import { Request } from "./Request";
+import { RequestImages } from "./Request";
 import { DisplayImages } from "./DisplayImage";
 
 export class GalleryModal extends React.Component {
@@ -47,7 +47,7 @@ export class GalleryModal extends React.Component {
                         }
                         
                         galleryContent = {
-                            <Request source="/api/images" />
+                            <RequestImages source="/api/images" />
                         }
                         
                     />
