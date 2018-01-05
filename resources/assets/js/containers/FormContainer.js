@@ -4,6 +4,7 @@ import { FormPost, SearchBox, RadioButton, InputFile, TextArea } from "../compon
 import { SearchPost } from "../components/SearchPost";
 import { PrimaryButton, SuccessButton } from "../components/Button";
 import { GalleryModal } from "../components/Modal";
+import { DisplayImages } from "../components/DisplayImage";
 
 
 export class FormforHome extends React.Component {
@@ -76,20 +77,20 @@ export class CarouselForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            'modalShow' : false
+            modalShow : false,
         };
         this.closeModal = this.closeModal.bind(this);
         this.showModal = this.showModal.bind(this);
     }
     closeModal() {
         this.setState({
-            'modalShow' : false
+            modalShow : false
         });
     }
 
     showModal() {
         this.setState({
-            'modalShow' : true
+            modalShow : true
         });
     }
 
@@ -102,7 +103,7 @@ export class CarouselForm extends React.Component {
             <div>
                 <PrimaryButton text="Upload Image" onClick={this.showModal} />
 
-                <div className="preview">No file uploaded</div>
+                <div className="preview" style={{marginTop:20}}>No file uploaded</div>
                 <GalleryModal show={this.state.modalShow} onHide={this.closeModal} />
                 
                 <TextArea 

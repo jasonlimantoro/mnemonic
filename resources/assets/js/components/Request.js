@@ -15,7 +15,6 @@ export class Request extends React.Component {
         var th = this;
         axios.get(this.props.source)
             .then(function(result){
-                console.log(result.data);
                 th.setState({
                     'images': result.data
                 });

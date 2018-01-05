@@ -9262,7 +9262,7 @@ var TextArea = function TextArea(props) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(141);
-module.exports = __webpack_require__(329);
+module.exports = __webpack_require__(330);
 
 
 /***/ }),
@@ -9277,7 +9277,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__containers_ButtonContainer__ = __webpack_require__(181);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__containers_FormContainer__ = __webpack_require__(322);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__containers_IconContainer__ = __webpack_require__(328);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__containers_IconContainer__ = __webpack_require__(329);
 __webpack_require__(142);
 
 
@@ -69421,6 +69421,7 @@ var Well = function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_SearchPost__ = __webpack_require__(323);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Button__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Modal__ = __webpack_require__(324);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_DisplayImage__ = __webpack_require__(328);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -69428,6 +69429,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -69540,7 +69542,7 @@ var CarouselForm = function (_React$Component3) {
         var _this3 = _possibleConstructorReturn(this, (CarouselForm.__proto__ || Object.getPrototypeOf(CarouselForm)).call(this, props));
 
         _this3.state = {
-            'modalShow': false
+            modalShow: false
         };
         _this3.closeModal = _this3.closeModal.bind(_this3);
         _this3.showModal = _this3.showModal.bind(_this3);
@@ -69551,14 +69553,14 @@ var CarouselForm = function (_React$Component3) {
         key: "closeModal",
         value: function closeModal() {
             this.setState({
-                'modalShow': false
+                modalShow: false
             });
         }
     }, {
         key: "showModal",
         value: function showModal() {
             this.setState({
-                'modalShow': true
+                modalShow: true
             });
         }
     }, {
@@ -69574,7 +69576,7 @@ var CarouselForm = function (_React$Component3) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Button__["b" /* PrimaryButton */], { text: "Upload Image", onClick: this.showModal }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "div",
-                    { className: "preview" },
+                    { className: "preview", style: { marginTop: 20 } },
                     "No file uploaded"
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_Modal__["a" /* GalleryModal */], { show: this.state.modalShow, onHide: this.closeModal }),
@@ -69690,7 +69692,7 @@ var SearchPost = function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Tab__ = __webpack_require__(325);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Form__ = __webpack_require__(139);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Request__ = __webpack_require__(326);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__DisplayImage__ = __webpack_require__(340);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__DisplayImage__ = __webpack_require__(328);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -69764,7 +69766,7 @@ var GalleryModal = function (_React$Component) {
                                 style: inputStyle,
                                 onChange: this.addFile
                             }),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__DisplayImage__["a" /* GalleryImages */], { files: this.state.files })
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__DisplayImage__["a" /* DisplayImages */], { files: this.state.files, displayOutside: true })
                         ),
 
                         galleryContent: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Request__["a" /* Request */], { source: "https://mnemonic.dev/gallery-images" })
@@ -69887,7 +69889,6 @@ var Request = function (_React$Component) {
         value: function requestData() {
             var th = this;
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(this.props.source).then(function (result) {
-                console.log(result.data);
                 th.setState({
                     'images': result.data
                 });
@@ -70009,6 +70010,91 @@ var ThumbnailGallery = function (_React$Component) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DisplayImages; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var DisplayImages = function (_React$Component) {
+    _inherits(DisplayImages, _React$Component);
+
+    function DisplayImages(props) {
+        _classCallCheck(this, DisplayImages);
+
+        return _possibleConstructorReturn(this, (DisplayImages.__proto__ || Object.getPrototypeOf(DisplayImages)).call(this, props));
+    }
+
+    _createClass(DisplayImages, [{
+        key: 'DisplayOutside',
+        value: function DisplayOutside() {
+            var files = this.props.files;
+            var preview = document.querySelector('.preview');
+
+            while (preview.firstChild) {
+                preview.removeChild(preview.firstChild);
+            }
+
+            if (files.length === 0) {
+                var para = document.createElement('p');
+                para.textContent = "No file uploaded";
+                preview.appendChild(para);
+            } else {
+                for (var i = 0; i < files.length; i++) {
+                    var divItem = document.createElement('div');
+                    var para = document.createElement('p');
+                    para.textContent = files[i].name;
+                    var img = document.createElement('img');
+                    img.src = window.URL.createObjectURL(files[i]);
+                    img.classList.add('img-responsive');
+
+                    divItem.appendChild(img);
+                    divItem.appendChild(para);
+
+                    preview.appendChild(divItem);
+                }
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var files = this.props.files;
+            var preview = "No images uploaded";
+            if (files.length > 0) {
+                var src = window.URL.createObjectURL(files[0]);
+                preview = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { src: src, className: 'img-responsive', alt: 'temp' });
+            }
+            if (this.props.displayOutside) {
+                this.DisplayOutside();
+            }
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'p',
+                null,
+                preview
+            );
+        }
+    }]);
+
+    return DisplayImages;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+DisplayImages.defaultProps = {
+    files: [],
+    displayOutside: false
+};
+
+/***/ }),
+/* 329 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DeleteIcon; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return EditIcon; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return ShowIcon; });
@@ -70101,91 +70187,10 @@ var ShowIcon = function (_React$Component3) {
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 /***/ }),
-/* 329 */
+/* 330 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 330 */,
-/* 331 */,
-/* 332 */,
-/* 333 */,
-/* 334 */,
-/* 335 */,
-/* 336 */,
-/* 337 */,
-/* 338 */,
-/* 339 */,
-/* 340 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GalleryImages; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-var GalleryImages = function (_React$Component) {
-    _inherits(GalleryImages, _React$Component);
-
-    function GalleryImages(props) {
-        _classCallCheck(this, GalleryImages);
-
-        return _possibleConstructorReturn(this, (GalleryImages.__proto__ || Object.getPrototypeOf(GalleryImages)).call(this, props));
-    }
-
-    _createClass(GalleryImages, [{
-        key: 'updateDisplayImage',
-        value: function updateDisplayImage() {
-            // var input = document.querySelector('#inputFile');
-            // var files = input.files;
-            var preview = document.querySelector('.preview');
-
-            var files = this.props.files;
-
-            while (preview.firstChild) {
-                preview.removeChild(preview.firstChild);
-            }
-
-            if (files.length === 0) {
-                var para = document.createElement('p');
-                para.textContent = "No file uploaded";
-                preview.appendChild(para);
-            } else {
-                for (var i = 0; i < files.length; i++) {
-                    var divItem = document.createElement('div');
-                    var para = document.createElement('p');
-                    para.textContent = files[i].name;
-                    var img = document.createElement('img');
-                    img.src = window.URL.createObjectURL(files[i]);
-                    img.classList.add('img-responsive');
-
-                    divItem.appendChild(img);
-                    divItem.appendChild(para);
-
-                    preview.appendChild(divItem);
-                }
-            }
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            this.updateDisplayImage();
-            return null;
-        }
-    }]);
-
-    return GalleryImages;
-}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 /***/ })
 /******/ ]);

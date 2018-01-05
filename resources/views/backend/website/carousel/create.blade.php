@@ -20,8 +20,7 @@
                     <form method="POST" action="{{ route('carousel.image.store', ['carousel' => 1]) }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="__react-root" id="CarouselForm"></div>
-                        {{--  <div class="preview">No file uploaded</div>  --}}
-
+                        
                     </form>
                 @endslot
             @endcomponent

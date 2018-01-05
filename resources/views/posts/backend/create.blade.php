@@ -36,9 +36,7 @@
                         </div>
                     
                     </form>
-                    {{--  <div id="FormforHome" class="__react-root">
-
-                    </div>  --}}
+    
                 @endslot
 
             @endcomponent

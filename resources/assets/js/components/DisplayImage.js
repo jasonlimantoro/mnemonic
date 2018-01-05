@@ -1,16 +1,12 @@
 import React from "react";
 
-export class GalleryImages extends React.Component {
+export class DisplayImages extends React.Component {
     constructor(props){
         super(props);
     }
-
-    updateDisplayImage(){
-        // var input = document.querySelector('#inputFile');
-        // var files = input.files;
-        var preview = document.querySelector('.preview');
-
+    DisplayOutside(){
         var files = this.props.files;
+        var preview = document.querySelector('.preview');
 
         while (preview.firstChild) {
             preview.removeChild(preview.firstChild);
@@ -37,8 +33,24 @@ export class GalleryImages extends React.Component {
             }
         }
     }
+
     render(){
-        this.updateDisplayImage()
-        return null;
+        var files = this.props.files;
+        var preview = "No images uploaded";
+        if (files.length > 0){
+            var src = window.URL.createObjectURL(files[0]);
+            preview = <img src={src} className="img-responsive" alt="temp" />;
+        }
+        if (this.props.displayOutside) {
+            this.DisplayOutside();
+        }
+        return (
+            <p>{preview}</p>
+        );
     }
 }
+
+DisplayImages.defaultProps = {
+    files : [],
+    displayOutside: false
+};

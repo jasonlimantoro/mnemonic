@@ -4,7 +4,7 @@ import { DangerButton } from "./Button";
 import { GalleryTabs } from "./Tab";
 import { InputFile } from "./Form";
 import { Request } from "./Request";
-import { GalleryImages } from "./DisplayImage";
+import { DisplayImages } from "./DisplayImage";
 
 export class GalleryModal extends React.Component {
     constructor(props) {
@@ -42,7 +42,7 @@ export class GalleryModal extends React.Component {
                                     onChange = {this.addFile}
                                 />
 
-                                <GalleryImages files={this.state.files} />
+                                <DisplayImages files={this.state.files} displayOutside={true} />
                             </div>
                         }
                         
