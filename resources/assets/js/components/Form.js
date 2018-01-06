@@ -111,22 +111,21 @@ export class InputFile extends React.Component {
     }
 
     handleChange(e) {
-        const files = e.target.files;
+        var files = e.target.files;
         this.props.onChange(files);
+        document.getElementById('inputFileOutside').files = files;
     }
     render(){
         return (
-            <div>
-                <FieldGroup 
-                    id="inputFile"
-                    type="file"
-                    label= {this.props.label}
-                    labelClass= {this.props.labelClass}
-                    name= {this.props.name}
-                    style={this.props.style}
-                    onChange = {this.handleChange}
-                />
-            </div>
+            <FieldGroup 
+                id="inputFile"
+                type="file"
+                label= {this.props.label}
+                labelClass= {this.props.labelClass}
+                name= {this.props.name}
+                style={this.props.style}
+                onChange = {this.handleChange}
+            />
         );
     }
 }

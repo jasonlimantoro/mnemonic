@@ -96,14 +96,14 @@ export class CarouselForm extends React.Component {
 
     render() {
         const inputStyle = {
-            'opacity': 0,
-            'display': 'inline'
+            'display' : 'none'
         };
         return (
             <div>
                 <PrimaryButton text="Upload Image" onClick={this.showModal} />
 
                 <div className="preview" style={{marginTop:20}}>No file uploaded</div>
+                <input type="file" name="image" id="inputFileOutside" style={inputStyle} />
                 <UploadModal show={this.state.modalShow} onHide={this.closeModal} />
                 
                 <TextArea 
