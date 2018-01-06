@@ -11,12 +11,12 @@ class Carousel extends Model
 
     public function addImage($carouselImage){
         
-        // if the file exists but carousel_id is NULL
+        // if the file exists but not attached to any carousel
         $detached = Image::where('file_name', $carouselImage->file_name)
                                     ->whereNull('carousel_id')
                                     ->first();
         if ($detached) {
-            // set the carousel_id to 1
+            // set the carousel_id
             $this->attach($record = $detached, $carouselImage->caption);
         }
         else {
