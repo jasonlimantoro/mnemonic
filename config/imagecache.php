@@ -31,8 +31,7 @@ return array(
     */
     
     'paths' => array(
-        public_path('uploads/carousel'),
-        public_path('uploads/album'),
+        public_path('uploads'),
         public_path('images')
     ),
 
