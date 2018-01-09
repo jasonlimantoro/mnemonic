@@ -50,13 +50,13 @@ class CarouselImagesController extends Controller
             'caption' => $request->caption,
             'file_name' => $fileName,
             'url_asset' => asset('uploads/' . $fileName),
-            'url_cache' => url('/imagecache/fit/' . $fileName)
+            'url_cache' => url('/imagecache/gallery/' . $fileName)
         ]);
 
         // add the instance to the carousel
         $carousel->addImage($carouselImage);
         
-        \Session::flash('success_msg', 'Image is successfully uploaded!');
+        \Session::flash('success_msg', 'Image is successfully uploaded to the carousel!');
         return back();
     }
 
