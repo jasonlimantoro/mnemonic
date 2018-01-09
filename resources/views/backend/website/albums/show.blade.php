@@ -39,7 +39,7 @@
                             @foreach($images as $image)
                                 <tr>
                                     <td>
-                                        <img src="{{ $image->url_asset }}" alt="image" class="img-responsive">
+                                        <img src="{{ $image->url_cache }}" alt="image" class="img-responsive">
                                     </td>
                                     <td>{{ $image->file_name }}</td>
                                     <td class="text-center">
