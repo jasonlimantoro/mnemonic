@@ -29,10 +29,6 @@ export class UploadModal extends React.Component {
         });
     }
     render(){
-        const inputStyle = {
-            'opacity': 0,
-            'display': 'inline'
-        };
         return (
             <Modal {...this.props} bsSize="large" aria-labelledby="contained-modal-title-lg">
                 <Modal.Header closeButton>
@@ -48,7 +44,6 @@ export class UploadModal extends React.Component {
                                     label = "Open file browser"
                                     labelClass = "btn btn-success"
                                     name = "image"
-                                    style ={inputStyle}
                                     onChange = {this.addFile}
                                 />
 

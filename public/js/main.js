@@ -9329,7 +9329,11 @@ var InputFile = function (_React$Component3) {
         value: function handleChange(e) {
             var files = e.target.files;
             this.props.onChange(files);
-            document.getElementById('inputFileOutside').files = files;
+
+            // to pass the selected file into another input[type="file"] (if necessary, e.g. for CarouselForm)
+            if (document.getElementById('inputFileOutside')) {
+                document.getElementById('inputFileOutside').files = files;
+            }
         }
     }, {
         key: "render",
@@ -9340,7 +9344,7 @@ var InputFile = function (_React$Component3) {
                 label: this.props.label,
                 labelClass: this.props.labelClass,
                 name: this.props.name,
-                style: this.props.style,
+                style: { 'opacity': 0, 'display': 'inline' },
                 onChange: this.handleChange
             });
         }
@@ -9375,7 +9379,7 @@ var SelectForm = function SelectForm(props) {
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["d" /* FormControl */],
-            { componentClass: "select" },
+            { componentClass: "select", name: props.name },
             props.children
         )
     );
@@ -69725,32 +69729,41 @@ var AlbumForm = function (_React$Component4) {
     function AlbumForm(props) {
         _classCallCheck(this, AlbumForm);
 
-        return _possibleConstructorReturn(this, (AlbumForm.__proto__ || Object.getPrototypeOf(AlbumForm)).call(this, props));
+        var _this4 = _possibleConstructorReturn(this, (AlbumForm.__proto__ || Object.getPrototypeOf(AlbumForm)).call(this, props));
+
+        _this4.state = {
+            file: []
+        };
+        _this4.addFile = _this4.addFile.bind(_this4);
+        return _this4;
     }
 
     _createClass(AlbumForm, [{
+        key: "addFile",
+        value: function addFile(newFile) {
+            this.setState({
+                file: newFile
+            });
+        }
+    }, {
         key: "render",
         value: function render() {
-            var inputStyle = {
-                'opacity': 0,
-                'display': 'inline'
-            };
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "form",
-                { action: "/admin/galleries/images/store", method: "POST" },
+                { action: "/admin/galleries/images/store", method: "POST", encType: "multipart/form-data" },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Form__["b" /* InputFile */], {
                     label: "Open file browser",
                     labelClass: "btn btn-success",
                     name: "image",
-                    style: inputStyle,
                     onChange: this.addFile
                 }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_DisplayImage__["a" /* DisplayImagesFromInputFile */], { file: this.state.file }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     __WEBPACK_IMPORTED_MODULE_2__components_Form__["e" /* SelectForm */],
-                    { label: "Assign to album: " },
+                    { label: "Assign to album: ", name: "album" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         "option",
-                        { selected: true, disabled: true },
+                        { defaultValue: "4" },
                         "Select Album"
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -69773,7 +69786,8 @@ var AlbumForm = function (_React$Component4) {
                         { value: "4" },
                         "Uncategorized"
                     )
-                )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Button__["b" /* PrimaryButton */], { type: "submit", text: "Upload" })
             );
         }
     }]);
@@ -69933,10 +69947,6 @@ var UploadModal = function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
-            var inputStyle = {
-                'opacity': 0,
-                'display': 'inline'
-            };
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* Modal */],
                 _extends({}, this.props, { bsSize: "large", "aria-labelledby": "contained-modal-title-lg" }),
@@ -69962,7 +69972,6 @@ var UploadModal = function (_React$Component) {
                                 label: "Open file browser",
                                 labelClass: "btn btn-success",
                                 name: "image",
-                                style: inputStyle,
                                 onChange: this.addFile
                             }),
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__DisplayImage__["a" /* DisplayImagesFromInputFile */], { file: this.state.file, displayOutside: true })

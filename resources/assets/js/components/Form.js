@@ -113,8 +113,13 @@ export class InputFile extends React.Component {
     handleChange(e) {
         var files = e.target.files;
         this.props.onChange(files);
-        document.getElementById('inputFileOutside').files = files;
+
+        // to pass the selected file into another input[type="file"] (if necessary, e.g. for CarouselForm)
+        if (document.getElementById('inputFileOutside')) {
+            document.getElementById('inputFileOutside').files = files;
+        }
     }
+
     render(){
         return (
             <FieldGroup 
@@ -123,7 +128,7 @@ export class InputFile extends React.Component {
                 label= {this.props.label}
                 labelClass= {this.props.labelClass}
                 name= {this.props.name}
-                style={this.props.style}
+                style={{'opacity': 0,'display': 'inline'}}
                 onChange = {this.handleChange}
             />
         );
@@ -149,7 +154,7 @@ export const SelectForm = (props) => {
     return (
         <FormGroup controlId="formControlSelect">
             <ControlLabel>{props.label}</ControlLabel>
-            <FormControl componentClass="select">
+            <FormControl componentClass="select" name={props.name}>
                 {props.children}
             </FormControl>
         </FormGroup>
