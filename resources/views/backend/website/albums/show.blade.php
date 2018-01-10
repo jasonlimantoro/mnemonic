@@ -57,7 +57,7 @@
                                         </div>
                                         <div>
                                             <a 
-                                                href="#" 
+                                                href="{{ route('album.images.edit', ['image' => $image->id ])}}" 
                                                 id="EditIcon" 
                                                 class="__react-root" 
                                                 role="button"

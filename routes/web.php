@@ -47,7 +47,15 @@ Route::get('/admin/galleries/{image}/delete', 'ImagesController@destroy')
         ->name('galleries.image.delete');
 
 Route::get('/admin/galleries/album', 'BackendController@album');
-Route::get('/admin/galleries/album/{album}/show', 'AlbumsController@show')->name('albums.show');
+
+Route::get('/admin/galleries/album/{album}/show', 'AlbumsController@show')
+        ->name('albums.show');
+
+Route::get('/admin/galleries/album/{image}/edit', 'AlbumImagesController@edit')
+        ->name('album.images.edit');
+
+Route::post('/admin/galleries/album/{image}/update', 'AlbumImagesController@update')
+        ->name('album.images.update');
 
 // Wedding
 Route::get('/admin/wedding/groom-and-bride', 'BackendController@couple');
