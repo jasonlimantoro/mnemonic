@@ -20,14 +20,6 @@
                 @slot('body')
                     <div class="row">
                         @foreach($galleryImages as $image)
-                            @php
-                                if ($image->album !== null) {
-                                    $albumName = $image->album->name;
-                                }
-                                else {
-                                    $albumName = 'Uncategorized';
-                                }
-                            @endphp
                             <div class="col-md-4">
                                 @component('layouts.thumbnail')
                                     @slot('thumbnailImage')
@@ -38,7 +30,7 @@
                                         Name: {{ $image->file_name }} <br>
                                         Album: 
                                             <a href="{{ route('albums.show', ['album' => $image->album_id ]) }}">
-                                                {{ $albumName }}
+                                                {{ $image->album->name }}
                                             </a>
                                         <div>
                                             <a 
