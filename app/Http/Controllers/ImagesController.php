@@ -48,7 +48,7 @@ class ImagesController extends Controller
     public function store(Request $request)
     {
        $rules = [
-           'image' => 'required | image',
+           'image' => 'required|image',
            'album' => 'required'
        ];
 
@@ -71,7 +71,7 @@ class ImagesController extends Controller
            'album_id' => $assignedAlbum,
            'file_name' => $fileName,
            'url_asset' => asset('uploads/' . $fileName),
-           'url_cache' => url('imagecache/original/' . $fileName)
+           'url_cache' => url('imagecache/gallery/' . $fileName)
        ]);
 
        Session::flash('success_msg', 'Image is successfully uploaded!');
