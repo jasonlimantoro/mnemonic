@@ -9,7 +9,6 @@ export class RequestImages extends React.Component {
             'images' : [],
             'selectedImage': {
                 id: null,
-                fromGallery: true
             }
         };
         this.requestData = this.requestData.bind(this);
