@@ -44,15 +44,14 @@ class CarouselImagesController extends Controller
         if ($newImage) {
             $newImageName = $newImage->getClientOriginalName();
             $uploadPath = public_path('uploads/' . $newImageName);
-            $exist = Storage::disk('uploads')->exists($newImageName);
             $img = \Image::make($newImage);
             $galleryImage = $newImageName;
         }
 
         else {
-            $galleryPath = public_path('images/' . $galleryImage);
+            $galleryPath = public_path('uploads/' . $galleryImage);
             $img = \Image::make($galleryPath);
-            $uploadPath = public_path('uploads/' . $galleryImage);
+            $uploadPath = $galleryPath;
         }
 
         // applyFilter CarouselFilter and save it to file system
