@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Tabs, Tab } from "react-bootstrap";
 import { DangerButton } from "./Button";
-import { GalleryTabs } from "./Tab";
+import { MediaTabs } from "./Tab";
 import { InputFile } from "./Form";
 import { RequestImages } from "./Request";
 import { DisplayImagesFromInputFile } from "./DisplayImage";
@@ -10,14 +10,22 @@ export class UploadModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            file : {}
+            file : {},
+            tabKey: 'uploads'
         };
         this.addFile = this.addFile.bind(this);
+        this.changeTab = this.changeTab.bind(this);
     }
 
     addFile(newFile) {
         this.setState({
             file: newFile
+        });
+    }
+    
+    changeTab(newKey) {
+        this.setState({
+            tabKey: newKey
         });
     }
     render(){
@@ -31,7 +39,9 @@ export class UploadModal extends React.Component {
                     <Modal.Title id="contained-modal-title-lg"> Media </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <GalleryTabs
+                    <MediaTabs
+                        tabKey = {this.state.tabKey}
+                        onSelect = {this.changeTab}
                         uploadContent = {
                             <div>
                                 <InputFile 
