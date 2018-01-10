@@ -69551,6 +69551,7 @@ var Well = function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Button__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Modal__ = __webpack_require__(325);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_DisplayImage__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Request__ = __webpack_require__(327);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -69558,6 +69559,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -69758,35 +69760,7 @@ var AlbumForm = function (_React$Component4) {
                     onChange: this.addFile
                 }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_DisplayImage__["a" /* DisplayImagesFromInputFile */], { file: this.state.file }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    __WEBPACK_IMPORTED_MODULE_2__components_Form__["e" /* SelectForm */],
-                    { label: "Assign to album: ", name: "album" },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "option",
-                        { defaultValue: "4" },
-                        "Select Album"
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "option",
-                        { value: "1" },
-                        "Engagement"
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "option",
-                        { value: "2" },
-                        "Pre-Wedding"
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "option",
-                        { value: "3" },
-                        "Graduation"
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "option",
-                        { value: "4" },
-                        "Uncategorized"
-                    )
-                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_Request__["a" /* RequestAlbums */], { source: "/api/albums" }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Button__["b" /* PrimaryButton */], { type: "submit", text: "Upload" })
             );
         }
@@ -69977,7 +69951,7 @@ var UploadModal = function (_React$Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__DisplayImage__["a" /* DisplayImagesFromInputFile */], { file: this.state.file, displayOutside: true })
                         ),
 
-                        galleryContent: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Request__["a" /* RequestImages */], { source: "/api/images" })
+                        galleryContent: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Request__["b" /* RequestImages */], { source: "/api/images" })
 
                     })
                 ),
@@ -70094,12 +70068,14 @@ var MediaTabs = function (_React$Component) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RequestImages; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return RequestImages; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RequestAlbums; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Thumbnail__ = __webpack_require__(328);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Form__ = __webpack_require__(140);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -70107,6 +70083,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -70194,6 +70171,60 @@ var RequestImages = function (_React$Component) {
     }]);
 
     return RequestImages;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+var RequestAlbums = function (_React$Component2) {
+    _inherits(RequestAlbums, _React$Component2);
+
+    function RequestAlbums(props) {
+        _classCallCheck(this, RequestAlbums);
+
+        var _this3 = _possibleConstructorReturn(this, (RequestAlbums.__proto__ || Object.getPrototypeOf(RequestAlbums)).call(this, props));
+
+        _this3.state = {
+            albums: []
+        };
+        _this3.requestData = _this3.requestData.bind(_this3);
+        return _this3;
+    }
+
+    _createClass(RequestAlbums, [{
+        key: "requestData",
+        value: function requestData() {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(this.props.source).then(function (result) {
+                this.setState({
+                    albums: result.data
+                });
+            }.bind(this));
+        }
+    }, {
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            this.requestData();
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                __WEBPACK_IMPORTED_MODULE_3__Form__["e" /* SelectForm */],
+                { label: "Assign to album: ", name: "album" },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "option",
+                    { value: 4 },
+                    "Select Album"
+                ),
+                this.state.albums.map(function (album) {
+                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "option",
+                        { key: album.id, value: album.id },
+                        album.name
+                    );
+                })
+            );
+        }
+    }]);
+
+    return RequestAlbums;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 /***/ }),

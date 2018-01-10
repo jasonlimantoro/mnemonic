@@ -5,6 +5,7 @@ import { SearchPost } from "../components/SearchPost";
 import { PrimaryButton, SuccessButton } from "../components/Button";
 import { UploadModal } from "../components/Modal";
 import { DisplayImages, DisplayImagesFromInputFile } from "../components/DisplayImage";
+import { RequestAlbums } from "../components/Request";
 
 
 export class FormforHome extends React.Component {
@@ -145,13 +146,7 @@ export class AlbumForm extends React.Component {
                     onChange = {this.addFile}
                 />
                 <DisplayImagesFromInputFile file={this.state.file} />
-                <SelectForm label="Assign to album: " name="album">
-                    <option defaultValue="4">Select Album</option>
-                    <option value="1">Engagement</option>
-                    <option value="2">Pre-Wedding</option>
-                    <option value="3">Graduation</option>
-                    <option value="4">Uncategorized</option>
-                </SelectForm>
+                <RequestAlbums source="/api/albums" />
 
                 <PrimaryButton type="submit" text="Upload" />
             </form>
