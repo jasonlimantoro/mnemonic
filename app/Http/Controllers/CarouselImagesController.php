@@ -34,7 +34,10 @@ class CarouselImagesController extends Controller
         $rules = [
             'image' => 'required_if:gallery_image,""|image'
         ];
-        $this->validate($request, $rules);
+        $customMessages = [
+            'image.required_if' => 'Please upload a new image or use one from your existing gallery!'
+        ];
+        $this->validate($request, $rules, $customMessages);
 
         // Gathering information
         $newImage = $request->file('image');
@@ -51,7 +54,6 @@ class CarouselImagesController extends Controller
         else {
             $galleryPath = public_path('images/' . $galleryImage);
             $img = \Image::make($galleryPath);
-
             $uploadPath = public_path('uploads/' . $galleryImage);
         }
 
