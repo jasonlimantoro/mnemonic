@@ -8,6 +8,8 @@ use App\Filters\CarouselFilter;
 use App\CarouselImage;
 use App\Carousel;
 use App\Image;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\Finder\SplFileInfo;
 
 class CarouselImagesController extends Controller
 {
@@ -30,27 +32,38 @@ class CarouselImagesController extends Controller
 
     public function store(Request $request, Carousel $carousel) {
         $rules = [
-            'image' => 'required|image'
+            'image' => 'required_if:gallery_image,""|image'
         ];
         $this->validate($request, $rules);
 
         // Gathering information
-        $imageRequest = $request->file('image');
-        $fileName = $imageRequest->getClientOriginalName();
-        $fileDestination = public_path('uploads/' . $fileName);
-        
-        // create an Image instance
-        $img = \Image::make($imageRequest);
+        $newImage = $request->file('image');
+        $galleryImage = $request->gallery_image;
+
+        if ($newImage) {
+            $newImageName = $newImage->getClientOriginalName();
+            $uploadPath = public_path('uploads/' . $newImageName);
+            $exist = Storage::disk('uploads')->exists($newImageName);
+            $img = \Image::make($newImage);
+            $galleryImage = $newImageName;
+        }
+
+        else {
+            $galleryPath = public_path('images/' . $galleryImage);
+            $img = \Image::make($galleryPath);
+
+            $uploadPath = public_path('uploads/' . $galleryImage);
+        }
 
         // applyFilter CarouselFilter and save it to file system
-        $img->filter(new CarouselFilter())->save($fileDestination);
+        $img->filter(new CarouselFilter())->save($uploadPath);
 
         // Eloquent model instance
         $carouselImage = new Image ([
             'caption' => $request->caption,
-            'file_name' => $fileName,
-            'url_asset' => asset('uploads/' . $fileName),
-            'url_cache' => url('/imagecache/gallery/' . $fileName)
+            'file_name' => $galleryImage,
+            'url_asset' => asset('uploads/' . $galleryImage),
+            'url_cache' => secure_url('/imagecache/gallery/' . $galleryImage)
         ]);
 
         // add the instance to the carousel

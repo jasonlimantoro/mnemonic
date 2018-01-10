@@ -103,6 +103,7 @@ export class CarouselForm extends React.Component {
                 <PrimaryButton text="Upload Image" onClick={this.showModal} />
 
                 <div className="preview" style={{marginTop:20}}>No file uploaded</div>
+                <input type="hidden" name="gallery_image" id="inputGalleryImage" />
                 <input type="file" name="image" id="inputFileOutside" style={inputStyle} />
                 <UploadModal show={this.state.modalShow} onHide={this.closeModal} />
                 

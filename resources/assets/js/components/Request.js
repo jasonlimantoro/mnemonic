@@ -29,6 +29,8 @@ export class RequestImages extends React.Component {
         this.setState({
             selectedImage: image
         });
+        const fileName = image.file_name;
+        document.getElementById('inputGalleryImage').value = fileName;
     }
 
     componentDidMount(){
