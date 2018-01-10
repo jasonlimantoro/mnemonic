@@ -144,3 +144,14 @@ export const TextArea = (props) => {
         </div>
     )
 }
+
+export const SelectForm = (props) => {
+    return (
+        <FormGroup controlId="formControlSelect">
+            <ControlLabel>{props.label}</ControlLabel>
+            <FormControl componentClass="select">
+                {props.children}
+            </FormControl>
+        </FormGroup>
+    );
+}

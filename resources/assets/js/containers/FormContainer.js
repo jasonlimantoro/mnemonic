@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { FormPost, SearchBox, RadioButton, InputFile, TextArea } from "../components/Form";
+import { FormPost, SearchBox, RadioButton, InputFile, TextArea, SelectForm } from "../components/Form";
 import { SearchPost } from "../components/SearchPost";
 import { PrimaryButton, SuccessButton } from "../components/Button";
 import { UploadModal } from "../components/Modal";
@@ -117,5 +117,36 @@ export class CarouselForm extends React.Component {
             </div>
 
         );
+    }
+}
+
+export class AlbumForm extends React.Component {
+    constructor(props){
+        super(props);
+    }
+
+    render() {
+        const inputStyle = {
+            'opacity': 0,
+            'display': 'inline'
+        };
+        return (
+            <form action="/admin/galleries/images/store" method="POST">
+                <InputFile 
+                    label = "Open file browser"
+                    labelClass = "btn btn-success"
+                    name = "image"
+                    style ={inputStyle}
+                    onChange = {this.addFile}
+                />
+                <SelectForm label="Assign to album: ">
+                    <option selected disabled>Select Album</option>
+                    <option value="1">Engagement</option>
+                    <option value="2">Pre-Wedding</option>
+                    <option value="3">Graduation</option>
+                    <option value="4">Uncategorized</option>
+                </SelectForm>
+            </form>
+        )
     }
 }

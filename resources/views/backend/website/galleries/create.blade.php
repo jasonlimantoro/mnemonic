@@ -20,10 +20,12 @@
                 @endslot
 
                 @slot('body')
-                    <form action="{{ route('galleries.image.store') }}" method="POST"
+                    <div class="__react-root" id="AlbumForm">
+                        
+                    </div>
+                    {{--  <form action="{{ route('galleries.image.store') }}" method="POST"
                     enctype="multipart/form-data">
 
-                        {{ csrf_field() }}
                         <div class="form-group">
                             <label for="inputImage">Upload Images to Gallery</label>
                             <input type="file" name="image" id="inputImage">
@@ -41,7 +43,7 @@
                         
                         <button type="submit" class="btn btn-primary">Upload</button>
 
-                    </form>
+                    </form>  --}}
                 @endslot
             @endcomponent
         </div>
