@@ -8,8 +8,6 @@ use App\Filters\CarouselFilter;
 use App\CarouselImage;
 use App\Carousel;
 use App\Image;
-use Illuminate\Support\Facades\Storage;
-use Symfony\Component\Finder\SplFileInfo;
 
 class CarouselImagesController extends Controller
 {
@@ -100,7 +98,7 @@ class CarouselImagesController extends Controller
             $fileName = $imageRequest->getClientOriginalName();
             $fileDestination = public_path('uploads/carousel/' . $fileName);
             $url_asset = asset('uploads/carousel/' . $fileName);
-            $url_cache = url('/imagecache/fit/' . $fileName);
+            $url_cache = url('/imagecache/gallery/' . $fileName);
     
             // create an Image instance
             $img = \Image::make($imageRequest);
