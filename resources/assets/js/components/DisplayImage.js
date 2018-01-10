@@ -42,6 +42,7 @@ export class DisplayImagesFromInputFile extends React.Component {
         var file = this.props.file;
         var preview = "No images uploaded";
         if (file.length > 0){
+            // Display inside modal
             var src = window.URL.createObjectURL(file[0]);
             preview = <img src={src} className="img-responsive" alt="temp" />;
         }
