@@ -9,7 +9,7 @@ class AlbumsController extends Controller
 {
 
     public function __construct() {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['showJSON']);
         $this->albums = Album::oldest()->get();
     }
     /**
@@ -88,5 +88,9 @@ class AlbumsController extends Controller
     public function destroy(Album $album)
     {
         //
+    }
+
+    public function showJSON() {
+        return $this->albums;
     }
 }
