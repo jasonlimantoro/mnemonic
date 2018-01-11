@@ -62,7 +62,7 @@
                                                 class="__react-root" 
                                                 role="button"
                                                 data-toggle="tooltip"
-                                                title="Edit this image"
+                                                title="Assign this image to another album"
                                                 data-placement="top"
                                                 >
                                             </a>
