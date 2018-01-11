@@ -26,6 +26,9 @@
                 @endslot
 
                 @slot('body')
+                    <p>
+                        Description: <strong>{{ $album->description }}</strong> 
+                    </p>
                     @component('layouts.table')
                         @slot('tableHeader')
                             <tr>
