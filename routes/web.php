@@ -51,11 +51,14 @@ Route::get('/admin/galleries/album', 'BackendController@album');
 Route::get('/admin/galleries/album/{album}/show', 'AlbumsController@show')
         ->name('albums.show');
 
-Route::get('/admin/galleries/album/{image}/edit', 'AlbumImagesController@edit')
+Route::get('/admin/galleries/album/images/{image}/edit', 'AlbumImagesController@edit')
         ->name('album.images.edit');
 
-Route::post('/admin/galleries/album/{image}/update', 'AlbumImagesController@update')
+Route::post('/admin/galleries/album/images/{image}/update', 'AlbumImagesController@update')
         ->name('album.images.update');
+
+Route::get('/admin/galleries/album/images/{image}/show', 'AlbumImagesController@show')
+        ->name('album.images.show');
 
 // Wedding
 Route::get('/admin/wedding/groom-and-bride', 'BackendController@couple');

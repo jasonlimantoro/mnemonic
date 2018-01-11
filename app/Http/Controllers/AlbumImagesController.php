@@ -47,7 +47,8 @@ class AlbumImagesController extends Controller
      */
     public function show(Image $image)
     {
-        //
+        $album = $image->album;
+        return view('backend.website.albums.images.show', compact(['image', 'album']));
     }
 
     /**
@@ -61,7 +62,7 @@ class AlbumImagesController extends Controller
         $albumInstance = new AlbumsController();
         $albums = $albumInstance->albums;
         $selectedAlbum = $image->album;
-        return view('backend.website.albums.edit', 
+        return view('backend.website.albums.images.edit', 
                 compact('image', 'albums', 'selectedAlbum')
         );
     }

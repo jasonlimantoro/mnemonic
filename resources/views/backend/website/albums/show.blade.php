@@ -48,7 +48,7 @@
                                     <td class="text-center">
                                         <div>
                                             <a 
-                                                href="#" 
+                                                href="{{ route('album.images.show', ['image' => $image->id])}}" 
                                                 id="ShowIcon" 
                                                 class="__react-root" 
                                                 role="button"
