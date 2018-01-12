@@ -5,13 +5,11 @@
         <div class="col-md-12">
             @component('layouts.panel', ['backButton' => '', 'addButton' => ''])
                 @slot('backButton')
-                    @component('layouts.backButton')
-                        @slot('url')
-                            {{ route('gallery.index') }}
-                        @endslot
-                        @slot('text')
-                            Back
-                        @endslot
+                    @component('layouts.backButton', [
+                        'text' => 'Show all galleries',
+                        'url' => route('gallery.index')
+                    ])
+                        
                     @endcomponent
                 @endslot
 
