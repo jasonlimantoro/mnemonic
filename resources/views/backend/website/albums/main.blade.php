@@ -10,7 +10,7 @@
 
                 @slot('addButton')
                     @component('layouts.addButton', [
-                        'url' => '#',
+                        'url' => route('albums.create'),
                         'item' => 'album'
                     ])
                     @endcomponent

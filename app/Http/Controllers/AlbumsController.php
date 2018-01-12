@@ -30,7 +30,7 @@ class AlbumsController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.website.albums.create');
     }
 
     /**
