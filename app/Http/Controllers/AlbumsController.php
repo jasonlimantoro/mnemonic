@@ -64,7 +64,7 @@ class AlbumsController extends Controller
      */
     public function edit(Album $album)
     {
-        //
+        return view('backend.website.albums.edit', compact('album'));
     }
 
     /**
@@ -76,7 +76,19 @@ class AlbumsController extends Controller
      */
     public function update(Request $request, Album $album)
     {
-        //
+        $rules = [
+            'name' => 'required',
+            'description' => 'required'
+        ];
+        $this->validate($request, $rules);
+
+        $updatedAlbum = $request->all();
+        $album->update($updatedAlbum);
+
+        //store status message
+        \Session::flash('success_msg', 'Album is updated successfully!');
+
+        return back();
     }
 
     /**
