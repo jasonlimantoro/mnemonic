@@ -14,7 +14,12 @@ class CarouselsTableSeeder extends Seeder
         DB::table('carousels')->insert(
             [
                 [
-                    'url_location' => url('/'),
+                    'page_id' => 1,
+                    'created_at' => NOW(),
+                    'updated_at' => NOW()
+                ],
+                [
+                    'page_id' => 2,
                     'created_at' => NOW(),
                     'updated_at' => NOW()
                 ]

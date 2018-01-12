@@ -16,7 +16,7 @@ class ImagesTableSeeder extends Seeder
             [
                 [
                     'album_id' => 2,
-                    'carousel_id' => 4,
+                    'carousel_id' => 2,
                     'caption' => null,
                     'file_name' => 'engagement-1.jpg',
                     'url_asset' => 'http://mnemonic.dev/uploads/album/engagement-1.jpg',
