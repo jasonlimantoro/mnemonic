@@ -49,11 +49,11 @@ Route::get('/admin/galleries/{image}/delete', 'ImagesController@destroy')
 Route::get('/admin/galleries/album', 'BackendController@album')
         ->name('album.index');
 
-Route::get('/admin/galleries/album/{album}', 'AlbumsController@show')
-        ->name('albums.show');
-
 Route::get('/admin/galleries/album/create', 'AlbumsController@create')
         ->name('albums.create');
+
+Route::get('/admin/galleries/album/{album}', 'AlbumsController@show')
+        ->name('albums.show');
 
 Route::post('/admin/galleries/album/store', 'AlbumsController@store')
         ->name('albums.store');
