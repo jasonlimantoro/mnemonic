@@ -27,11 +27,16 @@
                                     @endslot
 
                                     @slot('thumbnailCaption')
-                                        Name: {{ $image->file_name }} <br>
+                                        Name: 
+                                        <a href="{{ route('album.images.show', ['image' => $image->id ]) }}">
+                                            {{ $image->file_name }} 
+                                        </a>
+                                        
+                                        <br>
                                         Album: 
-                                            <a href="{{ route('albums.show', ['album' => $image->album_id ]) }}">
-                                                {{ $image->album->name }}
-                                            </a>
+                                        <a href="{{ route('albums.show', ['album' => $image->album_id ]) }}">
+                                            {{ $image->album->name }}
+                                        </a>
                                         <div>
                                             <a 
                                                 href="{{ route('galleries.image.delete',['image' => $image->id ]) }}" 
