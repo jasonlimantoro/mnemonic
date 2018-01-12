@@ -99,7 +99,15 @@ class AlbumsController extends Controller
      */
     public function destroy(Album $album)
     {
-        //
+        // Assign the image to Uncategorized album
+        $album->uncategorizeImages();
+
+        // Delete the album
+        $album->delete();
+
+        \Session::flash('success_msg', 'Album is deleted successfully. All the attached images have been assigned to Uncategorized album');
+
+        return back();
     }
 
     public function showJSON() {

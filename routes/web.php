@@ -35,7 +35,7 @@ Route::get('/admin/pages/{page}', 'BackendController@showPage')
         ->name('pages.show');
 
 Route::get('/admin/galleries', 'BackendController@gallery')
-        ->name('gallery.index');
+        ->name('galleries.index');
 
 Route::get('/admin/galleries/images/create', 'ImagesController@create')
         ->name('galleries.image.create');
@@ -57,6 +57,9 @@ Route::get('/admin/galleries/album/{album}/edit', 'AlbumsController@edit')
 
 Route::patch('/admin/galleries/album/{album}/update', 'AlbumsController@update')
         ->name('albums.update');
+
+Route::get('/admin/galleries/album/{album}/delete', 'AlbumsController@destroy')
+        ->name('albums.delete');
 
 Route::get('/admin/galleries/album/images/{image}/edit', 'AlbumImagesController@edit')
         ->name('album.images.edit');
