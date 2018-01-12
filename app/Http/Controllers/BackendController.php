@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\PagesController;
 use App\Page;
 use App\Carousel;
+
+use App\Http\Controllers\PostsController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\AlbumsController;
@@ -34,9 +36,9 @@ class BackendController extends Controller
         return view('backend.admin');
     }
 
-    public function showPage (Page $page) {
-        $pageInstance = new PagesController();
-        return $pageInstance->show($page);
+    public function page(Page $page) {
+        $postInstance = new PostsController();
+        return $postInstance->index($page);
     }
 
     public function carousel(Carousel $carousel) {

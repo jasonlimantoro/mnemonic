@@ -24,7 +24,7 @@
 
 					@foreach($pages as $page)
 						<li>
-							<a href="{{ route('pages.show', ['page' => $page->id ]) }}">
+							<a href="{{ route('page.posts.index', ['page' => $page->id ]) }}">
 								{{ $page->title }}
 							</a>
 						</li>

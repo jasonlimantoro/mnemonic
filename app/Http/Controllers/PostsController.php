@@ -17,26 +17,13 @@ class PostsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'read']);
+        $this->middleware('auth')->except(['read']);
     }
 
-    public function index($page_id)
+    public function index(Page $page)
     {
-        $posts = Post::where('page_id', '=', $page_id)->latest()->get();
-        $page = $posts->first()->page;
-        if ($page_id == 1) {
-            // Home
-            
-            // All uploaded images
-            $carouselInstance = new CarouselImagesController();
-            $slides = $carouselInstance->images;
-
-            return view('posts.frontend.index', compact('posts', 'page', 'slides'));
-        }
-        else {
-            // about
-            return view('posts.frontend.about', compact('posts', 'page'));
-        }
+        $posts = $page->posts()->latest()->get();
+        return view('posts.backend.index', compact('page', 'posts'));
     }
 
     /**
