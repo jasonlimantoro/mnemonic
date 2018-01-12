@@ -16,9 +16,8 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             PagesTableSeeder::class,
             PostsTableSeeder::class,
-            CarouselImagesTableSeeder::class,
+            ImagesTableSeeder::class,
             CarouselsTableSeeder::class,
-            AlbumImagesTableSeeder::class,
             AlbumsTableSeeder::class
         ]);
     }
