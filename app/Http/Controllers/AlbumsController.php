@@ -41,7 +41,21 @@ class AlbumsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'name' => 'required|unique:albums,name',
+            'description' => 'required'
+        ];
+
+        $this->validate($request, $rules);
+
+        Album::create([
+            'name' => $request->name,
+            'description' => $request->description
+        ]);
+        
+        \Session::flash('success_msg', 'Album is created sucessfully!');
+
+        return back();
     }
 
     /**
