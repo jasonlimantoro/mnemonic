@@ -3,11 +3,11 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @component('layouts.panel', ['backButton' => '', 'addButton' => ''])
+            @component('layouts.panel')
                 @slot('backButton')
                     @component('layouts.backButton', [
-                        'text' => 'Back',
-                        'url' => url()->previous()
+                        'text' => 'Show all galleries',
+                        'url' => route('gallery.index')
                     ])
                         
                     @endcomponent
@@ -72,7 +72,7 @@
                                         </div>
                                         <div>
                                             <a 
-                                                href="#" 
+                                                href="{{ route('galleries.image.delete', ['image' => $image->id ])}}" 
                                                 id="DeleteIcon" 
                                                 class="__react-root" 
                                                 role="button"
