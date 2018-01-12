@@ -15,7 +15,7 @@ class ImagesController extends Controller
     public function __construct(){
         $this->middleware('auth')->except(['showJSON']);
         // All uploaded images
-        $this->images = Image::oldest()->get();
+        $this->images = Image::latest()->get();
     }
     /**
      * Display a listing of the resource.
