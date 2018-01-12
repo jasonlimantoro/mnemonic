@@ -5,6 +5,8 @@
 
     <tbody>
         {{ $tableBody }}
+
+        {{ $slot }}
     </tbody>
 
 </table>

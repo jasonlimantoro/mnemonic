@@ -19,8 +19,14 @@ class AlbumsController extends Controller
      */
     public function index()
     {
+        $categorizedAlbums = $this->albums->where('name', '!=', 'Uncategorized');
+        $uncategorizedAlbum = Album::where('name', 'Uncategorized')->get()->first();
         return view('backend.website.albums.main')
-                    ->with('albums', $this->albums);
+                    ->with(
+                        [
+                            'albums' => $categorizedAlbums,
+                            'uncategorizedAlbum' => $uncategorizedAlbum,
+                        ]);
     }
 
     /**
