@@ -2,11 +2,16 @@
 
 namespace App;
 use App\Image;
+use App\Page;
 
 class Carousel extends Model
 {
     public function images() {
         return $this->hasMany(Image::class);
+    }
+    
+    public function page(){
+        return $this->belongsTo(Page::class);
     }
 
     public function addImage($carouselImage){
