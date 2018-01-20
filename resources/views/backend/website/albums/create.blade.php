@@ -7,7 +7,7 @@
                 @slot('backButton')
                     @component('layouts.backButton', [
                         'text' => 'Show all albums',
-                        'url' => route('album.index')
+                        'url' => route('albums.index')
                     ])
                         
                     @endcomponent

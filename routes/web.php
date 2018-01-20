@@ -47,7 +47,7 @@ Route::get('/admin/galleries/{image}/delete', 'ImagesController@destroy')
         ->name('galleries.image.delete');
 
 Route::get('/admin/galleries/album', 'BackendController@album')
-        ->name('album.index');
+        ->name('albums.index');
 
 Route::get('/admin/galleries/album/create', 'AlbumsController@create')
         ->name('albums.create');
@@ -66,6 +66,12 @@ Route::patch('/admin/galleries/album/{album}/update', 'AlbumsController@update')
 
 Route::get('/admin/galleries/album/{album}/delete', 'AlbumsController@destroy')
         ->name('albums.delete');
+
+Route::get('/admin/galleries/album/{album}/images/create', 'AlbumImagesController@create')
+        ->name('album.images.create');
+
+Route::post('/admin/galleries/album/{album}/images/store', 'AlbumImagesController@store')
+        ->name('album.images.store');
 
 Route::get('/admin/galleries/album/images/{image}/edit', 'AlbumImagesController@edit')
         ->name('album.images.edit');
