@@ -18,7 +18,7 @@
                 @endslot
 
                 @slot('body')
-                    <div class="__react-root" id="AlbumForm">
+                    <div class="__react-root" id="GalleryForm">
 
                     </div>
                     
