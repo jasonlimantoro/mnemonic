@@ -121,7 +121,7 @@ export class CarouselForm extends React.Component {
     }
 }
 
-export class AlbumForm extends React.Component {
+export class GalleryForm extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -150,6 +150,38 @@ export class AlbumForm extends React.Component {
 
                 <PrimaryButton type="submit" text="Upload" />
             </form>
+        )
+    }
+}
+
+export class AlbumForm extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            file : []
+        };
+        this.addFile = this.addFile.bind(this);
+    }
+
+    addFile(newFile) {
+        this.setState({
+            file: newFile
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                <InputFile 
+                    label = "Open file browser"
+                    labelClass = "btn btn-success"
+                    name = "image"
+                    onChange = {this.addFile}
+                />
+                <DisplayImagesFromInputFile file={this.state.file} />
+
+                <PrimaryButton type="submit" text="Upload" />
+            </div>
         )
     }
 }

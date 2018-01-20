@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Image;
+use App\Album;
 use App\Http\Controllers\AlbumsController;
 use Illuminate\Http\Request;
+use App\Filters\GalleryFilter;
 
 class AlbumImagesController extends Controller
 {
@@ -23,9 +25,9 @@ class AlbumImagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Album $album)
     {
-        //
+        return view("backend.website.albums.images.create", compact('album'));
     }
 
     /**
@@ -34,9 +36,36 @@ class AlbumImagesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Album $album)
     {
-        //
+        $rules = [
+            'image' => 'required|image'
+        ];
+
+        $this->validate($request, $rules);
+
+        $imageRequest = $request->file('image');
+        $imageName = $imageRequest->getClientOriginalName();
+        $uploadPath = public_path('uploads/' . $imageName);
+
+        $img = \Image::make($imageRequest);
+
+        // applyFilter GalleryFilter and save it to file system
+        $img->filter(new GalleryFilter())->save($uploadPath);
+
+        $albumImage = new Image ([
+            'file_name' => $imageName,
+            'url_asset' => asset('uploads/' . $imageName),
+            'url_cache' => secure_url('imagecache/gallery/' . $imageName)
+        ]);
+        
+        // add the image to the album
+        $album->addImage($albumImage);
+
+        \Session::flash('success_msg', 'Image is uploaded successfuly!');
+
+        return back();
+
     }
 
     /**

@@ -18,4 +18,8 @@ class Album extends Model
             'album_id' => $this->defaultUncategorizedId
         ]);
     }
+
+    public function addImage($image){
+        $this->images()->save($image);
+    }
 }
