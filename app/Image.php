@@ -14,4 +14,12 @@ class Image extends Model
     public function carousel(){
         return $this->belongsTo(Carousel::class, 'carousel_id');
     }
+
+    public static function withAlbum(){
+        return static::where('album_id', '<>', 4)->get();
+    }
+
+    public static function withoutAlbum(){
+        return static::where('album_id', 4)->get();
+    }
 }

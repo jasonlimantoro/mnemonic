@@ -12,3 +12,4 @@ yarn-error.log
 .env
 public/uploads/*
 public/images_sample/*
+public/temp/
