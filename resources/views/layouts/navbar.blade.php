@@ -27,7 +27,7 @@
 					<ul class="nav navbar-nav">
 						<li><a href="/">Home</a></li>
 						<li><a href="/about-us">About Us</a></li>
-						<li><a href="/galleries">Galleries</a></li>
+						<li><a href="/gallery">Gallery</a></li>
 						<li class="hidden-xs">
 							<a href="/" class="navbar-logo-center">
 								<img src="/images/logo.png" alt="logo" class="img-responsive">
