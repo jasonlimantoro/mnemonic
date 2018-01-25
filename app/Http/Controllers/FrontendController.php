@@ -34,10 +34,7 @@ class FrontendController extends Controller
     }
 
     public function gallery() {
-        $albums = Album::all();
-        if ($id = request('album')){
-            $albums = $albums->where('id', $id);
-        }
+        $albums = Album::filterId(request(['album']))->get();
 
         return view('frontend.gallery', compact('albums'));
     }

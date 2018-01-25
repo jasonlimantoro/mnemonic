@@ -12,6 +12,12 @@ class Album extends Model
         return $this->hasMany(Image::class);
     }
 
+    public function scopeFilterId($query, $filters){
+        if (!empty($filters) && $id = $filters['album']){
+            $query->find($id);
+        }
+    }
+
     public function uncategorizeImages(){
         // assign all the images to uncategorized
         $this->images()->update([
