@@ -8,6 +8,8 @@ use App\Http\Controllers\CarouselImagesController;
 use App\Page;
 use App\Post;
 Use App\Carousel;
+use App\Image;
+use App\Album;
 
 class FrontendController extends Controller
 {
@@ -32,6 +34,11 @@ class FrontendController extends Controller
     }
 
     public function gallery() {
-        // return $this->postInstance->index(3);
+        $albums = Album::all();
+        if ($id = request('album')){
+            $albums = $albums->where('id', $id);
+        }
+
+        return view('frontend.gallery', compact('albums'));
     }
 }
