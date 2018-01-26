@@ -95,8 +95,8 @@ class CarouselImagesController extends Controller
             // Gathering information
             $imageRequest = $request->file('image');
             $fileName = $imageRequest->getClientOriginalName();
-            $fileDestination = public_path('uploads/carousel/' . $fileName);
-            $url_asset = asset('uploads/carousel/' . $fileName);
+            $fileDestination = public_path('uploads/' . $fileName);
+            $url_asset = asset('uploads/' . $fileName);
             $url_cache = url('/imagecache/gallery/' . $fileName);
     
             // create an Image instance
