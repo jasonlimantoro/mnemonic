@@ -185,3 +185,43 @@ export class AlbumForm extends React.Component {
         )
     }
 }
+
+export class FancyInput extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            modalShow : false,
+        };
+        this.closeModal = this.closeModal.bind(this);
+        this.showModal = this.showModal.bind(this);
+    }
+    closeModal() {
+        this.setState({
+            modalShow : false
+        });
+    }
+
+    showModal() {
+        this.setState({
+            modalShow : true
+        });
+    }
+
+    render() {
+        const inputStyle = {
+            'display' : 'none'
+        };
+        return (
+            <div>
+                <PrimaryButton text="Upload Image" onClick={this.showModal} />
+
+                <div className="preview" style={{marginTop:20}}>No file uploaded</div>
+                <input type="hidden" name="gallery_image" id="inputGalleryImage" />
+                <input type="file" name="image" id="inputFileOutside" style={inputStyle} />
+                <UploadModal show={this.state.modalShow} onHide={this.closeModal} />
+            </div>
+
+        );
+    }
+}
+

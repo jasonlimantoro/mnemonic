@@ -9580,7 +9580,7 @@ __webpack_require__(144);
 
 var APPS = {
   UpdateButton: __WEBPACK_IMPORTED_MODULE_2__containers_ButtonContainer__["c" /* UpdateButton */], PublishButton: __WEBPACK_IMPORTED_MODULE_2__containers_ButtonContainer__["b" /* PublishButton */], AddNewPostButton: __WEBPACK_IMPORTED_MODULE_2__containers_ButtonContainer__["a" /* AddNewPostButton */],
-  Search: __WEBPACK_IMPORTED_MODULE_3__containers_FormContainer__["d" /* Search */], CarouselForm: __WEBPACK_IMPORTED_MODULE_3__containers_FormContainer__["b" /* CarouselForm */], GalleryForm: __WEBPACK_IMPORTED_MODULE_3__containers_FormContainer__["c" /* GalleryForm */], AlbumForm: __WEBPACK_IMPORTED_MODULE_3__containers_FormContainer__["a" /* AlbumForm */],
+  Search: __WEBPACK_IMPORTED_MODULE_3__containers_FormContainer__["e" /* Search */], CarouselForm: __WEBPACK_IMPORTED_MODULE_3__containers_FormContainer__["b" /* CarouselForm */], GalleryForm: __WEBPACK_IMPORTED_MODULE_3__containers_FormContainer__["d" /* GalleryForm */], AlbumForm: __WEBPACK_IMPORTED_MODULE_3__containers_FormContainer__["a" /* AlbumForm */], FancyInput: __WEBPACK_IMPORTED_MODULE_3__containers_FormContainer__["c" /* FancyInput */],
   DeleteIcon: __WEBPACK_IMPORTED_MODULE_4__containers_IconContainer__["a" /* DeleteIcon */], EditIcon: __WEBPACK_IMPORTED_MODULE_4__containers_IconContainer__["b" /* EditIcon */], ShowIcon: __WEBPACK_IMPORTED_MODULE_4__containers_IconContainer__["c" /* ShowIcon */]
 };
 
@@ -69703,10 +69703,11 @@ var Well = function (_React$Component) {
 
 "use strict";
 /* unused harmony export FormforHome */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return Search; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return Search; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return CarouselForm; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return GalleryForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return GalleryForm; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AlbumForm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return FancyInput; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(11);
@@ -69975,6 +69976,61 @@ var AlbumForm = function (_React$Component5) {
     }]);
 
     return AlbumForm;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+var FancyInput = function (_React$Component6) {
+    _inherits(FancyInput, _React$Component6);
+
+    function FancyInput(props) {
+        _classCallCheck(this, FancyInput);
+
+        var _this6 = _possibleConstructorReturn(this, (FancyInput.__proto__ || Object.getPrototypeOf(FancyInput)).call(this, props));
+
+        _this6.state = {
+            modalShow: false
+        };
+        _this6.closeModal = _this6.closeModal.bind(_this6);
+        _this6.showModal = _this6.showModal.bind(_this6);
+        return _this6;
+    }
+
+    _createClass(FancyInput, [{
+        key: "closeModal",
+        value: function closeModal() {
+            this.setState({
+                modalShow: false
+            });
+        }
+    }, {
+        key: "showModal",
+        value: function showModal() {
+            this.setState({
+                modalShow: true
+            });
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var inputStyle = {
+                'display': 'none'
+            };
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "div",
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Button__["b" /* PrimaryButton */], { text: "Upload Image", onClick: this.showModal }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    { className: "preview", style: { marginTop: 20 } },
+                    "No file uploaded"
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "hidden", name: "gallery_image", id: "inputGalleryImage" }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "file", name: "image", id: "inputFileOutside", style: inputStyle }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_Modal__["a" /* UploadModal */], { show: this.state.modalShow, onHide: this.closeModal })
+            );
+        }
+    }]);
+
+    return FancyInput;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 /***/ }),

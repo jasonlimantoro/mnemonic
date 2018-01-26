@@ -26,16 +26,12 @@
                         enctype="multipart/form-data"
                         action="{{ route('carousel.image.update', ['carousel' => 1, 'image' => $image->id]) }}" 
                         >
-                        {{ csrf_field() }}
-                        <div class="form-group">
-                            <label for="inputImage">Change Image</label>
-                            <input type="file" name="image" id="inputImage">
-                        </div>
+                        <div class="__react-root" id="FancyInput"></div>
                         <div class="form-group">
                             <label for="carouselCaption">Caption</label>
                             <textarea name="caption" class="form-control" id="carouselCaption" cols="30" rows="10" placeholder="Enter caption">{{ $image->caption }}</textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Upload</button>
+                        <button type="submit" class="btn btn-primary">Publish</button>
                     </form>
                     
                 @endslot
