@@ -12,6 +12,10 @@ class Album extends Model
         return $this->hasMany(Image::class);
     }
 
+    public function featuredImage(){
+        return $this->images->where('featured', 1);
+    }
+
     public function scopeFilterId($query, $filters){
         if (!empty($filters) && $id = $filters['album']){
             $query->find($id);

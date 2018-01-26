@@ -17,6 +17,7 @@ class CreateImagesTable extends Migration
             $table->increments('id');
             $table->integer('album_id')->default(4);
             $table->integer('carousel_id')->nullable();
+            $table->boolean('featured')->default(0);
             $table->string('caption')->nullable();
             $table->string('file_name');
             $table->string('url_asset');

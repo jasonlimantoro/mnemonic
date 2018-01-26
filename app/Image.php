@@ -15,6 +15,10 @@ class Image extends Model
         return $this->belongsTo(Carousel::class, 'carousel_id');
     }
 
+    public function isFeatured(){
+        return $this->featured;
+    }
+
     public static function withAlbum(){
         return static::where('album_id', '<>', 4)->get();
     }
