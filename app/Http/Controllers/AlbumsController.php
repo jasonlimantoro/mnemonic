@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Album;
+use App\Image;
+use App\Filters\GalleryFilter;
 use Illuminate\Http\Request;
 
 class AlbumsController extends Controller
@@ -102,7 +104,39 @@ class AlbumsController extends Controller
         ];
         $this->validate($request, $rules);
 
-        $updatedAlbum = $request->all();
+        $newImage = $request->file('image');
+        $galleryImageName = $request->gallery_image;
+
+        if($request->hasFile('image') || $galleryImageName != ''){
+            if ($newImage){
+                $newImageName = $newImage->getClientOriginalName();
+                $uploadPath = public_path('uploads/' . $newImageName);
+                $img = \Image::make($newImage);
+                $galleryImageName = $newImageName;
+            }
+    
+            else {
+                // existing images
+                $galleryPath = public_path('uploads/' . $galleryImageName);
+                $img = \Image::make($galleryPath);
+                $uploadPath = $galleryPath;
+            }
+    
+            // applyFilter GalleryFilter and save it to file system
+            $img->filter(new GalleryFilter())->save($uploadPath);
+    
+            // array
+            $newFeaturedImage = [
+                'file_name' => $galleryImageName,
+                'url_asset' => secure_asset('uploads/' . $galleryImageName),
+                'url_cache' => secure_url('/imagecache/gallery/' . $galleryImageName)
+            ];
+            
+            $album->detachFeaturedImage();
+            $album->addFeaturedImage($newFeaturedImage);
+        }
+
+        $updatedAlbum = request(['name', 'description']);
         $album->update($updatedAlbum);
 
         //store status message

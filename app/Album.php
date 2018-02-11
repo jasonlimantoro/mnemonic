@@ -32,4 +32,25 @@ class Album extends Model
     public function addImage($image){
         $this->images()->save($image);
     }
+
+    public function addFeaturedImage($image){
+        // set the matching $image to be the featured image
+        $this->images()->updateorCreate(
+            $image,
+            ['featured' => 1]
+        );
+        // $this->images()->save($image);
+    }
+
+    public function hasFeaturedImage(){
+        return !$this->featuredImage()->isEmpty();
+    }
+
+    public function detachFeaturedImage(){
+        if($this->hasFeaturedImage()){
+            $this->featuredImage()
+                ->first()
+                ->update(['featured' => 0]);
+        }
+    }
 }

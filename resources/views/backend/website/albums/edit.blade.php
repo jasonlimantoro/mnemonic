@@ -18,8 +18,12 @@
 
 
                 @slot('body')
-                    <form action="{{ route('albums.update', ['album' => $album->id]) }}" method="POST">
+                <p>Featured Image: </p>
+                <img src="{{ $album->featuredImage()->first()['url_cache'] }}" alt="featured-image" class="img-responsive featured-image">
+                    <h3>Change Featured Image</h3>
+                    <form action="{{ route('albums.update', ['album' => $album->id]) }}" method="POST" enctype="multipart/form-data">
                         {{ method_field('PATCH') }}
+                        <div class="__react-root" id="FancyInput"></div>
                         <div class="form-group">
                             <label for="formControlName">Album Name</label>
                             <input 
