@@ -18,6 +18,7 @@ class Carousel extends Model
         // if the file exists but not attached to any carousel
         $image = Image::firstOrNew($carouselImage);
         if($image->exists){
+            // set the foreign key along with the caption
             $image->carousel()->associate($this);
             $image->caption = $caption;
             $image->save();
@@ -28,22 +29,9 @@ class Carousel extends Model
         }
     }
 
-    public function removeImage($carousel, $image) {
-        // detach image from the carousel
-        $record = $image;
-        $this->detach($record);
-    }
-
-    public function detach($record) {
-        $record->update([
-            'carousel_id' => NULL
-        ]);
-    }
-
-    public function attach($record, $caption){
-        $record->update([
-            'carousel_id' => $this->id,
-            'caption' => $caption
-        ]);
+    public function removeImage($image) {
+        $image->carousel()->dissociate();
+        $image->caption = null;
+        $image->save();
     }
 }
