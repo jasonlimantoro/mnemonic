@@ -21,7 +21,7 @@ Route::post('/admin/carousel/{carousel}/image/store', 'CarouselImagesController@
 Route::get('/admin/carousel/{carousel}/{image}/show', 'CarouselImagesController@show')
         ->name('carousel.image.show');
 
-Route::get('/admin/carousel/{carousel}{image}/edit', 'CarouselImagesController@edit')
+Route::get('/admin/carousel/{carousel}/{image}/edit', 'CarouselImagesController@edit')
         ->name('carousel.image.edit');
 
 Route::post('/admin/carousel/{carousel}/{image}/update', 'CarouselImagesController@update')
