@@ -38,7 +38,7 @@ class CarouselImagesController extends Controller
         $this->validate($request, $rules, $customMessages);
 
         $newCarouselImage = Image::handleUpload($request);
-        
+
         // add the record to the carousel
         $carousel->addImage($newCarouselImage, $request->caption);
         
@@ -80,7 +80,7 @@ class CarouselImagesController extends Controller
 
     public function destroy(Carousel $carousel, Image $image) {
 
-        $carousel->removeImage($carousel, $image);
+        $carousel->removeImage($image);
         
         \Session::flash('success_msg', 'Image is successfully removed from the carousel!');
 
