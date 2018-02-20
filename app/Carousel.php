@@ -14,20 +14,23 @@ class Carousel extends Model
         return $this->belongsTo(Page::class);
     }
 
-    public function addImage($carouselImage){
-        
+    public function addImage($carouselImage, $caption = null){
         // if the file exists but not attached to any carousel
-        $detached = Image::where('file_name', $carouselImage->file_name)
+        $detached = Image::where('file_name', $carouselImage['file_name'])
                                     ->whereNull('carousel_id')
                                     ->first();
         if ($detached) {
             // set the carousel_id
-            $this->attach($record = $detached, $carouselImage->caption);
+            $this->attach($record = $detached, $caption);
         }
         else {
             // a new record
-            $this->images()->save($carouselImage);
+            if ($caption){
+                $carouselImage['caption'] = $caption;
+            }
+            $this->images()->create($carouselImage);
         }
+        // dd($carouselImage);
     }
 
     public function removeImage($carousel, $image) {

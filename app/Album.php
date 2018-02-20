@@ -30,7 +30,7 @@ class Album extends Model
     }
 
     public function addImage($image){
-        $this->images()->save($image);
+        $this->images()->create($image);
     }
 
     public function addFeaturedImage($image){
@@ -39,14 +39,13 @@ class Album extends Model
             $image,
             ['featured' => 1]
         );
-        // $this->images()->save($image);
     }
 
     public function hasFeaturedImage(){
         return !$this->featuredImage()->isEmpty();
     }
 
-    public function detachFeaturedImage(){
+    public function removeFeaturedImage(){
         if($this->hasFeaturedImage()){
             $this->featuredImage()
                 ->first()

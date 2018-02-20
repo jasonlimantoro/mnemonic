@@ -30,7 +30,6 @@ Route::post('/admin/carousel/{carousel}/{image}/update', 'CarouselImagesControll
 Route::get('/admin/carousel/{carousel}/{image}/delete', 'CarouselImagesController@destroy')
         ->name('carousel.image.delete');
 
-
 Route::get('/admin/pages/{page}/posts', 'BackendController@page')
         ->name('page.posts.index');
 

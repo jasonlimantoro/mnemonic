@@ -44,21 +44,9 @@ class AlbumImagesController extends Controller
 
         $this->validate($request, $rules);
 
-        $imageRequest = $request->file('image');
-        $imageName = $imageRequest->getClientOriginalName();
-        $uploadPath = public_path('uploads/' . $imageName);
+        // handle the request
+        $albumImage = Image::handleUpload($request);
 
-        $img = \Image::make($imageRequest);
-
-        // applyFilter GalleryFilter and save it to file system
-        $img->filter(new GalleryFilter())->save($uploadPath);
-
-        $albumImage = new Image ([
-            'file_name' => $imageName,
-            'url_asset' => asset('uploads/' . $imageName),
-            'url_cache' => secure_url('imagecache/gallery/' . $imageName)
-        ]);
-        
         // add the image to the album
         $album->addImage($albumImage);
 
