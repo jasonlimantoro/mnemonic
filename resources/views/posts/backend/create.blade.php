@@ -8,7 +8,7 @@
                     {{--  @include('layouts.show-all-post-btn')  --}}
                     @component('layouts.backButton', [
                         'text' => 'Show All Posts in ' .  $page->title,
-                        'url' => route('pages.show', ['page' => $page->id])
+                        'url' => route('page.posts.index', ['page' => $page->id])
                     ])
                         
                     @endcomponent
