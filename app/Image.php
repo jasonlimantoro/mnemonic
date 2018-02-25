@@ -44,7 +44,7 @@ class Image extends Model
         }
 
         // applyFilter GalleryFilter and save it to file system
-        $imgFiltered->filter(new GalleryFilter())->save($uploadPath);
+        $imgFiltered->filter(new GalleryFilter)->save($uploadPath);
 
         // array
         $imageAttr = [
