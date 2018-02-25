@@ -10,8 +10,10 @@ class GalleryFilter implements FilterInterface
     /**
      * Default size of filter effects
      */
-    const DEFAULT_CANVAS_WIDTH = 2000;
-    const DEFAULT_CANVAS_HEIGHT = 1000;
+    protected const DEFAULT_CANVAS_WIDTH = 2000;
+    protected const DEFAULT_CANVAS_HEIGHT = 1000;
+
+    public $canvas;
 
 
     /**
@@ -19,14 +21,9 @@ class GalleryFilter implements FilterInterface
      *
      * @param integer $size
      */
-    public function __construct(
-        $canvasWidth = self::DEFAULT_CANVAS_WIDTH, 
-        $canvasHeight = self::DEFAULT_CANVAS_HEIGHT
-    )
+    public function __construct()
     {
-        $this->canvasWidth = $canvasWidth;
-        $this->canvasHeight = $canvasHeight;
-        $this->canvas = Image::canvas($canvasWidth, $canvasHeight);
+        $this->canvas = Image::canvas(self::DEFAULT_CANVAS_HEIGHT, self::DEFAULT_CANVAS_WIDTH);
     }
 
     /**
@@ -37,10 +34,14 @@ class GalleryFilter implements FilterInterface
      */
     public function applyFilter(\Intervention\Image\Image $image)
     {
-
-        $image->resize($this->canvasWidth, $this->canvasHeight, function($constraint){
-            $constraint->aspectRatio();
-        });
+        $image->resize(
+            self::DEFAULT_CANVAS_WIDTH,
+            self::DEFAULT_CANVAS_HEIGHT, 
+            function($constraint)
+            {
+                $constraint->aspectRatio();
+            }
+        );
 
         return $this->canvas->insert($image, 'center');
     }
