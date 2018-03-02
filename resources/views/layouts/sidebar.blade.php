@@ -47,7 +47,7 @@
 			</a>
 			<ul class="collapse list-unstyled" id="weddingSubmenu">
 					<li>
-						<a href="{{ route('admin') }}/wedding/groom-and-bride">Groom & Bride</a>
+						<a href="{{ route('couple.edit') }}">Couple</a>
 					</li>
 					<li>
 						<a href="{{ route('admin') }}/wedding/event">Event</a>

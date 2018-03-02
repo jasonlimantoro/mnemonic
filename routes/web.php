@@ -82,8 +82,17 @@ Route::get('/admin/galleries/album/images/{image}/show', 'AlbumImagesController@
         ->name('album.images.show');
 
 // Wedding
-Route::get('/admin/wedding/groom-and-bride', 'BackendController@couple');
-Route::get('/admin/wedding/event', 'BackendController@event');
+// Route::get('/admin/wedding/groom-and-bride', 'BackendController@couple');
+Route::prefix('admin')->group(function(){
+	Route::get('/couple/edit', 'BackendController@couple')->name('couple.edit');
+	Route::post('/couple/store', 'CoupleController@store')->name('couple.store');
+	Route::patch('/couple/update', 'CoupleController@update')->name('couple.update');
+	// Route::resource('couple', 'CoupleController', ['except' => [
+	// 	'create', 'index', 'edit'
+	// ]]);
+});
+
+// Route::get('/admin/wedding/event', 'BackendController@event');
 Route::get('/admin/wedding/bridesmaid-and-bestman', 'BackendController@brides');
 Route::get('/admin/wedding/vendors', 'BackendController@vendors');
 Route::get('/admin/wedding/rsvp', 'BackendController@rsvp');

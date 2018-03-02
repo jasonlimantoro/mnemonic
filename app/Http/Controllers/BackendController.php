@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Page;
 use App\Carousel;
+use App\Couple;
 
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\AlbumsController;
+use App\Http\Controllers\CoupleController;
 
 use Illuminate\Support\Facades\DB;
 
@@ -57,7 +59,8 @@ class BackendController extends Controller
     }
 
     public function couple() {
-        return view('backend.wedding.groom-and-bride');
+        $coupleInstance = new CoupleController;
+        return $coupleInstance->edit();
     }
 
     public function event() {
