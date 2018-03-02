@@ -25,10 +25,6 @@
                             <hr>
 
                             Father
-                            <div class="form-group"> 
-                                <label for="fatherGroomFirstName">First Name</label> 
-                                <input type="text" name="father_groom_first_name" class="form-control" id="fatherGroomFirstName">
-                            </div>
                             <div class="form-group">
                                 <label for="fatherGroomFullName">Full Name</label> 
                                 <input type="text" name="father_groom_full_name" class="form-control" id="fatherGroomFirstName">
@@ -36,10 +32,6 @@
                             <hr>
 
                             Mother
-                            <div class="form-group"> 
-                                <label for="motherGroomFirstName">First Name</label> 
-                                <input type="text" name="mother_groom_first_name" class="form-control" id="motherGroomFirstName">
-                            </div>
                             <div class="form-group">
                                 <label for="motherGroomFullName">Full Name</label> 
                                 <input type="text" name="mother_groom_full_name" class="form-control" id="motherGroomFirstName">
@@ -63,10 +55,6 @@
                                 <hr>
     
                                 Father
-                                <div class="form-group"> 
-                                    <label for="fatherBrideFirstName">First Name</label> 
-                                    <input type="text" name="father_bride_first_name" class="form-control" id="fatherBrideFirstName">
-                                </div>
                                 <div class="form-group">
                                     <label for="fatherBrideFullName">Full Name</label> 
                                     <input type="text" name="father_bride_full_name" class="form-control" id="fatherBrideFullName">
@@ -74,10 +62,6 @@
                                 <hr>
     
                                 Mother
-                                <div class="form-group"> 
-                                    <label for="motherBrideFirstName">First Name</label> 
-                                    <input type="text" name="mother_bride_first_name" class="form-control" id="motherBrideFirstName">
-                                </div>
                                 <div class="form-group">
                                     <label for="motherBrideFullName">Full Name</label> 
                                     <input type="text" name="mother_bride_full_name" class="form-control" id="motherBrideFullName">
