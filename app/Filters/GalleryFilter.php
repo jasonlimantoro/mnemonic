@@ -23,7 +23,7 @@ class GalleryFilter implements FilterInterface
      */
     public function __construct()
     {
-        $this->canvas = Image::canvas(self::DEFAULT_CANVAS_HEIGHT, self::DEFAULT_CANVAS_WIDTH);
+        $this->canvas = Image::canvas(self::DEFAULT_CANVAS_WIDTH, self::DEFAULT_CANVAS_HEIGHT);
     }
 
     /**
