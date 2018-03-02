@@ -46,6 +46,7 @@
                 @endcomponent
             @endif
             
+            {{--  Show album based on url query  --}}
             @if (request('album'))
                 @foreach ($albums as $album)
                     @component('layouts.thumbnail')
