@@ -12,127 +12,115 @@ use Illuminate\Http\Request;
 class ImagesController extends Controller
 {
 
-    public function __construct(){
-        $this->middleware('auth')->except(['showJSON']);
-        // All uploaded images
-        $this->images = Image::latest()->get();
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $galleryImages = $this->images;
-        return view('backend.website.galleries.index', compact('galleryImages'));
-    }
+	public function __construct(){
+		$this->middleware('auth')->except(['showJSON']);
+		// All uploaded images
+		$this->images = Image::latest()->get();
+	}
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index()
+	{
+		$galleryImages = $this->images;
+		return view('backend.website.galleries.index', compact('galleryImages'));
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $albums = Album::all();
-        return view('backend.website.galleries.create', compact('albums'));
-    }
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function create()
+	{
+		$albums = Album::all();
+		return view('backend.website.galleries.create', compact('albums'));
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-       $rules = [
-           'image' => 'required|image',
-           'album' => 'required'
-       ];
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store(Request $request)
+	{
+	   $rules = [
+		   'image' => 'required|image',
+		   'album' => 'required'
+	   	];
 
-       $this->validate($request, $rules);
+		$this->validate($request, $rules);
 
-       // Gathering information
-       $imageRequest = $request->file('image');
-       $fileName = $imageRequest->getClientOriginalName();
-       $fileDestination = public_path('uploads/' . $fileName);
-       $assignedAlbum = $request->album;
+		$newImage = Image::handleUpload($request);
+		$assignedAlbum = [
+		   'album_id' => $request->album
+	   	];
+		$newImage += $assignedAlbum;
 
-       // create an Image instance
-       $img = \Image::make($imageRequest);
+		Image::create($newImage);
 
-       // save it to file system
-       $img->save($fileDestination);
+		Session::flash('success_msg', 'Image is successfully uploaded!');
 
-       // Record in database
-       Image::create([
-           'album_id' => $assignedAlbum,
-           'file_name' => $fileName,
-           'url_asset' => asset('uploads/' . $fileName),
-           'url_cache' => url('imagecache/gallery/' . $fileName)
-       ]);
+	   return back();
+	}
 
-       Session::flash('success_msg', 'Image is successfully uploaded!');
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  \App\Image  $image
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show(Carousel $carousel, Image $image)
+	{
 
-       return back();
-    }
+	}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Carousel $carousel, Image $image)
-    {
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  \App\Image  $image
+	 * @return \Illuminate\Http\Response
+	 */
+	public function edit(Carousel $carousel, Image $image)
+	{
 
-    }
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Carousel $carousel, Image $image)
-    {
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  \App\Image  $image
+	 * @return \Illuminate\Http\Response
+	 */
+	public function update(Request $request, Carousel $carousel, Image $image)
+	{
+		
+	}
 
-    }
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  \App\Image  $image
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy(Image $image)
+	{
+		// Delete from the filesystem
+		Storage::disk('uploads')->delete($image->file_name);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Carousel $carousel, Image $image)
-    {
-        
-    }
+		// Delete from the database
+		$image->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Image $image)
-    {
-        // Delete from the filesystem
-        Storage::disk('uploads')->delete($image->file_name);
+		Session::flash('success_msg', 'Images are successfully deleted!');
 
-        // Delete from the database
-        $image->delete();
+		return back();
+	}
 
-        Session::flash('success_msg', 'Images are successfully deleted!');
-
-        return back();
-    }
-
-    public function showJSON(){
-        return $this->images;
-    }
+	public function showJSON(){
+		return $this->images;
+	}
 }
