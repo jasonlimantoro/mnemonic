@@ -17,10 +17,6 @@
 				Pages
 			</a>
 			<ul class="collapse list-unstyled" id="pageSubmenu">
-					{{--  Needed for sidebar  --}}
-					@php
-						$pages = App\Page::orderBy('id', 'asc')->get();
-					@endphp
 
 					@foreach($pages as $page)
 						<li>

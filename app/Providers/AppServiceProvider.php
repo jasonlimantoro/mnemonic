@@ -13,7 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('layouts.sidebar', function($view){
+			$pages = \App\Page::orderBy('id', 'asc')->get();
+			$view->with(compact('pages'));
+		});
     }
 
     /**
