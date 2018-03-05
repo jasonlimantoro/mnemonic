@@ -6,8 +6,9 @@ use App\Image;
 
 class Album extends Model
 {
-    public $defaultUncategorizedId = 4;
-
+	public static function uncategorizedAlbum(){
+		return static::where('name', 'Uncategorized')->first();
+	}
     public function images(){
         return $this->hasMany(Image::class);
     }
@@ -24,9 +25,10 @@ class Album extends Model
 
     public function uncategorizeImages(){
         // assign all the images to uncategorized
-        $this->images()->update([
-            'album_id' => $this->defaultUncategorizedId
-        ]);
+		foreach($this->images as $image){
+			$image->album()->associate(self::uncategorizedAlbum());
+			$image->save();
+		}
     }
 
     public function addImage($image){
@@ -51,5 +53,5 @@ class Album extends Model
                 ->first()
                 ->update(['featured' => 0]);
         }
-    }
+	}
 }
