@@ -14,12 +14,12 @@ class CreateCoupleTable extends Migration
     public function up()
     {
         Schema::create('couple', function (Blueprint $table) {
-            $table->increments('id');
+			$table->increments('id');
+			$table->integer('image_id')->nullable();
             $table->string('name');
             $table->string('mother')->nullable();
             $table->string('father')->nullable();
             $table->string('role');
-            $table->timestamps();
         });
     }
 
