@@ -16,7 +16,8 @@ class ImagesTableSeeder extends Seeder
             [
                 [
                     'album_id' => 1,
-                    'carousel_id' => 2,
+					'carousel_id' => 2,
+					'couple_id' => null,
                     'featured' => 1,
                     'caption' => null,
                     'file_name' => 'engagement-1.jpg',
@@ -28,6 +29,7 @@ class ImagesTableSeeder extends Seeder
                 [
                     'album_id' => 1,
                     'carousel_id' => null,
+					'couple_id' => null,
                     'featured' => 0,
                     'caption' => null,
                     'file_name' => 'engagement-2.jpg',
@@ -39,6 +41,7 @@ class ImagesTableSeeder extends Seeder
                 [
                     'album_id' => 3,
                     'carousel_id' => null,
+					'couple_id' => null,
                     'featured' => 1,
                     'caption' => null,
                     'file_name' => 'wisuda-1.png',
@@ -50,6 +53,7 @@ class ImagesTableSeeder extends Seeder
                 [
                     'album_id' => 2,
                     'carousel_id' => 1,
+					'couple_id' => null,
                     'featured' => 0,
                     'caption' => 'Victor lenny 2',
                     'file_name' => 'victor-lenny-2.jpg',
@@ -61,6 +65,7 @@ class ImagesTableSeeder extends Seeder
                 [
                     'album_id' => 2,
                     'carousel_id' => 1,
+					'couple_id' => null,
                     'featured' => 0,
                     'caption' => 'Victor Lenny 3',
                     'file_name' => 'victor-lenny-3.jpg',
@@ -72,6 +77,7 @@ class ImagesTableSeeder extends Seeder
                 [
                     'album_id' => 4,
                     'carousel_id' => null,
+					'couple_id' => null,
                     'featured' => 1,
                     'caption' => null,
                     'file_name' => 'apple-pay.png',
@@ -83,6 +89,7 @@ class ImagesTableSeeder extends Seeder
                 [
                     'album_id' => 2,
                     'carousel_id' => 1,
+					'couple_id' => null,
                     'featured' => 1,
                     'caption' => 'Backkk',
                     'file_name' => 'victor-lenny-1.jpg',
@@ -93,7 +100,8 @@ class ImagesTableSeeder extends Seeder
                 ],
                 [
                     'album_id' => 4,
-                    'carousel_id' => null,
+					'carousel_id' => null,
+					'couple_id' => 1,
                     'featured' => 0,
                     'caption' => null,
                     'file_name' => 'groom.jpg',
@@ -104,7 +112,8 @@ class ImagesTableSeeder extends Seeder
                 ],
                 [
                     'album_id' => 4,
-                    'carousel_id' => null,
+					'carousel_id' => null,
+					'couple_id' => 2,
                     'featured' => 0,
                     'caption' => null,
                     'file_name' => 'bride.jpg',
