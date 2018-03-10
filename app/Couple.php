@@ -1,8 +1,14 @@
 <?php
 namespace App;
 
+use App\Image;
 
 class Couple extends Model
 {
-    protected $table = 'couple';
+	// custom table name
+	protected $table = 'couple';
+	
+	public function image(){
+		return $this->hasOne(Image::class);
+	}
 }

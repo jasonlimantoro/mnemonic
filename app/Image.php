@@ -4,6 +4,7 @@ namespace App;
 
 use App\Album;
 use App\Carousel;
+use App\Couple;
 use App\Filters\GalleryFilter;
 
 class Image extends Model
@@ -14,7 +15,11 @@ class Image extends Model
 
     public function carousel(){
         return $this->belongsTo(Carousel::class, 'carousel_id');
-    }
+	}
+	
+	public function couple(){
+		return $this->belongsTo(Couple::class, 'couple_id');
+	}
 
     public function isFeatured(){
         return $this->featured;
