@@ -21,7 +21,7 @@
 
         @endif
         
-        <div class="container-fluid">
+        <div class="container-fluid web-container">
             @yield('content')
         </div>
 
