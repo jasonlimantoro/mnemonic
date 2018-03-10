@@ -11,7 +11,7 @@
                 @slot('addButton')
                     @component('layouts.addButton', [
                         'item' => 'Images',
-                        'url' => route('galleries.image.create')
+                        'url' => route('images.create')
                     ])
                         
                     @endcomponent
@@ -39,7 +39,7 @@
                                         </a>
                                         <div>
                                             <a 
-                                                href="{{ route('galleries.image.delete',['image' => $image->id ]) }}" 
+                                                href="{{ route('images.destroy',['image' => $image->id ]) }}" 
                                                 id="DeleteIcon" 
                                                 class="__react-root" 
                                                 role="button"

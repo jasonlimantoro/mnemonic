@@ -6,90 +6,49 @@
     |
     |
 */
-// Websites
-Route::get('/admin', 'BackendController@index')->name('admin');
-
-Route::get('/admin/carousel/{carousel}', 'BackendController@carousel')
-        ->name('carousel.index');
-        
-Route::get('/admin/carousel/{carousel}/image/create', 'CarouselImagesController@create')
-        ->name('carousel.image.create');
-        
-Route::post('/admin/carousel/{carousel}/image/store', 'CarouselImagesController@store')
-        ->name('carousel.image.store');
-
-Route::get('/admin/carousel/{carousel}/{image}/show', 'CarouselImagesController@show')
-        ->name('carousel.image.show');
-
-Route::get('/admin/carousel/{carousel}/{image}/edit', 'CarouselImagesController@edit')
-        ->name('carousel.image.edit');
-
-Route::post('/admin/carousel/{carousel}/{image}/update', 'CarouselImagesController@update')
-        ->name('carousel.image.update');
-
-Route::get('/admin/carousel/{carousel}/{image}/delete', 'CarouselImagesController@destroy')
-        ->name('carousel.image.delete');
 
 Route::get('/admin/pages/{page}/posts', 'BackendController@page')
         ->name('page.posts.index');
 
-Route::get('/admin/galleries', 'BackendController@gallery')
-        ->name('galleries.index');
-
-Route::get('/admin/galleries/images/create', 'ImagesController@create')
-        ->name('galleries.image.create');
-
-Route::post('/admin/galleries/images/store', 'ImagesController@store')
-        ->name('galleries.image.store');
-
-Route::get('/admin/galleries/{image}/delete', 'ImagesController@destroy')
-        ->name('galleries.image.delete');
-
-Route::get('/admin/galleries/album', 'BackendController@album')
-        ->name('albums.index');
-
-Route::get('/admin/galleries/album/create', 'AlbumsController@create')
-        ->name('albums.create');
-
-Route::get('/admin/galleries/album/{album}', 'AlbumsController@show')
-        ->name('albums.show');
-
-Route::post('/admin/galleries/album/store', 'AlbumsController@store')
-        ->name('albums.store');
-
-Route::get('/admin/galleries/album/{album}/edit', 'AlbumsController@edit')
-        ->name('albums.edit');
-
-Route::patch('/admin/galleries/album/{album}/update', 'AlbumsController@update')
-        ->name('albums.update');
-
-Route::get('/admin/galleries/album/{album}/delete', 'AlbumsController@destroy')
-        ->name('albums.delete');
-
-Route::get('/admin/galleries/album/{album}/images/create', 'AlbumImagesController@create')
-        ->name('album.images.create');
-
-Route::post('/admin/galleries/album/{album}/images/store', 'AlbumImagesController@store')
-        ->name('album.images.store');
-
-Route::get('/admin/galleries/album/images/{image}/edit', 'AlbumImagesController@edit')
-        ->name('album.images.edit');
-
-Route::post('/admin/galleries/album/images/{image}/update', 'AlbumImagesController@update')
-        ->name('album.images.update');
-
-Route::get('/admin/galleries/album/images/{image}/show', 'AlbumImagesController@show')
-        ->name('album.images.show');
-
-// Wedding
-// Route::get('/admin/wedding/groom-and-bride', 'BackendController@couple');
 Route::prefix('admin')->group(function(){
-	Route::get('/couple/edit', 'BackendController@couple')->name('couple.edit');
-	Route::post('/couple/store', 'CoupleController@store')->name('couple.store');
-	Route::patch('/couple/update', 'CoupleController@update')->name('couple.update');
-	// Route::resource('couple', 'CoupleController', ['except' => [
-	// 	'create', 'index', 'edit'
-	// ]]);
+	Route::get('/', 'BackendController@index')->name('admin');
+
+	// carousel
+	Route::prefix('carousel')->group(function(){
+		Route::get('/{carousel}', 'BackendController@carousel')->name('carousel.index');
+		Route::get('/{carousel}/image/create', 'CarouselImagesController@create')->name('carousel.image.create');
+		Route::post('/{carousel}/image/store', 'CarouselImagesController@store')->name('carousel.image.store');
+		Route::get('/{carousel}/{image}/show', 'CarouselImagesController@show')->name('carousel.image.show');
+		Route::get('/{carousel}/{image}/edit', 'CarouselImagesController@edit')->name('carousel.image.edit');
+		Route::post('/{carousel}/{image}/update', 'CarouselImagesController@update')->name('carousel.image.update');
+		Route::get('/{carousel}/{image}/delete', 'CarouselImagesController@destroy')->name('carousel.image.delete');
+	});
+
+	// galleries
+	Route::prefix('galleries')->group(function(){
+		// gallery images
+		Route::resource('images', 'ImagesController', ['except' => ['index']]);
+		Route::get('/images', 'BackendController@gallery')->name('images.index');
+		// albums
+		Route::resource('albums', 'AlbumsController', ['except' => ['index']]);
+		Route::get('/album', 'BackendController@album')->name('albums.index');
+		// album images
+		Route::prefix('albums')->group(function(){
+			Route::get('/{album}/images/create', 'AlbumImagesController@create')->name('album.images.create');
+			Route::post('/{album}/images', 'AlbumImagesController@store')->name('album.images.store');
+			Route::name('album.')->group(function(){
+				Route::resource('images', 'AlbumImagesController', ['only' => ['edit', 'update', 'show']]);
+				// assigned the route name to album.images.[edit, update, show]
+			});
+		});
+	});
+
+	// couple
+	Route::prefix('couple')->group(function(){
+		Route::get('/', 'BackendController@couple')->name('couple.index');
+		Route::post('/store', 'CoupleController@store')->name('couple.store');
+		Route::patch('/update', 'CoupleController@update')->name('couple.update');
+	});
 });
 
 // Route::get('/admin/wedding/event', 'BackendController@event');

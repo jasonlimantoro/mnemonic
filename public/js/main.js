@@ -69918,7 +69918,7 @@ var GalleryForm = function (_React$Component4) {
         value: function render() {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "form",
-                { action: "/admin/galleries/images/store", method: "POST", encType: "multipart/form-data" },
+                { action: "/admin/galleries/images", method: "POST", encType: "multipart/form-data" },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Form__["b" /* InputFile */], {
                     label: "Open file browser",
                     labelClass: "btn btn-success",

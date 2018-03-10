@@ -45,7 +45,7 @@
                     </div>
                     <div>
                         <a 
-                            href="{{ route('albums.delete', ['album' => $album->id ]) }}" 
+                            href="{{ route('albums.destroy', ['album' => $album->id ]) }}" 
                             id="DeleteIcon" 
                             class="__react-root" 
                             role="button"

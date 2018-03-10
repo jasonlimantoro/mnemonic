@@ -24,7 +24,8 @@
                     <form 
                         method="POST"
                         action="{{ route('album.images.update', ['image' => $image->id]) }}" 
-                        >
+						>
+						{{ method_field('PATCH') }}
                         <div class="form-group">
                             <label for="formControlSelect">Assign to album: </label>
                             <select class="form-control" id="formControlSelect" name="album">

@@ -71,16 +71,20 @@
                                             </a>
                                         </div>
                                         <div>
-                                            <a 
-                                                href="{{ route('galleries.image.delete', ['image' => $image->id ])}}" 
-                                                id="DeleteIcon" 
-                                                class="__react-root" 
-                                                role="button"
-                                                data-toggle="tooltip"
-                                                title="Delete this image"
-                                                data-placement="top"
-                                                >
-                                            </a>
+											<form action="{{ route('images.destroy', ['image' => $image->id]) }}" method="POST" >
+												{{ method_field('DELETE') }}
+													<a 
+														type="submit"
+														href="" 
+														id="DeleteIcon" 
+														class="__react-root" 
+														role="button"
+														data-toggle="tooltip"
+														title="Delete this image"
+														data-placement="top"
+														>
+													</a>
+											</form>
                                         </div>
                                     </td>
                                 </tr>

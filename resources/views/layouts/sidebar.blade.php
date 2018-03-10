@@ -31,7 +31,7 @@
 		<li>
 			<a href="#galleriesSubmenu" data-toggle="collapse" aria-expanded="false">Galleries</a>
 			<ul class="collapse list-unstyled" id="galleriesSubmenu">
-				<li><a href="{{ route('admin') }}/galleries">View all photos</a></li>
+				<li><a href="{{ route('images.index') }}">View all photos</a></li>
 				<li><a href="{{ route('admin') }}/galleries/album">Manage Album</a></li>
 			</ul>
 		</li>
@@ -43,7 +43,7 @@
 			</a>
 			<ul class="collapse list-unstyled" id="weddingSubmenu">
 					<li>
-						<a href="{{ route('couple.edit') }}">Couple</a>
+						<a href="{{ route('couple.index') }}">Couple</a>
 					</li>
 					<li>
 						<a href="{{ route('admin') }}/wedding/event">Event</a>

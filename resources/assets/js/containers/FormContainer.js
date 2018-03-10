@@ -138,7 +138,7 @@ export class GalleryForm extends React.Component {
 
     render() {
         return (
-            <form action="/admin/galleries/images/store" method="POST" encType="multipart/form-data">
+            <form action="/admin/galleries/images" method="POST" encType="multipart/form-data">
                 <InputFile 
                     label = "Open file browser"
                     labelClass = "btn btn-success"
