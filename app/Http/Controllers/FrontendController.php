@@ -10,6 +10,7 @@ use App\Post;
 Use App\Carousel;
 use App\Image;
 use App\Album;
+use App\Couple;
 
 class FrontendController extends Controller
 {
@@ -28,9 +29,8 @@ class FrontendController extends Controller
     }
 
     public function about() {
-        $page = Page::find(2);
-        $posts = $page->posts()->latest()->get();
-        return view('frontend.about', compact('posts', 'page', 'slides'));
+		$couple = Couple::all();
+        return view('frontend.about', compact('couple'));
     }
 
     public function gallery() {

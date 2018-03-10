@@ -2,14 +2,29 @@
 
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <h2>List of Posts in About US</h2>
-            <div class="row">
-                @foreach($posts as $post)
-                    @include('posts.frontend.post')
-                @endforeach
-            </div>
-        </div>
-    </div>
+	<div class="container about-us-main">
+		<div class="col-md-12">
+			<div class="row page-title">
+				<h1>About Us</h1>
+			</div>
+			<div class="row about-us-container">
+				@foreach($couple as $c)
+					<div class="col-md-12 about-us-content">
+						<div class="col-md-4 couple-image">
+							<img src="{{ $c->image->url_asset }}" alt="{{ $c->name }}" class="img-responsive"> 
+						</div>
+						<div class="col-md-8 couple-description">
+							<div class="col-md-12 couple-name">
+								<h1> {{ $c->name }} </h1>
+							</div>
+							
+							<div class="col-md-12 couple-detail">
+
+							</div>
+						</div>
+					</div>
+				@endforeach
+			</div>
+		</div>
+	</div>
 @endsection

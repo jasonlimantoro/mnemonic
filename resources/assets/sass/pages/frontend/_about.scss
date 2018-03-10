@@ -1,0 +1,17 @@
+.about-us-main {
+	.page-title {
+		text-align: center;
+		
+	}
+	.about-us-content {
+		.couple-description {
+			text-align: center;
+		}
+		&:last-child {
+			.couple-image {
+				float: right;
+			}
+		}
+
+	}
+}
