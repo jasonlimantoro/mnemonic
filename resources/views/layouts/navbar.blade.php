@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-frontend">
 	<div class="container">
 		<div class="row visible-xs">
 			<div class="col-xs-12">
