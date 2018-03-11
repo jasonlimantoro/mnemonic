@@ -8,7 +8,7 @@
                     {{--  @include('layouts.show-all-post-btn')  --}}
                     @component('layouts.backButton', [
                         'text' => 'Show All Posts in ' .  $page->title,
-                        'url' => route('page.posts.index', ['page' => $page->id])
+                        'url' => route('posts.index', ['page' => $page->id])
                     ])
                         
                     @endcomponent
@@ -19,7 +19,7 @@
                 @endslot
 
                 @slot('body')
-                    <form method="POST" action="{{ route('post.store', ['page' => $page->id ]) }}">
+                    <form method="POST" action="{{ route('posts.store', ['page' => $page->id ]) }}">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="title">Title</label>

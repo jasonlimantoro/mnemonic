@@ -10,7 +10,7 @@
             @component('layouts.addButton', 
                 [
                     'item' => "Post", 
-                    'url' => route('post.create', ['page' => $page->id ])
+                    'url' => route('posts.create', ['page' => $page->id ])
                 ])
             @endcomponent
 

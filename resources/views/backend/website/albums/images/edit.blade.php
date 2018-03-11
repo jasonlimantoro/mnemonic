@@ -23,7 +23,7 @@
 
                     <form 
                         method="POST"
-                        action="{{ route('album.images.update', ['image' => $image->id]) }}" 
+                        action="{{ route('album.images.update', ['album' => $album->id, 'image' => $image->id]) }}" 
 						>
 						{{ method_field('PATCH') }}
                         <div class="form-group">

@@ -7,7 +7,7 @@
                 @slot('backButton')
                     @component('layouts.backButton', [
                         'text' => 'Back',
-                        'url' => route('carousel.index', ['carousel' => 1]),
+                        'url' => route('carousel.images.index', ['carousel' => 1]),
                     ])
                         
                     @endcomponent
@@ -24,8 +24,9 @@
                     <form 
                         method="POST"
                         enctype="multipart/form-data"
-                        action="{{ route('carousel.image.update', ['carousel' => 1, 'image' => $image->id]) }}" 
-                        >
+                        action="{{ route('carousel.images.update', ['carousel' => 1, 'image' => $image->id]) }}" 
+					>
+						{{ method_field('PATCH') }}
                         <div class="__react-root" id="FancyInput"></div>
                         <div class="form-group">
                             <label for="carouselCaption">Caption</label>

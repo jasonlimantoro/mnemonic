@@ -5,7 +5,7 @@
         @slot('backButton')
             @component('layouts.backButton', [
                 'text' => 'Show All Posts in ' . $page->title,
-                'url' => route('page.posts.index', ['page' => $page->id])
+                'url' => route('posts.index', ['page' => $page->id])
             ])
             @endcomponent
         @endslot
@@ -15,8 +15,8 @@
         @endslot
 
         @slot('body')
-            <form action="{{ route('post.update',['post' => $post->id]) }}" method="POST">
-                {{ csrf_field() }}
+            <form action="{{ route('posts.update',['post' => $post->id, 'page' => $page->id]) }}" method="POST">
+                {{ method_field('PATCH') }}
                 <div class="form-group">
                     <label for="title">Title</label>
                     <input type="text" class="form-control" id="title" name="title" value="{{ $post->title }}">

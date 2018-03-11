@@ -44,16 +44,21 @@
                         </a>
                     </div>
                     <div>
-                        <a 
-                            href="{{ route('albums.destroy', ['album' => $album->id ]) }}" 
-                            id="DeleteIcon" 
-                            class="__react-root" 
-                            role="button"
-                            data-toggle="tooltip"
-                            title="Delete this album"
-                            data-placement="top"
-                            >
-                        </a>
+
+						<form action="{{ route('albums.destroy', ['album' => $album->id]) }}" method="POST" id={{ "form-delete-albums-" . $album->id  }}>
+								{{ method_field('DELETE') }}
+							<a 
+								href="{{ route('albums.destroy', ['album' => $album->id ]) }}" 
+								id="DeleteIcon" 
+								class="__react-root" 
+								data-form="albums-{{ $album->id }}"
+								role="button"
+								data-toggle="tooltip"
+								title="Delete this album"
+								data-placement="top"
+								>
+							</a>
+						</form>
                     </div>
                 </td>
             </tr>

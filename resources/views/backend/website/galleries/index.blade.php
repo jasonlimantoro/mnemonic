@@ -28,7 +28,7 @@
 
                                     @slot('thumbnailCaption')
                                         Name: 
-                                        <a href="{{ route('album.images.edit', ['image' => $image->id ]) }}">
+                                        <a href="{{ route('album.images.edit', ['album' => $album->id, 'image' => $image->id]) }}">
                                             {{ $image->file_name }} 
                                         </a>
                                         

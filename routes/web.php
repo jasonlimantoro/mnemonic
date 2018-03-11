@@ -14,14 +14,11 @@ Route::prefix('admin')->group(function(){
 	Route::get('/', 'BackendController@index')->name('admin');
 
 	// carousel
-	Route::prefix('carousel')->group(function(){
-		Route::get('/{carousel}', 'BackendController@carousel')->name('carousel.index');
-		Route::get('/{carousel}/image/create', 'CarouselImagesController@create')->name('carousel.image.create');
-		Route::post('/{carousel}/image/store', 'CarouselImagesController@store')->name('carousel.image.store');
-		Route::get('/{carousel}/{image}/show', 'CarouselImagesController@show')->name('carousel.image.show');
-		Route::get('/{carousel}/{image}/edit', 'CarouselImagesController@edit')->name('carousel.image.edit');
-		Route::post('/{carousel}/{image}/update', 'CarouselImagesController@update')->name('carousel.image.update');
-		Route::get('/{carousel}/{image}/delete', 'CarouselImagesController@destroy')->name('carousel.image.delete');
+	Route::prefix('carousel/{carousel}')->group(function(){
+		Route::get('/', 'BackendController@carousel')->name('carousel.index');
+		Route::name('carousel.')->group(function(){
+			Route::resource('images', 'CarouselImagesController', ['except' => ['index']]);
+		});
 	});
 
 	// galleries
@@ -31,14 +28,12 @@ Route::prefix('admin')->group(function(){
 		Route::get('/images', 'BackendController@gallery')->name('images.index');
 		// albums
 		Route::resource('albums', 'AlbumsController', ['except' => ['index']]);
-		Route::get('/album', 'BackendController@album')->name('albums.index');
+		Route::get('albums', 'BackendController@album')->name('albums.index');
 		// album images
-		Route::prefix('albums')->group(function(){
-			Route::get('/{album}/images/create', 'AlbumImagesController@create')->name('album.images.create');
-			Route::post('/{album}/images', 'AlbumImagesController@store')->name('album.images.store');
+		Route::prefix('albums/{album}')->group(function(){
 			Route::name('album.')->group(function(){
-				Route::resource('images', 'AlbumImagesController', ['only' => ['edit', 'update', 'show']]);
-				// assigned the route name to album.images.[edit, update, show]
+				Route::resource('images', 'AlbumImagesController', ['except' => ['index']]);
+				// assigned the route name to album.images.[edit, update, show, ...]
 			});
 		});
 	});
@@ -48,6 +43,11 @@ Route::prefix('admin')->group(function(){
 		Route::get('/', 'BackendController@couple')->name('couple.index');
 		Route::post('/store', 'CoupleController@store')->name('couple.store');
 		Route::patch('/update', 'CoupleController@update')->name('couple.update');
+	});
+
+	// posts
+	Route::prefix('/pages/{page}')->group(function(){
+		Route::resource('posts', 'PostsController');
 	});
 });
 
@@ -64,14 +64,6 @@ Route::get('/admin/settings/manage-admin', 'BackendController@manageAdmin');
 Route::get('/admin/settings/manage-roles', 'BackendController@manageRoles');
 
 
-// Form routes for posts
-Route::get('/posts', 'PostsController@index')->name('post.index');
-Route::get('/admin/pages/{page}/posts/create', 'PostsController@create')->name('post.create');
-Route::post('/admin/pages/{page}/post', 'PostsController@store')->name('post.store');
-Route::get('/admin/posts/{post}/edit', 'PostsController@edit')->name('post.edit');
-Route::post('/admin/posts/{post}/update', 'PostsController@update')->name('post.update');
-Route::get('/admin/posts/{post}/delete', 'PostsController@destroy')->name('post.delete');
-Route::get('/admin/posts/{post}', 'PostsController@show')->name('post.show');
 
 
 /*

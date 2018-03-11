@@ -7,7 +7,7 @@
                 @slot('backButton')
                     @component('layouts.backButton', [
                         'text' => 'Back',
-                        'url' => route('carousel.index', ['carousel' => 1]),
+                        'url' => route('carousel.images.index', ['carousel' => 1]),
                     ])
                         
                     @endcomponent
@@ -17,7 +17,7 @@
                 @endslot
 
                 @slot('body')
-                    <form method="POST" action="{{ route('carousel.image.store', ['carousel' => 1]) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('carousel.images.store', ['carousel' => 1]) }}" enctype="multipart/form-data">
                         <div class="__react-root" id="CarouselForm"></div>
                     </form>
                 @endslot

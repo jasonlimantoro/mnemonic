@@ -62,9 +62,9 @@ class AlbumImagesController extends Controller
      * @param  \App\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function show(Image $image)
+    public function show(Album $album, Image $image)
     {
-        $album = $image->album;
+        // $album = $image->album;
         return view('backend.website.albums.images.show', compact(['image', 'album']));
     }
 
@@ -74,13 +74,13 @@ class AlbumImagesController extends Controller
      * @param  \App\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function edit(Image $image)
+    public function edit(Album $album, Image $image)
     {
         $albumInstance = new AlbumsController();
         $albums = $albumInstance->albums;
         $selectedAlbum = $image->album;
         return view('backend.website.albums.images.edit', 
-                compact('image', 'albums', 'selectedAlbum')
+                compact('image', 'albums', 'selectedAlbum', 'album')
         );
     }
 
@@ -91,7 +91,7 @@ class AlbumImagesController extends Controller
      * @param  \App\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Image $image)
+    public function update(Request $request, Album $album, Image $image)
     {
         $rules = [
             'album' => 'required'

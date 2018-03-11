@@ -48,7 +48,7 @@
                                     <td class="text-center">
                                         <div>
                                             <a 
-                                                href="{{ route('album.images.show', ['image' => $image->id])}}" 
+                                                href="{{ route('album.images.show', ['album' => $album->id, 'image' => $image->id])}}" 
                                                 id="ShowIcon" 
                                                 class="__react-root" 
                                                 role="button"
@@ -60,7 +60,7 @@
                                         </div>
                                         <div>
                                             <a 
-                                                href="{{ route('album.images.edit', ['image' => $image->id ])}}" 
+                                                href="{{ route('album.images.edit', ['album' => $album->id, 'image' => $image->id])}}" 
                                                 id="EditIcon" 
                                                 class="__react-root" 
                                                 role="button"

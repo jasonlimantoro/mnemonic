@@ -68,7 +68,7 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Page $page, Post $post)
     {   
         $page = $post->page;
         return view('posts.backend.show', compact('post', 'page'));
@@ -80,7 +80,7 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Page $page, Post $post)
     {
         // page in which the post belongsTo
         $page = $post->page;
@@ -94,14 +94,14 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Page $page, Post $post)
     {
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required'
-        ]);
-        $updatedPost = $request->all();
-        Post::find($id)->update($updatedPost);
+		]);
+		$updatedPost = $request->all();
+        $post->update($updatedPost);
 
         //store status message
         \Session::flash('success_msg', 'Post updated successfully!');
@@ -115,7 +115,7 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+	public function destroy(Page $page, Post $post)
     {
         $post->delete();
         \Session::flash('success_msg', 'Post is deleted successfully');

@@ -20,7 +20,7 @@
 
 					@foreach($pages as $page)
 						<li>
-							<a href="{{ route('page.posts.index', ['page' => $page->id ]) }}">
+							<a href="{{ route('posts.index', ['page' => $page->id ]) }}">
 								{{ $page->title }}
 							</a>
 						</li>
@@ -32,7 +32,7 @@
 			<a href="#galleriesSubmenu" data-toggle="collapse" aria-expanded="false">Galleries</a>
 			<ul class="collapse list-unstyled" id="galleriesSubmenu">
 				<li><a href="{{ route('images.index') }}">View all photos</a></li>
-				<li><a href="{{ route('admin') }}/galleries/album">Manage Album</a></li>
+				<li><a href="{{ route('albums.index') }}">Manage Album</a></li>
 			</ul>
 		</li>
 		

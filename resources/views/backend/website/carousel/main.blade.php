@@ -11,7 +11,7 @@
                     @component('layouts.addButton',
                     [
                         'item' => 'Images', 
-                        'url' => route('carousel.image.create', ['carousel' => 1])
+                        'url' => route('carousel.images.create', ['carousel' => 1])
                     ])
                     @endcomponent
                 @endslot
