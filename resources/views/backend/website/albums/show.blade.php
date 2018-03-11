@@ -71,19 +71,19 @@
                                             </a>
                                         </div>
                                         <div>
-											<form action="{{ route('images.destroy', ['image' => $image->id]) }}" method="POST" >
+										<form action="{{ route('images.destroy', ['image' => $image->id]) }}" method="POST" id={{ "form-delete-images-" . $image->id  }}>
 												{{ method_field('DELETE') }}
-													<a 
-														type="submit"
-														href="" 
-														id="DeleteIcon" 
-														class="__react-root" 
-														role="button"
-														data-toggle="tooltip"
-														title="Delete this image"
-														data-placement="top"
-														>
-													</a>
+												<a 
+													href="" 
+													id="DeleteIcon" 
+													class="__react-root" 
+													data-form="images-{{ $image->id}}"
+													role="button"
+													data-toggle="tooltip"
+													title="Delete this image"
+													data-placement="top"
+													>
+												</a>
 											</form>
                                         </div>
                                     </td>
