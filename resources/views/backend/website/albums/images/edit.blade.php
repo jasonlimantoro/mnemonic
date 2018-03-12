@@ -6,8 +6,8 @@
             @component('layouts.panel', ['backButton' => '', 'addButton' => ''])
                 @slot('backButton')
                     @component('layouts.backButton', [
-                        'text' => 'Show All Albums',
-                        'url' => route('albums.index')
+                        'text' => 'Show '. $selectedAlbum->name . ' album',
+                        'url' => route('albums.show', [ 'album' => $selectedAlbum->id ])
                     ])
                     @endcomponent
                 @endslot
