@@ -98,9 +98,9 @@ class AlbumImagesController extends Controller
         ];
         $this->validate($request, $rules);
 
-        $image->update([
-            'album_id' => $request->album
-        ]);
+		// dd($album);
+		$newAlbum = Album::find($request->album);
+		$newAlbum->images()->save($image);
 
         //store status message
         \Session::flash('success_msg', 'Changed album successfully!');

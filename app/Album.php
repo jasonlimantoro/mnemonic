@@ -27,8 +27,7 @@ class Album extends Model
     public function uncategorizeImages(){
         // assign all the images to uncategorized
 		foreach($this->images as $image){
-			$image->album()->associate(self::uncategorizedAlbum());
-			$image->save();
+			self::uncategorizedAlbum()->images()->save($image);
 		}
     }
 

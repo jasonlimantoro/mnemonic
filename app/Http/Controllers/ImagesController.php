@@ -15,7 +15,7 @@ class ImagesController extends Controller
 	public function __construct(){
 		$this->middleware('auth')->except(['showJSON']);
 		// All uploaded images
-		$this->images = Image::latest()->get();
+		$this->images = Image::latest()->where('imageable_type', Album::class)->get();
 	}
 	/**
 	 * Display a listing of the resource.
@@ -24,7 +24,7 @@ class ImagesController extends Controller
 	 */
 	public function index()
 	{
-		$galleryImages = $this->images->where('imageable_type', Album::class);
+		$galleryImages = $this->images;
 		return view('backend.website.galleries.index', compact('galleryImages'));
 	}
 
@@ -54,13 +54,17 @@ class ImagesController extends Controller
 
 		$this->validate($request, $rules);
 
-		$newImage = Image::handleUpload($request);
-		$assignedAlbum = [
-		   'album_id' => $request->album
-	   	];
-		$newImage += $assignedAlbum;
+		$newImage = new Image(Image::handleUpload($request));
+		$album = Album::find($request->album);
 
-		Image::create($newImage);
+		$album->images()->save($newImage);
+		// dd($request);
+		// $assignedAlbum = [
+		//    'album_id' => $request->album
+	   	// ];
+		// $newImage += $assignedAlbum;
+
+		// Image::create($newImage);
 
 		Session::flash('success_msg', 'Image is successfully uploaded!');
 
