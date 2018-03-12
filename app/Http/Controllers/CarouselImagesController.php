@@ -15,11 +15,11 @@ class CarouselImagesController extends Controller
 
         $this->middleware('auth');
         // All uploaded images
-        $this->images = Image::whereNotNull('carousel_id')->oldest()->get();
+        $this->images = Image::where('imageable_type', Carousel::class)->oldest()->get();
     }
     public function index($carousel) {
 
-        $mainCarouselImages = $this->images->where('carousel_id', $carousel->id);
+        $mainCarouselImages = $this->images->where('imageable_id', $carousel->id);
 
         return view('backend.website.carousel.main')->with('images', $mainCarouselImages);
     }

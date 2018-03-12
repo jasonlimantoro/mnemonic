@@ -9,22 +9,13 @@ use App\Filters\GalleryFilter;
 
 class Image extends Model
 {
-    public function album(){
-        return $this->belongsTo(Album::class, 'album_id');
-    }
-
-    public function carousel(){
-        return $this->belongsTo(Carousel::class, 'carousel_id');
-	}
-	
-	public function couple(){
-		return $this->belongsTo(Couple::class, 'couple_id');
+	public function imageable(){
+		return $this->morphTo();
 	}
 
     public function isFeatured(){
         return $this->featured;
     }
-
 
     public static function handleUpload($request){
         $newImage = $request->file('image');

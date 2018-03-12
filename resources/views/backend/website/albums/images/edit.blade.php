@@ -17,7 +17,7 @@
 
                 @slot('body')
                     <h2> {{ $image->file_name }}</h2>
-                    <p>From album: <strong>{{ $image->album->name }}</strong></p>
+                    <p>From album: <strong>{{ $image->imageable->name }}</strong></p>
                     <img src="{{ $image->url_cache }}" alt="image" class="img-responsive">
                     Uploaded on {{ $image->created_at->toDayDateTimeString() }}
 

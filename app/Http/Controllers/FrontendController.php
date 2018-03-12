@@ -20,10 +20,10 @@ class FrontendController extends Controller
     }
 
     public function home() {
-        $page = Page::find(1);
+		$page = Page::find(1);
         $posts = $page->posts()->latest()->get();
         $carousel = $page->carousel;
-        $slides = $carousel->images;
+		$slides = $carousel->images;
         
         return view('frontend.home', compact('posts', 'page', 'slides'));
     }

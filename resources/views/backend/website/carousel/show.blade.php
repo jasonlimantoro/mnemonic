@@ -7,7 +7,7 @@
                 @slot('backButton')
                     @component('layouts.backButton', [
                         'text' => 'Back',
-                        'url' => route('carousel.images.index', ['carousel' => 1]),
+                        'url' => route('carousel.index', ['carousel' => 1]),
                     ])
                     @endcomponent
                 @endslot

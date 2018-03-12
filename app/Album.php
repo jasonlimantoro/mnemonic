@@ -9,9 +9,10 @@ class Album extends Model
 	public static function uncategorizedAlbum(){
 		return static::where('name', 'Uncategorized')->first();
 	}
-    public function images(){
-        return $this->hasMany(Image::class);
-    }
+	
+	public function images(){
+		return $this->morphMany(Image::class, 'imageable');
+	}
 
     public function featuredImage(){
         return $this->images->where('featured', 1);

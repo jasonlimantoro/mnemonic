@@ -28,14 +28,14 @@
 
                                     @slot('thumbnailCaption')
                                         Name: 
-                                        <a href="{{ route('album.images.edit', ['album' => $album->id, 'image' => $image->id]) }}">
+                                        <a href="{{ route('album.images.edit', ['album' => $image->imageable->id, 'image' => $image->id]) }}">
                                             {{ $image->file_name }} 
                                         </a>
                                         
                                         <br>
                                         Album: 
-                                        <a href="{{ route('albums.show', ['album' => $image->album_id ]) }}">
-                                            {{ $image->album->name }}
+                                        <a href="{{ route('albums.show', ['album' => $image->imageable->id ]) }}">
+                                            {{ $image->imageable->name }}
                                         </a>
                                         <div>
 											<form action="{{ route('images.destroy', ['image' => $image->id]) }}" method="POST" id={{ "form-delete-images-" . $image->id  }}>

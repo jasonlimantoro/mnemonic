@@ -24,7 +24,7 @@ class ImagesController extends Controller
 	 */
 	public function index()
 	{
-		$galleryImages = $this->images;
+		$galleryImages = $this->images->where('imageable_type', Album::class);
 		return view('backend.website.galleries.index', compact('galleryImages'));
 	}
 

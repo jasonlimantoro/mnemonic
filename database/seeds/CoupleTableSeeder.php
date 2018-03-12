@@ -21,7 +21,7 @@ class CoupleTableSeeder extends Seeder
                     'role' => 'groom'
                 ],
                 [
-					'name' => 'Lenny Kurniawati, S. E',
+					'name' => 'Lenny Kurniawati Ligadjaja, S. E',
 					'image_id' => 9,
                     'mother' => 'Mrs. Vina K. Dhian',
                     'father' => 'Mr. Samuel Tanto',
