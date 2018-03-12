@@ -78,7 +78,7 @@ class AlbumImagesController extends Controller
     {
         $albumInstance = new AlbumsController();
         $albums = $albumInstance->albums;
-        $selectedAlbum = $image->album;
+		$selectedAlbum = $image->imageable;
         return view('backend.website.albums.images.edit', 
                 compact('image', 'albums', 'selectedAlbum', 'album')
         );
