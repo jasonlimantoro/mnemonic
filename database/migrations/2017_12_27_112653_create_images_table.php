@@ -11,18 +11,17 @@ class CreateImagesTable extends Migration
      *
      * @return void
      */
-    public function up()
+	public function up()
     {
-        Schema::create('images', function (Blueprint $table) {
+		Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
             $table->string('file_name');
             $table->string('url_asset');
             $table->string('url_cache');
             $table->boolean('featured')->default(0);
 			$table->string('caption')->nullable();
-			$table->integer('couple_id')->nullable();
-			$table->integer('imageable_id')->nullable();
-			$table->string('imageable_type')->nullable();
+			$table->integer('imageable_id')->default(4);
+			$table->string('imageable_type')->default('App\Album');
 			$table->index(['imageable_id', 'imageable_type']);
             $table->timestamps();
         });

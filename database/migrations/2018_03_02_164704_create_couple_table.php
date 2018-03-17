@@ -15,7 +15,6 @@ class CreateCoupleTable extends Migration
     {
         Schema::create('couple', function (Blueprint $table) {
 			$table->increments('id');
-			$table->integer('image_id')->nullable();
             $table->string('name');
             $table->string('mother')->nullable();
             $table->string('father')->nullable();

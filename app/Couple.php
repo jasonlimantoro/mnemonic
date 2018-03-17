@@ -11,7 +11,7 @@ class Couple extends Model
 	// no timestamps is needed
 	public $timestamps = false;
 	
-	public function image(){
-		return $this->hasOne(Image::class);
+	public function images(){
+		return $this->morphMany(Image::class, 'imageable');
 	}
 }
