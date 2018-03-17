@@ -1,11 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import axios from "axios";
+
+// Custom Components
 import { FormPost, SearchBox, RadioButton, InputFile, TextArea, SelectForm } from "../components/Form";
 import { SearchPost } from "../components/SearchPost";
 import { PrimaryButton, SuccessButton } from "../components/Button";
 import { UploadModal } from "../components/Modal";
 import { DisplayImages, DisplayImagesFromInputFile } from "../components/DisplayImage";
 import { RequestAlbums } from "../components/Request";
+import { CoupleTabs } from "../components/Tab";
 
 
 export class FormforHome extends React.Component {
@@ -184,6 +188,30 @@ export class AlbumForm extends React.Component {
             </div>
         )
     }
+}
+
+export class CoupleForm extends React.Component{
+	constructor(props){
+		super(props);
+		this.state = {
+			'tabKey' : 'Groom',
+			'couple' : []
+		}
+		this.changeTab = this.changeTab.bind(this);
+	}
+
+	changeTab(newKey){
+		this.setState({
+			'tabKey' : newKey
+		});
+	}
+
+	render(){
+		return (
+			<CoupleTabs onSelect={this.changeTab} activeTabKey={this.state.tabKey} />
+		);
+	}
+
 }
 
 export class FancyInput extends React.Component {

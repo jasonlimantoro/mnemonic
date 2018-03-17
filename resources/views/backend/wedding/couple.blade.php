@@ -2,12 +2,14 @@
 
 @section('content')
 	<div class="row">
-		<div class="col-md-12"> @component('layouts.panel', ['backButton' => '', 'addButton' => '']) 
-				@slot('title') Groom and Bride Information
+		<div class="col-md-12"> 
+			@component('layouts.panel', ['backButton' => '', 'addButton' => '']) 
+				@slot('title')
+					 Groom and Bride Information
 				@endslot
 			
 				@slot('body')
-				<div class="row">
+				{{--  <div class="row">
 					<form action="{{ route('couple.update') }}" method="POST"> 
 						{{ method_field('PATCH') }}
 						<div class="col-md-6 col-xs-12">
@@ -33,6 +35,8 @@
 								<label for="motherGroomName">Name</label> 
 							<input type="text" name="mother_groom_name" class="form-control" id="motherGroomName" value="{{ $groom->mother }}">
 							</div>
+							
+							<div class="__react-root" id="FancyInput"></div>
 
 						</div>
 						<div class="col-md-6 col-xs-12">
@@ -59,12 +63,19 @@
 								<input type="text" name="mother_bride_name" class="form-control" id="motherBrideName" value="{{ $bride->mother }}">
 							</div>
 
+							<div class="__react-root" id="FancyInput"></div>
 						</div>
+
 						<div class="col-md-12 col-xs-12">
+
 							<button class="btn btn-primary" type="submit">Submit</button> 
 						</div>
 					</form>
-				</div> 
+				</div>   --}}
+
+				<div class="__react-root" id="CoupleForm"></div>
+
+
 				@endslot
 			@endcomponent
 		</div>

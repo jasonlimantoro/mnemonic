@@ -112,5 +112,9 @@ class CoupleController extends Controller
     public function destroy(Couple $couple)
     {
         //
-    }
+	}
+	
+	public function showJSON(){
+		return Couple::all();
+	}
 }

@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/images', 'ImagesController@showJSON')->name('images.json');
 Route::get('/albums', 'AlbumsController@showJSON')->name('albums.json');
+Route::get('/couple', 'CoupleController@showJSON');
