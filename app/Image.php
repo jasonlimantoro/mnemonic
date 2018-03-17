@@ -45,8 +45,8 @@ class Image extends Model
         // array
         $imageAttr = [
             'file_name' => $galleryImageName,
-            'url_asset' => secure_asset('uploads/' . $galleryImageName),
-            'url_cache' => secure_url('/imagecache/gallery/' . $galleryImageName)
+            'url_asset' => url('uploads/' . $galleryImageName),
+            'url_cache' => url('/imagecache/gallery/' . $galleryImageName)
         ];
 
         return $imageAttr;
