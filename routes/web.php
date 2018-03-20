@@ -39,11 +39,8 @@ Route::prefix('admin')->group(function(){
 	});
 
 	// couple
-	Route::prefix('couple')->group(function(){
-		Route::get('/', 'BackendController@couple')->name('couple.index');
-		Route::post('/store', 'CoupleController@store')->name('couple.store');
-		Route::patch('/update', 'CoupleController@update')->name('couple.update');
-	});
+	Route::resource('couple', 'CoupleController', ['only' => ['store', 'update']]);
+	Route::get('/couple', 'BackendController@couple')->name('couple.index');
 
 	// posts
 	Route::prefix('/pages/{page}')->group(function(){

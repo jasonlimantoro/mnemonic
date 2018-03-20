@@ -193,25 +193,13 @@ export class AlbumForm extends React.Component {
 export class CoupleForm extends React.Component{
 	constructor(props){
 		super(props);
-		this.state = {
-			'tabKey' : 'Groom',
-			'couple' : []
-		}
-		this.changeTab = this.changeTab.bind(this);
-	}
-
-	changeTab(newKey){
-		this.setState({
-			'tabKey' : newKey
-		});
 	}
 
 	render(){
 		return (
-			<CoupleTabs onSelect={this.changeTab} activeTabKey={this.state.tabKey} />
+			<CoupleTabs />
 		);
 	}
-
 }
 
 export class FancyInput extends React.Component {

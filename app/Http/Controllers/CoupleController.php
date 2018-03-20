@@ -72,30 +72,18 @@ class CoupleController extends Controller
      * @param  \App\Couple  $couple
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Couple $couple)
     {
         $rules = [
-            'groom_name' => 'required',
-            'bride_name' => 'required',
+            'name' => 'required',
         ];
-        $this->validate($request, $rules);
-        
-        $groom = Couple::find(1);
-        $bride = Couple::find(2);
-
-        $groom->update([
-            'name' => $request->groom_name,
-            'father' => $request->father_groom_name,
-            'mother' => $request->mother_groom_name,
-            'role' => 'groom'
-        ]);
-        $bride->update([
-            'name' => $request->bride_name,
-            'father' => $request->father_bride_name,
-            'mother' => $request->mother_bride_name,
-            'role' => 'bride'
-        ]);
-
+		$this->validate($request, $rules);
+		
+		$couple->update([
+			'name' => $request->name,
+			'father' => $request->father,
+			'mother' => $request->mother
+		]);
             
         Session::flash('success_msg', 'Couple information is sucessfully updated!');
 

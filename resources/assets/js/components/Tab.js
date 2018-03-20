@@ -52,7 +52,8 @@ export class CoupleTabs extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			'couple' : []
+			'couple' : [],
+			'key' : 1
 		}
 
 		this.requestData = this.requestData.bind(this);
@@ -60,7 +61,9 @@ export class CoupleTabs extends React.Component{
 	}
 
 	handleSelect(key){
-		this.props.onSelect(key);
+		this.setState({
+			'key' : key
+		});
 	}
 	requestData(){
 		axios.get('/api/couple')
@@ -77,7 +80,7 @@ export class CoupleTabs extends React.Component{
 	render(){
 		return (
 			<Tabs 
-				activeKey={this.props.activeTabKey} 
+				activeKey={this.state.key} 
 				onSelect={this.handleSelect}
 				animation
 				id="controlled-tab-example"
@@ -85,11 +88,11 @@ export class CoupleTabs extends React.Component{
 				{
 					this.state.couple.map(function(couple){
 						return (
-							<Tab key={couple.id} eventKey={couple.role} title={couple.role}>
-								<form>
-									<h1>{couple.role} Details </h1>
+							<Tab key={couple.id} eventKey={couple.id} title={couple.role}>
+								<h1>{couple.role} Details </h1>
+								<form action= {"/admin/couple/" + couple.id} method="POST">
 									<input type="hidden" name="_method" value="PATCH" />
-									<div className="form-group">
+									<div className="form-group">	
 										<label htmlFor="name">Name</label> 
 										<input type="text" name="name" className="form-control" id="name" defaultValue={couple.name} />
 									</div>
@@ -101,14 +104,14 @@ export class CoupleTabs extends React.Component{
 									Father
 									<div className="form-group">
 										<label htmlFor="fatherName">Name</label> 
-										<input type="text" name="father_name" className="form-control" id="fatherName" defaultValue={couple.father} />
+										<input type="text" name="father" className="form-control" id="fatherName" defaultValue={couple.father} />
 									</div>
 									<hr />
 
 									Mother
 									<div className="form-group">
 										<label htmlFor="motherName">Name</label> 
-										<input type="text" name="mother_name" className="form-control" id="motherName" defaultValue={couple.mother} />
+										<input type="text" name="mother" className="form-control" id="motherName" defaultValue={couple.mother} />
 									</div>
 									<div className="form-group">
 										<PrimaryButton type="submit" text="Update" />
