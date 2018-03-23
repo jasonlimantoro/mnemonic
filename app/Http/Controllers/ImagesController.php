@@ -58,13 +58,6 @@ class ImagesController extends Controller
 		$album = Album::find($request->album);
 
 		$album->images()->save($newImage);
-		// dd($request);
-		// $assignedAlbum = [
-		//    'album_id' => $request->album
-	   	// ];
-		// $newImage += $assignedAlbum;
-
-		// Image::create($newImage);
 
 		Session::flash('success_msg', 'Image is successfully uploaded!');
 
