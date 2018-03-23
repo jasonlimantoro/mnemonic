@@ -126,11 +126,12 @@ export class CoupleTabs extends React.Component{
 										<label htmlFor="motherName">Name</label> 
 										<input type="text" name="mother" className="form-control" id="motherName" defaultValue={couple.mother} />
 									</div>
+									<FancyInput image={coupleImage} useCustomImage i={couple.id} />
+
 									<div className="form-group">
 										<PrimaryButton type="submit" text="Update" />
 									</div>
 
-									<FancyInput image={coupleImage} useCustomImage i={couple.id} />
 								</form>
 							</Tab>	
 						);
