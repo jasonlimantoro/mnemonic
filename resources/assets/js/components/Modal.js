@@ -2,9 +2,6 @@ import React from "react";
 import { Modal, Tabs, Tab } from "react-bootstrap";
 import { DangerButton } from "./Button";
 import { MediaTabs } from "./Tab";
-import { InputFile } from "./Form";
-import { RequestImages } from "./Request";
-import { DisplayImagesFromInputFile } from "./DisplayImage";
 
 export class UploadModal extends React.Component {
     constructor(props) {
@@ -38,24 +35,8 @@ export class UploadModal extends React.Component {
                     <MediaTabs
                         tabKey = {this.state.tabKey}
                         onSelect = {this.changeTab}
-                        uploadContent = {
-                            <div>
-                                <InputFile 
-                                    label = "Open file browser"
-                                    labelClass = "btn btn-success"
-                                    name = "image"
-                                    onChange = {this.addFile}
-									i={this.props.i}
-                                />
-
-                                <DisplayImagesFromInputFile file={this.state.file} i={this.props.i} displayOutside />
-                            </div>
-                        }
-                        
-                        galleryContent = {
-                            <RequestImages source="/api/images" i={this.props.i} />
-                        }
-                        
+						file = {this.state.file}
+						i={this.props.i}
                     />
     
                 </Modal.Body>

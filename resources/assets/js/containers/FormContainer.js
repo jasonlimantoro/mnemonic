@@ -233,7 +233,7 @@ export class FancyInput extends React.Component {
             <div>
                 <PrimaryButton text="Upload Image" onClick={this.showModal} />
 				{/* preview */}
-                <div className={"preview" + '-' + this.props.i.toString() } style={{marginTop:20}}>{preview}</div>
+                <div id={"preview" + '-' + this.props.i.toString() } style={{marginTop:20}}>{preview}</div>
 				{/* old file */}
                 <input type="hidden" name="gallery_image" id={"inputGalleryImage" + '-' + this.props.i.toString()} />
 				{/* new file */}

@@ -1,7 +1,9 @@
 import React from "react";
 import { Tab, Tabs, Nav, NavItem, NavDropdown, MenuItem, Row, Col } from "react-bootstrap";
 import { FancyInput } from "../containers/FormContainer";
-
+import { InputFile } from "./Form";
+import { DisplayImagesFromInputFile } from "./DisplayImage";
+import { RequestImages } from "./Request";
 import { PrimaryButton } from "./Button";
 
 export class MediaTabs extends React.Component {
@@ -35,11 +37,21 @@ export class MediaTabs extends React.Component {
                         <Tab.Content animation>
                             <Tab.Pane eventKey="uploads">
                                 Upload images from your local computer
-                                {this.props.uploadContent}
+                                <InputFile 
+                                    label = "Open file browser"
+                                    labelClass = "btn btn-success"
+                                    name = "image"
+                                    onChange = {this.addFile}
+									i={this.props.i}
+                                />
+
+                                <DisplayImagesFromInputFile file={this.props.file} i={this.props.i} displayOutside />
+
                              </Tab.Pane>
                             <Tab.Pane eventKey="gallery">
                                 Or, use your gallery instead!
-                                {this.props.galleryContent}
+	                            <RequestImages source="/api/images" i={this.props.i} />
+
                             </Tab.Pane>
                         </Tab.Content>
                     </Col>
