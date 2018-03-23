@@ -1,5 +1,6 @@
 import React from "react";
 import { Tab, Tabs, Nav, NavItem, NavDropdown, MenuItem, Row, Col } from "react-bootstrap";
+import { FancyInput } from "../containers/FormContainer";
 
 import { PrimaryButton } from "./Button";
 
@@ -56,7 +57,6 @@ export class CoupleTabs extends React.Component{
 			'key' : 1
 		}
 
-		this.requestData = this.requestData.bind(this);
 		this.handleSelect = this.handleSelect.bind(this);
 	}
 
@@ -87,10 +87,11 @@ export class CoupleTabs extends React.Component{
 			>
 				{
 					this.state.couple.map(function(couple){
+						const coupleImage = couple.images[0] ? couple.images[0].url_cache : null;
 						return (
 							<Tab key={couple.id} eventKey={couple.id} title={couple.role}>
 								<h1>{couple.role} Details </h1>
-								<form action= {"/admin/couple/" + couple.id} method="POST">
+								<form action= {"/admin/couple/" + couple.id} method="POST" encType="multipart/form-data">
 									<input type="hidden" name="_method" value="PATCH" />
 									<div className="form-group">	
 										<label htmlFor="name">Name</label> 
@@ -116,6 +117,8 @@ export class CoupleTabs extends React.Component{
 									<div className="form-group">
 										<PrimaryButton type="submit" text="Update" />
 									</div>
+
+									<FancyInput image={coupleImage} useCustomImage />
 								</form>
 							</Tab>	
 						);

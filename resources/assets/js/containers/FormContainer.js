@@ -226,12 +226,14 @@ export class FancyInput extends React.Component {
     render() {
         const inputStyle = {
             'display' : 'none'
-        };
+		};
+		
+		const preview = this.props.useCustomImage && this.props.image ? <img src={this.props.image} alt="image" className="img-responsive" /> : 'No file uploaded';
         return (
             <div>
                 <PrimaryButton text="Upload Image" onClick={this.showModal} />
 
-                <div className="preview" style={{marginTop:20}}>No file uploaded</div>
+                <div className="preview" style={{marginTop:20}}>{preview}</div>
                 <input type="hidden" name="gallery_image" id="inputGalleryImage" />
                 <input type="file" name="image" id="inputFileOutside" style={inputStyle} />
                 <UploadModal show={this.state.modalShow} onHide={this.closeModal} />
@@ -240,4 +242,7 @@ export class FancyInput extends React.Component {
         );
     }
 }
-
+FancyInput.defaultProps = {
+	useCustomImage: false,
+	image: null
+}
