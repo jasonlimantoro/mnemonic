@@ -1,42 +1,38 @@
 import React from "react";
 
 function DisplayOutside(file, fromGallery=true, i=1){
-    var preview = document.querySelector('.preview-' + i.toString());
+    var preview = document.querySelector('#preview-' + i.toString());
 
-    // while (preview.firstChild) {
-    //     preview.removeChild(preview.firstChild);
-	// }
-
-
-
-    if (!file) {
-        // var para = document.createElement('p');
-        // para.textContent = "No file uploaded";
-        // preview.appendChild(para);
-    } 
-    else {
+    if (file) {
 		while (preview.firstChild) {
 			preview.removeChild(preview.firstChild);
 		}
-        var divItem = document.createElement('div');
-        var para = document.createElement('p');
-        para.textContent = file.name;
-        var img = document.createElement('img');
-        if (fromGallery) {
-            img.src = file.url_cache;
-        }
-        else {
-            // from input file
-            img.src = window.URL.createObjectURL(file);
-        }
-        img.classList.add('img-responsive');
+		// const src = fromGallery ? file.url_cache : window.URL.createObjectURL(file);
+		// const result = (
+		// 	<div>
+		// 		<img src={src} alt="" className="img-responsive"/>
+		// 		<p>{file.name}</p>
+		// 	</div>
+		// );
+		var img = document.createElement('img');
+		img.classList.add('img-responsive');
+		if (fromGallery) {
+			img.src = file.url_cache;
+		}
+		else {
+			// from input file
+			img.src = window.URL.createObjectURL(file);
+		}
+		var divItem = document.createElement('div');
+		var para = document.createElement('p');
+		para.textContent = file.name;
+	
+		divItem.appendChild(img);
+		divItem.appendChild(para);
+		
+		preview.appendChild(divItem);
 
-        divItem.appendChild(img);
-        divItem.appendChild(para);
-        
-        preview.appendChild(divItem);
-        
-    }
+    } 
 }
 export class DisplayImagesFromInputFile extends React.Component {
     constructor(props){
