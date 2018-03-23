@@ -134,7 +134,29 @@ class ImagesTableSeeder extends Seeder
 					'imageable_type' => 'App\Carousel',
                     'created_at' => NOW(),
                     'updated_at' => NOW()
+				],
+				[
+                    'featured' => 0,
+                    'caption' => null,
+                    'file_name' => 'groom.jpg',
+                    'url_asset' => url('/uploads/groom.jpg'),
+                    'url_cache' => url('/imagecache/gallery/groom.jpg'),
+					'imageable_id' => 4,
+					'imageable_type' => "App\Album",
+                    'created_at' => NOW(),
+                    'updated_at' => NOW()
                 ],
+                [
+                    'featured' => 0,
+                    'caption' => null,
+                    'file_name' => 'bride.jpg',
+                    'url_asset' => url('/uploads/bride.jpg'),
+                    'url_cache' => url('/imagecache/gallery/bride.jpg'),
+					'imageable_id' => 4,
+					'imageable_type' => "App\Album",
+                    'created_at' => NOW(),
+                    'updated_at' => NOW()
+				],
                 [
                     'featured' => 0,
                     'caption' => null,
