@@ -115,8 +115,8 @@ export class InputFile extends React.Component {
         this.props.onChange(files);
 
         // to pass the selected file into another input[type="file"] (if necessary, e.g. for CarouselForm)
-        if (document.getElementById('inputFileOutside')) {
-            document.getElementById('inputFileOutside').files = files;
+        if (document.getElementById('inputFileOutside' + '-' + this.props.i.toString())) {
+            document.getElementById('inputFileOutside' + '-' + this.props.i.toString()).files = files;
         }
     }
 

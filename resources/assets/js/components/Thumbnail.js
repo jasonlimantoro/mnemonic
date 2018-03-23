@@ -12,7 +12,7 @@ export class ThumbnailGallery extends React.Component {
         const activeClass = this.props.isActive ? 'active' : '';
         var display = '';
         if(this.props.isActive) {
-            display = <DisplayImagesFromSelectedGallery file={this.props.selectedImage} />;
+            display = <DisplayImagesFromSelectedGallery file={this.props.selectedImage} i={this.props.i} />;
         }
         
         return (

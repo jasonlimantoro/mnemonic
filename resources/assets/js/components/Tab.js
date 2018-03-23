@@ -118,7 +118,7 @@ export class CoupleTabs extends React.Component{
 										<PrimaryButton type="submit" text="Update" />
 									</div>
 
-									<FancyInput image={coupleImage} useCustomImage />
+									<FancyInput image={coupleImage} useCustomImage i={couple.id} />
 								</form>
 							</Tab>	
 						);

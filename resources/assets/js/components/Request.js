@@ -12,7 +12,6 @@ export class RequestImages extends React.Component {
                 id: null,
             }
         };
-        this.requestData = this.requestData.bind(this);
         this.handleClick = this.handleClick.bind(this);
     }
     
@@ -31,7 +30,7 @@ export class RequestImages extends React.Component {
             selectedImage: image
         });
         const fileName = image.file_name;
-        document.getElementById('inputGalleryImage').value = fileName;
+        document.getElementById('inputGalleryImage' + '-' + this.props.i.toString()).value = fileName;
     }
 
     componentDidMount(){
@@ -54,6 +53,7 @@ export class RequestImages extends React.Component {
                                     sourceImage={galleryCacheUrl}
                                     title={image.file_name}
                                     description={image.created_at}
+									i={this.props.i}
                                 />
                             </div>
                         </div>

@@ -232,11 +232,13 @@ export class FancyInput extends React.Component {
         return (
             <div>
                 <PrimaryButton text="Upload Image" onClick={this.showModal} />
-
-                <div className="preview" style={{marginTop:20}}>{preview}</div>
-                <input type="hidden" name="gallery_image" id="inputGalleryImage" />
-                <input type="file" name="image" id="inputFileOutside" style={inputStyle} />
-                <UploadModal show={this.state.modalShow} onHide={this.closeModal} />
+				{/* preview */}
+                <div className={"preview" + '-' + this.props.i.toString() } style={{marginTop:20}}>{preview}</div>
+				{/* old file */}
+                <input type="hidden" name="gallery_image" id={"inputGalleryImage" + '-' + this.props.i.toString()} />
+				{/* new file */}
+                <input type="file" name="image" id={"inputFileOutside" + '-' + this.props.i.toString()} style={inputStyle} />
+                <UploadModal show={this.state.modalShow} onHide={this.closeModal} i={this.props.i} />
             </div>
 
         );
@@ -244,5 +246,6 @@ export class FancyInput extends React.Component {
 }
 FancyInput.defaultProps = {
 	useCustomImage: false,
-	image: null
+	image: null,
+	i : 1 
 }

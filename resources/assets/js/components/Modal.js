@@ -45,14 +45,15 @@ export class UploadModal extends React.Component {
                                     labelClass = "btn btn-success"
                                     name = "image"
                                     onChange = {this.addFile}
+									i={this.props.i}
                                 />
 
-                                <DisplayImagesFromInputFile file={this.state.file} displayOutside={true} />
+                                <DisplayImagesFromInputFile file={this.state.file} i={this.props.i} displayOutside />
                             </div>
                         }
                         
                         galleryContent = {
-                            <RequestImages source="/api/images" />
+                            <RequestImages source="/api/images" i={this.props.i} />
                         }
                         
                     />
