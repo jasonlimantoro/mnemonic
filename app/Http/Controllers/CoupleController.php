@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Couple;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Image;
 
 class CoupleController extends Controller
 {
@@ -79,12 +80,17 @@ class CoupleController extends Controller
         ];
 		$this->validate($request, $rules);
 		
+		$coupleImage = Image::handleUpload($request);
+		if($coupleImage){
+			$couple->addImage($coupleImage);
+		}
+
 		$couple->update([
 			'name' => $request->name,
 			'father' => $request->father,
 			'mother' => $request->mother
 		]);
-            
+
         Session::flash('success_msg', 'Couple information is sucessfully updated!');
 
         return back();
@@ -103,6 +109,6 @@ class CoupleController extends Controller
 	}
 	
 	public function showJSON(){
-		return Couple::all();
+		return Couple::with('images')->get();
 	}
 }

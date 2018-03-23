@@ -2,16 +2,35 @@
 namespace App;
 
 use App\Image;
+use App\Album;
 
 class Couple extends Model
 {
 	// custom table name
 	protected $table = 'couple';
-
 	// no timestamps is needed
 	public $timestamps = false;
+
+	public $defaultState;
 	
+	public function __construct(){
+		$this->defaultState = Album::uncategorizedAlbum();
+	}
 	public function images(){
 		return $this->morphMany(Image::class, 'imageable');
+	}
+
+	public function addImage($coupleImage){
+		if($oldImage = $this->images()->first()){
+			// delete the old image
+			$oldImage->delete();
+		}
+		$imageExist = Image::firstorNew($coupleImage);
+		if(!$imageExist->exists){
+			// add to uncategorized album if this is a new resource
+			$this->defaultState->images()->create($coupleImage);
+		}
+		// create a new Image for this couple
+		$this->images()->create($coupleImage);
 	}
 }
