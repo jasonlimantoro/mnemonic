@@ -46,9 +46,12 @@ Route::prefix('admin')->group(function(){
 	Route::prefix('/pages/{page}')->group(function(){
 		Route::resource('posts', 'PostsController');
 	});
+
+	// Event
+	Route::resource('events', 'EventsController', ['except' => ['index']]);
+	Route::get('wedding/event', 'BackendController@event')->name('events.index');
 });
 
-// Route::get('/admin/wedding/event', 'BackendController@event');
 Route::get('/admin/wedding/bridesmaid-and-bestman', 'BackendController@brides');
 Route::get('/admin/wedding/vendors', 'BackendController@vendors');
 Route::get('/admin/wedding/rsvp', 'BackendController@rsvp');

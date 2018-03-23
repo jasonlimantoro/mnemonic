@@ -13,6 +13,7 @@ use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\AlbumsController;
 use App\Http\Controllers\CoupleController;
+use App\Http\Controllers\EventsController;
 
 use Illuminate\Support\Facades\DB;
 
@@ -64,7 +65,8 @@ class BackendController extends Controller
     }
 
     public function event() {
-        return view('backend.wedding.event');
+		$eventInstance = new EventsController;
+        return $eventInstance->index();
     }
 
     public function brides() {
