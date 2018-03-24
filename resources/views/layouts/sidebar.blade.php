@@ -1,5 +1,5 @@
 <!-- Sidebar Holder -->
-<nav id="sidebar">
+<nav id="sidebar" class="active">
 	<div class="sidebar-header">
 		<a href="{{ route('admin') }}"> 
 			<h3>Mnemonic</h3>
