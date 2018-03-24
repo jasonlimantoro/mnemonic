@@ -22,13 +22,11 @@
 			@include('layouts.sidebar')
 
 			<!-- Page Content Holder -->
-            <div class="container">
-                <div id="content">
+            <div class="container backend" id="content">
                     @include('layouts.header')
                     @include('layouts.success')
                     @include('layouts.error')
                     @yield('content')
-                </div>
             </div>
 		</div>
 
