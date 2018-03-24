@@ -61,7 +61,11 @@
 						<div class="col-md-6">
 							<div class="form-group current-image">
 								<p><strong> Current Image</strong></p>
-								<img src="{{ $event->images()->first()->url_cache }}" alt="event" class="img-responsive">
+								@if ($eventImage)
+									<img src="{{ $eventImage }}" alt="event" class="img-responsive">
+								@else
+									<p>No Image uploaded</p>
+								@endif	
 							</div>
 							<div class="form-group">
 								<div class="__react-root" id="FancyInput"></div>
