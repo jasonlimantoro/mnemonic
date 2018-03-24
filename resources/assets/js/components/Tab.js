@@ -9,11 +9,21 @@ import { PrimaryButton } from "./Button";
 export class MediaTabs extends React.Component {
     constructor(props) {
         super(props);
-        this.handleSelect = this.handleSelect.bind(this);
+		this.state = {
+			file : {}
+		}
+		this.handleSelect = this.handleSelect.bind(this);
+		this.addFile = this.addFile.bind(this);
     }
 
     handleSelect(key) {
         this.props.onSelect(key);
+	}
+
+    addFile(newFile) {
+        this.setState({
+            file: newFile
+        });
     }
     render() {
         return (
@@ -45,7 +55,7 @@ export class MediaTabs extends React.Component {
 									i={this.props.i}
                                 />
 
-                                <DisplayImagesFromInputFile file={this.props.file} i={this.props.i} displayOutside />
+                                <DisplayImagesFromInputFile file={this.state.file} i={this.props.i} displayOutside />
 
                              </Tab.Pane>
                             <Tab.Pane eventKey="gallery">

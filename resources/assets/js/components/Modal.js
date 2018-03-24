@@ -10,14 +10,7 @@ export class UploadModal extends React.Component {
             file : {},
             tabKey: 'uploads'
         };
-        this.addFile = this.addFile.bind(this);
         this.changeTab = this.changeTab.bind(this);
-    }
-
-    addFile(newFile) {
-        this.setState({
-            file: newFile
-        });
     }
     
     changeTab(newKey) {
