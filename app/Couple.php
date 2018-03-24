@@ -12,10 +12,13 @@ class Couple extends Model
 	public $timestamps = false;
 
 	public $defaultState;
-	
-	public function __construct(){
+
+	public function __construct(array $attributes = [])
+	{
+		parent::__construct($attributes);
 		$this->defaultState = Album::uncategorizedAlbum();
 	}
+
 	public function images(){
 		return $this->morphMany(Image::class, 'imageable');
 	}
