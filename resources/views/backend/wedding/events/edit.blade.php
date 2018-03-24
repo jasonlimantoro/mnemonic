@@ -27,12 +27,20 @@
 									id="formControlName" 
 									name="name"
 									value="{{ $event->name }}"
+									placeholder="Event name"
 								>
 							</div>
 	
 							<div class="form-group">
 								<label for="formControlDescription">Event Description</label>
-								<textarea name="description" id="formControlDescription" cols="30" rows="10" placeholder="Enter Description" class="form-control">{{ $event->description }}</textarea>
+								<textarea 
+									name="description" 
+									id="formControlDescription" 
+									cols="30" 
+									rows="10" 
+									placeholder="Event description" 
+									class="form-control"
+								>{{ $event->description }}</textarea>
 							</div>
 	
 							<div class="form-group">
@@ -43,6 +51,7 @@
 									id="formControllocation" 
 									name="location"
 									value="{{ $event->location}}"
+									placeholder="Event location"
 								>
 							</div>
 							<div class="form-group">

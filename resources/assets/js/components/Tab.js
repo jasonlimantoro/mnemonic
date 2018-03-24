@@ -115,31 +115,64 @@ export class CoupleTabs extends React.Component{
 								<h1>{couple.role} Details </h1>
 								<form action= {"/admin/wedding/couple/" + couple.id} method="POST" encType="multipart/form-data">
 									<input type="hidden" name="_method" value="PATCH" />
-									<div className="form-group">	
-										<label htmlFor="name">Name</label> 
-										<input type="text" name="name" className="form-control" id="name" defaultValue={couple.name} />
-									</div>
-									{/* <div className="form-group">
-										<input type="text" name="relation" className="form-control"  disabled />
-									</div> */}
-									<hr />
+									<div className="col-md-6">
+										<div className="form-group">	
+											<label htmlFor="name">Name</label> 
+											<input 
+												type="text" 
+												name="name" 
+												className="form-control" 
+												id="name" 
+												defaultValue={couple.name}
+												placeholder={couple.role + ' name'}
+											/>
+										</div>
+										{/* <div className="form-group">
+											<input type="text" name="relation" className="form-control"  disabled />
+										</div> */}
 
-									Father
-									<div className="form-group">
-										<label htmlFor="fatherName">Name</label> 
-										<input type="text" name="father" className="form-control" id="fatherName" defaultValue={couple.father} />
-									</div>
-									<hr />
+										<div className="form-group">
+											<label htmlFor="fatherName">Father</label> 
+											<input 
+												type="text" 
+												name="father" 
+												className="form-control" 
+												id="fatherName" 
+												defaultValue={couple.father}
+												placeholder={couple.role + ' father name'}
+											/>
+										</div>
 
-									Mother
-									<div className="form-group">
-										<label htmlFor="motherName">Name</label> 
-										<input type="text" name="mother" className="form-control" id="motherName" defaultValue={couple.mother} />
-									</div>
-									<FancyInput image={coupleImage} useCustomImage i={couple.id} />
+										<div className="form-group">
+											<label htmlFor="motherName">Mother</label> 
+											<input 
+												type="text" 
+												name="mother" 
+												className="form-control" 
+												id="motherName" 
+												defaultValue={couple.mother} 
+												placeholder={couple.role + ' mother name'}
+											/>
+										</div>
 
-									<div className="form-group">
-										<PrimaryButton type="submit" text="Update" />
+										<div className="form-group">
+											<PrimaryButton type="submit" text="Update" />
+										</div>
+
+									</div>
+
+									<div className="col-md-6">
+										<div className="form-group">
+											<p><strong>Current Image</strong></p>
+											{coupleImage ? 
+												(<img src={coupleImage} alt="coupleImage" className="img-responsive"/>) 
+												: 
+												(<p>No image uploaded</p>)
+											}
+										</div>
+										<div className="form-group">
+											<FancyInput i={couple.id} />
+										</div>
 									</div>
 
 								</form>
