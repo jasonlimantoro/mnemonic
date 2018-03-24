@@ -103,7 +103,7 @@ export class CoupleTabs extends React.Component{
 						return (
 							<Tab key={couple.id} eventKey={couple.id} title={couple.role}>
 								<h1>{couple.role} Details </h1>
-								<form action= {"/admin/couple/" + couple.id} method="POST" encType="multipart/form-data">
+								<form action= {"/admin/wedding/couple/" + couple.id} method="POST" encType="multipart/form-data">
 									<input type="hidden" name="_method" value="PATCH" />
 									<div className="form-group">	
 										<label htmlFor="name">Name</label> 

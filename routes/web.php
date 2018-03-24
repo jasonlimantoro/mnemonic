@@ -38,17 +38,18 @@ Route::prefix('admin')->group(function(){
 		});
 	});
 
-	// couple
-	Route::resource('couple', 'CoupleController', ['only' => ['store', 'update']]);
-	Route::get('/couple', 'BackendController@couple')->name('couple.index');
-
+	
 	// posts
 	Route::prefix('/pages/{page}')->group(function(){
 		Route::resource('posts', 'PostsController');
 	});
-
-	// Event
+	
 	Route::prefix('wedding')->group(function(){
+		// couple
+		Route::resource('couple', 'CoupleController', ['only' => ['store', 'update']]);
+		Route::get('/couple', 'BackendController@couple')->name('couple.index');
+
+		// Event
 		Route::resource('events', 'EventsController', ['except' => ['index']]);
 		Route::get('events', 'BackendController@event')->name('events.index');
 	});
