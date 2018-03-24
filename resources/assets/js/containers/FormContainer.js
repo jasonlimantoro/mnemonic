@@ -231,13 +231,19 @@ export class FancyInput extends React.Component {
 		const preview = this.props.useCustomImage && this.props.image ? <img src={this.props.image} alt="image" className="img-responsive" /> : 'No file uploaded';
         return (
             <div>
-                <PrimaryButton text="Upload Image" onClick={this.showModal} />
-				{/* preview */}
-                <div id={"preview" + '-' + this.props.i.toString() } style={{marginTop:20}}>{preview}</div>
 				{/* old file */}
                 <input type="hidden" name="gallery_image" id={"inputGalleryImage" + '-' + this.props.i.toString()} />
 				{/* new file */}
                 <input type="file" name="image" id={"inputFileOutside" + '-' + this.props.i.toString()} style={inputStyle} />
+
+				<div className="form-group">
+					{/* preview */}
+					<p><strong>New Image</strong></p>
+					<div id={"preview" + '-' + this.props.i.toString() } className="new-image">{preview}</div>
+				</div>
+				<div className="form-group">
+					<PrimaryButton text="Upload Image" onClick={this.showModal} />
+				</div>
                 <UploadModal show={this.state.modalShow} onHide={this.closeModal} i={this.props.i} />
             </div>
 

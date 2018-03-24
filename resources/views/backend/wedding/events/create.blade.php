@@ -69,7 +69,6 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="FancyInput">Upload File</label>
 									<div class="__react-root" id="FancyInput"></div>
 								</div>
 							</div>

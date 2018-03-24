@@ -68,13 +68,15 @@
 						</div>
 
 						<div class="col-md-6">
-							<div class="form-group current-image">
+							<div class="form-group">
 								<p><strong> Current Image</strong></p>
-								@if ($eventImage)
-									<img src="{{ $eventImage }}" alt="event" class="img-responsive">
-								@else
-									<p>No Image uploaded</p>
-								@endif	
+								<div class="current-image">
+									@if ($eventImage)
+										<img src="{{ $eventImage }}" alt="event" class="img-responsive">
+									@else
+										<p>No Image uploaded</p>
+									@endif	
+								</div>
 							</div>
 							<div class="form-group">
 								<div class="__react-root" id="FancyInput"></div>

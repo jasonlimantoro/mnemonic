@@ -164,11 +164,13 @@ export class CoupleTabs extends React.Component{
 									<div className="col-md-6">
 										<div className="form-group">
 											<p><strong>Current Image</strong></p>
-											{coupleImage ? 
-												(<img src={coupleImage} alt="coupleImage" className="img-responsive"/>) 
-												: 
-												(<p>No image uploaded</p>)
-											}
+											<div className="current-image">
+												{coupleImage ? 
+													(<img src={coupleImage} alt="coupleImage" className="img-responsive"/>) 
+													: 
+													(<p className="no-current-image">No image uploaded</p>)
+												}
+											</div>
 										</div>
 										<div className="form-group">
 											<FancyInput i={couple.id} />
