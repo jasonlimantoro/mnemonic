@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
+use App\Image;
 
 class EventsController extends Controller
 {
@@ -42,7 +43,16 @@ class EventsController extends Controller
 	   ];
 
 	   $this->validate($request, $rules);
-	   $event = Event::create($request->all());
+	   $event = Event::create([
+		   'name' => $request->name,
+		   'description' => $request->description,
+		   'location' => $request->location,
+		   'datetime' => $request->datetime
+	   ]);
+	   $eventImage = Image::handleUpload($request);
+	   if($eventImage){
+			$event->addImage($eventImage);
+	   }
 
 	   \Session::flash('success_msg', 'Event is successfully created!');
 
@@ -87,7 +97,16 @@ class EventsController extends Controller
 		];
 		$this->validate($request, $rules);
 
-		$event->update($request->all());
+		$eventImage = Image::handleUpload($request);
+		if($eventImage){
+			$event->addImage($eventImage);
+		}
+		$event->update([
+		   'name' => $request->name,
+		   'description' => $request->description,
+		   'location' => $request->location,
+		   'datetime' => $request->datetime
+	   ]);
 
 		\Session::flash('success_msg', 'Event is successfully updated!');
 
