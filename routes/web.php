@@ -46,8 +46,8 @@ Route::prefix('admin')->group(function(){
 	
 	Route::prefix('wedding')->group(function(){
 		// couple
-		Route::resource('couple', 'CoupleController', ['only' => ['store', 'update']]);
-		Route::get('/couple', 'BackendController@couple')->name('couple.index');
+		Route::resource('couple', 'CoupleController', ['only' => ['update']]);
+		Route::get('couple', 'BackendController@couple')->name('couple.edit');
 
 		// Event
 		Route::resource('events', 'EventsController', ['except' => ['index']]);

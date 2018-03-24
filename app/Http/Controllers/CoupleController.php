@@ -60,10 +60,7 @@ class CoupleController extends Controller
      */
     public function edit()
     {
-        //
-        $groom = Couple::find(1);
-        $bride = Couple::find(2);
-        return view('backend.wedding.couple', compact(['groom', 'bride']));
+        return view('backend.wedding.couple');
     }
 
     /**

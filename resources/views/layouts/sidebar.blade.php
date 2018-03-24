@@ -43,7 +43,7 @@
 			</a>
 			<ul class="collapse list-unstyled" id="weddingSubmenu">
 					<li>
-						<a href="{{ route('couple.index') }}">Couple</a>
+						<a href="{{ route('couple.edit') }}">Couple</a>
 					</li>
 					<li>
 						<a href="{{ route('events.index') }}">Event</a>
