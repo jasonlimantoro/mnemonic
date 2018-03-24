@@ -14,3 +14,10 @@ let mix = require('laravel-mix');
 mix.react('resources/assets/js/main.js', 'public/js/main.js')
    .sass('resources/assets/sass/main.scss', 'public/css/main.css')
    .sourceMaps();
+
+mix.browserSync({
+	proxy : {
+		target : "http://mnemonic.test"
+	},
+	port : 8000
+});
