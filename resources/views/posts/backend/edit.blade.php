@@ -1,9 +1,10 @@
 @extends('layouts.submaster')
 
 @section('content')
-    @component('layouts.panel', ['backButton' => '', 'addButton' => ''])
+    @component('layouts.panel')
         @slot('backButton')
-            @component('layouts.backButton', [
+			@component('layouts.backButton', 
+			[
                 'text' => 'Show All Posts in ' . $page->title,
                 'url' => route('posts.index', ['page' => $page->id])
             ])

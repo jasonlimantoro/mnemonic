@@ -1,8 +1,8 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        {{ $backButton}}
+        {{ $backButton or null }}
         <h1 class="title">{{ $title }}
-            {{ $addButton }}
+            {{ $addButton or null  }}
         </h1>
     </div>
 
