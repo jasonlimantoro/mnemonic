@@ -58,7 +58,7 @@ class EventsController extends Controller
      */
     public function show(Event $event)
     {
-        //
+		return view('backend.wedding.events.show', compact('event'));
     }
 
     /**
@@ -69,7 +69,7 @@ class EventsController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+		return view('backend.wedding.events.edit', compact('event'));
     }
 
     /**
@@ -81,7 +81,18 @@ class EventsController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        //
+        $rules = [
+			'name' => 'required',
+			'datetime' => 'required|date|after:today'
+		];
+		$this->validate($request, $rules);
+
+		$event->update($request->all());
+
+		\Session::flash('success_msg', 'Event is successfully updated!');
+
+		return back();
+
     }
 
     /**
@@ -92,6 +103,8 @@ class EventsController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+		$event->delete();
+		\Session::flash('success_msg', 'Event is successfully deleted!');
+		return back();
     }
 }

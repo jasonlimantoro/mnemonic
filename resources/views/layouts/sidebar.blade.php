@@ -46,7 +46,7 @@
 						<a href="{{ route('couple.index') }}">Couple</a>
 					</li>
 					<li>
-						<a href="{{ route('admin') }}/wedding/event">Event</a>
+						<a href="{{ route('events.index') }}">Event</a>
 					</li>
 					<li>
 						<a href="{{ route('admin') }}/wedding/bridesmaid-and-bestman">Bridesmaid & Bestman</a>

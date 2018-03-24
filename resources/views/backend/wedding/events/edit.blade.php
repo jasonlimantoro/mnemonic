@@ -1,24 +1,23 @@
+
 @extends('layouts.submaster')
 
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @component('layouts.panel', ['addButton' => ''])
+            @component('layouts.panel', ['backButton' => '', 'addButton' => ''])
                 @slot('backButton')
                     @component('layouts.backButton', [
-                        'text' => 'Show all events',
-                        'url' => route('events.index')
+                        'text' => 'Back',
+                        'url' => route('events.index'),
                     ])
                         
-                    @endcomponent
+                    @endcomponent @endslot @slot('title')
+                   Event: {{ $event->name }} 
                 @endslot
-                @slot('title')
-                    Create a new Event 
-                @endslot
-
 
                 @slot('body')
-                    <form action="{{ route('events.store') }}" method="POST">
+					<form action="{{ route('events.update', ['event' => $event->id ]) }}" method="POST">
+						{{ method_field('PATCH') }}
                         <div class="form-group">
                             <label for="formControlName">Event Name</label>
                             <input 
@@ -26,13 +25,13 @@
                                 class="form-control" 
                                 id="formControlName" 
 								name="name"
-								placeholder="Enter name"
+								value="{{ $event->name }}"
                             >
                         </div>
 
                         <div class="form-group">
-							<label for="formControlDescription">Event Description</label>
-							<textarea name="description" id="formControlDescription" cols="30" rows="10" placeholder="Enter Description" class="form-control"></textarea>
+                            <label for="formControlDescription">Event Description</label>
+							<textarea name="description" id="formControlDescription" cols="30" rows="10" placeholder="Enter Description" class="form-control">{{ $event->description }}</textarea>
                         </div>
 
                         <div class="form-group">
@@ -41,21 +40,21 @@
                                 type="text" 
                                 class="form-control" 
                                 id="formControllocation" 
-								name="location"
-								placeholder="Enter location"
+                                name="location"
+								value="{{ $event->location}}"
                             >
                         </div>
                         <div class="form-group">
                             <label for="formControldateTime">Event Date Time</label>
                             <input
 								type="datetime-local" 
-								value="{{ date('Y-m-d\TH:i') }}"
                                 class="form-control" 
                                 id="formControldateTime" 
-								name="datetime"
+                                name="datetime"
+								value="{{ DateTime::createFromFormat('Y-m-d H:i:s', $event->datetime)->format('Y-m-d\TH:i') }}"
                             >
                         </div>
-                        <button type="submit" class="btn btn-primary">Publish</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
 
                     </form>
                     

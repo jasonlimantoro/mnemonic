@@ -37,7 +37,7 @@
         </div>
         <div>
 
-		<form action="{{ route('events.destroy', [ 'event' => $event->id ]) }}" method="event" id={{ "form-delete-events-" . $event->id  }}>
+		<form action="{{ route('events.destroy', [ 'event' => $event->id ]) }}" method="POST" id={{ "form-delete-events-" . $event->id  }}>
 			{{ method_field('DELETE') }}
             <a 
                 href="" 
