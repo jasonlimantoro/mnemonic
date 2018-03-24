@@ -3,7 +3,9 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @component('layouts.panel', ['addButton' => ''])
+            @component('layouts.panel', [
+				'title' => $album->name
+			])
                 @slot('backButton')
                     @component('layouts.backButton', [
                         'text' => 'Show all albums',
@@ -12,10 +14,6 @@
                         
                     @endcomponent
                 @endslot
-                @slot('title')
-                    Album: {{ $album->name}}
-                @endslot
-
 
                 @slot('body')
                 <p>Featured Image: </p>

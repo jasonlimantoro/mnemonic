@@ -3,7 +3,9 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @component('layouts.panel', ['addButton' => ''])
+            @component('layouts.panel', [
+				'title' => "Create a new event"
+			])
                 @slot('backButton')
                     @component('layouts.backButton', [
                         'text' => 'Show all events',
@@ -12,11 +14,6 @@
                         
                     @endcomponent
                 @endslot
-                @slot('title')
-                    Create a new Event 
-                @endslot
-
-
 				@slot('body')
 					<form action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data">
 						<div class="row">

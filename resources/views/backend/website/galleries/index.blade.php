@@ -3,11 +3,9 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @component('layouts.panel')
-                @slot('title')
-                    Gallery
-                @endslot
-
+            @component('layouts.panel', [
+				'title' => "Gallery"
+			])
                 @slot('addButton')
                     @component('layouts.addButton', [
                         'item' => 'Images',

@@ -3,10 +3,9 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @component('layouts.panel')
-                @slot('title')
-                   Main Carousel
-                @endslot
+            @component('layouts.panel', [
+				'title' => "Main Carousel"
+			])
                 @slot('addButton')
                     @component('layouts.addButton',
                     [
@@ -19,8 +18,6 @@
                 @slot('body')
                     <h3>Your Carousel Images</h3>
                     @include('backend.website.carousel.index')
-                    
-                    {{--  @include('backend.website.carousel.form')  --}}
                 @endslot
             @endcomponent
         </div>

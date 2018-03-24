@@ -3,16 +3,14 @@
 @section('content')
 	<div class="row">
 		<div class="col-md-12">
-			@component('layouts.panel')
-				@slot('title')
-					{{ $page->title }} 
-				@endslot
+			@component('layouts.panel', [
+				'title' => $page->title
+			])
 				@slot('addButton')
-					@component('layouts.addButton', 
-						[
-							'item' => "Post", 
-							'url' => route('posts.create', ['page' => $page->id ])
-						])
+					@component('layouts.addButton', [
+						'item' => "Post", 
+						'url' => route('posts.create', ['page' => $page->id ])
+					])
 					@endcomponent
 				@endslot
 				@slot('body')

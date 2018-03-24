@@ -3,19 +3,16 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @component('layouts.panel', ['addButton' => ''])
+            @component('layouts.panel', [
+				'title' => 'Create a new album'
+			])
                 @slot('backButton')
                     @component('layouts.backButton', [
                         'text' => 'Show all albums',
                         'url' => route('albums.index')
                     ])
-                        
                     @endcomponent
                 @endslot
-                @slot('title')
-                    Create a new Album
-                @endslot
-
 
                 @slot('body')
                     <form action="{{ route('albums.store') }}" method="POST">

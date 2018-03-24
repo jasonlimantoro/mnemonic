@@ -3,7 +3,9 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @component('layouts.panel')
+            @component('layouts.panel', [
+				'title' => $image->file_name
+			])
                 @slot('backButton')
                     @component('layouts.backButton', [
                         'text' => 'Back',
@@ -12,10 +14,6 @@
                         
                     @endcomponent
                 @endslot
-                @slot('title')
-                    {{ $image->file_name }}
-                @endslot
-
                 @slot('addButton')
                     @component('layouts.addButton', [
                         'url' => '#',

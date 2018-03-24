@@ -4,17 +4,17 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @component('layouts.panel')
+            @component('layouts.panel', [
+				'title' => "Event: " . $event->name
+			])
                 @slot('backButton')
                     @component('layouts.backButton', [
                         'text' => 'Back',
                         'url' => route('events.index'),
                     ])
                         
-                    @endcomponent @endslot @slot('title')
-                   Event: {{ $event->name }} 
-                @endslot
-
+					@endcomponent 
+				@endslot 
 				@slot('body')
 					<form action="{{ route('events.update', ['event' => $event->id ]) }}" method="POST" enctype="multipart/form-data">
 						{{ method_field('PATCH') }}

@@ -3,17 +3,15 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @component('layouts.panel')
+            @component('layouts.panel', [
+				'title' => "Album: " . $album->name
+			])
                 @slot('backButton')
                     @component('layouts.backButton', [
                         'text' => 'Show all albums',
                         'url' => route('albums.index')
                     ])
-                        
                     @endcomponent
-                @endslot
-                @slot('title')
-                    Album: {{ $album->name}}
                 @endslot
 
                 @slot('addButton')
@@ -21,7 +19,6 @@
                         'url' => route('album.images.create', ['album' => $album->id ]),
                         'item' => 'images'
                     ])
-                        
                     @endcomponent
                 @endslot
 

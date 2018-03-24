@@ -3,7 +3,9 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @component('layouts.panel')
+            @component('layouts.panel', [
+				'title' => $page->title
+			])
                 @slot('backButton')
                     {{--  @include('layouts.show-all-post-btn')  --}}
                     @component('layouts.backButton', [
@@ -12,10 +14,6 @@
                     ])
                         
                     @endcomponent
-                @endslot
-
-                @slot('title')
-                    {{ $page->title }}
                 @endslot
 
                 @slot('body')

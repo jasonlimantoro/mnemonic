@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @component('layouts.panel', ['addButton' => ''])
+            @component('layouts.panel')
                 @slot('backButton')
                     @component('layouts.backButton', [
                         'text' => 'Show all events',

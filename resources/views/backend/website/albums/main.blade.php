@@ -3,11 +3,9 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @component('layouts.panel', ['backButton' => ''])
-                @slot('title')
-                   Albums
-                @endslot
-
+            @component('layouts.panel', [
+				'title' => 'Albums'
+			])
                 @slot('addButton')
                     @component('layouts.addButton', [
                         'url' => route('albums.create'),

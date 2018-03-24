@@ -3,7 +3,9 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @component('layouts.panel')
+            @component('layouts.panel', [
+				'title' => "Gallery"
+			])
                 @slot('backButton')
                     @component('layouts.backButton', [
                         'text' => 'Show all galleries',

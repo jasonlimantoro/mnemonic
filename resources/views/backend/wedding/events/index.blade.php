@@ -3,11 +3,9 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @component('layouts.panel')
-                @slot('title')
-                    Event
-				@endslot
-
+            @component('layouts.panel', [
+				'title' => "Event"
+			])
                 @slot('addButton')
                     @component('layouts.addButton', [
                         'url' => route('events.create'),
