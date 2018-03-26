@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Page;
 use App\Carousel;
 use App\Couple;
+use App\Repositories\Images;
 
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\PagesController;
@@ -49,8 +50,8 @@ class BackendController extends Controller
         return $carouselInstance->index($carousel);
     }
 
-    public function gallery() {
-        $imageInstance = new ImagesController();
+    public function gallery(Images $images) {
+        $imageInstance = new ImagesController($images);
         return $imageInstance->index();
     }
 

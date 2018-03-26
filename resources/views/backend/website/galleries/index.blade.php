@@ -17,7 +17,7 @@
 
                 @slot('body')
                     <div class="row">
-                        @foreach($galleryImages as $image)
+                        @foreach($images as $image)
                             <div class="col-md-4">
                                 @component('layouts.thumbnail')
                                     @slot('thumbnailImage')
@@ -55,7 +55,8 @@
                                 @endcomponent
                             </div>
                         @endforeach
-                    </div>
+					</div>
+					{{ $images->links() }}
                 @endslot
             @endcomponent
         </div>

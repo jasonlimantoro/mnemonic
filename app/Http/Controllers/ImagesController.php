@@ -6,19 +6,20 @@ use App\Image;
 use App\Carousel;
 use App\Album;
 use App\Http\Resources\ImageResource;
+use App\Repositories\Images;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+
 
 class ImagesController extends Controller
 {
 
 	public $images;
-
-	public function __construct(){
-		$this->middleware('auth')->except(['showJSON']);
+	public function __construct(Images $images){
+		$this->middleware('auth');
 		// All uploaded images
-		$this->images = Image::latest()->where('imageable_type', Album::class)->get();
+		$this->images = $images->all();
 	}
 	/**
 	 * Display a listing of the resource.
@@ -27,8 +28,9 @@ class ImagesController extends Controller
 	 */
 	public function index()
 	{
-		$galleryImages = $this->images;
-		return view('backend.website.galleries.index', compact('galleryImages'));
+		return view('backend.website.galleries.index', with([
+			'images' => $this->images
+		]));
 	}
 
 	/**
