@@ -26,3 +26,7 @@ export class ThumbnailGallery extends React.Component {
         )
     }
 }
+
+ThumbnailGallery.defaultProps = {
+	description : null
+}

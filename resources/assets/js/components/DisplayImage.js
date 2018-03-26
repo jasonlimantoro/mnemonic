@@ -9,7 +9,7 @@ function DisplayOutside(file, fromGallery=true, i=1){
 		}
 		var img = document.createElement('img');
 		img.classList.add('img-responsive');
-		img.src = fromGallery ? file.url_cache : window.URL.createObjectURL(file);
+		img.src = fromGallery ? file.attributes.url_cache : window.URL.createObjectURL(file);
 		var divItem = document.createElement('div');
 
 		divItem.appendChild(img);

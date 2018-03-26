@@ -12,7 +12,7 @@ export class RequestImages extends React.Component {
                 id: null,
             }
         };
-        this.handleClick = this.handleClick.bind(this);
+		this.handleClick = this.handleClick.bind(this);
     }
     
     requestData() {
@@ -20,7 +20,7 @@ export class RequestImages extends React.Component {
         axios.get(this.props.source)
             .then(function(result){
                 this.setState({
-                    'images': result.data
+                    'images': result.data.data
                 });
             }.bind(this));
     }
@@ -42,7 +42,6 @@ export class RequestImages extends React.Component {
             <div>
                 <h1>Gallery</h1>
                 {this.state.images.map(function(image){
-                    const galleryCacheUrl = '/imagecache/gallery/' + image.file_name;
                     const isActive = this.state.selectedImage.id == image.id;
                     return (
                         <div className="col-md-4 col-xs-6" key={image.id}>
@@ -50,9 +49,9 @@ export class RequestImages extends React.Component {
                                 <ThumbnailGallery
                                     selectedImage = {this.state.selectedImage}
                                     isActive = {isActive}
-                                    sourceImage={galleryCacheUrl}
-                                    title={image.file_name}
-                                    description={image.created_at}
+                                    sourceImage={image.attributes.url_cache}
+                                    title={"Name: " + image.attributes.file_name}
+									description={"Album: " + image.album.attributes.name}
 									i={this.props.i}
                                 />
                             </div>
@@ -70,7 +69,7 @@ export class RequestAlbums extends React.Component {
         this.state = {
             albums : []
         };
-        this.requestData = this.requestData.bind(this);
+		this.requestData = this.requestData.bind(this);
     }
 
     requestData() {
