@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Http\Resources\Json\Resource;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
 			$pages = \App\Page::orderBy('id', 'asc')->get();
 			$view->with(compact('pages'));
 		});
+		Resource::withoutWrapping();
     }
 
     /**

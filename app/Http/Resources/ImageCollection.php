@@ -15,9 +15,7 @@ class ImageCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return [
-			'data' => ImageResource::collection($this->collection)
-		];
+        return ImageResource::collection($this->collection);
 	}
 	
 	public function with($request){

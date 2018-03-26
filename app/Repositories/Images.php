@@ -8,6 +8,9 @@ class Images
 {
 	public function all()
 	{
-		return Image::where('imageable_type', Album::class)->with('imageable')->latest()->get(); 
+		return Image::where('imageable_type', Album::class)
+					->with('imageable')
+					->latest()
+					->paginate(9); 
 	}
 }

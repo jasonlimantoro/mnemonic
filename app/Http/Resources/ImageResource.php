@@ -22,12 +22,7 @@ class ImageResource extends Resource
 				'url_asset' => $this->url_asset,
 				'url_cache' => $this->url_cache,
 			],
-			'album' => new AlbumResource($this->whenLoaded('imageable')) 
-		];
-	}
-	
-	public function with($request){
-		return [
+			'album' => new AlbumResource($this->whenLoaded('imageable')),
 			'links' => [
 				'self' => route('api.images.show', ['image' => $this->id ])
 			]
