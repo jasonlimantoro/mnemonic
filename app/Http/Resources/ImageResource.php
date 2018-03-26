@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
+use App\Album;
 
 class ImageResource extends Resource
 {
@@ -21,7 +22,7 @@ class ImageResource extends Resource
 				'url_asset' => $this->url_asset,
 				'url_cache' => $this->url_cache,
 			],
-			'album' => new AlbumResource($this->imageable),
+			'album' => new AlbumResource($this->whenLoaded('imageable')) 
 		];
 	}
 	
