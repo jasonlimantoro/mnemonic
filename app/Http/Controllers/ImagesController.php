@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Image;
 use App\Carousel;
 use App\Album;
+use App\Http\Resources\ImageResource;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 class ImagesController extends Controller
 {
+
+	public $images;
 
 	public function __construct(){
 		$this->middleware('auth')->except(['showJSON']);
@@ -115,9 +118,5 @@ class ImagesController extends Controller
 		Session::flash('success_msg', 'Images are successfully deleted!');
 
 		return back();
-	}
-
-	public function showJSON(){
-		return $this->images;
 	}
 }

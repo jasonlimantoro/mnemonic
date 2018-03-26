@@ -17,6 +17,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/images', 'ImagesController@showJSON')->name('images.json');
+Route::namespace('API')->name('api.')->group(function(){
+	Route::resource('images', 'ImagesController');
+
+});
 Route::get('/albums', 'AlbumsController@showJSON')->name('albums.json');
 Route::get('/couple', 'CoupleController@showJSON');
