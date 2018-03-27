@@ -115,7 +115,7 @@ class ImagesController extends Controller
 		Storage::disk('uploads')->delete($image->file_name);
 
 		// Delete from the database
-		$image->delete();
+		$deletedImage = Image::where('file_name', $image->file_name)->delete();
 
 		Session::flash('success_msg', 'Images are successfully deleted!');
 
