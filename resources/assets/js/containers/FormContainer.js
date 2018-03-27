@@ -12,12 +12,6 @@ import { RequestAlbums } from "../components/Request";
 import { CoupleTabs } from "../components/Tab";
 
 
-export class FormforHome extends React.Component {
-    render() {
-        return <FormPost action="/admin/pages/1/post" />
-    }
-}
-
 export class Search extends React.Component {
     constructor(props) {
         super(props);
@@ -73,118 +67,6 @@ export class Search extends React.Component {
                     value={this.state.searchValue} 
                     selectedOption={this.state.selectedOption}
                 />
-            </div>
-        )
-    }
-}
-
-export class CarouselForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            modalShow : false,
-        };
-        this.closeModal = this.closeModal.bind(this);
-        this.showModal = this.showModal.bind(this);
-    }
-    closeModal() {
-        this.setState({
-            modalShow : false
-        });
-    }
-
-    showModal() {
-        this.setState({
-            modalShow : true
-        });
-    }
-
-    render() {
-        const inputStyle = {
-            'display' : 'none'
-        };
-        return (
-            <div>
-                <PrimaryButton text="Upload Image" onClick={this.showModal} />
-
-                <div className="preview" style={{marginTop:20}}>No file uploaded</div>
-                <input type="hidden" name="gallery_image" id="inputGalleryImage" />
-                <input type="file" name="image" id="inputFileOutside" style={inputStyle} />
-                <UploadModal show={this.state.modalShow} onHide={this.closeModal} />
-                
-                <TextArea 
-                    name="caption" 
-                    label="Enter Caption"
-                    placeholder="Enter something amazing"
-                />
-                <PrimaryButton text="Publish" type="submit" />
-
-            </div>
-
-        );
-    }
-}
-
-export class GalleryForm extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            file : []
-        };
-        this.addFile = this.addFile.bind(this);
-    }
-
-    addFile(newFile) {
-        this.setState({
-            file: newFile
-        });
-    }
-
-    render() {
-        return (
-            <form action="/admin/galleries/images" method="POST" encType="multipart/form-data">
-                <InputFile 
-                    label = "Open file browser"
-                    labelClass = "btn btn-success"
-                    name = "image"
-                    onChange = {this.addFile}
-                />
-                <DisplayImagesFromInputFile file={this.state.file} />
-                <RequestAlbums source="/api/albums" />
-
-                <PrimaryButton type="submit" text="Upload" />
-            </form>
-        )
-    }
-}
-
-export class AlbumForm extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            file : []
-        };
-        this.addFile = this.addFile.bind(this);
-    }
-
-    addFile(newFile) {
-        this.setState({
-            file: newFile
-        });
-    }
-
-    render() {
-        return (
-            <div>
-                <InputFile 
-                    label = "Open file browser"
-                    labelClass = "btn btn-success"
-                    name = "image"
-                    onChange = {this.addFile}
-                />
-                <DisplayImagesFromInputFile file={this.state.file} />
-
-                <PrimaryButton type="submit" text="Upload" />
             </div>
         )
     }
@@ -251,7 +133,5 @@ export class FancyInput extends React.Component {
     }
 }
 FancyInput.defaultProps = {
-	useCustomImage: false,
-	image: null,
 	i : 1 
 }

@@ -19,9 +19,11 @@
                         Description: <strong>{{ $album->description }}</strong> 
                     </p>
 
-                    <form action="{{ route('album.images.store', ['album' => $album->id]) }}" method="POST" enctype="multipart/form-data">
-                        <div class="__react-root" id="AlbumForm">
-                        </div>
+					<form action="{{ route('album.images.store', ['album' => $album->id]) }}" method="POST" enctype="multipart/form-data">
+						<div class="__react-root" id="FancyInput"></div>
+						<div class="form-group">
+							<button class="btn btn-primary" type="submit">Publish</button>
+						</div>
                     </form>
                 @endslot
             @endcomponent

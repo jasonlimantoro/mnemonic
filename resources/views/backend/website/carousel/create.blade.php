@@ -11,12 +11,17 @@
                         'text' => 'Back',
                         'url' => route('carousel.index', ['carousel' => 1]),
                     ])
-                        
                     @endcomponent
                 @endslot
                 @slot('body')
-                    <form method="POST" action="{{ route('carousel.images.store', ['carousel' => 1]) }}" enctype="multipart/form-data">
-                        <div class="__react-root" id="CarouselForm"></div>
+					<form method="POST" action="{{ route('carousel.images.store', ['carousel' => 1]) }}" enctype="multipart/form-data">
+						<div class="__react-root" id="FancyInput"></div>
+						<div class="form-group">
+							<textarea class="form-control" name="caption" id="caption" cols="30" rows="10" placeholder="Enter caption"></textarea>
+						</div>
+						<div class="form-group">
+							<button class="btn btn-primary" type="submit">Publish</button>
+						</div>
                     </form>
                 @endslot
             @endcomponent
