@@ -52,10 +52,13 @@ Route::prefix('admin')->group(function(){
 		// Event
 		Route::resource('events', 'EventsController', ['except' => ['index']]);
 		Route::get('events', 'BackendController@event')->name('events.index');
+
+		// Bridesmaid-Bestman
+		Route::resource('bridesmaid-bestmans', 'BridesBestsController', ['except' => ['index']]);
+		Route::get('bridesmaid-bestmans', 'BackendController@brides_best')->name('bridesmaid-bestmans.index');
 	});
 });
 
-Route::get('/admin/wedding/bridesmaid-and-bestman', 'BackendController@brides');
 Route::get('/admin/wedding/vendors', 'BackendController@vendors');
 Route::get('/admin/wedding/rsvp', 'BackendController@rsvp');
 

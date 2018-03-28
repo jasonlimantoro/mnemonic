@@ -15,6 +15,7 @@ use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\AlbumsController;
 use App\Http\Controllers\CoupleController;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\BridesBestsController;
 
 use Illuminate\Support\Facades\DB;
 
@@ -70,8 +71,9 @@ class BackendController extends Controller
         return $eventInstance->index();
     }
 
-    public function brides() {
-        return view('backend.wedding.bridesmaid-and-bestman');
+    public function brides_best() {
+		$bridesBestInstance = new BridesBestsController;
+        return $bridesBestInstance->index(); 
     }
 
     public function vendors() {

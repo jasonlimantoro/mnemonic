@@ -49,7 +49,7 @@
 						<a href="{{ route('events.index') }}">Event</a>
 					</li>
 					<li>
-						<a href="{{ route('admin') }}/wedding/bridesmaid-and-bestman">Bridesmaid & Bestman</a>
+						<a href="{{ route('bridesmaid-bestmans.index') }}">Bridesmaid & Bestman</a>
 					</li>
 			</ul>
 		</li>
