@@ -51,7 +51,7 @@ class EventsController extends Controller
 	   ]);
 	   $eventImage = Image::handleUpload($request);
 	   if($eventImage){
-			$event->addImage($eventImage);
+			Image::addTo($event, $eventImage);
 	   }
 
 	   \Session::flash('success_msg', 'Event is successfully created!');
@@ -100,14 +100,11 @@ class EventsController extends Controller
 
 		$eventImage = Image::handleUpload($request);
 		if($eventImage){
-			$event->addImage($eventImage);
+			Image::addTo($event, $eventImage);
 		}
-		$event->update([
-		   'name' => $request->name,
-		   'description' => $request->description,
-		   'location' => $request->location,
-		   'datetime' => $request->datetime
-	   ]);
+		$event->update(
+			request(['name', 'description', 'location', 'datetime'])
+		);
 
 		\Session::flash('success_msg', 'Event is successfully updated!');
 

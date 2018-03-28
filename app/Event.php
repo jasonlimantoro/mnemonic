@@ -19,21 +19,4 @@ class Event extends Model
 		return $this->morphOne(Image::class, 'imageable');
 
 	}
-
-	public function addImage($eventImage)
-	{
-		if($oldImage = $this->image)
-		{
-			// delete the old image
-			$oldImage->delete();
-		}
-		$imageExist = Image::firstorNew($eventImage);
-		if(!$imageExist->exists)
-		{
-			// add to uncategorized album if this is a new resource
-			$this->defaultState->images()->create($eventImage);
-		}
-		// create a new Image for this event
-		$this->image()->create($eventImage);
-	}
 }

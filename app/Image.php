@@ -53,6 +53,23 @@ class Image extends Model
         
     }
 
+	public static function addTo($classInstance, $imageAttr)
+	{
+		if($classInstance->image)
+		{
+			$classInstance->image->delete();
+		}
+		$imageExist = Image::firstOrNew($imageAttr);
+		if(!$imageExist->exists)
+		{
+			Album::uncategorizedAlbum()->images()->create($imageAttr);
+		}
+		$newImage = new Image($imageAttr);
+		$newImage->imageable_type = get_class($classInstance);
+		$newImage->imageable_id = $classInstance->id;
+		$newImage->save();
+
+	}
     public static function withAlbum(){
         return static::where('album_id', '<>', 4)->get();
     }
