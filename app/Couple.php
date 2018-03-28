@@ -10,6 +10,9 @@ class Couple extends Model
 	protected $table = 'couple';
 	// no timestamps is needed
 	public $timestamps = false;
+	
+	// eager load
+	protected $with = ['image'];
 
 	public $defaultState;
 

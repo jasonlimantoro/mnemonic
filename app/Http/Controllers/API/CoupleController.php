@@ -17,7 +17,7 @@ class CoupleController extends Controller
      */
     public function index()
     {
-		$couple = Couple::with('image')->get();
+		$couple = Couple::all();
 		return new CoupleCollection($couple);
     }
 
