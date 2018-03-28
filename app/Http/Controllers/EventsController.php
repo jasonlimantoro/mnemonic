@@ -79,7 +79,7 @@ class EventsController extends Controller
      */
     public function edit(Event $event)
     {
-		$eventImage = $event->images()->count() ? $event->images()->first()->url_cache : NULL;
+		$eventImage = $event->image ? $event->image->url_cache : NULL;
 		return view('backend.wedding.events.edit', compact('event', 'eventImage'));
     }
 

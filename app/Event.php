@@ -14,14 +14,15 @@ class Event extends Model
 		parent::__construct($attributes);
 		$this->defaultState = Album::uncategorizedAlbum();	
 	}
-	public function images()
+	public function image()
 	{
-		return $this->morphMany(Image::class, 'imageable');
+		return $this->morphOne(Image::class, 'imageable');
+
 	}
 
 	public function addImage($eventImage)
 	{
-		if($oldImage = $this->images()->first())
+		if($oldImage = $this->image)
 		{
 			// delete the old image
 			$oldImage->delete();
@@ -33,6 +34,6 @@ class Event extends Model
 			$this->defaultState->images()->create($eventImage);
 		}
 		// create a new Image for this event
-		$this->images()->create($eventImage);
+		$this->image()->create($eventImage);
 	}
 }
