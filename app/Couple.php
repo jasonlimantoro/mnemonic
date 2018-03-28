@@ -19,12 +19,12 @@ class Couple extends Model
 		$this->defaultState = Album::uncategorizedAlbum();
 	}
 
-	public function images(){
-		return $this->morphMany(Image::class, 'imageable');
+	public function image(){
+		return $this->morphOne(Image::class, 'imageable');
 	}
 
 	public function addImage($coupleImage){
-		if($oldImage = $this->images()->first()){
+		if($oldImage = $this->image()){
 			// delete the old image
 			$oldImage->delete();
 		}
@@ -34,6 +34,6 @@ class Couple extends Model
 			$this->defaultState->images()->create($coupleImage);
 		}
 		// create a new Image for this couple
-		$this->images()->create($coupleImage);
+		$this->image()->create($coupleImage);
 	}
 }

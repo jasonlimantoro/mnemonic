@@ -29,7 +29,7 @@ export class RequestImages extends React.Component {
         this.setState({
             selectedImage: image
         });
-        const fileName = image.file_name;
+        const fileName = image.attributes.file_name;
         document.getElementById('inputGalleryImage' + '-' + this.props.i.toString()).value = fileName;
     }
 

@@ -78,7 +78,6 @@ export class CoupleTabs extends React.Component{
 			'couple' : [],
 			'key' : 1
 		}
-
 		this.handleSelect = this.handleSelect.bind(this);
 	}
 
@@ -91,7 +90,7 @@ export class CoupleTabs extends React.Component{
 		axios.get('/api/couple')
 			.then(function(result){
 				this.setState({
-					'couple': result.data
+					'couple': result.data.data
 				});
 			}.bind(this));
 	}
@@ -109,10 +108,10 @@ export class CoupleTabs extends React.Component{
 			>
 				{
 					this.state.couple.map(function(couple){
-						const coupleImage = couple.images[0] ? couple.images[0].url_cache : null;
+						const coupleImage = couple.image ? couple.image.attributes.url_cache : null;
 						return (
-							<Tab key={couple.id} eventKey={couple.id} title={couple.role}>
-								<h1>{couple.role} Details </h1>
+							<Tab key={couple.id} eventKey={couple.id} title={couple.attributes.role}>
+								<h1>{couple.attributes.role} Details </h1>
 								<form action= {"/admin/wedding/couple/" + couple.id} method="POST" encType="multipart/form-data">
 									<input type="hidden" name="_method" value="PATCH" />
 									<div className="col-md-6">
@@ -123,8 +122,8 @@ export class CoupleTabs extends React.Component{
 												name="name" 
 												className="form-control" 
 												id="name" 
-												defaultValue={couple.name}
-												placeholder={couple.role + ' name'}
+												defaultValue={couple.attributes.name}
+												placeholder={couple.attributes.role + ' name'}
 											/>
 										</div>
 										{/* <div className="form-group">
@@ -138,8 +137,8 @@ export class CoupleTabs extends React.Component{
 												name="father" 
 												className="form-control" 
 												id="fatherName" 
-												defaultValue={couple.father}
-												placeholder={couple.role + ' father name'}
+												defaultValue={couple.attributes.father}
+												placeholder={couple.attributes.role + ' father name'}
 											/>
 										</div>
 
@@ -150,13 +149,13 @@ export class CoupleTabs extends React.Component{
 												name="mother" 
 												className="form-control" 
 												id="motherName" 
-												defaultValue={couple.mother} 
-												placeholder={couple.role + ' mother name'}
+												defaultValue={couple.attributes.mother} 
+												placeholder={couple.attributes.role + ' mother name'}
 											/>
 										</div>
 
 										<div className="form-group">
-											<PrimaryButton type="submit" text="Update" />
+											<PrimaryButton type="submit" text="Publish" />
 										</div>
 
 									</div>
