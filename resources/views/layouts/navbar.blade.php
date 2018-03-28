@@ -38,22 +38,12 @@
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right">
-						@if (Route::has('login'))
-							@auth
-								<li>
-									<a href="{{ route('admin') }}">Backend</a>
-								
-								</li>
-							@else
-								{{--  <li>
-									<a href="{{ route('login') }}">Login</a>
-								</li>
-
-								<li>
-									<a href="{{ route('register') }}">Register</a>
-								</li>  --}}
-							@endauth
-						@endif
+						@auth
+						{{--  if user is authenticated  --}}
+							<li>
+								<a href="{{ route('admin') }}">Backend</a>
+							</li>
+						@endauth
 					</ul>
 				</div> <!-- /.navbar-collapse -->
 			</div>
