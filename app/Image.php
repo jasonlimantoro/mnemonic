@@ -49,25 +49,25 @@ class Image extends Model
             'url_cache' => url('/imagecache/gallery/' . $galleryImageName)
         ];
 
-        return $imageAttr;
+        return Image::firstOrNew($imageAttr);
         
     }
 
-	public static function addTo($classInstance, $imageAttr)
+	public function addTo($ownerClass)
 	{
-		if($classInstance->image)
+		if($ownerClass->image)
 		{
-			$classInstance->image->delete();
+			$ownerClass->image->delete();
 		}
-		$imageExist = Image::firstOrNew($imageAttr);
-		if(!$imageExist->exists)
+		if(!$this->exists)
 		{
-			Album::uncategorizedAlbum()->images()->create($imageAttr);
+			// a new image is always assigned to uncategorized album
+			$newImage = $this->attributes;	
+			Album::uncategorizedAlbum()->images()->create($newImage);
 		}
-		$newImage = new Image($imageAttr);
-		$newImage->imageable_type = get_class($classInstance);
-		$newImage->imageable_id = $classInstance->id;
-		$newImage->save();
+		$this->imageable_type = get_class($ownerClass);
+		$this->imageable_id = $ownerClass->id;
+		$this->save();
 
 	}
     public static function withAlbum(){
@@ -76,5 +76,5 @@ class Image extends Model
 
     public static function withoutAlbum(){
         return static::where('album_id', 4)->get();
-    }
+	}
 }

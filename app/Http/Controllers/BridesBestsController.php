@@ -45,7 +45,7 @@ class BridesBestsController extends Controller
 
 		$bridesBest = BridesBest::create(request(['name', 'testimony', 'ig_account', 'gender']));
 		if($bridesBestImage = Image::handleUpload($request)){
-			Image::addTo($bridesBest, $bridesBestImage);
+			$bridesBestImage->addTo($bridesBest);
 		}
 
 		\Session::flash('success_msg', 'Bridesmaid / Bestman is successfully created!');
@@ -98,10 +98,9 @@ class BridesBestsController extends Controller
 			'gender' => 'required'
 		];
 		$this->validate($request, $rules);
-
-		$bridesBestImage = Image::handleUpload($request);
-		if($bridesBestImage){
-			Image::addTo($bridesmaid_bestman, $bridesBestImage);
+		if($bridesBestImage = Image::handleUpload($request))
+		{
+			$bridesBestImage->addTo($bridesmaid_bestman);
 		}
 
 		$bridesmaid_bestman->update(request(['name', 'testimony', 'ig_account', 'gender']));

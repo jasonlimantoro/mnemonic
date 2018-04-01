@@ -44,14 +44,11 @@ class EventsController extends Controller
 
 	   $this->validate($request, $rules);
 	   $event = Event::create([
-		   'name' => $request->name,
-		   'description' => $request->description,
-		   'location' => $request->location,
-		   'datetime' => $request->datetime
+		   request(['name', 'description', 'location', 'datetime'])
 	   ]);
-	   $eventImage = Image::handleUpload($request);
-	   if($eventImage){
-			Image::addTo($event, $eventImage);
+	   if($eventImage = Image::handleUpload($request))
+	   {
+			$eventImage->addTo($event);
 	   }
 
 	   \Session::flash('success_msg', 'Event is successfully created!');
@@ -97,10 +94,10 @@ class EventsController extends Controller
 			'datetime' => 'required|date|after:today'
 		];
 		$this->validate($request, $rules);
-
-		$eventImage = Image::handleUpload($request);
-		if($eventImage){
-			Image::addTo($event, $eventImage);
+		
+		if ($eventImage = Image::handleUpload($request))
+		{
+			$eventImage->addTo($event);
 		}
 		$event->update(
 			request(['name', 'description', 'location', 'datetime'])
