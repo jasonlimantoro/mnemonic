@@ -137,8 +137,4 @@ class AlbumsController extends Controller
 
         return back();
     }
-
-    public function showJSON() {
-        return $this->albums;
-    }
 }
