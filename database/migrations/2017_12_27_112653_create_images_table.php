@@ -21,7 +21,7 @@ class CreateImagesTable extends Migration
             $table->boolean('featured')->default(0);
 			$table->string('caption')->nullable();
 			$table->integer('imageable_id')->default(4);
-			$table->string('imageable_type')->default('App\Album');
+			$table->string('imageable_type')->default('App\\Album');
 			$table->index(['imageable_id', 'imageable_type']);
             $table->timestamps();
         });
