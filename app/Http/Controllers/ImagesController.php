@@ -16,10 +16,10 @@ class ImagesController extends Controller
 {
 
 	public $images;
+
 	public function __construct(Images $images){
 		$this->middleware('auth');
-		// All uploaded images
-		$this->images = $images->all();
+		$this->images = $images;
 	}
 	/**
 	 * Display a listing of the resource.
@@ -29,7 +29,7 @@ class ImagesController extends Controller
 	public function index()
 	{
 		return view('backend.website.galleries.index', with([
-			'images' => $this->images
+			'images' => $this->images->all()
 		]));
 	}
 
