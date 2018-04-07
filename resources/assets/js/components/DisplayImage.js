@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 function DisplayOutside(file, fromGallery=true, i=1){
     var preview = document.querySelector('#preview-' + i.toString());
@@ -31,16 +32,30 @@ export class DisplayImagesFromInputFile extends React.Component {
         }
         if (this.props.displayOutside) {
             DisplayOutside(file[0], false, this.props.i);
-        }
-        return (
-            <p>{preview}</p>
-        );
+		}
+		if (this.props.displayBelow)
+		{
+			return (
+				<p>{preview}</p>
+			);
+		}
+		else
+		{ 
+			return null;
+		}
     }
 }
 
+DisplayImagesFromInputFile.propTypes = {
+	file : PropTypes.object.isRequired,
+	displayOutside : PropTypes.bool,
+	displayBelow : PropTypes.bool
+}
+
 DisplayImagesFromInputFile.defaultProps = {
-    file : [],
-    displayOutside: false
+	file : {},
+	displayOutside: false,
+	displayBelow : true
 };
 
 export class DisplayImagesFromSelectedGallery extends React.Component {

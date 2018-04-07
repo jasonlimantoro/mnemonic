@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { FormGroup, FormControl, ControlLabel, Radio } from "react-bootstrap";
 import { PrimaryButton, SuccessButton } from "./Button";
 
@@ -105,6 +106,12 @@ export class InputFile extends React.Component {
             />
         );
     }
+}
+InputFile.propTypes = {
+	label : PropTypes.string.isRequired,
+	labelClass : PropTypes.string,
+	name : PropTypes.string.isRequired,
+	onChange : PropTypes.func
 }
 
 export const TextArea = (props) => {
