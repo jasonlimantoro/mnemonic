@@ -7,13 +7,6 @@ use App\Album;
 
 class BridesBest extends Model
 {
-	public $defaultState;
-
-	public function __construct(array $attributes = [])
-	{
-		parent::__construct($attributes);
-		$this->defaultState = Album::uncategorizedAlbum();
-	}
 	public function image()
 	{
 		return $this->morphOne(Image::class, 'imageable');
