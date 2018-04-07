@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Image;
 use App\Album;
+use App\Repositories\Albums;
 use App\Http\Controllers\AlbumsController;
 use Illuminate\Http\Request;
 use App\Filters\GalleryFilter;
@@ -74,9 +75,8 @@ class AlbumImagesController extends Controller
      */
     public function edit(Album $album, Image $image)
     {
-        $albumInstance = new AlbumsController();
-        $albums = $albumInstance->albums;
-		$selectedAlbum = $image->imageable;
+		$albums = (new Albums)->all();
+		$selectedAlbum = $album;
         return view('backend.website.albums.images.edit', 
                 compact('image', 'albums', 'selectedAlbum', 'album')
         );
