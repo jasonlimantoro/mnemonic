@@ -45,10 +45,9 @@ class AlbumImagesController extends Controller
         $this->validate($request, $rules);
 
         // handle the request
-        $albumImage = Image::handleUpload($request);
+		$albumImage = Image::handleUpload($request)
+							->addTo($album);
 
-        // add the image to the album
-        $album->addImage($albumImage);
 
         \Session::flash('success_msg', 'Image is uploaded successfuly!');
 
@@ -98,12 +97,18 @@ class AlbumImagesController extends Controller
         ];
         $this->validate($request, $rules);
 
-		// dd($album);
-		$newAlbum = Album::find($request->album);
-		$newAlbum->images()->save($image);
+		$targetAlbum = Album::find($request->album);
+		$targetAlbum->images()->save($image);
 
-        //store status message
-        \Session::flash('success_msg', 'Changed album successfully!');
+		if ($album == $targetAlbum)
+		{
+			// reverting
+			\Session::flash('success_msg', 'Changed back to ' . $album->name);
+		}
+		else 
+		{
+			\Session::flash('success_msg', 'Changed from ' . $album->name . ' to ' . $targetAlbum->name);
+		}
 
         return back();
     }
