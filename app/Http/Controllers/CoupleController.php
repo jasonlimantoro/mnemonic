@@ -104,8 +104,5 @@ class CoupleController extends Controller
     {
         //
 	}
-	
-	public function showJSON(){
-		return Couple::with('images')->get();
-	}
+
 }
