@@ -37,11 +37,9 @@ class CarouselImagesController extends Controller
         ];
         $this->validate($request, $rules, $customMessages);
 
-        $newCarouselImage = Image::handleUpload($request);
+		Image::handleUpload($request)
+			->addTo($carousel, ['caption' => $request->caption]);
 
-        // add the record to the carousel
-        $carousel->addImage($newCarouselImage, $request->caption);
-        
         \Session::flash('success_msg', 'Image is successfully uploaded to the carousel!');
         return back();
     }
@@ -60,18 +58,9 @@ class CarouselImagesController extends Controller
         ];
         $this->validate($request, $rules);
 
-        // only caption
-        $updatedData = [
-            'caption' => $request->caption
-        ];
-        
-        $newCarouselImage = Image::handleUpload($request);
-        if($newCarouselImage){
-            // join the image record to the caption
-            $updatedData += $newCarouselImage;
+        if($carouselImage = Image::handleUpload($request)){
+            $carouselImage->addTo($carousel, ['caption' => $request->caption]);
         }
-        // update the database
-        $image->update($updatedData);
 
         \Session::flash('success_msg', 'Updated sucessfully!');
 
