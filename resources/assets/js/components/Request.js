@@ -50,8 +50,8 @@ export class RequestImages extends React.Component {
                                     selectedImage = {this.state.selectedImage}
                                     isActive = {isActive}
                                     sourceImage={image.attributes.url_cache}
-                                    title={"Name: " + image.attributes.file_name}
-									description={"Album: " + image.album.attributes.name}
+                                    title={image.attributes.file_name}
+									description={image.album.attributes.name}
 									i={this.props.i}
                                 />
                             </div>

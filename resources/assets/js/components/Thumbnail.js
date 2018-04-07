@@ -5,7 +5,19 @@ import { DisplayImagesFromSelectedGallery} from "./DisplayImage";
 export class ThumbnailGallery extends React.Component {
     constructor(props){
         super(props);
-    }
+	}
+	
+	str_limit(str, length=20, ending='...')
+	{
+		if(str.length > length)
+		{
+			return str.substring(0, length) + ending;
+		}
+		else 
+		{
+			return str;
+		}
+	}
 
     render() {
 		const isActive = this.props.isActive;
@@ -15,8 +27,8 @@ export class ThumbnailGallery extends React.Component {
                 className={isActive ? 'thumbnail-gallery active' : 'thumbnail-gallery'}
                 alt="242x200"
             >
-                <strong>{this.props.title}</strong>
-                <p>{this.props.description}</p>
+                <p>Name: <strong>{this.str_limit(this.props.title)}</strong></p>
+                <p>Album: <strong>{this.props.description}</strong></p>
 				{isActive ? 
 					<DisplayImagesFromSelectedGallery file={this.props.selectedImage} i={this.props.i} fromGallery />
 				:	null 
