@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Album;
+use App\Repositories\Albums;
 use App\Image;
 use App\Filters\GalleryFilter;
 use Illuminate\Http\Request;
@@ -10,8 +11,11 @@ use Illuminate\Http\Request;
 class AlbumsController extends Controller
 {
 
-    public function __construct() {
-        $this->middleware('auth');
+	public $albums;
+
+    public function __construct(Albums $albums) {
+		$this->middleware('auth');
+		$this->albums = $albums;
 	}
 
     /**
@@ -21,14 +25,13 @@ class AlbumsController extends Controller
      */
     public function index()
     {
-        $categorizedAlbums = $this->albums->where('name', '!=', 'Uncategorized');
-        $uncategorizedAlbum = Album::where('name', 'Uncategorized')->get()->first();
+        $categorizedAlbums = $this->albums->categorized();
+        $uncategorizedAlbum = $this->albums->uncategorized(); 
         return view('backend.website.albums.main')
-                    ->with(
-                        [
-                            'albums' => $categorizedAlbums,
-                            'uncategorizedAlbum' => $uncategorizedAlbum,
-                        ]);
+				->with([
+					'albums' => $categorizedAlbums,
+					'uncategorizedAlbum' => $uncategorizedAlbum,
+				]);
     }
 
     /**
@@ -104,14 +107,14 @@ class AlbumsController extends Controller
         ];
         $this->validate($request, $rules);
         
-        // magic happens
-        $newFeaturedImage = Image::handleUpload($request);
-        // replace current featuredimage
-        $album->removeFeaturedImage();
-        $album->addFeaturedImage($newFeaturedImage);
+		if($newFeaturedImage = Image::handleUpload($request))
+		{
+			// replace current featuredimage
+			$album->removeFeaturedImage();
+			$album->addFeaturedImage($newFeaturedImage);
+		}
 
-        $updatedAlbum = request(['name', 'description']);
-        $album->update($updatedAlbum);
+        $album->update(request(['name', 'description']));
 
         //store status message
         \Session::flash('success_msg', 'Album is updated successfully!');

@@ -36,9 +36,14 @@ class Album extends Model
     }
 
     public function addFeaturedImage($image){
-        // set the matching $image to be the featured image
+		$imgAttr = [
+			'file_name' => $image->file_name,
+			'url_asset' => $image->url_asset,
+			'url_cache' => $image->url_cache
+		];
+		
         $this->images()->updateorCreate(
-            $image,
+            $imgAttr,
             ['featured' => 1]
         );
     }
