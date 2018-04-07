@@ -20,7 +20,7 @@
                     </p>
 
 					<form action="{{ route('album.images.store', ['album' => $album->id]) }}" method="POST" enctype="multipart/form-data">
-						<div class="__react-root" id="FancyInput"></div>
+						<div class="__react-root" id="SimpleInput"></div>
 						<div class="form-group">
 							<button class="btn btn-primary" type="submit">Publish</button>
 						</div>

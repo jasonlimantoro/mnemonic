@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import axios from "axios";
 
 // Custom Components
@@ -84,6 +83,62 @@ export class CoupleForm extends React.Component{
 	}
 }
 
+export class SimpleInput extends React.Component
+{
+	constructor(props)
+	{
+		super(props);
+		this.state = {
+			file : {} 
+		}
+		this.addFile = this.addFile.bind(this);
+	}
+
+    addFile(newFile) {
+        this.setState({
+            file: newFile
+        });
+    }
+
+	render()
+	{
+        const inputStyle = {
+            'display' : 'none'
+		};
+		
+		const preview = this.props.image ? <img src={this.props.image} alt="image" className="img-responsive" /> : 'No file uploaded';
+        return (
+            <div>
+				{/* new file */}
+                <input type="file" name="image" id={"inputFileOutside" + '-' + this.props.i.toString()} style={inputStyle} />
+
+				<div className="form-group">
+					{/* preview */}
+					<p><strong>New Image</strong></p>
+					<div id={"preview" + '-' + this.props.i.toString() } className="new-image">{preview}</div>
+				</div>
+				<div className="form-group">
+					<InputFile 
+						label = "Open file browser"
+						labelClass = "btn btn-success"
+						name = "image"
+						onChange = {this.addFile}
+						i={this.props.i}
+					/>
+
+					<DisplayImagesFromInputFile file={this.state.file} i={this.props.i} displayOutside displayBelow={false} />
+				</div>
+            </div>
+
+        );
+	}
+
+}
+
+SimpleInput.defaultProps = {
+	i: 1
+}
+
 export class FancyInput extends React.Component {
     constructor(props) {
         super(props);
@@ -110,7 +165,7 @@ export class FancyInput extends React.Component {
             'display' : 'none'
 		};
 		
-		const preview = this.props.useCustomImage && this.props.image ? <img src={this.props.image} alt="image" className="img-responsive" /> : 'No file uploaded';
+		const preview = this.props.image ? <img src={this.props.image} alt="image" className="img-responsive" /> : 'No file uploaded';
         return (
             <div>
 				{/* old file */}
