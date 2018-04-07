@@ -7,6 +7,7 @@ use App\Page;
 use App\Carousel;
 use App\Couple;
 use App\Repositories\Images;
+use App\Repositories\Albums;
 
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\PagesController;
@@ -56,8 +57,8 @@ class BackendController extends Controller
         return $imageInstance->index();
     }
 
-    public function album(){
-        $albumInstance = new AlbumsController();
+    public function album(Albums $albums){
+        $albumInstance = new AlbumsController($albums);
         return $albumInstance->index();
     }
 
