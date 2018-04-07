@@ -53,21 +53,48 @@ class Image extends Model
         
     }
 
-	public function addTo($ownerClass)
+	public function addTo($ownerClass, array $options =[])
 	{
+		// the owner has a polymorphic one-to-one relationship
 		if($ownerClass->image)
 		{
 			$ownerClass->image->delete();
 		}
+
 		if(!$this->exists)
 		{
 			// a new image is always assigned to uncategorized album
 			$newImage = $this->attributes;	
 			Album::uncategorizedAlbum()->images()->create($newImage);
+
+			
+			// add the relationship to the owner's class
+			$this->imageable_type = get_class($ownerClass);
+			$this->imageable_id = $ownerClass->id;
+
+			// also, add the optional options
+			foreach ($options as $key => $value) 
+			{
+				$this->$key = $value;
+			}
+			$this->save();
 		}
-		$this->imageable_type = get_class($ownerClass);
-		$this->imageable_id = $ownerClass->id;
-		$this->save();
+
+		else 
+		{
+			// old resource
+			$imgAttr = [
+				'file_name' => $this->file_name,
+				'url_asset' => $this->url_asset,
+				'url_cache' => $this->url_cache,
+				'imageable_type' => get_class($ownerClass),
+				'imageable_id' => $ownerClass->id
+			];
+			foreach ($options as $key => $value) {
+				$imgAttr[$key] = $value;
+			}
+			Image::create($imgAttr);
+		}
 
 	}
     public static function withAlbum(){
