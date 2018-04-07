@@ -8,16 +8,8 @@
 			])
                 @slot('backButton')
                     @component('layouts.backButton', [
-                        'text' => 'Back',
-                        'url' => url()->previous()
-                    ])
-                        
-                    @endcomponent
-                @endslot
-                @slot('addButton')
-                    @component('layouts.addButton', [
-                        'url' => '#',
-                        'item' => 'images'
+                        'text' => $album->name,
+                        'url' => route('albums.show', ['album' => $album->id]) 
                     ])
                         
                     @endcomponent
@@ -26,9 +18,14 @@
                 @slot('body')
                     <p>
                         From album: <strong>{{ $album->name }}</strong> 
-                    </p>
+					</p>
+					
+					<p>
+						<img src="{{ $image->url_cache }}" alt="image_album" class="img-responsive">
+					</p>
 
-                    <img src="{{ $image->url_cache }}" alt="image_album" class="img-responsive">
+					
+                    Uploaded on {{ $image->created_at->toDayDateTimeString() }}
                 @endslot
             @endcomponent
         </div>

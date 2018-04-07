@@ -63,7 +63,6 @@ class AlbumImagesController extends Controller
      */
     public function show(Album $album, Image $image)
     {
-        // $album = $image->album;
         return view('backend.website.albums.images.show', compact(['image', 'album']));
     }
 
