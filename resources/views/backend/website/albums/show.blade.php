@@ -68,7 +68,7 @@
                                             </a>
                                         </div>
                                         <div>
-										<form action="{{ route('images.destroy', ['image' => $image->id]) }}" method="POST" id={{ "form-delete-images-" . $image->id  }}>
+										<form action="{{ route('album.images.destroy', ['album' => $album->id, 'image' => $image->id]) }}" method="POST" id={{ "form-delete-images-" . $image->id  }}>
 												{{ method_field('DELETE') }}
 												<a 
 													href="" 

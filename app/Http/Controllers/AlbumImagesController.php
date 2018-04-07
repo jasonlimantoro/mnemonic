@@ -118,8 +118,12 @@ class AlbumImagesController extends Controller
      * @param  \App\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Image $image)
+    public function destroy(Album $album, Image $image)
     {
-        //
+		$image->delete();
+
+		\Session::flash('success_msg', 'Image is successfully removed from ' . $album->name);
+
+		return back();
     }
 }
