@@ -62,10 +62,13 @@ class Image extends Model
 		}
 
 		if(!$this->exists)
+		// a new image
 		{
-			// a new image is always assigned to uncategorized album
-			$newImage = $this->attributes;	
-			Album::uncategorizedAlbum()->images()->create($newImage);
+			// if it's not added to album
+			if (!$ownerClass instanceof Album) {
+				$newImage = $this->attributes;	
+				Album::uncategorizedAlbum()->images()->create($newImage);
+			}
 
 			
 			// add the relationship to the owner's class
