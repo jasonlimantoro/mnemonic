@@ -77,16 +77,14 @@ class CoupleController extends Controller
         ];
 		$this->validate($request, $rules);
 		
-		$coupleImage = Image::handleUpload($request);
-		if($coupleImage){
-			$couple->addImage($coupleImage);
+		if ($coupleImage = Image::handleUpload($request))
+		{
+			$coupleImage->addTo($couple);
 		}
 
-		$couple->update([
-			'name' => $request->name,
-			'father' => $request->father,
-			'mother' => $request->mother
-		]);
+		$couple->update(
+			request(['name', 'father', 'mother'])
+		);
 
         Session::flash('success_msg', 'Couple information is sucessfully updated!');
 
