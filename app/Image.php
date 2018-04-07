@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Album;
+use App\Repositories\Albums;
 use App\Carousel;
 use App\Couple;
 use App\Filters\GalleryFilter;
@@ -61,13 +62,13 @@ class Image extends Model
 			$ownerClass->image->delete();
 		}
 
-		if(!$this->exists)
 		// a new image
+		if(!$this->exists)
 		{
 			// if it's not added to album
 			if (!$ownerClass instanceof Album) {
 				$newImage = $this->attributes;	
-				Album::uncategorizedAlbum()->images()->create($newImage);
+				(new Albums)->uncategorized()->images()->create($newImage);
 			}
 
 			

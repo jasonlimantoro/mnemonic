@@ -3,12 +3,21 @@
 namespace App;
 
 use App\Image;
+use App\Repositories\Albums;
 
 class Album extends Model
 {
-	public static function uncategorizedAlbum(){
-		return static::where('name', 'Uncategorized')->first();
+	public $repo;
+
+	public function __construct(array $attributes = [])
+	{
+		parent::__construct($attributes);
+		$this->repo = new Albums;
+
 	}
+	// public static function uncategorizedAlbum(){
+	// 	return static::where('name', 'Uncategorized')->first();
+	// }
 	
 	public function images(){
 		return $this->morphMany(Image::class, 'imageable');
@@ -27,7 +36,7 @@ class Album extends Model
     public function uncategorizeImages(){
         // assign all the images to uncategorized
 		foreach($this->images as $image){
-			self::uncategorizedAlbum()->images()->save($image);
+			$this->repo->uncategorized()->images()->save($image);
 		}
     }
 
