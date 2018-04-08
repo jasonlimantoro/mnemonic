@@ -100,21 +100,19 @@ export class RequestImages extends React.Component {
                         </div>
                     );
                 }.bind(this))}
-				<nav>
-					<ul className="pagination">
-						<li className={this.props.page == 1 ? 'disabled': ''}>
-							<a href="#" aria-label="Previous" onClick={(e) => this.handleOffset(e, -1)}>
-								<span>«</span>
-							</a>
-						</li>
-						{paginateItems}
-						<li className={this.props.page == totalPages ? 'disabled': ''}>
-							<a href="#" onClick={(e) => this.handleOffset(e, 1)}aria-label="Next">
-								<span>»</span>
-							</a>
-						</li>
-					</ul>
-				</nav>
+				<ul className="pagination gallery">
+					<li className={this.props.page == 1 ? 'disabled': ''}>
+						<a href="#" aria-label="Previous" onClick={(e) => this.handleOffset(e, -1)}>
+							<span>«</span>
+						</a>
+					</li>
+					{paginateItems}
+					<li className={this.props.page == totalPages ? 'disabled': ''}>
+						<a href="#" onClick={(e) => this.handleOffset(e, 1)}aria-label="Next">
+							<span>»</span>
+						</a>
+					</li>
+				</ul>
             </div>
         )
     }
