@@ -1,5 +1,5 @@
 import React from "react";
-import { Pagination } from "react-bootstrap";
+import PropTypes from 'prop-types';
 import axios from "axios";
 import { ThumbnailGallery } from "./Thumbnail";
 import { SelectForm } from "./Form";
@@ -28,8 +28,6 @@ export class RequestImages extends React.Component {
 			})
             .then(function(result){
 				const totalPages = Math.ceil(result.data.meta.total / result.data.meta.per_page);  
-				console.log(result);
-				console.log(result.data.meta);
                 this.setState({
 					'images': result.data.data,
 					'meta': result.data.meta,
@@ -120,6 +118,13 @@ export class RequestImages extends React.Component {
             </div>
         )
     }
+}
+
+RequestImages.propTypes = {
+	source : PropTypes.string.isRequired,
+	page : PropTypes.number,
+	onChangePage : PropTypes.func,
+	onChangeOffset : PropTypes.func
 }
 
 export class RequestAlbums extends React.Component {
