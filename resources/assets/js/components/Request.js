@@ -10,6 +10,7 @@ export class RequestImages extends React.Component {
         this.state = {
 			'images' : [],
 			'meta': [],
+			'totalPages': '',
 			'links': [],
             'selectedImage': {
                 id: null,
@@ -26,12 +27,14 @@ export class RequestImages extends React.Component {
 			}
 			})
             .then(function(result){
-			console.log(result);
-			console.log(result.data.meta);
+				const totalPages = Math.ceil(result.data.meta.total / result.data.meta.per_page);  
+				console.log(result);
+				console.log(result.data.meta);
                 this.setState({
 					'images': result.data.data,
 					'meta': result.data.meta,
-					'links':result.data.links
+					'totalPages': totalPages,
+					'links':result.data.links,
                 });
             }.bind(this));
 	}
@@ -40,6 +43,11 @@ export class RequestImages extends React.Component {
 		e.preventDefault();
 		const page = parseInt(e.target.innerHTML);
 		this.props.onChangePage(page);
+	}
+
+	handleOffset(e, offset){
+		e.preventDefault();
+		this.props.onChangeOffset(offset);
 	}
 
     handleClick(image){
@@ -56,16 +64,17 @@ export class RequestImages extends React.Component {
 
 	componentWillReceiveProps(nextProps){
 		if(this.props.page != nextProps.page){
-			this.requestData(nextProps.page);
+			if (nextProps.page <= this.state.totalPages && nextProps.page > 0)
+			{
+				this.requestData(nextProps.page);
+			}
 		}
 	}
 
     render(){
-		const totalItem = this.state.meta.total;
-		const perPage = this.state.meta.per_page;
-		const totalPagination = Math.ceil(totalItem / perPage);
+		const totalPages = this.state.totalPages; 
 		let paginateItems = [];
-		for(let page = 1; page <= totalPagination; page++)
+		for(let page = 1; page <= totalPages; page++)
 		{
 			paginateItems.push(
 				<li key={page} className={this.props.page === page ? 'active': ''}>
@@ -93,11 +102,19 @@ export class RequestImages extends React.Component {
                         </div>
                     );
                 }.bind(this))}
-				<nav aria-label="...">
+				<nav>
 					<ul className="pagination">
-						<li><a href="#" aria-label="Previous"><span>«</span></a></li>
+						<li className={this.props.page == 1 ? 'disabled': ''}>
+							<a href="#" aria-label="Previous" onClick={(e) => this.handleOffset(e, -1)}>
+								<span>«</span>
+							</a>
+						</li>
 						{paginateItems}
-						<li><a href="#" aria-label="Next"><span>»</span></a></li>
+						<li className={this.props.page == totalPages ? 'disabled': ''}>
+							<a href="#" onClick={(e) => this.handleOffset(e, 1)}aria-label="Next">
+								<span>»</span>
+							</a>
+						</li>
 					</ul>
 				</nav>
             </div>

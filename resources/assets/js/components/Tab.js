@@ -16,6 +16,7 @@ export class MediaTabs extends React.Component {
 		this.handleSelect = this.handleSelect.bind(this);
 		this.changePage = this.changePage.bind(this);
 		this.addFile = this.addFile.bind(this);
+		this.offsetPage = this.offsetPage.bind(this);
     }
 
     handleSelect(key) {
@@ -25,6 +26,12 @@ export class MediaTabs extends React.Component {
 	changePage(newPage){
 		this.setState({
 			page: newPage
+		});
+	}
+
+	offsetPage(offset){
+		this.setState((prevState) => {
+			return {page: prevState.page + offset};
 		});
 	}
 
@@ -73,6 +80,7 @@ export class MediaTabs extends React.Component {
 									i={this.props.i}
 									page={this.state.page}
 									onChangePage={this.changePage}
+									onChangeOffset={this.offsetPage}
 								/>
 
                             </Tab.Pane>
