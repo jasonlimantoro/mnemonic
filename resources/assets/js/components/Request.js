@@ -47,7 +47,7 @@ export class RequestImages extends React.Component {
 
 	handleOffset(e, offset){
 		e.preventDefault();
-		this.props.onChangeOffset(offset);
+		this.props.onChangeOffset(offset, this.state.totalPages);
 	}
 
     handleClick(image){
