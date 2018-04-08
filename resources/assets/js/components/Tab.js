@@ -10,14 +10,22 @@ export class MediaTabs extends React.Component {
     constructor(props) {
         super(props);
 		this.state = {
-			file : {}
+			file : {},
+			page: 1 
 		}
 		this.handleSelect = this.handleSelect.bind(this);
+		this.changePage = this.changePage.bind(this);
 		this.addFile = this.addFile.bind(this);
     }
 
     handleSelect(key) {
         this.props.onSelect(key);
+	}
+
+	changePage(newPage){
+		this.setState({
+			page: newPage
+		});
 	}
 
     addFile(newFile) {
@@ -60,7 +68,12 @@ export class MediaTabs extends React.Component {
                              </Tab.Pane>
                             <Tab.Pane eventKey="gallery">
                                 Or, use your gallery instead!
-	                            <RequestImages source="/api/images" i={this.props.i} />
+	                            <RequestImages 
+									source={"/api/images"} 
+									i={this.props.i}
+									page={this.state.page}
+									onChangePage={this.changePage}
+								/>
 
                             </Tab.Pane>
                         </Tab.Content>
