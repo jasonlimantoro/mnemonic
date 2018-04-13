@@ -113,39 +113,3 @@ RequestImages.propTypes = {
 	onChangePage : PropTypes.func,
 	onChangeOffset : PropTypes.func
 }
-
-export class RequestAlbums extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            albums : []
-        };
-		this.requestData = this.requestData.bind(this);
-    }
-
-    requestData() {
-        axios.get(this.props.source)
-            .then(function(result){
-                this.setState({
-                    albums: result.data
-                });
-            }.bind(this));
-    }
-
-    componentDidMount() {
-        this.requestData();
-    }
-
-    render() {
-        return(
-            <SelectForm label="Assign to album: " name="album">
-                <option value={4}>Select Album</option>
-                {this.state.albums.map(function(album){
-                    return (
-                        <option key={album.id} value={album.id}>{album.name}</option>
-                    );
-                })}
-            </SelectForm>
-        );
-    }
-}

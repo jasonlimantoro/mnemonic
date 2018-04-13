@@ -7,7 +7,6 @@ import { SearchPost } from "../components/SearchPost";
 import { PrimaryButton, SuccessButton } from "../components/Button";
 import { UploadModal } from "../components/Modal";
 import { DisplayImages, DisplayImagesFromInputFile } from "../components/DisplayImage";
-import { RequestAlbums } from "../components/Request";
 import { CoupleTabs } from "../components/Tab";
 
 
