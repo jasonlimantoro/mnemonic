@@ -29,15 +29,13 @@ export class MediaTabs extends React.Component {
 		});
 	}
 
-	offsetPage(offset, max, min=0){
+	offsetPage(offset, max, min=1){
 		const currPage = this.state.page;
-		if(currPage <= max && currPage > min){
-			if((currPage == 1 && offset == 1) || (currPage == max && offset == -1) ){
-				this.setState((prevState) => {
-					return {page: prevState.page + offset};
-				});
-
-			}
+		const newPage = currPage + offset;
+		if(newPage <= max && newPage >= min){
+			this.setState((prevState) => {
+				return {page: prevState.page + offset};
+			});
 		}
 	}
 
