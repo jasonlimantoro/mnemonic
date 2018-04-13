@@ -82,7 +82,7 @@ export class MediaTabs extends React.Component {
                             <Tab.Pane eventKey="gallery">
                                 Or, use your gallery instead!
 	                            <RequestImages 
-									source={"/api/images"} 
+									source="/api/images" 
 									i={this.props.i}
 									page={this.state.page}
 									onChangePage={this.changePage}
