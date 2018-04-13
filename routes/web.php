@@ -56,10 +56,15 @@ Route::prefix('admin')->group(function(){
 		// Bridesmaid-Bestman
 		Route::resource('bridesmaid-bestmans', 'BridesBestsController', ['except' => ['index']]);
 		Route::get('bridesmaid-bestmans', 'BackendController@brides_best')->name('bridesmaid-bestmans.index');
+
+		// Vendors
+		Route::resource('vendors', 'VendorsController', ['except' => ['index']]);
+		Route::get('vendors', 'BackendController@vendors')->name('vendors.index');
 	});
+
 });
 
-Route::get('/admin/wedding/vendors', 'BackendController@vendors');
+// Route::get('/admin/wedding/vendors', 'BackendController@vendors');
 Route::get('/admin/wedding/rsvp', 'BackendController@rsvp');
 
 // Settings

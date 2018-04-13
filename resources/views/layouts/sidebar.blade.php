@@ -53,7 +53,7 @@
 					</li>
 			</ul>
 		</li>
-		<li><a href="{{ route('admin') }}/wedding/vendors">Vendors</a></li>
+		<li><a href="{{ route('vendors.index') }}">Vendors</a></li>
 		<li><a href="{{ route('admin') }}/wedding/rsvp">RSVP</a></li>
 		
 		<li class="header">Settings</li>

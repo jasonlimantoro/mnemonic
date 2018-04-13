@@ -17,6 +17,7 @@ use App\Http\Controllers\AlbumsController;
 use App\Http\Controllers\CoupleController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\BridesBestsController;
+use \App\Http\Controllers\VendorsController;
 
 use Illuminate\Support\Facades\DB;
 
@@ -78,7 +79,8 @@ class BackendController extends Controller
     }
 
     public function vendors() {
-        return view('backend.wedding.vendors');
+		$vendorsInstance = new VendorsController;
+        return $vendorsInstance->index(); 
     }
 
     public function rsvp() {
