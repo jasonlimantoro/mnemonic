@@ -14,15 +14,18 @@ class CreateCategoriesTable extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-			$table->increments('id');
-			$table->string('name');
-			$table->timestamps();
-		});
+            $table->increments('id');
+            $table->string('name');
+            $table->timestamps();
+        });
 
         Schema::create('categoriables', function (Blueprint $table) {
-			$table->integer('category_id');
-			$table->morphs('categoriable');
-			$table->primary(['category_id', 'categoriable_id']);
+            $table->unsignedInteger('category_id');
+            $table->morphs('categoriable');
+            $table->primary(['category_id', 'categoriable_id']);
+            $table->foreign('category_id')
+                  ->references('id')->on('categories')
+                  ->onDelete('cascade');  
         });
     }
 
