@@ -77,7 +77,7 @@ class VendorsController extends Controller
      */
     public function show(Vendor $vendor)
     {
-        //
+		return view('backend.wedding.vendors.show', compact('vendor'));
     }
 
     /**
