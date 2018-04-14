@@ -115,9 +115,7 @@ class EventsController extends Controller
 	 */
 	public function destroy(Event $event)
 	{
-		if ($event->image) {
-			$event->image->delete();
-		}
+		$event->image()->delete();
 		$event->delete();
 		\Session::flash('success_msg', 'Event is successfully deleted!');
 		return back();

@@ -118,10 +118,7 @@ class BridesBestsController extends Controller
      */
     public function destroy(BridesBest $bridesmaid_bestman)
     {
-		if ($bridesmaid_bestman->image)
-		{
-			$bridesmaid_bestman->image->delete();
-		}
+		$bridesmaid_bestman->image()->delete();
 		$bridesmaid_bestman->delete();
 		\Session::flash('success_msg', 'Bridesmaid / Bestman is successfully deleted!');
 		return back();
