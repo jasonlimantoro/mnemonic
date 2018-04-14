@@ -30,7 +30,7 @@
 						</div>
 						
 						<div class="form-group">
-							<label class="control-label">Current Categories</label>
+							<label class="control-label">Current Categories ({{ count($vcategories) }})</label>
 							<ul class="list-unstyled">
 								@forelse ($vcategories as $vcategory)
 									<li>{{ $vcategory }}</li>
