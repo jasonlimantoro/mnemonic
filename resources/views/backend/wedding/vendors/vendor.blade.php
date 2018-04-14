@@ -40,7 +40,7 @@
         </div>
         <div>
 
-		<form action="{{ route('vendors.destroy', [ 'vendor' => $vendor->id ]) }}" method="POST" id={{ "form-delete-events-" . $vendor->id  }}>
+		<form action="{{ route('vendors.destroy', [ 'vendor' => $vendor->id ]) }}" method="POST" id={{ "form-delete-vendors-" . $vendor->id  }}>
 			{{ method_field('DELETE') }}
             <a 
                 href="" 
