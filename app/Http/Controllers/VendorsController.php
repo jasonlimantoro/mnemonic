@@ -6,6 +6,7 @@ use App\Vendor;
 use Illuminate\Http\Request;
 use App\Category;
 
+
 class VendorsController extends Controller
 {
     /**
@@ -13,10 +14,20 @@ class VendorsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+	public $vendors;
+	public $categories;
+
+	public function __construct()
+	{
+		$this->middleware('auth');
+		$this->vendors = Vendor::all();
+		$this->categories = Category::all();
+	}
     public function index()
     {
-		$vendors = Vendor::all();
-		return view('backend.wedding.vendors.index', compact('vendors'));
+		return view('backend.wedding.vendors.index', with([
+			'vendors' => $this->vendors
+		]));
     }
 
     /**
@@ -26,8 +37,9 @@ class VendorsController extends Controller
      */
     public function create()
     {
-		$categories = Category::all();
-        return view('backend.wedding.vendors.create', compact('categories'));
+        return view('backend.wedding.vendors.create', with([
+			'categories' => $this->categories
+		]));
     }
 
     /**
@@ -44,12 +56,11 @@ class VendorsController extends Controller
 
 		$this->validate($request, $rules);
 
-		// dd($request->category);
 		$vendor = Vendor::create(request(['name']));
 
 		if($category = $request->category)
 		{
-			$vendor->categories()->sync($category);
+			$vendor->categories()->attach($category);
 		}
 
 		\Session::flash('success_msg', 'Vendor Information is updated!');
@@ -64,7 +75,7 @@ class VendorsController extends Controller
      * @param  \App\Vendors  $vendors
      * @return \Illuminate\Http\Response
      */
-    public function show(Vendors $vendors)
+    public function show(Vendor $vendor)
     {
         //
     }
@@ -75,9 +86,14 @@ class VendorsController extends Controller
      * @param  \App\Vendors  $vendors
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vendors $vendors)
+    public function edit(Vendor $vendor)
     {
-        //
+		$vcategories = $vendor->categories()->pluck('name')->toArray();
+		return view('backend.wedding.vendors.edit', with([
+			'categories' => $this->categories,
+			'vendor' => $vendor,
+			'vcategories' => $vcategories
+		]));
     }
 
     /**
@@ -87,9 +103,21 @@ class VendorsController extends Controller
      * @param  \App\Vendors  $vendors
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vendors $vendors)
+    public function update(Request $request, Vendor $vendor)
     {
-        //
+		$rules = [
+			'name' => 'required'
+		];
+		$this->validate($request, $rules);
+
+		$vendor->update(request(['name']));
+		$vendor->categories()->sync($request->category);
+
+		\Session::flash('success_msg', 'Vendor data is updated!');
+
+		return back();
+		
+
     }
 
     /**
@@ -98,7 +126,7 @@ class VendorsController extends Controller
      * @param  \App\Vendors  $vendors
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vendors $vendors)
+    public function destroy(Vendor $vendor)
     {
         //
     }
