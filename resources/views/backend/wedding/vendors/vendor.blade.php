@@ -5,13 +5,13 @@
 		</a>
     </td>
     <td class="vendor-data body">
-		@if ($vendor->categories)
-			@foreach ($vendor->categories as $category)
+		<ul class="list-unstyled">
+			@forelse ($vendor->categories as $category)
 				<li>{{ $category->name }}</li>
-			@endforeach
-		@else
-			No Category Assigned
-		@endif
+			@empty
+				<p><i>None</i></p>
+			@endforelse
+		</ul>
     </td>
     <td class="text-center">
         <div>
