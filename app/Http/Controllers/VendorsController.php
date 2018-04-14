@@ -128,6 +128,9 @@ class VendorsController extends Controller
      */
     public function destroy(Vendor $vendor)
     {
-        //
+		$vendor->delete();
+		$vendor->categories()->detach();
+		\Session::flash('success_msg', 'Vendor is deleted!');
+		return back();
     }
 }
