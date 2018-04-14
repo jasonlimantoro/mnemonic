@@ -27,13 +27,14 @@
 							>
 						</div>
 
+
 						<div class="form-group">
-							<label for="formControlCategory">Vendor Category</label>
-							<select name="category[]" class="form-control" multiple>
-								@foreach ($categories as $category)
-									<option value="{{ $category->id }}">{{ $category->name }}</option>
-								@endforeach
-							</select>
+							<p><strong>Select Categories</strong></p>
+							@foreach ($categories as $category)
+								<label class="checkbox-inline">
+									<input type="checkbox" name="category[]" value="{{ $category->id }}"> {{ $category->name }}
+								</label>
+							@endforeach							
 						</div>
 
 						<button type="submit" class="btn btn-primary">Publish</button>
