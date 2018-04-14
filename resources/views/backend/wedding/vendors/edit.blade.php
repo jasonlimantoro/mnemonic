@@ -46,7 +46,11 @@
 							<p><strong>Select Categories</strong></p>
 							@foreach ($categories as $category)
 								<label class="checkbox-inline">
-									<input type="checkbox" name="category[]" value="{{ $category->id }}"> {{ $category->name }}
+									@if (in_array($category->name, $vcategories))
+										<input type="checkbox" name="category[]" value="{{ $category->id }}" checked> {{ $category->name }}
+									@else
+										<input type="checkbox" name="category[]" value="{{ $category->id }}"> {{ $category->name }}
+									@endif
 								</label>
 							@endforeach							
 						</div>
