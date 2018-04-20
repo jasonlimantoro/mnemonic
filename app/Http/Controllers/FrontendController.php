@@ -11,6 +11,7 @@ Use App\Carousel;
 use App\Image;
 use App\Album;
 use App\Couple;
+use Carbon\Carbon;
 
 class FrontendController extends Controller
 {
@@ -21,11 +22,22 @@ class FrontendController extends Controller
 
     public function home() {
 		$page = Page::find(1);
-        $posts = $page->posts()->latest()->get();
         $carousel = $page->carousel;
 		$slides = $carousel->images;
+
+		$posts = Post::latest()
+					->where('page_id', 1)
+					->filter(request(['month', 'year']))
+					->get();
+			
+		$archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
+								->groupBy('year', 'month')
+								->orderByRaw('min(created_at) desc')
+								->where('page_id', 1)
+								->get()
+								->toArray();
         
-        return view('frontend.home', compact('posts', 'page', 'slides'));
+        return view('frontend.home', compact('posts', 'page', 'slides', 'archives'));
     }
 
     public function about() {

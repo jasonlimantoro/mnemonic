@@ -1,12 +1,7 @@
 @extends('layouts.master')
 
-
 @section('content')
-    @component('layouts.carousel')
-        @slot('carouselId')
-            mainCarousel
-        @endslot
-
+    @component('layouts.carousel', ['carouselId' => 'mainCarousel'])
         @slot('carouselIndicators')
             @foreach($slides as $slide)
                 @if ($loop->first)
@@ -15,9 +10,7 @@
                 @else
                     <li data-target="#mainCarousel" data-slide-to="{{ $loop->index }}"></li>
                 @endif
-                
             @endforeach
-
         @endslot
 
         @slot('carouselSlides')
@@ -48,18 +41,15 @@
                     <span class="sr-only">Next</span>
                 </a>
             @endif
-            
         @endslot
     @endcomponent
 
     <div class="row">
-        <div class="col-md-12">
-            <h2>List of Posts in Home</h2>
-            <div class="row">
-                @foreach($posts as $post)
-                    @include('posts.frontend.post')
-                @endforeach
-            </div>
-        </div>
+        <div class="col-md-8">
+			@foreach($posts as $post)
+				@include('posts.frontend.post')
+			@endforeach
+		</div>
+		@include('posts.frontend.archives')
     </div>
 @endsection
