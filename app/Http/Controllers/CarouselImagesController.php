@@ -42,7 +42,7 @@ class CarouselImagesController extends Controller
 
 		$image->update(request(['caption']));
 
-        $this->flash('success_msg', 'Image is successfully uploaded to the carousel!');
+        $this->flash('Image is successfully uploaded to the carousel!');
         return back();
     }
 
@@ -66,7 +66,7 @@ class CarouselImagesController extends Controller
 		$image->update(request(['caption']));
 
 
-        $this->flash('success_msg', 'Updated sucessfully!');
+        $this->flash('Updated sucessfully!');
 
         return back();
     }
@@ -75,7 +75,7 @@ class CarouselImagesController extends Controller
 
         $carousel->removeImage($image);
         
-        $this->flash('success_msg', 'Image is successfully removed from the carousel!');
+        $this->flash('Image is successfully removed from the carousel!');
 
         return back();
     }

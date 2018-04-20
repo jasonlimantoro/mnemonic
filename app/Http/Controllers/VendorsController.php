@@ -64,7 +64,7 @@ class VendorsController extends Controller
 			$vendor->categories()->attach($category);
 		}
 
-		\Session::flash('success_msg', 'Vendor Information is updated!');
+		\Session::flash('Vendor Information is updated!');
 
 		return back();
 
@@ -114,7 +114,7 @@ class VendorsController extends Controller
 		$vendor->update(request(['name']));
 		$vendor->categories()->sync($request->category);
 
-		$this->flash('success_msg', 'Vendor data is updated');
+		$this->flash('Vendor data is updated');
 
 		return back();
 		
@@ -131,7 +131,7 @@ class VendorsController extends Controller
     {
 		$vendor->delete();
 		$vendor->categories()->detach();
-		$this->flash('success_msg', 'Vendor is deleted!');
+		$this->flash('Vendor is deleted!');
 		return back();
     }
 }

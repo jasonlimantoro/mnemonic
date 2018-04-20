@@ -51,7 +51,7 @@ class EventsController extends Controller
 			$eventImage->addTo($event);
 		}
 
-		$this->flash('success_msg', 'Event is successfully created!');
+		$this->flash('Event is successfully created!');
 
 		return back();
 
@@ -102,7 +102,7 @@ class EventsController extends Controller
 			request(['name', 'description', 'location', 'datetime'])
 		);
 
-		$this->flash('success_msg', 'Event is successfully updated!');
+		$this->flash('Event is successfully updated!');
 
 		return back();
 
@@ -118,7 +118,7 @@ class EventsController extends Controller
 	{
 		$event->image()->delete();
 		$event->delete();
-		$this->flash('success_msg', 'Event is successfully deleted!');
+		$this->flash('Event is successfully deleted!');
 		return back();
 	}
 }

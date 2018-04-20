@@ -51,7 +51,7 @@ class AlbumImagesController extends Controller
 							->addTo($album);
 
 
-        $this->flash('success_msg', 'Image is uploaded successfuly!');
+        $this->flash('Image is uploaded successfuly!');
 
         return back();
 
@@ -103,11 +103,11 @@ class AlbumImagesController extends Controller
 		if ($album == $targetAlbum)
 		{
 			// reverting
-			$this->flash('success_msg', 'Changed back to ' . $album->name);
+			$this->flash('Changed back to ' . $album->name);
 		}
 		else 
 		{
-			$this->flash('success_msg', 'Changed from ' . $album->name . ' to ' . $targetAlbum->name);
+			$this->flash('Changed from ' . $album->name . ' to ' . $targetAlbum->name);
 		}
 
         return back();
@@ -123,7 +123,7 @@ class AlbumImagesController extends Controller
     {
 		$image->delete();
 
-		$this->flash('success_msg', 'Image is successfully removed from ' . $album->name);
+		$this->flash('Image is successfully removed from ' . $album->name);
 
 		return back();
     }

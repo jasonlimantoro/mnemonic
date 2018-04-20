@@ -45,7 +45,7 @@ class CategoriesController extends Controller
 
 		$category = Category::create(request(['name', 'description']));
 
-		$this->flash('success_msg', 'Category is sucessfully created!');
+		$this->flash('Category is sucessfully created!');
 
 		return back();
 		
@@ -90,7 +90,7 @@ class CategoriesController extends Controller
 
 		$category->update(request(['name', 'description']));
 
-		$this->flash('success_msg', 'Category is sucessfully updated');
+		$this->flash('Category is sucessfully updated');
 
 		return back();
     }
@@ -104,7 +104,7 @@ class CategoriesController extends Controller
     public function destroy(Category $category)
     {
 		$category->delete();
-		$this->flash('success_msg', 'Category is sucessfully deleted!');
+		$this->flash('Category is sucessfully deleted!');
 		return back();
     }
 }

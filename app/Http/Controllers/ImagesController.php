@@ -64,7 +64,7 @@ class ImagesController extends Controller
 
 		$album->images()->save($newImage);
 
-		$this->flash('success_msg', 'Image is successfully uploaded!');
+		$this->flash('Image is successfully uploaded!');
 
 	   return back();
 	}
@@ -117,7 +117,7 @@ class ImagesController extends Controller
 		// Delete from the database
 		$deletedImage = Image::where('file_name', $image->file_name)->delete();
 
-		$this->flash('success_msg', 'Images are successfully deleted!');
+		$this->flash('Images are successfully deleted!');
 
 		return back();
 	}

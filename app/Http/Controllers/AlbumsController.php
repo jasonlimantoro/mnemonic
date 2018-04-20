@@ -65,7 +65,7 @@ class AlbumsController extends Controller
             'description' => $request->description
         ]);
         
-        $this->flash('success_msg', 'Album is created sucessfully!');
+        $this->flash('Album is created sucessfully!');
 
         return back();
     }
@@ -118,7 +118,7 @@ class AlbumsController extends Controller
         $album->update(request(['name', 'description']));
 
         //store status message
-        $this->flash('success_msg', 'Album is updated successfully!');
+        $this->flash('Album is updated successfully!');
 
         return back();
     }
@@ -137,7 +137,7 @@ class AlbumsController extends Controller
         // Delete the album
         $album->delete();
 
-        $this->flash('success_msg', 'Album is deleted successfully. All the attached images have been assigned to Uncategorized album');
+        $this->flash('Album is deleted successfully. All the attached images have been assigned to Uncategorized album');
 
         return back();
     }

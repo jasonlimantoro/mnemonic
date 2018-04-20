@@ -58,7 +58,7 @@ class PostsController extends Controller
         // add a new post to a page
         $page->addPost(request('title'), request('body'), auth()->id());
         
-        $this->flash('success_msg', 'Post is added succesfully');
+        $this->flash('Post is added succesfully');
 
         return back();
     }
@@ -105,7 +105,7 @@ class PostsController extends Controller
         $post->update($updatedPost);
 
         //store status message
-        $this->flash('success_msg', 'Post updated successfully!');
+        $this->flash('Post updated successfully!');
 
         return back();
     }
@@ -119,7 +119,7 @@ class PostsController extends Controller
 	public function destroy(Page $page, Post $post)
     {
         $post->delete();
-        $this->flash('success_msg', 'Post is deleted successfully');
+        $this->flash('Post is deleted successfully');
         return back();
     }
 

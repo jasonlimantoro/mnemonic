@@ -86,7 +86,7 @@ class CoupleController extends Controller
 			request(['name', 'father', 'mother'])
 		);
 
-        $this->flash('success_msg', 'Couple information is sucessfully updated!');
+        $this->flash('Couple information is sucessfully updated!');
 
         return back();
 
