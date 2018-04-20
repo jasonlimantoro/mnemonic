@@ -19,7 +19,11 @@ class DatabaseSeeder extends Seeder
             ImagesTableSeeder::class,
             CarouselsTableSeeder::class,
 			AlbumsTableSeeder::class,
-			CoupleTableSeeder::class
+			CoupleTableSeeder::class,
+			VendorsTableSeeder::class,
+			CategoriesTableSeeder::class,
+			EventsTableSeeder::class,
+			BridesBestsTableSeeder::class
         ]);
     }
 }
