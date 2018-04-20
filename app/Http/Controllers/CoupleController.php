@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\GenericController as Controller;
 use App\Couple;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use App\Image;
 
 class CoupleController extends Controller
@@ -86,7 +86,7 @@ class CoupleController extends Controller
 			request(['name', 'father', 'mother'])
 		);
 
-        Session::flash('success_msg', 'Couple information is sucessfully updated!');
+        $this->flash('success_msg', 'Couple information is sucessfully updated!');
 
         return back();
 

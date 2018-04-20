@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\GenericController as Controller;
 use Illuminate\Http\Request;
 use App\Event;
 use App\Image;
@@ -50,7 +51,7 @@ class EventsController extends Controller
 			$eventImage->addTo($event);
 		}
 
-		\Session::flash('success_msg', 'Event is successfully created!');
+		$this->flash('success_msg', 'Event is successfully created!');
 
 		return back();
 
@@ -101,7 +102,7 @@ class EventsController extends Controller
 			request(['name', 'description', 'location', 'datetime'])
 		);
 
-		\Session::flash('success_msg', 'Event is successfully updated!');
+		$this->flash('success_msg', 'Event is successfully updated!');
 
 		return back();
 
@@ -117,7 +118,7 @@ class EventsController extends Controller
 	{
 		$event->image()->delete();
 		$event->delete();
-		\Session::flash('success_msg', 'Event is successfully deleted!');
+		$this->flash('success_msg', 'Event is successfully deleted!');
 		return back();
 	}
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\GenericController as Controller;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Page;
@@ -57,9 +58,9 @@ class PostsController extends Controller
         // add a new post to a page
         $page->addPost(request('title'), request('body'), auth()->id());
         
-        \Session::flash('success_msg', 'Post is added succesfully');
+        $this->flash('success_msg', 'Post is added succesfully');
 
-        return redirect()->back();
+        return back();
     }
 
     /**
@@ -104,7 +105,7 @@ class PostsController extends Controller
         $post->update($updatedPost);
 
         //store status message
-        \Session::flash('success_msg', 'Post updated successfully!');
+        $this->flash('success_msg', 'Post updated successfully!');
 
         return back();
     }
@@ -118,8 +119,8 @@ class PostsController extends Controller
 	public function destroy(Page $page, Post $post)
     {
         $post->delete();
-        \Session::flash('success_msg', 'Post is deleted successfully');
-        return redirect()->back();
+        $this->flash('success_msg', 'Post is deleted successfully');
+        return back();
     }
 
     public function read($page_title, $post_title) {

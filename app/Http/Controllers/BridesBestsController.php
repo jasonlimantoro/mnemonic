@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\GenericController as Controller;
 use App\BridesBest;
 use App\Image;
 use Illuminate\Http\Request;
@@ -48,7 +49,7 @@ class BridesBestsController extends Controller
 			$bridesBestImage->addTo($bridesBest);
 		}
 
-		\Session::flash('success_msg', 'Bridesmaid / Bestman is successfully created!');
+		$this->flash('success_msg', 'Bridesmaid / Bestman is successfully created!');
 		return back();
     }
 
@@ -105,7 +106,7 @@ class BridesBestsController extends Controller
 
 		$bridesmaid_bestman->update(request(['name', 'testimony', 'ig_account', 'gender']));
 
-		\Session::flash('success_msg', 'Bridesmaid / Bestman information is successfully updated!');
+		$this->flash('success_msg', 'Bridesmaid / Bestman information is successfully updated!');
 
 		return back();
     }
@@ -120,7 +121,7 @@ class BridesBestsController extends Controller
     {
 		$bridesmaid_bestman->image()->delete();
 		$bridesmaid_bestman->delete();
-		\Session::flash('success_msg', 'Bridesmaid / Bestman is successfully deleted!');
+		$this->flash('success_msg', 'Bridesmaid / Bestman is successfully deleted!');
 		return back();
     }
 }

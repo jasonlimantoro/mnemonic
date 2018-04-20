@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Vendor;
-use Illuminate\Http\Request;
 use App\Category;
+use App\Http\Controllers\GenericController as Controller;
+use Illuminate\Http\Request;
 
 
 class VendorsController extends Controller
@@ -113,7 +114,7 @@ class VendorsController extends Controller
 		$vendor->update(request(['name']));
 		$vendor->categories()->sync($request->category);
 
-		\Session::flash('success_msg', 'Vendor data is updated!');
+		$this->flash('success_msg', 'Vendor data is updated');
 
 		return back();
 		
@@ -130,7 +131,7 @@ class VendorsController extends Controller
     {
 		$vendor->delete();
 		$vendor->categories()->detach();
-		\Session::flash('success_msg', 'Vendor is deleted!');
+		$this->flash('success_msg', 'Vendor is deleted!');
 		return back();
     }
 }

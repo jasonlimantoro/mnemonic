@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers\GenericController as Controller;
 
 use Illuminate\Http\Request;
-// use Intervention\Image\Facades\Image;
 use App\Filters\CarouselFilter;
 use App\CarouselImage;
 use App\Carousel;
@@ -40,7 +40,7 @@ class CarouselImagesController extends Controller
 		Image::handleUpload($request)
 			->addTo($carousel, ['caption' => $request->caption]);
 
-        \Session::flash('success_msg', 'Image is successfully uploaded to the carousel!');
+        $this->flash('success_msg', 'Image is successfully uploaded to the carousel!');
         return back();
     }
 
@@ -62,7 +62,7 @@ class CarouselImagesController extends Controller
             $carouselImage->addTo($carousel, ['caption' => $request->caption]);
         }
 
-        \Session::flash('success_msg', 'Updated sucessfully!');
+        $this->flash('success_msg', 'Updated sucessfully!');
 
         return back();
     }
@@ -71,7 +71,7 @@ class CarouselImagesController extends Controller
 
         $carousel->removeImage($image);
         
-        \Session::flash('success_msg', 'Image is successfully removed from the carousel!');
+        $this->flash('success_msg', 'Image is successfully removed from the carousel!');
 
         return back();
     }

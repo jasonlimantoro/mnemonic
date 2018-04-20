@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\GenericController as Controller;
 use App\Image;
 use App\Album;
 use App\Repositories\Albums;
@@ -50,7 +51,7 @@ class AlbumImagesController extends Controller
 							->addTo($album);
 
 
-        \Session::flash('success_msg', 'Image is uploaded successfuly!');
+        $this->flash('success_msg', 'Image is uploaded successfuly!');
 
         return back();
 
@@ -102,11 +103,11 @@ class AlbumImagesController extends Controller
 		if ($album == $targetAlbum)
 		{
 			// reverting
-			\Session::flash('success_msg', 'Changed back to ' . $album->name);
+			$this->flash('success_msg', 'Changed back to ' . $album->name);
 		}
 		else 
 		{
-			\Session::flash('success_msg', 'Changed from ' . $album->name . ' to ' . $targetAlbum->name);
+			$this->flash('success_msg', 'Changed from ' . $album->name . ' to ' . $targetAlbum->name);
 		}
 
         return back();
@@ -122,7 +123,7 @@ class AlbumImagesController extends Controller
     {
 		$image->delete();
 
-		\Session::flash('success_msg', 'Image is successfully removed from ' . $album->name);
+		$this->flash('success_msg', 'Image is successfully removed from ' . $album->name);
 
 		return back();
     }

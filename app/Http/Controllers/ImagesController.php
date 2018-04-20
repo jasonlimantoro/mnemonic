@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\GenericController as Controller;
 use App\Image;
 use App\Carousel;
 use App\Album;
 use App\Http\Resources\ImageResource;
 use App\Repositories\Images;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 
@@ -64,7 +64,7 @@ class ImagesController extends Controller
 
 		$album->images()->save($newImage);
 
-		Session::flash('success_msg', 'Image is successfully uploaded!');
+		$this->flash('success_msg', 'Image is successfully uploaded!');
 
 	   return back();
 	}
@@ -117,7 +117,7 @@ class ImagesController extends Controller
 		// Delete from the database
 		$deletedImage = Image::where('file_name', $image->file_name)->delete();
 
-		Session::flash('success_msg', 'Images are successfully deleted!');
+		$this->flash('success_msg', 'Images are successfully deleted!');
 
 		return back();
 	}

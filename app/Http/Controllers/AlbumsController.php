@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\GenericController as Controller;
 use App\Album;
 use App\Repositories\Albums;
 use App\Image;
@@ -64,7 +65,7 @@ class AlbumsController extends Controller
             'description' => $request->description
         ]);
         
-        \Session::flash('success_msg', 'Album is created sucessfully!');
+        $this->flash('success_msg', 'Album is created sucessfully!');
 
         return back();
     }
@@ -117,7 +118,7 @@ class AlbumsController extends Controller
         $album->update(request(['name', 'description']));
 
         //store status message
-        \Session::flash('success_msg', 'Album is updated successfully!');
+        $this->flash('success_msg', 'Album is updated successfully!');
 
         return back();
     }
@@ -136,7 +137,7 @@ class AlbumsController extends Controller
         // Delete the album
         $album->delete();
 
-        \Session::flash('success_msg', 'Album is deleted successfully. All the attached images have been assigned to Uncategorized album');
+        $this->flash('success_msg', 'Album is deleted successfully. All the attached images have been assigned to Uncategorized album');
 
         return back();
     }
