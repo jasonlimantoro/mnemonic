@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\GenericController as Controller;
 use App\Category;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+		$categories = Category::all();
+		return view('backend.settings.categories.index', compact('categories'));
     }
 
     /**
@@ -24,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.settings.categories.create');
     }
 
     /**
@@ -35,7 +37,18 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+		$rules = [
+			'name' => 'required'
+		];
+
+		$this->validate($request, $rules);
+
+		$category = Category::create(request(['name', 'description']));
+
+		$this->flash('success_msg', 'Category is sucessfully created!');
+
+		return back();
+		
     }
 
     /**
@@ -46,7 +59,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+       return view('backend.settings.categories.show', compact('category')); 
     }
 
     /**
@@ -57,7 +70,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('backend.settings.categories.edit', compact('category'));
     }
 
     /**
@@ -69,7 +82,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+		$rules = [
+			'name' => 'required'
+		];
+
+		$this->validate($request, $rules);
+
+		$category->update(request(['name', 'description']));
+
+		$this->flash('success_msg', 'Category is sucessfully updated');
+
+		return back();
     }
 
     /**
@@ -80,6 +103,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+		$category->delete();
+		$this->flash('success_msg', 'Category is sucessfully deleted!');
+		return back();
     }
 }

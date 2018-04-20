@@ -57,6 +57,7 @@
 		<li><a href="{{ route('admin') }}/wedding/rsvp">RSVP</a></li>
 		
 		<li class="header">Settings</li>
+		<li><a href="{{ route('categories.index') }}">Manage Categories</a></li>
 		<li><a href="{{ route('admin') }}/settings/general">General</a></li>
 		<li><a href="{{ route('admin') }}/settings/site-info">Site Info</a></li>
 		<li><a href="{{ route('admin') }}/settings/social-media-and-seo">Social Media & SEO</a></li>

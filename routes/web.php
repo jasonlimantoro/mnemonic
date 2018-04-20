@@ -44,6 +44,7 @@ Route::prefix('admin')->group(function(){
 		Route::resource('posts', 'PostsController');
 	});
 	
+	// wedding
 	Route::prefix('wedding')->group(function(){
 		// couple
 		Route::resource('couple', 'CoupleController', ['only' => ['update']]);
@@ -62,12 +63,19 @@ Route::prefix('admin')->group(function(){
 		Route::get('vendors', 'BackendController@vendors')->name('vendors.index');
 	});
 
+	// settings
+	Route::prefix('settings')->group(function(){
+		Route::resource('categories', 'CategoriesController', ['except' => ['index']]);
+		Route::get('categories', 'BackendController@categories')->name('categories.index');
+	});
+
 });
 
 // Route::get('/admin/wedding/vendors', 'BackendController@vendors');
 Route::get('/admin/wedding/rsvp', 'BackendController@rsvp');
 
 // Settings
+
 Route::get('/admin/settings/general', 'BackendController@general');
 Route::get('/admin/settings/site-info', 'BackendController@site');
 Route::get('/admin/settings/social-media-and-seo', 'BackendController@social');
