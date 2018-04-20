@@ -15,9 +15,9 @@ abstract class GenericController extends Controller
 	 *
 	 */
 	
-	public function flash($key, $message)
+	public function flash($message, $key= 'success_msg')
 	{
-		session()->flash($key, $message);	
+		session()->flash($key, $message);
 	}
 
 }
