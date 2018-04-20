@@ -54,51 +54,50 @@ class Image extends Model
         
     }
 
-	public function addTo($ownerClass, array $options =[])
+	public function addTo($ownerClass, $editable = NULL)
 	{
+
+		$imgAttr = [
+			'file_name' => $this->file_name,
+			'url_asset' => $this->url_asset,
+			'url_cache' => $this->url_cache,
+		];
+
 		// the owner has a polymorphic one-to-one relationship
 		if($ownerClass->image)
 		{
-			$ownerClass->image->delete();
+			$ownerClass->image()->delete();
 		}
 
 		// a new image
 		if(!$this->exists)
 		{
 			// if it's not added to album
-			if (!$ownerClass instanceof Album) {
+			if (!$ownerClass instanceof Album) 
+			{
 				$newImage = $this->attributes;	
 				(new Albums)->uncategorized()->images()->create($newImage);
 			}
-
+		}
 			
-			// add the relationship to the owner's class
-			$this->imageable_type = get_class($ownerClass);
-			$this->imageable_id = $ownerClass->id;
-
-			// also, add the optional options
-			foreach ($options as $key => $value) 
-			{
-				$this->$key = $value;
-			}
-			$this->save();
-		}
-
-		else 
+		if($editable)
 		{
-			// old resource
-			$imgAttr = [
-				'file_name' => $this->file_name,
-				'url_asset' => $this->url_asset,
-				'url_cache' => $this->url_cache,
-				'imageable_type' => get_class($ownerClass),
-				'imageable_id' => $ownerClass->id
-			];
-			foreach ($options as $key => $value) {
-				$imgAttr[$key] = $value;
-			}
-			Image::create($imgAttr);
+			// update the image only
+			$editable->update($imgAttr);
+			return NULL;
 		}
+
+		if($ownerClass->image)
+		{
+			return $ownerClass->image()->create($imgAttr);
+		}
+
+		else if ($ownerClass->images)
+		{
+			return $ownerClass->images()->create($imgAttr);
+		}
+
+		return false;		
 
 	}
     public static function withAlbum(){

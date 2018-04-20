@@ -37,16 +37,17 @@ class CarouselImagesController extends Controller
         ];
         $this->validate($request, $rules, $customMessages);
 
-		Image::handleUpload($request)
-			->addTo($carousel, ['caption' => $request->caption]);
+		$image = Image::handleUpload($request)
+						->addTo($carousel);
+
+		$image->update(request(['caption']));
 
         $this->flash('success_msg', 'Image is successfully uploaded to the carousel!');
         return back();
     }
 
     public function show(Carousel $carousel, Image $image) {
-        return view('backend.website.carousel.show', compact('image'));
-    }
+        return view('backend.website.carousel.show', compact('image')); }
 
     public function edit(Carousel $carousel, Image $image) {
         return view('backend.website.carousel.edit', compact('image'));
@@ -59,8 +60,11 @@ class CarouselImagesController extends Controller
         $this->validate($request, $rules);
 
         if($carouselImage = Image::handleUpload($request)){
-            $carouselImage->addTo($carousel, ['caption' => $request->caption]);
+            $carouselImage->addTo($carousel, $image);
         }
+
+		$image->update(request(['caption']));
+
 
         $this->flash('success_msg', 'Updated sucessfully!');
 

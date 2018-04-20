@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
-class GenericController extends Controller
+abstract class GenericController extends Controller
 {
 	/**
 	 * Send flash message after every action
