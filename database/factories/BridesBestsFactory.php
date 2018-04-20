@@ -8,7 +8,7 @@ $factory->define(App\BridesBest::class, function (Faker $faker) {
     return [
 		'name' => $firstName . ' ' . $lastName,
 		'testimony' => $faker->realText(),
-		'ig_account' => '@' . $lastName,
+		'ig_account' => $lastName,
 		'gender' => $faker->randomElement($array = array('male', 'female'))
     ];
 });
