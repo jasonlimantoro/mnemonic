@@ -98,5 +98,5 @@ Auth::routes();
 Route::get('/', 'FrontendController@home')->name('home');
 Route::get('/about-us', 'FrontendController@about');
 Route::get('/gallery', 'FrontendController@gallery');
-Route::get('/{page_title}/{post_title}', 'PostsController@read')->name('post.read');
+Route::get('{post}', 'PostsController@read')->name('posts.read');
 
