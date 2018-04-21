@@ -61,6 +61,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 		// Vendors
 		Route::resource('vendors', 'VendorsController', ['except' => ['index']]);
 		Route::get('vendors', 'BackendController@vendors')->name('vendors.index');
+
+		// RSVP
+		Route::resource('rsvps', 'RSVPController', ['except' => ['index']]);
+		Route::get('rsvps', 'BackendController@rsvp')->name('rsvps.index');
 	});
 
 	// settings
@@ -72,7 +76,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 });
 
 // Route::get('/admin/wedding/vendors', 'BackendController@vendors');
-Route::get('/admin/wedding/rsvp', 'BackendController@rsvp');
 
 // Settings
 

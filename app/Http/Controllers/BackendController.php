@@ -18,6 +18,7 @@ use App\Http\Controllers\CoupleController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\BridesBestsController;
 use App\Http\Controllers\VendorsController;
+use App\Http\Controllers\RSVPController;
 use App\Http\Controllers\CategoriesController;
 
 use Illuminate\Support\Facades\DB;
@@ -75,7 +76,8 @@ class BackendController extends Controller
     }
 
     public function rsvp() {
-        return view('backend.wedding.rsvp');
+		$rsvpInstance = new RSVPController;
+        return $rsvpInstance->index(); 
     }
 
     public function general() {

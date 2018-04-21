@@ -54,7 +54,7 @@
 			</ul>
 		</li>
 		<li><a href="{{ route('vendors.index') }}">Vendors</a></li>
-		<li><a href="{{ route('admin') }}/wedding/rsvp">RSVP</a></li>
+		<li><a href="{{ route('rsvps.index') }}">RSVP</a></li>
 		
 		<li class="header">Settings</li>
 		<li><a href="{{ route('categories.index') }}">Manage Categories</a></li>
