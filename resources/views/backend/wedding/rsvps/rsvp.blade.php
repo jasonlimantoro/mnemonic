@@ -11,6 +11,7 @@
 	</td>
 	<td class="body">
 		<p>Table Name: {{ $rsvp->table_name }}</p>
+		<p>Total Invitation(s): {{ $rsvp->total_invitation }}</p>
 		<p>Status : {{ $rsvp->status }}</p>
 	</td>
 	<td class="text-center">
