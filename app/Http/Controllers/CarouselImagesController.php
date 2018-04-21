@@ -12,8 +12,6 @@ use App\Image;
 class CarouselImagesController extends Controller
 {
     public function __construct() {
-
-        $this->middleware('auth');
         // All uploaded images
         $this->images = Image::where('imageable_type', Carousel::class)->oldest()->get();
     }

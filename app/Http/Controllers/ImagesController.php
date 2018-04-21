@@ -18,7 +18,6 @@ class ImagesController extends Controller
 	public $images;
 
 	public function __construct(Images $images){
-		$this->middleware('auth');
 		$this->images = $images;
 	}
 	/**

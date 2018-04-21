@@ -10,7 +10,7 @@
 Route::get('/admin/pages/{page}/posts', 'BackendController@page')
         ->name('page.posts.index');
 
-Route::prefix('admin')->group(function(){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 	Route::get('/', 'BackendController@index')->name('admin');
 
 	// carousel

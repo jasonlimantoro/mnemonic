@@ -20,7 +20,6 @@ class VendorsController extends Controller
 
 	public function __construct()
 	{
-		$this->middleware('auth');
 		$this->vendors = Vendor::with('categories')->get();
 		$this->categories = Category::all();
 	}

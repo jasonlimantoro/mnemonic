@@ -16,11 +16,6 @@ use Carbon\Carbon;
 
 class FrontendController extends Controller
 {
-    public function __construct() {
-        $this->postInstance = new PostsController();
-        $this->carouselInstance = new CarouselImagesController();
-    }
-
     public function home(Posts $posts) {
 		$page = Page::find(1);
         $carousel = $page->carousel;

@@ -15,7 +15,6 @@ class AlbumsController extends Controller
 	public $albums;
 
     public function __construct(Albums $albums) {
-		$this->middleware('auth');
 		$this->albums = $albums;
 	}
 
