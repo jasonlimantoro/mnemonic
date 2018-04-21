@@ -36,8 +36,9 @@ class FrontendController extends Controller
 								->where('page_id', 1)
 								->get()
 								->toArray();
+		$postCount = Post::where('page_id', 1)->count();
         
-        return view('frontend.home', compact('posts', 'page', 'slides', 'archives'));
+        return view('frontend.home', compact('posts', 'page', 'slides', 'archives', 'postCount'));
     }
 
     public function about() {
