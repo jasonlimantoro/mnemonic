@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\GenericController as Controller;
 use Illuminate\Http\Request;
+use App\Repositories\Posts; 
 use App\Post;
 use App\Page;
 use App\Http\Controllers\CarouselImagesController;

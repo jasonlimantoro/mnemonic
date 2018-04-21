@@ -21,6 +21,12 @@ class AppServiceProvider extends ServiceProvider
 			$view->with(compact('pages'));
 		});
 
+		view()->composer('layouts.archives', function($view){
+			$archives = \App\Post::archives();
+			$postCount = \App\Repositories\Posts::count();
+			$view->with(compact('archives', 'postCount'));
+		});
+
 		// API doesn't get wrapped with data key
 		Resource::withoutWrapping();
 
