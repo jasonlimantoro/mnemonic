@@ -35,9 +35,10 @@
 						</li>
 						<li><a href="/wedding-day">Wedding Day</a></li>
 						<li><a href="/online-rsvp">Online RSVP</a></li>
+						<li class="visible-xs"><a href="{{ route('admin') }}">Backend</a></li>
 					</ul>
 
-					<ul class="nav navbar-nav navbar-right">
+					<ul class="nav navbar-nav navbar-right visible-md">
 						@auth
 						{{--  if user is authenticated  --}}
 							<li>
