@@ -2,12 +2,15 @@
 # Good Day!
 
 Dear {{ $rsvp->name }}, <br>
-You are invited to the wedding ceremony!
+You are invited to the wedding of <br>
+<h1>{{ $groom->name }}</h1>
+and
+<h1>{{ $bride->name }}</h1>
 
 <h3>Your RSVP information</h3>
 @component('mail::panel', ['url' => ''])
 	Table: {{ $rsvp->table_name }}	<br>
-	Number of Invitation: {{ $rsvp->total_invitation }}
+	Number of Invitation(s): {{ $rsvp->total_invitation }}
 @endcomponent
 
 @component('mail::button', ['url' => url('/')])

@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\RSVP;
+use App\Couple;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -31,6 +32,10 @@ class RSVPInvitation extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.RSVPInvitation');
+		$groom = Couple::where('role', 'groom')->first();
+		$bride = Couple::where('role', 'bride')->first();
+		return $this->subject('Invitation to Wedding of ' . $groom->name . ' and ' . $bride->name)
+					->markdown('emails.RSVPInvitation')
+					->with(compact('groom', 'bride'));
     }
 }
