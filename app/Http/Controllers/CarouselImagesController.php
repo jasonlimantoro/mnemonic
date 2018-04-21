@@ -19,9 +19,9 @@ class CarouselImagesController extends Controller
     }
     public function index($carousel) {
 
-        $mainCarouselImages = $this->images->where('imageable_id', $carousel->id);
+        $images = $carousel->images()->oldest()->get();
 
-        return view('backend.website.carousel.main')->with('images', $mainCarouselImages);
+        return view('backend.website.carousel.main', compact('images'));
     }
 
     public function create() {
