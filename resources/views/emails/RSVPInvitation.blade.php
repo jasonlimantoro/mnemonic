@@ -10,7 +10,7 @@ and
 <h3>Your RSVP information</h3>
 @component('mail::panel', ['url' => ''])
 	Table: {{ $rsvp->table_name }}	<br>
-	Number of Invitation(s): {{ $rsvp->total_invitation }}
+	Total Invitation(s): {{ $rsvp->total_invitation }}
 @endcomponent
 
 @component('mail::button', ['url' => url('/')])
