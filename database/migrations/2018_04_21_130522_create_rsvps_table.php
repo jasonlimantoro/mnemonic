@@ -20,7 +20,7 @@ class CreateRSVPsTable extends Migration
 			$table->char('phone', 25)->nullable();
 			$table->char('table_name', 50)->nullable();
 			$table->unsignedInteger('total_invitation')->nullable();
-			$table->enum('status', ['new', 'confirmed', 'not coming'])->default('new');
+			$table->enum('status', ['pending', 'confirmed', 'not coming'])->default('pending');
 			$table->integer('reminder_count')->default(0);
 			$table->timestamps();
         });
