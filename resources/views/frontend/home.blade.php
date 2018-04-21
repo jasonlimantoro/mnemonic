@@ -50,6 +50,9 @@
 				@include('posts.frontend.post')
 			@endforeach
 		</div>
-		@include('layouts.archives')
+		<div class="col-md-4">
+			<h1>Archives</h1>
+			@include('layouts.archives')
+		</div>
     </div>
 @endsection
