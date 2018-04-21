@@ -123,11 +123,7 @@ class PostsController extends Controller
         return back();
     }
 
-    public function read($page_title, $post_title) {
-        $formatted_post_title = title_case(str_replace('-', ' ', $post_title));
-        $post = Post::where('title', $formatted_post_title)->first();
-        $page = $post->page;
-        return view('posts.frontend.read', compact('post', 'page'));
+    public function read(Post $post) {
+        return view('posts.frontend.read', compact('post'));
     }
-
 }
