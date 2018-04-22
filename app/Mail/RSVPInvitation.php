@@ -37,9 +37,8 @@ class RSVPInvitation extends Mailable
 		{
 			$url = route('rsvps.confirm', [ 'token' => $this->rsvp->token->token ]);
 		}
-
-		$groom = Couple::where('role', 'groom')->first();
-		$bride = Couple::where('role', 'bride')->first();
+		$groom = Couple::groom();
+		$bride = Couple::bride();
 		return $this->subject('Invitation to Wedding of ' . $groom->name . ' and ' . $bride->name)
 					->markdown('emails.RSVPInvitation')
 					->with(compact('groom', 'bride', 'url'));

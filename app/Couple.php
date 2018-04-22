@@ -17,4 +17,14 @@ class Couple extends Model
 	public function image(){
 		return $this->morphOne(Image::class, 'imageable');
 	}
+
+	public static function groom()
+	{
+		return static::where('gender', 'male')->first();
+	}
+
+	public static function bride()
+	{
+		return static::where('gender', 'female')->first();
+	}
 }
