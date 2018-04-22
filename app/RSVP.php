@@ -15,4 +15,9 @@ class RSVP extends Model
 		return static::where('email', $email)->firstOrFail();
 	}
 
+	public function token()
+	{
+		return $this->hasOne(RSVPToken::class, 'rsvp_id');
+	}
+
 }

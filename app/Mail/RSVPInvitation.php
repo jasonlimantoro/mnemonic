@@ -14,17 +14,15 @@ class RSVPInvitation extends Mailable
 	use Queueable, SerializesModels;
 	
 	public $rsvp;
-	public $url;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(RSVP $rsvp, $url)
+    public function __construct(RSVP $rsvp)
     {
 		$this->rsvp = $rsvp;
-		$this->url = $url;
     }
 
     /**
@@ -34,14 +32,16 @@ class RSVPInvitation extends Mailable
      */
     public function build()
     {
+		$url = '/';
+		if($this->rsvp->token()->count())
+		{
+			$url = route('rsvps.confirm', [ 'token' => $this->rsvp->token->token ]);
+		}
+
 		$groom = Couple::where('role', 'groom')->first();
 		$bride = Couple::where('role', 'bride')->first();
 		return $this->subject('Invitation to Wedding of ' . $groom->name . ' and ' . $bride->name)
 					->markdown('emails.RSVPInvitation')
-					->with([
-						'groom' => $groom,
-						'bride' => $bride,
-						'url' => $this->url
-					]);
+					->with(compact('groom', 'bride', 'url'));
     }
 }

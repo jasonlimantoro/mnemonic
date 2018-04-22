@@ -19,9 +19,8 @@ class RSVPToken extends Model
 
 	public function send()
 	{
-		$confirmationUrl = route('rsvps.confirm', ['token' => $this->token]);
 		\Mail::to($this->rsvp)
-			->send(new RSVPInvitation($this->rsvp, $confirmationUrl));
+			->send(new RSVPInvitation($this->rsvp));
 	}
 
 	
