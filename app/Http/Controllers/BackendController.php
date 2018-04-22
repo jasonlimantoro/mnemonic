@@ -77,7 +77,7 @@ class BackendController extends Controller
 
     public function rsvp() {
 		$rsvpInstance = new RSVPController;
-        return $rsvpInstance->index(); 
+        return $rsvpInstance->index();
     }
 
     public function general() {

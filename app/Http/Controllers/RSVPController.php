@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\RSVP;
 use App\RSVPToken;
 use App\ConfirmsRSVP;
-use App\Mail\RSVPInvitation;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\GenericController as Controller;
@@ -13,6 +12,12 @@ use App\Http\Controllers\GenericController as Controller;
 
 class RSVPController extends Controller
 {
+	protected $confirm;
+
+	public function __construct(ConfirmsRSVP $confirm)
+	{
+		$this->confirm = $confirm;
+	}
     /**
      * Display a listing of the resource.
      *
@@ -53,7 +58,7 @@ class RSVPController extends Controller
 		);
 
 		// mail the RSVP
-		$rsvp->invite();
+		$this->confirm->invite();
 		
 		$this->flash('RSVP is sucessfully created');
 
@@ -116,11 +121,12 @@ class RSVPController extends Controller
 		return back();
 	}
 	
-	public function remind(RSVP $rsvp)
+	public function remind(Request $request)
 	{
-		$rsvp->invite();
+		$this->confirm->invite();
 		$this->flash('Sent reminder to RSVP!');
-		$rsvp->update(['reminder_count' => 1]);
+		RSVP::byEmail($request->email)
+			 ->update(['reminder_count' => 1]);
 		return back();
 	}
 

@@ -65,9 +65,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 		Route::get('vendors', 'BackendController@vendors')->name('vendors.index');
 		
 		// RSVP
-		Route::get('rsvps', 'BackendController@rsvp')->name('rsvps.index');
-		Route::resource('rsvps', 'RSVPController', ['except' => ['index']]);
-		Route::post('rsvps/{rsvp}/remind', 'RSVPController@remind')->name('rsvps.remind');
+		// Route::get('rsvps', 'BackendController@rsvp')->name('rsvps.index');
+		Route::resource('rsvps', 'RSVPController');
+		Route::post('rsvps/remind', 'RSVPController@remind')->name('rsvps.remind');
 		Route::get('rsvps/token/{token}/confirm', 'RSVPController@confirm')->name('rsvps.confirm');
 	});
 	
