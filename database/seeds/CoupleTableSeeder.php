@@ -17,13 +17,13 @@ class CoupleTableSeeder extends Seeder
 					'name' => 'Victor Immanuel Rumende, S. Kom',
                     'mother' => 'Mrs. Sandra Angelia',
                     'father' => 'Mr. Budi Darma',
-                    'role' => 'groom'
+                    'gender' => 'male'
                 ],
                 [
 					'name' => 'Lenny Kurniawati Ligadjaja, S. E',
                     'mother' => 'Mrs. Vina K. Dhian',
                     'father' => 'Mr. Samuel Tanto',
-                    'role' => 'bride'
+                    'gender' => 'female'
                 ]
             ]
         );

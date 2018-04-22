@@ -18,7 +18,7 @@ class CreateCoupleTable extends Migration
             $table->string('name');
             $table->string('mother')->nullable();
             $table->string('father')->nullable();
-            $table->string('role');
+            $table->enum('gender', ['male', 'female']);
         });
     }
 
