@@ -13,7 +13,7 @@ and
 	Total Invitation(s): {{ $rsvp->total_invitation }}
 @endcomponent
 
-@component('mail::button', ['url' => url('/')])
+@component('mail::button', ['url' => $url ])
 	Confirm RSVP
 @endcomponent
 

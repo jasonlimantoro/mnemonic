@@ -2,19 +2,19 @@
 
 use App\RSVP;
 /*
-    |--------------------------------------------------------------------------
-    | Backend
-    |--------------------------------------------------------------------------
-    |
-    |
+|--------------------------------------------------------------------------
+| Backend
+|--------------------------------------------------------------------------
+|
+|
 */
 
 Route::get('/admin/pages/{page}/posts', 'BackendController@page')
-        ->name('page.posts.index');
+->name('page.posts.index');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 	Route::get('/', 'BackendController@index')->name('admin');
-
+	
 	// carousel
 	Route::prefix('carousel/{carousel}')->group(function(){
 		Route::get('/', 'BackendController@carousel')->name('carousel.index');
@@ -22,7 +22,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 			Route::resource('images', 'CarouselImagesController', ['except' => ['index']]);
 		});
 	});
-
+	
 	// galleries
 	Route::prefix('galleries')->group(function(){
 		// gallery images
@@ -39,7 +39,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 			});
 		});
 	});
-
+	
 	
 	// posts
 	Route::prefix('/pages/{page}')->group(function(){
@@ -51,30 +51,32 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 		// couple
 		Route::resource('couple', 'CoupleController', ['only' => ['update']]);
 		Route::get('couple', 'BackendController@couple')->name('couple.edit');
-
+		
 		// Event
 		Route::resource('events', 'EventsController', ['except' => ['index']]);
 		Route::get('events', 'BackendController@event')->name('events.index');
-
+		
 		// Bridesmaid-Bestman
 		Route::resource('bridesmaid-bestmans', 'BridesBestsController', ['except' => ['index']]);
 		Route::get('bridesmaid-bestmans', 'BackendController@brides_best')->name('bridesmaid-bestmans.index');
-
+		
 		// Vendors
 		Route::resource('vendors', 'VendorsController', ['except' => ['index']]);
 		Route::get('vendors', 'BackendController@vendors')->name('vendors.index');
-
+		
 		// RSVP
-		Route::resource('rsvps', 'RSVPController', ['except' => ['index']]);
 		Route::get('rsvps', 'BackendController@rsvp')->name('rsvps.index');
+		Route::resource('rsvps', 'RSVPController', ['except' => ['index']]);
+		Route::post('rsvps/{rsvp}/remind', 'RSVPController@remind')->name('rsvps.remind');
+		Route::get('rsvps/token/{token}/confirm', 'RSVPController@confirm')->name('rsvps.confirm');
 	});
-
+	
 	// settings
 	Route::prefix('settings')->group(function(){
 		Route::resource('categories', 'CategoriesController', ['except' => ['index']]);
 		Route::get('categories', 'BackendController@categories')->name('categories.index');
 	});
-
+	
 });
 
 // Route::get('/admin/wedding/vendors', 'BackendController@vendors');

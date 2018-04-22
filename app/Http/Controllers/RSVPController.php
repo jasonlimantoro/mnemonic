@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\GenericController as Controller;
+use App\RSVP;
+use App\RSVPToken;
+use App\ConfirmsRSVP;
+use App\Mail\RSVPInvitation;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\RSVP;
-use App\Mail\RSVPInvitation;
+use App\Http\Controllers\GenericController as Controller;
 
 
 class RSVPController extends Controller
@@ -42,7 +44,7 @@ class RSVPController extends Controller
     {
         $rules = [
 			'name' => 'required',
-			'email' => 'required|unique:rsvps,email'
+			'email' => 'required|email|unique:rsvps,email'
 		];
 		$this->validate($request, $rules);
 
@@ -51,7 +53,7 @@ class RSVPController extends Controller
 		);
 
 		// mail the RSVP
-		\Mail::to($rsvp)->send(new RSVPInvitation($rsvp));
+		$rsvp->invite();
 		
 		$this->flash('RSVP is sucessfully created');
 
@@ -112,5 +114,22 @@ class RSVPController extends Controller
 		$rsvp->delete();
 		$this->flash('RSVP is successfully deleted!');
 		return back();
-    }
+	}
+	
+	public function remind(RSVP $rsvp)
+	{
+		$rsvp->invite();
+		$this->flash('Sent reminder to RSVP!');
+		$rsvp->update(['reminder_count' => 1]);
+		return back();
+	}
+
+	public function confirm(RSVPToken $token)
+	{
+		$token->rsvp()->update([
+			'status'=> 'confirmed'
+		]);
+		$token->delete();
+		return 'Thanks for confirming!';
+	}
 }

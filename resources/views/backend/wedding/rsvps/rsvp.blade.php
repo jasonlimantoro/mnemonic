@@ -55,7 +55,9 @@
 				</a>
 			</form>
 			@if (!$rsvp->reminder_count)
-				<button class="btn btn-primary btn-block">Send Reminder</button>
+				<form action="{{ route('rsvps.remind', ['rsvp' => $rsvp->id ]) }}" method="POST">
+					<button type="submit" class="btn btn-primary btn-block">Send Reminder</button>
+				</form>
 			@endif
 		</div>
 	</td>
