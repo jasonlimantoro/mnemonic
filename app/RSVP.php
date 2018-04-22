@@ -9,16 +9,10 @@ use App\Mail\RSVPInvitation;
 class RSVP extends Model
 {
 	protected $table = 'rsvps';
-	
-	public function invite()
+
+	public static function byEmail($email)
 	{
-		$this->createToken()
-			->send();
-	}
-		
-	protected function createToken()
-	{
-		return RSVPToken::generateFor($this);
+		return static::where('email', $email)->firstOrFail();
 	}
 
 }
