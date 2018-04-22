@@ -134,9 +134,10 @@ export class CoupleTabs extends React.Component{
 				{
 					this.state.couple.map(function(couple){
 						const coupleImage = couple.image ? couple.image.attributes.url_cache : null;
+						const coupleRole = couple.attributes.gender == 'male' ? 'Groom' : 'Bride';
 						return (
-							<Tab key={couple.id} eventKey={couple.id} title={couple.attributes.role}>
-								<h1>{couple.attributes.role} Details </h1>
+							<Tab key={couple.id} eventKey={couple.id} title={coupleRole}>
+								<h1>{coupleRole} Details </h1>
 								<form action= {"/admin/wedding/couple/" + couple.id} method="POST" encType="multipart/form-data">
 									<input type="hidden" name="_method" value="PATCH" />
 									<div className="col-md-6">
@@ -148,7 +149,7 @@ export class CoupleTabs extends React.Component{
 												className="form-control" 
 												id="name" 
 												defaultValue={couple.attributes.name}
-												placeholder={couple.attributes.role + ' name'}
+												placeholder={coupleRole + ' name'}
 											/>
 										</div>
 										{/* <div className="form-group">
@@ -163,7 +164,7 @@ export class CoupleTabs extends React.Component{
 												className="form-control" 
 												id="fatherName" 
 												defaultValue={couple.attributes.father}
-												placeholder={couple.attributes.role + ' father name'}
+												placeholder={coupleRole + ' father name'}
 											/>
 										</div>
 
@@ -175,7 +176,7 @@ export class CoupleTabs extends React.Component{
 												className="form-control" 
 												id="motherName" 
 												defaultValue={couple.attributes.mother} 
-												placeholder={couple.attributes.role + ' mother name'}
+												placeholder={coupleRole + ' mother name'}
 											/>
 										</div>
 

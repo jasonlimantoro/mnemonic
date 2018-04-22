@@ -21,7 +21,7 @@ class CoupleResource extends Resource
 				'name' => $this->name,
 				'father' => $this->father,
 				'mother' => $this->mother,
-				'role' => $this->role,
+				'gender' => $this->gender,
 			],
 			'image' => new ImageResource($this->whenLoaded('image')),
 			'links' => [
