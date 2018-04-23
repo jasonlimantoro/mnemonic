@@ -35,7 +35,7 @@ class RSVPInvitation extends Mailable
 		$url = '/';
 		if($this->rsvp->token()->count())
 		{
-			$url = route('rsvps.confirm', [ 'token' => $this->rsvp->token->token ]);
+			$url = route('rsvps.confirm', ['rsvp' => $this->rsvp->id, 'token' => $this->rsvp->token->token ]);
 		}
 		$groom = Couple::groom();
 		$bride = Couple::bride();
