@@ -17,6 +17,12 @@ class Event extends Model
 
 	public function getDatetimeAttribute($date)
 	{
-		return Carbon::parse($date)->toDayDateTimeString();
+		return Carbon::parse($date)
+					   ->format('l - M jS, Y'); // Friday - October 20th, 2017
+	}
+
+	public function setDatetimeAttribute($date)
+	{
+		$this->attributes['datetime'] = Carbon::parse($date);
 	}
 }
