@@ -106,9 +106,12 @@ Route::get('/mailable', function(){
 */
 // To display login and registration button
 Auth::routes();
+Route::name('front.')->group(function(){
+	Route::get('wedding-day', 'FrontendController@wedding')->name('wedding');
+	Route::get('about-us', 'FrontendController@about')->name('about');
+	Route::get('gallery', 'FrontendController@gallery')->name('gallery');
+	Route::get('rsvp', 'FrontendController@onlineRSVP')->name('rsvp');
+	Route::get('/', 'FrontendController@home')->name('index');
+});
 
-Route::get('/', 'FrontendController@home')->name('home');
-Route::get('/about-us', 'FrontendController@about');
-Route::get('/gallery', 'FrontendController@gallery');
 Route::get('{post}', 'PostsController@read')->name('posts.read');
-

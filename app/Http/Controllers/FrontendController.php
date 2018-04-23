@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Page;
+use App\Post;
+use App\Image;
+use App\Album;
+use App\Event;
+use App\Couple;
+Use App\Carousel;
+use Carbon\Carbon;
+use App\Repositories\Posts;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\CarouselImagesController;
-use App\Repositories\Posts;
-use App\Page;
-use App\Post;
-Use App\Carousel;
-use App\Image;
-use App\Album;
-use App\Couple;
-use Carbon\Carbon;
 
 class FrontendController extends Controller
 {
@@ -37,5 +38,19 @@ class FrontendController extends Controller
         $albums = Album::filterId(request(['album']))->get();
 
         return view('frontend.gallery', compact('albums'));
-    }
+	}
+	
+	public function wedding()
+	{
+		$events = Event::all();
+		$groom = Couple::groom();
+		$bride = Couple::bride();
+
+		return view('frontend.wedding', compact('events', 'groom', 'bride'));
+	}
+
+	public function onlineRSVP()
+	{
+			
+	}
 }
