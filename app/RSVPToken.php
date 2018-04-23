@@ -11,10 +11,10 @@ class RSVPToken extends Model
 
 	public static function generateFor(RSVP $rsvp)
 	{
-		return static::create([
-			'rsvp_id' => $rsvp->id,
-			'token' => str_random(50)
-		]);
+		return static::updateOrCreate(
+			['rsvp_id' => $rsvp->id ],
+			['token' => str_random(50)]
+		);
 	}
 
 	public function send()
