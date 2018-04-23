@@ -57,10 +57,9 @@ class RSVPController extends Controller
 			request(['name', 'email', 'phone', 'table_name', 'total_invitation'])
 		);
 
-		// mail the RSVP
-		$this->confirm->invite();
+		$this->confirm->invite($rsvp);
 		
-		$this->flash('RSVP is sucessfully created');
+		$this->flash('RSVP is sucessfully created and an email invitation has been sent!');
 
 		return back();
     }
@@ -98,7 +97,7 @@ class RSVPController extends Controller
     {
 		$rules = [
 			'name' => 'required',
-			'email' => Rule::unique('rsvps')->ignore($rsvp->id) 
+			'email' => Rule::unique('rsvps')->ignore($rsvp->id)
 		];
 		$this->validate($request, $rules);
 		$rsvp->update(
@@ -121,21 +120,18 @@ class RSVPController extends Controller
 		return back();
 	}
 	
-	public function remind(Request $request)
+	public function remind(RSVP $rsvp)
 	{
-		$this->confirm->invite();
+		$this->confirm->postRemind($rsvp);
+
 		$this->flash('Sent reminder to RSVP!');
-		RSVP::byEmail($request->email)
-			 ->update(['reminder_count' => 1]);
+
 		return back();
 	}
 
-	public function confirm(RSVPToken $token)
+	public function confirm(RSVP $rsvp, RSVPToken $token)
 	{
-		$token->rsvp()->update([
-			'status'=> 'confirmed'
-		]);
-		$token->delete();
-		return 'Thanks for confirming!';
+		$this->confirm->persist($token);
+		return view('emails.RSVPconfirmed', compact('rsvp'));
 	}
 }

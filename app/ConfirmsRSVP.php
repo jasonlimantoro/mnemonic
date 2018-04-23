@@ -3,26 +3,31 @@
 namespace App;
 use App\RSVP;
 use App\RSVPToken;
-use Illuminate\Http\Request;
 
 class ConfirmsRSVP 
 {
-	protected $request;
-
-	public function __construct(Request $request)
+	public function invite(RSVP $rsvp)
 	{
-		$this->request = $request;
-	}
-
-	public function invite()
-	{
-		$this->createToken()
+		$this->createToken($rsvp)
 			 ->send();
 	}
-		
-	protected function createToken()
+
+	public function postRemind(RSVP $rsvp)
 	{
-		$rsvp = RSVP::byEmail($this->request->email);	
+		$this->invite($rsvp);
+
+		$rsvp->update(['reminder_count' => 1]);
+	}
+		
+	protected function createToken(RSVP $rsvp)
+	{
 		return RSVPToken::generateFor($rsvp);
+	}
+
+	public function persist(RSVPToken $token)
+	{
+		$token->rsvp()
+			  ->update(['status'=> 'confirmed']);
+		$token->delete();
 	}
 }
