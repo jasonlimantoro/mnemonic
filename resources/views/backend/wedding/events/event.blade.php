@@ -4,7 +4,7 @@
 			{{ $event->name }} 
 		</a>
 		<p>
-			{{ Carbon\Carbon::parse($event->datetime)->toDayDateTimeString() }}
+			{{ $event->datetime }}
 		</p>
     </td>
     <td class="event-data body">
