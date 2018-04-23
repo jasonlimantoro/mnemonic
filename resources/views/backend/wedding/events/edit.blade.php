@@ -61,7 +61,7 @@
 									class="form-control" 
 									id="formControldateTime" 
 									name="datetime"
-									value="{{ DateTime::createFromFormat('Y-m-d H:i:s', $event->datetime)->format('Y-m-d\TH:i') }}"
+									value="{{ DateTime::createFromFormat('l - M jS, Y', $event->datetime)->format('Y-m-d\TH:i') }}"
 								>
 							</div>
 							<button type="submit" class="btn btn-primary">Update</button>
