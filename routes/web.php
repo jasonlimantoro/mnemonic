@@ -67,8 +67,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 		// RSVP
 		// Route::get('rsvps', 'BackendController@rsvp')->name('rsvps.index');
 		Route::resource('rsvps', 'RSVPController');
-		Route::post('rsvps/remind', 'RSVPController@remind')->name('rsvps.remind');
-		Route::get('rsvps/token/{token}/confirm', 'RSVPController@confirm')->name('rsvps.confirm');
+		Route::post('rsvps/{rsvp}/remind', 'RSVPController@remind')->name('rsvps.remind');
+		Route::get('rsvps/{rsvp}/token/{token}/confirm', 'RSVPController@confirm')->name('rsvps.confirm');
 	});
 	
 	// settings
