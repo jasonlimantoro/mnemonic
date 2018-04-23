@@ -3,10 +3,13 @@
 namespace App;
 
 use App\Album;
-use App\Repositories\Albums;
-use App\Carousel;
 use App\Couple;
+use App\Carousel;
+use App\Repositories\Albums;
 use App\Filters\GalleryFilter;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+
 
 class Image extends Model
 {
@@ -87,17 +90,17 @@ class Image extends Model
 			return NULL;
 		}
 
-		if($ownerClass->image)
+		if($ownerClass->image() instanceof MorphOne)
 		{
 			return $ownerClass->image()->create($imgAttr);
 		}
 
-		else if ($ownerClass->images)
+		else if ($ownerClass->images() instanceof MorphMany)
 		{
 			return $ownerClass->images()->create($imgAttr);
 		}
 
-		return false;		
+		return false;
 
 	}
     public static function withAlbum(){
