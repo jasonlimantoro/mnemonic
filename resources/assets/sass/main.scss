@@ -8,8 +8,6 @@
 // base
 @import "base/normalize";
 
-// themes font
-@import "themes/font";
 
 // components
 @import "components/sidebar";
@@ -25,7 +23,7 @@
 @import "components/pagination";
 
 // pages
-@import "pages/frontend/about";
+@import "pages/frontend/frontend";
 @import "pages/backend/backend";
 
 // theme utilities

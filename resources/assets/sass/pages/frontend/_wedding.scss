@@ -1,0 +1,21 @@
+.wedding-day{
+	&-overview {
+		padding: 30px;
+		.groom-name, .bride-name {
+			color: black;
+		}
+		.link {
+			font-size: 50px;
+			font-family: Darleston;
+		}
+	}
+	&-events {
+		&-date{
+			padding: 15px;
+			background-color: #ffeea1;
+		}
+		&-description {
+			font-size: 2em;
+		}
+	}
+}

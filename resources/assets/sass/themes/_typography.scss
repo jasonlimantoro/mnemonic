@@ -1,12 +1,11 @@
-.about-us-main {
-	.page-title {
-		h1 {
-			font-family: CacChampagne;
-			color: $gold-font;
-			font-size: 40pt;
-		}
-	}
-	.couple-name {
-		font-family: CacChampagne;
-	}
+@font-face {
+	font-family: CacChampagne;
+	src: url('/fonts/cac_champagne.ttf');
+}
+
+.page-title, .font-theme {
+	font-family: CacChampagne;
+}
+.color-theme {
+	color: $gold-font;
 }
