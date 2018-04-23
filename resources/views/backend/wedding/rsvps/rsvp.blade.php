@@ -10,9 +10,16 @@
 
 	</td>
 	<td class="body">
-		<p>Table Name: {{ $rsvp->table_name }}</p>
-		<p>Total Invitation(s): {{ $rsvp->total_invitation }}</p>
-		<p>Status : {{ $rsvp->status }}</p>
+		<small>RSVP Code : {{ str_pad($rsvp->id, 5, "#000", STR_PAD_LEFT) }}</small><br>
+		<small>Table Name: {{ $rsvp->table_name }}</small><br>
+		<small>Total Invitation(s): {{ $rsvp->total_invitation }}</small><br>
+		@if ( $rsvp->status == 'confirmed')
+			<span class="label label-success">Status : {{ $rsvp->status }}</span>
+		@elseif ($rsvp->status == 'pending')
+			<span class="label label-warning">Status : {{ $rsvp->status }}</span>
+		@else
+			<span class="label label-danger">Status : {{ $rsvp->status }}</span>
+		@endif
 	</td>
 	<td class="text-center">
 		<div>
@@ -57,7 +64,7 @@
 			@if (!$rsvp->reminder_count)
 				<form action="{{ route('rsvps.remind', ['rsvp' => $rsvp->id]) }}" method="POST">
 					<input type="hidden" name="email" value="{{ $rsvp->email }}">
-					<button type="submit" class="btn btn-primary btn-block">Send Reminder</button>
+					<button type="submit" class="btn btn-danger btn-block">Send Reminder</button>
 				</form>
 			@endif
 		</div>
