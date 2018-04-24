@@ -50,7 +50,7 @@ class FrontendController extends Controller
 		$bbs = BridesBest::all();
 		$vendors = Vendor::all();
 
-		return view('frontend.wedding', compact('events', 'groom', 'bride', 'bbs'));
+		return view('frontend.wedding', compact('events', 'groom', 'bride', 'bbs', 'vendors'));
 	}
 
 	public function onlineRSVP()
