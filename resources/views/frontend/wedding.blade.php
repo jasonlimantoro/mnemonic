@@ -67,5 +67,28 @@
 			@endforeach		
 		</div>
 
+		{{-- Bridesmaid Bestmen section --}}
+		<div class="row wedding-day-bb">
+			<div class="container">
+				<div class="wedding-day-bb-title">
+					<h2 class="font-theme color-theme">Bridesmaid & Bestman</h2>
+				</div>
+				<div class="wedding-day-bb-message">
+					<p><i>Thank you for your support on our wedding</i></p>
+				</div>
+				@foreach ($bbs as $bb)
+					<div class="col-sm-4 col-xs-6 bb-container">
+					@if ($bb->image)
+						<div class="wedding-day-bb-image">
+							<img src="{{ $bb->image->url_cache }}" alt="bb" class="img-responsive">
+						</div>	
+					@endif
+						<strong>{{ $bb->name }}</strong> <br>
+						<i>{{ $bb->testimony }}</i>
+					</div>
+				@endforeach
+			</div>
+		</div>
+
 	</div>
 @endsection

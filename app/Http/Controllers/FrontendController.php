@@ -14,6 +14,8 @@ use App\Repositories\Posts;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\CarouselImagesController;
+use App\Vendor;
+use App\BridesBest;
 
 class FrontendController extends Controller
 {
@@ -45,8 +47,10 @@ class FrontendController extends Controller
 		$events = Event::all();
 		$groom = Couple::groom();
 		$bride = Couple::bride();
+		$bbs = BridesBest::all();
+		$vendors = Vendor::all();
 
-		return view('frontend.wedding', compact('events', 'groom', 'bride'));
+		return view('frontend.wedding', compact('events', 'groom', 'bride', 'bbs'));
 	}
 
 	public function onlineRSVP()
