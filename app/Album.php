@@ -24,7 +24,7 @@ class Album extends Model
 	}
 
     public function featuredImage(){
-        return $this->images->where('featured', 1);
+        return $this->images->where('featured', 1)->first();
     }
 
     public function scopeFilterId($query, $filters){
@@ -58,13 +58,12 @@ class Album extends Model
     }
 
     public function hasFeaturedImage(){
-        return !$this->featuredImage()->isEmpty();
+        return $this->featuredImage()->exists;
     }
 
     public function removeFeaturedImage(){
         if($this->hasFeaturedImage()){
             $this->featuredImage()
-                ->first()
                 ->update(['featured' => 0]);
         }
 	}
