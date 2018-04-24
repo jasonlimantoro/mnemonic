@@ -13,3 +13,4 @@ yarn-error.log
 public/uploads/*
 public/images_sample/*
 public/temp/
+webpack.mix.js
