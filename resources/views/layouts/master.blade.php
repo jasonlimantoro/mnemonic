@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Styles -->
-        <link href="{{ asset('css/main.css') }}" rel="stylesheet">
-    </head>
-    <body>
+    <!-- Styles -->
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+  </head>
+  <body>
 
-        @if(Route::current()->getName() !== 'login' and Route::current()->getName() !== 'register' )
-            {{--  Front end navigation  --}}
-            @include('layouts.navbar')
+    @if(Route::current()->getName() !== 'login' and Route::current()->getName() !== 'register' )
+      {{--  Front end navigation  --}}
+      @include('layouts.navbar')
 
-        @endif
-        
-        <div class="container-fluid web-container">
-            @yield('content')
-        </div>
+    @endif
+    
+    <div class="container-fluid web-container">
+      @yield('content')
+    </div>
 
-        <!-- Scripts -->
-        <script src="{{ asset('js/main.js') }}"></script>
+    <!-- Scripts -->
+    <script src="{{ asset('js/main.js') }}"></script>
 
-        @yield('scripts')
-    </body>
+    @yield('scripts')
+  </body>
 </html>
