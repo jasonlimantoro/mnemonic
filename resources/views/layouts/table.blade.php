@@ -1,6 +1,6 @@
-<table class="table table-responsive table-bordered table-striped">
+<table class="table table-responsive table-bordered">
     <thead>
-        {{ $tableHeader }}
+        {{ $tableHeader or null }}
     </thead>
 
     <tbody>
