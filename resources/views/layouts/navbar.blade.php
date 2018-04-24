@@ -38,7 +38,7 @@
 						<li class="visible-xs"><a href="{{ route('admin') }}">Backend</a></li>
 					</ul>
 
-					<ul class="nav navbar-nav navbar-right visible-md">
+					<ul class="nav navbar-nav navbar-right visible-md visible-lg">
 						@auth
 						{{--  if user is authenticated  --}}
 							<li>
