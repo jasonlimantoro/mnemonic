@@ -58,14 +58,14 @@ class ImagesController extends Controller
 
 		$this->validate($request, $rules);
 
-		$newImage = new Image(Image::handleUpload($request));
-		$album = Album::find($request->album);
-
-		$album->images()->save($newImage);
+		$newImage = Image::handleUpload($request);
+		$album = Album::find($request->album)
+						->images()
+						->save($newImage);
 
 		$this->flash('Image is successfully uploaded!');
 
-	   return back();
+		return back();
 	}
 
 	/**
