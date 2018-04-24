@@ -17,7 +17,7 @@
 
 				@slot('body')
 					<form action="{{ route('images.store') }} " method="POST" enctype="multipart/form-data">
-						<div class="__react-root" id="FancyInput"></div>
+						<div class="__react-root" id="SimpleInput"></div>
 						<div class="form-group">
 							<label for="selectAlbum">Assign to Album: </label>
 							<select name="album" id="selectAlbum" class="form-control">
