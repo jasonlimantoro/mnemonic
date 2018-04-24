@@ -5,3 +5,15 @@
 .backend {
 	width: 100%;
 }
+// Helper class to center rows
+.row-center {
+    text-align: center;
+    .col-center {
+        float: none;
+        margin: auto;
+        display: inline-block;
+    }
+    img {
+        display: inline-block !important;
+    }
+}
