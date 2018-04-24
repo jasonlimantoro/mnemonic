@@ -8793,6 +8793,14 @@ span {
   display: initial;
 }
 
+.home-container,
+.about-container,
+.wedding-day-container,
+.online-rsvp-container {
+  position: relative;
+  z-index: 1;
+}
+
 @font-face {
   font-family: CacChampagne;
   src: url("/fonts/cac_champagne.ttf");

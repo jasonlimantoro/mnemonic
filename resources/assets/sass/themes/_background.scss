@@ -1,6 +1,7 @@
 .navbar-frontend, .web-container {
 	background-color: $gold-bg;
 }
+
 .web-container{
 	position: relative;
 	&::before{
@@ -12,4 +13,14 @@
 		height: 100%;
 		display: initial;
 	}
+}
+
+// to keep the page at the top of the stack 
+.home-container,
+.about-container,
+.wedding-day-container,
+.online-rsvp-container
+{
+	position: relative;
+	z-index: 1;
 }
