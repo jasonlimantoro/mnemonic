@@ -18,4 +18,19 @@
 			font-size: 2em;
 		}
 	}
+	&-vendors{
+		&-table {
+			table {
+				border: none !important;
+				th{
+					text-align: center;
+					border:none !important;
+				}
+				td {
+					text-align: left;
+					border: none !important;
+				}
+			}
+		}
+	}
 }

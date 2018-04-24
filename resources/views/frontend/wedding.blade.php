@@ -68,27 +68,53 @@
 		</div>
 
 		{{-- Bridesmaid Bestmen section --}}
-		<div class="row wedding-day-bb">
-			<div class="container">
-				<div class="wedding-day-bb-title">
-					<h2 class="font-theme color-theme">Bridesmaid & Bestman</h2>
-				</div>
-				<div class="wedding-day-bb-message">
-					<p><i>Thank you for your support on our wedding</i></p>
-				</div>
-				@foreach ($bbs as $bb)
-					<div class="col-sm-4 col-xs-6 bb-container">
-					@if ($bb->image)
-						<div class="wedding-day-bb-image">
-							<img src="{{ $bb->image->url_cache }}" alt="bb" class="img-responsive">
-						</div>	
-					@endif
-						<strong>{{ $bb->name }}</strong> <br>
-						<i>{{ $bb->testimony }}</i>
-					</div>
-				@endforeach
+		<div class="row row-center wedding-day-bb">
+			
+			<div class="wedding-day-bb-title">
+				<h2 class="font-theme color-theme">Bridesmaid & Bestman</h2>
 			</div>
+			<div class="wedding-day-bb-message">
+				<p><i>Thank you for your support on our wedding</i></p>
+			</div>
+			@foreach ($bbs as $bb)
+				<div class="col-sm-3 col-xs-12 col-center bb-container">
+				@if ($bb->image)
+					<div class="wedding-day-bb-image">
+						<img src="{{ $bb->image->url_cache }}" alt="bb" class="img-responsive">
+					</div>	
+				@endif
+					<strong>{{ $bb->name }}</strong><br>
+					<i>{{ $bb->testimony }}</i><br>
+					<div class="wedding-day-bb-ig">
+						<div class="col-xs-12 col-center">
+							<a href="https://instagram.com/{{ $bb->ig_account}}">
+								<img src="/images/instagram-logo.png" alt="ig" class="img-responsive" width="32px">
+							</a>
+						</div>
+					</div>
+				</div>
+			@endforeach
 		</div>
 
+		{{-- Vendors section --}}
+		<div class="row row-center wedding-day-vendors">
+			<div class="wedding-day-vendors">
+				<h2 class="font-theme color-theme">Our Vendors</h2>
+			</div>
+			<div class="col-md-4 col-center">
+				<div class="wedding-day-vendors-table">
+					@component('layouts.table')
+						@slot('tableBody')
+							@foreach ($vendors as $vendor)
+								<tr>
+									<td>{{ $vendor->categories->first()->name }}</td>
+									<td>: {{ $vendor->name }}</td>
+								</tr>
+							@endforeach
+						@endslot
+					@endcomponent
+				</div>
+			</div>
+		</div>
 	</div>
 @endsection
