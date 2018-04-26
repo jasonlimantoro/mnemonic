@@ -5,9 +5,11 @@ namespace App;
 use App\Image;
 use App\Album;
 use Carbon\Carbon;
+use Collective\Html\Eloquent\FormAccessible;
 
 class Event extends Model
 {
+	use FormAccessible;
 	protected $dates = ['datetime'];
 	
 	public function image()
@@ -17,8 +19,19 @@ class Event extends Model
 
 	public function getDatetimeAttribute($date)
 	{
-		return Carbon::parse($date)
-					   ->format('l - M jS, Y'); // Friday - October 20th, 2017
+		return Carbon::parse($date)->format('l - M jS, Y'); // Friday - October 20th, 2017
+	}
+
+	/**
+     * Get the event's datetime for forms.
+     *
+     * @param  string  $value
+     * @return string
+     */
+	
+	public function formDatetimeAttribute($value)
+	{
+		return Carbon::parse($value)->format('Y-m-d\TH:i');
 	}
 
 	public function setDatetimeAttribute($date)
