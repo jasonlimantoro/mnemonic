@@ -8372,6 +8372,26 @@ button.close {
   display: inline-block !important;
 }
 
+h1 {
+  font-size: 350%;
+}
+
+h2 {
+  font-size: 200%;
+}
+
+h3,
+p,
+span {
+  font-size: 150%;
+}
+
+@media (max-width: 767px) {
+  body {
+    font-size: 12px;
+  }
+}
+
 .navbar {
   background: #fff;
   border: none;
@@ -8706,10 +8726,6 @@ span {
   text-align: center;
 }
 
-.page-title h1 {
-  font-size: 40pt;
-}
-
 .about-us-container .page-title h1 {
   font-size: 40pt;
 }
@@ -8742,7 +8758,7 @@ span {
 }
 
 .wedding-day-events-description {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 .wedding-day-vendors-table table {

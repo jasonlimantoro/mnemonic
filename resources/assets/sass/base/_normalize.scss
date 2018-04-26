@@ -17,3 +17,11 @@
         display: inline-block !important;
     }
 }
+
+// font-size 
+h1 { font-size: 350%; }
+h2 { font-size: 200%; }
+h3, p, span { font-size: 150%; }
+@include general-query(mobile){
+	body { font-size: 12px; }
+}
