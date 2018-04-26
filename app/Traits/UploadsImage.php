@@ -55,22 +55,19 @@ trait UploadsImage {
         
 	}
 
-    /**
-     * Add image to the owner class.
-     *
-     * @param  array  $attributes
-	 * @param  model  $updatable
-     * @return mixed
-	 * 
-     */
 
-	public function addTo($ownerClass, $updatable = NULL)
+    /**
+     * @param Model $ownerClass
+     * @param Model|null $updatable
+     * @return mixed
+     */
+    public function addTo($ownerClass, $updatable = NULL)
 	{
 
 		// relevant attributes
 		$imgAttr = $this->only('file_name', 'url_asset', 'url_cache');
 
-		// the owner has an 'exisiting' polymorphic one-to-one relationship
+		// the owner has an 'existing' polymorphic one-to-one relationship
 		if($ownerClass->image)
 		{
 			$ownerClass->image()->delete();
