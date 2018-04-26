@@ -6,7 +6,6 @@ use App\Http\Controllers\GenericController as Controller;
 use App\Image;
 use App\Carousel;
 use App\Album;
-use App\Http\Resources\ImageResource;
 use App\Repositories\Images;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -72,6 +71,7 @@ class ImagesController extends Controller
 	 * Display the specified resource.
 	 *
 	 * @param  \App\Image  $image
+     * @param  \App\Carousel $carousel
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show(Carousel $carousel, Image $image)
