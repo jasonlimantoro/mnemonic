@@ -2,9 +2,6 @@
 
 namespace App;
 
-use App\Album;
-use App\Couple;
-use App\Carousel;
 use App\Traits\UploadsImage;
 
 
