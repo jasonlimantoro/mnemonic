@@ -17,7 +17,7 @@
 
 		<div class="form-group">
 			{{ Form::label('datetime', 'Event Datetime') }}
-			{{ Form::input('datetime-local', 'datetime', $defaultDateTime, ['class' => 'form-control', 'placeholder' => 'Enter Datetime']) }}
+			{{ Form::input('datetime-local', 'datetime', null, ['class' => 'form-control', 'placeholder' => 'Enter Datetime']) }}
 		</div>
 
 		<div class="form-group">

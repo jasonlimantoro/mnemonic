@@ -21,8 +21,7 @@
 						]) 
 					}}
 						@include('backend.wedding.events.form', [
-							'submitButtonText' => 'Publish Event',
-							'defaultDateTime' => date('Y-m-d\TH:i')			
+							'submitButtonText' => 'Publish Event'
 						])
 					{{ Form::close() }}
         @endslot

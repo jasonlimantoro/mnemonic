@@ -22,8 +22,7 @@
 							]) 
 					}}
 						@include('backend.wedding.events.form', [
-							'submitButtonText' => 'Update Event',
-							'defaultDateTime' => DateTime::createFromFormat('l - M jS, Y', $event->datetime)->format('Y-m-d\TH:i')
+							'submitButtonText' => 'Update Event'
 						])
 					{{ Form::close() }}
         @endslot
