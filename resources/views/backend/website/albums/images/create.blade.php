@@ -1,32 +1,32 @@
 @extends('layouts.submaster')
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            @component('layouts.panel', [
-				'title' => 'Album: ' . $album->name
-			])
-                @slot('backButton')
-                    @component('layouts.backButton', [
-                        'text' => $album->name,
-                        'url' => route('albums.show', ['album' => $album->id])
-                    ])
-                        
-                    @endcomponent
-                @endslot
-                @slot('body')
-                    <p>
-                        Description: <strong>{{ $album->description }}</strong> 
-                    </p>
+  <div class="row">
+    <div class="col-md-12">
+      @component('layouts.panel', [
+        'title' => 'Album: ' . $album->name
+      ])
+        @slot('backButton')
+          @component('layouts.backButton', [
+            'text' => $album->name,
+            'url' => route('albums.show', ['album' => $album->id])
+          ])
+          @endcomponent
+        @endslot
+        @slot('body')
+					<p> Description: <strong>{{ $album->description }}</strong> </p>
+					{{ Form::open(['route' => ['album.images.store', $album->id], 'enctype' => 'multipart/form-data']) }}
 
-					<form action="{{ route('album.images.store', ['album' => $album->id]) }}" method="POST" enctype="multipart/form-data">
 						<div class="__react-root" id="SimpleInput"></div>
+
+						{{-- Submit Button --}}
 						<div class="form-group">
-							<button class="btn btn-primary" type="submit">Publish</button>
+							{{ Form::submit('Publish', ['class' => 'btn btn-primary']) }}
 						</div>
-                    </form>
-                @endslot
-            @endcomponent
-        </div>
+					{{ Form::close() }}
+
+        @endslot
+      @endcomponent
     </div>
+  </div>
 @endsection
