@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\GenericController as Controller;
 use App\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\GenericController as Controller;
 
 class CategoriesController extends Controller
 {
@@ -15,7 +15,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-		$categories = Category::all();
+		$categories = Category::latest()->get();
 		return view('backend.settings.categories.index', compact('categories'));
     }
 
@@ -47,7 +47,7 @@ class CategoriesController extends Controller
 
 		$this->flash('Category is sucessfully created!');
 
-		return back();
+		return redirect()->route('categories.index');
 		
     }
 
