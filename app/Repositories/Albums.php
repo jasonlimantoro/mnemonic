@@ -8,17 +8,17 @@ class Albums
 {
 	public static function all()
 	{
-		return Album::oldest()->get();	
+		return Album::oldest()->get();
 	}
 
 	public static function withImages()
 	{
-		return Album::with('images')->oldest()->get();	
+		return Album::with('images')->oldest()->get();
 	}
 	
 	public static function categorized()
 	{
-		return Album::where('name', '!=', 'Uncategorized')->oldest()->get();
+		return static::all()->where('name', '!=', 'Uncategorized');
 	}
 
 	public static function uncategorized()
