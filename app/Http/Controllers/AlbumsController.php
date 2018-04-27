@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\GenericController as Controller;
 use App\Album;
-use App\Repositories\Albums;
 use App\Image;
-use App\Filters\GalleryFilter;
+use App\Repositories\Albums;
 use Illuminate\Http\Request;
+use App\Http\Controllers\GenericController as Controller;
 
 class AlbumsController extends Controller
 {
 
-	public $albums;
+	protected $albums;
 
     public function __construct(Albums $albums) {
 		$this->albums = $albums;
@@ -25,7 +24,7 @@ class AlbumsController extends Controller
      */
     public function index()
     {
-        $categorizedAlbums = $this->albums->categorized();
+		$categorizedAlbums = $this->albums->categorized();
         $uncategorizedAlbum = $this->albums->uncategorized(); 
         return view('backend.website.albums.index')
 				->with([
