@@ -27,7 +27,7 @@ class AlbumsController extends Controller
     {
         $categorizedAlbums = $this->albums->categorized();
         $uncategorizedAlbum = $this->albums->uncategorized(); 
-        return view('backend.website.albums.main')
+        return view('backend.website.albums.index')
 				->with([
 					'albums' => $categorizedAlbums,
 					'uncategorizedAlbum' => $uncategorizedAlbum,
