@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\GenericController as Controller;
 use App\Image;
 use App\Album;
 use App\Repositories\Albums;
-use App\Http\Controllers\AlbumsController;
 use Illuminate\Http\Request;
 use App\Filters\GalleryFilter;
+use App\Http\Controllers\AlbumsController;
+use App\Http\Controllers\GenericController as Controller;
 
 class AlbumImagesController extends Controller
 {
@@ -74,9 +74,9 @@ class AlbumImagesController extends Controller
      * @param  \App\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function edit(Album $album, Image $image)
+    public function edit(Albums $albums, Album $album, Image $image)
     {
-		$albums = (new Albums)->all();
+		$albums = $albums->toArray();
 		$selectedAlbum = $album;
         return view('backend.website.albums.images.edit', 
                 compact('image', 'albums', 'selectedAlbum', 'album')
