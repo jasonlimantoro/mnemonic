@@ -20,7 +20,7 @@ class VendorsController extends Controller
 
 	public function __construct()
 	{
-		$this->vendors = Vendor::with('categories')->get();
+		$this->vendors = Vendor::with('categories')->latest()->get();
 		$this->categories = Category::all();
 	}
     public function index()
@@ -63,9 +63,9 @@ class VendorsController extends Controller
 			$vendor->categories()->attach($category);
 		}
 
-		\Session::flash('Vendor Information is updated!');
+		$this->flash('Vendor is successfully created!');
 
-		return back();
+		return redirect()->route('vendors.index');
 
     }
 
