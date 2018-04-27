@@ -1,38 +1,38 @@
 @extends('layouts.submaster')
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            @component('layouts.panel', [
-				'title' => "Gallery"
-			])
-                @slot('backButton')
-                    @component('layouts.backButton', [
-                        'text' => 'Show all galleries',
-                        'url' => route('images.index')
-                    ])
-                        
-                    @endcomponent
-                @endslot
+  <div class="row">
+    <div class="col-md-12">
+      @component('layouts.panel', [
+        'title' => "Gallery"
+      ])
+        @slot('backButton')
+          @component('layouts.backButton', [
+            'text' => 'Show all galleries',
+            'url' => route('images.index')
+          ])
+            
+          @endcomponent
+        @endslot
 
 				@slot('body')
-					<form action="{{ route('images.store') }} " method="POST" enctype="multipart/form-data">
-						<div class="__react-root" id="SimpleInput"></div>
+
+					{{ Form::open(['route' => 'images.store', 'enctype' => 'multipart/form-data']) }}
+						<div class="__react-root" id="SimpleInput"></div>	
+						{{-- album field --}}
 						<div class="form-group">
-							<label for="selectAlbum">Assign to Album: </label>
-							<select name="album" id="selectAlbum" class="form-control">
-								<option disabled>Select Album</option>
-								@foreach ($albums as $album)
-									<option value="{{ $album->id }}"> {{ $album->name }}</option>
-								@endforeach
-							</select>
-						</div>	
-						<div class="form-group">
-							<button class="btn btn-primary" type="submit">Upload</button>
+							{{ Form::label('album', 'Assign to Album:') }}
+							{{ Form::select('album', $albums, null, ['class' => 'form-control']) }}
 						</div>
-					</form>
-                @endslot
-            @endcomponent
-        </div>
+
+						{{-- Submit Button --}}
+						<div class="form-group">
+							{{ Form::submit('Upload Image', ['class' => 'btn btn-primary']) }}
+						</div>
+					{{ Form::close() }}
+
+        @endslot
+      @endcomponent
     </div>
+  </div>
 @endsection

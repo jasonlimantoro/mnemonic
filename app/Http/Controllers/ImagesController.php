@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\GenericController as Controller;
 use App\Image;
-use App\Carousel;
 use App\Album;
+use App\Carousel;
 use App\Repositories\Images;
-use Illuminate\Support\Facades\Storage;
+use App\Repositories\Albums;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\GenericController as Controller;
 
 
 class ImagesController extends Controller
@@ -36,9 +37,9 @@ class ImagesController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function create()
+	public function create(Albums $albums)
 	{
-		$albums = Album::all();
+		$albums = $albums->toArray();
 		return view('backend.website.galleries.create', compact('albums'));
 	}
 
