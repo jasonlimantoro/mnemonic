@@ -15,6 +15,12 @@ class FormMacroServiceProvider extends ServiceProvider
 			$htmlMale = "<label class=\"radio-inline\">$inputMale $labelMale </label>";
 			return $htmlFemale . $htmlMale;
 		});	
+
+		Form::macro('checkCategories', function($name, $label, $value, $checked){
+			$checkbox = Form::checkbox($name . '[]', $value, $checked);
+			$html = "<label class='checkbox-inline'>$checkbox $label</label>";
+			return $html;
+		});
 	}
 
 	public function register()

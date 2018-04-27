@@ -20,10 +20,13 @@
 <div class="form-group">
 	<p><strong>Select Categories</strong></p>
 	@foreach ($categories as $category)
-		<label class="checkbox-inline">
-			{{ Form::checkbox('category[]', $category->id, $displayCurrentCategories && in_array($category->name, $vcategories))}}
-			{{ $category->name }}
-		</label>
+		{!! Form::checkCategories(
+				'category', 
+				$category->name, 
+				$category->id, 
+				$displayCurrentCategories && in_array($category->name, $vcategories)
+			) 
+		!!}
 	@endforeach							
 </div>
 
