@@ -17,7 +17,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 	
 	// carousel
 	Route::prefix('carousel/{carousel}')->group(function(){
-		Route::get('/', 'BackendController@carousel')->name('carousel.index');
+		Route::get('/', 'BackendController@carousel')->name('carousels.index');
 		Route::name('carousel.')->group(function(){
 			Route::resource('images', 'CarouselImagesController', ['except' => ['index']]);
 		});

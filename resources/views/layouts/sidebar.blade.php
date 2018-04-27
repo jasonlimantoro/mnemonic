@@ -10,7 +10,7 @@
 	<ul class="list-unstyled components">
 		<li><a href="{{ route('admin') }}">Dashboard</a></li>
 		<li class="header">Website</li>
-		<li><a href="{{ route('carousel.index', ['carousel' => 1]) }}">Main Carousel</a></li>
+		<li><a href="{{ route('carousels.index', ['carousel' => 1]) }}">Main Carousel</a></li>
 		<li>
 			<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
 				<i class="glyphicon glyphicon-duplicate"></i>
