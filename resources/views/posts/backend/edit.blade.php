@@ -13,7 +13,7 @@
     @endslot
 
 		@slot('body')
-			{{ Form::model($post, ['route' => ['posts.update', $page->id, $post->id], 'method' => 'PATCH'])}}
+			{{ Form::model($post, ['route' => ['posts.update', $page->id, $post->id], 'method' => 'PATCH']) }}
 				@include('posts.backend.form', ['submitButtonText' => 'Update Post'])
 			{{ Form::close() }}
     @endslot
