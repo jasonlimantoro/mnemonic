@@ -1,64 +1,28 @@
 @extends('layouts.submaster')
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            @component('layouts.panel', [
-				'title' => "Edit a vendor"
-			])
-                @slot('backButton')
-                    @component('layouts.backButton', [
-                        'text' => 'Show all vendors',
-                        'url' => route('vendors.index')
-                    ])
-                        
-                    @endcomponent
-                @endslot
+  <div class="row">
+    <div class="col-md-12">
+      @component('layouts.panel', [
+        'title' => "Edit a vendor"
+      ])
+        @slot('backButton')
+          @component('layouts.backButton', [
+            'text' => 'Show all vendors',
+            'url' => route('vendors.index')
+          ])
+            
+          @endcomponent
+        @endslot
 				@slot('body')
-					<form action="{{ route('vendors.update', ['vendor' => $vendor->id ]) }}" method="POST">
-						{{ method_field('PATCH') }}
-						<div class="form-group">
-							<label for="formControlName">Vendor Name</label>
-							<input 
-								type="text" 
-								class="form-control" 
-								id="formControlName" 
-								name="name"
-								placeholder="Enter name"
-								value="{{ $vendor->name }}" 
-							>
-						</div>
-						
-						<div class="form-group">
-							<label class="control-label">Current Categories ({{ count($vcategories) }})</label>
-							<ul class="list-unstyled">
-								@forelse ($vcategories as $vcategory)
-									<li>{{ $vcategory }}</li>
-								@empty
-									<p><i>none</i></p>									
-								@endforelse
-							</ul>
-						
-						</div>
-						
-
-						<div class="form-group">
-							<p><strong>Select Categories</strong></p>
-							@foreach ($categories as $category)
-								<label class="checkbox-inline">
-									@if (in_array($category->name, $vcategories))
-										<input type="checkbox" name="category[]" value="{{ $category->id }}" checked> {{ $category->name }}
-									@else
-										<input type="checkbox" name="category[]" value="{{ $category->id }}"> {{ $category->name }}
-									@endif
-								</label>
-							@endforeach							
-						</div>
-
-						<button type="submit" class="btn btn-primary">Publish</button>
-					</form>
-                @endslot
-            @endcomponent
-        </div>
+					{{ Form::model($vendor, ['route' => ['vendors.update', $vendor->id], 'method' => 'PATCH']) }}
+						@include('backend.wedding.vendors.form', [
+							'submitButtonText' => 'Update Vendor',
+							'displayCurrentCategories' => true
+						])
+					{{ Form::close() }}
+        @endslot
+      @endcomponent
     </div>
+  </div>
 @endsection
