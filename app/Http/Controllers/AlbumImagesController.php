@@ -100,17 +100,9 @@ class AlbumImagesController extends Controller
 		$targetAlbum = Album::find($request->album);
 		$targetAlbum->images()->save($image);
 
-		if ($album == $targetAlbum)
-		{
-			// reverting
-			$this->flash('Changed back to ' . $album->name);
-		}
-		else 
-		{
-			$this->flash('Changed from ' . $album->name . ' to ' . $targetAlbum->name);
-		}
-
-        return back();
+		$this->flash('Changed from ' . $album->name . ' to ' . $targetAlbum->name);
+	
+        return redirect()->route('album.images.edit', ['album' => $targetAlbum->id, 'image' => $image->id]);
     }
 
     /**
