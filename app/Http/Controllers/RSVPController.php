@@ -61,7 +61,7 @@ class RSVPController extends Controller
 		
 		$this->flash('RSVP is sucessfully created and an email invitation has been sent!');
 
-		return back();
+		return redirect()->route('rsvps.index');
     }
 
     /**

@@ -41,7 +41,7 @@ class CarouselImagesController extends Controller
 		$image->update(request(['caption']));
 
         $this->flash('Image is successfully uploaded to the carousel!');
-        return back();
+        return redirect()->route('carousels.index', ['carousel' => 1]);
     }
 
     public function show(Carousel $carousel, Image $image) {

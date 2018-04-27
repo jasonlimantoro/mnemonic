@@ -50,7 +50,7 @@ class BridesBestsController extends Controller
 		}
 
 		$this->flash('Bridesmaid / Bestman is successfully created!');
-		return back();
+		return redirect()->route('bridesmaid-bestmans.index.index');
     }
 
     /**

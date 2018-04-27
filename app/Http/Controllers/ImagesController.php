@@ -65,7 +65,7 @@ class ImagesController extends Controller
 
 		$this->flash('Image is successfully uploaded!');
 
-		return back();
+		return redirect()->route('images.index');
 	}
 
 	/**

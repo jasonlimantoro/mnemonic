@@ -53,7 +53,7 @@ class EventsController extends Controller
 
 		$this->flash('Event is successfully created!');
 
-		return back();
+		return redirect()->route('events.index');
 
 	}
 

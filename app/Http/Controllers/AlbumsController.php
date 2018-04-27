@@ -65,7 +65,7 @@ class AlbumsController extends Controller
         
         $this->flash('Album is created sucessfully!');
 
-        return back();
+        return redirect()->route('albums.index');
     }
 
     /**

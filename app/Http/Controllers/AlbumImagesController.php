@@ -53,7 +53,7 @@ class AlbumImagesController extends Controller
 
         $this->flash('Image is uploaded successfuly!');
 
-        return back();
+        return redirect()->route('albums.show', ['album' => $album->id]);
 
     }
 

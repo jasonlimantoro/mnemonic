@@ -61,7 +61,7 @@ class PostsController extends Controller
         
         $this->flash('Post is added succesfully');
 
-        return back();
+        return redirect()->route('posts.index');
     }
 
     /**
