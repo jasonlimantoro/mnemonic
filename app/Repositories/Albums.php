@@ -6,23 +6,28 @@ use App\Album;
 
 class Albums 
 {
-	public function all()
+	public static function all()
 	{
 		return Album::oldest()->get();	
 	}
 
-	public function withImages()
+	public static function withImages()
 	{
 		return Album::with('images')->oldest()->get();	
 	}
 	
-	public function categorized()
+	public static function categorized()
 	{
 		return Album::where('name', '!=', 'Uncategorized')->oldest()->get();
 	}
 
-	public function uncategorized()
+	public static function uncategorized()
 	{
 		return Album::where('name', 'Uncategorized')->first();
+	}
+
+	public static function toArray()
+	{
+		return static::all()->pluck('name', 'id')->toArray();
 	}
 }
