@@ -54,7 +54,7 @@ class Album extends Model
     }
 
     public function hasFeaturedImage(){
-        return $this->featuredImage()->exists;
+        return !is_null($this->featuredImage());
     }
 
     public function removeFeaturedImage(){
