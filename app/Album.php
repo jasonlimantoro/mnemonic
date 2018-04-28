@@ -45,12 +45,8 @@ class Album extends Model
     }
 
     public function addFeaturedImage($image){
-		$imgAttr = [
-			'file_name' => $image->file_name,
-			'url_asset' => $image->url_asset,
-			'url_cache' => $image->url_cache
-		];
-		
+
+		$imgAttr = $image->only(['file_name', 'url_asset', 'url_cache']); 
         $this->images()->updateorCreate(
             $imgAttr,
             ['featured' => 1]

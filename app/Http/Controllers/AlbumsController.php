@@ -58,10 +58,11 @@ class AlbumsController extends Controller
 
         $this->validate($request, $rules);
 
-        Album::create([
-            'name' => $request->name,
-            'description' => $request->description
-        ]);
+        $album = Album::create(request(['name', 'description']));
+		if($newFeaturedImage = Image::handleUpload($request))
+		{
+			$album->addFeaturedImage($newFeaturedImage);
+		}
         
         $this->flash('Album is created sucessfully!');
 
