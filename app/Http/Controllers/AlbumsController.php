@@ -61,6 +61,13 @@ class AlbumsController extends Controller
         $album = Album::create(request(['name', 'description']));
 		if($newFeaturedImage = Image::handleUpload($request))
 		{
+			$assignedAlbum = $newFeaturedImage->album();
+			// not assigned to the current album
+			if(!is_null($assignedAlbum) && $assignedAlbum != $album)
+			{
+				$album->images()->save($newFeaturedImage);
+			}
+			$album->removeFeaturedImage();
 			$album->addFeaturedImage($newFeaturedImage);
 		}
         
