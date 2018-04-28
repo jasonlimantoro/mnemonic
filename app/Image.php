@@ -22,6 +22,14 @@ class Image extends Model
 		return $this->morphTo();
 	}
 
+	public function album(){
+		if ($this->imageable instanceof Album)
+		{
+			return $this->imageable;
+		}
+		return null;
+	}
+
     public function isFeatured(){
         return $this->featured;
 	}

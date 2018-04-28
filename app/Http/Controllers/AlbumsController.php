@@ -107,14 +107,19 @@ class AlbumsController extends Controller
         ];
         $this->validate($request, $rules);
         
+		$album->update(request(['name', 'description']));
+
 		if($newFeaturedImage = Image::handleUpload($request))
 		{
-			// replace current featuredimage
+			$assignedAlbum = $newFeaturedImage->album();
+			// not assigned to the current album
+			if(!is_null($assignedAlbum) && $assignedAlbum != $album)
+			{
+				$album->images()->save($newFeaturedImage);
+			}
 			$album->removeFeaturedImage();
 			$album->addFeaturedImage($newFeaturedImage);
 		}
-
-        $album->update(request(['name', 'description']));
 
         //store status message
         $this->flash('Album is updated successfully!');
