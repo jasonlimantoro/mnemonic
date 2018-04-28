@@ -9,6 +9,7 @@ use App\Filters\GalleryFilter;
 
 trait UploadsImage {
 
+	abstract public function assignToUncategorizedAlbum();
 	/** 
 	 * Filter the uploaded file and save it to the filesystem
 	 * 
@@ -100,19 +101,5 @@ trait UploadsImage {
 
 		return false;
 
-	}
-
-	/**
-	 * Assign image with given attributes to Uncategorized Album
-	 * 
-	 * @param  array $attributes
-	 * @return void
-	 * 
-	 */
-	public function assignToUncategorizedAlbum(array $attributes)
-	{
-		(new Albums)->uncategorized()
-			   		->images()
-			   		->create($attributes);
 	}
 }
