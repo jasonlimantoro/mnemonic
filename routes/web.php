@@ -1,6 +1,4 @@
 <?php
-
-use App\RSVP;
 /*
 |--------------------------------------------------------------------------
 | Backend
@@ -92,7 +90,7 @@ Route::get('/admin/settings/manage-roles', 'BackendController@manageRoles');
 
 // previewing mailables in browser
 Route::get('/mailable', function(){
-	$rsvp = RSVP::find(1);
+	$rsvp = \App\RSVP::find(1);
 	return new App\Mail\RSVPInvitation($rsvp);
 });
 
