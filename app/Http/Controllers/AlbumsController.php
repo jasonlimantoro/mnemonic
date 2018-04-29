@@ -58,7 +58,7 @@ class AlbumsController extends Controller
 			$album->addFeaturedImage($newFeaturedImage);
 		}
         
-        $this->flash('Album is created sucessfully!');
+        $this->flash('Album is created successfully!');
 
         return redirect()->route('albums.index');
     }

@@ -64,7 +64,7 @@ class CarouselImagesController extends Controller
 		$image->update(request(['caption']));
 
 
-        $this->flash('Updated sucessfully!');
+        $this->flash('Updated successfully!');
 
         return back();
     }
