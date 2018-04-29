@@ -32,6 +32,7 @@ class RSVPRequest extends FormRequest
         {
             $rules['email'] = [
 				'required',
+				'email',
 				Rule::unique('rsvps', 'email')->ignore($this->rsvp->id)
 			];
         }
