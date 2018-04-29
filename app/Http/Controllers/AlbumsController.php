@@ -16,12 +16,6 @@ class AlbumsController extends Controller
     public function __construct(Albums $albums) {
 		$this->albums = $albums;
 	}
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
 		$categorizedAlbums = $this->albums->categorized();
@@ -32,23 +26,11 @@ class AlbumsController extends Controller
 					'uncategorizedAlbum' => $uncategorizedAlbum,
 				]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('backend.website.albums.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $rules = [
@@ -61,13 +43,6 @@ class AlbumsController extends Controller
         $album = Album::create(request(['name', 'description']));
 		if($newFeaturedImage = Image::handleUpload($request))
 		{
-			$assignedAlbum = $newFeaturedImage->album();
-			// not assigned to the current album
-			if(!is_null($assignedAlbum) && $assignedAlbum != $album)
-			{
-				$album->images()->save($newFeaturedImage);
-			}
-			$album->removeFeaturedImage();
 			$album->addFeaturedImage($newFeaturedImage);
 		}
         
@@ -76,36 +51,17 @@ class AlbumsController extends Controller
         return redirect()->route('albums.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Album  $album
-     * @return \Illuminate\Http\Response
-     */
     public function show(Album $album)
     {
         $images = $album->images;
         return view('backend.website.albums.show', compact(['images', 'album']));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Album  $album
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Album $album)
     {
         return view('backend.website.albums.edit', compact('album'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Album  $album
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Album $album)
     {
         $rules = [
@@ -118,13 +74,6 @@ class AlbumsController extends Controller
 
 		if($newFeaturedImage = Image::handleUpload($request))
 		{
-			$assignedAlbum = $newFeaturedImage->album();
-			// not assigned to the current album
-			if(!is_null($assignedAlbum) && $assignedAlbum != $album)
-			{
-				$album->images()->save($newFeaturedImage);
-			}
-			$album->removeFeaturedImage();
 			$album->addFeaturedImage($newFeaturedImage);
 		}
 
@@ -134,19 +83,11 @@ class AlbumsController extends Controller
         return back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Album  $album
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Album $album)
     {
         // Assign the image to Uncategorized album
-        $album->uncategorizeImages();
-
-        // Delete the album
-        $album->delete();
+		$album->uncategorizeImages()
+			  ->delete();
 
         $this->flash('Album is deleted successfully. All the attached images have been assigned to Uncategorized album');
 
