@@ -3,81 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Page;
-use App\Carousel;
-use App\Couple;
-use App\Repositories\Images;
-use App\Repositories\Albums;
-
-use App\Http\Controllers\PostsController;
-use App\Http\Controllers\PagesController;
-use App\Http\Controllers\ImagesController;
-use App\Http\Controllers\CarouselController;
-use App\Http\Controllers\AlbumsController;
-use App\Http\Controllers\CoupleController;
-use App\Http\Controllers\EventsController;
-use App\Http\Controllers\BridesBestsController;
-use App\Http\Controllers\VendorsController;
-use App\Http\Controllers\RSVPController;
-use App\Http\Controllers\CategoriesController;
 
 use Illuminate\Support\Facades\DB;
 
 class BackendController extends Controller
 {
-    public function index()
+    public function admin()
     {
         return view('backend.admin');
-    }
-
-    public function page(Page $page) {
-        $postInstance = new PostsController();
-        return $postInstance->index($page);
-    }
-
-    public function carousel(Carousel $carousel) {
-        $carouselInstance = new CarouselImagesController();
-        return $carouselInstance->index($carousel);
-    }
-
-    public function gallery(Images $images) {
-        $imageInstance = new ImagesController($images);
-        return $imageInstance->index();
-    }
-
-    public function album(Albums $albums){
-        $albumInstance = new AlbumsController($albums);
-        return $albumInstance->index();
-    }
-
-    public function couple() {
-        $coupleInstance = new CoupleController;
-        return $coupleInstance->edit();
-    }
-
-    public function event() {
-		$eventInstance = new EventsController;
-        return $eventInstance->index();
-    }
-
-    public function brides_best() {
-		$bridesBestInstance = new BridesBestsController;
-        return $bridesBestInstance->index(); 
-    }
-
-    public function vendors() {
-		$vendorsInstance = new VendorsController;
-        return $vendorsInstance->index(); 
-	}
-	
-    public function categories() {
-		$categoriesInstance = new CategoriesController;
-        return $categoriesInstance->index(); 
-    }
-
-    public function rsvp() {
-		$rsvpInstance = new RSVPController;
-        return $rsvpInstance->index();
     }
 
     public function general() {
@@ -98,8 +31,6 @@ class BackendController extends Controller
 
     public function manageRoles() {
         return view('backend.settings.manage-roles');
-    }
-
-
+	}
 
 }

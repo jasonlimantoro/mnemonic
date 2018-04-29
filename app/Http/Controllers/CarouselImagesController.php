@@ -15,7 +15,7 @@ class CarouselImagesController extends Controller
         // All uploaded images
         $this->images = Image::where('imageable_type', Carousel::class)->oldest()->get();
     }
-    public function index($carousel) {
+    public function index(Carousel $carousel) {
 
         $images = $carousel->images()->oldest()->get();
 
