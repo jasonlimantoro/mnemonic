@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class CategoriesRequest extends FormRequest
+class CategoriesRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +24,7 @@ class CategoriesRequest extends FormRequest
     public function rules()
     {
 		$rules = ['name' => 'required|unique:categories,name'];
-		if ($this->isMethod('put') || $this->isMethod('patch'))
+		if ($this->isUpdateRequest())
         {
             $rules['name'] = [
                 'required',

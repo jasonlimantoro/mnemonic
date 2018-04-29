@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class AlbumsRequest extends FormRequest
+class AlbumsRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,8 +27,7 @@ class AlbumsRequest extends FormRequest
             'name' => 'required|unique:albums,name',
             'description' => 'required'
         ];
-        // if an update action
-        if ($this->isMethod('put') || $this->isMethod('patch'))
+        if ($this->isUpdateRequest())
         {
             $rules['name'] = [
 				'required',

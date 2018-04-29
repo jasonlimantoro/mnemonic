@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class RSVPRequest extends FormRequest
+class RSVPRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +27,7 @@ class RSVPRequest extends FormRequest
             'name' => 'required',
             'email' => 'required|email|unique:rsvps,email'
         ];
-        if ($this->isMethod('put') || $this->isMethod('patch'))
+        if ($this->isUpdateRequest())
         {
             $rules['email'] = [
 				'required',
