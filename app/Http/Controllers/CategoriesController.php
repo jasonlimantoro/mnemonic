@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use Illuminate\Http\Request;
+use App\Http\Requests\CategoriesRequest;
 use App\Http\Controllers\GenericController as Controller;
 
 class CategoriesController extends Controller
@@ -32,20 +32,15 @@ class CategoriesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CategoriesRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoriesRequest $request)
     {
-		$rules = [
-			'name' => 'required'
-		];
 
-		$this->validate($request, $rules);
+		Category::create($request->only(['name', 'description']));
 
-		$category = Category::create(request(['name', 'description']));
-
-		$this->flash('Category is sucessfully created!');
+		$this->flash('Category is successfully created!');
 
 		return redirect()->route('categories.index');
 		
@@ -76,21 +71,16 @@ class CategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
+     * @param CategoriesRequest $request
+     * @param  \App\Category $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoriesRequest $request, Category $category)
     {
-		$rules = [
-			'name' => 'required'
-		];
 
-		$this->validate($request, $rules);
+		$category->update($request->only(['name', 'description']));
 
-		$category->update(request(['name', 'description']));
-
-		$this->flash('Category is sucessfully updated');
+		$this->flash('Category is successfully updated');
 
 		return back();
     }
@@ -104,7 +94,7 @@ class CategoriesController extends Controller
     public function destroy(Category $category)
     {
 		$category->delete();
-		$this->flash('Category is sucessfully deleted!');
+		$this->flash('Category is successfully deleted!');
 		return back();
     }
 }
