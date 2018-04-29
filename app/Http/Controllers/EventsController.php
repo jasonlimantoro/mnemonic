@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\GenericController as Controller;
-use Illuminate\Http\Request;
 use App\Event;
 use App\Image;
+use App\Http\Requests\EventsRequest;
+use App\Http\Controllers\GenericController as Controller;
 
 class EventsController extends Controller
 {
@@ -30,22 +30,16 @@ class EventsController extends Controller
 		return view('backend.wedding.events.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
-	 */
-	public function store(Request $request)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param EventsRequest $request
+     * @return \Illuminate\Http\Response
+     */
+	public function store(EventsRequest $request)
 	{
-		$rules = [
-			'name' => 'required',
-			'datetime' => 'required|date|after:today'
-		];
-
-		$this->validate($request, $rules);
 		$event = Event::create(
-			request(['name', 'description', 'location', 'datetime'])
+			$request->only(['name', 'description', 'location', 'datetime'])
 		);
 		if ($eventImage = Image::handleUpload($request)) {
 			$eventImage->addTo($event);
@@ -80,21 +74,15 @@ class EventsController extends Controller
 		return view('backend.wedding.events.edit', compact('event', 'eventImage'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \App\Event  $event
-	 * @return \Illuminate\Http\Response
-	 */
-	public function update(Request $request, Event $event)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param EventsRequest $request
+     * @param  \App\Event $event
+     * @return \Illuminate\Http\Response
+     */
+	public function update(EventsRequest $request, Event $event)
 	{
-		$rules = [
-			'name' => 'required',
-			'datetime' => 'required|date|after:today'
-		];
-		$this->validate($request, $rules);
-
 		if ($eventImage = Image::handleUpload($request)) {
 			$eventImage->addTo($event);
 		}
