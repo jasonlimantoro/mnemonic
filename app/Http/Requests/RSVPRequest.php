@@ -30,7 +30,10 @@ class RSVPRequest extends FormRequest
         ];
         if ($this->isMethod('put') || $this->isMethod('patch'))
         {
-            $rules['email'] = Rule::unique('rsvps', 'email')->ignore($this->rsvp->id);
+            $rules['email'] = [
+				'required',
+				Rule::unique('rsvps', 'email')->ignore($this->rsvp->id)
+			];
         }
 
         return $rules;

@@ -31,7 +31,10 @@ class AlbumsRequest extends FormRequest
         // if an update action
         if ($this->isMethod('put') || $this->isMethod('patch'))
         {
-            $rules['name'] = Rule::unique('albums', 'name')->ignore($this->album->id);
+            $rules['name'] = [
+				'required',
+				Rule::unique('albums', 'name')->ignore($this->album->id)
+			];
         }
 		return $rules;
     }
