@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use App\Album;
 use App\Image;
 use App\Repositories\Albums;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
+use App\Http\Requests\AlbumsRequest;
 use App\Http\Controllers\GenericController as Controller;
-use Illuminate\Support\Facades\Validator;
 
 class AlbumsController extends Controller
 {
@@ -18,6 +16,12 @@ class AlbumsController extends Controller
     public function __construct(Albums $albums) {
 		$this->albums = $albums;
 	}
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
 		$categorizedAlbums = $this->albums->categorized();
@@ -28,19 +32,25 @@ class AlbumsController extends Controller
 					'uncategorizedAlbum' => $uncategorizedAlbum,
 				]);
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         return view('backend.website.albums.create');
     }
 
-    public function store(Request $request)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(AlbumsRequest $request)
     {
-        $rules = [
-            'name' => 'required|unique:albums,name',
-            'description' => 'required'
-        ];
-
-        $this->validate($request, $rules);
 
         $album = Album::create(request(['name', 'description']));
 		if($newFeaturedImage = Image::handleUpload($request))
@@ -53,27 +63,33 @@ class AlbumsController extends Controller
         return redirect()->route('albums.index');
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Album  $album
+     * @return \Illuminate\Http\Response
+     */
     public function show(Album $album)
     {
         $images = $album->images;
         return view('backend.website.albums.show', compact(['images', 'album']));
     }
 
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Album  $album
+     * @return \Illuminate\Http\Response
+     */
     public function edit(Album $album)
     {
         return view('backend.website.albums.edit', compact('album'));
     }
 
-    public function update(Request $request, Album $album)
+    public function update(AlbumsRequest $request, Album $album)
     {
-		$rules = Validator::make($request->all(), [
-			'name' => [
-				'required',
-				Rule::unique('albums')->ignore($album->id)
-			],
-			'description' => 'required'
-		])->validate();
-        
+
 		$album->update(request(['name', 'description']));
 
 		if($newFeaturedImage = Image::handleUpload($request))
@@ -81,11 +97,17 @@ class AlbumsController extends Controller
 			$album->addFeaturedImage($newFeaturedImage);
 		}
 
-        //store status message
         $this->flash('Album is updated successfully!');
 
         return back();
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Album $album
+     * @return \Illuminate\Http\Response
+     */
 
     public function destroy(Album $album)
     {

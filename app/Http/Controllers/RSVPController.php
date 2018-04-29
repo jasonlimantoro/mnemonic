@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use App\RSVP;
 use App\RSVPToken;
 use App\ConfirmsRSVP;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Http\Requests\RSVPRequest;
 use App\Http\Controllers\GenericController as Controller;
-use Illuminate\Support\Facades\Validator;
 
 
 class RSVPController extends Controller
@@ -43,19 +42,14 @@ class RSVPController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param RSVPRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RSVPRequest $request)
     {
-        $rules = [
-			'name' => 'required',
-			'email' => 'required|email|unique:rsvps,email'
-		];
-		$this->validate($request, $rules);
 
 		$rsvp = RSVP::create(
-			request(['name', 'email', 'phone', 'table_name', 'total_invitation'])
+		    $request->only(['name', 'email', 'phone', 'table_name', 'total_invitation'])
 		);
 
 		$this->confirm->invite($rsvp);
@@ -90,21 +84,14 @@ class RSVPController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\RSVP  $rsvp
+     * @param RSVPRequest $request
+     * @param  \App\RSVP $rsvp
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RSVP $rsvp)
+    public function update(RSVPRequest $request, RSVP $rsvp)
     {
-		$rules = Validator::make($request->all(), [
-			'name' => 'required',
-			'email' => [
-				'required',
-				Rule::unique('rsvps')->ignore($rsvp->id)	
-			],
-		])->validate();
 		$rsvp->update(
-			request(['name', 'email', 'phone', 'table_name', 'total_invitation'])
+		    $request->only(['name, email, phone, table_name, total_invitation'])
 		);
 		$this->flash('RSVP data is updated successfully');	
 		return back();
