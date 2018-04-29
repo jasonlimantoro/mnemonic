@@ -8,6 +8,7 @@ use App\ConfirmsRSVP;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\GenericController as Controller;
+use Illuminate\Support\Facades\Validator;
 
 
 class RSVPController extends Controller
@@ -95,11 +96,13 @@ class RSVPController extends Controller
      */
     public function update(Request $request, RSVP $rsvp)
     {
-		$rules = [
+		$rules = Validator::make($request->all(), [
 			'name' => 'required',
-			'email' => Rule::unique('rsvps')->ignore($rsvp->id)
-		];
-		$this->validate($request, $rules);
+			'email' => [
+				'required',
+				Rule::unique('rsvps')->ignore($rsvp->id)	
+			],
+		])->validate();
 		$rsvp->update(
 			request(['name', 'email', 'phone', 'table_name', 'total_invitation'])
 		);

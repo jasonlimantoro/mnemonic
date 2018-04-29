@@ -6,7 +6,9 @@ use App\Album;
 use App\Image;
 use App\Repositories\Albums;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\GenericController as Controller;
+use Illuminate\Support\Facades\Validator;
 
 class AlbumsController extends Controller
 {
@@ -64,11 +66,13 @@ class AlbumsController extends Controller
 
     public function update(Request $request, Album $album)
     {
-        $rules = [
-            'name' => 'required',
-            'description' => 'required'
-        ];
-        $this->validate($request, $rules);
+		$rules = Validator::make($request->all(), [
+			'name' => [
+				'required',
+				Rule::unique('albums')->ignore($album->id)
+			],
+			'description' => 'required'
+		])->validate();
         
 		$album->update(request(['name', 'description']));
 
