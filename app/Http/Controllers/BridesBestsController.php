@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\GenericController as Controller;
-use App\BridesBest;
 use App\Image;
-use Illuminate\Http\Request;
+use App\BridesBest;
+use App\Http\Requests\BridesBestsRequest;
+use App\Http\Controllers\GenericController as Controller;
 
 class BridesBestsController extends Controller
 {
@@ -33,17 +33,11 @@ class BridesBestsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param BridesBestsRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BridesBestsRequest $request)
     {
-		$rules = [
-			'name' => 'required',
-			'gender' => 'required'
-		];
-		$this->validate($request, $rules);
-
 		$bridesBest = BridesBest::create(request(['name', 'testimony', 'ig_account', 'gender']));
 		if($bridesBestImage = Image::handleUpload($request)){
 			$bridesBestImage->addTo($bridesBest);
@@ -56,7 +50,7 @@ class BridesBestsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\BridesBest  $bridesBest
+     * @param BridesBest $bridesmaid_bestman
      * @return \Illuminate\Http\Response
      */
     public function show(BridesBest $bridesmaid_bestman)
@@ -73,7 +67,7 @@ class BridesBestsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\BridesBest  $bridesBest
+     * @param BridesBest $bridesmaid_bestman
      * @return \Illuminate\Http\Response
      */
     public function edit(BridesBest $bridesmaid_bestman)
@@ -88,23 +82,18 @@ class BridesBestsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\BridesBest  $bridesBest
+     * @param BridesBestsRequest $request
+     * @param  \App\BridesBest $bridesmaid_bestman
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BridesBest $bridesmaid_bestman)
+    public function update(BridesBestsRequest $request, BridesBest $bridesmaid_bestman)
     {
-		$rules = [
-			'name' => 'required',
-			'gender' => 'required'
-		];
-		$this->validate($request, $rules);
 		if($bridesBestImage = Image::handleUpload($request))
 		{
 			$bridesBestImage->addTo($bridesmaid_bestman);
 		}
 
-		$bridesmaid_bestman->update(request(['name', 'testimony', 'ig_account', 'gender']));
+		$bridesmaid_bestman->update($request->only(['name', 'testimony', 'ig_account', 'gender']));
 
 		$this->flash('Bridesmaid / Bestman information is successfully updated!');
 
@@ -114,7 +103,7 @@ class BridesBestsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\BridesBest  $bridesBest
+     * @param  \App\BridesBest  $bridesmaid_bestman
      * @return \Illuminate\Http\Response
      */
     public function destroy(BridesBest $bridesmaid_bestman)
