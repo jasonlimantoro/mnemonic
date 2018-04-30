@@ -2,12 +2,10 @@ require('./bootstrap');
 
 import ReactDOM from "react-dom";
 import React from "react";
-import { UpdateButton, PublishButton, AddNewPostButton } from './containers/ButtonContainer';
 import { Search, FancyInput, CoupleForm, SimpleInput } from './containers/FormContainer';
 import { DeleteIcon, EditIcon, ShowIcon } from "./containers/IconContainer";
 
 const APPS = {
-    UpdateButton, PublishButton, AddNewPostButton,
 	Search, CoupleForm,
 	FancyInput, SimpleInput,
     DeleteIcon, EditIcon, ShowIcon
@@ -25,4 +23,4 @@ function renderAppInElement(el) {
 
 document
   .querySelectorAll('.__react-root')
-  .forEach(renderAppInElement)
+  .forEach(renderAppInElement);
