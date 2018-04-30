@@ -28,12 +28,12 @@
 						@slot('tableBody')
 							@foreach($albums as $album)
 								<tr>
-									<td>
+									<td class="data-table">
 										<a href="{{ route('albums.show', ['album' => $album->id ]) }}">
 											{{ $album->name }} 
 										</a>
 									</td>
-									<td>{{ $album->description }}</td>
+									<td class="data-table">{{ $album->description }}</td>
 									
 									<td class="text-center">
 										<div>
@@ -81,7 +81,7 @@
 								</tr>
 							@endforeach
 								<tr>
-									<td>
+									<td class="data-table">
 										<a href="{{ route('albums.show', ['album' => $uncategorizedAlbum->id ]) }}">
 											Uncategorized
 										</a>

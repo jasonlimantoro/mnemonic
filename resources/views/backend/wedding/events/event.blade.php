@@ -1,11 +1,11 @@
-<tr class="event">
-  <td class="event-data title">
+<tr>
+  <td class="data-table title">
     <a href="{{ route('events.edit', ['event' => $event->id ]) }}">
       {{ $event->name }}
     </a>
   <p> {{ $event->datetime }} </p>
   </td>
-  <td class="event-data body">
+  <td class="data-table body">
     {{ $event->description }}
   </td>
   <td class="text-center">

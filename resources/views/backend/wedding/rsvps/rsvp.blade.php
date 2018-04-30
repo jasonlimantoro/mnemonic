@@ -1,5 +1,5 @@
 <tr>
-	<td class="title">
+	<td class="data-table title">
 		<p>
 			<a href="{{ route('rsvps.edit', ['rsvp' => $rsvp->id ]) }}">
 				{{ $rsvp->name }} 
@@ -9,7 +9,7 @@
 		<p>{{ $rsvp->phone }}</p>
 
 	</td>
-	<td class="body">
+	<td class="data-table body">
 		<small>RSVP Code : {{ str_pad($rsvp->id, 5, "#000", STR_PAD_LEFT) }}</small><br>
 		<small>Table Name: {{ $rsvp->table_name }}</small><br>
 		<small>Total Invitation(s): {{ $rsvp->total_invitation }}</small><br>

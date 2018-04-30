@@ -1,10 +1,10 @@
 <tr class="vendor">
-    <td class="vendor-data title">
+    <td class="data-table title">
         <a href="{{ route('vendors.edit', ['vendor' => $vendor->id ]) }}">
 			{{ $vendor->name }} 
 		</a>
     </td>
-    <td class="vendor-data body">
+    <td class="data-table body">
 		<ul class="list-unstyled">
 			@forelse ($vendor->categories as $category)
 				<li>{{ $category->name }}</li>
