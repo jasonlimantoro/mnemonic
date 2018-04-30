@@ -1,7 +1,6 @@
 <?php
 
 namespace App;
-use App\Category;
 
 class Vendor extends Model
 {

@@ -1,8 +1,6 @@
 <?php
 
 namespace App;
-use App\RSVP;
-use App\RSVPToken;
 
 class ConfirmsRSVP 
 {

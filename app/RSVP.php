@@ -2,9 +2,6 @@
 
 namespace App;
 
-use App\RSVPToken;
-use App\Mail\RSVPInvitation;
-
 
 class RSVP extends Model
 {

@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Album;
 
 class AlbumImage extends Model
 {

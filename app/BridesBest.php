@@ -2,8 +2,6 @@
 
 namespace App;
 
-use App\Image; 
-use App\Album;
 
 class BridesBest extends Model
 {

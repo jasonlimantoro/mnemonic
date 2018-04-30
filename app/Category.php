@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Vendor;
 
 class Category extends Model
 {

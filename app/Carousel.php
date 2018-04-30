@@ -1,9 +1,6 @@
 <?php
 
 namespace App;
-use App\Image;
-use App\Page;
-use App\Album;
 
 class Carousel extends Model 
 {

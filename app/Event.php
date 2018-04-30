@@ -2,8 +2,6 @@
 
 namespace App;
 
-use App\Image;
-use App\Album;
 use Carbon\Carbon;
 use Collective\Html\Eloquent\FormAccessible;
 
