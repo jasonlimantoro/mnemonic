@@ -3,7 +3,6 @@ import axios from "axios";
 
 // Custom Components
 import { FormPost, SearchBox, RadioButton, InputFile, TextArea, SelectForm } from "../components/Form";
-import { SearchPost } from "../components/SearchPost";
 import { PrimaryButton, SuccessButton } from "../components/Button";
 import { UploadModal } from "../components/Modal";
 import { DisplayImages, DisplayImagesFromInputFile } from "../components/DisplayImage";
@@ -15,37 +14,40 @@ export class Search extends React.Component {
         super(props);
         this.state = {
             'searchValue' : '',
-            'selectedOption' : '',
-            'placeholder': ''
-        }
+            'selectedOption' : 'title',
+            'placeholder': 'Search title'
+		}
         this.changeSearchValue = this.changeSearchValue.bind(this);
         this.changeSelectedOption = this.changeSelectedOption.bind(this);
     }
 
     changeSearchValue(newValue) {
-        this.setState({
-            'searchValue': newValue
-        });
+		const searchValue = newValue;
+		this.setState({ searchValue });
+		this.filter(searchValue);
     }
 
     changeSelectedOption (newOption) {
-        this.setState({
-            selectedOption: newOption,
-            placeholder: "Search post " + newOption
-        });
-    }
-    componentWillMount() {
-        // the first time when component will be mounted
-        this.setState({
-            selectedOption: 'title',
-        })
-    }
+		const selectedOption = newOption;
+		const placeholder = "Search " + newOption;
+        this.setState({ selectedOption, placeholder });
+	}
 
-    componentDidMount() {
-        // Add the placeholder after selectedOption is updated
-        this.setState({
-            placeholder: 'Search post ' + this.state.selectedOption
-        });
+    filter(value) {
+        var value = value.toUpperCase(); // the value to be searched
+        var table = document.getElementsByClassName('table')[0];
+        var tr = table.getElementsByTagName('tr');
+        var columnIndex = this.state.selectedOption === 'title' ? 0 : 1;
+        for (let i = 1; i < tr.length; i++) {
+            var td = tr[i].getElementsByClassName('data-table')[columnIndex];
+            if (td) {
+                if (td.innerText.toUpperCase().indexOf(value) > -1) {
+                    tr[i].style.display = '';
+                }
+                else
+                    tr[i].style.display = 'none';
+            }
+        }
     }
 
     render() {
@@ -59,11 +61,7 @@ export class Search extends React.Component {
                 />
                 <RadioButton 
                     onChange = {this.changeSelectedOption}
-                    selectedOption = {this.state.selectedOption}
-                />
-                <SearchPost 
-                    value={this.state.searchValue} 
-                    selectedOption={this.state.selectedOption}
+                    selectedOption = {selected}
                 />
             </div>
         )

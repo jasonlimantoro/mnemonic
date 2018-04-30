@@ -5196,11 +5196,10 @@ module.exports = Cancel;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Form__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_SearchPost__ = __webpack_require__(323);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Button__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Modal__ = __webpack_require__(324);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_DisplayImage__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Tab__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Button__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Modal__ = __webpack_require__(324);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_DisplayImage__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Tab__ = __webpack_require__(142);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5219,7 +5218,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-
 var Search = function (_React$Component) {
     _inherits(Search, _React$Component);
 
@@ -5230,8 +5228,8 @@ var Search = function (_React$Component) {
 
         _this.state = {
             'searchValue': '',
-            'selectedOption': '',
-            'placeholder': ''
+            'selectedOption': 'title',
+            'placeholder': 'Search title'
         };
         _this.changeSearchValue = _this.changeSearchValue.bind(_this);
         _this.changeSelectedOption = _this.changeSelectedOption.bind(_this);
@@ -5241,33 +5239,32 @@ var Search = function (_React$Component) {
     _createClass(Search, [{
         key: "changeSearchValue",
         value: function changeSearchValue(newValue) {
-            this.setState({
-                'searchValue': newValue
-            });
+            var searchValue = newValue;
+            this.setState({ searchValue: searchValue });
+            this.filter(searchValue);
         }
     }, {
         key: "changeSelectedOption",
         value: function changeSelectedOption(newOption) {
-            this.setState({
-                selectedOption: newOption,
-                placeholder: "Search post " + newOption
-            });
+            var selectedOption = newOption;
+            var placeholder = "Search " + newOption;
+            this.setState({ selectedOption: selectedOption, placeholder: placeholder });
         }
     }, {
-        key: "componentWillMount",
-        value: function componentWillMount() {
-            // the first time when component will be mounted
-            this.setState({
-                selectedOption: 'title'
-            });
-        }
-    }, {
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            // Add the placeholder after selectedOption is updated
-            this.setState({
-                placeholder: 'Search post ' + this.state.selectedOption
-            });
+        key: "filter",
+        value: function filter(value) {
+            var value = value.toUpperCase(); // the value to be searched
+            var table = document.getElementsByClassName('table')[0];
+            var tr = table.getElementsByTagName('tr');
+            var columnIndex = this.state.selectedOption === 'title' ? 0 : 1;
+            for (var i = 1; i < tr.length; i++) {
+                var td = tr[i].getElementsByClassName('data-table')[columnIndex];
+                if (td) {
+                    if (td.innerText.toUpperCase().indexOf(value) > -1) {
+                        tr[i].style.display = '';
+                    } else tr[i].style.display = 'none';
+                }
+            }
         }
     }, {
         key: "render",
@@ -5283,11 +5280,7 @@ var Search = function (_React$Component) {
                 }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_Form__["b" /* RadioButton */], {
                     onChange: this.changeSelectedOption,
-                    selectedOption: this.state.selectedOption
-                }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_SearchPost__["a" /* SearchPost */], {
-                    value: this.state.searchValue,
-                    selectedOption: this.state.selectedOption
+                    selectedOption: selected
                 })
             );
         }
@@ -5308,7 +5301,7 @@ var CoupleForm = function (_React$Component2) {
     _createClass(CoupleForm, [{
         key: "render",
         value: function render() {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_Tab__["a" /* CoupleTabs */], null);
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_Tab__["a" /* CoupleTabs */], null);
         }
     }]);
 
@@ -5377,7 +5370,7 @@ var SimpleInput = function (_React$Component3) {
                         onChange: this.addFile,
                         i: this.props.i
                     }),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_DisplayImage__["a" /* DisplayImagesFromInputFile */], { file: this.state.file, i: this.props.i, displayOutside: true, displayBelow: false })
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_DisplayImage__["a" /* DisplayImagesFromInputFile */], { file: this.state.file, i: this.props.i, displayOutside: true, displayBelow: false })
                 )
             );
         }
@@ -5454,9 +5447,9 @@ var FancyInput = function (_React$Component4) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "div",
                     { className: "form-group" },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Button__["b" /* PrimaryButton */], { text: "Upload Image", onClick: this.showModal })
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Button__["b" /* PrimaryButton */], { text: "Upload Image", onClick: this.showModal })
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_Modal__["a" /* UploadModal */], { show: this.state.modalShow, onHide: this.closeModal, i: this.props.i })
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Modal__["a" /* UploadModal */], { show: this.state.modalShow, onHide: this.closeModal, i: this.props.i })
             );
         }
     }]);
@@ -57917,92 +57910,7 @@ var Well = function (_React$Component) {
 
 
 /***/ }),
-/* 323 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPost; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-var SearchPost = function (_React$Component) {
-    _inherits(SearchPost, _React$Component);
-
-    function SearchPost(props) {
-        _classCallCheck(this, SearchPost);
-
-        var _this = _possibleConstructorReturn(this, (SearchPost.__proto__ || Object.getPrototypeOf(SearchPost)).call(this, props));
-
-        _this.state = {
-            'columnName': 'title',
-            'columnIndex': 0
-        };
-        return _this;
-    }
-
-    _createClass(SearchPost, [{
-        key: 'componentWillReceiveProps',
-        value: function componentWillReceiveProps(nextprops) {
-            var col = nextprops.selectedOption === 'title' ? 0 : 1;
-            this.setState({
-                columnName: nextprops.selectedOption,
-                columnIndex: col
-            });
-        }
-    }, {
-        key: 'filter',
-        value: function filter() {
-            var input, filter, table, tr, td;
-            filter = this.props.value.toUpperCase();
-            table = document.getElementsByClassName('table')[0];
-            tr = table.getElementsByTagName('tr');
-            var columnIndex = this.state.columnIndex;
-            for (var i = 1; i < tr.length; i++) {
-                td = tr[i].getElementsByClassName('post-data')[columnIndex];
-                if (td) {
-                    if (td.innerText.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = '';
-                    } else tr[i].style.display = 'none';
-                }
-            }
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                'div',
-                null,
-                this.filter(),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'p',
-                    null,
-                    ' Best match in ',
-                    this.props.selectedOption,
-                    ' for: ',
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        'strong',
-                        null,
-                        this.props.value
-                    ),
-                    ' '
-                )
-            );
-        }
-    }]);
-
-    return SearchPost;
-}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
-
-/***/ }),
+/* 323 */,
 /* 324 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
