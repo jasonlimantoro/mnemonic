@@ -4,7 +4,6 @@ namespace App\Traits;
 
 use App\Album;
 use App\Image;
-use App\Repositories\Albums;
 use App\Filters\GalleryFilter;
 
 trait UploadsImage {
@@ -13,7 +12,7 @@ trait UploadsImage {
 	/** 
 	 * Filter the uploaded file and save it to the filesystem
 	 * 
-	 * @param  Illuminate\Http\Request $request
+	 * @param  \Illuminate\Http\Request $request
 	 * @return mixed
 	 * 
 	*/
@@ -98,8 +97,5 @@ trait UploadsImage {
 		else {
 			return $ownerClass->image()->create($imgAttr);
 		}
-
-		return false;
-
 	}
 }
