@@ -1,9 +1,6 @@
 <?php
 namespace App;
 
-use App\Image;
-use App\Album;
-
 class Couple extends Model
 {
 	// custom table name

@@ -2,8 +2,8 @@
 
 namespace App;
 
-use App\RSVP; 
 use App\Mail\RSVPInvitation;
+use Illuminate\Support\Facades\Mail;
 
 class RSVPToken extends Model
 {
@@ -19,7 +19,7 @@ class RSVPToken extends Model
 
 	public function send()
 	{
-		\Mail::to($this->rsvp)
+		Mail::to($this->rsvp)
 			->send(new RSVPInvitation($this->rsvp));
 	}
 

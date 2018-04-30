@@ -22,7 +22,7 @@ class Image extends Model
 		return $this->morphTo();
 	}
 
-	// retreive its album (if exists)
+	// retrieve its album (if exists)
 	public function album(){
 		if ($this->imageable instanceof Album)
 		{

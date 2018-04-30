@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\RSVP;
 use App\RSVPToken;
 use App\ConfirmsRSVP;
-use Illuminate\Validation\Rule;
 use App\Http\Requests\RSVPRequest;
 use App\Http\Controllers\GenericController as Controller;
 
