@@ -19,7 +19,7 @@ class CarouselImagesController extends Controller
 
         $images = $carousel->images()->oldest()->get();
 
-        return view('backend.website.carousel.main', compact('images'));
+        return view('backend.website.carousel.index', compact('images'));
     }
 
     public function create() {
