@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\GenericController as Controller;
-use Illuminate\Http\Request;
-use App\Repositories\Posts; 
 use App\Post;
 use App\Page;
+use App\Repositories\Posts; 
+use Illuminate\Http\Request;
 use App\Http\Controllers\CarouselImagesController;
+use App\Http\Controllers\GenericController as Controller;
 
 class PostsController extends Controller
 {
@@ -24,7 +24,10 @@ class PostsController extends Controller
 
     public function index(Page $page)
     {
-        $posts = $page->posts()->latest()->get();
+		
+		$posts = Post::filterSearch(request(['method', 'order', 'search']))
+						->where('page_id', $page->id)
+						->get();
         return view('posts.backend.index', compact('page', 'posts'));
     }
 

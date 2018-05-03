@@ -15,6 +15,7 @@ class Post extends Model
 	}
 
 	public function scopeFilter($query, $filters)
+	// frontend
 	{
 		if($filters && $month = $filters['month'])
 		{
@@ -25,6 +26,18 @@ class Post extends Model
 			$query->whereYear('created_at', $year);
 		}
 	}
+
+	public static function scopeFilterSearch($query, $filters)
+	{
+		if(!$filters) return;
+
+		$method = $filters['method'];
+		$order = $filters['order'];
+		$search = $filters['search'];
+		$query->orderBy($order, $method)
+			  ->where('title', 'like', '%' . $search . '%');
+	}
+
 
 	public static function archives()
 	{
