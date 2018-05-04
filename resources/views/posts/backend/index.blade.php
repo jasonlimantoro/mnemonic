@@ -14,6 +14,11 @@
 					@endcomponent
 				@endslot
 				@slot('body')
+					@component('layouts.query', [
+						'title' => 'Title',
+						'body' => 'Description'
+					]) 
+					@endcomponent
 					@component('layouts.table')
 						@slot('tableHeader')
 							<tr>
@@ -34,5 +39,4 @@
 		</div>
 	</div>
 @endsection
-
 

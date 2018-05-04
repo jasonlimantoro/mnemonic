@@ -14,12 +14,17 @@
           @endcomponent
         @endslot
 
-        @slot('body')
+				@slot('body')
+					@component('layouts.query', [
+						'title' => 'Name',
+						'body' => 'Description'
+					]) 
+					@endcomponent
           @component('layouts.table')
             @slot('tableHeader')
               <tr>
-                <th class="col title">Title</th>
-                <th class="col body">Body</th>
+                <th class="col title">Name</th>
+                <th class="col body">Description</th>
                 <th class="col action">Action</th>
               </tr>
             @endslot

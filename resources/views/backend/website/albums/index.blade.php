@@ -15,6 +15,11 @@
         @endslot
 
 				@slot('body')
+					@component('layouts.query', [
+						'title' => 'Name',
+						'body' => 'Description'
+					])
+					@endcomponent
 					@component('layouts.table')
 						@slot('tableHeader')
 							<tr>
