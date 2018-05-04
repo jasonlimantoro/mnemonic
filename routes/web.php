@@ -62,6 +62,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 	});
 	
 	// settings
+    Route::get('settings/edit', 'SettingsController@edit')->name('settings.edit');
+    Route::patch('settings', 'SettingsController@update')->name('settings.update');
 	Route::prefix('settings')->group(function(){
 		Route::resource('categories', 'CategoriesController');
 	});

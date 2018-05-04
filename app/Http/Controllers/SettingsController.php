@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Setting;
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\GenericController as Controller;
+
 class SettingsController extends Controller
 {
     /**
@@ -14,7 +16,6 @@ class SettingsController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -35,7 +36,7 @@ class SettingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -52,24 +53,49 @@ class SettingsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Settings  $settings
      * @return \Illuminate\Http\Response
      */
-    public function edit(Settings $settings)
+    public function edit()
     {
-        //
+		$settings = (object)[
+			'admin_email' => Setting::getValueByKey('admin-email'),
+			'site_title' => Setting::getValueByKey('site-title'),
+			'site_description' => Setting::getValueByKey('site-description'),
+			'contact' => json_decode(Setting::getValueByKey('site-contact')),
+		];
+        return view('backend.settings.edit', compact('settings'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Settings  $settings
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Settings $settings)
+    public function update(Request $request)
     {
-        //
+		$adminEmail = $request->admin_email;
+		$siteTitle = $request->site_title;
+		$siteDescription = $request->site_description;
+		$siteContact = [
+			'email' => $request->contact_email,
+			'phone' => $request->contact_phone,
+			'mobile' => $request->contact_mobile,	
+			'address' => $request->contact_address,
+			'region' => $request->contact_region,
+			'city' => $request->contact_city,
+			'country' => $request->contact_country,
+			'zip_code' => $request->contact_zip_code,
+		];
+
+		Setting::updateValueByKey('admin-email', $adminEmail);
+		Setting::updateValueByKey('site-title', $siteTitle);
+		Setting::updateValueByKey('site-description', $siteDescription);
+		Setting::updateValueByKey('site-contact', json_encode($siteContact));
+
+		$this->flash('Settings are updated successfully');
+
+		return back();
     }
 
     /**
