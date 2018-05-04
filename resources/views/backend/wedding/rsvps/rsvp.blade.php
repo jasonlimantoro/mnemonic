@@ -1,12 +1,11 @@
 <tr>
 	<td class="data-table title">
-		<p>
-			<a href="{{ route('rsvps.edit', ['rsvp' => $rsvp->id ]) }}">
-				{{ $rsvp->name }} 
-			</a>
-		</p>
-		<p>{{ $rsvp->email }}</p>
-		<p>{{ $rsvp->phone }}</p>
+		
+		<a href="{{ route('rsvps.edit', ['rsvp' => $rsvp->id ]) }}">
+			{{ $rsvp->name }} 
+		</a> <br>
+		{{ $rsvp->email }} <br>
+		{{ $rsvp->phone }}
 
 	</td>
 	<td class="data-table body">
