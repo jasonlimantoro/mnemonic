@@ -14,3 +14,4 @@ public/uploads/*
 public/images_sample/*
 public/temp/
 webpack.mix.js
+_ide_helper.php
