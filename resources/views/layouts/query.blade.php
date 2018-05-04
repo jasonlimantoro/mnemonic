@@ -9,7 +9,7 @@
 	{{-- order field --}}
 	<div class="form-group">
 		{{ Form::label('order', 'Order By:') }}
-		{{ Form::select('order', ['title' => 'Title', 'body' => 'Body'], null, ['class' => 'form-control']) }}
+		{{ Form::select('order', [strtolower($title) => $title, strtolower($body) => $body ], null, ['class' => 'form-control']) }}
 	</div>
 
 	{{-- method field --}}
@@ -21,7 +21,7 @@
 	
 	{{-- Submit Button --}}
 	<div class="form-group">
-		{{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
+		{{ Form::submit('Search', ['class' => 'btn btn-primary']) }}
 	</div>
 	
 	{{-- reset field --}}
