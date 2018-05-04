@@ -27,15 +27,15 @@ class Post extends Model
 		}
 	}
 
-	public static function scopeFilterSearch($query, $filters)
+	public function scopeFilterSearch($query, $filters)
 	{
 		if(!$filters) return;
 
 		$method = $filters['method'];
 		$order = $filters['order'];
 		$search = $filters['search'];
-		$query->orderBy($order, $method)
-			  ->where('title', 'like', '%' . $search . '%');
+		return $query->orderBy($order, $method)
+			   		 ->where('title', 'like', '%' . $search . '%');
 	}
 
 
