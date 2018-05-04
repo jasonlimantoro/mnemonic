@@ -4,28 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Page;
-use App\Repositories\Posts; 
 use Illuminate\Http\Request;
-use App\Http\Controllers\CarouselImagesController;
 use App\Http\Controllers\GenericController as Controller;
 
 class PostsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function __construct()
     {
         $this->middleware('auth')->except(['read']);
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @param Page $page
+     *
+     * @return \Illuminate\Http\Response
+     */
+
     public function index(Page $page)
     {
 		
-		$posts = Post::filterSearch(request(['method', 'order', 'search']))
+		$posts = Post::filtersSearch(request(['search', 'order', 'method']), 'title')
 						->where('page_id', $page->id)
 						->get();
         return view('posts.backend.index', compact('page', 'posts'));

@@ -16,7 +16,7 @@ class EventsController extends Controller
 	 */
 	public function index()
 	{
-		$events = Event::all();
+		$events = Event::filtersSearch(request(['search', 'order', 'method']))->get();
 		return view('backend.wedding.events.index', compact('events'));
 	}
 

@@ -24,8 +24,8 @@ class AlbumsController extends Controller
      */
     public function index()
     {
-		$categorizedAlbums = $this->albums->categorized();
-        $uncategorizedAlbum = $this->albums->uncategorized(); 
+		$categorizedAlbums = $this->albums->filtered()->get();
+        $uncategorizedAlbum = $this->albums->uncategorized();
         return view('backend.website.albums.index')
 				->with([
 					'albums' => $categorizedAlbums,

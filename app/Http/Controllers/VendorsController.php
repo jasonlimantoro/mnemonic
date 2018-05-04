@@ -15,19 +15,17 @@ class VendorsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-	public $vendors;
 	public $categories;
 
 	public function __construct()
 	{
-		$this->vendors = Vendor::with('categories')->latest()->get();
 		$this->categories = Category::all();
 	}
     public function index()
     {
-		return view('backend.wedding.vendors.index', with([
-			'vendors' => $this->vendors
-		]));
+		$vendors = Vendor::filtersSearch(request(['search', 'order', 'method']))
+                           ->get();
+		return view('backend.wedding.vendors.index', compact('vendors'));
     }
 
     /**
@@ -72,7 +70,7 @@ class VendorsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Vendors  $vendors
+     * @param  \App\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
     public function show(Vendor $vendor)
@@ -83,7 +81,7 @@ class VendorsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Vendors  $vendors
+     * @param  \App\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
     public function edit(Vendor $vendor)
@@ -100,7 +98,7 @@ class VendorsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Vendors  $vendors
+     * @param  \App\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Vendor $vendor)
@@ -123,7 +121,7 @@ class VendorsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Vendors  $vendors
+     * @param  \App\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
     public function destroy(Vendor $vendor)

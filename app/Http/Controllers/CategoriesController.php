@@ -15,7 +15,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-		$categories = Category::latest()->get();
+		$categories = Category::latest()->filtersSearch(request(['search', 'order', 'method']))->get();
 		return view('backend.settings.categories.index', compact('categories'));
     }
 

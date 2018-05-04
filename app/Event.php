@@ -3,11 +3,12 @@
 namespace App;
 
 use Carbon\Carbon;
+use App\Traits\FiltersSearch;
 use Collective\Html\Eloquent\FormAccessible;
 
 class Event extends Model
 {
-	use FormAccessible;
+	use FormAccessible, FiltersSearch;
 	protected $dates = ['datetime'];
 	
 	public function image()

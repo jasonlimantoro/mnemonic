@@ -2,10 +2,12 @@
 
 namespace App;
 use Carbon\Carbon;
+use App\Traits\FiltersSearch;
 
 
 class Post extends Model
 {
+	use FiltersSearch;
     public function user() { // $post->user->name
         return $this->belongsTo(User::class);
     }
@@ -26,18 +28,6 @@ class Post extends Model
 			$query->whereYear('created_at', $year);
 		}
 	}
-
-	public function scopeFilterSearch($query, $filters)
-	{
-		if(!$filters) return;
-
-		$method = $filters['method'];
-		$order = $filters['order'];
-		$search = $filters['search'];
-		return $query->orderBy($order, $method)
-			   		 ->where('title', 'like', '%' . $search . '%');
-	}
-
 
 	public static function archives()
 	{

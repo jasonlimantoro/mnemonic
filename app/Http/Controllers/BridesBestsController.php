@@ -16,7 +16,7 @@ class BridesBestsController extends Controller
      */
     public function index()
     {
-		$bridesBests = BridesBest::all();
+		$bridesBests = BridesBest::filtersSearch(request(['search', 'order', 'method']))->get();
 		return view('backend.wedding.bridesbests.index', compact('bridesBests'));
     }
 
