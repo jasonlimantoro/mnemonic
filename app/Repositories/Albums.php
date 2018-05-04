@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Repositories;
-use App\Image;
+
 use App\Album;
 
 class Albums 
 {
 	public static function all()
 	{
-		return Album::oldest()->get();
+		return Album::latest();
 	}
 
 	public static function withImages()
@@ -30,4 +30,9 @@ class Albums
 	{
 		return static::all()->pluck('name', 'id')->toArray();
 	}
+
+	public static function filtered()
+    {
+        return static::categorized()->filtersSearch(request(['search', 'order', 'method']));
+    }
 }
