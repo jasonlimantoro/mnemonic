@@ -2,12 +2,13 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
 use App\Image;
 use App\Album;
+use Tests\TestCase;
+use App\Repositories\Images;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class UncategorizeTest extends TestCase
+class ImageRelationships extends TestCase
 {
     use RefreshDatabase;
 
@@ -30,5 +31,17 @@ class UncategorizeTest extends TestCase
         $album->uncategorizeImages();
 
         return $this->assertCount(5, $uncategorizedAlbum->images);
+    }
+
+    public function testWithAlbum()
+    {
+        $image = factory(Image::class, 2)->create();
+        $another = factory(Image::class, 3)->create([
+            'imageable_type' => 'App\Carousel'
+        ]);
+
+        $withAlbum = Images::withAlbum()->get();
+
+        $this->assertCount(2, $withAlbum);
     }
 }
