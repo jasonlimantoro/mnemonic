@@ -17,7 +17,6 @@
 					{{ Form::open(['route' => 'vendors.store']) }}
 						@include('backend.wedding.vendors.form', [
 							'submitButtonText' => 'Add Vendor',
-							'displayCurrentCategories' => false
 						])
 					{{ Form::close() }}
         @endslot

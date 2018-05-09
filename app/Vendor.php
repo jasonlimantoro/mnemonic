@@ -15,4 +15,18 @@ class Vendor extends Model
         return $this->belongsTo(Category::class);
         // return $this->morphToMany(Category::class, 'categoriable');
     }
+
+    public function updateValue(array $attributes = [])
+    {
+        $this->update(['name' => $attributes['name']]);
+        $this->category()->associate($attributes['category'])->save();
+    }
+
+    public static function createVendor(array $attributes = [])
+    {
+        static::create(['name' => $attributes['name']])
+                ->category()
+                ->associate($attributes['category'])
+                ->save();
+    }
 }

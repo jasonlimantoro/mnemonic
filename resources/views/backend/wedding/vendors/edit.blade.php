@@ -18,7 +18,6 @@
 					{{ Form::model($vendor, ['route' => ['vendors.update', $vendor->id], 'method' => 'PATCH']) }}
 						@include('backend.wedding.vendors.form', [
 							'submitButtonText' => 'Update Vendor',
-							'displayCurrentCategories' => true
 						])
 					{{ Form::close() }}
         @endslot

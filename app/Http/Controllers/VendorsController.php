@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Vendor;
 use App\Category;
-use App\Http\Controllers\GenericController as Controller;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\GenericController as Controller;
 
 class VendorsController extends Controller
 {
@@ -15,17 +14,19 @@ class VendorsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-	public $categories;
+    public $categories;
 
-	public function __construct()
-	{
-		$this->categories = Category::all();
-	}
+    public function __construct()
+    {
+        $this->categories = Category::all();
+        $this->categoriesToArray = $this->categories->pluck('name', 'id')->toArray();
+    }
+
     public function index()
     {
-		$vendors = Vendor::filtersSearch(request(['search', 'order', 'method']))
+        $vendors = Vendor::filtersSearch(request(['search', 'order', 'method']))
                            ->get();
-		return view('backend.wedding.vendors.index', compact('vendors'));
+        return view('backend.wedding.vendors.index', compact('vendors'));
     }
 
     /**
@@ -36,8 +37,8 @@ class VendorsController extends Controller
     public function create()
     {
         return view('backend.wedding.vendors.create', with([
-			'categories' => $this->categories
-		]));
+            'categories' => $this->categoriesToArray
+        ]));
     }
 
     /**
@@ -48,23 +49,13 @@ class VendorsController extends Controller
      */
     public function store(Request $request)
     {
-		$rules = [
-			'name' => 'required',
-		];
+        $this->validate($request, ['name' => 'required']);
 
-		$this->validate($request, $rules);
+        Vendor::createVendor($request->only(['name', 'category']));
 
-		$vendor = Vendor::create(request(['name']));
+        $this->flash('Vendor is successfully created!');
 
-		if($category = $request->category)
-		{
-			$vendor->categories()->attach($category);
-		}
-
-		$this->flash('Vendor is successfully created!');
-
-		return redirect()->route('vendors.index');
-
+        return redirect()->route('vendors.index');
     }
 
     /**
@@ -75,7 +66,7 @@ class VendorsController extends Controller
      */
     public function show(Vendor $vendor)
     {
-		return view('backend.wedding.vendors.show', compact('vendor'));
+        return view('backend.wedding.vendors.show', compact('vendor'));
     }
 
     /**
@@ -86,12 +77,10 @@ class VendorsController extends Controller
      */
     public function edit(Vendor $vendor)
     {
-		$vcategories = $vendor->categories()->pluck('name')->toArray();
-		return view('backend.wedding.vendors.edit', with([
-			'categories' => $this->categories,
-			'vendor' => $vendor,
-			'vcategories' => $vcategories
-		]));
+        return view('backend.wedding.vendors.edit', with([
+            'categories' => $this->categoriesToArray,
+            'vendor' => $vendor,
+        ]));
     }
 
     /**
@@ -103,19 +92,13 @@ class VendorsController extends Controller
      */
     public function update(Request $request, Vendor $vendor)
     {
-		$rules = [
-			'name' => 'required'
-		];
-		$this->validate($request, $rules);
+        $this->validate($request, ['name' => 'required']);
 
-		$vendor->update(request(['name']));
-		$vendor->categories()->sync($request->category);
+        $vendor->updateValue($request->only(['name', 'category']));
 
-		$this->flash('Vendor data is updated');
+        $this->flash('Vendor data is updated');
 
-		return back();
-		
-
+        return back();
     }
 
     /**
@@ -126,9 +109,10 @@ class VendorsController extends Controller
      */
     public function destroy(Vendor $vendor)
     {
-		$vendor->delete();
-		$vendor->categories()->detach();
-		$this->flash('Vendor is deleted!');
-		return back();
+        $vendor->delete();
+
+        $this->flash('Vendor is deleted!');
+
+        return back();
     }
 }

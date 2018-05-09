@@ -4,30 +4,26 @@
 	{{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Enter Name']) }}
 </div>
 
-@if ($displayCurrentCategories)
-	<div class="form-group">
-		<label class="control-label">Current Categories ({{ count($vcategories) }})</label>
-		<ul class="list-unstyled">
-			@forelse ($vcategories as $vcategory)
-				<li>{{ $vcategory }}</li>
-			@empty
-				<p><i>none</i></p>									
-			@endforelse
-		</ul>
-	</div>
-@endif
+@php
+	if(Route::current()->getActionMethod() === 'create')
+	{
+		$val = null;
+	}
+	else
+	{
+		$val = optional($vendor->category)->id;
+	}
+@endphp
 
+{{-- category field --}}
 <div class="form-group">
-	<p><strong>Select Categories</strong></p>
-	@foreach ($categories as $category)
-		{!! Form::checkCategories(
-				'category', 
-				$category->name, 
-				$category->id, 
-				$displayCurrentCategories && in_array($category->name, $vcategories)
-			) 
-		!!}
-	@endforeach							
+	{{ Form::label('category', 'Category:') }}
+	{{ Form::select(
+		'category', 
+		$categories, 
+		$val,
+		['class' => 'form-control', 'placeholder'=> 'Select Category']) 
+	}}
 </div>
 
 {{-- Submit Button --}}
