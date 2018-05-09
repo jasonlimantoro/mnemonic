@@ -19,4 +19,9 @@ class Images
     {
         return Image::where('imageable_type', 'App\Album');
     }
+
+    public static function withoutAlbum()
+    {
+        return Image::where('imageable_type', '!=', 'App\Album');
+    }
 }

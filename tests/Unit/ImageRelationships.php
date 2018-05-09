@@ -29,8 +29,13 @@ class ImageRelationships extends TestCase
         ]);
 
         $album->uncategorizeImages();
+        $album = Album::first();
 
-        return $this->assertCount(5, $uncategorizedAlbum->images);
+        // the old album has no images
+        $this->assertCount(0, $album->images);
+
+        // uncategorized album will have the images
+        $this->assertCount(5, $uncategorizedAlbum->images);
     }
 
     public function testWithAlbum()
@@ -41,7 +46,9 @@ class ImageRelationships extends TestCase
         ]);
 
         $withAlbum = Images::withAlbum()->get();
+        $withoutAlbum = Images::withoutAlbum()->get();
 
         $this->assertCount(2, $withAlbum);
+        $this->assertCount(3, $withoutAlbum);
     }
 }
