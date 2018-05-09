@@ -52,9 +52,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
         // Vendors
         Route::resource('vendors', 'VendorsController');
-        Route::prefix('settings')->group(function () {
-            Route::resource('categories', 'CategoriesController');
-        });
+        Route::resource('categories', 'CategoriesController');
 
         // RSVP
         Route::resource('rsvps', 'RSVPController');
