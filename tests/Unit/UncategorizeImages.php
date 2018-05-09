@@ -10,6 +10,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class UncategorizeTest extends TestCase
 {
     use RefreshDatabase;
+
     /**
      * A basic test example.
      *
@@ -17,13 +18,17 @@ class UncategorizeTest extends TestCase
      */
     public function testUncategorize()
     {
-        factory(Album::class)->create();
+        $album = factory(Album::class)->create();
+        $uncategorizedAlbum = factory(Album::class)->create([
+            'name' => 'Uncategorized'
+        ]);
 
-        $imageWithAlbum = factory(Image::class)->create();
-        
-        $album = Album::find($imageWithAlbum->album_id);
+        $images = factory(Image::class, 5)->create([
+            'imageable_id' => $album->id
+        ]);
+
         $album->uncategorizeImages();
 
-        return $this->assertCount(0, $album->images);
+        return $this->assertCount(5, $uncategorizedAlbum->images);
     }
 }
