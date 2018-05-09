@@ -17,15 +17,8 @@
         Pages
       </a>
       <ul class="collapse list-unstyled" id="pageSubmenu">
-        
-        @foreach($pages as $page)
-          <li>
-            <a href="{{ route('posts.index', ['page' => $page->id ]) }}">
-              {{ $page->title }}
-            </a>
-          </li>
-        @endforeach
-      
+				<li><a href="{{ route('posts.index', ['page' => 1]) }}">Home</a></li>
+				<li><a href="{{ route('posts.index', ['page' => 2]) }}">About Us</a></li>
       </ul>
     </li>
     <li>
@@ -36,42 +29,38 @@
       </ul>
     </li>
     
-    <li class="header">Wedding</li>
+		<li class="header">Wedding</li>
+
     <li>
-      <a href="#weddingSubmenu" data-toggle="collapse" aria-expanded="false">
-        Your Wedding Day
-      </a>
+      <a href="#weddingSubmenu" data-toggle="collapse" aria-expanded="false"> Your Wedding Day </a>
       <ul class="collapse list-unstyled" id="weddingSubmenu">
-        <li>
-          <a href="{{ route('couple.edit') }}">Couple</a>
-        </li>
-        <li>
-          <a href="{{ route('events.index') }}">Event</a>
-        </li>
-        <li>
-          <a href="{{ route('bridesmaid-bestmans.index') }}">Bridesmaid & Bestman</a>
-        </li>
+        <li> <a href="{{ route('couple.edit') }}">Couple</a> </li>
+        <li> <a href="{{ route('events.index') }}">Event</a> </li>
+        <li> <a href="{{ route('bridesmaid-bestmans.index') }}">Bridesmaid & Bestman</a> </li>
+			</ul>
+		</li>
+		
+		<li>
+      <a href="#vendorSubMenu" data-toggle="collapse" aria-expanded="false">Vendors</a>
+      <ul class="collapse list-unstyled" id="vendorSubMenu">
+				<li><a href="{{ route('vendors.index') }}">Vendor Lists</a></li>
+				<li><a href="{{ route('categories.index') }}">Manage Categories</a></li>
       </ul>
-    </li>
-    <li><a href="{{ route('vendors.index') }}">Vendors</a></li>
+		</li>
+
     <li><a href="{{ route('rsvps.index') }}">RSVP</a></li>
     
     <li class="header">Settings</li>
-    <li><a href="{{ route('categories.index') }}">Manage Categories</a></li>
     <li><a href="{{ route('settings.edit') }}">Site Info</a></li>
-    <li><a href="{{ route('admin') }}/settings/social-media-and-seo">Social Media & SEO</a></li>
+		<li><a href="{{ route('admin') }}/settings/social-media-and-seo">Social Media & SEO</a></li>
+
     <li>
-      <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">
-        Admin & Roles
-      </a>
+      <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false"> Admin & Roles </a>
       <ul class="collapse list-unstyled" id="adminSubmenu">
-        <li>
-          <a href="{{ route('admin') }}/settings/manage-admin">Manage Admin</a>
-        </li>
-        <li>
-          <a href="{{ route('admin') }}/settings/manage-roles">Manage Roles</a>
-        </li>
+        <li> <a href="{{ route('admin') }}/settings/manage-admin">Manage Admin</a> </li>
+        <li> <a href="{{ route('admin') }}/settings/manage-roles">Manage Roles</a> </li>
       </ul>
-    </li>
+		</li>
+		
   </ul>
 </nav>
