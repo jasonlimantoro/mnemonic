@@ -8,7 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+		<title>{{ config('app.name', 'Laravel') }}</title>
+		<link rel="shortcut icon" type="image/png" href="/images/logo.png"/>
 
     <!-- Styles -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
@@ -56,7 +57,7 @@
         $('[data-toggle="tooltip"]').tooltip();   
       });
     </script>
-    {{--  page-specific scripts  --}}
+    <!--  page-specific scripts --> 
     @yield('scripts')
   </body>
 
