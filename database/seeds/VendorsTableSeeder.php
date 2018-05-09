@@ -13,10 +13,6 @@ class VendorsTableSeeder extends Seeder
      */
     public function run()
     {
-		$vendors = factory(Vendor::class, 15)
-						->create()
-						->each(function($v){
-							$v->categories()->attach(factory(Category::class)->create());
-						});
+		$vendors = factory(Vendor::class, 15)->create();
     }
 }

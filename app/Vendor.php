@@ -6,11 +6,13 @@ use App\Traits\FiltersSearch;
 
 class Vendor extends Model
 {
-	use FiltersSearch;
+    use FiltersSearch;
 
-	protected $with = ['categories'];
-	public function categories()
-	{
-		return $this->morphToMany(Category::class, 'categoriable');
-	}
+    protected $with = ['category'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+        // return $this->morphToMany(Category::class, 'categoriable');
+    }
 }

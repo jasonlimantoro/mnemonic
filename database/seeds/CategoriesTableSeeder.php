@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Category;
-use App\Vendor;
 
 class CategoriesTableSeeder extends Seeder
 {
@@ -13,10 +12,6 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-		$categories = factory(Category::class, 10)
-						->create()
-						->each(function($c){
-							$c->vendors()->attach(factory(Vendor::class)->create());
-						});	
+        $categories = factory(Category::class, 10)->create();
     }
 }

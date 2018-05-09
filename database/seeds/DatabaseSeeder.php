@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\AlbumImage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,12 +17,12 @@ class DatabaseSeeder extends Seeder
             PostsTableSeeder::class,
             ImagesTableSeeder::class,
             CarouselsTableSeeder::class,
-			AlbumsTableSeeder::class,
-			CoupleTableSeeder::class,
-			VendorsTableSeeder::class,
-			CategoriesTableSeeder::class,
-			EventsTableSeeder::class,
-			BridesBestsTableSeeder::class
+            AlbumsTableSeeder::class,
+            CoupleTableSeeder::class,
+            VendorsTableSeeder::class,
+            CategoriesTableSeeder::class,
+            EventsTableSeeder::class,
+            BridesBestsTableSeeder::class
         ]);
     }
 }

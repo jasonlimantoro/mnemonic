@@ -15,21 +15,21 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-			$table->string('name');
-			$table->string('description');
+            $table->string('name');
+            $table->string('description');
             $table->timestamps();
         });
 
-        Schema::create('categoriables', function (Blueprint $table) {
-            $table->unsignedInteger('category_id');
-			$table->morphs('categoriable');
-			// primary keys
-			$table->primary(['category_id', 'categoriable_id']);
-			// foreign-key constrains
-            $table->foreign('category_id')
-                  ->references('id')->on('categories')
-                  ->onDelete('cascade');  
-        });
+        // Schema::create('categoriables', function (Blueprint $table) {
+        //     $table->unsignedInteger('category_id');
+        // 	$table->morphs('categoriable');
+        // 	// primary keys
+        // 	$table->primary(['category_id', 'categoriable_id']);
+        // 	// foreign-key constrains
+        //     $table->foreign('category_id')
+        //           ->references('id')->on('categories')
+        //           ->onDelete('cascade');
+        // });
     }
 
     /**
@@ -40,6 +40,6 @@ class CreateCategoriesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('categories');
-        Schema::dropIfExists('categoriable');
+        // Schema::dropIfExists('categoriable');
     }
 }
