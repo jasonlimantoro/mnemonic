@@ -9,7 +9,6 @@ use App\Http\Controllers\GenericController as Controller;
 
 class PostsController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth')->except(['read']);
@@ -22,13 +21,12 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index(Page $page)
     {
-		
-		$posts = Post::filtersSearch(request(['search', 'order', 'method']), 'title')
-						->where('page_id', $page->id)
-						->get();
+        $posts = Post::filtersSearch(request(['search', 'order', 'method']), 'title')
+                        ->where('page_id', $page->id)
+                        ->latest()
+                        ->get();
         return view('posts.backend.index', compact('page', 'posts'));
     }
 
@@ -59,10 +57,10 @@ class PostsController extends Controller
             'title.unique' => 'The :attribute field must be unique! Either delete the post with the same title or use another title!'
         ];
         $this->validate($request, $rules, $customMessages);
-        
+
         // add a new post to a page
         $page->addPost(request('title'), request('body'), auth()->id());
-        
+
         $this->flash('Post is added succesfully');
 
         return redirect()->route('posts.index');
@@ -75,7 +73,7 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Page $page, Post $post)
-    {   
+    {
         $page = $post->page;
         return view('posts.backend.show', compact('post', 'page'));
     }
@@ -105,8 +103,8 @@ class PostsController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required'
-		]);
-		$updatedPost = $request->all();
+        ]);
+        $updatedPost = $request->all();
         $post->update($updatedPost);
 
         //store status message
@@ -121,14 +119,15 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-	public function destroy(Page $page, Post $post)
+    public function destroy(Page $page, Post $post)
     {
         $post->delete();
         $this->flash('Post is deleted successfully');
         return back();
     }
 
-    public function read(Post $post) {
+    public function read(Post $post)
+    {
         return view('posts.frontend.read', compact('post'));
     }
 }

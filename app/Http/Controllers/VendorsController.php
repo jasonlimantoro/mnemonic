@@ -25,7 +25,8 @@ class VendorsController extends Controller
     public function index()
     {
         $vendors = Vendor::filtersSearch(request(['search', 'order', 'method']))
-                           ->get();
+                        ->latest()
+                        ->get();
         return view('backend.wedding.vendors.index', compact('vendors'));
     }
 

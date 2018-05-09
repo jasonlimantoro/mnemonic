@@ -10,12 +10,12 @@ use App\Http\Controllers\GenericController as Controller;
 
 class AlbumsController extends Controller
 {
+    protected $albums;
 
-	protected $albums;
-
-    public function __construct(Albums $albums) {
-		$this->albums = $albums;
-	}
+    public function __construct(Albums $albums)
+    {
+        $this->albums = $albums;
+    }
 
     /**
      * Display a listing of the resource.
@@ -24,13 +24,13 @@ class AlbumsController extends Controller
      */
     public function index()
     {
-		$categorizedAlbums = $this->albums->filtered()->get();
+        $categorizedAlbums = $this->albums->filtered()->latest()->get();
         $uncategorizedAlbum = $this->albums->uncategorized();
         return view('backend.website.albums.index')
-				->with([
-					'albums' => $categorizedAlbums,
-					'uncategorizedAlbum' => $uncategorizedAlbum,
-				]);
+                ->with([
+                    'albums' => $categorizedAlbums,
+                    'uncategorizedAlbum' => $uncategorizedAlbum,
+                ]);
     }
 
     /**
@@ -51,13 +51,11 @@ class AlbumsController extends Controller
      */
     public function store(AlbumsRequest $request)
     {
-
         $album = Album::create(request(['name', 'description']));
-		if($newFeaturedImage = Image::handleUpload($request))
-		{
-			$album->addFeaturedImage($newFeaturedImage);
-		}
-        
+        if ($newFeaturedImage = Image::handleUpload($request)) {
+            $album->addFeaturedImage($newFeaturedImage);
+        }
+
         $this->flash('Album is created successfully!');
 
         return redirect()->route('albums.index');
@@ -75,7 +73,6 @@ class AlbumsController extends Controller
         return view('backend.website.albums.show', compact(['images', 'album']));
     }
 
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -89,13 +86,11 @@ class AlbumsController extends Controller
 
     public function update(AlbumsRequest $request, Album $album)
     {
+        $album->update(request(['name', 'description']));
 
-		$album->update(request(['name', 'description']));
-
-		if($newFeaturedImage = Image::handleUpload($request))
-		{
-			$album->addFeaturedImage($newFeaturedImage);
-		}
+        if ($newFeaturedImage = Image::handleUpload($request)) {
+            $album->addFeaturedImage($newFeaturedImage);
+        }
 
         $this->flash('Album is updated successfully!');
 
@@ -108,12 +103,11 @@ class AlbumsController extends Controller
      * @param  \App\Album $album
      * @return \Illuminate\Http\Response
      */
-
     public function destroy(Album $album)
     {
         // Assign the image to Uncategorized album
-		$album->uncategorizeImages()
-			  ->delete();
+        $album->uncategorizeImages()
+              ->delete();
 
         $this->flash('Album is deleted successfully. All the attached images have been assigned to Uncategorized album');
 
