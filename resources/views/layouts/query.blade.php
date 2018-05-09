@@ -9,13 +9,18 @@
 	{{-- order field --}}
 	<div class="form-group">
 		{{ Form::label('order', 'Order By:') }}
-		{{ Form::select('order', [strtolower($title) => $title, strtolower($body) => $body ], null, ['class' => 'form-control']) }}
+		{{ Form::select(
+				'order', 
+				[strtolower($title) => $title, 'created_at' => 'Created', 'updated_at' => 'Modified' ],
+				'created_at', 
+				['class' => 'form-control']) 
+		}}
 	</div>
 
 	{{-- method field --}}
 	<div class="form-group">
 		{{ Form::label('method', 'Method:') }}
-		{{ Form::select('method', ['asc' => 'Ascending', 'desc' => 'Descending'], null, ['class' => 'form-control']) }}
+		{{ Form::select('method', ['asc' => 'Ascending', 'desc' => 'Descending'], 'desc', ['class' => 'form-control']) }}
 	</div>
 
 	
