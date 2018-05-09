@@ -107,8 +107,8 @@
 						@slot('tableBody')
 							@foreach ($vendors as $vendor)
 								<tr>
-									<td>{{ $vendor->categories->first()->name }}</td>
-									<td>: {{ $vendor->name }}</td>
+									<td>{{ $vendor->name }}</td>
+									<td>: {{ optional($vendor->category)->name ?? 'None' }}</td>
 								</tr>
 							@endforeach
 						@endslot
