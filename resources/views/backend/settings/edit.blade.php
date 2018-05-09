@@ -25,51 +25,51 @@
 				{{-- contact_email field --}}
 				<div class="form-group">
 					{{ Form::label('contact_email', 'Email:') }}
-					{{ Form::textarea('contact_email', $settings->contact->email, ['class' => 'form-control', 'placeholder' => 'Enter Emails (one email per row)']) }}
+					{{ Form::textarea('contact_email', optional($settings->contact)->email, ['class' => 'form-control', 'placeholder' => 'Enter Emails (one email per row)']) }}
 				</div>
 
 				{{-- contact_phone field --}}
 				<div class="form-group">
 					{{ Form::label('contact_phone', 'Phone Number:') }}
-					{{ Form::textarea('contact_phone', $settings->contact->phone, ['class' => 'form-control', 'placeholder' => 'Enter Phone Number']) }}
+					{{ Form::textarea('contact_phone', optional($settings->contact)->phone, ['class' => 'form-control', 'placeholder' => 'Enter Phone Number']) }}
 				</div>
 
 				{{-- contact_mobile field --}}
 				<div class="form-group">
 					{{ Form::label('contact_mobile', 'Mobil Phone:') }}
-					{{ Form::textarea('contact_mobile', $settings->contact->mobile, ['class' => 'form-control', 'placeholder' => 'Enter Mobile Phone']) }}
+					{{ Form::textarea('contact_mobile', optional($settings->contact)->mobile, ['class' => 'form-control', 'placeholder' => 'Enter Mobile Phone']) }}
 				</div>
 
 				{{-- contact_address field --}}
 				<div class="form-group">
 					{{ Form::label('contact_address', 'Address:') }}
-					{{ Form::text('contact_address', $settings->contact->address, ['class' => 'form-control', 'placeholder' => 'Enter address']) }}
+					{{ Form::text('contact_address', optional($settings->contact)->address, ['class' => 'form-control', 'placeholder' => 'Enter address']) }}
 				</div>
 
 				{{-- contact_region field --}}
 				<div class="form-group">
 					{{ Form::label('contact_region', 'Region:') }}
-					{{ Form::text('contact_region', $settings->contact->region, ['class' => 'form-control', 'placeholder' => 'Enter Region']) }}
+					{{ Form::text('contact_region', optional($settings->contact)->region, ['class' => 'form-control', 'placeholder' => 'Enter Region']) }}
 				</div>
 
 
 				{{-- contact_city field --}}
 				<div class="form-group">
 					{{ Form::label('contact_city', 'City:') }}
-					{{ Form::text('contact_city', $settings->contact->city, ['class' => 'form-control', 'placeholder' => 'Enter City']) }}
+					{{ Form::text('contact_city', optional($settings->contact)->city, ['class' => 'form-control', 'placeholder' => 'Enter City']) }}
 				</div>
 
 
 				{{-- contact_country field --}}
 				<div class="form-group">
 					{{ Form::label('contact_country', 'Country:') }}
-					{{ Form::text('contact_country', $settings->contact->country, ['class' => 'form-control', 'placeholder' => 'Enter Country']) }}
+					{{ Form::text('contact_country', optional($settings->contact)->country, ['class' => 'form-control', 'placeholder' => 'Enter Country']) }}
 				</div>
 
 				{{-- contact_zip_code field --}}
 				<div class="form-group">
 					{{ Form::label('contact_zip_code', 'Zip Code:') }}
-					{{ Form::text('contact_zip_code', $settings->contact->zip_code, ['class' => 'form-control', 'placeholder' => 'Enter Zip Code']) }}
+					{{ Form::text('contact_zip_code', optional($settings->contact)->zip_code, ['class' => 'form-control', 'placeholder' => 'Enter Zip Code']) }}
 				</div>
 
 				{{-- Submit Button --}}
