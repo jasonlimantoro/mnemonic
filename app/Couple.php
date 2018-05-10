@@ -27,11 +27,11 @@ class Couple extends Model
 		return static::where('gender', 'female')->first();
 	}
 
-	public function updateValue(Request $attributes)
+	public function updateRecord(Request $request)
 	{
-        optional(Image::handleUpload($attributes))->addTo($this);
+        optional(Image::handleUpload($request))->addTo($this);
         $this->update(
-            $attributes->only(['name', 'father', 'mother'])
+            $request->only(['name', 'father', 'mother'])
         );
 	}
 }

@@ -72,7 +72,7 @@ class CoupleController extends Controller
     {
         $this->validate($request, ['name' => 'required']);
 
-		$couple->updateValue($request);
+		$couple->updateRecord($request);
 
         $this->flash('Couple information is successfully updated!');
 
