@@ -27,8 +27,8 @@ export class ThumbnailGallery extends React.Component {
                 className={isActive ? 'thumbnail-gallery active' : 'thumbnail-gallery'}
                 alt="242x200"
             >
-                <p>Name: <strong>{this.str_limit(this.props.title)}</strong></p>
-                <p>Album: <strong>{this.props.description}</strong></p>
+                Name: <strong>{this.str_limit(this.props.title)}</strong><br/>
+                Album: <strong>{this.props.description}</strong>
 				{isActive ? 
 					<DisplayImagesFromSelectedGallery file={this.props.selectedImage} i={this.props.i} fromGallery />
 				:	null 
