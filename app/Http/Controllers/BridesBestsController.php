@@ -40,13 +40,11 @@ class BridesBestsController extends Controller
      */
     public function store(BridesBestsRequest $request)
     {
-        $bridesBest = BridesBest::create(request(['name', 'testimony', 'ig_account', 'gender']));
-        if ($bridesBestImage = Image::handleUpload($request)) {
-            $bridesBestImage->addTo($bridesBest);
-        }
+		BridesBest::createRecord($request);
 
-        $this->flash('Bridesmaid / Bestman is successfully created!');
-        return redirect()->route('bridesmaid-bestmans.index.index');
+		$this->flash('Bridesmaid / Bestman is successfully created!');
+
+        return redirect()->route('bridesmaid-bestmans.index');
     }
 
     /**
@@ -90,11 +88,8 @@ class BridesBestsController extends Controller
      */
     public function update(BridesBestsRequest $request, BridesBest $bridesmaid_bestman)
     {
-        if ($bridesBestImage = Image::handleUpload($request)) {
-            $bridesBestImage->addTo($bridesmaid_bestman);
-        }
 
-        $bridesmaid_bestman->update($request->only(['name', 'testimony', 'ig_account', 'gender']));
+		$bridesmaid_bestman->updateRecord($request);
 
         $this->flash('Bridesmaid / Bestman information is successfully updated!');
 
