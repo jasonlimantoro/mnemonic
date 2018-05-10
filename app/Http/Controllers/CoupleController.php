@@ -37,9 +37,7 @@ class CoupleController extends Controller
      */
     public function store(Request $request)
     {
-
     }
-
 
     /**
      * Display the specified resource.
@@ -72,24 +70,13 @@ class CoupleController extends Controller
      */
     public function update(Request $request, Couple $couple)
     {
-        $rules = [
-            'name' => 'required',
-        ];
-		$this->validate($request, $rules);
-		
-		if ($coupleImage = Image::handleUpload($request))
-		{
-			$coupleImage->addTo($couple);
-		}
+        $this->validate($request, ['name' => 'required']);
 
-		$couple->update(
-			request(['name', 'father', 'mother'])
-		);
+		$couple->updateValue($request);
 
         $this->flash('Couple information is successfully updated!');
 
         return back();
-
     }
 
     /**
@@ -101,6 +88,5 @@ class CoupleController extends Controller
     public function destroy(Couple $couple)
     {
         //
-	}
-
+    }
 }
