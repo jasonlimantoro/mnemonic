@@ -51,11 +51,9 @@ class AlbumsController extends Controller
      */
     public function store(AlbumsRequest $request)
     {
-        $album = Album::create(request(['name', 'description']));
-        if ($newFeaturedImage = Image::handleUpload($request)) {
-            $album->addFeaturedImage($newFeaturedImage);
-        }
 
+		Album::createRecord($request);
+		
         $this->flash('Album is created successfully!');
 
         return redirect()->route('albums.index');
@@ -69,7 +67,8 @@ class AlbumsController extends Controller
      */
     public function show(Album $album)
     {
-        $images = $album->images;
+		$images = $album->images;
+
         return view('backend.website.albums.show', compact(['images', 'album']));
     }
 
@@ -86,11 +85,8 @@ class AlbumsController extends Controller
 
     public function update(AlbumsRequest $request, Album $album)
     {
-        $album->update(request(['name', 'description']));
 
-        if ($newFeaturedImage = Image::handleUpload($request)) {
-            $album->addFeaturedImage($newFeaturedImage);
-        }
+		$album->updateRecord($request);
 
         $this->flash('Album is updated successfully!');
 
@@ -105,7 +101,6 @@ class AlbumsController extends Controller
      */
     public function destroy(Album $album)
     {
-        // Assign the image to Uncategorized album
         $album->uncategorizeImages()
               ->delete();
 

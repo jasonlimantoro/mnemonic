@@ -4,6 +4,7 @@ namespace App;
 
 use App\Repositories\Albums;
 use App\Traits\FiltersSearch;
+use Illuminate\Http\Request;
 
 class Album extends Model
 {
@@ -77,5 +78,21 @@ class Album extends Model
                  ->update(['featured' => 0]);
         }
         return $this;
-    }
+	}
+	
+	public static function createRecord(Request $request)
+	{
+		$album = static::create($request->only(['name', 'description']));
+        if ($newFeaturedImage = Image::handleUpload($request)) {
+            $album->addFeaturedImage($newFeaturedImage);
+        }
+	}
+
+	public function updateRecord(Request $request)
+	{
+        $this->update($request->only(['name', 'description']));
+        if ($newFeaturedImage = Image::handleUpload($request)) {
+            $this->addFeaturedImage($newFeaturedImage);
+        }
+	}
 }
