@@ -3,25 +3,24 @@
 namespace Tests\Browser;
 
 use App\User;
-use App\Setting;
 use Tests\DuskTestCase;
 use SettingsTableSeeder;
 use Laravel\Dusk\Browser;
-use Illuminate\Support\Facades\DB;
 use Tests\Browser\Pages\SettingsPage;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class AuthenticatedUserCanUpdateSettingsTest extends DuskTestCase
 {
 	use DatabaseMigrations;
-    /**
-     * A Dusk test example.
-     *
-     * @return void
-     */
+	
+	public function setUp()
+	{
+		parent::setUp();
+		(new SettingsTableSeeder)->run();
+	}
+
     public function testAuthenticatedUseCanUpdateSettings()
     {
-		(new SettingsTableSeeder)->run();
 		$data = [
 			'admin_email' => 'admin@example.com',
 			'site_title' => 'Mnemonic',
