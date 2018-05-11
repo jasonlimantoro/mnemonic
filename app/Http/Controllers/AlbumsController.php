@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Album;
-use App\Image;
 use App\Repositories\Albums;
 use App\Http\Requests\AlbumsRequest;
 use App\Http\Controllers\GenericController as Controller;
@@ -51,9 +50,8 @@ class AlbumsController extends Controller
      */
     public function store(AlbumsRequest $request)
     {
+        Album::createRecord($request);
 
-		Album::createRecord($request);
-		
         $this->flash('Album is created successfully!');
 
         return redirect()->route('albums.index');
@@ -67,7 +65,7 @@ class AlbumsController extends Controller
      */
     public function show(Album $album)
     {
-		$images = $album->images;
+        $images = $album->images;
 
         return view('backend.website.albums.show', compact(['images', 'album']));
     }
@@ -85,8 +83,7 @@ class AlbumsController extends Controller
 
     public function update(AlbumsRequest $request, Album $album)
     {
-
-		$album->updateRecord($request);
+        $album->updateRecord($request);
 
         $this->flash('Album is updated successfully!');
 
