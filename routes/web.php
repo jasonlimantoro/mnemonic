@@ -96,4 +96,6 @@ Route::name('front.')->group(function () {
     Route::get('/', 'FrontendController@home')->name('index');
 });
 
+
+Route::post('avatar', 'ImagesController@upload');
 Route::get('{post}', 'PostsController@read')->name('posts.read');
