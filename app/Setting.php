@@ -10,8 +10,8 @@ class Setting extends Model
      *
      * @var bool
      */
-    public $timestamps = false;
-
+	public $timestamps = false;
+	
     /**
      *  Retrieve the record given the key
      *
@@ -19,9 +19,9 @@ class Setting extends Model
      * @return Setting|\Illuminate\Database\Eloquent\Model|null
      */
     public static function byKey($key)
-   {
+   	{
 	   return static::where('key', $key)->first();
-   }
+   	}
 
     /**
      * Retrieve the record's value
@@ -29,9 +29,9 @@ class Setting extends Model
      * @return mixed
      */
     public function getValue()
-   {
+   	{
 	   return $this->value;
-   }
+   	}
 
     /**
      * Retrieve the value of the record given the key
@@ -40,9 +40,37 @@ class Setting extends Model
      * @return mixed
      */
     public static function getValueByKey($key)
-   {
-	   return static::byKey($key)->getValue();
-   }
+   	{
+        return static::byKey($key)->getValue();
+	}
+	
+	/**
+	 * Retrieve the value of the record given many keys
+	 * 
+	 * @param array $key
+	 * @return array
+	 */
+
+	public static function getManyValueByKeys(array $keys)
+	{
+		return static::whereIn('key', $keys)
+					->pluck('value', 'key')
+					->toArray();
+	}
+
+	/**
+	 * Retrieve the JSON Value given key
+	 * 
+	 * @param string $keyfield
+	 * @param string $keyJson
+	 * @return string
+	 */
+
+	public static function getJSONValueFromKeyField(string $keyField, string $keyJSON)
+	{
+		$json = json_decode(static::getValueByKey($keyField));
+		return $json->$keyJSON;
+	}
 
 
     /**
@@ -52,9 +80,9 @@ class Setting extends Model
      * @return bool
      */
     public function updateValue($value)
-   {
+   	{
 	   return $this->update(['value' => $value]);
-   }
+   	}
 
     /**
      *  Update the record, given key, with the value
@@ -64,7 +92,22 @@ class Setting extends Model
      * @return bool
      */
     public static function updateValueByKey(string $key, $value)
-   {
+   	{
 	   return static::byKey($key)->update(['value' => $value]);
-   }
+	}
+
+	/**
+	 *	Update many records, given the attributes 
+	 *  
+	 * @param array $attributes
+	 * @return mixed
+	 */
+
+	public static function updateManyByKeys(array $attributes)
+	{
+		foreach ($attributes as $key => $value) {
+			static::updateValueByKey($key, $value);
+		}
+	}
+	  
 }
