@@ -9,6 +9,11 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
+		<testsuite name="App">
+			<directory suffix="Test.php">./tests</directory>
+			<exclude>./tests/Browser/</exclude>
+		</testsuite>
+
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
@@ -16,7 +21,7 @@
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
-    </testsuites>
+	</testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./app</directory>
