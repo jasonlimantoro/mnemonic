@@ -3,8 +3,9 @@
 namespace Tests\Browser\Pages;
 
 use Laravel\Dusk\Browser;
+use Laravel\Dusk\Page as BasePage;
 
-class HomePage extends Page
+class AboutPage extends BasePage
 {
     /**
      * Get the URL for the page.
@@ -13,7 +14,7 @@ class HomePage extends Page
      */
     public function url()
     {
-        return '/';
+        return route('front.about');
     }
 
     /**
@@ -24,7 +25,7 @@ class HomePage extends Page
      */
     public function assert(Browser $browser)
     {
-        $browser->assertRouteIs('front.index');
+        // $browser->assertPathIs($this->url());
     }
 
     /**
