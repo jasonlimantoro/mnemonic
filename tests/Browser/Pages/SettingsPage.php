@@ -40,18 +40,33 @@ class SettingsPage extends BasePage
         ];
 	}
 	
-	public function fill(Browser $browser)
+	public function fill(Browser $browser, array $data)
 	{
-		$browser->type('admin_email', 'admin@example.com')
-				->type('site_title', 'Mnemonic')
-				->type('site_description', 'Some Awesome Description')
-				->type('contact_email', 'janedoe@example.com')
-				->type('contact_phone', '29874-2784')
-				->type('contact_mobile', '2787-2728')
-				->type('contact_address', 'Oklahoma Street Ave no 26')
-				->type('contact_region', 'North Carolina')
-				->type('contact_city', 'Chicago')
-				->type('contact_country', 'USA')
-				->type('contact_zip_code', '298749');
+		$browser->type('admin_email', $data['admin_email'])
+				->type('site_title', $data['site_title'])
+				->type('site_description', $data['site_description'])
+				->type('contact_email', $data['contact']['email'])
+				->type('contact_phone', $data['contact']['phone'])
+				->type('contact_mobile', $data['contact']['mobile'])
+				->type('contact_address', $data['contact']['address'])
+				->type('contact_region', $data['contact']['region'])
+				->type('contact_city', $data['contact']['city'])
+				->type('contact_country', $data['contact']['country'])
+				->type('contact_zip_code', $data['contact']['zip_code']);
+	}
+	public function assertUpdated(Browser $browser, array $data)
+	{
+		$browser->assertInputValue('admin_email', $data['admin_email'])
+				->assertInputValue('site_title', $data['site_title'])
+				->assertInputValue('site_description', $data['site_description'])
+				->assertInputValue('contact_email', $data['contact']['email'])
+				->assertInputValue('contact_phone', $data['contact']['phone'])
+				->assertInputValue('contact_mobile', $data['contact']['mobile'])
+				->assertInputValue('contact_address', $data['contact']['address'])
+				->assertInputValue('contact_region', $data['contact']['region'])
+				->assertInputValue('contact_city', $data['contact']['city'])
+				->assertInputValue('contact_country', $data['contact']['country'])
+				->assertInputValue('contact_zip_code', $data['contact']['zip_code']);
+		
 	}
 }
