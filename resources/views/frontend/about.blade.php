@@ -11,7 +11,7 @@
 				@foreach($couple as $c)
 					<div class="col-md-12 about-us-content">
 						<div class="col-md-4 couple-image">
-							<img src="{{ $c->image->url_cache }}" alt="{{ $c->name }}" class="img-responsive"> 
+							<img src="{{ optional($c->image)->url_cache }}" alt="{{ $c->name }}" class="img-responsive"> 
 						</div>
 						<div class="col-md-8 couple-description">
 							<div class="col-md-12 couple-name font-theme">
