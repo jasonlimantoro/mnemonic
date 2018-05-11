@@ -25,7 +25,7 @@ class SettingsPage extends BasePage
      */
     public function assert(Browser $browser)
     {
-        // $browser->assertPathIs($this->url());
+        $browser->assertUrlIs($this->url());
     }
 
     /**
@@ -40,7 +40,7 @@ class SettingsPage extends BasePage
         ];
 	}
 	
-	public function fill(Browser $browser, array $data)
+	public function fill(Browser $browser, array $data) 
 	{
 		$browser->type('admin_email', $data['admin_email'])
 				->type('site_title', $data['site_title'])
@@ -54,7 +54,7 @@ class SettingsPage extends BasePage
 				->type('contact_country', $data['contact']['country'])
 				->type('contact_zip_code', $data['contact']['zip_code']);
 	}
-	public function assertUpdated(Browser $browser, array $data)
+	public function assertUpdated(Browser $browser, array $data) 
 	{
 		$browser->assertInputValue('admin_email', $data['admin_email'])
 				->assertInputValue('site_title', $data['site_title'])
