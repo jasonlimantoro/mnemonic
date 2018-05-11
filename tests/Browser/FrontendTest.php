@@ -3,6 +3,7 @@
 namespace Tests\Browser;
 
 use App\Post;
+use App\Couple;
 use PagesTableSeeder;
 use ImagesTableSeeder;
 use CoupleTableSeeder;
@@ -13,15 +14,19 @@ use Tests\Browser\Pages\HomePage;
 use Tests\Browser\Pages\AboutPage;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use App\Couple;
 
 class FrontEndTest extends DuskTestCase
 {
 	use DatabaseMigrations;
 
+	public function initializePage()
+	{
+		(new PagesTableSeeder)->run();
+	}
+
     public function testHomePage()
     {
-		(new PagesTableSeeder)->run();
+		$this->initializePage();
 
 		(new CarouselsTableSeeder)->run();
 
@@ -36,21 +41,14 @@ class FrontEndTest extends DuskTestCase
 
 		});
 	}
-	/**
-	 * @group about
-	 */
+
     public function testAboutPage()
     {
-		(new PagesTableSeeder)->run();
+		$this->initializePage();
 
 		(new CoupleTableSeeder)->run();
 		$groom = Couple::groom();
 		$bride = Couple::bride();
-
-		(new ImagesTableSeeder)->run();
-
-
-		factory(Post::class, 15)->create(['page_id' => 2]);
 
         $this->browse(function (Browser $browser) use($groom, $bride) {
 			$browser->visit(new AboutPage)
