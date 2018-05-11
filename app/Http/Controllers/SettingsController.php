@@ -23,9 +23,9 @@ class SettingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+	public function create() 
+	{
+		// 
     }
 
     /**
@@ -34,8 +34,8 @@ class SettingsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+	public function store(Request $request) 
+	{
 
     }
 
@@ -55,8 +55,8 @@ class SettingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit()
-    {
+	public function edit() 
+	{
 		$settings = (object)[
 			'admin_email' => Setting::getValueByKey('admin-email'),
 			'site_title' => Setting::getValueByKey('site-title'),
@@ -72,26 +72,23 @@ class SettingsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
-    {
-		$adminEmail = $request->admin_email;
-		$siteTitle = $request->site_title;
-		$siteDescription = $request->site_description;
-		$siteContact = [
-			'email' => $request->contact_email,
-			'phone' => $request->contact_phone,
-			'mobile' => $request->contact_mobile,	
-			'address' => $request->contact_address,
-			'region' => $request->contact_region,
-			'city' => $request->contact_city,
-			'country' => $request->contact_country,
-			'zip_code' => $request->contact_zip_code,
-		];
-
-		Setting::updateValueByKey('admin-email', $adminEmail);
-		Setting::updateValueByKey('site-title', $siteTitle);
-		Setting::updateValueByKey('site-description', $siteDescription);
-		Setting::updateValueByKey('site-contact', json_encode($siteContact));
+	public function update(Request $request) 
+	{
+		Setting::updateManyByKeys([
+			'admin-email' => $request->admin_email,
+			'site-title' => $request->site_title,
+			'site-description' => $request->site_description,
+			'site-contact' => json_encode([
+				'email' => $request->contact_email,
+				'phone' => $request->contact_phone,
+				'mobile' => $request->contact_mobile,	
+				'address' => $request->contact_address,
+				'region' => $request->contact_region,
+				'city' => $request->contact_city,
+				'country' => $request->contact_country,
+				'zip_code' => $request->contact_zip_code,
+			])
+		]);
 
 		$this->flash('Settings are updated successfully');
 
