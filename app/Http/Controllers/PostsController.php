@@ -9,11 +9,6 @@ use App\Http\Controllers\GenericController as Controller;
 
 class PostsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth')->except(['read']);
-    }
-
     /**
      * Display a listing of the resource.
      *
