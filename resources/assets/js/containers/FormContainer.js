@@ -44,8 +44,9 @@ export class Search extends React.Component {
         if (td.innerText.toUpperCase().indexOf(value) > -1) {
           tr[i].style.display = '';
         }
-        else
+        else {
           tr[i].style.display = 'none';
+				}
       }
     }
   }
