@@ -57,27 +57,27 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         // RSVP
         Route::resource('rsvps', 'RSVPController');
         Route::post('rsvps/{rsvp}/remind', 'RSVPController@remind')->name('rsvps.remind');
-        Route::get('rsvps/{rsvp}/token/{token}/confirm', 'RSVPController@confirm')->name('rsvps.confirm');
     });
 
     // settings
     Route::get('settings/edit', 'SettingsController@edit')->name('settings.edit');
     Route::patch('settings', 'SettingsController@update')->name('settings.update');
+	Route::get('/admin/settings/general', 'BackendController@general');
+	Route::get('/admin/settings/site-info', 'BackendController@site');
+	Route::get('/admin/settings/social-media-and-seo', 'BackendController@social');
+	Route::get('/admin/settings/manage-admin', 'BackendController@manageAdmin');
+	Route::get('/admin/settings/manage-roles', 'BackendController@manageRoles');
+
 });
-
-// Settings
-
-Route::get('/admin/settings/general', 'BackendController@general');
-Route::get('/admin/settings/site-info', 'BackendController@site');
-Route::get('/admin/settings/social-media-and-seo', 'BackendController@social');
-Route::get('/admin/settings/manage-admin', 'BackendController@manageAdmin');
-Route::get('/admin/settings/manage-roles', 'BackendController@manageRoles');
 
 // previewing mailables in browser
 Route::get('/mailable', function () {
     $rsvp = \App\RSVP::find(1);
     return new App\Mail\RSVPInvitation($rsvp);
 });
+
+// rsvp confirmation
+Route::get('rsvps/{rsvp}/token/{token}/confirm', 'RSVPController@confirm')->name('rsvps.confirm');
 
 /*
     |--------------------------------------------------------------------------
@@ -88,6 +88,8 @@ Route::get('/mailable', function () {
 */
 // To display login and registration button
 Auth::routes();
+
+// Pages
 Route::name('front.')->group(function () {
     Route::get('wedding-day', 'FrontendController@wedding')->name('wedding');
     Route::get('about-us', 'FrontendController@about')->name('about');
