@@ -15,3 +15,23 @@ $factory->define(App\RSVP::class, function (Faker $faker) {
 		'status' => $status,
     ];
 });
+
+$factory->state(App\RSVP::class, 'pending', function(Faker $faker){
+	return [
+		'status' => 'pending',
+		'reminder_count' => 0
+	];
+});
+$factory->state(App\RSVP::class, 'confirmed', function(Faker $faker){
+	return [
+		'status' => 'confirmed',
+		'reminder_count' => 1
+	];
+});
+
+$factory->state(App\RSVP::class, 'not coming', function(Faker $faker){
+	return [
+		'status' => 'not coming',
+		'reminder_count' => 1
+	];
+});
