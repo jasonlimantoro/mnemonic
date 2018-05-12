@@ -5,60 +5,56 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use App\Setting;
 use SettingsTableSeeder;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class SettingsByKeyTest extends TestCase
 {
-	use DatabaseMigrations;
+    use DatabaseMigrations;
 
-	public function setUp()
-	{
-		parent::setUp();
-		(new SettingsTableSeeder)->run();
+    public function setUp()
+    {
+        parent::setUp();
+        (new SettingsTableSeeder)->run();
+    }
 
-	}
     /**
      * A basic test example.
      *
      * @return void
      */
-	public function testGetValuByKeysMany()
+    public function testGetValuByKeysMany()
     {
-		$settings = Setting::getManyValueByKeys(['admin-email', 'site-contact']);
+        $settings = Setting::getManyValueByKeys(['admin-email', 'site-contact']);
 
-		$data = [
-			'admin-email' => Setting::getValuebyKey('admin-email'),
-			'site-contact' => Setting::getValuebyKey('site-contact')
-		];
+        $data = [
+            'admin-email' => Setting::getValuebyKey('admin-email'),
+            'site-contact' => Setting::getValuebyKey('site-contact')
+        ];
 
-		$this->assertEquals($data, $settings);
-	}
-	
-	public function testGetContactDetails()
-	{
-		$region = 'North Carolina';
+        $this->assertEquals($data, $settings);
+    }
 
-		$result = Setting::getJSONValueFromKeyField('site-contact', 'region');
+    public function testGetContactDetails()
+    {
+        $region = 'North Carolina';
 
-		$this->assertEquals($region, $result);
+        $result = Setting::getJSONValueFromKeyField('site-contact', 'region');
 
-	}
+        $this->assertEquals($region, $result);
+    }
 
-	public function testupdateManyByKeys()
-	{
-		$updatedData = [ 
-			'admin-email' => 'newadmin@example.com',
-			'site-title' => 'Brand New Site Laracast',
-			'site-description' => 'Brand New Description',
-		];
+    public function testupdateManyByKeys()
+    {
+        $updatedData = [
+            'admin-email' => 'newadmin@example.com',
+            'site-title' => 'Brand New Site Laracast',
+            'site-description' => 'Brand New Description',
+        ];
 
-		Setting::updateManyByKeys($updatedData);
+        Setting::updateManyByKeys($updatedData);
 
-		$result = Setting::getManyValueByKeys(['admin-email', 'site-title', 'site-description']);
+        $result = Setting::getManyValueByKeys(['admin-email', 'site-title', 'site-description']);
 
-		$this->assertEquals($updatedData, $result);
-
-	}
+        $this->assertEquals($updatedData, $result);
+    }
 }
