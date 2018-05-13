@@ -48,4 +48,9 @@ class Image extends Model
 			   		->images()
 			   		->create($attributes);
 	}
+
+	public static function byName($name)
+	{
+		return static::where('file_name', $name)->firstOrFail();
+	}
 }
