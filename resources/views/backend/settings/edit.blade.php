@@ -3,7 +3,7 @@
 @section('content')
   @component('layouts.panel', ['title' => 'Settings'])
     @slot('body')
-			{{ Form::open(['route' => 'settings.update', 'method' => 'PATCH']) }}
+			{{ Form::open(['route' => 'settings.update', 'method' => 'PATCH', 'enctype' => 'multipart/form-data']) }}
 				{{-- admin_email field --}}
 				<div class="form-group">
 					{{ Form::label('admin_email', 'Admin Email:') }}
@@ -72,11 +72,39 @@
 					{{ Form::text('contact_zip_code', optional($settings->contact)->zip_code, ['class' => 'form-control', 'placeholder' => 'Enter Zip Code']) }}
 				</div>
 
+				
+				<div class="form-group">
+					<div class="col-md-6">
+						<p>Favicon</p>
+						<strong>Current Image</strong>
+						<div class="current-image">
+							@if ($favicon = App\Setting::getValueByKey('site-favicon'))
+								<img src="{{ $favicon }}" alt="favicon" class="img-responsive">
+							@else 
+								<p>No Image Uploaded</p>
+							@endif
+						</div>
+					</div>
+					<div class="col-md-6">
+						<p>Logo</p>
+						<strong>Current Image</strong>
+						<div class="current-image">
+							@if ($logo = App\Setting::getValueByKey('site-logo'))
+								<img src="{{ $logo }}" alt="favicon" class="img-responsive">
+							@else 
+								<p>No Image Uploaded</p>
+							@endif
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="__react-root" id="IconAndLogoInput"></div>
+				</div>
+				
 				{{-- Submit Button --}}
 				<div class="form-group">
 					{{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
 				</div>
-
 			{{ Form::close() }}
 	
     @endslot
