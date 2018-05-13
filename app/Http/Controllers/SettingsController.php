@@ -57,12 +57,10 @@ class SettingsController extends Controller
      */
     public function edit()
     {
-        $settings = (object)[
-            'admin_email' => Setting::getValueByKey('admin-email'),
-            'site_title' => Setting::getValueByKey('site-title'),
-            'site_description' => Setting::getValueByKey('site-description'),
-            'contact' => json_decode(Setting::getValueByKey('site-contact')),
-        ];
+		$settings = Setting::getManyValueByKeys([
+			'admin-email', 'site-title', 'site-description'
+		]);
+		$settings['site-contact'] = json_decode(Setting::getValueByKey('site-contact'));
         return view('backend.settings.edit', compact('settings'));
     }
 
@@ -74,6 +72,10 @@ class SettingsController extends Controller
      */
     public function update(Request $request)
     {
+		$this->validate($request, [
+			'admin_email' => 'required|email',
+			'contact_zip_code' => 'numeric|nullable'
+		]);
 
 		Setting::onUpdate($request);
 
