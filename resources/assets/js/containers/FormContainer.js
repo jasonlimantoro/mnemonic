@@ -167,9 +167,9 @@ export class FancyInput extends React.Component {
     return (
       <div>
         {/* old file */}
-        <input type="hidden" name="gallery_image" id={"inputGalleryImage" + '-' + this.props.i.toString()} />
+        <input type="hidden" name={this.props.galleryInputName} id={"inputGalleryImage" + '-' + this.props.i.toString()} />
         {/* new file */}
-        <input type="file" name="image" id={"inputFileOutside" + '-' + this.props.i.toString()} style={inputStyle} />
+        <input type="file" name={this.props.newInputName} id={"inputFileOutside" + '-' + this.props.i.toString()} style={inputStyle} />
 
         <div className="form-group">
           {/* preview */}
@@ -181,10 +181,32 @@ export class FancyInput extends React.Component {
         </div>
         <UploadModal show={this.state.modalShow} onHide={this.closeModal} i={this.props.i} />
       </div>
-
     );
   }
 }
 FancyInput.defaultProps = {
-  i : 1 
+	i : 1,
+	galleryInputName :  "gallery_image",
+	newInputName : "image"
+}
+
+export class IconAndLogoInput extends React.Component
+{
+	constructor(props)
+	{
+		super(props);
+	}
+	render()
+	{
+		return (
+			<div>
+					<div className="col-md-6">
+						<FancyInput i={1} galleryInputName="favicon_from_gallery" newInputName="favicon_from_local" />
+					</div>
+					<div className="col-md-6">
+						<FancyInput i={2} galleryInputName="logo_from_gallery" newInputName="logo_from_local" />
+					</div>
+			</div>
+		);
+	}
 }
