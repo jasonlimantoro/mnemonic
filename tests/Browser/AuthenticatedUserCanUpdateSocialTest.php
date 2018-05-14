@@ -35,14 +35,11 @@ class AuthenticatedUserCanUpdateSocialTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($data) {
 			$browser->visit(new SocialPage)
-					// ->assertSee('Site Social Media')
                     ->fill($data)
                     ->press('Update')
                     ->waitForText('successfully', 2)
                     ->assertRouteIs('socials.edit')
                     ->assertUpdated($data);
 		});
-		$social = Setting::getValueByKey('site-social');
-		$this->assertEquals((object) $data, $social);
     }
 }
