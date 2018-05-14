@@ -5,11 +5,11 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use App\Setting;
 use SettingsTableSeeder;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SettingsByKeyTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     public function setUp()
     {
@@ -17,18 +17,13 @@ class SettingsByKeyTest extends TestCase
         (new SettingsTableSeeder)->run();
     }
 
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
     public function testGetValuByKeysMany()
     {
-        $settings = Setting::getManyValueByKeys(['admin-email', 'site-contact']);
+        $settings = Setting::getManyValueByKeys(['site-info', 'some-setting']);
 
         $data = [
-            'admin-email' => Setting::getValuebyKey('admin-email'),
-            'site-contact' => Setting::getValuebyKey('site-contact')
+            'site-info' => Setting::getValuebyKey('site-info'),
+            'some-setting' => Setting::getValuebyKey('some-setting')
         ];
 
         $this->assertEquals($data, $settings);
@@ -36,25 +31,35 @@ class SettingsByKeyTest extends TestCase
 
     public function testGetContactDetails()
     {
-        $region = 'North Carolina';
+        $keyword = 'awesome';
 
-        $result = Setting::getJSONValueFromKeyField('site-contact', 'region');
+        $result = Setting::getJSONValueFromKeyField('site-info', 'keywords');
 
-        $this->assertEquals($region, $result);
+        $this->assertEquals($keyword, $result);
     }
 
     public function testupdateManyByKeys()
     {
+		$site = (object) [
+			'admin-email' => 'new email',
+			'title' => 'new title',
+			'description' => 'new description'
+		];
+		$someSettings = (object) [
+			'some-new-key' => 'some-new-value',
+			'last-new-key' => 'last-new-value'
+		];
         $updatedData = [
-            'admin-email' => 'newadmin@example.com',
-            'site-title' => 'Brand New Site Laracast',
-            'site-description' => 'Brand New Description',
+            'site-info' => $site,
+            'some-setting' => $someSettings,
         ];
 
         Setting::updateManyByKeys($updatedData);
 
-        $result = Setting::getManyValueByKeys(['admin-email', 'site-title', 'site-description']);
+		$result = Setting::getManyValueByKeys(['site-info', 'some-setting']);
+		
+		$this->assertEquals($site, $result['site-info']);
+		$this->assertEquals($someSettings, $result['some-setting']);
 
-        $this->assertEquals($updatedData, $result);
     }
 }

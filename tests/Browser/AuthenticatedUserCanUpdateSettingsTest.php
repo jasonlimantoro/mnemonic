@@ -19,10 +19,10 @@ class AuthenticatedUserCanUpdateSettingsTest extends DuskTestCase
 		(new SettingsTableSeeder)->run();
 	}
 
-    public function testAuthenticatedUseCanUpdateSettings()
+    public function testAuthenticatedUsersCanUpdateSettings()
     {
 		$data = [
-			'admin_email' => 'admin@example.com',
+			'admin_email' => 'test@example.com',
 			'site_title' => 'Mnemonic',
 			'site_description' => 'Some Awesome Description',
 			'contact' => [
@@ -43,10 +43,24 @@ class AuthenticatedUserCanUpdateSettingsTest extends DuskTestCase
 					->visit(new SettingsPage)
 					->fill($data)
 					->press('Update')
-					->waitForText('successfully')
-					->assertSee('successfully')
+					->waitForText('successfully', 2)
 					->assertRouteIs('settings.edit')
 					->assertUpdated($data);
 		});
-    }
+	}
+	
+	public function testAuthenticatedUsersCanUploadFaviconAndLogo()
+	{
+		$user = factory(User::class)->create();
+        $this->browse(function (Browser $browser) use ($user) {
+			$browser->loginAs($user)
+					->visit(new SettingsPage)
+					->press('Upload Image')
+					// ->fill($data)
+					// ->press('Update')
+					->waitForText('successfully', 2)
+					->assertSee('successfully')
+					->assertRouteIs('settings.edit');
+		});
+	}
 }

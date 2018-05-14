@@ -11,54 +11,45 @@ class SettingsTableSeeder extends Seeder
      */
     public function run()
     {
-		$contact = json_encode([
-			'email' => 'Janedoe@example.com',
-			'phone' => '298-4298-278',
-			'mobile' => '9487-39847-38',
-			'address' => 'Oklahoma Street Avenue no 26',
-			'region' => 'North Carolina',
-			'city' => 'Chicago',
-			'country' => 'USA',
-			'zip_code' => '294982',
+        DB::table('settings')->insert([
+			[
+				'name' => 'Site Info',
+				'key' => 'site-info',
+				'value' => json_encode([
+					'admin-email' => 'myemail@example.com',
+					'title' => 'Awesome Title',
+					'description' => 'The most awesome website',
+					'logo' => null,
+					'favicon' => null,
+					'keywords' => 'awesome',
+					'contact' => [
+						'email' => 'Janedoe@example.com',
+						'phone' => '298-4298-278',
+						'mobile' => '9487-39847-38',
+						'address' => 'Oklahoma Street Avenue no 26',
+						'region' => 'North Carolina',
+						'city' => 'Chicago',
+						'country' => 'USA',
+						'zip_code' => '294982',
+					]
+				])
+			],
+			[
+				'name' => 'Some Settings',
+				'key' => 'some-setting',
+				'value' => json_encode([
+					'some-key' => 'some-value',
+					'some-another-key' => 'some-another-value'
+				])
+			],
+			[
+				'name' => 'Some Other Settings',
+				'key' => 'some-other-setting',
+				'value' => json_encode([
+					'some-some-key' => 'some-some-value',
+					'some-some-another-key' => 'some-some-another-value'
+				])
+			]
 		]);
-        DB::table('settings')->insert(
-            [
-                [
-                    'name' => 'Admin Email',
-					'key' => 'admin-email',
-					'value' => 'myemail@example.com',
-                ],
-                [
-                    'name' => 'Site Title',
-					'key' => 'site-title',
-					'value' => 'Laracast',
-                ],
-                [
-                    'name' => 'Site Description',
-                    'key' => 'site-description',
-					'value' => 'Laracast',
-                ],
-                [
-                    'name' => 'Contact',
-					'key' => 'site-contact',
-					'value' => $contact
-                ],
-                [
-                    'name' => 'Site Logo',
-					'key' => 'site-logo',
-					'value' => null
-                ],
-                [
-                    'name' => 'Site Keywords',
-					'key' => 'site-keywords',
-					'value' => null
-                ],
-                [
-                    'name' => 'Site Favicon',
-					'key' => 'site-favicon',
-					'value' => null
-                ],
-            ]
-        );
     }
 }

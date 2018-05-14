@@ -14,7 +14,16 @@ class Setting extends Model
      * @var bool
      */
 	public $timestamps = false;
-	
+
+	public function getValueAttribute($value)
+	{
+		return json_decode($value);
+	}
+
+	public function setValueAttribute($value)
+	{
+		$this->attributes['value'] = json_encode($value);
+	}
     /**
      *  Retrieve the record given the key
      *
@@ -71,7 +80,7 @@ class Setting extends Model
 
 	public static function getJSONValueFromKeyField(string $keyField, string $keyJSON)
 	{
-		$json = json_decode(static::getValueByKey($keyField));
+		$json = static::getValueByKey($keyField);
 		return $json->$keyJSON;
 	}
 
@@ -115,11 +124,13 @@ class Setting extends Model
 
 	public static function onUpdate(Request $request)
 	{
-        static::updateManyByKeys([
+		static::updateValueByKey('site-info', [
             'admin-email' => $request->admin_email,
-            'site-title' => $request->site_title,
-            'site-description' => $request->site_description,
-            'site-contact' => json_encode([
+            'title' => $request->site_title,
+			'description' => $request->site_description,
+			'logo' => null,
+			'favicon' => null,
+            'contact' => [
                 'email' => $request->contact_email,
                 'phone' => $request->contact_phone,
                 'mobile' => $request->contact_mobile,
@@ -128,8 +139,8 @@ class Setting extends Model
                 'city' => $request->contact_city,
                 'country' => $request->contact_country,
                 'zip_code' => $request->contact_zip_code,
-            ])
-        ]);
+			]
+		]);
 
 		static::updateFaviconAndLogo($request);
 	}
@@ -138,7 +149,8 @@ class Setting extends Model
 	{
 
         if ($favicon = $request->favicon_from_gallery) {
-			static::updateValueByKey('site-favicon', Image::byName($favicon)->url_cache);
+			$image = Image::byName($favicon);
+			static::byKey('site-info')->update(['value->favicon' => $image->url_cache]);
 		} else if ($favicon = $request->file('favicon_from_local')) {
 			$faviconName = $favicon->getClientOriginalName();
 			$path = Storage::disk('uploads')->putFileAs('/', $favicon, $favicon->getClientOriginalName());
@@ -147,11 +159,12 @@ class Setting extends Model
 				'url_asset' => url('uploads/' . $faviconName),
 				'url_cache' => url('imagecache/gallery/' . $faviconName)
 			]);
-			static::updateValueByKey('site-favicon', $image->url_cache);
+			static::byKey('site-info')->update(['value->favicon' => $image->url_cache]);
 		}
 
         if ($logo = $request->logo_from_gallery) {
-			static::updateValueByKey('site-logo', Image::byName($logo)->url_cache);
+			$image = Image::byName($logo);
+			static::byKey('site-info')->update(['value->logo' => $image->url_cache]);
 		} else if ($logo = $request->file('logo_from_local')) {
 			$logoName = $logo->getClientOriginalName();
 			$path = Storage::disk('uploads')->putFileAs('/', $logo, $logo->getClientOriginalName());
@@ -160,7 +173,7 @@ class Setting extends Model
 				'url_asset' => url('uploads/' . $logoName),
 				'url_cache' => url('imagecache/gallery/' . $logoName)
 			]);
-			static::updateValueByKey('site-logo', $image->url_cache);
+			static::byKey('site-info')->update(['value->logo' => $image->url_cache]);
 		}
 	} 
 }

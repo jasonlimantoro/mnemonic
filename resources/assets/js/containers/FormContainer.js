@@ -177,7 +177,7 @@ export class FancyInput extends React.Component {
           <div id={"preview" + '-' + this.props.i.toString() } className="new-image">{preview}</div>
         </div>
         <div className="form-group">
-          <PrimaryButton text="Upload Image" onClick={this.showModal} />
+          <PrimaryButton dusk={this.props.dusk} text="Upload Image" onClick={this.showModal} />
         </div>
         <UploadModal show={this.state.modalShow} onHide={this.closeModal} i={this.props.i} />
       </div>
@@ -187,7 +187,8 @@ export class FancyInput extends React.Component {
 FancyInput.defaultProps = {
 	i : 1,
 	galleryInputName :  "gallery_image",
-	newInputName : "image"
+	newInputName : "image",
+	dusk : ''
 }
 
 export class IconAndLogoInput extends React.Component

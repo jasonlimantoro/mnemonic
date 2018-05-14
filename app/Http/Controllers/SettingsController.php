@@ -57,10 +57,7 @@ class SettingsController extends Controller
      */
     public function edit()
     {
-		$settings = Setting::getManyValueByKeys([
-			'admin-email', 'site-title', 'site-description'
-		]);
-		$settings['site-contact'] = json_decode(Setting::getValueByKey('site-contact'));
+		$settings = Setting::getValueByKey('site-info');
         return view('backend.settings.edit', compact('settings'));
     }
 
