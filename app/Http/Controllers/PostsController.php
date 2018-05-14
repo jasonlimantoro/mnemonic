@@ -46,7 +46,7 @@ class PostsController extends Controller
         // validate the form
         $rules = [
             'title' => 'required|unique:posts,title',
-            'body' => 'required'
+            'description' => 'required'
         ];
         $customMessages = [
             'title.unique' => 'The :attribute field must be unique! Either delete the post with the same title or use another title!'
@@ -54,7 +54,7 @@ class PostsController extends Controller
         $this->validate($request, $rules, $customMessages);
 
         // add a new post to a page
-        $page->addPost(request('title'), request('body'), auth()->id());
+        $page->addPost(request('title'), request('description'), auth()->id());
 
         $this->flash('Post is added succesfully');
 
@@ -84,25 +84,16 @@ class PostsController extends Controller
         // page in which the post belongsTo
         $page = $post->page;
         return view('posts.backend.edit', compact('post', 'page'));
-    }
+	}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Page $page, Post $post)
     {
         $this->validate($request, [
             'title' => 'required',
-            'body' => 'required'
+            'description' => 'required'
         ]);
-        $updatedPost = $request->all();
-        $post->update($updatedPost);
+        $post->update($request->only(['title', 'description']));
 
-        //store status message
         $this->flash('Post updated successfully!');
 
         return back();

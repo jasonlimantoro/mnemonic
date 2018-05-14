@@ -4,10 +4,10 @@
 	{{ Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Enter Title']) }}
 </div>
 
-{{-- body field --}}
+{{-- description field --}}
 <div class="form-group">
-	{{ Form::label('body', 'Body:') }}
-	{{ Form::textarea('body', null, ['class' => 'form-control', 'placeholder' => 'Enter Body']) }}
+	{{ Form::label('description', 'Description:') }}
+	{{ Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Enter Description']) }}
 </div>
 
 {{-- Submit Button --}}
