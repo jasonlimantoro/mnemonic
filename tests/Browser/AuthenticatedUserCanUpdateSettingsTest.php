@@ -9,6 +9,7 @@ use SettingsTableSeeder;
 use Laravel\Dusk\Browser;
 use Tests\Browser\Pages\SettingsPage;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use App\Setting;
 
 class AuthenticatedUserCanUpdateSettingsTest extends DuskTestCase
 {
@@ -43,8 +44,7 @@ class AuthenticatedUserCanUpdateSettingsTest extends DuskTestCase
         ];
 
         $this->browse(function (Browser $browser) use ($data) {
-            $browser
-                    ->visit(new SettingsPage)
+            $browser->visit(new SettingsPage)
                     ->fill($data)
                     ->press('Update')
                     ->waitForText('successfully', 2)
@@ -62,9 +62,9 @@ class AuthenticatedUserCanUpdateSettingsTest extends DuskTestCase
                     ->clickLink('Gallery')
                     ->waitFor('.thumbnail-container')
                     ->click('.thumbnail-container')
-					->press('Done')
-					
-					->waitUntilMissing('.thumnail-container')
+                    ->press('Done')
+
+                    ->waitUntilMissing('.thumnail-container')
 
                     ->press('@logo-upload')
                     ->clickLink('Gallery')
@@ -76,5 +76,24 @@ class AuthenticatedUserCanUpdateSettingsTest extends DuskTestCase
                     ->waitForText('successfully')
                     ->assertRouteIs('settings.edit');
         });
+        $site = Setting::getValueByKey('site-info');
+        $expected = (object)[ 
+			"logo" => $image->url_cache,
+			"title" => null,
+			"contact" => (object) [ 
+				"city" => null,
+				"email" => null,
+				"phone" => null,
+				"mobile" => null,
+				"region" => null,
+				"address" => null,
+				"country" => null,
+				"zip_code" => null,
+			],
+			"favicon" => $image->url_cache,
+			"admin-email" => null,
+			"description" => null,
+		];
+		$this->assertEquals($expected, $site);
     }
 }
