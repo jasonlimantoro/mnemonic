@@ -53,7 +53,7 @@ class Setting extends Model
      */
     public static function getValueByKey($key)
    	{
-        return static::byKey($key)->getValue();
+        return optional(static::byKey($key))->getValue();
 	}
 	
 	/**
@@ -81,7 +81,7 @@ class Setting extends Model
 	public static function getJSONValueFromKeyField(string $keyField, string $keyJSON)
 	{
 		$json = static::getValueByKey($keyField);
-		return $json->$keyJSON;
+		return optional($json)->$keyJSON;
 	}
 
 
@@ -101,11 +101,17 @@ class Setting extends Model
      *
      * @param string $key
      * @param mixed $value
-     * @return bool
+     * @return mixed
      */
     public static function updateValueByKey(string $key, $value)
    	{
-	   return static::byKey($key)->update(['value' => $value]);
+		if(!optional(static::byKey($key))->update(['value' => $value])){
+			return static::create([
+				'name' => preg_replace('/-/', ' ', $key),
+				'key' => $key,
+				'value' => $value
+			]);
+		}
 	}
 
 	/**

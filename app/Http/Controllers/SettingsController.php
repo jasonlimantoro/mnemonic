@@ -70,7 +70,7 @@ class SettingsController extends Controller
     public function update(Request $request)
     {
 		$this->validate($request, [
-			'admin_email' => 'required|email',
+			// 'admin_email' => 'required|email',
 			'contact_zip_code' => 'numeric|nullable'
 		]);
 
