@@ -52,7 +52,9 @@
     
     <li class="header">Settings</li>
     <li><a href="{{ route('settings.edit') }}">Site Info</a></li>
-		<li><a href="{{ route('admin') }}/settings/social-media-and-seo">Social Media & SEO</a></li>
+    <li><a href="{{ route('socials.edit') }}">Social Media Info</a></li>
+    <li><a href="{{ route('seo.edit') }}">SEO</a></li>
+		{{-- <li><a href="{{ route('admin') }}/settings/social-media-and-seo">Social Media & SEO</a></li> --}}
 
     <li>
       <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false"> Admin & Roles </a>

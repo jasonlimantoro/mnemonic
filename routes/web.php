@@ -62,11 +62,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     // settings
     Route::get('settings/edit', 'SettingsController@edit')->name('settings.edit');
     Route::patch('settings', 'SettingsController@update')->name('settings.update');
-	Route::get('/admin/settings/general', 'BackendController@general');
-	Route::get('/admin/settings/site-info', 'BackendController@site');
-	Route::get('/admin/settings/social-media-and-seo', 'BackendController@social');
-	Route::get('/admin/settings/manage-admin', 'BackendController@manageAdmin');
-	Route::get('/admin/settings/manage-roles', 'BackendController@manageRoles');
+	// Route::get('settings/general', 'BackendController@general');
+	// Route::get('settings/site-info', 'BackendController@site');
+
+	// Social Media
+	Route::get('social-media/edit', 'SocialController@edit')->name('socials.edit');
+	Route::patch('social-media', 'SocialController@update')->name('socials.update');
+
+	// SEO
+	Route::get('seo', 'SEOController@edit')->name('seo.edit');
+
+	// Admin roles
+	Route::get('manage-admin', 'BackendController@manageAdmin');
+	Route::get('manage-roles', 'BackendController@manageRoles');
 
 });
 
