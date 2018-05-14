@@ -107,7 +107,7 @@ class Setting extends Model
    	{
 		if(!optional(static::byKey($key))->update(['value' => $value])){
 			return static::create([
-				'name' => preg_replace('/-/', ' ', $key),
+				'name' => title_case(preg_replace('/-/', ' ', $key)),
 				'key' => $key,
 				'value' => $value
 			]);
