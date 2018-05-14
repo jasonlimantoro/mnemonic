@@ -70,7 +70,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	Route::patch('social-media', 'SocialController@update')->name('socials.update');
 
 	// SEO
-	Route::get('seo', 'SEOController@edit')->name('seo.edit');
+	Route::get('seo/edit', 'SEOController@edit')->name('seo.edit');
+	Route::patch('seo', 'SEOController@update')->name('seo.update');
 
 	// Admin roles
 	Route::get('manage-admin', 'BackendController@manageAdmin');
