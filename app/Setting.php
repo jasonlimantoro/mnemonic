@@ -153,7 +153,6 @@ class Setting extends Model
 
 	public static function updateFaviconAndLogo(Request $request)
 	{
-
         if ($favicon = $request->favicon_from_gallery) {
 			$image = Image::byName($favicon);
 			static::byKey('site-info')->update(['value->favicon' => $image->url_cache]);
