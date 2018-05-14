@@ -3143,7 +3143,7 @@ module.exports = exports['default'];
 var PrimaryButton = function PrimaryButton(props) {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["a" /* Button */],
-        { type: props.type, bsStyle: "primary", onClick: props.onClick },
+        { dusk: props.dusk, type: props.type, bsStyle: "primary", onClick: props.onClick },
         props.text
     );
 };
@@ -5448,7 +5448,7 @@ var FancyInput = function (_React$Component4) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "div",
           { className: "form-group" },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Button__["b" /* PrimaryButton */], { text: "Upload Image", onClick: this.showModal })
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Button__["b" /* PrimaryButton */], { dusk: this.props.dusk, text: "Upload Image", onClick: this.showModal })
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Modal__["a" /* UploadModal */], { show: this.state.modalShow, onHide: this.closeModal, i: this.props.i })
       );
@@ -5460,7 +5460,8 @@ var FancyInput = function (_React$Component4) {
 FancyInput.defaultProps = {
   i: 1,
   galleryInputName: "gallery_image",
-  newInputName: "image"
+  newInputName: "image",
+  dusk: ''
 };
 
 var IconAndLogoInput = function (_React$Component5) {
@@ -5481,12 +5482,12 @@ var IconAndLogoInput = function (_React$Component5) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "div",
           { className: "col-md-6" },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(FancyInput, { i: 1, galleryInputName: "favicon_from_gallery", newInputName: "favicon_from_local" })
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(FancyInput, { i: 1, galleryInputName: "favicon_from_gallery", newInputName: "favicon_from_local", dusk: "favicon-upload" })
         ),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "div",
           { className: "col-md-6" },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(FancyInput, { i: 2, galleryInputName: "logo_from_gallery", newInputName: "logo_from_local" })
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(FancyInput, { i: 2, galleryInputName: "logo_from_gallery", newInputName: "logo_from_local", dusk: "logo-upload" })
         )
       );
     }

@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 
 export const PrimaryButton = (props) => {
     return (
-        <Button type={props.type} bsStyle="primary" onClick={props.onClick}>
+        <Button dusk={props.dusk} type={props.type} bsStyle="primary" onClick={props.onClick}>
             {props.text} 
         </Button>
     )

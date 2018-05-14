@@ -202,10 +202,10 @@ export class IconAndLogoInput extends React.Component
 		return (
 			<div>
 					<div className="col-md-6">
-						<FancyInput i={1} galleryInputName="favicon_from_gallery" newInputName="favicon_from_local" />
+						<FancyInput i={1} galleryInputName="favicon_from_gallery" newInputName="favicon_from_local" dusk="favicon-upload" />
 					</div>
 					<div className="col-md-6">
-						<FancyInput i={2} galleryInputName="logo_from_gallery" newInputName="logo_from_local" />
+						<FancyInput i={2} galleryInputName="logo_from_gallery" newInputName="logo_from_local" dusk="logo-upload" />
 					</div>
 			</div>
 		);
