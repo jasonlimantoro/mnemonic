@@ -22,8 +22,9 @@ class CreateRolesTable extends Migration
 
         Schema::create('permissions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('description')->nullable();
+            $table->string('name')->unique();
+            $table->json('action');
+            $table->string('description');
             $table->timestamps();
         });
 
@@ -39,8 +40,8 @@ class CreateRolesTable extends Migration
             $table->foreign('role_id')
                   ->references('id')
                   ->on('roles')
-                  ->onDelete('cascade');
-
+				  ->onDelete('cascade');
+			$table->json('action');
             $table->primary(['permission_Id', 'role_id']);
         });
     }
