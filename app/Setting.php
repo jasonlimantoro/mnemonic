@@ -55,13 +55,13 @@ class Setting extends Model
    	{
         return optional(static::byKey($key))->getValue();
 	}
-	
-	/**
-	 * Retrieve the value of the record given many keys
-	 * 
-	 * @param array $key
-	 * @return array
-	 */
+
+    /**
+     * Retrieve the value of the record given many keys
+     *
+     * @param array $keys
+     * @return array
+     */
 
 	public static function getManyValueByKeys(array $keys)
 	{
@@ -70,13 +70,13 @@ class Setting extends Model
 					->toArray();
 	}
 
-	/**
-	 * Retrieve the JSON Value given key
-	 * 
-	 * @param string $keyfield
-	 * @param string $keyJson
-	 * @return string
-	 */
+    /**
+     * Retrieve the JSON Value given key
+     *
+     * @param string $keyField
+     * @param string $keyJSON
+     * @return string
+     */
 
 	public static function getJSONValueFromKeyField(string $keyField, string $keyJSON)
 	{
@@ -105,13 +105,14 @@ class Setting extends Model
      */
     public static function updateValueByKey(string $key, $value)
    	{
-		if(!optional(static::byKey($key))->update(['value' => $value])){
+		if(!$updated = optional(static::byKey($key))->update(['value' => $value])){
 			return static::create([
 				'name' => title_case(preg_replace('/-/', ' ', $key)),
 				'key' => $key,
 				'value' => $value
 			]);
 		}
+		return $updated;
 	}
 
 	/**

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\GenericController as Controller;
-use App\Setting;
 
 class SocialController extends Controller
 {
@@ -53,7 +53,6 @@ class SocialController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit()
@@ -66,8 +65,7 @@ class SocialController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
