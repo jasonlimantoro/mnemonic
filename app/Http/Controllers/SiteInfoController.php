@@ -58,7 +58,7 @@ class SiteInfoController extends Controller
     public function edit()
     {
 		$settings = Setting::getValueByKey('site-info');
-        return view('backend.siteinfo.edit', compact('settings'));
+        return view('backend.settings.siteinfo.edit', compact('settings'));
     }
 
     /**
