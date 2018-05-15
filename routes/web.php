@@ -7,7 +7,10 @@
 |
 */
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+Route::group([
+	'prefix' => 'admin', 
+	'middleware' => ['auth']
+	], function () {
     Route::get('/', 'BackendController@admin')->name('admin');
 
     // carousel
@@ -71,9 +74,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 	Route::get('seo/edit', 'SEOController@edit')->name('seo.edit');
 	Route::patch('seo', 'SEOController@update')->name('seo.update');
 
-	// Admin roles
-	Route::get('manage-admin', 'BackendController@manageAdmin');
-	Route::get('manage-roles', 'BackendController@manageRoles');
+	// Users
+	Route::resource('users', 'UsersController');
+
+	// Roles
+	Route::resource('roles', 'RolesController');
 
 });
 
