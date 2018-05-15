@@ -12,5 +12,10 @@
 
 {{-- Submit Button --}}
 <div class="form-group">
-	{{ Form::submit($submitButtonText, ['class' => 'btn btn-primary']) }}
+
+	@if (auth()->user()->can('update', $post))
+		{{ Form::submit($submitButtonText, ['class' => 'btn btn-primary']) }}
+	@else
+		<button disabled class="btn btn-default">Unauthorized</button>
+	@endif
 </div>

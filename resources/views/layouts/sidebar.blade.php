@@ -51,7 +51,7 @@
     <li><a href="{{ route('rsvps.index') }}">RSVP</a></li>
     
     <li class="header">Settings</li>
-    <li><a href="{{ route('settings.edit') }}">Site Info</a></li>
+    <li><a href="{{ route('siteinfo.edit') }}">Site Info</a></li>
     <li><a href="{{ route('socials.edit') }}">Social Media Info</a></li>
     <li><a href="{{ route('seo.edit') }}">SEO</a></li>
 

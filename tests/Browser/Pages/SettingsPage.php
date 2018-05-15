@@ -14,7 +14,7 @@ class SettingsPage extends BasePage
      */
     public function url()
     {
-        return route('settings.edit');
+        return route('siteinfo.edit');
     }
 
     /**

@@ -38,7 +38,7 @@ class UserCanUpdateSettingsTest extends Authentication
                     ->fill($data)
                     ->press('Update')
                     ->waitForText('successfully', 2)
-                    ->assertRouteIs('settings.edit')
+                    ->assertRouteIs('siteinfo.edit')
                     ->assertUpdated($data);
         });
     }
@@ -64,7 +64,7 @@ class UserCanUpdateSettingsTest extends Authentication
 
                     ->press('Update')
                     ->waitForText('successfully')
-                    ->assertRouteIs('settings.edit');
+                    ->assertRouteIs('siteinfo.edit');
         });
         $site = Setting::getValueByKey('site-info');
         $expected = (object)[

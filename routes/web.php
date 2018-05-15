@@ -60,10 +60,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     });
 
     // settings
-    Route::get('settings/edit', 'SettingsController@edit')->name('settings.edit');
-    Route::patch('settings', 'SettingsController@update')->name('settings.update');
-	// Route::get('settings/general', 'BackendController@general');
-	// Route::get('settings/site-info', 'BackendController@site');
+    Route::get('settings/edit', 'SiteInfoController@edit')->name('siteinfo.edit');
+    Route::patch('settings', 'SiteInfoController@update')->name('siteinfo.update');
 
 	// Social Media
 	Route::get('social-media/edit', 'SocialController@edit')->name('socials.edit');

@@ -3,7 +3,7 @@
 @section('content')
   @component('layouts.panel', ['title' => 'Settings'])
     @slot('body')
-			{{ Form::open(['route' => 'settings.update', 'method' => 'PATCH', 'enctype' => 'multipart/form-data']) }}
+			{{ Form::open(['route' => 'siteinfo.update', 'method' => 'PATCH', 'enctype' => 'multipart/form-data']) }}
 				{{-- admin_email field --}}
 				<div class="form-group">
 					{{ Form::label('admin_email', 'Admin Email:') }}

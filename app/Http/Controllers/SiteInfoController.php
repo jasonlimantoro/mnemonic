@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\GenericController as Controller;
 use Illuminate\Support\Facades\Storage;
 
-class SettingsController extends Controller
+class SiteInfoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -58,7 +58,7 @@ class SettingsController extends Controller
     public function edit()
     {
 		$settings = Setting::getValueByKey('site-info');
-        return view('backend.settings.edit', compact('settings'));
+        return view('backend.siteinfo.edit', compact('settings'));
     }
 
     /**
@@ -70,7 +70,7 @@ class SettingsController extends Controller
     public function update(Request $request)
     {
 		$this->validate($request, [
-			'admin_email' => 'email',
+			'admin_email' => 'email|nullable',
 			'contact_zip_code' => 'numeric|nullable'
 		]);
 
