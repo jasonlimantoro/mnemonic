@@ -2,11 +2,19 @@
 
 namespace App;
 
+use App\Traits\FiltersSearch;
 
 class Role extends Model
 {
-	public function user()
+    use FiltersSearch;
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+	}
+	
+	public function permissions()
 	{
-		return $this->belongsToMany(User::class);
+		return $this->belongsToMany(Permission::class);
 	}
 }

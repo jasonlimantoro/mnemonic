@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Traits\FiltersSearch;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, FiltersSearch;
 
     /**
      * The attributes that are mass assignable.
@@ -15,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role_id'
     ];
 
     /**
@@ -25,7 +26,21 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token',
-    ];
+	];
+
+	public function setNameAttribute($value)
+	{
+		$this->attributes['name'] = title_case($value);
+	}
+	public function setEmailAttribute($value)
+	{
+		$this->attributes['email'] = strtolower($value);
+	}
+	
+	public function setPasswordAttribute($value)
+	{
+		$this->attributes['password'] = bcrypt($value);
+	}
 
     public function pages()
     {
@@ -37,32 +52,23 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-    public function roles()
+    public function role()
     {
-		return $this->belongsToMany(Role::class);
+		return $this->belongsTo(Role::class);
 	}
-	
-	public function hasAnyRoles($roles)
+
+	public function hasRole(string $role)
 	{
-		if(is_array($roles)){
-			foreach ($roles as $role) {
-				if($this->hasRole($role)) {
-					return true; 
-				}
-			}
-		} else {
-			if($this->hasRole($roles)){
-				return true;
-			}
+		if($this->role()->whereName($role)->first()){
+			return true;
 		}
 		return false;
 	}
 
-	public function hasRole($role)
+	public function assignRole(string $role)
 	{
-		if($this->roles()->whereName($role)->first()){
-			return true;
-		}
-		return false;
+		return $this->role()
+					->associate(Role::whereName($role)->firstOrFail())
+					->save();
 	}
 }
