@@ -1,30 +1,20 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Browser\Auth;
 
 use App\User;
 use App\Image;
-use Tests\DuskTestCase;
+use App\Setting;
 use SettingsTableSeeder;
 use Laravel\Dusk\Browser;
 use Tests\Browser\Pages\SettingsPage;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use App\Setting;
 
-class AuthenticatedUserCanUpdateSettingsTest extends DuskTestCase
+class UserCanUpdateSettingsTest extends Authentication
 {
     use DatabaseMigrations;
 
-    public function setUp()
-    {
-        parent::setUp();
-        $user = factory(User::class)->create();
-        $this->browse(function (Browser $browser) use ($user) {
-            $browser->loginAs($user);
-        });
-    }
-
-    public function testAuthenticatedUsersCanUpdateSettings()
+    public function testUsersCanUpdateSettings()
     {
         (new SettingsTableSeeder)->run();
         $data = [
@@ -53,7 +43,7 @@ class AuthenticatedUserCanUpdateSettingsTest extends DuskTestCase
         });
     }
 
-    public function testAuthenticatedUsersCanUploadFaviconAndLogo()
+    public function testUsersCanUploadFaviconAndLogo()
     {
         $image = factory(Image::class)->create();
         $this->browse(function (Browser $browser) {
@@ -77,23 +67,23 @@ class AuthenticatedUserCanUpdateSettingsTest extends DuskTestCase
                     ->assertRouteIs('settings.edit');
         });
         $site = Setting::getValueByKey('site-info');
-        $expected = (object)[ 
-			"logo" => $image->url_cache,
-			"title" => null,
-			"contact" => (object) [ 
-				"city" => null,
-				"email" => null,
-				"phone" => null,
-				"mobile" => null,
-				"region" => null,
-				"address" => null,
-				"country" => null,
-				"zip_code" => null,
-			],
-			"favicon" => $image->url_cache,
-			"admin-email" => null,
-			"description" => null,
-		];
-		$this->assertEquals($expected, $site);
+        $expected = (object)[
+            'logo' => $image->url_cache,
+            'title' => null,
+            'contact' => (object) [
+                'city' => null,
+                'email' => null,
+                'phone' => null,
+                'mobile' => null,
+                'region' => null,
+                'address' => null,
+                'country' => null,
+                'zip_code' => null,
+            ],
+            'favicon' => $image->url_cache,
+            'admin-email' => null,
+            'description' => null,
+        ];
+        $this->assertEquals($expected, $site);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Browser\Auth;
 
 use App\User;
 use App\Setting;
@@ -9,20 +9,11 @@ use Laravel\Dusk\Browser;
 use Tests\Browser\Pages\SEOPage;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class AuthenticatedUserCanUpdateSocialTest extends DuskTestCase
+class UserCanUpdateSEOTest extends Authentication
 {
     use DatabaseMigrations;
 
-    public function setUp()
-    {
-        parent::setUp();
-        $user = factory(User::class)->create();
-        $this->browse(function (Browser $browser) use ($user) {
-            $browser->loginAs($user);
-        });
-    }
-
-    public function testAuthenticatedUsersCanUpdateSEO()
+    public function testUsersCanUpdateSEO()
     {
         $data = [
             'meta_title' => 'Some Meta Title',
