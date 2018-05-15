@@ -14,6 +14,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert(
             [
                 [
+					'role_id' => 1,
                     'name' => 'Jason',
                     'email' => 'jason@example.com',
                     'password' => bcrypt('123123123'),
@@ -22,6 +23,7 @@ class UsersTableSeeder extends Seeder
                     'updated_at' => NOW()
                 ],
                 [
+					'role_id' => 2, 
                     'name' => 'Feli',
                     'email' => 'feli@example.com',
                     'password' => bcrypt('234234234'),
