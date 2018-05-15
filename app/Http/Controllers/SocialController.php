@@ -59,6 +59,7 @@ class SocialController extends Controller
     public function edit()
     {
 		$social = Setting::getValueByKey('site-social');
+
         return view('backend.settings.socials.edit', compact('social'));
     }
 
@@ -71,13 +72,10 @@ class SocialController extends Controller
      */
     public function update(Request $request)
     {
-		$data = [
-			'google_plus' => $request->google_plus,
-			'facebook' => $request->facebook,
-			'instagram' => $request->instagram,
-			'youtube' => $request->youtube,
-		];
-		Setting::updateValueByKey('site-social', $data);
+
+		Setting::updateSiteSocial(
+			$request->only(['google_plus','facebook', 'instagram', 'youtube'])
+		);
 		
 		$this->flash('Social Accounts are updated successfully');
 

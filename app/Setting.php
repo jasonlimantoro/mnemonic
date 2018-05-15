@@ -32,7 +32,7 @@ class Setting extends Model
      */
     public static function byKey($key)
    	{
-	   return static::where('key', $key)->first();
+	   return static::where('key', $key)->firstOrFail();
    	}
 
     /**
@@ -128,7 +128,7 @@ class Setting extends Model
 		}
 	}
 
-	public static function onUpdate(Request $request)
+	public static function updateSiteInfo(Request $request)
 	{
 		static::updateValueByKey('site-info', [
             'admin-email' => $request->admin_email,
@@ -181,4 +181,14 @@ class Setting extends Model
 			static::byKey('site-info')->update(['value->logo' => $image->url_cache]);
 		}
 	} 
+
+	public static function updateSiteSocial($social)
+	{
+		static::updateValueByKey('site-social', $social);
+	}
+
+	public static function updateSiteSEO($seo)
+	{
+		static::updateValueByKey('site-seo', $seo);
+	}
 }

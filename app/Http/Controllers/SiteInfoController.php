@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Image;
 use App\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\GenericController as Controller;
-use Illuminate\Support\Facades\Storage;
 
 class SiteInfoController extends Controller
 {
@@ -57,7 +55,7 @@ class SiteInfoController extends Controller
      */
     public function edit()
     {
-		$settings = Setting::getValueByKey('site-info');
+        $settings = Setting::getValueByKey('site-info');
         return view('backend.settings.siteinfo.edit', compact('settings'));
     }
 
@@ -69,12 +67,12 @@ class SiteInfoController extends Controller
      */
     public function update(Request $request)
     {
-		$this->validate($request, [
-			'admin_email' => 'email|nullable',
-			'contact_zip_code' => 'numeric|nullable'
-		]);
+        $this->validate($request, [
+            'admin_email' => 'email|nullable',
+            'contact_zip_code' => 'numeric|nullable'
+        ]);
 
-		Setting::onUpdate($request);
+        Setting::updateSiteInfo($request);
 
         $this->flash('Settings are updated successfully');
 

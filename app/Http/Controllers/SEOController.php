@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\GenericController as Controller;
-use App\Setting;
 
 class SEOController extends Controller
 {
@@ -59,6 +59,7 @@ class SEOController extends Controller
     public function edit()
     {
 		$seo = Setting::getValueByKey('site-seo');
+		
         return view('backend.settings.seo.edit', compact('seo'));
     }
 
@@ -70,13 +71,9 @@ class SEOController extends Controller
      */
     public function update(Request $request)
     {
-        $data = [
-			'meta_description' => $request->meta_description,
-			'meta_title' => $request->meta_title,
-			'g_script' => $request->g_script,
-		];
-
-		Setting::updateValueByKey('site-seo', $data);
+		Setting::updateSiteSEO(
+			$request->only(['meta_description', 'meta_title', 'g_script'])
+		);
 
 		$this->flash('Site SEO Data is successfully updated!');
 
