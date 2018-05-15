@@ -11,10 +11,34 @@ class Role extends Model
     public function users()
     {
         return $this->hasMany(User::class);
+    }
+
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class)
+                    ->using(PermissionRole::class)
+                    ->withPivot('action');
+    }
+
+    public function allowables()
+    {
+        $actions = $this->permissions()->first()->pivot->action;
+        return static::isAllowed($actions);
 	}
 	
-	public function permissions()
+	public function notAllowables()
 	{
-		return $this->belongsToMany(Permission::class);
+        $actions = $this->permissions()->first()->pivot->action;
+        return static::isNotAllowed($actions);
 	}
+
+    public static function isAllowed(array $actions)
+    {
+        return array_keys($actions, 'true');
+    }
+
+    public function isNotAllowed(array $actions)
+    {
+        return array_keys($actions, 'false');
+    }
 }
