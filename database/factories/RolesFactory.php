@@ -5,22 +5,22 @@ use Faker\Generator as Faker;
 
 $factory->define(Role::class, function (Faker $faker) {
     return [
-		'name' => $faker->word,
-		'label' => $faker->sentence
+        'name' => $faker->randomElement(['admin', 'author', 'user']),
+        'description' => $faker->sentence
     ];
 });
 
 $factory->state(Role::class, 'admin', [
-	'name' => 'admin',
-	'label' => 'Administration Role' 
+    'name' => 'admin',
+    'description' => 'Administration Role'
 ]);
 
 $factory->state(Role::class, 'author', [
-	'name' => 'author',
-	'label' => 'Author Role' 
+    'name' => 'author',
+    'description' => 'Author Role'
 ]);
 
 $factory->state(Role::class, 'user', [
-	'name' => 'user',
-	'label' => 'User Role' 
+    'name' => 'user',
+    'description' => 'User Role'
 ]);
