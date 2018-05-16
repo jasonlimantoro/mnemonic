@@ -5,7 +5,7 @@ use App\Permission;
 
 $factory->define(Permission::class, function (Faker $faker) {
     return [
-        'name' => $faker->randomElement([
+        'name' => $faker->unique()->randomElement([
             'carousel images',
             'post',
             'gallery',
@@ -24,7 +24,7 @@ $factory->define(Permission::class, function (Faker $faker) {
         ]),
         'action' => $faker->randomElements(
             ['create', 'read', 'update', 'delete'],
-			$faker->numberBetween(2, 4)
+			$faker->numberBetween(1, 4)
 		),
 		'description' => $faker->sentence,
     ];
