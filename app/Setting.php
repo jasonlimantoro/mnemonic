@@ -32,7 +32,7 @@ class Setting extends Model
      */
     public static function byKey($key)
    	{
-	   return static::where('key', $key)->firstOrFail();
+	   return static::where('key', $key)->first();
    	}
 
     /**
