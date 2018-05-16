@@ -17,8 +17,8 @@ class Page extends Model
         return $this->hasOne(Carousel::class);
     }
     
-    public function addPost($title, $body, $user_id) {
-        $this->posts()->create(compact(['title', 'body', 'user_id']));
-
+    public function addPost(array $attributes) {
+		$attributes['user_id'] = auth()->user()->id;
+		$this->posts()->create($attributes);
     }
 }

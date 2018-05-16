@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Page;
-use Illuminate\Http\Request;
+use App\Http\Requests\PostsRequest;
 use App\Http\Controllers\GenericController as Controller;
 
 class PostsController extends Controller
@@ -32,6 +32,8 @@ class PostsController extends Controller
      */
     public function create(Page $page)
     {
+        $this->authorize('create', Post::class);
+
         return view('posts.backend.create', compact('page'));
     }
 
@@ -41,24 +43,13 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Page $page)
+    public function store(PostsRequest $request, Page $page)
     {
-        // validate the form
-        $rules = [
-            'title' => 'required|unique:posts,title',
-            'description' => 'required'
-        ];
-        $customMessages = [
-            'title.unique' => 'The :attribute field must be unique! Either delete the post with the same title or use another title!'
-        ];
-        $this->validate($request, $rules, $customMessages);
-
-        // add a new post to a page
-        $page->addPost(request('title'), request('description'), auth()->id());
+        $page->addPost($request->only(['title', 'description']));
 
         $this->flash('Post is added succesfully');
 
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index', ['page' => $page->id]);
     }
 
     /**
@@ -81,17 +72,14 @@ class PostsController extends Controller
      */
     public function edit(Page $page, Post $post)
     {
-        // page in which the post belongsTo
+        $this->authorize('update', Post::class);
+
         $page = $post->page;
         return view('posts.backend.edit', compact('post', 'page'));
-	}
+    }
 
-    public function update(Request $request, Page $page, Post $post)
+    public function update(PostsRequest $request, Page $page, Post $post)
     {
-        $this->validate($request, [
-            'title' => 'required',
-            'description' => 'required'
-        ]);
         $post->update($request->only(['title', 'description']));
 
         $this->flash('Post updated successfully!');
