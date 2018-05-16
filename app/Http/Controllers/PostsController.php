@@ -32,8 +32,6 @@ class PostsController extends Controller
      */
     public function create(Page $page)
     {
-        $this->authorize('create', Post::class);
-
         return view('posts.backend.create', compact('page'));
     }
 
