@@ -6,13 +6,16 @@
 			@component('layouts.panel', [
 				'title' => $page->title
 			])
-				@slot('addButton')
-					@component('layouts.addButton', [
-						'item' => "Post", 
-						'url' => route('posts.create', ['page' => $page->id ])
-					])
-					@endcomponent
-				@endslot
+				@can('create', App\Post::class)
+					@slot('addButton')
+						@component('layouts.addButton', [
+							'item' => "Post", 
+							'url' => route('posts.create', ['page' => $page->id ])
+						])
+						@endcomponent
+					@endslot
+				@endcan
+
 				@slot('body')
 					@component('layouts.query', [
 						'title' => 'Title',

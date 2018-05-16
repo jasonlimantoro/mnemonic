@@ -19,35 +19,39 @@
         data-placement="top"
         >
       </a>
-    </div>
-    <div>
-      <a 
-        href="{{ route('posts.edit', ['post' => $post->id, 'page' => $page->id ]) }}" 
-        id="EditIcon" 
-        class="__react-root" 
-        role="button"
-        data-toggle="tooltip"
-        title="Edit this post"
-        data-placement="top"
-        >
-      </a>
-    </div>
-    <div>
+		</div>
+		@can('update', App\Post::class)
+			<div>
+				<a 
+					href="{{ route('posts.edit', ['post' => $post->id, 'page' => $page->id ]) }}" 
+					id="EditIcon" 
+					class="__react-root" 
+					role="button"
+					data-toggle="tooltip"
+					title="Edit this post"
+					data-placement="top"
+					>
+				</a>
+			</div>
+		@endcan
 
-    <form action="{{ route('posts.destroy', ['page' => $page->id, 'post' => $post->id ]) }}" method="POST" id={{ "form-delete-posts-" . $post->id  }}>
-      {{ method_field('DELETE') }}
-      <a 
-        href="" 
-        id="DeleteIcon" 
-        class="__react-root" 
-        data-form="posts-{{ $post->id }}"
-        role="button"
-        data-toggle="tooltip"
-        title="Delete this post"
-        data-placement="top"
-        >
-      </a>
-    </form>
-    </div>
+		@can('delete', App\Post::class)
+			<div>
+				<form action="{{ route('posts.destroy', ['page' => $page->id, 'post' => $post->id ]) }}" method="POST" id={{ "form-delete-posts-" . $post->id  }}>
+					{{ method_field('DELETE') }}
+					<a 
+						href="" 
+						id="DeleteIcon" 
+						class="__react-root" 
+						data-form="posts-{{ $post->id }}"
+						role="button"
+						data-toggle="tooltip"
+						title="Delete this post"
+						data-placement="top"
+						>
+					</a>
+				</form>
+			</div>
+		@endcan
   </td>
 </tr>

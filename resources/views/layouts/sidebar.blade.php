@@ -10,17 +10,19 @@
   <ul class="list-unstyled components">
     <li><a href="{{ route('admin') }}">Dashboard</a></li>
     <li class="header">Website</li>
-    <li><a href="{{ route('carousel.images.index', ['carousel' => 1]) }}">Main Carousel</a></li>
-    <li>
-      <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
-        <i class="glyphicon glyphicon-duplicate"></i>
-        Pages
-      </a>
-      <ul class="collapse list-unstyled" id="pageSubmenu">
-				<li><a href="{{ route('posts.index', ['page' => 1]) }}">Home</a></li>
-				<li><a href="{{ route('posts.index', ['page' => 2]) }}">About Us</a></li>
-      </ul>
-    </li>
+		<li><a href="{{ route('carousel.images.index', ['carousel' => 1]) }}">Main Carousel</a></li>
+		@can('view', App\Post::class)
+			<li>
+				<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+					<i class="glyphicon glyphicon-duplicate"></i>
+					Pages
+				</a>
+				<ul class="collapse list-unstyled" id="pageSubmenu">
+					<li><a href="{{ route('posts.index', ['page' => 1]) }}">Home</a></li>
+					<li><a href="{{ route('posts.index', ['page' => 2]) }}">About Us</a></li>
+				</ul>
+			</li>
+		@endcan
     <li>
       <a href="#galleriesSubmenu" data-toggle="collapse" aria-expanded="false">Galleries</a>
       <ul class="collapse list-unstyled" id="galleriesSubmenu">
