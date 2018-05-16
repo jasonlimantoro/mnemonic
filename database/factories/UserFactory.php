@@ -15,11 +15,9 @@ use App\Role;
 */
 
 $factory->define(App\User::class, function (Faker $faker) {
-    static $password;
-
+	static $password;
     return [
 		'name' => $faker->name,
-		'role_id' => factory(Role::class)->create()->id,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
