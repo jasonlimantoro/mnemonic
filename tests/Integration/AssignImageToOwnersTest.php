@@ -43,7 +43,7 @@ class AssignImageToOwnersTest extends TestCase
             // set them to the owners
             $image->addTo($owner);
 
-            // assert for each owner's new image existence
+			// assert for each owner's new image existence
             $owner = $o::find(1);
             if ($owner->images) {
                 $this->assertNotNull($owner->images);
@@ -52,7 +52,6 @@ class AssignImageToOwnersTest extends TestCase
             }
         }
 
-        $album = Album::first();
         $images = Image::all();
 
         // We don't lose our original images

@@ -15,9 +15,10 @@ class UserRoleTest extends TestCase
     {
         $admin = factory(Role::class)->states('admin')->create();
         $author = factory(Role::class)->states('author')->create();
-        $user = factory(User::class)->create([
-            'role_id' => 2
-        ]);
+		$user = factory(User::class)->create();
+									
+		$user->role()->associate($author);
+		$user->save();
 
         $user->assignRole('admin');
 
