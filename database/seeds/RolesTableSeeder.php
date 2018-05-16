@@ -15,6 +15,7 @@ class RolesTableSeeder extends Seeder
     {
 		factory(Role::class)->states('admin')->create();
 		factory(Role::class)->states('author')->create();
+		factory(Role::class)->states('editor')->create();
 		factory(Role::class)->states('user')->create();
     }
 }
