@@ -11,15 +11,14 @@ class PostPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view the post.
+     * Determine whether the user can read the post.
      *
      * @param  \App\User  $user
-     * @param  \App\Post  $post
      * @return mixed
      */
-    public function view(User $user, Post $post)
+    public function read(User $user)
     {
-        //
+        return in_array('read', $user->permissibles('post'));
     }
 
     /**
@@ -28,32 +27,30 @@ class PostPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function create(User $user)
+	public function create(User $user)
     {
-        //
+		return in_array('create', $user->permissibles('post'));
     }
 
     /**
      * Determine whether the user can update the post.
      *
      * @param  \App\User  $user
-     * @param  \App\Post  $post
      * @return mixed
      */
-    public function update(User $user, Post $post)
+    public function update(User $user)
     {
-        return $user->id === $post->user_id;
+		return in_array('update', $user->permissibles('post')); 
     }
 
     /**
      * Determine whether the user can delete the post.
      *
      * @param  \App\User  $user
-     * @param  \App\Post  $post
      * @return mixed
      */
-    public function delete(User $user, Post $post)
+    public function delete(User $user)
     {
-        //
+        return in_array('delete', $user->permissibles('post'));
     }
 }
