@@ -18,7 +18,7 @@ $factory->define(Permission::class, function (Faker $faker) {
             'rsvp',
             'site_info',
             'site_social',
-            'stie_seo',
+            'site_seo',
             'user',
             'role',
         ]),
