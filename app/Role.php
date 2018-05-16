@@ -22,23 +22,23 @@ class Role extends Model
 
     public function allowables()
     {
-        $actions = $this->permissions()->first()->pivot->action;
+		$actions = $this->permissions()->first()->pivot->action;
         return static::isAllowed($actions);
 	}
 	
 	public function notAllowables()
 	{
-        $actions = $this->permissions()->first()->pivot->action;
+		$actions = $this->permissions()->first()->pivot->action;
         return static::isNotAllowed($actions);
 	}
 
     public static function isAllowed(array $actions)
     {
-        return array_keys($actions, 'true');
+        return array_keys($actions, true);
     }
 
-    public function isNotAllowed(array $actions)
+    public static function isNotAllowed(array $actions)
     {
-        return array_keys($actions, 'false');
+        return array_keys($actions, false);
     }
 }
