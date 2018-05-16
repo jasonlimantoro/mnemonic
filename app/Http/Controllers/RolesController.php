@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Role;
+use App\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\GenericController as Controller;
 
@@ -57,9 +58,10 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        //
+		$permissions = Permission::all();
+		return view('backend.settings.roles.edit', compact('role', 'permissions'));
     }
 
     /**
