@@ -80,5 +80,25 @@ class User extends Authenticatable
         return $this->role()
                     ->dissociate()
                     ->save();
-    }
+	}
+
+	public function permissions()
+	{
+		return $this->role->permissions();
+	}
+	
+	public function permissibles(string $name)
+	{
+		$actions = $this->permissions()
+						->whereName($name)
+						->firstOrFail()
+						->pivot
+						->action;
+		return static::isPermissable($actions);
+	}
+
+	public static function isPermissable(array $actions)
+	{
+		return array_keys($actions, true);
+	}
 }
