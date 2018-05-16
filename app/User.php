@@ -26,21 +26,22 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token',
-	];
+    ];
 
-	public function setNameAttribute($value)
-	{
-		$this->attributes['name'] = title_case($value);
-	}
-	public function setEmailAttribute($value)
-	{
-		$this->attributes['email'] = strtolower($value);
-	}
-	
-	public function setPasswordAttribute($value)
-	{
-		$this->attributes['password'] = bcrypt($value);
-	}
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = title_case($value);
+    }
+
+    public function setEmailAttribute($value)
+    {
+        $this->attributes['email'] = strtolower($value);
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
 
     public function pages()
     {
@@ -54,21 +55,30 @@ class User extends Authenticatable
 
     public function role()
     {
-		return $this->belongsTo(Role::class);
-	}
+        return $this->belongsTo(Role::class)->withDefault([
+            'name' => 'unassigned'
+        ]);
+    }
 
-	public function hasRole(string $role)
-	{
-		if($this->role()->whereName($role)->first()){
-			return true;
-		}
-		return false;
-	}
+    public function hasRole(string $role)
+    {
+        if ($this->role()->whereName($role)->first()) {
+            return true;
+        }
+        return false;
+    }
 
-	public function assignRole(string $role)
-	{
-		return $this->role()
-					->associate(Role::whereName($role)->firstOrFail())
-					->save();
-	}
+    public function assignRole(string $role)
+    {
+        return $this->role()
+                    ->associate(Role::whereName($role)->firstOrFail())
+                    ->save();
+    }
+
+    public function assignToDefault()
+    {
+        return $this->role()
+                    ->dissociate()
+                    ->save();
+    }
 }
