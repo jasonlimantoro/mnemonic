@@ -17,7 +17,6 @@ class UserPermissionTest extends TestCase
     {
 									
 		$admin = factory(Role::class)->states('admin')->create();
-		$author = factory(Role::class)->states('author')->create();
 
 		$albumPermission = factory(Permission::class)->states('album', 'complete')->create();
 		$postPermission = factory(Permission::class)->states('post', 'complete')->create();
