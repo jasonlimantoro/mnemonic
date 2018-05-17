@@ -86,14 +86,20 @@ class User extends Authenticatable
 	{
 		return $this->role->permissions();
 	}
+
+	public function getActions(string $permissionName)
+	{
+        $actions = [];
+        $permission = $this->permissions()->whereName($permissionName);
+        if ($permission->get()->isNotEmpty()) {
+            $actions = $permission->first()->pivot->action;
+        }
+        return $actions;
+	}
 	
 	public function permissibles(string $name)
 	{
-		$actions = $this->permissions()
-						->whereName($name)
-						->firstOrFail()
-						->pivot
-						->action;
+		$actions = $this->getActions($name);
 		return static::isPermissable($actions);
 	}
 
