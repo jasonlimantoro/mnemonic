@@ -5,7 +5,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Role::class, function (Faker $faker) {
     return [
-        'name' => $faker->unique()->randomElement(['admin', 'author', 'user', 'editor']),
+        'name' => $faker->unique()->randomElement(['admin', 'author', 'guest', 'editor']),
         'description' => $faker->sentence
     ];
 });
@@ -20,9 +20,9 @@ $factory->state(Role::class, 'author', [
     'description' => 'Author Role'
 ]);
 
-$factory->state(Role::class, 'user', [
-    'name' => 'user',
-    'description' => 'User Role'
+$factory->state(Role::class, 'guest', [
+    'name' => 'guest',
+    'description' => 'Guest Role'
 ]);
 
 $factory->state(Role::class, 'editor', [
