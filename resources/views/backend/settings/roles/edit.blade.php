@@ -42,9 +42,9 @@
 											<label style="font-weight:normal">
 												<input 
 													type="checkbox" 
-													name="permission[{{ $loop->count }}][ {{ $action }} ]"
+													name="permission[{{ $permission->id }}][{{ $action }}]"
 													{{ in_array($action, $allowables) ? 'checked' : '' }}
-												> 
+												>
 												{{ $action }}
 											</label>	
 										@endforeach
