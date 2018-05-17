@@ -9,6 +9,13 @@ use App\Http\Controllers\GenericController as Controller;
 
 class PostsController extends Controller
 {
+	public function __construct() 
+	{
+		$this->middleware('can:read,App\Post')->except('read');
+		$this->middleware('can:create,App\Post')->only(['create', 'store']);
+		$this->middleware('can:update,App\Post')->only(['edit', 'update']);
+		$this->middleware('can:delete,App\Post')->only('destroy');
+	}
     /**
      * Display a listing of the resource.
      *
