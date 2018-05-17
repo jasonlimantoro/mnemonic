@@ -22,7 +22,10 @@ class DatabaseSeeder extends Seeder
             VendorsTableSeeder::class,
             CategoriesTableSeeder::class,
             EventsTableSeeder::class,
-            BridesBestsTableSeeder::class
+			BridesBestsTableSeeder::class,
+			SettingsTableSeeder::class,
+			RolesTableSeeder::class,
+			PermissionsTableSeeder::class,
         ]);
     }
 }
