@@ -44,8 +44,8 @@ $factory->state(Permission::class, 'complete', function(Faker $faker){
 $factory->state(Permission::class, 'incomplete', function(Faker $faker){
 	return [
 		'action' => [
-			'read' => $faker->randomElement([true, false]),
-			'update' => $faker->randomElement([true, false]),
+			'read',
+			'update',
 		]
 	];
 });
