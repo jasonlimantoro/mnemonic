@@ -55,4 +55,14 @@ class Permission extends Model
 	{
 		return array_keys($actions, false);
 	}
+
+	public function updateOrAttachPivot(Role $role, $attributes = [])
+	{
+		$roles = $this->roles();
+		if($roles->whereName($role->name)->get()->isEmpty()){
+			$roles->attach($role->id, ['action' => $attributes]);
+		} else {
+			$roles->updateExistingPivot($role->id, ['action' => $attributes]);
+		}
+	}
 }

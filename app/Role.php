@@ -59,5 +59,29 @@ class Role extends Model
     public static function isNotAllowed(array $actions)
     {
         return array_keys($actions, false);
-    }
+	}
+	
+	public function syncAllowedActions(array $permissionRequests)
+	{
+		$this->detachAllowedActions($permissionRequests);
+		
+		foreach ($permissionRequests as $id => $actions) {
+			$permission = Permission::find($id);
+
+			$actionables = $permission->action;
+
+			$allowedActions = merge_array_to_assoc_array($actions, $actionables);
+
+			$permission->updateOrAttachPivot($this, $allowedActions);
+		}
+	}
+
+	public function detachAllowedActions(array $received)
+	{
+		$permissions = Permission::pluck('id')->toArray();
+
+		$notReceived = array_diff($permissions, array_keys($received));
+
+		$this->permissions()->detach($notReceived);
+	}
 }

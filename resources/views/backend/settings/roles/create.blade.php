@@ -11,12 +11,11 @@
 					'text' => 'Show all roles',
 					'url' => route('roles.index')
 				])
-					
 				@endcomponent
 			@endslot
 				@slot('body')
-					{{ Form::model($role, ['route' => ['roles.update', $role->id ], 'method' => 'PATCH']) }}
-						@include('backend.settings.roles.form', ['submitButtonText' => 'Update Role'])
+					{{ Form::open(['route' => 'roles.store']) }}
+						@include('backend.settings.roles.form', ['submitButtonText' => 'Create Role'])
 					{{ Form::close() }}
         @endslot
       @endcomponent

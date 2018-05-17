@@ -27,7 +27,8 @@ class RolesController extends Controller
      */
     public function create()
     {
-        //
+		$permissions = Permission::all();
+        return view('backend.settings.roles.create', compact('permissions'));
     }
 
     /**
@@ -38,7 +39,18 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+			'name' => 'required',
+			'permission' => 'required'
+		]);
+		
+		$role = Role::create($request->only(['name', 'description']));
+		$role->syncAllowedActions($request->permission);
+
+
+		$this->flash('Role is created successfully');
+
+		return redirect()->route('roles.index');
     }
 
     /**
@@ -55,7 +67,7 @@ class RolesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
     public function edit(Role $role)
@@ -68,22 +80,36 @@ class RolesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
-        //
+		$this->validate($request, [
+			'name' => 'required',
+			'permission' => 'required',
+		]);
+
+		$role->syncAllowedActions($request->permission);
+		$role->update($request->only(['name', 'description']));
+
+		$this->flash('The permissions of '.  $role->name . ' is updated successfully');
+
+		return back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        //
+		$role->delete();
+		
+		$this->flash('Role is deleted successfully');
+
+		return back();
     }
 }
