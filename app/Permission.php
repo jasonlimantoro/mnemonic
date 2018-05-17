@@ -5,8 +5,6 @@ namespace App;
 
 class Permission extends Model
 {
-	protected $with = ['roles'];
-
 	protected $casts = [
 		'action' => 'array'
 	];
