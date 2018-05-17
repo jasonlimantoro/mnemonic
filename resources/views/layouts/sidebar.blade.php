@@ -9,8 +9,12 @@
   
   <ul class="list-unstyled components">
     <li><a href="{{ route('admin') }}">Dashboard</a></li>
-    <li class="header">Website</li>
-		<li><a href="{{ route('carousel.images.index', ['carousel' => 1]) }}">Main Carousel</a></li>
+		<li class="header">Website</li>
+
+		@can('read-carousel-image')
+			<li><a href="{{ route('carousel.images.index', ['carousel' => 1]) }}">Main Carousel</a></li>
+		@endcan
+
 		@can('read', App\Post::class)
 			<li>
 				<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
@@ -23,13 +27,14 @@
 				</ul>
 			</li>
 		@endcan
-    <li>
-      <a href="#galleriesSubmenu" data-toggle="collapse" aria-expanded="false">Galleries</a>
-      <ul class="collapse list-unstyled" id="galleriesSubmenu">
-        <li><a href="{{ route('images.index') }}">View all photos</a></li>
-        <li><a href="{{ route('albums.index') }}">Manage Album</a></li>
-      </ul>
-    </li>
+
+		<li>
+			<a href="#galleriesSubmenu" data-toggle="collapse" aria-expanded="false">Galleries</a>
+			<ul class="collapse list-unstyled" id="galleriesSubmenu">
+				<li><a href="{{ route('images.index') }}">View all photos</a></li>
+				<li><a href="{{ route('albums.index') }}">Manage Album</a></li>
+			</ul>
+		</li>
     
 		<li class="header">Wedding</li>
 

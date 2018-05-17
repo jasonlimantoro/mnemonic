@@ -1,32 +1,39 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\GenericController as Controller;
 
+use App\Http\Controllers\GenericController as Controller;
 use Illuminate\Http\Request;
-use App\Filters\CarouselFilter;
-use App\CarouselImage;
 use App\Carousel;
 use App\Image;
 
 class CarouselImagesController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
+        $this->middleware('can:read-carousel-image');
+        $this->middleware('can:create-carousel-image')->only(['create', 'store']);
+        $this->middleware('can:update-carousel-image')->only(['edit', 'update']);
+        $this->middleware('can:delete-carousel-image')->only('destroy');
+
         // All uploaded images
         $this->images = Image::where('imageable_type', Carousel::class)->oldest()->get();
     }
-    public function index(Carousel $carousel) {
 
+    public function index(Carousel $carousel)
+    {
         $images = $carousel->images()->oldest()->get();
 
         return view('backend.website.carousel.index', compact('images'));
     }
 
-    public function create() {
+    public function create()
+    {
         return view('backend.website.carousel.create');
     }
 
-    public function store(Request $request, Carousel $carousel) {
+    public function store(Request $request, Carousel $carousel)
+    {
         $rules = [
             'image' => 'required_if:gallery_image,""|image'
         ];
@@ -35,44 +42,47 @@ class CarouselImagesController extends Controller
         ];
         $this->validate($request, $rules, $customMessages);
 
-		$image = Image::handleUpload($request)
-						->addTo($carousel);
+        $image = Image::handleUpload($request)
+                        ->addTo($carousel);
 
-		$image->update(request(['caption']));
+        $image->update(request(['caption']));
 
         $this->flash('Image is successfully uploaded to the carousel!');
         return redirect()->route('carousels.index', ['carousel' => 1]);
     }
 
-    public function show(Carousel $carousel, Image $image) {
-        return view('backend.website.carousel.show', compact('image')); }
+    public function show(Carousel $carousel, Image $image)
+    {
+        return view('backend.website.carousel.show', compact('image'));
+    }
 
-    public function edit(Carousel $carousel, Image $image) {
+    public function edit(Carousel $carousel, Image $image)
+    {
         return view('backend.website.carousel.edit', compact('image'));
     }
 
-    public function update(Request $request, Carousel $carousel, Image $image) {
+    public function update(Request $request, Carousel $carousel, Image $image)
+    {
         $rules = [
             'image' => 'image',
         ];
         $this->validate($request, $rules);
 
-        if($carouselImage = Image::handleUpload($request)){
+        if ($carouselImage = Image::handleUpload($request)) {
             $carouselImage->addTo($carousel, $image);
         }
 
-		$image->update(request(['caption']));
-
+        $image->update(request(['caption']));
 
         $this->flash('Updated successfully!');
 
         return back();
     }
 
-    public function destroy(Carousel $carousel, Image $image) {
-
+    public function destroy(Carousel $carousel, Image $image)
+    {
         $carousel->removeImage($image);
-        
+
         $this->flash('Image is successfully removed from the carousel!');
 
         return back();

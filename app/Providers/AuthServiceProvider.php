@@ -22,8 +22,29 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerPolicies();
+		$this->registerPolicies();
+		
+		$this->registerCarouselImagesPolicies();
 
-        //
-    }
+	}
+	
+	public function registerCarouselImagesPolicies()
+	{
+		Gate::define('create-carousel-image', function($user){
+			return in_array('create', $user->permissibles('carousel images'));
+		});
+	
+		Gate::define('read-carousel-image', function($user){
+			return in_array('read', $user->permissibles('carousel images'));
+		});
+	
+		Gate::define('update-carousel-image', function($user){
+			return in_array('update', $user->permissibles('carousel images'));
+		});
+	
+		Gate::define('delete-carousel-image', function($user){
+			return in_array('delete', $user->permissibles('carousel images'));
+		});
+	
+	}
 }
