@@ -33,10 +33,10 @@ $factory->define(Permission::class, function (Faker $faker) {
 $factory->state(Permission::class, 'complete', function(Faker $faker){
 	return [
 		'action' => [
-			'create' => $faker->randomElement([true, false]),
-			'read' => $faker->randomElement([true, false]),
-			'update' => $faker->randomElement([true, false]),
-			'delete' => $faker->randomElement([true, false]),
+			'create',
+			'read',
+			'update',
+			'delete',
 		]
 	];
 });
