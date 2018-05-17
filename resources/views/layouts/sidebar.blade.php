@@ -11,7 +11,7 @@
     <li><a href="{{ route('admin') }}">Dashboard</a></li>
     <li class="header">Website</li>
 		<li><a href="{{ route('carousel.images.index', ['carousel' => 1]) }}">Main Carousel</a></li>
-		@can('view', App\Post::class)
+		@can('read', App\Post::class)
 			<li>
 				<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
 					<i class="glyphicon glyphicon-duplicate"></i>
