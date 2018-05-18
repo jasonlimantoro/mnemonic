@@ -178,7 +178,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
 		App\Providers\RouteServiceProvider::class,
-		App\Providers\FormMacroServiceProvider::class
+		App\Providers\FormMacroServiceProvider::class,
+		App\Providers\BladeServiceProvider::class,
 
     ],
 
