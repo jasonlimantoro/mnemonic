@@ -5,14 +5,16 @@
     <div class="col-md-12">
       @component('layouts.panel', [
         'title' => "Categories"
-      ])
-        @slot('addButton')
-          @component('layouts.addButton', [
-            'url' => route('categories.create'),
-            'item' => 'Categories'
-          ])
-          @endcomponent
-        @endslot
+			])
+				@can('create', App\Category::class)
+					@slot('addButton')
+						@component('layouts.addButton', [
+							'url' => route('categories.create'),
+							'item' => 'Categories'
+						])
+						@endcomponent
+					@endslot
+				@endcan
 
 				@slot('body')
 					@component('layouts.query', [

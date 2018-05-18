@@ -63,7 +63,10 @@
 				@can('read', App\Vendor::class)
 					<li><a href="{{ route('vendors.index') }}">Vendor Lists</a></li>
 				@endcan
-				<li><a href="{{ route('categories.index') }}">Manage Categories</a></li>
+
+				@can('read', App\Category::class)
+					<li><a href="{{ route('categories.index') }}">Manage Categories</a></li>
+				@endcan
       </ul>
 		</li>
 

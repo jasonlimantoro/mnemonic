@@ -17,6 +17,7 @@ class AuthServiceProvider extends ServiceProvider
 		\App\Event::class => \App\Policies\EventPolicy::class,
 		\App\BridesBest::class => \App\Policies\BridesBestPolicy::class,
 		\App\Vendor::class => \App\Policies\VendorPolicy::class,
+		\App\Category::class => \App\Policies\CategoryPolicy::class,
     ];
 
     /**
