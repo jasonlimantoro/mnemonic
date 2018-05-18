@@ -3,13 +3,15 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
+			@component('layouts.breadcrumb', ['current' => 'Main Carousel'])
+			@endcomponent
       @component('layouts.panel', [
         'title' => "Add an Image"
       ])
-        @slot('backButton')
+				@slot('backButton')
           @component('layouts.backButton', [
-            'text' => 'Back',
-            'url' => route('carousels.index', ['carousel' => 1]),
+            'text' => 'All Carousel Images',
+            'url' => route('carousel.images.index', ['carousel' => 1]),
           ])
           @endcomponent
         @endslot

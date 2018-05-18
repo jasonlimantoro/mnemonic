@@ -3,12 +3,14 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
+			@component('layouts.breadcrumb', ['current' => 'Main Carousel'])
+			@endcomponent
       @component('layouts.panel', [
         'title' => "Main Carousel"
       ])
         @slot('backButton')
           @component('layouts.backButton', [
-            'text' => 'Back',
+            'text' => 'All Carousel Images',
             'url' => route('carousel.images.index', ['carousel' => 1]),
           ])
           @endcomponent

@@ -3,17 +3,20 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
+			@component('layouts.breadcrumb', ['current' => 'Main Carousel'])
+			@endcomponent
       @component('layouts.panel', [
         'title' => "Main Carousel"
-      ])
-        @slot('addButton')
-          @component('layouts.addButton', [
-            'item' => 'Images', 
-            'url' => route('carousel.images.create', ['carousel' => 1])
-          ])
-          @endcomponent
-        @endslot
-
+			])
+				@can('create-carousel-image')
+					@slot('addButton')
+						@component('layouts.addButton', [
+							'item' => 'Images', 
+							'url' => route('carousel.images.create', ['carousel' => 1])
+						])
+						@endcomponent
+					@endslot
+				@endcan
         @slot('body')
           <h3>Your Carousel Images</h3>
 					@component('layouts.table')
