@@ -82,6 +82,11 @@ class User extends Authenticatable
                     ->save();
 	}
 
+	public function isAdmin()
+	{
+		return $this->role->name === 'admin';
+	}
+
 	public function permissions()
 	{
 		return $this->role->permissions();
