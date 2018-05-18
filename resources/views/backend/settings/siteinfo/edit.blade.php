@@ -1,6 +1,8 @@
 @extends('layouts.submaster')
 
 @section('content')
+	@component('layouts.breadcrumb', ['current' => 'Site Info'])
+	@endcomponent
   @component('layouts.panel', ['title' => 'Settings'])
     @slot('body')
 			{{ Form::open(['route' => 'siteinfo.update', 'method' => 'PATCH', 'enctype' => 'multipart/form-data']) }}
