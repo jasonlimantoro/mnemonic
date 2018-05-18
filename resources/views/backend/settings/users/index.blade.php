@@ -6,13 +6,15 @@
       @component('layouts.panel', [
         'title' => "Users"
       ])
-        @slot('addButton')
-          @component('layouts.addButton', [
-            'url' => route('users.create'),
-            'item' => 'Users'
-          ])
-          @endcomponent
-        @endslot
+				@can('create', App\User::class)
+					@slot('addButton')
+						@component('layouts.addButton', [
+							'url' => route('users.create'),
+							'item' => 'Users'
+						])
+						@endcomponent
+					@endslot
+				@endcan
 
 				@slot('body')
 					@component('layouts.query', [

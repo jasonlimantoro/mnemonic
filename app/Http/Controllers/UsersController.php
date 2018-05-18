@@ -15,6 +15,11 @@ class UsersController extends Controller
 	
 	public function __construct(Role $roles)
 	{
+		$this->middleware('can:read,App\User');
+		$this->middleware('can:create,App\User')->only(['create', 'store']);
+		$this->middleware('can:update,App\User')->only(['edit', 'update']);
+		$this->middleware('can:delete,App\User')->only('destroy');
+
 		$this->roles = $roles;
 		$this->rolesToArray = $this->roles->pluck('name', 'id')->toArray();
 	}

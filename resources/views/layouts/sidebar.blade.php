@@ -90,10 +90,14 @@
     <li>
       <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false"> Admin & Roles </a>
       <ul class="collapse list-unstyled" id="adminSubmenu">
-        <li> <a href="{{ route('users.index') }}">Manage Users</a> </li>
-        <li> <a href="{{ route('roles.index') }}">Manage Roles</a> </li>
+				@can('read', App\User::class)
+					<li><a href="{{ route('users.index') }}">Manage Users</a></li>
+				@endcan
+
+				@can('read', App\Role::class)
+					<li><a href="{{ route('roles.index') }}">Manage Roles</a></li>
+				@endcan
       </ul>
 		</li>
-		
   </ul>
 </nav>
