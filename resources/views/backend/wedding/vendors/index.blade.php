@@ -6,13 +6,15 @@
       @component('layouts.panel', [
         'title' => "Vendors"
       ])
-        @slot('addButton')
-          @component('layouts.addButton', [
-            'url' => route('vendors.create'),
-            'item' => 'Vendor'
-          ])
-          @endcomponent
-        @endslot
+				@can('create', App\Vendor::class)
+					@slot('addButton')
+						@component('layouts.addButton', [
+							'url' => route('vendors.create'),
+							'item' => 'Vendor'
+						])
+						@endcomponent
+					@endslot
+				@endcan
 
 				@slot('body')
 					@component('layouts.query', [

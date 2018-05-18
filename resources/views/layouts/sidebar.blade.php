@@ -60,7 +60,9 @@
 		<li>
       <a href="#vendorSubMenu" data-toggle="collapse" aria-expanded="false">Vendors</a>
       <ul class="collapse list-unstyled" id="vendorSubMenu">
-				<li><a href="{{ route('vendors.index') }}">Vendor Lists</a></li>
+				@can('read', App\Vendor::class)
+					<li><a href="{{ route('vendors.index') }}">Vendor Lists</a></li>
+				@endcan
 				<li><a href="{{ route('categories.index') }}">Manage Categories</a></li>
       </ul>
 		</li>
