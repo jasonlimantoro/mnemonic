@@ -3,12 +3,14 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
+			@component('layouts.breadcrumb', ['current' => 'RSVP'])
+			@endcomponent
       @component('layouts.panel', [
         'title' => "Edit a RSVP"
       ])
         @slot('backButton')
           @component('layouts.backButton', [
-            'text' => 'Show all RSVPs',
+            'text' => 'All RSVPs',
             'url' => route('rsvps.index')
           ])
           @endcomponent
