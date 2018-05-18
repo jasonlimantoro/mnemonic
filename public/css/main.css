@@ -8373,7 +8373,7 @@ button.close {
 }
 
 h1 {
-  font-size: 350%;
+  font-size: 300%;
 }
 
 h2 {
@@ -8807,6 +8807,11 @@ span {
   height: 100%;
   display: initial;
   left: 0;
+}
+
+.web-container:before,
+.web-container:after {
+  content: " ";
 }
 
 .home-container,

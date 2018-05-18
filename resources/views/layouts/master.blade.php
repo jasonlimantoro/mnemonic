@@ -18,11 +18,11 @@
 
     @if(Route::current()->getName() !== 'login' and Route::current()->getName() !== 'register' )
       {{--  Front end navigation  --}}
-      @include('layouts.navbar')
+			@include('layouts.navbar')
 
     @endif
     
-    <div class="container-fluid web-container">
+    <div class="container-fluid">
       @yield('content')
     </div>
 

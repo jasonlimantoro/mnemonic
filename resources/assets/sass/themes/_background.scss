@@ -14,6 +14,9 @@
 		display: initial;
 		left: 0;
 	}
+	&:before, &:after {
+		content: " ";
+	}
 }
 
 // to keep the page at the top of the stack 
