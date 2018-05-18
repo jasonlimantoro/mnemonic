@@ -17,7 +17,6 @@ class PermissionsTableSeeder extends Seeder
             'carousel images',
             'post',
             'gallery',
-            'album',
             'couple',
             'event',
             'bridesmaid_bestman',
@@ -34,8 +33,6 @@ class PermissionsTableSeeder extends Seeder
 		$complete = [
 			'carousel images',
 			'post',
-			'gallery',
-			'album',
 			'event',
 			'bridesmaid_bestman',
 			'vendor',
@@ -52,11 +49,17 @@ class PermissionsTableSeeder extends Seeder
 			'site_seo',
 		];
 
+		$manageable = [
+			'gallery'
+		];
+
 		foreach ($states as $state) {
 			if(in_array($state, $complete)){
 				factory(Permission::class)->states('complete', $state)->create();
 			} else if (in_array($state, $incomplete)){
 				factory(Permission::class)->states('incomplete', $state)->create();
+			} else if (in_array($state, $manageable)){
+				factory(Permission::class)->states('manageable', $state)->create();
 			}
 		}
     }

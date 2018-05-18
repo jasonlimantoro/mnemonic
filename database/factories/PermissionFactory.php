@@ -9,7 +9,6 @@ $factory->define(Permission::class, function (Faker $faker) {
             'carousel images',
             'post',
             'gallery',
-            'album',
             'couple',
             'event',
             'bridesmaid_bestman',
@@ -30,25 +29,25 @@ $factory->define(Permission::class, function (Faker $faker) {
     ];
 });
 
-$factory->state(Permission::class, 'complete', function(Faker $faker){
-	return [
-		'action' => [
-			'create',
-			'read',
-			'update',
-			'delete',
-		]
-	];
-});
+$factory->state(Permission::class, 'complete', [
+	'action' => [
+		'create',
+		'read',
+		'update',
+		'delete',
+	]
+]);
 
-$factory->state(Permission::class, 'incomplete', function(Faker $faker){
-	return [
-		'action' => [
-			'read',
-			'update',
-		]
-	];
-});
+$factory->state(Permission::class, 'incomplete',[
+	'action' => [
+		'read',
+		'update',
+	]
+]); 
+
+$factory->state(Permission::class, 'manageable', [
+	'action' => ['manage']
+]);
 
 $factory->state(Permission::class, 'post', [
 	'name' => 'post'
@@ -60,10 +59,6 @@ $factory->state(Permission::class, 'gallery', [
 
 $factory->state(Permission::class, 'carousel images', [
 	'name' => 'carousel images'
-]);
-
-$factory->state(Permission::class, 'album', [
-	'name' => 'album'
 ]);
 
 $factory->state(Permission::class, 'couple', [
