@@ -9,6 +9,13 @@ use App\Http\Controllers\GenericController as Controller;
 
 class EventsController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('can:read,App\Event');
+		$this->middleware('can:create,App\Event')->only(['create', 'store']);
+		$this->middleware('can:update,App\Event')->only(['edit', 'update']);
+		$this->middleware('can:delete,App\Event')->only('destroy');
+	}
     /**
      * Display a listing of the resource.
      *

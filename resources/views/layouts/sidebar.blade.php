@@ -46,7 +46,10 @@
 				@can('read', App\Couple::class)
 					<li><a href="{{ route('couple.edit') }}">Couple</a></li>
 				@endcan
-        <li> <a href="{{ route('events.index') }}">Event</a> </li>
+
+				@can('read', App\Event::class)
+					<li><a href="{{ route('events.index') }}">Event</a></li>
+				@endcan
         <li> <a href="{{ route('bridesmaid-bestmans.index') }}">Bridesmaid & Bestman</a> </li>
 			</ul>
 		</li>

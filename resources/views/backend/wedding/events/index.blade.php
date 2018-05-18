@@ -5,14 +5,16 @@
     <div class="col-md-12">
       @component('layouts.panel', [
         'title' => "Event"
-      ])
-        @slot('addButton')
-          @component('layouts.addButton', [
-            'url' => route('events.create'),
-            'item' => 'event'
-          ])
-          @endcomponent
-        @endslot
+			])
+				@can('create', App\Event::class)
+					@slot('addButton')
+						@component('layouts.addButton', [
+							'url' => route('events.create'),
+							'item' => 'event'
+						])
+						@endcomponent
+					@endslot
+				@endcan
 
 				@slot('body')
 					@component('layouts.query', [
