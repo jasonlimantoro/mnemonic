@@ -3,12 +3,14 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
+			@component('layouts.breadcrumb', ['current' => 'Albums'])
+			@endcomponent
       @component('layouts.panel', [
         'title' => 'Create a new album'
       ])
         @slot('backButton')
           @component('layouts.backButton', [
-            'text' => 'Show all albums',
+            'text' => 'All Albums',
             'url' => route('albums.index')
           ])
           @endcomponent
