@@ -3,12 +3,14 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
+			@component('layouts.breadcrumb', ['current' => 'Vendors'])
+			@endcomponent
       @component('layouts.panel', [
         'title' => "Edit a vendor"
       ])
         @slot('backButton')
           @component('layouts.backButton', [
-            'text' => 'Show all vendors',
+            'text' => 'All Vendors',
             'url' => route('vendors.index')
           ])
             

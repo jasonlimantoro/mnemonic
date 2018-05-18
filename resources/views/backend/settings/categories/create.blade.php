@@ -3,12 +3,14 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
+			@component('layouts.breadcrumb', ['current' => 'Vendor Categories'])
+			@endcomponent
       @component('layouts.panel', [
         'title' => "Create a new category"
       ])
         @slot('backButton')
           @component('layouts.backButton', [
-            'text' => 'Show all categories',
+            'text' => 'All Categories',
             'url' => route('categories.index')
           ])
             
