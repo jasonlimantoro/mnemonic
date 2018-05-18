@@ -9,6 +9,13 @@ use App\Http\Controllers\GenericController as Controller;
 
 class RolesController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('can:read,App\Role');
+		$this->middleware('can:create,App\Role')->only(['create', 'store']);
+		$this->middleware('can:update,App\Role')->only(['edit', 'update']);
+		$this->middleware('can:delete,App\Role')->only('destroy');	
+	}
     /**
      * Display a listing of the resource.
      *

@@ -5,15 +5,16 @@
     <div class="col-md-12">
       @component('layouts.panel', [
         'title' => "Roles"
-      ])
-        @slot('addButton')
-          @component('layouts.addButton', [
-            'url' => route('roles.create'),
-            'item' => 'Roles'
-          ])
-          @endcomponent
-        @endslot
-
+			])
+				@can('create', App\Role::class)
+					@slot('addButton')
+						@component('layouts.addButton', [
+							'url' => route('roles.create'),
+							'item' => 'Roles'
+						])
+						@endcomponent
+					@endslot
+				@endcan
 				@slot('body')
 					@component('layouts.query', [
 						'title' => 'Name',
