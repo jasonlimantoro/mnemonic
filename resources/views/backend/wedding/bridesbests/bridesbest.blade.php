@@ -15,46 +15,53 @@
     {{ $b->testimony }}
   </td>
   <td class="text-center">
-    <div>
-      <a 
-        href="{{ route('bridesmaid-bestmans.show', ['bridesmaid-bestman' => $b->id ]) }}" 
-        id="ShowIcon" 
-        class="__react-root" 
-        role="button"
-        data-toggle="tooltip"
-        title="See info about this bridesmaid-bestman"
-        data-placement="top"
-        >
-      </a>
-    </div>
-    <div>
-      <a 
-        href="{{ route('bridesmaid-bestmans.edit', ['bridesmaid-bestman' => $b->id ]) }}" 
-        id="EditIcon" 
-        class="__react-root" 
-        role="button"
-        data-toggle="tooltip"
-        title="Edit this bridesmaid-bestman"
-        data-placement="top"
-        >
-      </a>
-    </div>
-    <div>
+		@can('read', App\BridesBest::class)
+			<div>
+				<a 
+					href="{{ route('bridesmaid-bestmans.show', ['bridesmaid-bestman' => $b->id ]) }}" 
+					id="ShowIcon" 
+					class="__react-root" 
+					role="button"
+					data-toggle="tooltip"
+					title="See info about this bridesmaid-bestman"
+					data-placement="top"
+					>
+				</a>
+			</div>
+		@endcan
 
-    <form action="{{ route('bridesmaid-bestmans.destroy', [ 'bridesmaid-bestman' => $b->id ]) }}" method="POST" id={{ "form-delete-bridesmaid-bestmans-" . $b->id  }}>
-      {{ method_field('DELETE') }}
-      <a 
-        href="" 
-        id="DeleteIcon" 
-        class="__react-root" 
-        data-form="bridesmaid-bestmans-{{ $b->id }}"
-        role="button"
-        data-toggle="tooltip"
-        title="Delete this bridesmaid-bestman"
-        data-placement="top"
-        >
-      </a>
-    </form>
-    </div>
+		@can('update', App\BridesBest::class)
+			<div>
+				<a 
+					href="{{ route('bridesmaid-bestmans.edit', ['bridesmaid-bestman' => $b->id ]) }}" 
+					id="EditIcon" 
+					class="__react-root" 
+					role="button"
+					data-toggle="tooltip"
+					title="Edit this bridesmaid-bestman"
+					data-placement="top"
+					>
+				</a>
+			</div>
+		@endcan
+
+		@can('delete', App\BridesBest::class)
+			<div>
+			<form action="{{ route('bridesmaid-bestmans.destroy', [ 'bridesmaid-bestman' => $b->id ]) }}" method="POST" id={{ "form-delete-bridesmaid-bestmans-" . $b->id  }}>
+				{{ method_field('DELETE') }}
+				<a 
+					href="" 
+					id="DeleteIcon" 
+					class="__react-root" 
+					data-form="bridesmaid-bestmans-{{ $b->id }}"
+					role="button"
+					data-toggle="tooltip"
+					title="Delete this bridesmaid-bestman"
+					data-placement="top"
+					>
+				</a>
+			</form>
+			</div>
+		@endcan
   </td>
 </tr>

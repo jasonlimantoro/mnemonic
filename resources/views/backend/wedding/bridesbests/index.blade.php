@@ -5,15 +5,17 @@
     <div class="col-md-12">
       @component('layouts.panel', [
         'title' => 'Bridesmaid and Bestman'
-      ])
-        @slot('addButton') 
-          @component('layouts.addButton', [
-            'item' => 'Bridesmaid / Bestman',
-            'url' => route('bridesmaid-bestmans.create')
-          ])
-          @endcomponent
-          
-        @endslot
+			])
+				@can('create', App\BridesBest::class)
+					@slot('addButton') 
+						@component('layouts.addButton', [
+							'item' => 'Bridesmaid / Bestman',
+							'url' => route('bridesmaid-bestmans.create')
+						])
+						@endcomponent
+						
+					@endslot
+				@endcan
 				@slot('body')
 					@component('layouts.query', [
 						'title' => 'Name',

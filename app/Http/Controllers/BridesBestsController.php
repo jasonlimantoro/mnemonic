@@ -9,6 +9,13 @@ use App\Http\Controllers\GenericController as Controller;
 
 class BridesBestsController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('can:read,App\BridesBest');
+		$this->middleware('can:create,App\BridesBest')->only(['create', 'store']);
+		$this->middleware('can:update,App\BridesBest')->only(['edit', 'update']);
+		$this->middleware('can:delete,App\BridesBest')->only('destroy');
+	}
     /**
      * Display a listing of the resource.
      *
