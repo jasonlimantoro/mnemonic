@@ -1,11 +1,13 @@
 @extends('layouts.submaster')
 
 @section('content')
-<div class="row">
-    <div class="col-md-12">
-      @component('layouts.panel', [
-        'title' => "Users"
-      ])
+	<div class="row">
+		<div class="col-md-12">
+			@component('layouts.breadcrumb', ['current' => 'Users'])
+			@endcomponent
+			@component('layouts.panel', [
+				'title' => "Users"
+			])
 				@can('create', App\User::class)
 					@slot('addButton')
 						@component('layouts.addButton', [
@@ -23,24 +25,24 @@
 					])
 							
 					@endcomponent
-          @component('layouts.table')
-            @slot('tableHeader')
+					@component('layouts.table')
+						@slot('tableHeader')
 							<tr>
 								<th class="col title">Name</th>
 								<th class="col body">Role</th>
 								<th class="col action">Action</th>
 							</tr>
-            @endslot
-        
-            @slot('tableBody')
-              @foreach($users as $user)
-                @include('backend.settings.users.user')
-              @endforeach
-            @endslot
-        
-          @endcomponent
-        @endslot
-      @endcomponent
-    </div>
-  </div>
+						@endslot
+				
+						@slot('tableBody')
+							@foreach($users as $user)
+								@include('backend.settings.users.user')
+							@endforeach
+						@endslot
+				
+					@endcomponent
+				@endslot
+			@endcomponent
+		</div>
+	</div>
 @endsection

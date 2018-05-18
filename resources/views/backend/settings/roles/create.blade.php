@@ -2,16 +2,16 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-12">
-      @component('layouts.panel', [
-        'title' => "Edit Role"
+	<div class="col-md-12">
+		@component('layouts.panel', [
+			'title' => "Edit Role"
+		])
+		@slot('backButton')
+			@component('layouts.backButton', [
+				'text' => 'All roles',
+				'url' => route('roles.index')
 			])
-			@slot('backButton')
-				@component('layouts.backButton', [
-					'text' => 'Show all roles',
-					'url' => route('roles.index')
-				])
-				@endcomponent
+			@endcomponent
 			@endslot
 				@slot('body')
 					{{ Form::open(['route' => 'roles.store']) }}
@@ -19,6 +19,6 @@
 					{{ Form::close() }}
         @endslot
       @endcomponent
-    </div>
-  </div>
+	</div>
+</div>
 @endsection
