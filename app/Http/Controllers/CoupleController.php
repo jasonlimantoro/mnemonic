@@ -9,46 +9,13 @@ use App\Image;
 
 class CoupleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Couple  $couple
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Couple $couple)
-    {
-        //
-    }
+	
+	public function __construct()
+	{
+		$this->middleware('can:read,App\Couple')->only('edit');
+		$this->middleware('can:update,App\Couple')->only('update');
+	}
 
     /**
      * Show the form for editing the specified resource.
@@ -77,16 +44,6 @@ class CoupleController extends Controller
         $this->flash('Couple information is successfully updated!');
 
         return back();
-    }
+	}
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Couple  $couple
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Couple $couple)
-    {
-        //
-    }
 }

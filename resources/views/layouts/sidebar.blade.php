@@ -43,7 +43,9 @@
     <li>
       <a href="#weddingSubmenu" data-toggle="collapse" aria-expanded="false"> Your Wedding Day </a>
       <ul class="collapse list-unstyled" id="weddingSubmenu">
-        <li> <a href="{{ route('couple.edit') }}">Couple</a> </li>
+				@can('read', App\Couple::class)
+					<li><a href="{{ route('couple.edit') }}">Couple</a></li>
+				@endcan
         <li> <a href="{{ route('events.index') }}">Event</a> </li>
         <li> <a href="{{ route('bridesmaid-bestmans.index') }}">Bridesmaid & Bestman</a> </li>
 			</ul>

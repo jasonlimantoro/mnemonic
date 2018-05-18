@@ -16,3 +16,9 @@
 		</div>
 	</div>
 @endsection
+
+@section('scripts')
+<script>
+	let canUpdate = {{ auth()->user()->can('update', 'App\Couple') == 1 ? 1 : 0 }}
+</script>
+@endsection

@@ -9481,11 +9481,11 @@ var CoupleTabs = function (_React$Component2) {
                     placeholder: coupleRole + " mother name"
                   })
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                canUpdate ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   "div",
                   { className: "form-group" },
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__Button__["b" /* PrimaryButton */], { type: "submit", text: "Publish" })
-                )
+                ) : ''
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "div",
