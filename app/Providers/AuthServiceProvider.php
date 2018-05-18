@@ -13,14 +13,14 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
 		\App\Post::class => \App\Policies\PostPolicy::class,
-		\App\Couple::class => \App\Policies\CouplePolicy::class,
-		\App\Event::class => \App\Policies\EventPolicy::class,
-		\App\BridesBest::class => \App\Policies\BridesBestPolicy::class,
-		\App\Vendor::class => \App\Policies\VendorPolicy::class,
-		\App\Category::class => \App\Policies\CategoryPolicy::class,
 		\App\RSVP::class => \App\Policies\RSVPPolicy::class,
 		\App\User::class => \App\Policies\UserPolicy::class,
 		\App\Role::class => \App\Policies\RolePolicy::class,
+		\App\Event::class => \App\Policies\EventPolicy::class,
+		\App\Couple::class => \App\Policies\CouplePolicy::class,
+		\App\Vendor::class => \App\Policies\VendorPolicy::class,
+		\App\Category::class => \App\Policies\CategoryPolicy::class,
+		\App\BridesBest::class => \App\Policies\BridesBestPolicy::class,
     ];
 
     /**
