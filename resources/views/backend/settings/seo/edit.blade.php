@@ -22,10 +22,12 @@
 					{{ Form::textarea('g_script', optional($seo)->g_script, ['class' => 'form-control', 'placeholder' => 'Enter Google Analytics Script']) }}
 				</div>
 				
-				{{-- Submit Button --}}
-				<div class="form-group">
-					{{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
-				</div>
+				@can('update-site-seo')
+					{{-- Submit Button --}}
+					<div class="form-group">
+						{{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
+					</div>
+				@endcan
 
 			{{ Form::close() }}
 

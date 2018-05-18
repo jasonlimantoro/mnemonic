@@ -65,17 +65,17 @@ Route::group([
         Route::post('rsvps/{rsvp}/remind', 'RSVPController@remind')->name('rsvps.remind');
     });
 
-    // settings
-    Route::get('settings/edit', 'SiteInfoController@edit')->name('siteinfo.edit');
-    Route::patch('settings', 'SiteInfoController@update')->name('siteinfo.update');
+    // site-info
+    Route::get('settings/edit', 'SiteInfoController@edit')->name('siteinfo.edit')->middleware('can:read-site-info');
+    Route::patch('settings', 'SiteInfoController@update')->name('siteinfo.update')->middleware('can:update-site-info');
 
-	// Social Media
-	Route::get('social-media/edit', 'SocialController@edit')->name('socials.edit');
-	Route::patch('social-media', 'SocialController@update')->name('socials.update');
+	// site-social
+	Route::get('social-media/edit', 'SocialController@edit')->name('socials.edit')->middleware('can:read-site-social');
+	Route::patch('social-media', 'SocialController@update')->name('socials.update')->middleware('can:update-site-social');
 
-	// SEO
-	Route::get('seo/edit', 'SEOController@edit')->name('seo.edit');
-	Route::patch('seo', 'SEOController@update')->name('seo.update');
+	// site-seo
+	Route::get('seo/edit', 'SEOController@edit')->name('seo.edit')->middleware('can:read-site-seo');
+	Route::patch('seo', 'SEOController@update')->name('seo.update')->middleware('can:read-site-seo');
 
 	// Users
 	Route::resource('users', 'UsersController');

@@ -74,10 +74,18 @@
 			<li><a href="{{ route('rsvps.index') }}">RSVP</a></li>
 		@endcan
     
-    <li class="header">Settings</li>
-    <li><a href="{{ route('siteinfo.edit') }}">Site Info</a></li>
-    <li><a href="{{ route('socials.edit') }}">Social Media Info</a></li>
-    <li><a href="{{ route('seo.edit') }}">SEO</a></li>
+		<li class="header">Settings</li>
+		@can('read-site-info')
+			<li><a href="{{ route('siteinfo.edit') }}">Site Info</a></li>
+		@endcan
+
+		@can('read-site-social')
+			<li><a href="{{ route('socials.edit') }}">Social Media Info</a></li>
+		@endcan
+
+		@can('read-site-seo')
+			<li><a href="{{ route('seo.edit') }}">SEO</a></li>
+		@endcan
 
     <li>
       <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false"> Admin & Roles </a>
