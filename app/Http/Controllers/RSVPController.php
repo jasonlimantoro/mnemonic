@@ -15,6 +15,10 @@ class RSVPController extends Controller
 
 	public function __construct(ConfirmsRSVP $confirm)
 	{
+		$this->middleware('can:read,App\RSVP')->except(['confirm']);
+		$this->middleware('can:create,App\RSVP')->only(['create', 'store']);
+		$this->middleware('can:update,App\RSVP')->only(['edit', 'update', 'remind']);
+		$this->middleware('can:delete,App\RSVP')->only('destroy');
 		$this->confirm = $confirm;
 	}
     /**

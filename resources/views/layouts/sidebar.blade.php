@@ -70,7 +70,9 @@
       </ul>
 		</li>
 
-    <li><a href="{{ route('rsvps.index') }}">RSVP</a></li>
+		@can('read', App\RSVP::class)
+			<li><a href="{{ route('rsvps.index') }}">RSVP</a></li>
+		@endcan
     
     <li class="header">Settings</li>
     <li><a href="{{ route('siteinfo.edit') }}">Site Info</a></li>
