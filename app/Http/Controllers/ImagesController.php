@@ -17,10 +17,6 @@ class ImagesController extends Controller
 
     public function __construct(Images $images)
     {
-		$this->middleware('can:read,App\Image');
-		$this->middleware('can:create,App\Image')->only(['create', 'store']);
-		$this->middleware('can:update,App\Image')->only(['edit', 'update']);
-		$this->middleware('can:delete,App\Image')->only('destroy');
         $this->images = $images;
     }
 

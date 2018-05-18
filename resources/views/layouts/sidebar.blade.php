@@ -28,15 +28,15 @@
 			</li>
 		@endcan
 
-		<li>
-			<a href="#galleriesSubmenu" data-toggle="collapse" aria-expanded="false">Galleries</a>
-			<ul class="collapse list-unstyled" id="galleriesSubmenu">
-				@can('read', App\Image::class)
+		@can('manage-gallery')
+			<li>
+				<a href="#galleriesSubmenu" data-toggle="collapse" aria-expanded="false">Galleries</a>
+				<ul class="collapse list-unstyled" id="galleriesSubmenu">
 					<li><a href="{{ route('images.index') }}">View all photos</a></li>
-				@endcan
-				<li><a href="{{ route('albums.index') }}">Manage Album</a></li>
-			</ul>
-		</li>
+					<li><a href="{{ route('albums.index') }}">Manage Album</a></li>
+				</ul>
+			</li>
+		@endcan
     
 		<li class="header">Wedding</li>
 

@@ -12,7 +12,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        \App\Post::class => \App\Policies\PostPolicy::class,
+		\App\Post::class => \App\Policies\PostPolicy::class,
     ];
 
     /**
@@ -23,9 +23,18 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
 		$this->registerPolicies();
+
+		$this->registerGalleryPolicies();
 		
 		$this->registerCarouselImagesPolicies();
 
+	}
+
+	public function registerGalleryPolicies()
+	{
+		Gate::define('manage-gallery', function($user){
+			return in_array('manage', $user->permissibles('gallery'));
+		});
 	}
 	
 	public function registerCarouselImagesPolicies()

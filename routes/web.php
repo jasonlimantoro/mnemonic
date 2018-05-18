@@ -21,20 +21,23 @@ Route::group([
     });
 
     // galleries
-    Route::prefix('gallery')->group(function () {
-        // images
-        Route::resource('images', 'ImagesController');
-        // albums
-        Route::resource('albums', 'AlbumsController');
-
-        // album images
-        Route::prefix('albums/{album}')->group(function () {
-            Route::name('album.')->group(function () {
-                Route::resource('images', 'AlbumImagesController', ['except' => ['index']]);
-                // assigned the route name to album.images.[edit, update, show, ...]
-            });
-        });
-    });
+    Route::group([
+		'prefix' => 'gallery',
+		'middleware' => 'can:manage-gallery'
+	], function (){
+		// images
+		Route::resource('images', 'ImagesController');
+		// albums
+		Route::resource('albums', 'AlbumsController');
+	
+		// album images
+		Route::prefix('albums/{album}')->group(function () {
+			Route::name('album.')->group(function () {
+				Route::resource('images', 'AlbumImagesController', ['except' => ['index']]);
+				// assigned the route name to album.images.[edit, update, show, ...]
+			});
+		});
+	});
 
     // posts
     Route::prefix('/pages/{page}')->group(function () {
