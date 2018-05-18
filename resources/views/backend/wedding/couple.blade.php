@@ -3,6 +3,8 @@
 @section('content')
 	<div class="row">
 		<div class="col-md-12"> 
+			@component('layouts.breadcrumb', ['current' => 'Couple'])
+			@endcomponent
 			@component('layouts.panel', [
 				'title' => "Couple Information"
 			]) 

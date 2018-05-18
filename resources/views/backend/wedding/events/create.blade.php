@@ -3,12 +3,14 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
+			@component('layouts.breadcrumb', ['current' => 'Events'])
+			@endcomponent
       @component('layouts.panel', [
         'title' => "Create a new event"
       ])
         @slot('backButton')
           @component('layouts.backButton', [
-            'text' => 'Show all events',
+            'text' => 'All Events',
             'url' => route('events.index')
           ])
             
