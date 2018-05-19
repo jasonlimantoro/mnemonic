@@ -80,11 +80,11 @@
 		@endcan
 
 		@can('read-site-social')
-			<li><a href="{{ route('socials.edit') }}">Social Media Info</a></li>
+			<li><a href="{{ route('sitesocial.edit') }}">Site Social Media</a></li>
 		@endcan
 
 		@can('read-site-seo')
-			<li><a href="{{ route('seo.edit') }}">SEO</a></li>
+			<li><a href="{{ route('siteseo.edit') }}">Site SEO</a></li>
 		@endcan
 
     <li>

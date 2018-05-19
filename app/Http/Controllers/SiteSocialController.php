@@ -6,7 +6,7 @@ use App\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\GenericController as Controller;
 
-class SocialController extends Controller
+class SiteSocialController extends Controller
 {
     /**
      * Show the form for editing the specified resource.
@@ -17,7 +17,7 @@ class SocialController extends Controller
     {
         $social = Setting::getValueByKey('site-social');
 
-        return view('backend.settings.socials.edit', compact('social'));
+        return view('backend.settings.sitesocial.edit', compact('social'));
     }
 
     /**

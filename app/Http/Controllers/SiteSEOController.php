@@ -6,7 +6,7 @@ use App\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\GenericController as Controller;
 
-class SEOController extends Controller
+class SiteSEOController extends Controller
 {
     /**
      * Show the form for editing the specified resource.
@@ -17,7 +17,7 @@ class SEOController extends Controller
     {
         $seo = Setting::getValueByKey('site-seo');
 
-        return view('backend.settings.seo.edit', compact('seo'));
+        return view('backend.settings.siteseo.edit', compact('seo'));
     }
 
     /**
