@@ -1,0 +1,11 @@
+.box-theme {
+	background: #ba9964;
+    background: -webkit-linear-gradient(right top,#ba9964,#ffeea1,#ba9964);
+    background: linear-gradient(to bottom left,#ba9964,#ffeea1,#ba9964);
+    border: none;
+    margin-top: 15px;
+	color: #493509;
+	&:hover {
+		color: black !important;
+	}
+}

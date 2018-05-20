@@ -8774,6 +8774,19 @@ span {
   border: none !important;
 }
 
+.rsvp-container .rsvp-timer span {
+  width: 150px;
+  border: 2px solid white;
+  border-radius: 15px;
+  font-size: 25pt;
+  padding: 0 15px;
+  margin: 0 15px;
+}
+
+.rsvp-container .rsvp-timer-header {
+  margin-bottom: 40px;
+}
+
 .current-image,
 .new-image {
   border: 1px dotted;
@@ -8790,7 +8803,8 @@ span {
 }
 
 .navbar-frontend,
-.web-container {
+.web-container,
+.background-theme {
   background-color: #fefcf4;
 }
 
@@ -8827,6 +8841,11 @@ span {
   src: url("/fonts/cac_champagne.ttf");
 }
 
+@font-face {
+  font-family: PlayFair;
+  src: url("/fonts/PlayfairDisplay-Regular.otf");
+}
+
 .page-title,
 .font-theme {
   font-family: CacChampagne;
@@ -8834,5 +8853,18 @@ span {
 
 .color-theme {
   color: #ba9964;
+}
+
+.box-theme {
+  background: #ba9964;
+  background: -webkit-gradient(linear, right top, left bottom, from(#ba9964), color-stop(#ffeea1), to(#ba9964));
+  background: linear-gradient(to bottom left, #ba9964, #ffeea1, #ba9964);
+  border: none;
+  margin-top: 15px;
+  color: #493509;
+}
+
+.box-theme:hover {
+  color: black !important;
 }
 
