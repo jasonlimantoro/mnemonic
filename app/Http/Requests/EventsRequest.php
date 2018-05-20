@@ -14,7 +14,7 @@ class EventsRequest extends BaseRequest
         return [
             'name' => 'required',
             'location' => 'required',
-            'datetime' => 'required|date|after:today'
+            'datetime' => 'required|date'
         ];
     }
 }
