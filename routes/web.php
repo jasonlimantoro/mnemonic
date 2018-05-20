@@ -92,6 +92,7 @@ Route::get('/mailable', function () {
 
 // rsvp confirmation
 Route::get('rsvps/{rsvp}/token/{token}/confirm', 'RSVPController@confirm')->name('rsvps.confirm');
+Route::post('rsvps/confirm', 'RSVPController@confirmFromFront')->name('rsvps.confirmFromFront');
 
 /*
     |--------------------------------------------------------------------------
