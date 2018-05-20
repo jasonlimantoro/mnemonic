@@ -4,11 +4,13 @@ import ReactDOM from "react-dom";
 import React from "react";
 import { Search, FancyInput, CoupleForm, SimpleInput, IconAndLogoInput } from './containers/FormContainer';
 import { DeleteIcon, EditIcon, ShowIcon } from "./containers/IconContainer";
+import { RSVPTimer } from "./components/RSVPTimer";
 
 const APPS = {
 	Search, CoupleForm,
 	FancyInput, SimpleInput, 
-  DeleteIcon, EditIcon, ShowIcon, IconAndLogoInput
+	DeleteIcon, EditIcon, ShowIcon, IconAndLogoInput,
+	RSVPTimer
 };
 
 function renderAppInElement(el) {

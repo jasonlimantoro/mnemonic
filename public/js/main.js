@@ -9537,7 +9537,7 @@ var CoupleTabs = function (_React$Component2) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(144);
-module.exports = __webpack_require__(327);
+module.exports = __webpack_require__(328);
 
 
 /***/ }),
@@ -9552,7 +9552,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__containers_FormContainer__ = __webpack_require__(97);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__containers_IconContainer__ = __webpack_require__(325);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_RSVPTimer__ = __webpack_require__(327);
 __webpack_require__(145);
+
 
 
 
@@ -9562,7 +9564,8 @@ __webpack_require__(145);
 var APPS = {
   Search: __WEBPACK_IMPORTED_MODULE_2__containers_FormContainer__["d" /* Search */], CoupleForm: __WEBPACK_IMPORTED_MODULE_2__containers_FormContainer__["a" /* CoupleForm */],
   FancyInput: __WEBPACK_IMPORTED_MODULE_2__containers_FormContainer__["b" /* FancyInput */], SimpleInput: __WEBPACK_IMPORTED_MODULE_2__containers_FormContainer__["e" /* SimpleInput */],
-  DeleteIcon: __WEBPACK_IMPORTED_MODULE_3__containers_IconContainer__["a" /* DeleteIcon */], EditIcon: __WEBPACK_IMPORTED_MODULE_3__containers_IconContainer__["b" /* EditIcon */], ShowIcon: __WEBPACK_IMPORTED_MODULE_3__containers_IconContainer__["c" /* ShowIcon */], IconAndLogoInput: __WEBPACK_IMPORTED_MODULE_2__containers_FormContainer__["c" /* IconAndLogoInput */]
+  DeleteIcon: __WEBPACK_IMPORTED_MODULE_3__containers_IconContainer__["a" /* DeleteIcon */], EditIcon: __WEBPACK_IMPORTED_MODULE_3__containers_IconContainer__["b" /* EditIcon */], ShowIcon: __WEBPACK_IMPORTED_MODULE_3__containers_IconContainer__["c" /* ShowIcon */], IconAndLogoInput: __WEBPACK_IMPORTED_MODULE_2__containers_FormContainer__["c" /* IconAndLogoInput */],
+  RSVPTimer: __WEBPACK_IMPORTED_MODULE_4__components_RSVPTimer__["a" /* RSVPTimer */]
 };
 
 function renderAppInElement(el) {
@@ -59704,6 +59707,127 @@ var InfoIcon = function InfoIcon(props) {
 
 /***/ }),
 /* 327 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RSVPTimer; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var RSVPTimer = function (_React$Component) {
+	_inherits(RSVPTimer, _React$Component);
+
+	function RSVPTimer(props) {
+		_classCallCheck(this, RSVPTimer);
+
+		var _this = _possibleConstructorReturn(this, (RSVPTimer.__proto__ || Object.getPrototypeOf(RSVPTimer)).call(this, props));
+
+		_this.state = {
+			'event': new Date(weddingDate.date),
+			'now': new Date(),
+			'seconds': '',
+			'minutes': '',
+			'hours': '',
+			'days': ''
+		};
+		return _this;
+	}
+
+	_createClass(RSVPTimer, [{
+		key: 'tick',
+		value: function tick() {
+			var now = new Date();
+			var event = this.state.event;
+			var diff = Math.abs(now.getTime() - event.getTime());
+
+			var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+			diff -= days * 1000 * 60 * 60 * 24;
+
+			var hours = Math.floor(diff / (1000 * 60 * 60));
+			diff -= hours * 1000 * 60 * 60;
+
+			var minutes = Math.floor(diff / (1000 * 60));
+			diff -= minutes * 1000 * 60;
+
+			var seconds = Math.floor(diff / 1000);
+
+			this.setState({
+				seconds: seconds, minutes: minutes, hours: hours, days: days, now: now
+			});
+		}
+	}, {
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			var _this2 = this;
+
+			this.timerID = setInterval(function () {
+				return _this2.tick();
+			}, 1000);
+		}
+	}, {
+		key: 'componentWillUnmount',
+		value: function componentWillUnmount() {
+			clearInterval(this.timerID);
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				'div',
+				null,
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					'span',
+					{ className: 'days box-theme' },
+					this.state.days,
+					' ',
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
+					'Days'
+				),
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					'span',
+					{ className: 'hours box-theme' },
+					this.state.hours,
+					' ',
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
+					'Hours'
+				),
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					'span',
+					{ className: 'minutes box-theme' },
+					this.state.minutes,
+					' ',
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
+					'Min'
+				),
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					'span',
+					{ className: 'seconds box-theme' },
+					this.state.seconds,
+					' ',
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
+					'Sec'
+				)
+			);
+		}
+	}]);
+
+	return RSVPTimer;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+/***/ }),
+/* 328 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
