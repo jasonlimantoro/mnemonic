@@ -74,30 +74,30 @@ class AuthServiceProvider extends ServiceProvider
 	public function registerSiteInfoPolicies()
 	{
 		Gate::define('read-site-info', function($user){
-			return in_array('read', $user->permissibles('site_info'));
+			return $user->isAdmin() || in_array('read', $user->permissibles('site_info'));
 		});
 		Gate::define('update-site-info', function($user){
-			return in_array('update', $user->permissibles('site_info'));
+			return $user->isAdmin() || in_array('update', $user->permissibles('site_info'));
 		});
 	}
 
 	public function registerSiteSocialPolicies()
 	{
 		Gate::define('read-site-social', function($user){
-			return in_array('read', $user->permissibles('site_social'));
+			return $user->isAdmin() || in_array('read', $user->permissibles('site_social'));
 		});
 		Gate::define('update-site-social', function($user){
-			return in_array('update', $user->permissibles('site_social'));
+			return $user->isAdmin() || in_array('update', $user->permissibles('site_social'));
 		});
 	}
 
 	public function registerSiteSEOPolicies()
 	{
 		Gate::define('read-site-seo', function($user){
-			return in_array('read', $user->permissibles('site_seo'));
+			return $user->isAdmin() || in_array('read', $user->permissibles('site_seo'));
 		});
 		Gate::define('update-site-seo', function($user){
-			return in_array('update', $user->permissibles('site_seo'));
+			return $user->isAdmin() || in_array('update', $user->permissibles('site_seo'));
 		});
 	}
 }
