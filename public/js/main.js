@@ -1722,13 +1722,13 @@ module.exports = exports['default'];
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__TabContent__ = __webpack_require__(88);
 /* unused harmony reexport TabContent */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__Table__ = __webpack_require__(314);
-/* unused harmony reexport Table */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_62__Table__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__TabPane__ = __webpack_require__(140);
 /* unused harmony reexport TabPane */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__Tabs__ = __webpack_require__(315);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_64__Tabs__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_64__Tabs__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__Thumbnail__ = __webpack_require__(316);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_65__Thumbnail__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return __WEBPACK_IMPORTED_MODULE_65__Thumbnail__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__ToggleButton__ = __webpack_require__(141);
 /* unused harmony reexport ToggleButton */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__ToggleButtonGroup__ = __webpack_require__(317);
@@ -5450,7 +5450,7 @@ var FancyInput = function (_React$Component4) {
           { className: "form-group" },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Button__["b" /* PrimaryButton */], { dusk: this.props.dusk, text: "Upload Image", onClick: this.showModal })
         ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Modal__["a" /* UploadModal */], { show: this.state.modalShow, onHide: this.closeModal, i: this.props.i })
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Modal__["b" /* UploadModal */], { show: this.state.modalShow, onHide: this.closeModal, i: this.props.i })
       );
     }
   }]);
@@ -9400,7 +9400,7 @@ var CoupleTabs = function (_React$Component2) {
     key: "render",
     value: function render() {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["l" /* Tabs */],
+        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["m" /* Tabs */],
         {
           activeKey: this.state.key,
           onSelect: this.handleSelect,
@@ -9553,7 +9553,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__containers_FormContainer__ = __webpack_require__(97);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__containers_IconContainer__ = __webpack_require__(325);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_RSVPTimer__ = __webpack_require__(327);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Modal__ = __webpack_require__(321);
 __webpack_require__(145);
+
 
 
 
@@ -9565,7 +9567,7 @@ var APPS = {
   Search: __WEBPACK_IMPORTED_MODULE_2__containers_FormContainer__["d" /* Search */], CoupleForm: __WEBPACK_IMPORTED_MODULE_2__containers_FormContainer__["a" /* CoupleForm */],
   FancyInput: __WEBPACK_IMPORTED_MODULE_2__containers_FormContainer__["b" /* FancyInput */], SimpleInput: __WEBPACK_IMPORTED_MODULE_2__containers_FormContainer__["e" /* SimpleInput */],
   DeleteIcon: __WEBPACK_IMPORTED_MODULE_3__containers_IconContainer__["a" /* DeleteIcon */], EditIcon: __WEBPACK_IMPORTED_MODULE_3__containers_IconContainer__["b" /* EditIcon */], ShowIcon: __WEBPACK_IMPORTED_MODULE_3__containers_IconContainer__["c" /* ShowIcon */], IconAndLogoInput: __WEBPACK_IMPORTED_MODULE_2__containers_FormContainer__["c" /* IconAndLogoInput */],
-  RSVPTimer: __WEBPACK_IMPORTED_MODULE_4__components_RSVPTimer__["a" /* RSVPTimer */]
+  RSVPTimer: __WEBPACK_IMPORTED_MODULE_4__components_RSVPTimer__["a" /* RSVPTimer */], RSVPModal: __WEBPACK_IMPORTED_MODULE_5__components_Modal__["a" /* RSVPModal */]
 };
 
 function renderAppInElement(el) {
@@ -58443,7 +58445,7 @@ var Table = function (_React$Component) {
 Table.propTypes = propTypes;
 Table.defaultProps = defaultProps;
 
-/* unused harmony default export */ var _unused_webpack_default_export = (Object(__WEBPACK_IMPORTED_MODULE_8__utils_bootstrapUtils__["a" /* bsClass */])('table', Table));
+/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_8__utils_bootstrapUtils__["a" /* bsClass */])('table', Table));
 
 /***/ }),
 /* 315 */
@@ -59138,7 +59140,8 @@ var Well = function (_React$Component) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UploadModal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return UploadModal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RSVPModal; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__ = __webpack_require__(32);
@@ -59160,66 +59163,249 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var UploadModal = function (_React$Component) {
-  _inherits(UploadModal, _React$Component);
+	_inherits(UploadModal, _React$Component);
 
-  function UploadModal(props) {
-    _classCallCheck(this, UploadModal);
+	function UploadModal(props) {
+		_classCallCheck(this, UploadModal);
 
-    var _this = _possibleConstructorReturn(this, (UploadModal.__proto__ || Object.getPrototypeOf(UploadModal)).call(this, props));
+		var _this = _possibleConstructorReturn(this, (UploadModal.__proto__ || Object.getPrototypeOf(UploadModal)).call(this, props));
 
-    _this.state = {
-      file: {},
-      tabKey: "uploads"
-    };
-    _this.changeTab = _this.changeTab.bind(_this);
-    return _this;
-  }
+		_this.state = {
+			file: {},
+			tabKey: "uploads"
+		};
+		_this.changeTab = _this.changeTab.bind(_this);
+		return _this;
+	}
 
-  _createClass(UploadModal, [{
-    key: "changeTab",
-    value: function changeTab(newKey) {
-      this.setState({
-        tabKey: newKey
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* Modal */],
-        _extends({}, this.props, {
-          bsSize: "large",
-          "aria-labelledby": "contained-modal-title-lg"
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* Modal */].Header,
-          { closeButton: true },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* Modal */].Title,
-            { id: "contained-modal-title-lg" },
-            " Media "
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* Modal */].Body,
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Tab__["b" /* MediaTabs */], {
-            tabKey: this.state.tabKey,
-            onSelect: this.changeTab,
-            file: this.state.file,
-            i: this.props.i
-          })
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* Modal */].Footer,
-          null,
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Button__["a" /* DangerButton */], { text: "Done", onClick: this.props.onHide })
-        )
-      );
-    }
-  }]);
+	_createClass(UploadModal, [{
+		key: "changeTab",
+		value: function changeTab(newKey) {
+			this.setState({
+				tabKey: newKey
+			});
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* Modal */],
+				_extends({}, this.props, {
+					bsSize: "large",
+					"aria-labelledby": "contained-modal-title-lg"
+				}),
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* Modal */].Header,
+					{ closeButton: true },
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* Modal */].Title,
+						{ id: "contained-modal-title-lg" },
+						" Media "
+					)
+				),
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* Modal */].Body,
+					null,
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Tab__["b" /* MediaTabs */], {
+						tabKey: this.state.tabKey,
+						onSelect: this.changeTab,
+						file: this.state.file,
+						i: this.props.i
+					})
+				),
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* Modal */].Footer,
+					null,
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Button__["a" /* DangerButton */], { text: "Done", onClick: this.props.onHide })
+				)
+			);
+		}
+	}]);
 
-  return UploadModal;
+	return UploadModal;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+var RSVPModal = function (_React$Component2) {
+	_inherits(RSVPModal, _React$Component2);
+
+	function RSVPModal(props) {
+		_classCallCheck(this, RSVPModal);
+
+		var _this2 = _possibleConstructorReturn(this, (RSVPModal.__proto__ || Object.getPrototypeOf(RSVPModal)).call(this, props));
+
+		_this2.state = {
+			modalShow: true,
+			'rsvp': rsvp
+		};
+		_this2.closeModal = _this2.closeModal.bind(_this2);
+		_this2.showModal = _this2.showModal.bind(_this2);
+		return _this2;
+	}
+
+	_createClass(RSVPModal, [{
+		key: "closeModal",
+		value: function closeModal() {
+			this.setState({
+				modalShow: false
+			});
+		}
+	}, {
+		key: "showModal",
+		value: function showModal() {
+			this.setState({
+				modalShow: true
+			});
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			if (this.state.rsvp !== null) {
+				return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					"div",
+					null,
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* Modal */],
+						{
+							show: this.state.modalShow,
+							onHide: this.closeModal,
+							container: this
+						},
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* Modal */].Header, { closeButton: true }),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["f" /* Modal */].Body,
+							null,
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								"h2",
+								null,
+								"Thank You! Here are the confirmation details"
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								"div",
+								{ className: "row-center" },
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									"div",
+									{ className: "col-xs-12 col-center" },
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["l" /* Table */],
+										null,
+										__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+											"tbody",
+											null,
+											__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+												"tr",
+												null,
+												__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+													"td",
+													null,
+													" RSVP No "
+												),
+												__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+													"td",
+													null,
+													" : #",
+													this.state.rsvp.id.toString().padStart(4, '0'),
+													" "
+												)
+											),
+											__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+												"tr",
+												null,
+												__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+													"td",
+													null,
+													" Attendee "
+												),
+												__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+													"td",
+													null,
+													" : ",
+													this.state.rsvp.name,
+													" "
+												)
+											),
+											this.state.rsvp.table_name ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+												"tr",
+												null,
+												__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+													"td",
+													null,
+													" Name of Table "
+												),
+												__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+													"td",
+													null,
+													" : ",
+													this.state.rsvp.table_name,
+													" "
+												)
+											) : '',
+											__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+												"tr",
+												null,
+												__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+													"td",
+													null,
+													" Table for "
+												),
+												__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+													"td",
+													null,
+													" : ",
+													this.state.rsvp.total_invitation,
+													" "
+												)
+											),
+											__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+												"tr",
+												null,
+												__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+													"td",
+													null,
+													" Email "
+												),
+												__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+													"td",
+													null,
+													" : ",
+													this.state.rsvp.email,
+													" "
+												)
+											),
+											this.state.rsvp.phone ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+												"tr",
+												null,
+												__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+													"td",
+													null,
+													" Phone "
+												),
+												__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+													"td",
+													null,
+													" : ",
+													this.state.rsvp.phone,
+													" "
+												)
+											) : ''
+										)
+									)
+								)
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								"button",
+								{ className: "btn btn-theme dismiss-modal", onClick: this.closeModal },
+								"Ok"
+							)
+						)
+					)
+				);
+			} else {
+				return null;
+			}
+		}
+	}]);
+
+	return RSVPModal;
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 /***/ }),
@@ -59443,7 +59629,7 @@ var ThumbnailGallery = function (_React$Component) {
     value: function render() {
       var isActive = this.props.isActive;
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["m" /* Thumbnail */],
+        __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["n" /* Thumbnail */],
         {
           src: this.props.sourceImage,
           className: isActive ? "thumbnail-gallery active" : "thumbnail-gallery",

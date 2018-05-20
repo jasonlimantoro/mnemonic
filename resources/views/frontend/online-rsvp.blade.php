@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+	@include('jsvar')
 	<div class="web-container">
 		<div class="container rsvp-container text-center">
 			<div class="col-md-12">
@@ -12,14 +13,21 @@
 					<h3 class="form-title"> 
 							Please enter your unique RSVP code below:
 					</h3>
-					{{ Form::open() }}
-						<div class="col-md-4 col-md-offset-4 col-sm-10 col-xs-12">
+					<div class="rsvp-success-modal">
+						<div class="__react-root" id="RSVPModal"></div>
+					</div>
+					
+					
+					{{ Form::open(['route' => 'rsvps.confirmFromFront', 'method' => 'POST']) }}
+					<div class="col-md-4 col-md-offset-4 col-sm-10 col-xs-12">
+							@include('layouts.error')
 							{{-- rsvp field --}}
 							<div class="form-group">
 								{{ Form::label('rsvp', 'RSVP Code:') }}
 								{{ Form::text('rsvp', null, ['class' => 'form-control', 'placeholder' => 'e.g. 0001, 0011']) }}
 							</div>	
 	
+							{!! Recaptcha::render() !!}
 							{{-- Submit Button --}}
 							<div class="form-group">
 								{{ Form::submit('Submit', ['class' => 'btn btn-primary box-theme']) }}
@@ -39,7 +47,6 @@
 						@endif
 					</div>
 
-					@include('jsvar')
 					<div class="__react-root" id="RSVPTimer"></div>
 				</div>
 			</div>

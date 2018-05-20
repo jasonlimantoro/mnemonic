@@ -57,8 +57,11 @@ class FrontendController extends Controller
 		$wedding = Event::byName('wedding');
 		$weddingDate = Event::getDateTimeObjectAttribute($wedding->datetime);
 		$isFuture = Carbon::now()->diffInSeconds($weddingDate, false) > 0;
+
+		$rsvp = request()->session()->get('rsvp', null);
 		JavaScript::put([
 			'weddingDate' => $weddingDate,
+			'rsvp' => $rsvp,
 		]);
         return view('frontend.online-rsvp', compact('wedding', 'isFuture'));
     }
