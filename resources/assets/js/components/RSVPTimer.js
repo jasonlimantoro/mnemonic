@@ -14,28 +14,48 @@ export class RSVPTimer extends React.Component
 			'minutes' : '',
 			'hours': '',
 			'days': '',
+			'years': '',
 		}
+	}
+
+	diffInMilliSeconds(dt1, dt2)
+	{
+		return dt2.getTime() - dt1.getTime();
+	}
+
+	calculateDiffHumans()
+	{
+		let now = new Date();
+		var event = this.state.event;
+		let diff = Math.abs(this.diffInMilliSeconds(event, now));
+	
+		let seconds = Math.floor(diff / 1000);
+		let minutes = Math.floor(seconds / 60);
+		let hours = Math.floor(minutes / 60);
+		let days = Math.floor(hours / 24);
+		let years = Math.floor(days / 365);
+	
+		seconds %= 60;
+		minutes %= 60;
+		hours %= 24;
+		days %= 365;
+
+		return { years, days, hours, minutes, seconds, now };
+
 	}
 
 	tick()
 	{
-		let now = new Date();
-		var event = this.state.event;
-		let diff = Math.abs(now.getTime() - event.getTime());
-
-		let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-		diff -= days * 1000 * 60 * 60 * 24;
-
-		let hours = Math.floor(diff / (1000 * 60 * 60)); 
-		diff	-= hours * 1000 * 60 * 60;
-
-		let minutes = Math.floor(diff / (1000 * 60)); 
-		diff	-= minutes * 1000 * 60;
-
-		let seconds = Math.floor(diff / 1000); 
+		let diffHumans = this.calculateDiffHumans();
+		let seconds = diffHumans.seconds.toString().padStart(2, '0');
+		let minutes = diffHumans.minutes.toString().padStart(2, '0');
+		let hours = diffHumans.hours.toString().padStart(2, '0');
+		let days = diffHumans.days.toString().padStart(3, '0');
+		let years = diffHumans.years;
+		let now = diffHumans.now;
 
 		this.setState({
-			seconds, minutes, hours, days, now
+			seconds, minutes, hours, days, years, now
 		});
 	}
 
@@ -54,6 +74,10 @@ export class RSVPTimer extends React.Component
 	{
 		return (
 			<div>
+			<span className="days box-theme">
+					{this.state.years} <br />
+					Years
+				</span>
 				<span className="days box-theme">
 					{this.state.days} <br />
 					Days

@@ -59740,31 +59740,50 @@ var RSVPTimer = function (_React$Component) {
 			'seconds': '',
 			'minutes': '',
 			'hours': '',
-			'days': ''
+			'days': '',
+			'years': ''
 		};
 		return _this;
 	}
 
 	_createClass(RSVPTimer, [{
-		key: 'tick',
-		value: function tick() {
+		key: 'diffInMilliSeconds',
+		value: function diffInMilliSeconds(dt1, dt2) {
+			return dt2.getTime() - dt1.getTime();
+		}
+	}, {
+		key: 'calculateDiffHumans',
+		value: function calculateDiffHumans() {
 			var now = new Date();
 			var event = this.state.event;
-			var diff = Math.abs(now.getTime() - event.getTime());
-
-			var days = Math.floor(diff / (1000 * 60 * 60 * 24));
-			diff -= days * 1000 * 60 * 60 * 24;
-
-			var hours = Math.floor(diff / (1000 * 60 * 60));
-			diff -= hours * 1000 * 60 * 60;
-
-			var minutes = Math.floor(diff / (1000 * 60));
-			diff -= minutes * 1000 * 60;
+			var diff = Math.abs(this.diffInMilliSeconds(event, now));
 
 			var seconds = Math.floor(diff / 1000);
+			var minutes = Math.floor(seconds / 60);
+			var hours = Math.floor(minutes / 60);
+			var days = Math.floor(hours / 24);
+			var years = Math.floor(days / 365);
+
+			seconds %= 60;
+			minutes %= 60;
+			hours %= 24;
+			days %= 365;
+
+			return { years: years, days: days, hours: hours, minutes: minutes, seconds: seconds, now: now };
+		}
+	}, {
+		key: 'tick',
+		value: function tick() {
+			var diffHumans = this.calculateDiffHumans();
+			var seconds = diffHumans.seconds.toString().padStart(2, '0');
+			var minutes = diffHumans.minutes.toString().padStart(2, '0');
+			var hours = diffHumans.hours.toString().padStart(2, '0');
+			var days = diffHumans.days.toString().padStart(3, '0');
+			var years = diffHumans.years;
+			var now = diffHumans.now;
 
 			this.setState({
-				seconds: seconds, minutes: minutes, hours: hours, days: days, now: now
+				seconds: seconds, minutes: minutes, hours: hours, days: days, years: years, now: now
 			});
 		}
 	}, {
@@ -59787,6 +59806,14 @@ var RSVPTimer = function (_React$Component) {
 			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				'div',
 				null,
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					'span',
+					{ className: 'days box-theme' },
+					this.state.years,
+					' ',
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
+					'Years'
+				),
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 					'span',
 					{ className: 'days box-theme' },
