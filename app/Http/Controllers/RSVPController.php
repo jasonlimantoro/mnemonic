@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\RSVP;
 use App\RSVPToken;
 use App\ConfirmsRSVP;
+use App\Rules\TokenFound;
+use App\Rules\Unconfirmed;
+use Illuminate\Http\Request;
 use App\Http\Requests\RSVPRequest;
 use App\Http\Controllers\GenericController as Controller;
 
@@ -126,5 +129,22 @@ class RSVPController extends Controller
 	{
 		$this->confirm->persist($token);
 		return view('emails.RSVPconfirmed', compact('rsvp'));
+	}
+
+	public function confirmFromFront(Request $request)
+	{
+		$this->validate($request, [
+			'rsvp' => ['bail', 'required', new Unconfirmed, new TokenFound ],
+			'g-recaptcha-response' => 'required|recaptcha',
+		]);
+
+		$id = (int) ($request->rsvp);
+		$rsvp = RSVP::find($id);
+		$token = $rsvp->token;
+		$this->confirm->persist($token);
+
+		$this->flash('RSVP is successfully confirmed!');
+
+		return redirect()->route('front.rsvp')->with('rsvp', $rsvp);
 	}
 }
