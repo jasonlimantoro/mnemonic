@@ -14,7 +14,7 @@ class SocialPage extends BasePage
      */
     public function url()
     {
-        return route('socials.edit');
+        return route('sitesocial.edit');
     }
 
     /**

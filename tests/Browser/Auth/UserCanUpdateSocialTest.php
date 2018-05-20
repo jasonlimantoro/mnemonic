@@ -24,7 +24,7 @@ class UserCanUpdateSocialTest extends Authentication
                     ->fill($data)
                     ->press('Update')
                     ->waitForText('successfully', 2)
-                    ->assertRouteIs('socials.edit')
+                    ->assertRouteIs('sitesocial.edit')
                     ->assertUpdated($data);
         });
     }

@@ -2,6 +2,7 @@
 
 namespace Tests\Browser\Auth;
 
+use App\Role;
 use App\User;
 use App\Setting;
 use Tests\DuskTestCase;
@@ -15,8 +16,13 @@ class Authentication extends DuskTestCase
 
     public function setUp()
     {
-        parent::setUp();
-        $user = factory(User::class)->create();
+		parent::setUp();
+		$admin = factory(Role::class)->states('admin')->create();
+
+		$user = factory(User::class)->create();
+		$user->role()->associate($admin);
+		$user->save();
+
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user);
         });

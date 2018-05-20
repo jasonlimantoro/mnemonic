@@ -16,7 +16,7 @@ class UsersCanUpdateRolesTest extends DuskTestCase
 {
 	use DatabaseMigrations;
 
-    public function testExample()
+    public function testUpdateRolesTest()
     {
 		factory(Permission::class)->states('carousel images', 'complete')->create();
 		factory(Permission::class)->states('couple', 'incomplete')->create();

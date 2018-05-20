@@ -14,7 +14,7 @@ class SEOPage extends BasePage
      */
     public function url()
     {
-        return route('seo.edit');
+        return route('siteseo.edit');
     }
 
     /**

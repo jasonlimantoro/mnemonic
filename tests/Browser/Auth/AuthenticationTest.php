@@ -36,7 +36,7 @@ class AuthenticationTest extends DuskTestCase
                   ->visit(new AdminPage)
                   ->click('@profile-toggle')
                   ->click('@logout-link')
-                  ->assertRouteIs('front.index');
+                  ->assertRouteIs('login');
         });
     }
 }

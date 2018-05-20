@@ -26,7 +26,7 @@ class UserCanUpdateSEOTest extends Authentication
                     ->fill($data)
                     ->press('Update')
                     ->waitForText('successfully', 2)
-                    ->assertRouteIs('seo.edit')
+                    ->assertRouteIs('siteseo.edit')
                     ->assertUpdated($data);
         });
     }
