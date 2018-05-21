@@ -33,7 +33,10 @@ class Event extends Model
 
 	public static function getDateTimeObjectAttribute($datestring)
 	{
-		return Carbon::createFromFormat(self::$customDateFmt, $datestring);
+		if(!empty($datestring)){
+			return Carbon::createFromFormat(self::$customDateFmt, $datestring);
+		}
+		return null;
 	}
 
     /**

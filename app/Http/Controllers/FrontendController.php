@@ -55,14 +55,16 @@ class FrontendController extends Controller
     public function onlineRSVP()
     {
 		$wedding = Event::byName('wedding');
-		$weddingDate = Event::getDateTimeObjectAttribute($wedding->datetime);
-		$isFuture = Carbon::now()->diffInSeconds($weddingDate, false) > 0;
+		$weddingDate = Event::getDateTimeObjectAttribute(optional($wedding)->datetime);
+		$isFuture = empty($weddingDate) ? Carbon::now()->diffInSeconds($weddingDate, false) > 0 : null;
 
 		$rsvp = request()->session()->get('rsvp', null);
-		JavaScript::put([
-			'weddingDate' => $weddingDate,
-			'rsvp' => $rsvp,
-		]);
-        return view('frontend.online-rsvp', compact('wedding', 'isFuture'));
+		if (! is_null($weddingDate) || ! is_null($rsvp)) {
+			JavaScript::put([
+				'weddingDate' => $weddingDate,
+				'rsvp' => $rsvp,
+			]);
+		}
+        return view('frontend.online-rsvp', compact('wedding', 'isFuture', 'weddingDate', 'rsvp'));
     }
 }

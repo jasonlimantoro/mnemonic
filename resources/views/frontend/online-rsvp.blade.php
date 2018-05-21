@@ -13,10 +13,11 @@
 					<h3 class="form-title"> 
 							Please enter your unique RSVP code below:
 					</h3>
-					<div class="rsvp-success-modal">
-						<div class="__react-root" id="RSVPModal"></div>
-					</div>
-					
+					@isset($rsvp)
+						<div class="rsvp-success-modal">
+							<div class="__react-root" id="RSVPModal"></div>
+						</div>
+					@endisset
 					
 					{{ Form::open(['route' => 'rsvps.confirmFromFront', 'method' => 'POST']) }}
 					<div class="col-md-4 col-md-offset-4 col-sm-10 col-xs-12">
@@ -30,7 +31,7 @@
 							{!! Recaptcha::render() !!}
 							{{-- Submit Button --}}
 							<div class="form-group">
-								{{ Form::submit('Submit', ['class' => 'btn btn-primary box-theme']) }}
+								{{ Form::submit('Submit', ['class' => 'btn btn-primary box-theme' , isset($wedding) ? '' : 'disabled' ]) }}
 							</div>
 						</div>
 					{{ Form::close() }}
@@ -40,14 +41,16 @@
 				<div class="row rsvp-timer">
 
 					<div class="rsvp-timer-header">
-						@if (!is_null($wedding))
+						@isset($wedding)
 							<h3>We {{ $isFuture ? 'will be married in ' : 'have been married since ' }}{{ $wedding->datetime }}</h3>
 						@else
 							<h3>No wedding event found</h3>
-						@endif
+						@endisset
 					</div>
 
-					<div class="__react-root" id="RSVPTimer"></div>
+					@isset($weddingDate)
+						<div class="__react-root" id="RSVPTimer"></div>
+					@endisset
 				</div>
 			</div>
 		</div>

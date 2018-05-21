@@ -9,6 +9,10 @@ class RSVPToken extends Model
 {
 	protected $table = 'rsvp_tokens';
 
+	protected $hidden = [
+		'token'
+	];
+
 	public static function generateFor(RSVP $rsvp)
 	{
 		return static::updateOrCreate(
