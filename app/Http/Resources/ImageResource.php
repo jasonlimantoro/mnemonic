@@ -16,16 +16,17 @@ class ImageResource extends Resource
     public function toArray($request)
     {
         return [
-			'id' => $this->id,
-			'attributes' => [
-				'file_name' => $this->file_name,
-				'url_asset' => $this->url_asset,
-				'url_cache' => $this->url_cache,
-			],
-			'album' => new AlbumResource($this->whenLoaded('imageable')),
-			'links' => [
-				'self' => route('api.images.show', ['image' => $this->id ])
-			]
-		];
-	}
+            'id' => $this->id,
+            'attributes' => [
+                'file_name' => $this->file_name,
+                'url_asset' => $this->url_asset,
+                'url_cache' => $this->url_cache,
+                'featured' => $this->featured,
+            ],
+            'album' => new AlbumResource($this->whenLoaded('imageable')),
+            'links' => [
+                'self' => route('api.images.show', ['image' => $this->id])
+            ]
+        ];
+    }
 }
