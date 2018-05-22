@@ -1,0 +1,45 @@
+footer {
+	padding-top: 20px;
+	background-color: $gold-bg;
+	a {
+		color: black;
+		&:hover {
+			color: #ba9964;
+		}
+	}
+	.mm-social-media-section {
+		ul  {
+			li {
+				width: 35px;
+				height: 35px;
+				border: 2px solid #ba9964;
+				border-radius: 50%;
+				display: inline-block;
+			}
+		}
+	}
+	.mm-disclaimer-section {
+		ul {
+			li {
+				display: inline-block;
+			}
+		}
+	}
+	.mm-contact-us-section {
+		ul {
+			li {
+				display: inline-block;
+			}
+		}
+	}
+}
+footer .mm-contact-us-section ul li:after, footer .mm-disclaimer-section ul li:after {
+    content: " | ";
+}
+footer .mm-social-media-section ul li a, footer .mm-social-media-section ul li i {
+    color: #ba9964;
+}
+
+footer .mm-social-media-section ul li i {
+    line-height: 32px;
+}

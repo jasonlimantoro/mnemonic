@@ -10,6 +10,7 @@
 
 		<title>{{ config('app.name', 'Laravel') }}</title>
 		<link rel="shortcut icon" type="image/png" href="/images/logo.png"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Styles -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
@@ -21,7 +22,8 @@
 		@endfrontend
     
     <div class="container-fluid">
-      @yield('content')
+			@yield('content')
+			@include('layouts.footer')
     </div>
 
     <!-- Scripts -->
