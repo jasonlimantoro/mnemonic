@@ -6,12 +6,14 @@ import { Search, FancyInput, CoupleForm, SimpleInput, IconAndLogoInput } from '.
 import { DeleteIcon, EditIcon, ShowIcon } from "./containers/IconContainer";
 import { RSVPTimer } from "./components/RSVPTimer";
 import { RSVPModal } from "./components/Modal";
+import { AlbumSlider } from "./components/Slider";
 
 const APPS = {
 	Search, CoupleForm,
 	FancyInput, SimpleInput, 
 	DeleteIcon, EditIcon, ShowIcon, IconAndLogoInput,
 	RSVPTimer, RSVPModal,
+	AlbumSlider,
 };
 
 function renderAppInElement(el) {

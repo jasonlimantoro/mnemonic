@@ -1,0 +1,17 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+.slick-prev, .slick-next {
+	background-color: $gold-font;
+	&:focus, &:hover {
+		background-color: $gold-font;
+	}
+}
+
+.album-slide {
+	padding: 15px;
+}
+
+.img-album-show {
+	margin: 30px auto 0;
+}

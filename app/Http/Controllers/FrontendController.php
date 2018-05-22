@@ -36,9 +36,7 @@ class FrontendController extends Controller
 
     public function gallery()
     {
-        $albums = Album::filterId(request(['album']))->get();
-
-        return view('frontend.gallery', compact('albums'));
+        return view('frontend.gallery');
     }
 
     public function wedding()
