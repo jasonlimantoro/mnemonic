@@ -80,7 +80,7 @@ class PostsController extends Controller
      */
     public function edit(Page $page, Post $post)
     {
-		$postImage = optional($post->image()->first())->url_cache;
+		$postImage = optional($post->image)->url_cache;
 
 		$page = $post->page;
 
