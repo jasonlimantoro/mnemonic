@@ -10,7 +10,7 @@
 				</div>
 				<div class="row">
 					@foreach($posts as $post)
-						<div class="col-md-12 post-content {{ $loop->iteration % 2 === 0 ? 'post-even' : 'post-odd'}}">
+						<div class="col-md-12 post-content">
 							<div class="col-md-8 post-detail">
 								<div class="col-md-12 font-theme">
 									<h1> {{ $post->title }} </h1>

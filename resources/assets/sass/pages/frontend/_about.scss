@@ -10,14 +10,14 @@
 		.post-detail {
 			text-align: center;
 		}
-		&.post-odd {
-			.post-detail {
-				float: right;
-			}
-		}
-		&.post-even {
+		&:nth-child(even){
 			.post-detail {
 				float: left;
+			}
+		}
+		&:nth-child(odd){
+			.post-detail {
+				float: right;
 			}
 		}
 	}
