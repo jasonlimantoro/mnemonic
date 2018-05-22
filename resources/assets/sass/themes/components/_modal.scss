@@ -11,8 +11,6 @@
 			}
 		}
 		.modal-header {
-			border: none !important;
-	
 			.close {
 				position: absolute;
 				background: #ffffff;
@@ -44,5 +42,18 @@
 	}
 	.dismiss-modal {
 		min-width: 150px;
+	}
+}
+
+
+.gallery-modal {
+	.modal-content {
+		background-color: darken($gold-bg, 20%);
+	}
+	.modal-album-title {
+		color: $gold-dark;
+	}
+	.slick-dots {
+		position: static;
 	}
 }

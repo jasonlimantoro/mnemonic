@@ -5,7 +5,7 @@ import React from "react";
 import { Search, FancyInput, CoupleForm, SimpleInput, IconAndLogoInput } from './containers/FormContainer';
 import { DeleteIcon, EditIcon, ShowIcon } from "./containers/IconContainer";
 import { RSVPTimer } from "./components/RSVPTimer";
-import { RSVPModal } from "./components/Modal";
+import { RSVPModal, GalleryModal } from "./components/Modal";
 import { AlbumSlider } from "./components/Slider";
 
 const APPS = {
@@ -13,7 +13,7 @@ const APPS = {
 	FancyInput, SimpleInput, 
 	DeleteIcon, EditIcon, ShowIcon, IconAndLogoInput,
 	RSVPTimer, RSVPModal,
-	AlbumSlider,
+	AlbumSlider, GalleryModal,
 };
 
 function renderAppInElement(el) {

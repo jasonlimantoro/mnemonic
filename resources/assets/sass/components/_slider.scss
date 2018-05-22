@@ -2,9 +2,8 @@
 @import "~slick-carousel/slick/slick-theme.css";
 
 .slick-prev, .slick-next {
-	background-color: $gold-font;
-	&:focus, &:hover {
-		background-color: $gold-font;
+	&:before {
+		color: black;
 	}
 }
 
