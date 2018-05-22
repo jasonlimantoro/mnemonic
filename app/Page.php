@@ -19,6 +19,6 @@ class Page extends Model
     
     public function addPost(array $attributes) {
 		$attributes['user_id'] = auth()->user()->id;
-		$this->posts()->create($attributes);
+		return $this->posts()->create($attributes);
     }
 }
