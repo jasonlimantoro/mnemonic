@@ -18,8 +18,11 @@
         @endslot
 
 				@slot('body')
-					{{ Form::open(['route' => ['posts.store', $page->id]]) }}
-						@include('posts.backend.form', ['submitButtonText' => 'Publish'])
+					{{ Form::open(['route' => ['posts.store', $page->id], 'enctype' => 'multipart/form-data']) }}
+						@include('posts.backend.form', [
+							'submitButtonText' => 'Publish',
+							'displayCurrentImage' => false,
+						])
 					{{ Form::close() }}
         @endslot
       @endcomponent

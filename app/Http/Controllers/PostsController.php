@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Page;
+use App\Image;
 use App\Http\Requests\PostsRequest;
 use App\Http\Controllers\GenericController as Controller;
 
@@ -50,7 +51,9 @@ class PostsController extends Controller
      */
     public function store(PostsRequest $request, Page $page)
     {
-        $page->addPost($request->only(['title', 'description']));
+		$post = $page->addPost($request->only(['title', 'description']));
+		
+		optional(Image::handleUpload($request))->addTo($post);
 
         $this->flash('Post is added succesfully');
 
@@ -77,15 +80,18 @@ class PostsController extends Controller
      */
     public function edit(Page $page, Post $post)
     {
-        $this->authorize('update', Post::class);
+		$postImage = optional($post->image()->first())->url_cache;
 
-        $page = $post->page;
-        return view('posts.backend.edit', compact('post', 'page'));
+		$page = $post->page;
+
+        return view('posts.backend.edit', compact('post', 'page', 'postImage'));
     }
 
     public function update(PostsRequest $request, Page $page, Post $post)
     {
-        $post->update($request->only(['title', 'description']));
+		$post->update($request->only(['title', 'description']));
+		
+		optional(Image::handleUpload($request))->addTo($post);
 
         $this->flash('Post updated successfully!');
 
