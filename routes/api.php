@@ -17,9 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::namespace('API')->name('api.')->group(function(){
-	Route::apiResources([ 
-		'images' => 'ImagesController',
-		'couple' => 'CoupleController'
-	]);
+Route::namespace('API')->name('api.')->group(function () {
+    Route::apiResources([
+        'images' => 'ImagesController',
+        'couple' => 'CoupleController',
+        'albums' => 'AlbumsController'
+    ]);
 });

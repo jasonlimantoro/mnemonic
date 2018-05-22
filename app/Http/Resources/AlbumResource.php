@@ -20,6 +20,7 @@ class AlbumResource extends Resource
 				'name' => $this->name,
 				'description' => $this->description
 			],
+			'images' => ImageResource::collection($this->whenLoaded('images')),
 			'links' => route('albums.show', ['album' => $this->id])
 		]; 
     }
