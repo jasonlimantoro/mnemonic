@@ -5,15 +5,20 @@
 		}
 		
 	}
-	.about-us-content {
-		.couple-description {
+	.post-content {
+		margin: 30px;
+		.post-detail {
 			text-align: center;
 		}
-		&:last-child {
-			.couple-image {
+		&.post-odd {
+			.post-detail {
 				float: right;
 			}
 		}
-
+		&.post-even {
+			.post-detail {
+				float: left;
+			}
+		}
 	}
 }

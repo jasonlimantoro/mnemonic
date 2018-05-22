@@ -9,19 +9,20 @@
 					<h1 class="color-theme">About Us</h1>
 				</div>
 				<div class="row">
-					@foreach($couple as $c)
-						<div class="col-md-12 about-us-content">
-							<div class="col-md-4 couple-image">
-								<img src="{{ optional($c->image)->url_cache }}" alt="{{ $c->name }}" class="img-responsive"> 
+					@foreach($posts as $post)
+						<div class="col-md-12 post-content {{ $loop->iteration % 2 === 0 ? 'post-even' : 'post-odd'}}">
+							<div class="col-md-8 post-detail">
+								<div class="col-md-12 font-theme">
+									<h1> {{ $post->title }} </h1>
+								</div>
+								<div class="col-md-12 post-description">
+									<p>{{ $post->description }}</p>
+								</div>
 							</div>
-							<div class="col-md-8 couple-description">
-								<div class="col-md-12 couple-name font-theme">
-									<h1> {{ $c->name }} </h1>
-								</div>
-								
-								<div class="col-md-12 couple-detail">
-	
-								</div>
+							<div class="col-md-4 post-image">
+								@isset($post->image)
+									<img src="{{ $post->image->url_cache }}" alt="{{ $post->title }}" class="img-responsive"> 
+								@endisset
 							</div>
 						</div>
 					@endforeach
