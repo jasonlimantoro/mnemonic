@@ -28,10 +28,10 @@ class FrontendController extends Controller
         return view('frontend.home', compact('posts', 'page', 'slides'));
     }
 
-    public function about()
+    public function about(Posts $posts)
     {
-        $couple = Couple::all();
-        return view('frontend.about', compact('couple'));
+		$posts = $posts->about()->get();
+        return view('frontend.about', compact('posts'));
     }
 
     public function gallery()
