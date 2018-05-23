@@ -31,11 +31,13 @@
 				</div>
 				
 				{{-- Submit Button --}}
-				@can('update-site-social')
-					<div class="form-group">
+				<div class="form-group">
+					@can('update-site-social')
 						{{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
-					</div>
-				@endcan
+					@else
+						{!! Form::unauthorizedButton() !!}
+					@endcan
+				</div>
 
 			{{ Form::close() }}
 

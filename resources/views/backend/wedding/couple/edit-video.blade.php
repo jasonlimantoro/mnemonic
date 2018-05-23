@@ -25,7 +25,7 @@
 								@can('update-embed-video')
 									{{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
 								@else
-									{{ Form::submit('Unauthorized', ['class' => 'btn btn-default', 'disabled']) }}
+									{!! Form::unauthorizedButton() !!}
 								@endcan
 						</div>
 					{{ Form::close() }}
