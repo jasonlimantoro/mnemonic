@@ -2,7 +2,7 @@
 	opacity: 0.8;
 }
 
-.modal {
+.modal.gallery-modal {
 	top: 25%;
 	bottom: auto;
 	@include general-query(desktop){

@@ -177,7 +177,7 @@ export class GalleryModal extends React.Component {
           show={this.props.show}
           onHide={this.handleHide}
           bsSize="large"
-          className="gallery-modal"
+					className="gallery-modal"
         >
           <Modal.Header closeButton> 
 						<Modal.Title className="font-theme modal-album-title" componentClass="h1">
