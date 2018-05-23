@@ -11,6 +11,7 @@ use App\Vendor;
 use App\BridesBest;
 use Carbon\Carbon;
 use App\Repositories\Posts;
+use App\Setting;
 
 class FrontendController extends Controller
 {
@@ -41,13 +42,14 @@ class FrontendController extends Controller
 
     public function wedding()
     {
+		$embed = Setting::getValueByKey('embed-video');
         $events = Event::all();
         $groom = Couple::groom();
         $bride = Couple::bride();
         $bbs = BridesBest::all();
         $vendors = Vendor::all();
 
-        return view('frontend.wedding', compact('events', 'groom', 'bride', 'bbs', 'vendors'));
+        return view('frontend.wedding', compact('embed', 'events', 'groom', 'bride', 'bbs', 'vendors'));
     }
 
     public function onlineRSVP()

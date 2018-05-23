@@ -54,6 +54,8 @@
 				@can('read', App\BridesBest::class)
 					<li><a href="{{ route('bridesmaid-bestmans.index') }}">Bridesmaid & Bestman</a></li>
 				@endcan
+
+				<li><a href="{{ route('embedVideo.edit') }}">Embed Video</a></li>
 			</ul>
 		</li>
 		
@@ -88,7 +90,7 @@
 		@endcan
 
     <li>
-      <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false"> Admin & Roles </a>
+      <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false"> Users & Roles </a>
       <ul class="collapse list-unstyled" id="adminSubmenu">
 				@can('read', App\User::class)
 					<li><a href="{{ route('users.index') }}">Manage Users</a></li>

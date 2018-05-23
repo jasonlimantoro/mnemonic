@@ -58,7 +58,11 @@ Route::group([
 
             // Vendors
             Route::resource('vendors', 'VendorsController');
-            Route::resource('categories', 'CategoriesController');
+			Route::resource('categories', 'CategoriesController');
+			
+			// Youtube Video
+			Route::get('/embed-video/edit', 'CoupleController@editVideo')->name('embedVideo.edit');
+			Route::patch('/embed-video/edit', 'CoupleController@updateVideo')->name('embedVideo.update');
 
             // RSVP
             Route::resource('rsvps', 'RSVPController');

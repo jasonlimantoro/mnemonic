@@ -6,6 +6,7 @@ use App\Http\Controllers\GenericController as Controller;
 use App\Couple;
 use Illuminate\Http\Request;
 use App\Image;
+use App\Setting;
 
 class CoupleController extends Controller
 {
@@ -45,5 +46,26 @@ class CoupleController extends Controller
 
         return back();
 	}
+	
+	public function editVideo()
+	{
+		$embed = Setting::getValueByKey('embed-video');
+		return view('backend.wedding.couple.edit-video', compact('embed'));
+	}
 
+	public function updateVideo(Request $request)
+	{
+		$request->validate([
+			'embed_url' => 'required'
+		]);
+
+		Setting::updateValueByKey('embed-video', [
+			'url' => $request->embed_url,
+			'id' => getYoutubeId($request->embed_url)
+		]);
+
+		$this->flash('Embed video URL is successfully updated');
+
+		return back();
+	}
 }

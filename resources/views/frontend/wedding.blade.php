@@ -7,11 +7,14 @@
 			<div class="row wedding-day-overview">
 				<div class="container">
 					<div class="col-xs-12">
-						<div class="page-title color-theme">
-							<h1>Wedding Day</h1>
-			
+						<div class="page-title">
+							<h1 class="color-theme">Wedding Day</h1>
 						</div>
-			
+						@isset($embed->url)
+							<div class="embed-responsive embed-responsive-16by9">
+								<iframe class="embed-responsive-item" src="http://www.youtube.com/embed/{{ $embed->id }}"></iframe>
+							</div>
+						@endisset
 						<div class="col-xs-12">
 							<h2 class="font-theme">We would like to invite you to our marriage celebration</h2>
 						</div>
