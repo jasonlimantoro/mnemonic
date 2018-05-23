@@ -75,8 +75,8 @@ export class AlbumSlider extends React.Component {
       useTransform: false,
       infinite: true,
       speed: 500,
-      slidesToShow: 3,
-      slidesToScroll: 1,
+			slidesToShow: 3,
+			slidesToScroll: 1,
       responsive: [
         {
           breakpoint: 1024,
@@ -108,7 +108,7 @@ export class AlbumSlider extends React.Component {
             alt={"featured-" + album.id}
             className="img-responsive"
           />
-          <h3>{album.attributes.name}</h3>
+          <h2 className="font-theme color-theme">{album.attributes.name}</h2>
         </div>
       );
     });
@@ -140,7 +140,7 @@ export class AlbumSlider extends React.Component {
         <Slider {...settings}>{slides}</Slider>
         {showImage ? (
           <div>
-            <h3>{album.attributes.name}</h3>
+            <h2 className="font-theme color-theme">{album.attributes.name}</h2>
             {showImages}
             <GalleryModal
               heading={album.attributes.name}
