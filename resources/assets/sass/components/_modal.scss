@@ -1,3 +1,7 @@
+.modal-backdrop.in {
+	opacity: 0.8;
+}
+
 .modal {
 	top: 25%;
 	bottom: auto;
@@ -5,9 +9,7 @@
 		top: 0;
 	}
 }
+
 .modal-header {
 	border: none !important;
-}
-.modal-backdrop.in {
-	opacity: 0.8;
 }
