@@ -18,7 +18,7 @@ export class RequestImages extends React.Component {
       }
     };
     this.handleClick = this.handleClick.bind(this);
-    this.handlePage = this.handlePage.bind(this);
+    this.handleChangePage = this.handleChangePage.bind(this);
     this.handleOffset = this.handleOffset.bind(this);
   }
 
@@ -44,14 +44,11 @@ export class RequestImages extends React.Component {
       );
   }
 
-  handlePage(e) {
-    e.preventDefault();
-    const page = parseInt(e.target.innerHTML);
+  handleChangePage(page) {
     this.props.onChangePage(page);
   }
 
-  handleOffset(e, offset) {
-    e.preventDefault();
+  handleOffset(offset) {
     this.props.onChangeOffset(offset, this.state.totalPages);
   }
 
@@ -110,7 +107,7 @@ export class RequestImages extends React.Component {
           <SimplePagination
             totalPages={parseInt(this.state.totalPages)}
             currentPage={this.props.page}
-            onChangePage={this.handlePage}
+            onChangePage={this.handleChangePage}
             onChangeOffset={this.handleOffset}
             optionalClass="gallery"
           />
