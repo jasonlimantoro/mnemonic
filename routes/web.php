@@ -61,8 +61,8 @@ Route::group([
 			Route::resource('categories', 'CategoriesController');
 			
 			// Youtube Video
-			Route::get('/embed-video/edit', 'CoupleController@editVideo')->name('embedVideo.edit');
-			Route::patch('/embed-video/edit', 'CoupleController@updateVideo')->name('embedVideo.update');
+			Route::get('embed-video/edit', 'CoupleController@editVideo')->name('embedVideo.edit');
+			Route::patch('embed-video', 'CoupleController@updateVideo')->name('embedVideo.update');
 
             // RSVP
             Route::resource('rsvps', 'RSVPController');
