@@ -17,12 +17,4 @@ class CoupleCollection extends ResourceCollection
     {
         return CoupleResource::collection($this->collection);
 	}
-
-	public function with($request){
-		return [
-			'links' => [
-				'self' => route('api.couple.index')
-			]
-		];
-	}
 }
