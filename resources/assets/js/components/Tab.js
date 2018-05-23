@@ -13,7 +13,7 @@ import { FancyInput } from "../containers/FormContainer";
 import { InputFile } from "./Form";
 import { DisplayImagesFromInputFile } from "./DisplayImage";
 import { RequestImages } from "./Request";
-import { PrimaryButton } from "./Button";
+import { PrimaryButton, UnauthorizedButton } from "./Button";
 
 export class MediaTabs extends React.Component {
   constructor(props) {
@@ -117,17 +117,15 @@ export class CoupleTabs extends React.Component {
       key: key
     });
   }
-  requestData() {
-    axios.get("/api/couple").then(
-      function(result) {
-        this.setState({
-          couple: result.data.data
-        });
-      }.bind(this)
-    );
+  requestCouple() {
+    axios.get("/api/couple").then(result => {
+      this.setState({
+        couple: result.data
+      });
+    });
   }
   componentDidMount() {
-    this.requestData();
+    this.requestCouple();
   }
 
   render() {
@@ -192,13 +190,14 @@ export class CoupleTabs extends React.Component {
                       placeholder={coupleRole + " mother name"}
                     />
                   </div>
-									
-									{canUpdate ? (
-										<div className="form-group">
-											<PrimaryButton type="submit" text="Publish" />
-										</div> ) : ('')
-									}
 
+                  <div className="form-group">
+                    {canUpdate ? (
+                      <PrimaryButton type="submit" text="Update Couple" />
+                    ) : (
+                      <UnauthorizedButton />
+                    )}
+                  </div>
                 </div>
 
                 <div className="col-md-6">

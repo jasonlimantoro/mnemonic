@@ -11,16 +11,11 @@
 			
 				@slot('body')
 
-				<div class="__react-root" id="CoupleForm"></div>
+					@include('jsvar')
+					<div class="__react-root" id="CoupleForm"></div>
 
 				@endslot
 			@endcomponent
 		</div>
 	</div>
-@endsection
-
-@section('scripts')
-<script>
-	let canUpdate = {{ auth()->user()->can('update', 'App\Couple') == 1 ? 1 : 0 }}
-</script>
 @endsection

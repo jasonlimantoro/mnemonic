@@ -32,9 +32,6 @@
     {{--  Asset Scripts  --}}
     <script src="{{ asset('js/manifest.js')}}"></script>
 		<script src="{{ asset('js/vendor.js')}}"></script>
-
-		@yield('scripts')
-
 		<script src="{{ asset('js/main.js') }}"></script>
 
     {{--  General scripts  --}}
@@ -60,6 +57,8 @@
         $('[data-toggle="tooltip"]').tooltip();   
       });
 		</script>
+
+		@yield('scripts')
   </body>
 
 </html>

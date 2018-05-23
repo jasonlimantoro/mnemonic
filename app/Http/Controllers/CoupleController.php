@@ -2,23 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\GenericController as Controller;
+use JavaScript;
 use App\Couple;
-use Illuminate\Http\Request;
-use App\Image;
 use App\Setting;
+use Illuminate\Http\Request;
+use App\Http\Controllers\GenericController as Controller;
 
 class CoupleController extends Controller
 {
-
-	
-	public function __construct()
-	{
-		$this->middleware('can:read,App\Couple')->only('edit');
-		$this->middleware('can:update,App\Couple')->only('update');
-		$this->middleware('can:read-embed-video')->only('editVideo');
-		$this->middleware('can:update-embed-video')->only('updateVideo');
-	}
+    public function __construct()
+    {
+        $this->middleware('can:read,App\Couple')->only('edit');
+        $this->middleware('can:update,App\Couple')->only('update');
+        $this->middleware('can:read-embed-video')->only('editVideo');
+        $this->middleware('can:update-embed-video')->only('updateVideo');
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -28,6 +26,9 @@ class CoupleController extends Controller
      */
     public function edit()
     {
+		JavaScript::put([
+			'canUpdate' => auth()->user()->can('update', Couple::class),
+		]);
         return view('backend.wedding.couple');
     }
 
@@ -42,32 +43,32 @@ class CoupleController extends Controller
     {
         $this->validate($request, ['name' => 'required']);
 
-		$couple->updateRecord($request);
+        $couple->updateRecord($request);
 
         $this->flash('Couple information is successfully updated!');
 
         return back();
-	}
-	
-	public function editVideo()
-	{
-		$embed = Setting::getValueByKey('embed-video');
-		return view('backend.wedding.couple.edit-video', compact('embed'));
-	}
+    }
 
-	public function updateVideo(Request $request)
-	{
-		$request->validate([
-			'embed_url' => 'required'
-		]);
+    public function editVideo()
+    {
+        $embed = Setting::getValueByKey('embed-video');
+        return view('backend.wedding.couple.edit-video', compact('embed'));
+    }
 
-		Setting::updateValueByKey('embed-video', [
-			'url' => $request->embed_url,
-			'id' => getYoutubeId($request->embed_url)
-		]);
+    public function updateVideo(Request $request)
+    {
+        $request->validate([
+            'embed_url' => 'required'
+        ]);
 
-		$this->flash('Embed video URL is successfully updated');
+        Setting::updateValueByKey('embed-video', [
+            'url' => $request->embed_url,
+            'id' => getYoutubeId($request->embed_url)
+        ]);
 
-		return back();
-	}
+        $this->flash('Embed video URL is successfully updated');
+
+        return back();
+    }
 }
