@@ -9,7 +9,8 @@ $factory->define(Permission::class, function (Faker $faker) {
             'carousel images',
             'post',
             'gallery',
-            'couple',
+			'couple',
+			'embed_video',
             'event',
             'bridesmaid_bestman',
             'vendor',
@@ -71,6 +72,10 @@ $factory->state(Permission::class, 'event', [
 
 $factory->state(Permission::class, 'bridesmaid_bestman', [
 	'name' => 'bridesmaid_bestman'
+]);
+
+$factory->state(Permission::class, 'embed_video', [
+	'name' => 'embed_video'
 ]);
 
 $factory->state(Permission::class, 'vendor', [

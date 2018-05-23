@@ -33,6 +33,8 @@ class AuthServiceProvider extends ServiceProvider
 		$this->registerPolicies();
 
 		$this->registerGalleryPolicies();
+
+		$this->registerEmbedVideoPolicies();
 		
 		$this->registerCarouselImagesPolicies();
 
@@ -69,6 +71,17 @@ class AuthServiceProvider extends ServiceProvider
 			return in_array('delete', $user->permissibles('carousel images'));
 		});
 	
+	}
+
+	public function registerEmbedVideoPolicies()
+	{
+		Gate::define('read-embed-video', function($user){
+			return in_array('read', $user->permissibles('embed_video'));
+		});
+
+		Gate::define('update-embed-video', function($user){
+			return in_array('update', $user->permissibles('embed_video'));
+		});
 	}
 
 	public function registerSiteInfoPolicies()

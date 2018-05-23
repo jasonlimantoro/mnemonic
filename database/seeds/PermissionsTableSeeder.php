@@ -44,6 +44,7 @@ class PermissionsTableSeeder extends Seeder
 
 		$incomplete = [
 			'couple',
+			'embed_video',
 			'site_info',
 			'site_social',
 			'site_seo',
