@@ -14,12 +14,12 @@ export class AlbumSlider extends React.Component {
         items: []
       },
       modal: {
-				show: false,
-				index : '',
-			}
-		};
-		this.hideModal = this.hideModal.bind(this);
-		this.showModal = this.showModal.bind(this);
+        show: false,
+        index: ""
+      }
+    };
+    this.hideModal = this.hideModal.bind(this);
+    this.showModal = this.showModal.bind(this);
   }
   toggleChild(album_id = "") {
     this.setState(prevState => {
@@ -38,19 +38,19 @@ export class AlbumSlider extends React.Component {
 
   showModal(index) {
     this.setState({
-			modal: {
-				show: true,
-				index: index
-			}
+      modal: {
+        show: true,
+        index: index
+      }
     });
   }
 
   hideModal() {
     this.setState({
-			modal: {
-				show: false,
-				index: ''
-			}
+      modal: {
+        show: false,
+        index: ""
+      }
     });
   }
 
@@ -76,21 +76,21 @@ export class AlbumSlider extends React.Component {
       infinite: true,
       speed: 500,
       slidesToShow: 3,
-			slidesToScroll: 1,
-			responsive : [
-				{
-					breakpoint: 1024,
-					settings : {
-						slidesToShow : 2,
-					}
-				},
-				{
-					breakpoint: 767,
-					settings : {
-						slidesToShow : 1,
-					}
-				}
-			]
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 2
+          }
+        },
+        {
+          breakpoint: 767,
+          settings: {
+            slidesToShow: 1
+          }
+        }
+      ]
     };
 
     let slides = this.state.albums.map(album => {
@@ -100,7 +100,7 @@ export class AlbumSlider extends React.Component {
       return (
         <div
           key={album.id}
-          className="album-slide"
+          className="album-slide cursor-pointer"
           onClick={() => this.toggleChild(album.id)}
         >
           <img
@@ -119,7 +119,12 @@ export class AlbumSlider extends React.Component {
       album = this.state.albums.filter(album => album.id === showAlbumId)[0];
       showImages = album.images.map((image, index) => {
         return (
-          <div key={image.id} index={index} className="col-md-4" onClick={() => this.showModal(index)}>
+          <div
+            key={image.id}
+            index={index}
+            className="col-md-4 cursor-pointer"
+            onClick={() => this.showModal(index)}
+          >
             <img
               src={image.attributes.url_cache}
               alt={"image-" + image.id}
@@ -138,10 +143,10 @@ export class AlbumSlider extends React.Component {
             <h3>{album.attributes.name}</h3>
             {showImages}
             <GalleryModal
-							heading={album.attributes.name}
+              heading={album.attributes.name}
               items={this.state.images.items}
               show={this.state.modal.show}
-							index={this.state.modal.index}
+              index={this.state.modal.index}
               hide={this.hideModal}
             />
           </div>
