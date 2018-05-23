@@ -97,7 +97,10 @@ i, span {
         strong {
             display: none;
             font-size: 1.8em;
-        }
+		}
+		h3 {
+			color: white;
+		}
     }
     &.active {
         min-width: 80px;
@@ -105,7 +108,7 @@ i, span {
         text-align: center;
         .sidebar-header {
             h3 {
-                display: none
+				display: none;
             }
             strong {
                 display: block;
@@ -161,7 +164,7 @@ i, span {
         }
         .sidebar-header {
             strong {
-                display: block;
+				display: block;
             }
             h3 {
                 display: none;
