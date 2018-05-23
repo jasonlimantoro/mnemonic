@@ -6,10 +6,16 @@
         @media (max-width: 767px) {
             @content;
         }
-    }
+	}
+	
+	@if $device == tablet {
+		@media (min-width: 768px) and (max-width: 1024px) {
+			@content;
+		}
+	}
 
     @if $device == desktop {
-        @media (min-width: 768px) {
+        @media (min-width: 1200px) {
             @content;
         }
     }
