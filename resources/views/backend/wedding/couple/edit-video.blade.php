@@ -17,7 +17,7 @@
 						{{-- embed_url field --}}
 						<div class="form-group">
 							{{ Form::label('embed_url', 'YouTube Video Url:') }}
-							{{ Form::text('embed_url', $embed->url, ['class' => 'form-control', 'placeholder' => 'Enter YouTube Video URL']) }}
+							{{ Form::text('embed_url', optional($embed)->url, ['class' => 'form-control', 'placeholder' => 'Enter YouTube Video URL']) }}
 						</div>	
 
 						{{-- Submit Button --}}
@@ -25,11 +25,15 @@
 							{{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
 						</div>
 					{{ Form::close() }}
-
+					
 					<div class="preview-embed">
+					@isset($embed->id)
 						<div class="embed-responsive embed-responsive-16by9">
 							<iframe class="embed-responsive-item" src="http://www.youtube.com/embed/{{ $embed->id }}"></iframe>
 						</div>	
+					@else
+						<small>Unavailable preview</small>
+					@endisset
 					</div>
 				@endslot
 					
