@@ -16,6 +16,8 @@ class CoupleController extends Controller
 	{
 		$this->middleware('can:read,App\Couple')->only('edit');
 		$this->middleware('can:update,App\Couple')->only('update');
+		$this->middleware('can:read-embed-video')->only('editVideo');
+		$this->middleware('can:update-embed-video')->only('updateVideo');
 	}
 
     /**

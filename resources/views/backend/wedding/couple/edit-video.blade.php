@@ -22,7 +22,11 @@
 
 						{{-- Submit Button --}}
 						<div class="form-group">
-							{{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
+								@can('update-embed-video')
+									{{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
+								@else
+									{{ Form::submit('Unauthorized', ['class' => 'btn btn-default', 'disabled']) }}
+								@endcan
 						</div>
 					{{ Form::close() }}
 					

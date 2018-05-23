@@ -55,7 +55,10 @@
 					<li><a href="{{ route('bridesmaid-bestmans.index') }}">Bridesmaid & Bestman</a></li>
 				@endcan
 
-				<li><a href="{{ route('embedVideo.edit') }}">Embed Video</a></li>
+				@can('read-embed-video')
+					<li><a href="{{ route('embedVideo.edit') }}">Embed Video</a></li>
+				@endcan
+
 			</ul>
 		</li>
 		
