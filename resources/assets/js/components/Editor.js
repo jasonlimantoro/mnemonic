@@ -67,6 +67,6 @@ export class InitializeEditor extends React.Component {
 	}
 	
 	render() {
-		return (<input type="file" id="upload"/>);
+		return (<input type="file" id="upload" className="hidden" />);
 	}
 }
