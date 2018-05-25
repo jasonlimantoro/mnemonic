@@ -19,7 +19,9 @@ export class InitializeEditor extends React.Component {
 		super(props);
 	}
 	componentDidMount(){
-		tinymce.init({
+		let editor_config = {
+			path_absolute: '/',
+			relative_urls: false,
 			selector: 'textarea',
 			skin_url: '/tinymce/skins/lightgray',
 			menubar: true,
@@ -29,44 +31,32 @@ export class InitializeEditor extends React.Component {
 			image_title: true,
 			automatic_uploads: true,
 			file_picker_types: 'image',
-			file_picker_callback: function(callback, value, meta){
-				if (meta.filetype == "image") {
-					$("#upload").trigger("click");
-					$("#upload").on("change", function() {
-						var file = this.files[0];
-						var reader = new FileReader();
-						reader.onload = function(e) {
-							callback(e.target.result, {
-								alt: ""
-							});
-						};
-						reader.readAsDataURL(file);
-					});
+			file_browser_callback : function(field_name, url, type, win) {
+				var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+				var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+	
+				var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
+				if (type == 'image') {
+					cmsURL = cmsURL + "&type=Images";
+				} else {
+					cmsURL = cmsURL + "&type=Files";
 				}
-				// let input = document.createElement('input');
-				// input.setAttribute('type', 'file');
-				// input.setAttribute('accept', 'image/*');
-				// input.onchange = function() {
-				// 	var file = this.files[0];
-				// 	var reader = new FileReader();
-				// 	reader.onload = function () {
-				// 		var id = 'blobid' + (new Date()).getTime();
-				// 		var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
-				// 		var base64 = reader.result.split(',')[1];
-				// 		var blobInfo = blobCache.create(id, file, base64);
-				// 		blobCache.add(blobInfo);
-				// 		// call the callback and populate the Title field with the file name
-				// 		callback(blobInfo.blobUri(), { title: file.name });
-				// 	};
-				// 	reader.readAsDataURL(file);
-				// };
-
-				// input.click();
+	
+				tinyMCE.activeEditor.windowManager.open({
+					file : cmsURL,
+					title : 'Filemanager',
+					width : x * 0.8,
+					height : y * 0.8,
+					resizable : "yes",
+					close_previous : "no"
+				});
 			},
-		});	
+		}
+
+		tinymce.init(editor_config);	
 	}
 	
 	render() {
-		return (<input type="file" id="upload" className="hidden" />);
+		return null;
 	}
 }
