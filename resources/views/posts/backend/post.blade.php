@@ -5,7 +5,7 @@
     </a>
   </td>
   <td class="post-data body">
-    {{ $post->description }}
+    {!! $post->description !!}
   </td>
   <td class="text-center">
     <div>
