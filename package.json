@@ -21,10 +21,12 @@
         "lodash": "^4.17.4"
     },
     "dependencies": {
+        "@tinymce/tinymce-react": "^2.2.5",
         "react": "^16.3.0",
         "react-bootstrap": "^0.31.5",
         "react-dom": "^16.3.0",
         "react-slick": "^0.23.1",
-        "slick-carousel": "^1.8.1"
+        "slick-carousel": "^1.8.1",
+        "tinymce": "^4.7.13"
     }
 }
