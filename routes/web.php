@@ -118,4 +118,4 @@ Route::name('front.')->group(function () {
 });
 
 Route::post('avatar', 'ImagesController@upload');
-Route::get('{post}', 'PostsController@read')->name('posts.read');
+Route::get('{post}', 'PostsController@read')->name('front.posts.read');

@@ -8,18 +8,18 @@ use App\Album;
 use App\Event;
 use App\Couple;
 use App\Vendor;
-use App\BridesBest;
-use Carbon\Carbon;
-use App\Repositories\Posts;
 use App\Setting;
+use Carbon\Carbon;
+use App\BridesBest;
+use App\Repositories\Posts;
 
 class FrontendController extends Controller
 {
     public function home(Posts $posts)
     {
         $page = Page::find(1);
-        $carousel = $page->carousel;
-        $slides = $carousel->images;
+		$carousel = $page->carousel;
+		$slides = $carousel->images;
 
         $posts = $posts
                     ->home()
