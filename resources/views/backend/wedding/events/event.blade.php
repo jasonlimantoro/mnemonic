@@ -11,7 +11,7 @@
    <span class="label label-primary">{{ $event->datetime }}</span> 
   </td>
   <td class="data-table body">
-  {{ $event->description }}
+		{!! $event->description !!}
   </td>
   <td class="text-center">
     @can('read', App\Event::class)

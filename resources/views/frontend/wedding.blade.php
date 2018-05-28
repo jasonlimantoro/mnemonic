@@ -56,7 +56,7 @@
 						</div>
 	
 						<div class="col-xs-12 wedding-day-events-description">
-							<p class="font-theme"> {{ $event->description }} </p>
+							<p class="font-theme"> {!! $event->description !!} </p>
 						</div>
 	
 						@if ($event->image)
