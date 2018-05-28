@@ -7,7 +7,7 @@
 {{-- description field --}}
 <div class="form-group">
 	{{ Form::label('description', 'Description:') }}
-	{{ Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Enter Description']) }}
+	{{ Form::textarea('description', null, ['class' => 'form-control show', 'placeholder' => 'Enter Description']) }}
 </div>
 
 {{-- Submit Button --}}

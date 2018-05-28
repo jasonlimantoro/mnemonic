@@ -23,7 +23,7 @@
 						{{-- g_script field --}}
 						<div class="form-group">
 							{{ Form::label('g_script', 'Google Analytics Script:') }}
-							{{ Form::textarea('g_script', optional($seo)->g_script, ['class' => 'form-control', 'placeholder' => 'Enter Google Analytics Script']) }}
+							{{ Form::textarea('g_script', optional($seo)->g_script, ['class' => 'form-control show', 'placeholder' => 'Enter Google Analytics Script']) }}
 						</div>
 						
 						{{-- Submit Button --}}

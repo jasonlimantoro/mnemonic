@@ -21,25 +21,25 @@
 				{{-- site_description field --}}
 				<div class="form-group">
 					{{ Form::label('site_description', 'Description:') }}
-					{{ Form::textarea('site_description', optional($settings)->description, ['class' => 'form-control', 'placeholder' => 'Enter Description']) }}
+					{{ Form::textarea('site_description', optional($settings)->description, ['class' => 'form-control show', 'placeholder' => 'Enter Description']) }}
 				</div>
 
 				{{-- contact_email field --}}
 				<div class="form-group">
 					{{ Form::label('contact_email', 'Email:') }}
-					{{ Form::textarea('contact_email', optional(optional($settings)->contact)->email, ['class' => 'form-control', 'placeholder' => 'Enter Emails (one email per row)']) }}
+					{{ Form::textarea('contact_email', optional(optional($settings)->contact)->email, ['class' => 'form-control show', 'placeholder' => 'Enter Emails (one email per row)']) }}
 				</div>
 
 				{{-- contact_phone field --}}
 				<div class="form-group">
 					{{ Form::label('contact_phone', 'Phone Number:') }}
-					{{ Form::textarea('contact_phone', optional(optional($settings)->contact)->phone, ['class' => 'form-control', 'placeholder' => 'Enter Phone Number']) }}
+					{{ Form::textarea('contact_phone', optional(optional($settings)->contact)->phone, ['class' => 'form-control show', 'placeholder' => 'Enter Phone Number']) }}
 				</div>
 
 				{{-- contact_mobile field --}}
 				<div class="form-group">
 					{{ Form::label('contact_mobile', 'Mobil Phone:') }}
-					{{ Form::textarea('contact_mobile', optional(optional($settings)->contact)->mobile, ['class' => 'form-control', 'placeholder' => 'Enter Mobile Phone']) }}
+					{{ Form::textarea('contact_mobile', optional(optional($settings)->contact)->mobile, ['class' => 'form-control show', 'placeholder' => 'Enter Mobile Phone']) }}
 				</div>
 
 				{{-- contact_address field --}}
