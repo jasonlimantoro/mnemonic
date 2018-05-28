@@ -18,13 +18,10 @@
         @endslot
 
         @slot('body')
-					<p>Featured Image: </p>
-					<img src="{{ $album->featuredImage()['url_cache'] }}" alt="featured-image" class="img-responsive featured-image">
-					<h3>Change Featured Image</h3>
 					{{ Form::model($album, [
 							'route' => ['albums.update', $album->id], 
 							'method' => 'PATCH', 
-							'enctype' => 'multipart/form-data'
+							'enctype' => 'multipart/form-data',
 						]) 
 					}}
 						@include('backend.website.albums.form', ['submitButtonText' => 'Update Album'])

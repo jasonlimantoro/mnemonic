@@ -40,7 +40,7 @@
 											{{ $album->name }} 
 										</a>
 									</td>
-									<td class="data-table">{{ $album->description }}</td>
+									<td class="data-table">{!! $album->description !!}</td>
 									
 									<td class="text-center">
 										<div>
