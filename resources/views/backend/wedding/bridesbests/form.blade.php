@@ -1,4 +1,4 @@
-<div class="col-md-6">
+<div class="col-md-8">
 	{{-- name field --}}
 	<div class="form-group">
 		{{ Form::label('name', 'Name:') }}
@@ -6,6 +6,7 @@
 	</div>
 
 	{{-- testimony field --}}
+	<div class="__react-root" id="InitializeEditor"></div>
 	<div class="form-group">
 		{{ Form::label('testimony', 'Testimony:') }}
 		{{ Form::textarea('testimony', null, ['class' => 'form-control', 'placeholder' => 'Enter Testimony']) }}
@@ -30,19 +31,19 @@
 	</div>
 
 </div>
-<div class="col-md-6">
-	@if ($displayCurrentImage)
+<div class="col-md-4">
+	@isset($bridesBest)
 		<div class="form-group">
 			<p><strong>Current Image</strong></p>
 			<div class="current-image">
-				@if ($bridesBestImage)
+				@isset ($bridesBestImage)
 					<img src="{{ $bridesBestImage }}" alt="event" class="img-responsive">
 				@else
 					<p>No Image uploaded</p>
-				@endif	
+				@endisset	
 			</div>
 		</div>
-	@endif
+	@endisset
 	<div class="form-group">
 		<div class="__react-root" id="FancyInput"></div>
 	</div>

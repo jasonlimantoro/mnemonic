@@ -24,7 +24,6 @@
 					}}
 						@include('backend.wedding.bridesbests.form', [
 							'submitButtonText' => 'Update', 
-							'displayCurrentImage' => true 
 						])
 					{{ Form::close() }}
         @endslot

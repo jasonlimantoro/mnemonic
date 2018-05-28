@@ -10,7 +10,7 @@
 						<div class="page-title">
 							<h1 class="color-theme">Wedding Day</h1>
 						</div>
-						@isset($embed->url)
+						@isset($embed)
 							<div class="embed-responsive embed-responsive-16by9">
 								<iframe class="embed-responsive-item" src="http://www.youtube.com/embed/{{ $embed->id }}"></iframe>
 							</div>
@@ -88,7 +88,7 @@
 						</div>	
 					@endif
 						<strong>{{ $bb->name }}</strong><br>
-						<i>{{ $bb->testimony }}</i><br>
+						<i>{!! $bb->testimony !!}</i><br>
 						<div class="wedding-day-bb-ig">
 							<div class="col-xs-12 col-center">
 								<a href="https://instagram.com/{{ $bb->ig_account}}">

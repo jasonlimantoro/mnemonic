@@ -19,8 +19,6 @@
 					{{ Form::open(['route' => 'bridesmaid-bestmans.store', 'enctype' => 'multipart/form-data']) }}
 						@include('backend.wedding.bridesbests.form', [
 							'submitButtonText' => 'Publish', 
-							'bridesBestImage' => null, 
-							'displayCurrentImage' => false
 						])
 					{{ Form::close() }}
 

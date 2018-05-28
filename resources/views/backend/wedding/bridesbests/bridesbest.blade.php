@@ -12,7 +12,7 @@
     </p>
   </td>
   <td class="data-table body">
-    {{ $b->testimony }}
+    {!! $b->testimony !!}
   </td>
   <td class="text-center">
 		@can('read', App\BridesBest::class)
