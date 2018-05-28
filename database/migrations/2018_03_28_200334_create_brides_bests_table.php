@@ -16,7 +16,7 @@ class CreateBridesBestsTable extends Migration
         Schema::create('brides_bests', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('name');
-			$table->string('testimony');
+			$table->text('testimony');
 			$table->string('ig_account');
 			$table->enum('gender', ['male', 'female']);
             $table->timestamps();
