@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import $ from 'jquery';
 import tinymce from 'tinymce';
 // import utils
 import 'tinymce/themes/modern';
@@ -26,7 +25,7 @@ export class InitializeEditor extends React.Component {
 			skin_url: '/tinymce/skins/lightgray',
 			menubar: true,
 			branding: false,
-			plugins: 'wordcount table lists advlist image link preview',
+			plugins: 'wordcount table lists advlist image link preview media',
 			image_advtab: true,
 			image_title: true,
 			automatic_uploads: true,
@@ -44,7 +43,7 @@ export class InitializeEditor extends React.Component {
 	
 				tinyMCE.activeEditor.windowManager.open({
 					file : cmsURL,
-					title : 'Filemanager',
+					title : 'File Manager',
 					width : x * 0.8,
 					height : y * 0.8,
 					resizable : "yes",
