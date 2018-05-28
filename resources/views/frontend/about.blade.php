@@ -16,7 +16,7 @@
 									<h1> {{ $post->title }} </h1>
 								</div>
 								<div class="col-md-12 post-description">
-									<p>{!! nl2br(e($post->description)) !!}</p>
+									<p>{!! $post->description !!}</p>
 								</div>
 							</div>
 							<div class="col-md-4 post-image">

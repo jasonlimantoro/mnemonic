@@ -1,6 +1,6 @@
 <div class="blog-post">
-	<h2>{{ $post->title }}</h2>
-	<p> {!! str_limit($post->description, 300, '...') !!} </p>
+	<h1>{{ $post->title }}</h1>
+	<p> {!! $post->description !!} </p>
 	<a href="{{ route('front.posts.read', ['post' => $post->id ]) }}">
 		Read More
 	</a>
