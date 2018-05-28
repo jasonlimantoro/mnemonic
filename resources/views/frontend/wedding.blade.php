@@ -65,7 +65,7 @@
 							</div>
 						@endif
 						<div class="col-xs-12 wedding-day-events-location">
-							<h3>{{ $event->location }}</h3>
+							<h3>{!! $event->location !!}</h3>
 						</div>
 					</div>
 				@endforeach		

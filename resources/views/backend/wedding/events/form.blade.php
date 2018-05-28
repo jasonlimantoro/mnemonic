@@ -15,7 +15,7 @@
 	{{-- location field --}}
 	<div class="form-group">
 		{{ Form::label('location', 'Event Location') }}
-		{{ Form::text('location', null, ['class' => 'form-control', 'placeholder' => 'Enter Location']) }}
+		{{ Form::textarea('location', null, ['class' => 'form-control', 'placeholder' => 'Enter Location']) }}
 	</div>
 
 	{{-- datetime field --}}
