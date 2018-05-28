@@ -1,4 +1,4 @@
-<div class="col-md-6">
+<div class="col-md-8">
 	{{-- title field --}}
 	<div class="form-group">
 		{{ Form::label('title', 'Title:') }}
@@ -18,7 +18,7 @@
 	</div>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-4">
 	@if ($displayCurrentImage)
 		<div class="form-group">
 			<p><strong>Current Image</strong></p>
