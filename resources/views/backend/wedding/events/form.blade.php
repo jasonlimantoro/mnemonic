@@ -33,11 +33,11 @@
 	@isset($event)
 		<strong>Current Image</strong>
 		<div class="current-image">
-			@if ($event->image !== null)
+			@isset ($event->image)
 				<img src="{{ $event->image->url_cache }}" alt="event-image" class="img-responsive">
 			@else
 				<p>No image uploaded</p>
-			@endif
+			@endisset
 		</div>
 	@endisset
 	<div class="form-group">
