@@ -62,7 +62,7 @@ class BridesBestsController extends Controller
      */
     public function show(BridesBest $bridesmaid_bestman)
     {
-        $bridesBestImage = $bridesmaid_bestman->image ? $bridesmaid_bestman->image->url_cache : null;
+        $bridesBestImage = optional($bridesmaid_bestman->image)->url_cache;
         $role = $bridesmaid_bestman->gender == 'female' ? 'Bridesmaid' : 'Bestman';
         return view('backend.wedding.bridesbests.show', with([
             'bridesBest' => $bridesmaid_bestman,
@@ -79,7 +79,8 @@ class BridesBestsController extends Controller
      */
     public function edit(BridesBest $bridesmaid_bestman)
     {
-        $bridesBestImage = $bridesmaid_bestman->image ? $bridesmaid_bestman->image->url_cache : null;
+		$bridesBestImage = optional($bridesmaid_bestman->image)->url_cache;
+
         return view('backend.wedding.bridesbests.edit', with([
             'bridesBest' => $bridesmaid_bestman,
             'bridesBestImage' => $bridesBestImage
