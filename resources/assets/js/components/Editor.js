@@ -11,6 +11,7 @@ import 'tinymce/plugins/media';
 import 'tinymce/plugins/image';
 import 'tinymce/plugins/link';
 import 'tinymce/plugins/preview';
+import 'tinymce/plugins/paste';
 
 
 export class InitializeEditor extends React.Component {
@@ -25,7 +26,8 @@ export class InitializeEditor extends React.Component {
 			skin_url: '/tinymce/skins/lightgray',
 			menubar: true,
 			branding: false,
-			plugins: 'wordcount table lists advlist image link preview media',
+			plugins: 'wordcount table lists advlist image link preview media, paste',
+			paste_as_text: true,
 			image_advtab: true,
 			image_title: true,
 			automatic_uploads: true,
