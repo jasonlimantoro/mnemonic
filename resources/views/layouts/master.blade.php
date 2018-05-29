@@ -19,12 +19,14 @@
 
 		@frontend
 			@include('layouts.navbar')
+			<div class="web-container">
+				@yield('content')
+				@include('layouts.footer')
+			</div>
+		@else
+			@yield('content')
 		@endfrontend
     
-    <div class="web-container">
-			@yield('content')
-			@include('layouts.footer')
-    </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/manifest.js')}}"></script>
