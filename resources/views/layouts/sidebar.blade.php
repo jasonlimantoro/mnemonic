@@ -8,7 +8,7 @@
   </div>
   
   <ul class="list-unstyled components">
-    <li><a href="{{ route('admin') }}">Dashboard</a></li>
+    <li><a href="{{ route('admin') }}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
 		<li class="header">Website</li>
 
 		@can('read-carousel-image')
@@ -30,7 +30,7 @@
 
 		@can('manage-gallery')
 			<li>
-				<a href="#galleriesSubmenu" data-toggle="collapse" aria-expanded="false">Galleries</a>
+				<a href="#galleriesSubmenu" data-toggle="collapse" aria-expanded="false"><i class="fa fa-picture-o"></i>Galleries</a>
 				<ul class="collapse list-unstyled" id="galleriesSubmenu">
 					<li><a href="{{ route('images.index') }}">View all photos</a></li>
 					<li><a href="{{ route('albums.index') }}">Manage Album</a></li>
@@ -81,19 +81,19 @@
     
 		<li class="header">Settings</li>
 		@can('read-site-info')
-			<li><a href="{{ route('siteinfo.edit') }}">Site Info</a></li>
+			<li><a href="{{ route('siteinfo.edit') }}"><i class="fa fa-info"></i>Site Info</a></li>
 		@endcan
 
 		@can('read-site-social')
-			<li><a href="{{ route('sitesocial.edit') }}">Site Social Media</a></li>
+			<li><a href="{{ route('sitesocial.edit') }}"><i class="fa fa-share-square-o"></i>Site Social Media</a></li>
 		@endcan
 
 		@can('read-site-seo')
-			<li><a href="{{ route('siteseo.edit') }}">Site SEO</a></li>
+			<li><a href="{{ route('siteseo.edit') }}"><i class="fa fa-search"></i>Site SEO</a></li>
 		@endcan
 
     <li>
-      <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false"> Users & Roles </a>
+      <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false"><i class="fa fa-user"></i>Users & Roles </a>
       <ul class="collapse list-unstyled" id="adminSubmenu">
 				@can('read', App\User::class)
 					<li><a href="{{ route('users.index') }}">Manage Users</a></li>
