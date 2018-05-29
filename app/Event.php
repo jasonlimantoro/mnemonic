@@ -11,7 +11,7 @@ class Event extends Model
     use FormAccessible, FiltersSearch;
 	protected $dates = ['datetime'];
 
-	public static $customDateFmt ='l - M jS H:i, Y';  // Friday - October 20th 20:00, 2017
+	public static $customDateFmt ='l - M jS, Y H:i';  // Friday - October 20th 20:00, 2017
 
     public function image()
     {
@@ -39,6 +39,30 @@ class Event extends Model
 		return null;
 	}
 
+	public static function getTimeDigit($dt, $unit)
+	{
+		if(empty($dt)){
+			return null;
+		}
+		switch ($unit) {
+			case 'hour':
+				$digit = str_split($dt->hour);
+				break;
+			
+			case 'minute':
+				$digit = str_split($dt->minute);
+				break;
+			
+			default:
+				$digit = [];
+		}
+		if (count($digit) === 1 ) {
+			// prepend 0
+			array_unshift($digit, '0');	
+		}
+		return $digit;
+	}
+
     /**
      * Get the event's datetime for forms.
      *
@@ -53,5 +77,10 @@ class Event extends Model
 	public static function byName($name)
 	{
 		return static::whereName($name)->first();
+	}
+
+	public static function wedding()
+	{
+		return static::where('name', 'like', '%wedding%')->first();
 	}
 }
