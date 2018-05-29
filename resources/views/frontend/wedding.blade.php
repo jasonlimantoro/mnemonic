@@ -24,7 +24,7 @@
 							<span class="font-theme">Son of</span> <br>
 							<p> {{ $groom->father }} </p>
 							<p> {{ $groom->mother }} </p>
-							<img src="{{ $groom->image->url_cache }}" alt="groom" class="img-responsive">
+							<img src="{{ $groom->image->url_cache }}" alt="groom" class="img-responsive inline-block">
 						</div>
 					</div>
 					<div class="col-sm-2 hidden-xs link">&</div>
@@ -35,7 +35,7 @@
 							<span class="font-theme">Daughter of</span> <br>
 							<p> {{ $bride->father }} </p>
 							<p> {{ $bride->mother }} </p>
-							<img src="{{ $bride->image->url_cache }}" alt="groom" class="img-responsive">
+							<img src="{{ $bride->image->url_cache }}" alt="groom" class="img-responsive inline-block">
 						</div>
 					</div>
 				</div>
@@ -60,7 +60,7 @@
 
 					@if ($event->image)
 						<div class="col-xs-12 wedding-day-events-image">
-							<img src="{{ $event->image->url_cache }}" alt="" class="img-responsive">
+							<img src="{{ $event->image->url_cache }}" alt="event" class="img-responsive inline-block">
 						</div>
 					@endif
 					<div class="col-xs-12 wedding-day-events-location">
