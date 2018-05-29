@@ -43,7 +43,7 @@ class FrontendController extends Controller
     public function wedding()
     {
 		$embed = Setting::getValueByKey('embed-video');
-        $events = Event::all();
+        $events = Event::latest()->get();
         $groom = Couple::groom();
         $bride = Couple::bride();
         $bbs = BridesBest::all();
@@ -54,9 +54,9 @@ class FrontendController extends Controller
 
     public function onlineRSVP()
     {
-		$wedding = Event::byName('wedding');
+		$wedding = Event::wedding();
 		$weddingDate = Event::getDateTimeObjectAttribute(optional($wedding)->datetime);
-		$isFuture = empty($weddingDate) ? Carbon::now()->diffInSeconds($weddingDate, false) > 0 : null;
+		$isFuture = ! empty($weddingDate) ? Carbon::now()->diffInSeconds($weddingDate, false) > 0 : null;
 
 		$rsvp = request()->session()->get('rsvp', null);
 		if (! is_null($weddingDate) || ! is_null($rsvp)) {
