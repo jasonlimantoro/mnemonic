@@ -79,24 +79,26 @@
 			<div class="wedding-day-bb-message">
 				<p><i>Thank you for your support on our wedding</i></p>
 			</div>
-			@foreach ($bbs as $bb)
-				<div class="col-sm-3 col-xs-12 col-center bb-container">
-				@if ($bb->image)
-					<div class="wedding-day-bb-image">
-						<img src="{{ $bb->image->url_cache }}" alt="bb" class="img-responsive">
-					</div>	
-				@endif
-					<strong>{{ $bb->name }}</strong><br>
-					<i>{!! $bb->testimony !!}</i><br>
-					<div class="wedding-day-bb-ig">
-						<div class="col-xs-12 col-center">
-							<a href="https://instagram.com/{{ $bb->ig_account}}">
-								<img src="/images/instagram-logo.png" alt="ig" class="img-responsive" width="32px">
-							</a>
+			<div class="row">
+				@foreach ($bbs as $bb)
+					<div class="col-sm-3 col-xs-12 col-center wedding-day-bb-container">
+					@if ($bb->image)
+						<div class="wedding-day-bb-image">
+							<img src="{{ $bb->image->url_cache }}" alt="bb" class="img-responsive">
+						</div>	
+					@endif
+						<strong>{{ $bb->name }}</strong><br>
+						<i>{!! $bb->testimony !!}</i><br>
+						<div class="wedding-day-bb-ig">
+							<div class="col-xs-12 col-center">
+								<a href="https://instagram.com/{{ $bb->ig_account}}">
+									<img src="/images/instagram-logo.png" alt="ig" class="img-responsive" width="32px">
+								</a>
+							</div>
 						</div>
 					</div>
-				</div>
-			@endforeach
+				@endforeach
+			</div>
 		</div>
 
 		{{-- Vendors section --}}
