@@ -16,13 +16,15 @@ export class ThumbnailGallery extends React.Component {
   }
 
   render() {
-    const isActive = this.props.isActive;
+		const isActive = this.props.isActive;
+		const activeClass = isActive ? "active" : '';
     return (
       <Thumbnail
-        src={this.props.sourceImage}
-        className={isActive ? "thumbnail-gallery active" : "thumbnail-gallery"}
-        alt="242x200"
+        className={"thumbnail-gallery " + activeClass}
       >
+				<div className="thumbnail-image">
+					<img src={this.props.sourceImage} alt="thumbnail-image" className="img-responsive"/>
+				</div>
         Name: <strong>{this.str_limit(this.props.title)}</strong>
         <br />
         Album: <strong>{this.props.description}</strong>

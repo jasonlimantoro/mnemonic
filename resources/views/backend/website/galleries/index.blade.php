@@ -20,9 +20,11 @@
           <div class="row">
             @foreach($images as $image)
               <div class="col-md-4">
-                @component('layouts.thumbnail')
-                  @slot('thumbnailImage')
-                    <img src="{{ $image->url_cache }}" alt="image" class="img-responsive">
+                @component('layouts.thumbnail', ['class' => 'thumbnail-gallery'])
+									@slot('thumbnailImage')
+										<div class="thumbnail-image">
+											<img src="{{ $image->url_cache }}" alt="image" class="img-responsive">
+										</div>
                   @endslot
 
                   @slot('thumbnailCaption')

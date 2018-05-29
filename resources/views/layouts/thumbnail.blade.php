@@ -1,4 +1,4 @@
-<div class="thumbnail">
+<div class="thumbnail {{ $class ?? '' }}">
     {{ $thumbnailImage }}
     <div class="caption">
         {{ $thumbnailCaption }}
