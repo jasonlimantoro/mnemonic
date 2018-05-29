@@ -15,11 +15,9 @@ class GalleryFilter implements FilterInterface
 
     public $canvas;
 
-
     /**
      * Creates new instance of filter
      *
-     * @param integer $size
      */
     public function __construct()
     {
@@ -36,9 +34,8 @@ class GalleryFilter implements FilterInterface
     {
         $image->resize(
             self::DEFAULT_CANVAS_WIDTH,
-            self::DEFAULT_CANVAS_HEIGHT, 
-            function($constraint)
-            {
+            self::DEFAULT_CANVAS_HEIGHT,
+            function ($constraint) {
                 $constraint->aspectRatio();
             }
         );
