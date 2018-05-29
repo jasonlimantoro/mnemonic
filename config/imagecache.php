@@ -55,7 +55,6 @@ return array(
         'small' => 'Intervention\Image\Templates\Small',
         'medium' => 'Intervention\Image\Templates\Medium',
         'large' => 'Intervention\Image\Templates\Large',
-        'fit' => 'App\Filters\CarouselFilter',
         'gallery' => 'App\Filters\GalleryFilter'
     ),
 
