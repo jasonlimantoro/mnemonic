@@ -164,7 +164,7 @@ class Setting extends Model
 			$image = Image::create([
 				'file_name' => $faviconName,
 				'url_asset' => url('uploads/' . $faviconName),
-				'url_cache' => url('imagecache/gallery/' . $faviconName)
+				'url_cache' => url('imagecache/logo/' . $faviconName)
 			]);
 			static::byKey('site-info')->update(['value->favicon' => $image->url_cache]);
 		}
@@ -178,7 +178,7 @@ class Setting extends Model
 			$image = Image::create([
 				'file_name' => $logoName,
 				'url_asset' => url('uploads/' . $logoName),
-				'url_cache' => url('imagecache/gallery/' . $logoName)
+				'url_cache' => url('imagecache/logo/' . $logoName)
 			]);
 			static::byKey('site-info')->update(['value->logo' => $image->url_cache]);
 		}
