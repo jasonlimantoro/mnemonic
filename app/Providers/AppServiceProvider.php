@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Http\Resources\Json\Resource;
+use App\Setting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Http\Resources\Json\Resource;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
 			$postCount = \App\Repositories\Posts::count();
 			$view->with(compact('archives', 'postCount'));
 		});
+
+		view()->share('faviconUrl', Setting::getJSONValueFromKeyField('site-info', 'favicon'));
 
 		// API doesn't get wrapped with data key
 		Resource::withoutWrapping();
