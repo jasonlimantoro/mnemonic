@@ -18,7 +18,7 @@ trait UploadsImage
      * @return mixed
      *
     */
-    public static function handleUpload($request)
+    public static function handleUpload($request, $filter = GalleryFilter::class, $template = 'gallery')
     {
         $newImage = $request->file('image');
         $existingImageName = $request->gallery_image;
@@ -44,14 +44,14 @@ trait UploadsImage
         }
 
         // ApplyFilter GalleryFilter and save it to file system
-        $imgFiltered->filter(new GalleryFilter);
+        $imgFiltered->filter(new $filter);
         $file = Storage::disk('uploads')->put($resultImageName, (string) $imgFiltered->encode());
 
         // array
         $imageAttr = [
             'file_name' => $resultImageName,
-            'url_asset' => url('uploads/' . $resultImageName),
-            'url_cache' => url('/imagecache/gallery/' . $resultImageName)
+			'url_asset' => url('uploads/' . $resultImageName),
+            'url_cache' => url('/imagecache/' . $template .  '/' . $resultImageName)
         ];
 
         return Image::firstOrNew($imageAttr);
