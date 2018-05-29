@@ -1,12 +1,12 @@
 <table class="table table-responsive table-bordered">
-    <thead>
-        {{ $tableHeader or null }}
-    </thead>
+  <thead>
+    {{ $tableHeader or null }}
+  </thead>
 
-    <tbody>
-        {{ $tableBody }}
+  <tbody>
+    {{ $tableBody }}
 
-        {{ $slot }}
-    </tbody>
+    {{ $slot }}
+  </tbody>
 
 </table>
