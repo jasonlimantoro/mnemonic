@@ -75,8 +75,8 @@
 				</div>
 
 				
-				<div class="form-group">
-					<div class="col-md-6">
+				<div class="form-group clearfix">
+					<div class="col-md-4">
 						<p>Favicon</p>
 						<strong>Current Image</strong>
 						<div class="current-image">
@@ -87,7 +87,7 @@
 							@endif
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-4">
 						<p>Logo</p>
 						<strong>Current Image</strong>
 						<div class="current-image">
@@ -99,7 +99,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group clearfix">
 					<div class="__react-root" id="IconAndLogoInput"></div>
 				</div>
 				
