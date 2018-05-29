@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Setting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Resources\Json\Resource;
 
@@ -17,6 +18,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191);
+
         view()->composer('layouts.sidebar', function($view){
 			$pages = \App\Page::orderBy('id', 'asc')->get();
 			$view->with(compact('pages'));
