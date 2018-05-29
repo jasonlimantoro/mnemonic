@@ -49,10 +49,9 @@ class EventsController extends Controller
     {
         $event = Event::create(
             $request->only(['name', 'description', 'location', 'datetime'])
-        );
-        if ($eventImage = Image::handleUpload($request)) {
-            $eventImage->addTo($event);
-        }
+		);
+		
+		optional(Image::handleUpload($request))->addTo($event);
 
         $this->flash('Event is successfully created!');
 
@@ -78,7 +77,7 @@ class EventsController extends Controller
      */
     public function edit(Event $event)
     {
-        $eventImage = $event->image ? $event->image->url_cache : null;
+        $eventImage = optional($event->image)->url_cache;
         return view('backend.wedding.events.edit', compact('event', 'eventImage'));
     }
 
@@ -91,13 +90,13 @@ class EventsController extends Controller
      */
     public function update(EventsRequest $request, Event $event)
     {
-        if ($eventImage = Image::handleUpload($request)) {
-            $eventImage->addTo($event);
-        }
-        $event->update(
-            request(['name', 'description', 'location', 'datetime'])
-        );
+		
+		$event->update(
+			request(['name', 'description', 'location', 'datetime'])
+		);
 
+		optional(Image::handleUpload($request))->addTo($event);
+		
         $this->flash('Event is successfully updated!');
 
         return back();
