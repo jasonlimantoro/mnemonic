@@ -7,21 +7,19 @@ use Intervention\Image\Filters\FilterInterface;
 
 class GalleryFilter implements FilterInterface
 {
-    /**
-     * Default size of filter effects
-     */
-    protected const DEFAULT_CANVAS_WIDTH = 2000;
-    protected const DEFAULT_CANVAS_HEIGHT = 1000;
-
     public $canvas;
+    public $width;
+    public $height;
 
     /**
      * Creates new instance of filter
      *
      */
-    public function __construct()
+    public function __construct($width = 2000, $height = 1000)
     {
-        $this->canvas = Image::canvas(self::DEFAULT_CANVAS_WIDTH, self::DEFAULT_CANVAS_HEIGHT);
+        $this->width = $width;
+        $this->height = $height;
+        $this->canvas = Image::canvas($this->width, $this->height);
     }
 
     /**
@@ -33,8 +31,8 @@ class GalleryFilter implements FilterInterface
     public function applyFilter(\Intervention\Image\Image $image)
     {
         $image->resize(
-            self::DEFAULT_CANVAS_WIDTH,
-            self::DEFAULT_CANVAS_HEIGHT,
+            $this->width,
+            $this->height,
             function ($constraint) {
                 $constraint->aspectRatio();
             }
