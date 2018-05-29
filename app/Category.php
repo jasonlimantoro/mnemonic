@@ -12,5 +12,10 @@ class Category extends Model
     {
         return $this->hasOne(Vendor::class);
         // return $this->morphedByMany(Vendor::class, 'categoriable');
-    }
+	}
+	
+	public function addVendor($attributes = [])
+	{
+		return $this->vendor()->create($attributes);
+	}
 }

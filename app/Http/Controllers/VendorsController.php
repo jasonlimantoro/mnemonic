@@ -9,24 +9,24 @@ use App\Http\Controllers\GenericController as Controller;
 
 class VendorsController extends Controller
 {
-	public $categories;
-	
+    public $categories;
+
     public function __construct()
     {
-		$this->middleware('can:read,App\Vendor');
-		$this->middleware('can:create,App\Vendor')->only(['create', 'store']);
-		$this->middleware('can:update,App\Vendor')->only(['edit', 'update']);
-		$this->middleware('can:delete,App\Vendor')->only('destroy');
+        $this->middleware('can:read,App\Vendor');
+        $this->middleware('can:create,App\Vendor')->only(['create', 'store']);
+        $this->middleware('can:update,App\Vendor')->only(['edit', 'update']);
+        $this->middleware('can:delete,App\Vendor')->only('destroy');
 
         $this->categories = Category::all();
         $this->categoriesToArray = $this->categories->pluck('name', 'id')->toArray();
     }
-	
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $vendors = Vendor::filtersSearch(request(['search', 'order', 'method']))
@@ -57,7 +57,8 @@ class VendorsController extends Controller
     {
         $this->validate($request, ['name' => 'required']);
 
-        Vendor::createVendor($request->only(['name', 'category']));
+        Category::find($request->category)
+                ->addVendor($request->only(['name']));
 
         $this->flash('Vendor is successfully created!');
 
@@ -100,7 +101,9 @@ class VendorsController extends Controller
     {
         $this->validate($request, ['name' => 'required']);
 
-        $vendor->updateValue($request->only(['name', 'category']));
+        $vendor->category()
+               ->associate(Category::find($request->category))
+               ->update($request->only(['name']));
 
         $this->flash('Vendor data is updated');
 
