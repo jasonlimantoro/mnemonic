@@ -21,7 +21,7 @@
 			@include('layouts.navbar')
 		@endfrontend
     
-    <div class="container-fluid">
+    <div class="web-container">
 			@yield('content')
 			@include('layouts.footer')
     </div>
