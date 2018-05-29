@@ -2,6 +2,7 @@
 
 @section('content')
 	<div class="container">
+		<h1 class="color-theme text-center post-title">{{ $post->title }}</h1>
 		@isset($post->image)
 			<div class="row">
 				<div class="col-md-12">
@@ -11,7 +12,6 @@
 		@endisset
     <div class="row">
 			<div class="col-md-8 blog-post">
-				<h2>{{ $post->title }}</h2>
 				<p>{!! $post->description !!}</p>
 			</div>
 			<div class="col-md-4">
