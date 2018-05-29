@@ -1,6 +1,6 @@
 <tr>
   <td class="data-table title">
-    @if (auth()->user()->can('update', 'App\Event'))
+    @can('update', 'App\Event')
       <a href="{{ route('events.edit', ['event' => $event->id ]) }}">
         {{ $event->name }}
       </a>

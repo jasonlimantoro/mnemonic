@@ -1,6 +1,6 @@
 <tr class="vendor">
   <td class="data-table title">
-		@if (auth()->user()->can('update', 'App\Vendor'))
+		@can('update', 'App\Vendor')
 			<a href="{{ route('vendors.edit', ['vendor' => $vendor->id ]) }}">
 				{{ $vendor->name }} 
 			</a>
