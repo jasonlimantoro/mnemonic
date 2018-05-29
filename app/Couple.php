@@ -2,6 +2,7 @@
 namespace App;
 
 use Illuminate\Http\Request;
+use App\Filters\CoupleFilter;
 
 class Couple extends Model
 {
@@ -29,7 +30,7 @@ class Couple extends Model
 
 	public function updateRecord(Request $request)
 	{
-        optional(Image::handleUpload($request))->addTo($this);
+        optional(Image::handleUpload($request, CoupleFilter::class, 'couple'))->addTo($this);
         $this->update(
             $request->only(['name', 'father', 'mother'])
         );

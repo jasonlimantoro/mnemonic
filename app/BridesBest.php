@@ -4,6 +4,7 @@ namespace App;
 
 use App\Traits\FiltersSearch;
 use Illuminate\Http\Request;
+use App\Filters\BridesBestFilter;
 
 class BridesBest extends Model
 {
@@ -16,12 +17,12 @@ class BridesBest extends Model
 	public static function createRecord(Request $request)
 	{
 		$bridesBest = static::create($request->only(['name', 'testimony', 'ig_account', 'gender']));
-		optional(Image::handleUpload($request))->addTo($bridesBest);
+		optional(Image::handleUpload($request, BridesBestFilter::class, 'bridesbest'))->addTo($bridesBest);
 	}
 
 	public function updateRecord(Request $request)
 	{
 		$this->update($request->only(['name', 'testimony', 'ig_account', 'gender']));
-		optional(Image::handleUpload($request))->addTo($this);
+		optional(Image::handleUpload($request, BridesBestFilter::class, 'bridesbest'))->addTo($this);
 	}
 }

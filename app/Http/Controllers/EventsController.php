@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use App\Image;
+use App\Filters\EventFilter;
 use App\Http\Requests\EventsRequest;
 use App\Http\Controllers\GenericController as Controller;
 
@@ -51,7 +52,7 @@ class EventsController extends Controller
             $request->only(['name', 'description', 'location', 'datetime'])
 		);
 		
-		optional(Image::handleUpload($request))->addTo($event);
+		optional(Image::handleUpload($request, EventFilter::class, 'event'))->addTo($event);
 
         $this->flash('Event is successfully created!');
 
@@ -95,7 +96,7 @@ class EventsController extends Controller
 			request(['name', 'description', 'location', 'datetime'])
 		);
 
-		optional(Image::handleUpload($request))->addTo($event);
+		optional(Image::handleUpload($request, EventFilter::class, 'event'))->addTo($event);
 		
         $this->flash('Event is successfully updated!');
 
