@@ -32,6 +32,9 @@ class AppServiceProvider extends ServiceProvider
 		});
 
 		view()->share('faviconUrl', Setting::getJSONValueFromKeyField('site-info', 'favicon'));
+		view()->share('logoUrl', Setting::getJSONValueFromKeyField('site-info', 'logo'));
+		view()->share('siteTitle', Setting::getJSONValueFromKeyField('site-info', 'title'));
+		view()->share('siteDescription', Setting::getJSONValueFromKeyField('site-info', 'description'));
 
 		// API doesn't get wrapped with data key
 		Resource::withoutWrapping();
