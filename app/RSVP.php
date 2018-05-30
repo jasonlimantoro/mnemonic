@@ -17,4 +17,23 @@ class RSVP extends Model
 		return $this->hasOne(RSVPToken::class, 'rsvp_id');
 	}
 
+	public function confirmed()
+	{
+		return $this->status === 'confirmed';
+	}
+
+	public function notConfirmed()
+	{
+		return !$this->confirmed();
+	}
+
+	public function reminded()
+	{
+		return $this->reminder_count > 0;
+	}
+
+	public function notReminded()
+	{
+		return !$this->reminded();
+	}
 }
