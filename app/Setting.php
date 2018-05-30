@@ -85,6 +85,21 @@ class Setting extends Model
 		return optional($json)->$keyJSON;
 	}
 
+	/**
+	 * Update the JSON Value given the key
+	 * 
+	 * @param string $keyField
+	 * @param array $attributes
+	 * @return void
+	 */
+
+	public static function updateJSONValueFromKeyField(string $keyField, array $attributes)
+	{
+		foreach ($attributes as $key => $value) {
+			static::byKey($keyField)->update(["value->${key}" => $value]);
+		}
+	}
+
 
     /**
      *  Update the value field
@@ -132,12 +147,10 @@ class Setting extends Model
 
 	public static function updateSiteInfo(Request $request)
 	{
-		static::updateValueByKey('site-info', [
+		static::updateJSONValueFromKeyField('site-info', [
             'admin-email' => $request->admin_email,
             'title' => $request->site_title,
 			'description' => $request->site_description,
-			'logo' => null,
-			'favicon' => null,
             'contact' => [
                 'email' => $request->contact_email,
                 'phone' => $request->contact_phone,
@@ -157,30 +170,30 @@ class Setting extends Model
 	{
         if ($favicon = $request->favicon_from_gallery) {
 			$image = Image::byName($favicon);
-			static::byKey('site-info')->update(['value->favicon' => $image->url_cache]);
+			static::updateJSONValueFromKeyField('site-info', ['favicon' => $image->url_cache]);
 		} else if ($favicon = $request->file('favicon_from_local')) {
 			$faviconName = $favicon->getClientOriginalName();
 			$path = Storage::disk('uploads')->putFileAs('/', $favicon, $favicon->getClientOriginalName());
-			$image = Image::create([
+			$image = Image::firstOrCreate([
 				'file_name' => $faviconName,
 				'url_asset' => url('uploads/' . $faviconName),
 				'url_cache' => url('imagecache/logo/' . $faviconName)
 			]);
-			static::byKey('site-info')->update(['value->favicon' => $image->url_cache]);
+			static::updateJSONValueFromKeyField('site-info', ['favicon' => $image->url_cache]);
 		}
 
         if ($logo = $request->logo_from_gallery) {
 			$image = Image::byName($logo);
-			static::byKey('site-info')->update(['value->logo' => $image->url_cache]);
+			static::updateJSONValueFromKeyField('site-info', ['logo' => $image->url_cache]);
 		} else if ($logo = $request->file('logo_from_local')) {
 			$logoName = $logo->getClientOriginalName();
 			$path = Storage::disk('uploads')->putFileAs('/', $logo, $logo->getClientOriginalName());
-			$image = Image::create([
+			$image = Image::firstOrCreate([
 				'file_name' => $logoName,
 				'url_asset' => url('uploads/' . $logoName),
 				'url_cache' => url('imagecache/logo/' . $logoName)
 			]);
-			static::byKey('site-info')->update(['value->logo' => $image->url_cache]);
+			static::updateJSONValueFromKeyField('site-info', ['logo' => $image->url_cache]);
 		}
 	} 
 
