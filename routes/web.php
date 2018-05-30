@@ -114,8 +114,8 @@ Route::name('front.')->group(function () {
     Route::get('about-us', 'FrontendController@about')->name('about');
     Route::get('gallery', 'FrontendController@gallery')->name('gallery');
     Route::get('rsvp', 'FrontendController@onlineRSVP')->name('rsvp');
+	Route::get('posts/{post}', 'PostsController@read')->name('posts.read');
     Route::get('/', 'FrontendController@home')->name('index');
 });
 
 Route::post('avatar', 'ImagesController@upload');
-Route::get('posts/{post}', 'PostsController@read')->name('front.posts.read');
