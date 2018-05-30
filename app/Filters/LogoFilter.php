@@ -8,8 +8,8 @@ use Intervention\Image\Filters\FilterInterface;
 
 class LogoFilter implements FilterInterface
 {
-    const DEFAULT_WIDTH = 250;
-    const DEFAULT_HEIGHT = 250;
+    const DEFAULT_WIDTH = 50;
+    const DEFAULT_HEIGHT = 50;
 
     /**
      * Creates new instance of filter
