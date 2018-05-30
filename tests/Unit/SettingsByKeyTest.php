@@ -19,12 +19,12 @@ class SettingsByKeyTest extends TestCase
 
     public function testGetValuByKeysMany()
     {
-        $settings = Setting::getManyValueByKeys(['site-info', 'some-setting']);
+		$settings = Setting::getManyValueByKeys(['site-info', 'site-social']);
 
         $data = [
             'site-info' => Setting::getValuebyKey('site-info'),
-            'some-setting' => Setting::getValuebyKey('some-setting')
-        ];
+            'site-social' => Setting::getValuebyKey('site-social')
+		];
 
         $this->assertEquals($data, $settings);
     }
