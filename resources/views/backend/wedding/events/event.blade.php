@@ -14,21 +14,6 @@
 		{!! $event->description !!}
   </td>
   <td class="text-center">
-    @can('read', App\Event::class)
-      <div>
-        <a
-          href="{{ route('events.show', ['event' => $event->id ]) }}"
-          id="ShowIcon"
-          class="__react-root"
-          role="button"
-          data-toggle="tooltip"
-          title="See info about this event"
-          data-placement="top"
-        >
-        </a>
-      </div>
-    @endcan
-
     @can('update', App\Event::class)
       <div>
         <a

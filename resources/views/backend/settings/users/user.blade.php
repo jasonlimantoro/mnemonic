@@ -14,21 +14,6 @@
 		{{ $user->role->name }}
   </td>
   <td class="data-table text-center">
-		@can('read', App\User::class)
-			<div>
-				<a 
-					href="{{ route('users.show', ['user' => $user->id ]) }}" 
-					id="ShowIcon" 
-					class="__react-root" 
-					role="button"
-					data-toggle="tooltip"
-					title="See info about this user"
-					data-placement="top"
-					>
-				</a>
-			</div>
-		@endcan
-		
 		@can('update', App\User::class)
 			<div>
 				<a 

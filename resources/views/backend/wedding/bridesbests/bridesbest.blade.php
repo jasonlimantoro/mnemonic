@@ -15,21 +15,6 @@
     {!! $b->testimony !!}
   </td>
   <td class="text-center">
-		@can('read', App\BridesBest::class)
-			<div>
-				<a 
-					href="{{ route('bridesmaid-bestmans.show', ['bridesmaid-bestman' => $b->id ]) }}" 
-					id="ShowIcon" 
-					class="__react-root" 
-					role="button"
-					data-toggle="tooltip"
-					title="See info about this bridesmaid-bestman"
-					data-placement="top"
-					>
-				</a>
-			</div>
-		@endcan
-
 		@can('update', App\BridesBest::class)
 			<div>
 				<a 

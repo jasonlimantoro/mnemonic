@@ -12,21 +12,6 @@
     {{ $category->description }}
   </td>
   <td class="data-table text-center">
-		@can('read', App\Category::class)
-			<div>
-				<a 
-					href="{{ route('categories.show', ['category' => $category->id ]) }}" 
-					id="ShowIcon" 
-					class="__react-root" 
-					role="button"
-					data-toggle="tooltip"
-					title="See info about this category"
-					data-placement="top"
-					>
-				</a>
-			</div>
-		@endcan
-
 		@can('update', App\Category::class)
 			<div>
 				<a 
