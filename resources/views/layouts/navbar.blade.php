@@ -12,7 +12,7 @@
 						<span class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" href="{{ route('front.index') }}">
-						<img src="/images/logo.png" alt="logo" class="img-responsive">
+						<img src="{{ $logoUrl }}" alt="logo" class="img-responsive">
 					</a>
 				</div>
 			
@@ -30,7 +30,7 @@
 						<li><a href="{{ route('front.gallery')}}">Gallery</a></li>
 						<li class="hidden-xs">
 							<a href="/" class="navbar-logo-center">
-								<img src="/images/logo.png" alt="logo" class="img-responsive">
+								<img src="{{ $logoUrl }}" alt="logo" class="img-responsive">
 							</a>
 						</li>
 						<li><a href="{{ route('front.wedding')}}">Wedding Day</a></li>
