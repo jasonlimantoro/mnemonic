@@ -24,7 +24,7 @@ Route::group([
         Route::group([
         'prefix' => 'gallery',
         'middleware' => 'can:manage-gallery'
-    ], function () {
+		], function () {
 			// images
 			Route::resource('images', 'ImagesController');
 			// albums
@@ -86,12 +86,6 @@ Route::group([
 
         // Roles
         Route::resource('roles', 'RolesController')->except('show');
-    });
-
-// previewing mailables in browser
-Route::get('/mailable', function () {
-    $rsvp = \App\RSVP::find(1);
-    return new App\Mail\RSVPInvitation($rsvp);
 });
 
 // rsvp confirmation
@@ -117,5 +111,3 @@ Route::name('front.')->group(function () {
 	Route::get('posts/{post}', 'PostsController@read')->name('posts.read');
     Route::get('/', 'FrontendController@home')->name('index');
 });
-
-Route::post('avatar', 'ImagesController@upload');
