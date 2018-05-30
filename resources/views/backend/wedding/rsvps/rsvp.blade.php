@@ -25,21 +25,6 @@
 		@endif
 	</td>
 	<td class="text-center">
-		@can('read', App\RSVP::class)
-			<div>
-				<a 
-					href="{{ route('rsvps.show', ['rsvp' => $rsvp->id ]) }}" 
-					id="ShowIcon" 
-					class="__react-root" 
-					role="button"
-					data-toggle="tooltip"
-					title="See info about this rsvp"
-					data-placement="top"
-					>
-				</a>
-			</div>
-		@endcan
-
 		@can('update', App\RSVP::class)
 			<div>
 				<a 
