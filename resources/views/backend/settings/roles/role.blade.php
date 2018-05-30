@@ -18,21 +18,6 @@
 		</ul>
 	</td>
 	<td class="data-table text-center">
-		@can('read', App\Role::class)
-			<div>
-				<a 
-					href="{{ route('roles.show', ['role' => $role->id ]) }}" 
-					id="ShowIcon" 
-					class="__react-root" 
-					role="button"
-					data-toggle="tooltip"
-					title="See info about this role"
-					data-placement="top"
-					>
-				</a>
-			</div>
-		@endcan
-
 		@can('update', App\Role::class)
 			<div>
 				<a 

@@ -14,21 +14,6 @@
 		</span>
   </td>
   <td class="text-center">
-		@can('read', App\Vendor::class)
-			<div>
-				<a 
-					href="{{ route('vendors.show', ['vendor' => $vendor->id ]) }}" 
-					id="ShowIcon" 
-					class="__react-root" 
-					role="button"
-					data-toggle="tooltip"
-					title="See info about this vendor"
-					data-placement="top"
-					>
-				</a>
-			</div>
-		@endcan
-
 		@can('update', App\Vendor::class)
 			<div>
 				<a 

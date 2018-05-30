@@ -51,21 +51,21 @@ Route::group([
             Route::get('couple', 'CoupleController@edit')->name('couple.edit');
 
             // Event
-            Route::resource('events', 'EventsController');
+            Route::resource('events', 'EventsController')->except('show');
 
             // Bridesmaid-Bestman
-            Route::resource('bridesmaid-bestmans', 'BridesBestsController');
+            Route::resource('bridesmaid-bestmans', 'BridesBestsController')->except('show');
 
             // Vendors
-            Route::resource('vendors', 'VendorsController');
-			Route::resource('categories', 'CategoriesController');
+            Route::resource('vendors', 'VendorsController')->except('show');
+			Route::resource('categories', 'CategoriesController')->except('show');
 			
 			// Youtube Video
 			Route::get('embed-video/edit', 'CoupleController@editVideo')->name('embedVideo.edit');
 			Route::patch('embed-video', 'CoupleController@updateVideo')->name('embedVideo.update');
 
             // RSVP
-            Route::resource('rsvps', 'RSVPController');
+            Route::resource('rsvps', 'RSVPController')->except('show');
             Route::post('rsvps/{rsvp}/remind', 'RSVPController@remind')->name('rsvps.remind');
         });
 
@@ -82,10 +82,10 @@ Route::group([
         Route::patch('social-seo', 'SiteSEOController@update')->name('siteseo.update')->middleware('can:update-site-seo');
 
         // Users
-        Route::resource('users', 'UsersController');
+        Route::resource('users', 'UsersController')->except('show');
 
         // Roles
-        Route::resource('roles', 'RolesController');
+        Route::resource('roles', 'RolesController')->except('show');
     });
 
 // previewing mailables in browser
