@@ -59,12 +59,12 @@
 			</div>
 		@endcan
 		@can('update', App\RSVP::class)
-			@if (!$rsvp->reminder_count)
+			@unless ($rsvp->reminded() or $rsvp->confirmed())
 				<form action="{{ route('rsvps.remind', ['rsvp' => $rsvp->id]) }}" method="POST">
 					<input type="hidden" name="email" value="{{ $rsvp->email }}">
 					<button type="submit" class="btn btn-danger btn-block">Send Reminder</button>
 				</form>
-			@endif
+			@endunless
 		@endcan
 	</td>
 </tr>
