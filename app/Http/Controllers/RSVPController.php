@@ -11,19 +11,19 @@ use Illuminate\Http\Request;
 use App\Http\Requests\RSVPRequest;
 use App\Http\Controllers\GenericController as Controller;
 
-
 class RSVPController extends Controller
 {
-	protected $confirm;
+    protected $confirm;
 
-	public function __construct(ConfirmsRSVP $confirm)
-	{
-		$this->middleware('can:read,App\RSVP')->except(['confirm']);
-		$this->middleware('can:create,App\RSVP')->only(['create', 'store']);
-		$this->middleware('can:update,App\RSVP')->only(['edit', 'update', 'remind']);
-		$this->middleware('can:delete,App\RSVP')->only('destroy');
-		$this->confirm = $confirm;
-	}
+    public function __construct(ConfirmsRSVP $confirm)
+    {
+        $this->middleware('can:read,App\RSVP')->except(['confirm', 'confirmFromFront']);
+        $this->middleware('can:create,App\RSVP')->only(['create', 'store']);
+        $this->middleware('can:update,App\RSVP')->only(['edit', 'update', 'remind']);
+        $this->middleware('can:delete,App\RSVP')->only('destroy');
+        $this->confirm = $confirm;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +31,7 @@ class RSVPController extends Controller
      */
     public function index()
     {
-		$rsvps = RSVP::latest()->get();
+        $rsvps = RSVP::latest()->get();
         return view('backend.wedding.rsvps.index', compact('rsvps'));
     }
 
@@ -53,16 +53,15 @@ class RSVPController extends Controller
      */
     public function store(RSVPRequest $request)
     {
+        $rsvp = RSVP::create(
+            $request->only(['name', 'email', 'phone', 'table_name', 'total_invitation'])
+        );
 
-		$rsvp = RSVP::create(
-		    $request->only(['name', 'email', 'phone', 'table_name', 'total_invitation'])
-		);
+        $this->confirm->invite($rsvp);
 
-		$this->confirm->invite($rsvp);
-		
-		$this->flash('RSVP is successfully created and an email invitation has been sent!');
+        $this->flash('RSVP is successfully created and an email invitation has been sent!');
 
-		return redirect()->route('rsvps.index');
+        return redirect()->route('rsvps.index');
     }
 
     /**
@@ -96,11 +95,11 @@ class RSVPController extends Controller
      */
     public function update(RSVPRequest $request, RSVP $rsvp)
     {
-		$rsvp->update(
-		    $request->only(['name, email, phone, table_name, total_invitation'])
-		);
-		$this->flash('RSVP data is updated successfully');	
-		return back();
+        $rsvp->update(
+            $request->only(['name, email, phone, table_name, total_invitation'])
+        );
+        $this->flash('RSVP data is updated successfully');
+        return back();
     }
 
     /**
@@ -111,40 +110,40 @@ class RSVPController extends Controller
      */
     public function destroy(RSVP $rsvp)
     {
-		$rsvp->delete();
-		$this->flash('RSVP is successfully deleted!');
-		return back();
-	}
-	
-	public function remind(RSVP $rsvp)
-	{
-		$this->confirm->postRemind($rsvp);
+        $rsvp->delete();
+        $this->flash('RSVP is successfully deleted!');
+        return back();
+    }
 
-		$this->flash('Sent reminder to RSVP!');
+    public function remind(RSVP $rsvp)
+    {
+        $this->confirm->postRemind($rsvp);
 
-		return back();
-	}
+        $this->flash('Sent reminder to RSVP!');
 
-	public function confirm(RSVP $rsvp, RSVPToken $token)
-	{
-		$this->confirm->persist($token);
-		return view('emails.RSVPconfirmed', compact('rsvp'));
-	}
+        return back();
+    }
 
-	public function confirmFromFront(Request $request)
-	{
-		$this->validate($request, [
-			'rsvp' => ['bail', 'required', new Unconfirmed, new TokenFound ],
-			'g-recaptcha-response' => 'required|recaptcha',
-		]);
+    public function confirm(RSVP $rsvp, RSVPToken $token)
+    {
+        $this->confirm->persist($token);
+        return view('emails.RSVPconfirmed', compact('rsvp'));
+    }
 
-		$id = (int) ($request->rsvp);
-		$rsvp = RSVP::find($id);
-		$token = $rsvp->token;
-		$this->confirm->persist($token);
+    public function confirmFromFront(Request $request)
+    {
+        $this->validate($request, [
+            'rsvp' => ['bail', 'required', new Unconfirmed, new TokenFound],
+            'g-recaptcha-response' => 'required|recaptcha',
+        ]);
 
-		$this->flash('RSVP is successfully confirmed!');
+        $id = (int) ($request->rsvp);
+        $rsvp = RSVP::find($id);
+        $token = $rsvp->token;
+        $this->confirm->persist($token);
 
-		return redirect()->route('front.rsvp')->with('rsvp', $rsvp);
-	}
+        $this->flash('RSVP is successfully confirmed!');
+
+        return redirect()->route('front.rsvp')->with('rsvp', $rsvp);
+    }
 }
