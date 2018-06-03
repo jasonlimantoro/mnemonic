@@ -6,7 +6,16 @@
         .navbar-nav {
             display: inline-block;
             float: none;
-            vertical-align: top;
+			vertical-align: top;
+			font-family: PlayFair;
+			font-size: 16pt;
+			a {
+				cursor: pointer;
+				color: $gold-font;
+				&.active, &:hover {
+					color: $gold-dark;
+				}
+			}
             .navbar-logo-center {
                 img {
                     height: 50px;
