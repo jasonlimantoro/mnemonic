@@ -14,3 +14,9 @@
 .img-album-show {
 	margin: 30px auto 0;
 }
+
+.bb-slider {
+	&:first-child {
+		margin-bottom: 20px;
+	}
+}
