@@ -157,3 +157,76 @@ export class AlbumSlider extends React.Component {
     );
   }
 }
+
+export const BridesBestSlider = () => {
+	const bridesMaidSlides = bridesMaid.map(bma => ( 
+		<div key={bma.id} className="wedding-day-bb-container">
+			{bma.image ? ( 
+				<div className="wedding-day-bb-image">
+					<img src={ bma.image.url_cache } alt="bb" className="img-responsive" />
+				</div>	
+			) : ''
+			}
+			<strong>{ bma.name }</strong><br />
+			<i dangerouslySetInnerHTML={{__html: bma.testimony  }}></i><br />
+			<div className="wedding-day-bb-ig">
+				<div className="account">
+					<a href={`https://instagram.com/${bma.ig_account}`}>
+						<img src="/images/instagram-logo.png" alt="ig" className="img-responsive" width="32px" />
+					</a>
+				</div>
+			</div>
+		</div>	
+	 ));
+	const bestMenSlides = bestMen.map(bme => ( 
+		<div key={bme.id} className="wedding-day-bb-container">
+			{bme.image ? ( 
+				<div className="wedding-day-bb-image">
+					<img src={ bme.image.url_cache } alt="bb" className="img-responsive" />
+				</div>	
+			) : ''
+			}
+			<strong>{ bme.name }</strong><br />
+			<i dangerouslySetInnerHTML={{__html: bme.testimony  }}></i><br />
+			<div className="wedding-day-bb-ig">
+				<div className="col-center">
+					<a href={`https://instagram.com/${bme.ig_account}`}>
+						<img src="/images/instagram-logo.png" alt="ig" className="img-responsive" width="32px" />
+					</a>
+				</div>
+			</div>
+		</div>	
+	));
+	var settings = {
+		useTransform: false,
+		infinite: true,
+		speed: 500,
+		slidesToShow: 3,
+		slidesToScroll: 1,
+		className: 'bb-slider',
+		responsive: [
+			{
+				breakpoint: 1024,
+				settings: {
+					slidesToShow: 2
+				}
+			},
+			{
+				breakpoint: 767,
+				settings: {
+					slidesToShow: 1 
+				}
+			}
+		]
+	};
+	return (
+		<div>
+			<Slider {...settings}>
+				{bridesMaidSlides}
+			</Slider>
+			<Slider {...settings}>
+				{bestMenSlides}
+			</Slider>
+		</div>
+	);
+}
