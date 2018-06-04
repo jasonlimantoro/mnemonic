@@ -4,8 +4,8 @@
 	@include('jsvar')
 	<div class="container rsvp-container text-center">
 		<div class="col-md-12">
-			<div class="row page-title font-theme">
-				<h1 class="color-theme">Online RSVP</h1>
+			<div class="row page-title">
+				<h1 class="color-theme font-theme">Online RSVP</h1>
 			</div>
 
 			<div class="row rsvp-form">

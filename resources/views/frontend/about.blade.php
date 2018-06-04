@@ -4,15 +4,15 @@
 @section('content')
 	<div class="container about-us-container">
 		<div class="col-md-12">
-			<div class="row page-title font-theme">
-				<h1 class="color-theme">About Us</h1>
+			<div class="row page-title">
+				<h1 class="color-theme font-theme">About Us</h1>
 			</div>
 			<div class="row">
 				@foreach($posts as $post)
 					<div class="col-md-12 post-content">
 						<div class="col-md-8 post-detail">
-							<div class="col-md-12 font-theme">
-								<h1> {{ $post->title }} </h1>
+							<div class="col-md-12">
+								<h1 class="font-theme"> {{ $post->title }} </h1>
 							</div>
 							<div class="col-md-12 post-description">
 								<p>{!! $post->description !!}</p>
