@@ -46,7 +46,12 @@ class FrontendController extends Controller
         $groom = Couple::groom();
         $bride = Couple::bride();
         $bbs = BridesBest::all();
-        $vendors = Vendor::all();
+		$vendors = Vendor::all();
+		
+		JavaScript::put([
+			'bridesMaid' => BridesBest::bridesMaid(),
+			'bestMen' => BridesBest::bestMen(),
+		]);
 
         return view('frontend.wedding', compact('embed', 'events', 'groom', 'bride', 'bbs', 'vendors'));
     }
