@@ -3,22 +3,29 @@
 // General
 @mixin general-query ($device) {
     @if $device == mobile {
-        @media (max-width: 767px) {
+        @media (max-width: $screen-xs-max) {
             @content;
         }
 	}
 	
-	@if $device == tablet {
-		@media (min-width: 768px) and (max-width: 1024px) {
+	@else if $device == tablet {
+		@media (min-width: $screen-sm-min) {
 			@content;
 		}
 	}
 
-    @if $device == desktop {
-        @media (min-width: 1200px) {
+    @else if $device == desktop {
+        @media (min-width: $screen-md-min) {
             @content;
         }
     }
+	@else if $device == large_desktop {
+		@media (min-width: $screen-lg-min) {
+			@content;
+		}
+	}
+
+
 }
 
 // device specific
