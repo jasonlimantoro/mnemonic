@@ -9,12 +9,11 @@ import { AlbumSlider, BridesBestSlider } from "./components/Slider";
 const APPS = {
 	RSVPTimer, RSVPModal,
 	AlbumSlider, GalleryModal,
-	InitializeEditor,
 	BridesBestSlider,
 };
 
 function renderAppInElement(el) {
-  var App = APPS[el.id];
+  let App = APPS[el.id];
   if (!App) {return;}
 
   // get props from elements data attribute, like the post_id
