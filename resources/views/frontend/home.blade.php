@@ -5,21 +5,13 @@
 		@component('layouts.carousel', ['carouselId' => 'mainCarousel'])
 			@slot('carouselIndicators')
 				@foreach($slides as $slide)
-					@if ($loop->first)
-						<li data-target="#mainCarousel" data-slide-to="{{ $loop->index }}" class="active"></li>
-					@else
-						<li data-target="#mainCarousel" data-slide-to="{{ $loop->index }}"></li>
-					@endif
+          <li data-target="#mainCarousel" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
 				@endforeach
 			@endslot
 	
 			@slot('carouselSlides')
 				@foreach($slides as $slide)
-					@if ($loop->first)
-						<div class="item active">
-					@else
-						<div class="item">
-					@endif
+          <div class="item {{ $loop->first ? 'active' : '' }}">
 						<img src="{{ $slide->url_cache }}" alt="slide" class="img-responsive">
 						<div class="carousel-caption">
 							{{ $slide->caption }}
