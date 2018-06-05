@@ -1,6 +1,8 @@
 .navbar {
 	margin-bottom: 0;
 	box-shadow: none;
+	border-radius: 0;
+	border: none;
     .navbar-collapse {
         text-align: center;
         .navbar-nav {
@@ -15,6 +17,9 @@
 				&.active, &:hover {
 					color: $gold-dark;
 				}
+			}
+			a:not(.navbar-logo-center) {
+				padding: 30px 15px;
 			}
             .navbar-logo-center {
                 img {
