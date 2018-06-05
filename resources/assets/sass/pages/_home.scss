@@ -1,4 +1,7 @@
-.post-title {
-	font-family: PlayFair;
-	font-style: italic;
+.post-container {
+	&:nth-child(odd) { clear: both; }
+	.post-title {
+		font-family: PlayFair;
+		font-style: italic;
+	}
 }

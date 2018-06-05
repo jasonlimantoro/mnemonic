@@ -31,15 +31,11 @@
 	@endif
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8">
-				@foreach($posts as $post)
-					@include('posts.frontend.post')
-				@endforeach
-			</div>
-			<div class="col-md-4">
-				<h1>Archives</h1>
-				@include('layouts.archives')
-			</div>
+      @foreach($posts as $post)
+        <div class="col-xs-12 col-sm-6 post-container">
+          @include('posts.frontend.post')
+        </div>
+      @endforeach
 		</div>
 	</div>
 @endsection
