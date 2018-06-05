@@ -7,23 +7,29 @@
 	}
 	.post-content {
 		margin: 30px;
+		text-align: center;
 		.post-detail {
 			text-align: center;
-		}
-		&:nth-child(even){
-			.post-detail {
-				float: left;
-			}
-		}
-		&:nth-child(odd){
-			.post-detail {
-				float: right;
-			}
 		}
 		.post-description * {
 			font-size: 120%;
 			letter-spacing: 5px !important;
 			font-family: PlayFair;
+		}
+		.post-image {
+			display: inline-block;
+		}
+		@include general-query(desktop){
+			&:nth-child(even){
+				.post-detail {
+					float: left;
+				}
+			}
+			&:nth-child(odd){
+				.post-detail {
+					float: right;
+				}
+			}
 		}
 	}
 }
