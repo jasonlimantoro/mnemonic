@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 export class RSVPTimer extends React.Component {
   constructor(props) {
@@ -87,7 +86,7 @@ export class RSVPTimer extends React.Component {
   }
 
   render() {
-		const { years, days, hours, minutes, seconds } = this.state;
+    const { days, hours, minutes, seconds } = this.state;
     return (
       <div>
         <span className="days box-theme">
