@@ -30,7 +30,7 @@ class FrontendController extends Controller
 
     public function about(Posts $posts)
     {
-        $posts = $posts->about()->get();
+        $posts = $posts->about()->paginate(5);
         return view('frontend.about', compact('posts'));
     }
 
