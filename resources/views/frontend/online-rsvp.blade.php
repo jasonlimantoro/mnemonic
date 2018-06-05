@@ -19,7 +19,7 @@
 				@endisset
 				
 				{{ Form::open(['route' => 'rsvps.confirmFromFront', 'method' => 'POST']) }}
-				<div class="col-sm-8 col-xs-12 col-center">
+				<div class="col-sm-6 col-xs-12 col-center">
 						@include('layouts.error')
 						{{-- rsvp field --}}
 						<div class="form-group">
