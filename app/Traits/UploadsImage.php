@@ -15,9 +15,10 @@ trait UploadsImage
      * Filter the uploaded file and save it to the filesystem
      *
      * @param  \Illuminate\Http\Request $request
+     * @param string $filter
+     * @param string $template
      * @return mixed
-     *
-    */
+     */
     public static function handleUpload($request, $filter = GalleryFilter::class, $template = 'gallery')
     {
         $newImage = $request->file('image');
@@ -26,7 +27,6 @@ trait UploadsImage
         // new image
         if ($newImage) {
             $newImageName = $newImage->getClientOriginalName();
-            $uploadPath = public_path('uploads/' . $newImageName);
             $imgFiltered = \Image::make($newImage);
             $resultImageName = $newImageName;
         }
@@ -45,7 +45,7 @@ trait UploadsImage
 
         // ApplyFilter GalleryFilter and save it to file system
         $imgFiltered->filter(new $filter);
-        $file = Storage::disk('uploads')->put($resultImageName, (string) $imgFiltered->encode());
+        Storage::disk('uploads')->put($resultImageName, (string) $imgFiltered->encode());
 
         // array
         $imageAttr = [
