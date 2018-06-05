@@ -2,20 +2,15 @@ require('./bootstrap');
 
 import ReactDOM from "react-dom";
 import React from "react";
-import { Search, FancyInput, CoupleForm, SimpleInput, IconAndLogoInput } from './containers/FormContainer';
-import { DeleteIcon, EditIcon, ShowIcon } from "./containers/IconContainer";
 import { RSVPTimer } from "./components/RSVPTimer";
-import { RSVPModal, GalleryModal } from "./components/Modal";
-import { AlbumSlider } from "./components/Slider";
-import { InitializeEditor } from "./components/Editor";
+import { GalleryModal, RSVPModal } from "./components/Modal";
+import { AlbumSlider, BridesBestSlider } from "./components/Slider";
 
 const APPS = {
-	Search, CoupleForm,
-	FancyInput, SimpleInput, 
-	DeleteIcon, EditIcon, ShowIcon, IconAndLogoInput,
 	RSVPTimer, RSVPModal,
 	AlbumSlider, GalleryModal,
 	InitializeEditor,
+	BridesBestSlider,
 };
 
 function renderAppInElement(el) {

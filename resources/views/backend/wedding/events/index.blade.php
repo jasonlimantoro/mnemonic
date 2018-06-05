@@ -1,16 +1,16 @@
-@extends('layouts.submaster')
+@extends('backend.layouts.master')
 
 @section('content')
   <div class="row">
     <div class="col-md-12">
-			@component('layouts.breadcrumb', ['current' => 'Events'])
+			@component('backend.layouts.breadcrumb', ['current' => 'Events'])
 			@endcomponent
-      @component('layouts.panel', [
+      @component('backend.layouts.panel', [
         'title' => "Event"
 			])
 				@can('create', App\Event::class)
 					@slot('addButton')
-						@component('layouts.addButton', [
+						@component('backend.layouts.addButton', [
 							'url' => route('events.create'),
 							'item' => 'event'
 						])
@@ -19,7 +19,7 @@
 				@endcan
 
 				@slot('body')
-					@component('layouts.query', [
+					@component('backend.layouts.query', [
 						'title' => 'Name',
 						'body' => 'Description'
 					]) 

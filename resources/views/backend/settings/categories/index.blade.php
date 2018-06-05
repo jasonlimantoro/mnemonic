@@ -1,16 +1,16 @@
-@extends('layouts.submaster')
+@extends('backend.layouts.master')
 
 @section('content')
   <div class="row">
     <div class="col-md-12">
-			@component('layouts.breadcrumb', ['current' => 'Vendor Categories'])
+			@component('backend.layouts.breadcrumb', ['current' => 'Vendor Categories'])
 			@endcomponent
-      @component('layouts.panel', [
+      @component('backend.layouts.panel', [
         'title' => "Categories"
 			])
 				@can('create', App\Category::class)
 					@slot('addButton')
-						@component('layouts.addButton', [
+						@component('backend.layouts.addButton', [
 							'url' => route('categories.create'),
 							'item' => 'Categories'
 						])
@@ -19,7 +19,7 @@
 				@endcan
 
 				@slot('body')
-					@component('layouts.query', [
+					@component('backend.layouts.query', [
 						'title' => 'Name',
 						'body' => 'Description'
 					])

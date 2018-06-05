@@ -12,17 +12,16 @@
 		<link rel="shortcut icon" type="image/png" href="/images/logo.png"/>
 
     <!-- Styles -->
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
   </head>
 
   <body>
     <div class="wrapper">
-      @include('layouts.sidebar')
+      @include('backend.layouts.sidebar')
 
       <!-- Page Content Holder -->
       <div class="container backend" id="content">
-				@include('layouts.header')
+				@include('backend.layouts.header')
 				@include('layouts.success')
 				@include('layouts.error')
 				@yield('content')
@@ -32,7 +31,7 @@
     {{--  Asset Scripts  --}}
     <script src="{{ asset('js/manifest.js')}}"></script>
 		<script src="{{ asset('js/vendor.js')}}"></script>
-		<script src="{{ asset('js/main.js') }}"></script>
+		<script src="{{ asset('js/admin.js') }}"></script>
 
     {{--  General scripts  --}}
     <script>

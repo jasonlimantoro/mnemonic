@@ -1,16 +1,16 @@
-@extends('layouts.submaster')
+@extends('backend.layouts.master')
 
 @section('content')
 	<div class="row">
 		<div class="col-md-12">
-			@component('layouts.breadcrumb', ['current' => 'Users'])
+			@component('backend.layouts.breadcrumb', ['current' => 'Users'])
 			@endcomponent
-			@component('layouts.panel', [
+			@component('backend.layouts.panel', [
 				'title' => "Users"
 			])
 				@can('create', App\User::class)
 					@slot('addButton')
-						@component('layouts.addButton', [
+						@component('backend.layouts.addButton', [
 							'url' => route('users.create'),
 							'item' => 'Users'
 						])
@@ -19,7 +19,7 @@
 				@endcan
 
 				@slot('body')
-					@component('layouts.query', [
+					@component('backend.layouts.query', [
 						'title' => 'Name',
 						'body' => 'Description'
 					])

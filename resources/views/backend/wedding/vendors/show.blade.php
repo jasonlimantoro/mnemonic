@@ -1,15 +1,15 @@
-@extends('layouts.submaster')
+@extends('backend.layouts.master')
 
 @section('content')
   <div class="row">
     <div class="col-md-12">
-			@component('layouts.breadcrumb', ['current' => 'Vendors'])
+			@component('backend.layouts.breadcrumb', ['current' => 'Vendors'])
 			@endcomponent
-      @component('layouts.panel', [
+      @component('backend.layouts.panel', [
         'title' => "Vendor: " . $vendor->name
       ])
         @slot('backButton')
-          @component('layouts.backButton', [
+          @component('backend.layouts.backButton', [
             'text' => 'All vendors',
             'url' => route('vendors.index')
           ])

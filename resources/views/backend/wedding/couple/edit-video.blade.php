@@ -1,12 +1,12 @@
-@extends('layouts.submaster')
+@extends('backend.layouts.master')
 
 @section('content')
 	<div class="row">
 		<div class="col-md-12">
-			@component('layouts.breadcrumb', ['current' => 'Embed'])
+			@component('backend.layouts.breadcrumb', ['current' => 'Embed'])
 			@endcomponent
 
-			@component('layouts.panel', [
+			@component('backend.layouts.panel', [
 				'title' => 'Edit Embed Video URL'
 			])
 				@slot('body')

@@ -1,13 +1,13 @@
-@extends('layouts.submaster')
+@extends('backend.layouts.master')
 
 @section('content')
 <div class="row">
 	<div class="col-md-12">
-		@component('layouts.panel', [
+		@component('backend.layouts.panel', [
 			'title' => "Edit Role"
 		])
 		@slot('backButton')
-			@component('layouts.backButton', [
+			@component('backend.layouts.backButton', [
 				'text' => 'All roles',
 				'url' => route('roles.index')
 			])

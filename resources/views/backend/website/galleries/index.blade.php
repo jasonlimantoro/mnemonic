@@ -1,15 +1,15 @@
-@extends('layouts.submaster')
+@extends('backend.layouts.master')
 
 @section('content')
   <div class="row">
     <div class="col-md-12">
-			@component('layouts.breadcrumb', ['current' => 'Gallery'])
+			@component('backend.layouts.breadcrumb', ['current' => 'Gallery'])
 			@endcomponent
-      @component('layouts.panel', [
+      @component('backend.layouts.panel', [
         'title' => "Gallery"
       ])
 				@slot('addButton')
-					@component('layouts.addButton', [
+					@component('backend.layouts.addButton', [
 						'item' => 'Images',
 						'url' => route('images.create')
 					])
@@ -20,7 +20,7 @@
           <div class="row">
             @foreach($images as $image)
               <div class="col-md-4">
-                @component('layouts.thumbnail', ['class' => 'thumbnail-gallery'])
+                @component('backend.layouts.thumbnail', ['class' => 'thumbnail-gallery'])
 									@slot('thumbnailImage')
 										<div class="thumbnail-image">
 											<img src="{{ $image->url_cache }}" alt="image" class="img-responsive">

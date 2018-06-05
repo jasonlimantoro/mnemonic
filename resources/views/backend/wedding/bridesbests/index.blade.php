@@ -1,16 +1,16 @@
-@extends('layouts.submaster')
+@extends('backend.layouts.master')
 
 @section('content')
   <div class="row">
     <div class="col-md-12">
-			@component('layouts.breadcrumb', ['current' => 'Bridesmaid & Bestman'])
+			@component('backend.layouts.breadcrumb', ['current' => 'Bridesmaid & Bestman'])
 			@endcomponent
-      @component('layouts.panel', [
+      @component('backend.layouts.panel', [
         'title' => 'Bridesmaid and Bestman'
 			])
 				@can('create', App\BridesBest::class)
 					@slot('addButton') 
-						@component('layouts.addButton', [
+						@component('backend.layouts.addButton', [
 							'item' => 'Bridesmaid / Bestman',
 							'url' => route('bridesmaid-bestmans.create')
 						])
@@ -19,7 +19,7 @@
 					@endslot
 				@endcan
 				@slot('body')
-					@component('layouts.query', [
+					@component('backend.layouts.query', [
 						'title' => 'Name',
 						'body' => 'Testimony'
 					]) 

@@ -1,9 +1,9 @@
-@extends('layouts.submaster')
+@extends('backend.layouts.master')
 
 @section('content')
-	@component('layouts.breadcrumb', ['current' => 'Site Info'])
+	@component('backend.layouts.breadcrumb', ['current' => 'Site Info'])
 	@endcomponent
-	@component('layouts.panel', ['title' => 'Site Social Media'])
+	@component('backend.layouts.panel', ['title' => 'Site Social Media'])
 		@slot('body')
 			{{ Form::open(['route' => 'sitesocial.update', 'method' => 'PATCH']) }}
 				{{-- google_plus field --}}
