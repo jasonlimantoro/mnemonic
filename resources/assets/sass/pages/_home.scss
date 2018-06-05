@@ -1,4 +1,11 @@
 .post-container {
+	text-align: center;
+	img {
+		display: inline-block;
+	}
+	p {
+		text-align: left;
+	}
 	&:nth-child(odd) { clear: both; }
 	.post-title {
 		font-family: PlayFair;
