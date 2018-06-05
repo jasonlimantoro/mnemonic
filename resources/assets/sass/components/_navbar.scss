@@ -18,9 +18,6 @@
 					color: $gold-dark;
 				}
 			}
-			a:not(.navbar-logo-center) {
-				padding: 30px 15px;
-			}
             .navbar-logo-center {
                 img {
                     height: 50px;
@@ -30,8 +27,12 @@
     }
 }
 
-@include general-query(desktop) {
-
+@include general-query(tablet) {
+	.navbar-collapse {
+		a:not(.navbar-logo-center){
+			padding: 30px 15px;
+		}
+	}
 }
 
 @include general-query(mobile) {
