@@ -60,6 +60,7 @@ return array(
 		'couple' => 'App\Filters\CoupleFilter',
 		'bridesbest' => 'App\Filters\BridesBestFilter',
 		'event' => 'App\Filters\EventFilter',
+        'post' => 'App\Filters\PostFilter',
     ),
 
     /*

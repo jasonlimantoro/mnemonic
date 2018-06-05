@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\PostFilter;
 use App\Post;
 use App\Page;
 use App\Image;
@@ -10,6 +11,9 @@ use App\Http\Controllers\GenericController as Controller;
 
 class PostsController extends Controller
 {
+    public $filter = 'post';
+    public $filterClass = PostFilter::class;
+
 	public function __construct() 
 	{
 		$this->middleware('can:read,App\Post')->except('read');
@@ -46,14 +50,15 @@ class PostsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param PostsRequest $request
+     * @param Page $page
      * @return \Illuminate\Http\Response
      */
     public function store(PostsRequest $request, Page $page)
     {
 		$post = $page->addPost($request->only(['title', 'description']));
 		
-		optional(Image::handleUpload($request))->addTo($post);
+		optional(Image::handleUpload($request), $this->filterClass, $this->filter)->addTo($post);
 
         $this->flash('Post is added succesfully');
 
@@ -63,7 +68,8 @@ class PostsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Page $page
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
     public function show(Page $page, Post $post)
@@ -75,7 +81,8 @@ class PostsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Page $page
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
     public function edit(Page $page, Post $post)
@@ -91,7 +98,7 @@ class PostsController extends Controller
     {
 		$post->update($request->only(['title', 'description']));
 		
-		optional(Image::handleUpload($request))->addTo($post);
+		optional(Image::handleUpload($request, $this->filterClass, $this->filter))->addTo($post);
 
         $this->flash('Post updated successfully!');
 
@@ -101,7 +108,8 @@ class PostsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Page $page
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
     public function destroy(Page $page, Post $post)
