@@ -1,0 +1,19 @@
+%pager {
+	color: #000!important;
+	border: 1px solid #ffeea1!important;
+}
+
+.post-pagination {
+	.pagination {
+		li {
+			&.active span {
+				@extend %pager;
+				background-color: $light-yellow !important;
+			}
+			&.disabled span, a {
+				@extend %pager;
+				background-color: white !important;
+			}
+		}
+	}
+}

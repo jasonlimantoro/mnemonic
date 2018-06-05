@@ -23,7 +23,7 @@ class FrontendController extends Controller
         $posts = $posts
                     ->home()
                     ->filter(request(['month', 'year']))
-                    ->get();
+                    ->paginate(5);
 
         return view('frontend.home', compact('posts', 'page', 'slides'));
     }

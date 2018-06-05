@@ -37,5 +37,10 @@
         </div>
       @endforeach
 		</div>
+    <div class="row row-center">
+      <div class="col-md-4 col-center post-pagination">
+        {{ $posts->links() }}
+      </div>
+    </div>
 	</div>
 @endsection
