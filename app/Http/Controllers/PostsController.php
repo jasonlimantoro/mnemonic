@@ -58,7 +58,7 @@ class PostsController extends Controller
     {
 		$post = $page->addPost($request->only(['title', 'description']));
 		
-		optional(Image::handleUpload($request), $this->filterClass, $this->filter)->addTo($post);
+		optional(Image::handleUpload($request, $this->filterClass, $this->filter))->addTo($post);
 
         $this->flash('Post is added succesfully');
 
