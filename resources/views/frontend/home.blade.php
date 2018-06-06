@@ -21,7 +21,7 @@
 			@endslot
 		@endcomponent
 	@endif
-	<div class="container">
+	<div class="container home-container">
 		<div class="row">
       @foreach($posts as $post)
         <div class="col-xs-12 col-sm-6 post-container">

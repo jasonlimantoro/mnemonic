@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-	<div class="container-fluid">
+	<div class="container-fluid gallery-container">
 		<div class="row page-title">
 			<h1 class="color-theme font-theme">Our Gallery</h1>
 		</div>
