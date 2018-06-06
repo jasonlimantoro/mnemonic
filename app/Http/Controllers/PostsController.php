@@ -122,7 +122,7 @@ class PostsController extends Controller
 
     public function read(Post $post, Posts $posts)
     {
-        $homePosts = $posts->home()->paginate(5);
+        $homePosts = $posts->home()->paginate(6);
         return view('posts.frontend.read', compact('post', 'homePosts'));
     }
 }
