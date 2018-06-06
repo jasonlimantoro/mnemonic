@@ -16,21 +16,18 @@ class FrontendController extends Controller
 {
     public function home(Posts $posts)
     {
-        $page = Page::find(1);
-        $carousel = $page->carousel;
-        $slides = $carousel->images;
+        $page = Page::home();
 
-        $posts = $posts
-                    ->home()
-                    ->filter(request(['month', 'year']))
-                    ->paginate(5);
+        $slides = $page->carousel->images;
+
+        $posts = $posts->home()->paginate(6);
 
         return view('frontend.home', compact('posts', 'page', 'slides'));
     }
 
     public function about(Posts $posts)
     {
-        $posts = $posts->about()->paginate(5);
+        $posts = $posts->about()->paginate(6);
         return view('frontend.about', compact('posts'));
     }
 
