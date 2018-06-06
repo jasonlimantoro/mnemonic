@@ -1,19 +1,22 @@
-.thumbnail-gallery {
-    &:hover, &.active {
-        border: solid 1px red;
-	}
-	.thumbnail-image {
-		text-align: center;
-		position: relative;
-		height: 200px;
-		overflow: hidden;
-		img {
-			display: inline-block;
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			width: auto;
-			transform: translate(-50%, -50%);
+.gallery-tab {
+	.thumbnail-gallery {
+		&:hover, &.active {
+			border: solid 1px red;
 		}
+	}
+}
+
+.thumbnail-image {
+	text-align: center;
+	position: relative;
+	height: 200px;
+	overflow: hidden;
+	img {
+		display: inline-block;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: auto;
+		transform: translate(-50%, -50%);
 	}
 }
