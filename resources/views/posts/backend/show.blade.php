@@ -1,15 +1,15 @@
-@extends('layouts.submaster')
+@extends('backend.layouts.master')
 
 @section('content')
   <div class="row">
     <div class="col-md-12">
-			@component('layouts.breadcrumb', ['current' => 'Posts'])
+			@component('backend.layouts.breadcrumb', ['current' => 'Posts'])
 			@endcomponent
-      @component('layouts.panel', [
+      @component('backend.layouts.panel', [
         'title' => $post->page->title
       ])
         @slot('backButton')
-           @component('layouts.backButton', [
+           @component('backend.layouts.backButton', [
             'text' => 'Show All Posts in ' .  $page->title,
             'url' => route('posts.index', ['page' => $page->id])
           ])
@@ -20,7 +20,7 @@
           <h2>{{ $post->title }}</h2>
           <p>{{ $post->body }}</p>
           <hr>
-          @include('layouts.post-info')
+          @include('backend.layouts.post-info')
         @endslot
 
       @endcomponent

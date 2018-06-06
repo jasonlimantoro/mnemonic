@@ -79,7 +79,7 @@ export class RequestImages extends React.Component {
     return (
       <div>
         <h1>Gallery</h1>
-        <div className="row">
+        <div className="row gallery-tab">
           {this.state.images.map(
             function(image) {
               const isActive = this.state.selectedImage.id == image.id;

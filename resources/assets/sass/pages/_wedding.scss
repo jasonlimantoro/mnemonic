@@ -1,12 +1,20 @@
 .wedding-day{
 	&-overview {
 		padding: 30px;
-		.groom-name, .bride-name {
-			font-size: 2em;
-			color: black;
+		.vip-container {
+			.vip-name {
+				font-size: 22pt;
+				color: black;
+			}
+			span {
+				font-size: 14pt;
+			}
+			p {
+				font-family: PlayFair;
+			}
 		}
 		.link {
-			font-size: 50px;
+			font-size: 48pt;
 			font-family: Darleston;
 		}
 	}
@@ -14,16 +22,27 @@
 		&-date{
 			padding: 15px;
 			background-color: #ffeea1;
+			h2 {
+				font-size: 28pt;
+				font-family: PlayFair, Helvetica;
+			}
 		}
 		&-description {
-			font-size: 1.5em;
+			p {
+				font-size: 20pt;
+				font-family: CacChampagne;
+			}
+		}
+		&-location {
+			* {
+				font-family: PlayFair, Helvetica;
+			}
+
 		}
 	}
 
 	&-bb {
-		&-container {
-			margin: 15px !important;
-		}
+
 	}
 	&-vendors{
 		&-table {

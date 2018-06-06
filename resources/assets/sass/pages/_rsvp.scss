@@ -1,4 +1,4 @@
-.rsvp-container {
+.online-rsvp-container {
 	.rsvp-timer {
 		span {
 			width: 150px;
@@ -7,6 +7,7 @@
 			font-size: 25pt;
 			padding: 0 15px;
 			margin: 0 15px;
+			display: inline-block;
 		}
 		&-header {
 			margin-bottom: 40px;

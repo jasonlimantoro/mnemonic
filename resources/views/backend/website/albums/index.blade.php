@@ -1,15 +1,15 @@
-@extends('layouts.submaster')
+@extends('backend.layouts.master')
 
 @section('content')
   <div class="row">
     <div class="col-md-12">
-			@component('layouts.breadcrumb', ['current' => 'Albums'])
+			@component('backend.layouts.breadcrumb', ['current' => 'Albums'])
 			@endcomponent
-      @component('layouts.panel', [
+      @component('backend.layouts.panel', [
         'title' => 'Albums'
       ])
         @slot('addButton')
-          @component('layouts.addButton', [
+          @component('backend.layouts.addButton', [
             'url' => route('albums.create'),
             'item' => 'album'
           ])
@@ -17,7 +17,7 @@
         @endslot
 
 				@slot('body')
-					@component('layouts.query', [
+					@component('backend.layouts.query', [
 						'title' => 'Name',
 						'body' => 'Description'
 					])

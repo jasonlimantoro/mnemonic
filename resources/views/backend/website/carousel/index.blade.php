@@ -1,16 +1,16 @@
-@extends('layouts.submaster')
+@extends('backend.layouts.master')
 
 @section('content')
   <div class="row">
     <div class="col-md-12">
-			@component('layouts.breadcrumb', ['current' => 'Main Carousel'])
+			@component('backend.layouts.breadcrumb', ['current' => 'Main Carousel'])
 			@endcomponent
-      @component('layouts.panel', [
+      @component('backend.layouts.panel', [
         'title' => "Main Carousel"
 			])
 				@can('create-carousel-image')
 					@slot('addButton')
-						@component('layouts.addButton', [
+						@component('backend.layouts.addButton', [
 							'item' => 'Images', 
 							'url' => route('carousel.images.create', ['carousel' => 1])
 						])

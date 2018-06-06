@@ -5,8 +5,7 @@
 .web-container{
 	position: relative;
 	&::before{
-		background: url('/images/bg-overlay.png');
-		background-repeat: repeat-y;
+		background: url('/images/bg-overlay.png') repeat-y;
 		position: absolute;
 		opacity: .1;
 		width: 100%;
@@ -22,6 +21,7 @@
 // to keep the page at the top of the stack 
 .home-container,
 .about-container,
+.gallery-container,
 .wedding-day-container,
 .online-rsvp-container
 {

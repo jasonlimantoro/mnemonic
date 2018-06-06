@@ -8,6 +8,16 @@
 	src: url('/fonts/PlayfairDisplay-Regular.otf');
 }
 
+@font-face {
+	font-family: PlayFairItalic;
+	src: url('/fonts/PlayfairDisplay-Italic.otf');
+}
+
+@font-face {
+	font-family: Darleston;
+	src: url('/fonts/Darleston.otf');
+}
+
 .page-title, .font-theme {
 	font-family: CacChampagne;
 }
@@ -15,6 +25,16 @@
 	color: $gold-font;
 }
 
-h1, h2, h3, h4, h5, h6, p {
-	color: black;
+html, body {
+	* {
+		color: black;
+	}
+}
+
+h1, h2, h3, h4, h5, h6  {
+	font-family: PlayFairItalic, Helvetica;
+}
+
+p {
+	font-family: Roboto, Helvetica;
 }

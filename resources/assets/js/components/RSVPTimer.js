@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 export class RSVPTimer extends React.Component {
   constructor(props) {
@@ -11,7 +10,6 @@ export class RSVPTimer extends React.Component {
       minutes: "",
       hours: "",
       days: "",
-      years: ""
     };
   }
 
@@ -28,14 +26,13 @@ export class RSVPTimer extends React.Component {
     let minutes = Math.floor(seconds / 60);
     let hours = Math.floor(minutes / 60);
     let days = Math.floor(hours / 24);
-    let years = Math.floor(days / 365);
 
     seconds %= 60;
     minutes %= 60;
     hours %= 24;
     days %= 365;
 
-    return { years, days, hours, minutes, seconds, now };
+    return { days, hours, minutes, seconds, now };
   }
 
   tick() {
@@ -43,8 +40,7 @@ export class RSVPTimer extends React.Component {
     let seconds = diffHumans.seconds.toString().padStart(2, "0");
     let minutes = diffHumans.minutes.toString().padStart(2, "0");
     let hours = diffHumans.hours.toString().padStart(2, "0");
-    let days = diffHumans.days.toString().padStart(3, "0");
-    let years = diffHumans.years;
+    let days = diffHumans.days;
     let now = diffHumans.now;
 
     this.setState({
@@ -52,7 +48,6 @@ export class RSVPTimer extends React.Component {
       minutes,
       hours,
       days,
-      years,
       now
     });
   }
@@ -91,26 +86,23 @@ export class RSVPTimer extends React.Component {
   }
 
   render() {
+    const { days, hours, minutes, seconds } = this.state;
     return (
       <div>
         <span className="days box-theme">
-          {this.state.years} <br />
-          Years
-        </span>
-        <span className="days box-theme">
-          {this.state.days} <br />
+          {days} <br />
           Days
         </span>
         <span className="hours box-theme">
-          {this.state.hours} <br />
+          {hours} <br />
           Hours
         </span>
         <span className="minutes box-theme">
-          {this.state.minutes} <br />
+          {minutes} <br />
           Min
         </span>
         <span className="seconds box-theme">
-          {this.state.seconds} <br />
+          {seconds} <br />
           Sec
         </span>
       </div>

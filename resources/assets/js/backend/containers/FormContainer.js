@@ -1,11 +1,10 @@
 import React from "react";
-import axios from "axios";
 
 // Custom Components
-import { FormPost, SearchBox, RadioButton, InputFile, TextArea, SelectForm } from "../components/Form";
-import { PrimaryButton, SuccessButton } from "../components/Button";
+import { SearchBox, RadioButton, InputFile } from "../components/Form";
+import { PrimaryButton } from "../components/Button";
 import { UploadModal } from "../components/Modal";
-import { DisplayImages, DisplayImagesFromInputFile } from "../components/DisplayImage";
+import { DisplayImagesFromInputFile } from "../components/DisplayImage";
 import { CoupleTabs } from "../components/Tab";
 
 

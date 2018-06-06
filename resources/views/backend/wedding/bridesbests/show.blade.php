@@ -1,13 +1,13 @@
-@extends('layouts.submaster')
+@extends('backend.layouts.master')
 
 @section('content')
   <div class="row">
     <div class="col-md-12">
-			@component('layouts.breadcrumb', ['current' => 'Bridesmaid & Bestman'])
+			@component('backend.layouts.breadcrumb', ['current' => 'Bridesmaid & Bestman'])
 			@endcomponent
-      @component('layouts.panel', ['title' => 'Bridesmaid / Bestman Information'])
+      @component('backend.layouts.panel', ['title' => 'Bridesmaid / Bestman Information'])
         @slot('backButton')
-          @component('layouts.backButton', [
+          @component('backend.layouts.backButton', [
             'text' => 'All Bridesmaid / Bestmen',
             'url' => route('bridesmaid-bestmans.index')
           ])

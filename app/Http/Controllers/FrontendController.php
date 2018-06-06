@@ -16,21 +16,18 @@ class FrontendController extends Controller
 {
     public function home(Posts $posts)
     {
-        $page = Page::find(1);
-        $carousel = $page->carousel;
-        $slides = $carousel->images;
+        $page = Page::home();
 
-        $posts = $posts
-                    ->home()
-                    ->filter(request(['month', 'year']))
-                    ->get();
+        $slides = $page->carousel->images;
+
+        $posts = $posts->home()->paginate(6);
 
         return view('frontend.home', compact('posts', 'page', 'slides'));
     }
 
     public function about(Posts $posts)
     {
-        $posts = $posts->about()->get();
+        $posts = $posts->about()->paginate(6);
         return view('frontend.about', compact('posts'));
     }
 
@@ -42,11 +39,17 @@ class FrontendController extends Controller
     public function wedding()
     {
         $embed = Setting::getValueByKey('embed-video');
-        $events = Event::latest()->get();
+        $dates = Event::getDistinctDate();
+        $events = Event::processDistinctDate($dates);
         $groom = Couple::groom();
         $bride = Couple::bride();
         $bbs = BridesBest::all();
-        $vendors = Vendor::all();
+		$vendors = Vendor::all();
+		
+		JavaScript::put([
+			'bridesMaid' => BridesBest::bridesMaid(),
+			'bestMen' => BridesBest::bestMen(),
+		]);
 
         return view('frontend.wedding', compact('embed', 'events', 'groom', 'bride', 'bbs', 'vendors'));
     }

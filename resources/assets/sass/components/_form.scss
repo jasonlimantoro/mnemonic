@@ -1,4 +1,5 @@
-textarea.form-control:not(.show) {
-	height: 40vw !important;
-	visibility: hidden;
+.g-recaptcha {
+	&>div {
+		margin: auto;
+	}
 }

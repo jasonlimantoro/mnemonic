@@ -14,7 +14,8 @@ class ImagesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Images $images
+     * @return ImageCollection
      */
     public function index(Images $images)
     {
@@ -37,8 +38,8 @@ class ImagesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Image  $image
-     * @return \Illuminate\Http\Response
+     * @param  \App\Image $image
+     * @return ImageResource
      */
     public function show(Image $image)
     {

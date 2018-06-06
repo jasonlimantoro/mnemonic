@@ -22,7 +22,7 @@
             </form>
           </li>
           <li>
-            <a href="/">Visit Website</a>
+            <a href="{{ route('front.index') }}" target="_blank">Visit Website</a>
           </li>
         </ul>
       </li>

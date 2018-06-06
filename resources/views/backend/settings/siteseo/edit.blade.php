@@ -1,11 +1,11 @@
-@extends('layouts.submaster')
+@extends('backend.layouts.master')
 
 @section('content')
 	<div class="row">
 		<div class="col-md-12">
-			@component('layouts.breadcrumb', ['current' => 'Site Info'])
+			@component('backend.layouts.breadcrumb', ['current' => 'Site Info'])
 			@endcomponent
-			@component('layouts.panel', ['title' => 'Site SEO'])
+			@component('backend.layouts.panel', ['title' => 'Site SEO'])
 				@slot('body')
 					{{ Form::open(['route' => 'siteseo.update', 'method' => 'PATCH']) }}
 						{{-- meta_title field --}}

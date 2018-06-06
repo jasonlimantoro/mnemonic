@@ -15,27 +15,19 @@
 
 
 // components
-@import "components/sidebar";
-@import "components/header";
-@import "components/panel";
-@import "components/table";
-@import "components/post";
 @import "components/navbar";
 @import "components/auth";
-@import "components/thumbnail";
 @import "components/carousel";
 @import "components/featured";
-@import "components/pagination";
-@import "components/breadcrumb";
 @import "components/slider";
 @import "components/modal";
 @import "components/footer";
-@import "components/form";
 @import "components/iframe";
+@import "components/pagination";
+@import "components/form";
 
 // pages
-@import "pages/frontend/frontend";
-@import "pages/backend/backend";
+@import "pages/index";
 
 // theme utilities
 @import "themes/theme";

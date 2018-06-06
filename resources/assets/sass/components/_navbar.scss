@@ -1,26 +1,38 @@
 .navbar {
 	margin-bottom: 0;
 	box-shadow: none;
+	border-radius: 0;
+	border: none;
     .navbar-collapse {
         text-align: center;
         .navbar-nav {
             display: inline-block;
             float: none;
-            vertical-align: top;
+			vertical-align: top;
+			font-family: PlayFair;
+			font-size: 16pt;
+			a {
+				cursor: pointer;
+				color: $gold-font;
+				&.active, &:hover {
+					color: $gold-dark;
+				}
+			}
             .navbar-logo-center {
                 img {
                     height: 50px;
                 }
             }
-            a:not(.navbar-logo-center) {
-                padding: 30px 15px;
-            }
         }
     }
 }
 
-@include general-query(desktop) {
-
+@include general-query(tablet) {
+	.navbar-collapse {
+		a:not(.navbar-logo-center){
+			padding: 30px 15px;
+		}
+	}
 }
 
 @include general-query(mobile) {

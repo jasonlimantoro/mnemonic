@@ -16,7 +16,15 @@ class Page extends Model
     public function carousel(){
         return $this->hasOne(Carousel::class);
     }
-    
+
+    public static function home()
+    {
+        return static::where('title', 'like', '%home%')->first();
+    }
+    public static function about()
+    {
+        return static::where('title', 'like', '%about%')->first();
+    }
     public function addPost(array $attributes) {
 		$attributes['user_id'] = auth()->user()->id;
 		return $this->posts()->create($attributes);

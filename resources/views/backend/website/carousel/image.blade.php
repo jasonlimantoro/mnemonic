@@ -4,7 +4,7 @@
 	</td>
 
 	<td class="data-table">
-		@include('layouts.caption')
+		@include('backend.layouts.caption')
 	</td>
 	
 	<td class="text-center">

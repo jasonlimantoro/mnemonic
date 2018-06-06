@@ -2,13 +2,13 @@
 
 @section('content')
 	@include('jsvar')
-	<div class="container rsvp-container text-center">
+	<div class="container online-rsvp-container text-center">
 		<div class="col-md-12">
-			<div class="row page-title font-theme">
-				<h1 class="color-theme">Online RSVP</h1>
+			<div class="row page-title">
+				<h1 class="color-theme font-theme">Online RSVP</h1>
 			</div>
 
-			<div class="row rsvp-form">
+			<div class="row row-center rsvp-form">
 				<h3 class="form-title"> 
 						Please enter your unique RSVP code below:
 				</h3>
@@ -19,15 +19,18 @@
 				@endisset
 				
 				{{ Form::open(['route' => 'rsvps.confirmFromFront', 'method' => 'POST']) }}
-				<div class="col-md-4 col-md-offset-4 col-sm-10 col-xs-12">
+				<div class="col-sm-6 col-xs-12 col-center">
 						@include('layouts.error')
 						{{-- rsvp field --}}
 						<div class="form-group">
 							{{ Form::label('rsvp', 'RSVP Code:') }}
 							{{ Form::text('rsvp', null, ['class' => 'form-control', 'placeholder' => 'e.g. 0001, 0011']) }}
-						</div>	
+						</div>
+            
+            <div class="form-group">
+              {!! Recaptcha::render() !!}
+            </div>
 
-						{!! Recaptcha::render() !!}
 						{{-- Submit Button --}}
 						<div class="form-group">
 							{{ Form::submit('Submit', ['class' => 'btn btn-primary box-theme' , isset($wedding) ? '' : 'disabled' ]) }}

@@ -1,6 +1,6 @@
 <footer class="col-xs-12">
   <div class="row row-center">
-    <div class="col-xs-12 col-center mm-disclaimer-section">
+    <div class="col-xs-12 col-center disclaimer-section">
       <ul>
         <li><a target="_blank" href="http://mnemonic.co.id/page/term-conditions/kebijakan-privasi">Kebijakan & Privasi</a></li>
         <li><a target="_blank" href="http://mnemonic.co.id/page/term-conditions/syarat-ketentuan">Syarat & Ketentuan</a></li>
@@ -10,7 +10,7 @@
   </div>
 
   <div class="row row-center">
-    <div class="col-xs-12 col-center mm-contact-us-section">
+    <div class="col-xs-12 col-center contact-us-section">
       <ul>
         <li><a target="_blank" href="http://mnemonic.co.id/page/tentang-kami/mnemonic-indonesia">Tentang Kami</a></li>
         <li><a target="_blank" href="http://mnemonic.co.id/contact">Hubungi Kami</a></li>
@@ -20,7 +20,7 @@
   </div>
 
   <div class="row row-center">
-    <div class="col-xs-12 col-center mm-social-media-section">
+    <div class="col-xs-12 col-center social-media-section">
       <ul>
         <li><a href="https://www.facebook.com/MonokroMid" target="_blank"><i class="fa fa-facebook"></i></a></li>
         <li><a href="https://twitter.com/MonokroMid" target="_blank"><i class="fa fa-twitter"></i></a></li>

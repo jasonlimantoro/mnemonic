@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { TrashIcon, PencilIcon, InfoIcon } from "../components/Icon";
 import $ from "jquery";
 

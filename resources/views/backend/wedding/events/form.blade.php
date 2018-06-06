@@ -18,11 +18,6 @@
 		{{ Form::textarea('location', null, ['class' => 'form-control', 'placeholder' => 'Enter Location']) }}
 	</div>
 
-	{{-- datetime field --}}
-	<div class="form-group">
-		{{ Form::label('datetime', 'Event Datetime') }}
-		{{ Form::input('datetime-local', 'datetime', null, ['class' => 'form-control', 'placeholder' => 'Enter Datetime']) }}
-	</div>
 
 	<div class="form-group">
 		{{ Form::submit($submitButtonText, ['class' => 'btn btn-primary']) }}
@@ -30,6 +25,13 @@
 
 </div>
 <div class="col-md-4">
+ 
+	{{-- datetime field --}}
+	<div class="form-group">
+		{{ Form::label('datetime', 'Event Datetime') }}
+		{{ Form::input('datetime-local', 'datetime', null, ['class' => 'form-control', 'placeholder' => 'Enter Datetime']) }}
+	</div>
+ 
 	@isset($event)
 		<strong>Current Image</strong>
 		<div class="current-image">
@@ -40,6 +42,7 @@
 			@endisset
 		</div>
 	@endisset
+ 
 	<div class="form-group">
 		<div class="__react-root" id="FancyInput"></div>
 	</div>

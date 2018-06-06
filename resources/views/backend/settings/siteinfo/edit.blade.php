@@ -1,9 +1,9 @@
-@extends('layouts.submaster')
+@extends('backend.layouts.master')
 
 @section('content')
-	@component('layouts.breadcrumb', ['current' => 'Site Info'])
+	@component('backend.layouts.breadcrumb', ['current' => 'Site Info'])
 	@endcomponent
-  @component('layouts.panel', ['title' => 'Settings'])
+  @component('backend.layouts.panel', ['title' => 'Settings'])
     @slot('body')
 			{{ Form::open(['route' => 'siteinfo.update', 'method' => 'PATCH', 'enctype' => 'multipart/form-data']) }}
 				{{-- admin_email field --}}
