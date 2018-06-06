@@ -43,29 +43,32 @@
 
 		{{-- Event Sections --}}
 		<div class="row wedding-day-events">
-			@foreach ($events as $event)
+			@foreach ($events as $date=>$occurrences)
 				<div class="col-xs-12 wedding-day-events-date">
-					<h2> {{ $event->datetime }}	</h2>
+					<h2>{{ $date }}</h2>
 				</div>
-				<div class="container">
-					<div class="col-xs-12 wedding-day-events-title">
-						<h1 class="font-theme color-theme"> {{ $event->name }} </h1>
-					</div>
-
-					<div class="col-xs-12 wedding-day-events-description">
-						<p class="font-theme"> {!! $event->description !!} </p>
-					</div>
-
-					@if ($event->image)
-						<div class="col-xs-12 wedding-day-events-image">
-							<img src="{{ $event->image->url_cache }}" alt="event" class="img-responsive inline-block">
-						</div>
-					@endif
-					<div class="col-xs-12 wedding-day-events-location">
-						<h3>{!! $event->location !!}</h3>
-					</div>
-				</div>
-			@endforeach		
+        @foreach($occurrences as $event)
+          <div class="container">
+            <div class="col-xs-12 wedding-day-events-title">
+              <h1 class="font-theme color-theme"> {{ $event['name'] }} </h1>
+            </div>
+  
+            <div class="col-xs-12 wedding-day-events-description">
+              <p class="font-theme"> {!! $event['description'] !!} </p>
+            </div>
+  
+            @if ($event['image'])
+              <div class="col-xs-12 wedding-day-events-image">
+                <img src="{{ $event['image']['url_cache'] }}" alt="event" class="img-responsive inline-block">
+              </div>
+            @endif
+            <div class="col-xs-12 wedding-day-events-location">
+              <h3>{!! $event['location'] !!}</h3>
+            </div>
+          </div>
+          
+        @endforeach
+			@endforeach
 		</div>
 
 		{{-- Bridesmaid Bestmen section --}}
