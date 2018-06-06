@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-	<div class="container-fluid text-center">
+	<div class="container-fluid text-center wedding-day-container">
 		{{-- Overview Section --}}
 		<div class="row wedding-day-overview">
 			<div class="col-xs-12">
