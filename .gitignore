@@ -13,6 +13,9 @@ yarn-error.log
 public/uploads/*
 public/images_sample/*
 public/temp/
+public/js/
+public/css/
+public/mix-manifest.json
 webpack.mix.js
 _ide_helper.php
 .eslintrc.json
