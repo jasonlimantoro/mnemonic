@@ -12,7 +12,7 @@
 		<link rel="shortcut icon" type="image/png" href="/images/logo.png"/>
 
     <!-- Styles -->
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/backend/main.css') }}" rel="stylesheet">
   </head>
 
   <body>
@@ -31,7 +31,7 @@
     {{--  Asset Scripts  --}}
     <script src="{{ asset('js/manifest.js')}}"></script>
 		<script src="{{ asset('js/vendor.js')}}"></script>
-		<script src="{{ asset('js/admin.js') }}"></script>
+		<script src="{{ asset('js/backend/main.js') }}"></script>
 
     {{--  General scripts  --}}
     <script>
