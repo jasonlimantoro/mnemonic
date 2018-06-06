@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Filters\PostFilter;
 use App\Post;
 use App\Page;
 use App\Image;
+use App\Filters\PostFilter;
+use App\Repositories\Posts;
 use App\Http\Requests\PostsRequest;
 use App\Http\Controllers\GenericController as Controller;
 
@@ -119,8 +120,9 @@ class PostsController extends Controller
         return back();
     }
 
-    public function read(Post $post)
+    public function read(Post $post, Posts $posts)
     {
-        return view('posts.frontend.read', compact('post'));
+        $homePosts = $posts->home()->paginate(5);
+        return view('posts.frontend.read', compact('post', 'homePosts'));
     }
 }
