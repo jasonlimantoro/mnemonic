@@ -63,7 +63,7 @@
 						@auth
 						{{--  if user is authenticated  --}}
 							<li>
-								<a href="{{ route('admin') }}">Backend</a>
+								<a href="{{ route('admin') }}" target="_blank">Backend</a>
 							</li>
 						@endauth
 					</ul>
