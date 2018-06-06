@@ -5,8 +5,7 @@
 .web-container{
 	position: relative;
 	&::before{
-		background: url('/images/bg-overlay.png');
-		background-repeat: repeat-y;
+		background: url('/images/bg-overlay.png') repeat-y;
 		position: absolute;
 		opacity: .1;
 		width: 100%;
