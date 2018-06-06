@@ -10,6 +10,7 @@ class Event extends Model
 {
     use FormAccessible, FiltersSearch;
 	protected $dates = ['datetime'];
+	protected $with = ['image'];
 
 	public static $customDateFmt ='l - M jS, Y H:i';  // Friday - October 20th 20:00, 2017
 
@@ -83,4 +84,34 @@ class Event extends Model
 	{
 		return static::where('name', 'like', '%wedding%')->first();
 	}
+
+    public static function getDistinctDate()
+    {
+        return static::distinct()
+                       ->pluck('datetime')
+                       ->toArray();
+	}
+
+    public static function processDistinctDate(array $dates)
+    {
+       $result = [];
+
+       foreach ($dates as $date){
+           $parsed = static::getDateTimeObjectAttribute($date);
+           $queries = static::whereDatetime($parsed)->get()->toArray();
+           $result[$date] = $queries;
+       }
+
+       return $result;
+	}
+
+	public static function groupByDate()
+    {
+        return static::
+            selectRaw('datetime, count(*) occurrences')
+            ->groupBy('datetime')
+            ->orderByRaw('min(datetime) desc')
+            ->get()
+            ->toArray();
+    }
 }

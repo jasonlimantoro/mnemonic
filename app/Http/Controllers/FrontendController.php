@@ -39,7 +39,8 @@ class FrontendController extends Controller
     public function wedding()
     {
         $embed = Setting::getValueByKey('embed-video');
-        $events = Event::latest()->get();
+        $dates = Event::getDistinctDate();
+        $events = Event::processDistinctDate($dates);
         $groom = Couple::groom();
         $bride = Couple::bride();
         $bbs = BridesBest::all();
