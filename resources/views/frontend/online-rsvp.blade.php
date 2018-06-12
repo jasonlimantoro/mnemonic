@@ -44,7 +44,7 @@
 
 				<div class="rsvp-timer-header">
 					@isset($wedding)
-						<h3>We {{ $isFuture ? 'will be married in ' : 'have been married since ' }}{{ $wedding->datetime }}</h3>
+						<h3>We {{ $isFuture ? 'will be married in ' : 'have been married since ' }}{{ $wedding->present()->prettyDatetime }}</h3>
 					@else
 						<h3>No wedding event found</h3>
 					@endisset

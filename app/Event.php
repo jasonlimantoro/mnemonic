@@ -2,27 +2,29 @@
 
 namespace App;
 
+use App\Presenters\EventPresenter;
 use Carbon\Carbon;
+use App\Traits\Presentable;
 use App\Traits\FiltersSearch;
 use Collective\Html\Eloquent\FormAccessible;
 
 class Event extends Model
 {
-    use FormAccessible, FiltersSearch;
+    use FormAccessible, FiltersSearch, Presentable;
+
 	protected $dates = ['datetime'];
 	protected $with = ['image'];
-
-	public static $customDateFmt ='l - M jS, Y H:i';  // Friday - October 20th 20:00, 2017
+	protected $presenter = EventPresenter::class;
 
     public function image()
     {
         return $this->morphOne(Image::class, 'imageable');
     }
 
-    public function getDatetimeAttribute($date)
-    {
-        return Carbon::parse($date)->format(self::$customDateFmt);
-	}
+    // public function getDatetimeAttribute($date)
+    // {
+    //    return Carbon::parse($date)->format(self::$customDateFmt);
+	// }
 
 	public function setDatetimeAttribute($date)
 	{
@@ -84,34 +86,4 @@ class Event extends Model
 	{
 		return static::where('name', 'like', '%wedding%')->first();
 	}
-
-    public static function getDistinctDate()
-    {
-        return static::distinct()
-                       ->pluck('datetime')
-                       ->toArray();
-	}
-
-    public static function processDistinctDate(array $dates)
-    {
-       $result = [];
-
-       foreach ($dates as $date){
-           $parsed = static::getDateTimeObjectAttribute($date);
-           $queries = static::whereDatetime($parsed)->get()->toArray();
-           $result[$date] = $queries;
-       }
-
-       return $result;
-	}
-
-	public static function groupByDate()
-    {
-        return static::
-            selectRaw('datetime, count(*) occurrences')
-            ->groupBy('datetime')
-            ->orderByRaw('min(datetime) desc')
-            ->get()
-            ->toArray();
-    }
 }
