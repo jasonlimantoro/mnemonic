@@ -10,7 +10,7 @@ trait Filterable
      * @param array $filters
      * @param string $nameColumn
      *
-     * @return null
+     * @return null | \Illuminate\Database\Eloquent\Collection
      */
     public function scopeFiltersSearch($query, array $filters, $nameColumn = 'name')
 	{
