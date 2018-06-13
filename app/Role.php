@@ -2,12 +2,9 @@
 
 namespace App;
 
-use App\Traits\FiltersSearch;
-
 class Role extends Model
 {
     protected $with = ['permissions'];
-    use FiltersSearch;
 
     public function users()
     {

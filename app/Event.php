@@ -4,13 +4,12 @@ namespace App;
 
 use Carbon\Carbon;
 use App\Traits\Presentable;
-use App\Traits\FiltersSearch;
 use App\Presenters\EventPresenter;
 use Collective\Html\Eloquent\FormAccessible;
 
 class Event extends Model
 {
-    use FormAccessible, FiltersSearch, Presentable;
+    use FormAccessible, Presentable;
 
 	protected $dates = ['datetime'];
 	protected $with = ['image'];

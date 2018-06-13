@@ -2,13 +2,11 @@
 
 namespace App;
 
-use App\Traits\FiltersSearch;
 use Illuminate\Http\Request;
 use App\Filters\BridesBestFilter;
 
 class BridesBest extends Model
 {
-    use FiltersSearch;
     protected $with = ['image'];
 
     public function image()
