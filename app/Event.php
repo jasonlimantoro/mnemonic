@@ -2,10 +2,10 @@
 
 namespace App;
 
-use App\Presenters\EventPresenter;
 use Carbon\Carbon;
 use App\Traits\Presentable;
 use App\Traits\FiltersSearch;
+use App\Presenters\EventPresenter;
 use Collective\Html\Eloquent\FormAccessible;
 
 class Event extends Model
@@ -40,30 +40,6 @@ class Event extends Model
     public function isSameDate(Carbon $date)
     {
         return $date->format('Y-m-d') === $this->datetime->format('Y-m-d');
-	}
-
-	public static function getTimeDigit($dt, $unit)
-	{
-		if(empty($dt)){
-			return null;
-		}
-		switch ($unit) {
-			case 'hour':
-				$digit = str_split($dt->hour);
-				break;
-			
-			case 'minute':
-				$digit = str_split($dt->minute);
-				break;
-			
-			default:
-				$digit = [];
-		}
-		if (count($digit) === 1 ) {
-			// prepend 0
-			array_unshift($digit, '0');	
-		}
-		return $digit;
 	}
 
     /**

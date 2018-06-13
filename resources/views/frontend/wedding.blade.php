@@ -62,7 +62,10 @@
                 <img src="{{ $event->image->url_cache }}" alt="event" class="img-responsive inline-block">
               </div>
             @endif
-            <h2 class="font-theme color-theme">{{ $event->present()->time }}</h2>
+            
+            <div class="col-xs-12 wedding-day-events-time">
+              <p>{!! $event->present()->time !!}</p>
+            </div>
             <div class="col-xs-12 wedding-day-events-location">
               <h3>{!! $event->location !!}</h3>
             </div>

@@ -37,14 +37,22 @@ class EventPresenter extends BasePresenter
 	}
 
     /**
-     * Get the time units to be displayed in frontend
+     * Get the time units html markup to be displayed in frontend
      *
-     * @return mixed
+     * @return string
      */
     public function time()
     {
-        return $this->datetime->format('H:i');
-	}
+        $time = $this->datetime->format('Hi');
+        $min = "<span class='time'>$time[0]</span>";
+        $min .= "<span class='time'>$time[1]</span>";
+
+        $sec = "<span class='time'>$time[2]</span>";
+        $sec .= "<span class='time'>$time[3]</span>";
+
+        return $min . ':' . $sec;
+
+    }
 
     /**
      * All data grouped by datetime displayed in frontend
