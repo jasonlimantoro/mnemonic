@@ -21,11 +21,6 @@ class Event extends Model
         return $this->morphOne(Image::class, 'imageable');
     }
 
-    // public function getDatetimeAttribute($date)
-    // {
-    //    return Carbon::parse($date)->format(self::$customDateFmt);
-	// }
-
 	public function setDatetimeAttribute($date)
 	{
 		if (!($date instanceof \DateTime)) {
@@ -40,6 +35,11 @@ class Event extends Model
 			return Carbon::createFromFormat(self::$customDateFmt, $datestring);
 		}
 		return null;
+	}
+
+    public function isSameDate(Carbon $date)
+    {
+        return $date->format('Y-m-d') === $this->datetime->format('Y-m-d');
 	}
 
 	public static function getTimeDigit($dt, $unit)

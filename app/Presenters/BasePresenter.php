@@ -14,7 +14,7 @@ abstract class BasePresenter
     /**
      * @param $entity
      */
-    function __construct($entity)
+    public function __construct($entity)
     {
         $this->entity = $entity;
     }
@@ -44,11 +44,6 @@ abstract class BasePresenter
      */
     public function __call($method, $arguments)
     {
-        if (method_exists($this, $method))
-        {
-            return $this->{$method}($arguments);
-        }
-
-        return $this->entity->{$method}($arguments);
+        return call_user_func_array([$this->entity, $method], $arguments);
 	}
 }

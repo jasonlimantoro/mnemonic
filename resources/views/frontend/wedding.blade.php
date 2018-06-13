@@ -43,30 +43,30 @@
 
 		{{-- Event Sections --}}
 		<div class="row wedding-day-events">
-			@foreach ($events as $date=>$occurrences)
+			@foreach ($dates as $date=>$occurrences)
 				<div class="col-xs-12 wedding-day-events-date">
 					<h2>{{ $date }}</h2>
 				</div>
         @foreach($occurrences as $event)
           <div class="container">
             <div class="col-xs-12 wedding-day-events-title">
-              <h1 class="font-theme color-theme"> {{ $event['name'] }} </h1>
+              <h1 class="font-theme color-theme"> {{ $event->name }} </h1>
             </div>
   
             <div class="col-xs-12 wedding-day-events-description">
-              <p class="font-theme"> {!! $event['description'] !!} </p>
+              <p class="font-theme"> {!! $event->description !!} </p>
             </div>
   
-            @if ($event['image'])
+            @if ($event->image)
               <div class="col-xs-12 wedding-day-events-image">
-                <img src="{{ $event['image']['url_cache'] }}" alt="event" class="img-responsive inline-block">
+                <img src="{{ $event->image->url_cache }}" alt="event" class="img-responsive inline-block">
               </div>
             @endif
+            <h2 class="font-theme color-theme">{{ $event->present()->time }}</h2>
             <div class="col-xs-12 wedding-day-events-location">
-              <h3>{!! $event['location'] !!}</h3>
+              <h3>{!! $event->location !!}</h3>
             </div>
           </div>
-          
         @endforeach
 			@endforeach
 		</div>

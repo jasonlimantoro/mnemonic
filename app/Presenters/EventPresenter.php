@@ -7,8 +7,17 @@ use Carbon\Carbon;
 
 class EventPresenter extends BasePresenter
 {
-	public static $customDateFmt ='l - M jS, Y';  // Friday - October 20th 20:00, 2017
 
+    /**
+     * @var string
+     */
+    public static $customDateFmt ='l - M jS, Y';  // Friday - October 20th 20:00, 2017
+
+    /**
+     * Get distinct datetime field
+     *
+     * @return array
+     */
     public function getDistinctDate()
     {
 		return $this->distinct()
@@ -16,26 +25,45 @@ class EventPresenter extends BasePresenter
             ->toArray();
 	}
 
+    /**
+     * Datetime to be displayed in frontend
+     *
+     * @return string
+     */
     public function prettyDatetime()
     {
-        return Carbon::parse($this->datetime)->format(self::$customDateFmt);
-	}
-	
-	public function prettyDate($dateObj)
-	{
-		return Carbon::parse($dateObj)->format(self::$customDateFmt);
+        return Carbon::parse($this->datetime)
+            ->format(static::$customDateFmt);
 	}
 
+    /**
+     * Get the time units to be displayed in frontend
+     *
+     * @return mixed
+     */
+    public function time()
+    {
+        return $this->datetime->format('H:i');
+	}
+
+    /**
+     * All data grouped by datetime displayed in frontend
+     *
+     * @return array
+     */
     public function displayEventsGroupByDate()
     {
 		$dates = $this->getDistinctDate();
 		$result = [];
 
         foreach ($dates as $date){
-			$parsed = $this->prettyDate($date);
-			$queries = static::whereDatetime($date)->get()->toArray();
-			$result[$parsed] = $queries;
+			$parsed = Carbon::parse($date)
+                ->format(static::$customDateFmt);
 
+			$queries = static::all()
+                ->filter->isSameDate($date);
+
+			$result[$parsed] = $queries;
         }
 
         return $result;

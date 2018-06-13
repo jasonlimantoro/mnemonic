@@ -39,8 +39,8 @@ class FrontendController extends Controller
     public function wedding()
     {
         $embed = Setting::getValueByKey('embed-video');
-        $events = Event::process()
-                        ->displayEventsGroupByDate();
+        $dates = Event::process()
+            ->displayEventsGroupByDate();
         $groom = Couple::groom();
         $bride = Couple::bride();
         $bbs = BridesBest::all();
@@ -51,7 +51,7 @@ class FrontendController extends Controller
 			'bestMen' => BridesBest::bestMen(),
 		]);
 
-        return view('frontend.wedding', compact('embed', 'events', 'groom', 'bride', 'bbs', 'vendors'));
+        return view('frontend.wedding', compact('embed', 'dates', 'groom', 'bride', 'bbs', 'vendors'));
     }
 
     public function onlineRSVP()
