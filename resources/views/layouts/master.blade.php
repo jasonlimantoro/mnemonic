@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
   <head>
+    {!! $settings['site-seo']->g_script !!}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
-		<meta name="description" content="{{ $siteDescription }}"/>
+		<meta name="description" content="{{ $settings['site-seo']->meta_description }}"/>
 
-		<title>{{ $siteTitle }}</title>
-		<link rel="shortcut icon" type="image/png" href={{ $faviconUrl }}/>
+		<title>{{ $settings['site-seo']->meta_title }}</title>
+		<link rel="shortcut icon" type="image/png" href={{ $settings['site-info']->favicon }}/>
 
     <!-- Styles -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
