@@ -29,7 +29,7 @@ class SiteSocialController extends Controller
     public function update(Request $request)
     {
         Setting::updateSiteSocial(
-            $request->only(['google_plus', 'facebook', 'instagram', 'youtube'])
+            $request->only(['google_plus', 'facebook', 'instagram', 'youtube', 'telegram', 'line'])
         );
 
         $this->flash('Social Accounts are updated successfully');
