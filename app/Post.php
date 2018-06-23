@@ -3,12 +3,9 @@
 namespace App;
 
 use Carbon\Carbon;
-use App\Traits\FiltersSearch;
 
 class Post extends Model
 {
-    use FiltersSearch;
-
     public function user()
     {
         return $this->belongsTo(User::class);

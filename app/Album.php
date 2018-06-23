@@ -3,12 +3,10 @@
 namespace App;
 
 use App\Repositories\Albums;
-use App\Traits\FiltersSearch;
 use Illuminate\Http\Request;
 
 class Album extends Model
 {
-    use FiltersSearch;
     public $repo;
 
     public function __construct(array $attributes = [])

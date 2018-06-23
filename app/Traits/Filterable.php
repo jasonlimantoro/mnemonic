@@ -3,21 +3,22 @@
 namespace App\Traits;
 
 
-trait FiltersSearch
+trait Filterable
 {
     /**
      * @param $query
      * @param array $filters
      * @param string $nameColumn
      *
+     * @return null | \Illuminate\Database\Eloquent\Collection
      */
     public function scopeFiltersSearch($query, array $filters, $nameColumn = 'name')
 	{
-		if(!$filters) return;
+		if (!$filters) return null;
 		$method = $filters['method'];
 		$order = $filters['order'];
 		$search = $filters['search'];
 		return $query->orderBy($order, $method)
-			   		 ->where($nameColumn, 'like', '%' . $search . '%');
+             ->where($nameColumn, 'like', '%' . $search . '%');
 	}
 }

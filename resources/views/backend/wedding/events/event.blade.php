@@ -8,7 +8,7 @@
       {{ $event->name }}
     @endif
 		<br>
-   <span class="label label-primary">{{ $event->datetime }}</span> 
+   <span class="label label-primary">{{ $event->present()->prettyDatetime }}</span>
   </td>
   <td class="data-table body">
 		{!! $event->description !!}

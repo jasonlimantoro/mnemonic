@@ -180,6 +180,7 @@ return [
 		App\Providers\RouteServiceProvider::class,
 		App\Providers\FormMacroServiceProvider::class,
 		App\Providers\BladeServiceProvider::class,
+        App\Providers\SettingServiceProvider::class,
 		Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
 
     ],

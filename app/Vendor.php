@@ -2,12 +2,9 @@
 
 namespace App;
 
-use App\Traits\FiltersSearch;
 
 class Vendor extends Model
 {
-    use FiltersSearch;
-
     protected $with = ['category'];
 
     public function category()

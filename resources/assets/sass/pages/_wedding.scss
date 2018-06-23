@@ -33,6 +33,21 @@
 				font-family: CacChampagne;
 			}
 		}
+
+		&-time {
+			p {
+				font-size: 48pt;
+				margin: 40px auto;
+				.time {
+					padding: 5px 15px;
+					background-color: #f2f2f2;
+					margin: 5px;
+					border: 2px solid #ccc;
+					color: #000;
+					border-radius: 15px;
+				}
+			}
+		}
 		&-location {
 			* {
 				font-family: PlayFair, Helvetica;

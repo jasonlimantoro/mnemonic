@@ -2,11 +2,9 @@
 
 namespace App;
 
-use App\Traits\FiltersSearch;
 
 class Category extends Model
 {
-    use FiltersSearch;
 
     public function vendor()
     {

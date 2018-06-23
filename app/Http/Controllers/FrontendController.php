@@ -39,8 +39,8 @@ class FrontendController extends Controller
     public function wedding()
     {
         $embed = Setting::getValueByKey('embed-video');
-        $dates = Event::getDistinctDate();
-        $events = Event::processDistinctDate($dates);
+        $dates = Event::process()
+            ->displayEventsGroupByDate();
         $groom = Couple::groom();
         $bride = Couple::bride();
         $bbs = BridesBest::all();
@@ -51,13 +51,13 @@ class FrontendController extends Controller
 			'bestMen' => BridesBest::bestMen(),
 		]);
 
-        return view('frontend.wedding', compact('embed', 'events', 'groom', 'bride', 'bbs', 'vendors'));
+        return view('frontend.wedding', compact('embed', 'dates', 'groom', 'bride', 'bbs', 'vendors'));
     }
 
     public function onlineRSVP()
     {
         $wedding = Event::wedding();
-        $weddingDate = Event::getDateTimeObjectAttribute(optional($wedding)->datetime);
+        $weddingDate = optional($wedding)->datetime;
         $isFuture = !empty($weddingDate) ? Carbon::now()->diffInSeconds($weddingDate, false) > 0 : null;
 
         $rsvp = request()->session()->get('rsvp', null);

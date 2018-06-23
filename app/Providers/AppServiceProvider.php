@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Setting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
@@ -19,22 +18,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-
-        view()->composer('layouts.sidebar', function($view){
-			$pages = \App\Page::orderBy('id', 'asc')->get();
-			$view->with(compact('pages'));
-		});
-
-		view()->composer('layouts.archives', function($view){
-			$archives = \App\Post::archives();
-			$postCount = \App\Repositories\Posts::count();
-			$view->with(compact('archives', 'postCount'));
-		});
-
-		view()->share('faviconUrl', Setting::getJSONValueFromKeyField('site-info', 'favicon'));
-		view()->share('logoUrl', Setting::getJSONValueFromKeyField('site-info', 'logo'));
-		view()->share('siteTitle', Setting::getJSONValueFromKeyField('site-info', 'title'));
-		view()->share('siteDescription', Setting::getJSONValueFromKeyField('site-info', 'description'));
 
 		// API doesn't get wrapped with data key
 		Resource::withoutWrapping();
