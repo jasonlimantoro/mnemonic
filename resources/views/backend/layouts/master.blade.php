@@ -29,33 +29,9 @@
     </div>
 
     {{--  Asset Scripts  --}}
-    <script src="{{ asset('js/manifest.js')}}"></script>
-		<script src="{{ asset('js/vendor.js')}}"></script>
+    <script src="{{ asset('js/manifest.js') }}"></script>
+		<script src="{{ asset('js/vendor.js') }}"></script>
 		<script src="{{ asset('js/backend/main.js') }}"></script>
-
-    {{--  General scripts  --}}
-    <script>
-      $(document).ready(function () {
-
-        $('#sidebarCollapse').on('click', function () {
-          $('#sidebar').toggleClass('active');
-        }); 
-        // get the current page
-        path = window.location.href;
-
-        // if path is empty
-        if (path == '') {
-          path = 'http://mnemonic.dev/admin';
-        }
-        
-        // sidebar is targeted
-        target = $('#sidebar li a[href="'+ path + '"]').parents('li');
-
-        target.addClass('active');
-
-        $('[data-toggle="tooltip"]').tooltip();   
-      });
-		</script>
 
 		@yield('scripts')
   </body>

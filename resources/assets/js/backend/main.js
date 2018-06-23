@@ -1,4 +1,5 @@
 require('../bootstrap');
+require('./functionals/sidebarActive');
 
 import ReactDOM from "react-dom";
 import React from "react";
