@@ -1,4 +1,4 @@
-<div class="__react-root" id="FancyInput"></div>
+@react("FancyInput")
 
 {{-- caption field --}}
 <div class="form-group">

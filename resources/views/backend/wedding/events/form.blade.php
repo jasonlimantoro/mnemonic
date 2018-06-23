@@ -6,7 +6,7 @@
 	</div>
 
 	{{-- description field --}}
-	<div class="__react-root" id="InitializeEditor"></div>
+	@react("InitializeEditor")
 	<div class="form-group">
 		{{ Form::label('description', 'Event Description') }}
 		{{ Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Enter Description']) }}
@@ -44,6 +44,6 @@
 	@endisset
  
 	<div class="form-group">
-		<div class="__react-root" id="FancyInput"></div>
+		@react("FancyInput")
 	</div>
 </div>

@@ -86,7 +86,7 @@
 			
 			@include('jsvar')
 			<div class="col-xs-10 col-center">
-				<div class="__react-root" id="BridesBestSlider"></div>
+				@react("BridesBestSlider")
 			</div>
 		</div>
 

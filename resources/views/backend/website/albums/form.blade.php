@@ -5,7 +5,7 @@
 		{{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Enter Album Name']) }}
 	</div>
 	
-	<div class="__react-root" id="InitializeEditor"></div>
+	@react("InitializeEditor")
 	{{-- description field --}}
 	<div class="form-group">
 		{{ Form::label('description', 'Description:') }}
@@ -28,5 +28,5 @@
 		@endif
 	@endisset
 	<h3>Upload Featured Image</h3>
-	<div class="__react-root" id="FancyInput"></div>
+	@react("FancyInput")
 </div>

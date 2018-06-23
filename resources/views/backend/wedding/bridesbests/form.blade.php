@@ -6,7 +6,7 @@
 	</div>
 
 	{{-- testimony field --}}
-	<div class="__react-root" id="InitializeEditor"></div>
+	@react("InitializeEditor")
 	<div class="form-group">
 		{{ Form::label('testimony', 'Testimony:') }}
 		{{ Form::textarea('testimony', null, ['class' => 'form-control', 'placeholder' => 'Enter Testimony']) }}
@@ -45,6 +45,6 @@
 		</div>
 	@endisset
 	<div class="form-group">
-		<div class="__react-root" id="FancyInput"></div>
+		@react("FancyInput")
 	</div>
 </div>

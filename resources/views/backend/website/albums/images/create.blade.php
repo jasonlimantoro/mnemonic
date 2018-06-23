@@ -17,7 +17,7 @@
 					<p> Description: <strong>{{ $album->description }}</strong> </p>
 					{{ Form::open(['route' => ['album.images.store', $album->id], 'enctype' => 'multipart/form-data']) }}
 
-						<div class="__react-root" id="SimpleInput"></div>
+						@react("SimpleInput")
 
 						{{-- Submit Button --}}
 						<div class="form-group">

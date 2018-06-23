@@ -100,7 +100,7 @@
 					</div>
 				</div>
 				<div class="form-group clearfix">
-					<div class="__react-root" id="IconAndLogoInput"></div>
+					@react("IconAndLogoInput")
 				</div>
 				
 				{{-- Submit Button --}}

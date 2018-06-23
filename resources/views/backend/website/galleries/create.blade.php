@@ -20,7 +20,7 @@
 				@slot('body')
 
 					{{ Form::open(['route' => 'images.store', 'enctype' => 'multipart/form-data']) }}
-						<div class="__react-root" id="SimpleInput"></div>	
+						@react("SimpleInput")	
 						{{-- album field --}}
 						<div class="form-group">
 							{{ Form::label('album', 'Assign to Album:') }}

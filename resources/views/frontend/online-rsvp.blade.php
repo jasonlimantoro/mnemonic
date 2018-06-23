@@ -14,7 +14,7 @@
 				</h3>
 				@isset($rsvp)
 					<div class="rsvp-success-modal">
-						<div class="__react-root" id="RSVPModal"></div>
+						@react("RSVPModal")
 					</div>
 				@endisset
 				
@@ -51,7 +51,7 @@
 				</div>
 
 				@isset($weddingDate)
-					<div class="__react-root" id="RSVPTimer"></div>
+					@react("RSVPTimer")
 				@endisset
 			</div>
 		</div>

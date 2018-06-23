@@ -12,7 +12,7 @@
 				@slot('body')
 
 					@include('jsvar')
-					<div class="__react-root" id="CoupleForm"></div>
+					@react("CoupleForm")
 
 				@endslot
 			@endcomponent
