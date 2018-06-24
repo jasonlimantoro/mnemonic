@@ -44,29 +44,27 @@
                     <img src="{{ $image->url_cache }}" alt="image" class="img-responsive">
                   </td>
                   <td>{{ $image->file_name }}</td>
-                  <td class="text-center">
+                  <td class="data action">
                     <div>
                       <a 
                         href="{{ route('album.images.show', ['album' => $album->id, 'image' => $image->id])}}" 
-                        id="ShowIcon" 
-                        class="__react-root" 
                         role="button"
                         data-toggle="tooltip"
                         title="See info about this image"
                         data-placement="top"
-                        >
+                      >
+                        <i class="fa fa-info-circle"></i>
                       </a>
                     </div>
                     <div>
                       <a 
                         href="{{ route('album.images.edit', ['album' => $album->id, 'image' => $image->id])}}" 
-                        id="EditIcon" 
-                        class="__react-root" 
                         role="button"
                         data-toggle="tooltip"
                         title="Assign this image to another album"
                         data-placement="top"
-                        >
+                      >
+                        <i class="fa fa-pencil-square-o"></i>
                       </a>
                     </div>
                     <div>

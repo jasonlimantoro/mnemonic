@@ -1,36 +1,34 @@
 <tr class="post">
-  <td class="post-data title">
+  <td class="data title">
     <a href="{{ route('posts.edit', ['post' => $post->id, 'page' => $page->id ]) }}">
       {{ $post->title }}
     </a>
   </td>
-  <td class="post-data body">
+  <td class="data body">
     {!! $post->description !!}
   </td>
-  <td class="text-center">
+  <td class="data action">
     <div>
       <a 
         href="{{ route('posts.show', ['post' => $post->id, 'page' => $page->id ]) }}" 
-        id="ShowIcon" 
-        class="__react-root" 
         role="button"
         data-toggle="tooltip"
         title="See info about this post"
         data-placement="top"
-        >
+      >
+        <i class="fa fa-info-circle"></i>
       </a>
 		</div>
 		@can('update', App\Post::class)
 			<div>
 				<a 
-					href="{{ route('posts.edit', ['post' => $post->id, 'page' => $page->id ]) }}" 
-					id="EditIcon" 
-					class="__react-root" 
+					href="{{ route('posts.edit', ['post' => $post->id, 'page' => $page->id ]) }}"
 					role="button"
 					data-toggle="tooltip"
 					title="Edit this post"
 					data-placement="top"
-					>
+        >
+          <i class="fa fa-pencil-square-o"></i>
 				</a>
 			</div>
 		@endcan
@@ -48,7 +46,7 @@
 						data-toggle="tooltip"
 						title="Delete this post"
 						data-placement="top"
-						>
+          >
 					</a>
 				</form>
 			</div>

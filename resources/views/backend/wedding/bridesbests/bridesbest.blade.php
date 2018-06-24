@@ -1,5 +1,5 @@
 <tr>
-  <td class="data-table title">
+  <td class="data title">
     <a href="{{ route('bridesmaid-bestmans.edit', ['bridesmaid-bestman' => $b->id ]) }}">
       {{ $b->name }} 
     </a>
@@ -11,21 +11,20 @@
       @endif
     </p>
   </td>
-  <td class="data-table body">
+  <td class="data body">
     {!! $b->testimony !!}
   </td>
-  <td class="text-center">
+  <td class="data action">
 		@can('update', App\BridesBest::class)
 			<div>
 				<a 
 					href="{{ route('bridesmaid-bestmans.edit', ['bridesmaid-bestman' => $b->id ]) }}" 
-					id="EditIcon" 
-					class="__react-root" 
 					role="button"
 					data-toggle="tooltip"
 					title="Edit this bridesmaid-bestman"
 					data-placement="top"
-					>
+				>
+          <i class="fa fa-pencil-square-o"></i>
 				</a>
 			</div>
 		@endcan

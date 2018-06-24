@@ -35,36 +35,34 @@
 						@slot('tableBody')
 							@foreach($albums as $album)
 								<tr>
-									<td class="data-table">
+									<td class="data title">
 										<a href="{{ route('albums.show', ['album' => $album->id ]) }}">
 											{{ $album->name }} 
 										</a>
 									</td>
-									<td class="data-table">{!! $album->description !!}</td>
+									<td class="data body">{!! $album->description !!}</td>
 									
-									<td class="text-center">
+									<td class="data action">
 										<div>
 											<a 
 												href="{{ route('albums.show', ['album' => $album->id ]) }}" 
-												id="ShowIcon" 
-												class="__react-root" 
 												role="button"
 												data-toggle="tooltip"
 												title="See info about this album"
 												data-placement="top"
-												>
+											>
+                        <i class="fa fa-info-circle"></i>
 											</a>
 										</div>
 										<div>
 											<a 
 												href="{{ route('albums.edit', ['album' => $album->id ]) }}" 
-												id="EditIcon" 
-												class="__react-root" 
 												role="button"
 												data-toggle="tooltip"
 												title="Edit this album"
 												data-placement="top"
-												>
+											>
+                        <i class="fa fa-pencil-square-o"></i>
 											</a>
 										</div>
 										<div>
@@ -88,13 +86,13 @@
 								</tr>
 							@endforeach
 								<tr>
-									<td class="data-table">
+									<td class="data title">
 										<a href="{{ route('albums.show', ['album' => $uncategorizedAlbum->id ]) }}">
 											Uncategorized
 										</a>
 									</td>
-									<td> <i>{{ $uncategorizedAlbum->description }}</i> </td>
-									<td class="text-center"><i>No action</i></td>
+									<td class="data body"> <i>{{ $uncategorizedAlbum->description }}</i> </td>
+									<td class="text-center data action"><i>No action</i></td>
 								</tr>
 							
 						@endslot

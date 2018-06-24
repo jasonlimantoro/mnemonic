@@ -1,5 +1,5 @@
 <tr>
-	<td class="data-table title">
+	<td class="data title">
 		@can('update', 'App\RSVP')
 			<a href="{{ route('rsvps.edit', ['rsvp' => $rsvp->id ]) }}">
 				{{ $rsvp->name }} 
@@ -12,7 +12,7 @@
 		{{ $rsvp->phone }}
 
 	</td>
-	<td class="data-table body">
+	<td class="data body">
 		<small>RSVP Code : {{ str_pad($rsvp->id, 5, "#000", STR_PAD_LEFT) }}</small><br>
 		<small>Table Name: {{ $rsvp->table_name }}</small><br>
 		<small>Total Invitation(s): {{ $rsvp->total_invitation }}</small><br>
@@ -24,18 +24,17 @@
 			<span class="label label-danger">Status : {{ $rsvp->status }}</span>
 		@endif
 	</td>
-	<td class="text-center">
+	<td class="data action">
 		@can('update', App\RSVP::class)
 			<div>
 				<a 
 					href="{{ route('rsvps.edit', ['rsvp' => $rsvp->id ]) }}" 
-					id="EditIcon" 
-					class="__react-root" 
 					role="button"
 					data-toggle="tooltip"
 					title="Edit this rsvp"
 					data-placement="top"
-					>
+				>
+          <i class="fa fa-pencil-square-o"></i>
 				</a>
 			</div>
 		@endcan

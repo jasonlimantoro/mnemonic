@@ -1,5 +1,5 @@
 <tr>
-  <td class="data-table title">
+  <td class="data title">
     @can('update', 'App\Event')
       <a href="{{ route('events.edit', ['event' => $event->id ]) }}">
         {{ $event->name }}
@@ -10,21 +10,20 @@
 		<br>
    <span class="label label-primary">{{ $event->present()->prettyDatetime }}</span>
   </td>
-  <td class="data-table body">
+  <td class="data body">
 		{!! $event->description !!}
   </td>
-  <td class="text-center">
+  <td class="data action">
     @can('update', App\Event::class)
       <div>
         <a
           href="{{ route('events.edit', ['event' => $event->id ]) }}"
-          id="EditIcon"
-          class="__react-root"
           role="button"
           data-toggle="tooltip"
           title="Edit this event"
           data-placement="top"
         >
+          <i class="fa fa-pencil-square-o"></i>
         </a>
       </div>
     @endcan

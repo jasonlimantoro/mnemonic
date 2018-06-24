@@ -1,24 +1,23 @@
 <tr>
-	<td class="data-table">
+	<td class="data">
 		<img src="{{ $image->url_cache }}" alt="carousel-image" class="img-responsive">
 	</td>
 
-	<td class="data-table">
+	<td class="data">
 		@include('backend.layouts.caption')
 	</td>
 	
-	<td class="text-center">
+	<td class="data action">
 		@can('read-carousel-image')
 			<div>
 				<a 
 					href="{{ route('carousel.images.show', ['carousel' => 1, 'image' => $image->id ]) }}" 
-					id="ShowIcon" 
-					class="__react-root" 
 					role="button"
 					data-toggle="tooltip"
 					title="See info about this image"
 					data-placement="top"
-					>
+				>
+          <i class="fa fa-info-circle"></i>
 				</a>
 			</div>
 		@endcan
@@ -27,13 +26,12 @@
 			<div>
 				<a 
 					href="{{ route('carousel.images.edit', [ 'carousel' => 1, 'image' => $image->id ]) }}" 
-					id="EditIcon" 
-					class="__react-root" 
 					role="button"
 					data-toggle="tooltip"
 					title="Edit this image"
 					data-placement="top"
-					>
+				>
+          <i class="fa fa-pencil-square-o"></i>
 				</a>
 			</div>
 		@endcan
@@ -51,7 +49,7 @@
 						data-toggle="tooltip"
 						title="Remove this image from the carousel"
 						data-placement="top"
-						>
+					>
 					</a>
 				</form>
 			</div>

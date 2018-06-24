@@ -1,5 +1,5 @@
 <tr class="event">
-  <td class="data-table title">
+  <td class="data title">
 		@can('update', 'App\Category')
 			<a href="{{ route('categories.edit', ['category' => $category->id ]) }}">
 				{{ $category->name }} 
@@ -8,21 +8,20 @@
 			{{ $category->name }} 
 		@endif
   </td>
-  <td class="data-table body">
+  <td class="data body">
     {{ $category->description }}
   </td>
-  <td class="data-table text-center">
+  <td class="data action">
 		@can('update', App\Category::class)
 			<div>
 				<a 
 					href="{{ route('categories.edit', ['category' => $category->id ]) }}" 
-					id="EditIcon" 
-					class="__react-root" 
 					role="button"
 					data-toggle="tooltip"
 					title="Edit this category"
 					data-placement="top"
-					>
+				>
+          <i class="fa fa-pencil-square-o"></i>
 				</a>
 			</div>
 		@endcan

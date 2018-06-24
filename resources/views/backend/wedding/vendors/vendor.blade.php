@@ -1,5 +1,5 @@
 <tr class="vendor">
-  <td class="data-table title">
+  <td class="data title">
 		@can('update', 'App\Vendor')
 			<a href="{{ route('vendors.edit', ['vendor' => $vendor->id ]) }}">
 				{{ $vendor->name }} 
@@ -8,23 +8,22 @@
 			{{ $vendor->name }}
 		@endif
   </td>
-  <td class="data-table body">
+  <td class="data body">
     <span class="label label-default">
 			{{ optional($vendor->category)->name ?? 'None' }}
 		</span>
   </td>
-  <td class="text-center">
+  <td class="data action">
 		@can('update', App\Vendor::class)
 			<div>
 				<a 
 					href="{{ route('vendors.edit', ['vendor' => $vendor->id ]) }}" 
-					id="EditIcon" 
-					class="__react-root" 
 					role="button"
 					data-toggle="tooltip"
 					title="Edit this vendor"
 					data-placement="top"
-					>
+				>
+          <i class="fa fa-pencil-square-o"></i>
 				</a>
 			</div>
 		@endcan

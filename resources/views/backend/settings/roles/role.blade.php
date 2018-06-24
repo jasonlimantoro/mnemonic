@@ -1,5 +1,5 @@
 <tr class="event">
-	<td class="data-table title">
+	<td class="data title">
 		@can('update', 'App\Role')
 			<a href="{{ route('roles.edit', ['role' => $role->id ]) }}">
 				{{ $role->name }}
@@ -10,14 +10,14 @@
 		<br>
 		{{ $role->description }}
 	</td>
-	<td class="data-table body">
+	<td class="data body">
 		<ul>
 			@foreach ($role->permissions as $permission)
 				<li>{{ $permission->name }}</li>
 			@endforeach
 		</ul>
 	</td>
-	<td class="data-table text-center">
+	<td class="data action">
 		@can('update', App\Role::class)
 			<div>
 				<a 
@@ -28,7 +28,8 @@
 					data-toggle="tooltip"
 					title="Edit this role"
 					data-placement="top"
-					>
+				>
+          <i class="fa fa-pencil-square-o"></i>
 				</a>
 			</div>
 		@endcan

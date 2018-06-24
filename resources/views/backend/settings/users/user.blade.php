@@ -1,5 +1,5 @@
 <tr class="event">
-  <td class="data-table title">
+  <td class="data title">
 		@can('update', 'App\User')
 			<a href="{{ route('users.edit', ['user' => $user->id ]) }}">
 				{{ $user->name }}
@@ -10,21 +10,20 @@
 		<br>
 		{{ $user->email }}
   </td>
-  <td class="data-table body">
+  <td class="data body">
 		{{ $user->role->name }}
   </td>
-  <td class="data-table text-center">
+  <td class="data action">
 		@can('update', App\User::class)
 			<div>
 				<a 
 					href="{{ route('users.edit', ['user' => $user->id ]) }}" 
-					id="EditIcon" 
-					class="__react-root" 
 					role="button"
 					data-toggle="tooltip"
 					title="Edit this user"
 					data-placement="top"
-					>
+				>
+          <i class="fa fa-pencil-square-o"></i>
 				</a>
 			</div>
 		@endcan
