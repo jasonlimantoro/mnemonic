@@ -20,7 +20,7 @@ class BladeServiceProvider extends ServiceProvider
 		});
 
 		Blade::directive('react', function ($component) {
-			return "<?php echo '<div class=\"__react-root\" id=$component></div>'; ?>";
+			return "<?php echo '<div data-component={$component}></div>'; ?>";
         });
     }
 
