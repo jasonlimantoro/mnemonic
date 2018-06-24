@@ -7,6 +7,7 @@ import {
   Row,
   Col
 } from "react-bootstrap";
+import axios from "axios";
 import { FancyInput } from "../containers/FormContainer";
 import { InputFile } from "./Form";
 import { DisplayImagesFromInputFile } from "./DisplayImage";
@@ -191,7 +192,9 @@ export class CoupleTabs extends React.Component {
 
                   <div className="form-group">
                     {canUpdate ? (
-                      <PrimaryButton type="submit" text="Update Couple" />
+                      <PrimaryButton type="submit">
+                        Update Couple
+                      </PrimaryButton>
                     ) : (
                       <UnauthorizedButton />
                     )}

@@ -1,25 +1,30 @@
-import React from 'react';
+import React from "react";
+import {FancyInput} from "../containers/FormContainer";
 
-export const PlusIcon = (props) => {
-    return (
-        <i className="fa fa-plus" style={props.style}></i>
-    );
-}
+export const DeleteIcon = () => {
+    const style = {
+        'fontSize' : '24px',
+        'color': 'black'
+    };
+    const confirmDelete = (e) => {
+        e.preventDefault();
+        if (!confirm('Are you sure you want to delete?')){
+			return;
+		} 
+		let data = e.target.parentElement.getAttribute('data-form');
+		$('#form-delete-' + data).submit();
+    };
+    return <i className="fa fa-trash-o" style={style} onClick={confirmDelete}></i>
+};
 
-export const TrashIcon = (props) => {
-    return (
-        <i className="fa fa-trash-o" style={props.style} onClick={props.handleClick}></i>
-    );
-}
-
-export const PencilIcon = (props) => {
-    return (
-        <i className="fa fa-pencil-square-o" style={props.style}></i>
-    );
-}
-
-export const InfoIcon = (props) => {
-    return (
-        <i className="fa fa-info-circle" style={props.style}></i>
-    );
-}
+export const IconAndLogoInput = () => (
+  <div>
+    <div className="col-md-4">
+      <FancyInput i={1} galleryInputName="favicon_from_gallery" newInputName="favicon_from_local"
+                  dusk="favicon-upload"/>
+    </div>
+    <div className="col-md-4">
+      <FancyInput i={2} galleryInputName="logo_from_gallery" newInputName="logo_from_local" dusk="logo-upload"/>
+    </div>
+  </div>
+);

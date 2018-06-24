@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { ThumbnailGallery } from "./Thumbnail";
-import { SelectForm } from "./Form";
 import { SimplePagination } from "./Pagination";
 
 export class RequestImages extends React.Component {

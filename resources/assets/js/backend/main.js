@@ -3,15 +3,15 @@ require('./functionals/sidebarActive');
 
 import ReactDOM from "react-dom";
 import React from "react";
-import { FancyInput, CoupleForm, SimpleInput, IconAndLogoInput } from './containers/FormContainer';
-import { DeleteIcon, EditIcon, ShowIcon } from "./containers/IconContainer";
+import { FancyInput, CoupleForm, SimpleInput} from './containers/FormContainer';
+import {DeleteIcon, IconAndLogoInput} from "./components/Icon";
 import { UploadModal } from "./components/Modal";
 import { InitializeEditor } from "./components/Editor";
 
 const APPS = {
     CoupleForm,
     FancyInput, SimpleInput,
-    DeleteIcon, EditIcon, ShowIcon, IconAndLogoInput,
+    DeleteIcon, IconAndLogoInput,
     UploadModal,
     InitializeEditor,
 };

@@ -38,7 +38,9 @@ export class UploadModal extends React.Component {
           />
         </Modal.Body>
         <Modal.Footer>
-          <DangerButton text="Done" onClick={this.props.onHide} />
+          <DangerButton onClick={this.props.onHide}>
+            Done
+          </DangerButton>
         </Modal.Footer>
       </Modal>
     );
