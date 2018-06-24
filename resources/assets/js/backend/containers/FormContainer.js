@@ -4,18 +4,14 @@ import {InputFile} from "../components/Form";
 import {PrimaryButton} from "../components/Button";
 import {UploadModal} from "../components/Modal";
 import {DisplayImagesFromInputFile} from "../components/DisplayImage";
-import {CoupleTabs} from "../components/Tab";
 
-export const CoupleForm = () => (
-  <CoupleTabs/>
-);
 
 export class SimpleInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       file: {}
-    }
+    };
     this.addFile = this.addFile.bind(this);
   }
 
@@ -27,7 +23,7 @@ export class SimpleInput extends React.Component {
 
   render() {
     const inputStyle = {
-      'display': 'none'
+      display: 'none'
     };
 
     const preview = this.props.image ?
@@ -62,7 +58,7 @@ export class SimpleInput extends React.Component {
 
 SimpleInput.defaultProps = {
   i: 1
-}
+};
 
 export class FancyInput extends React.Component {
   constructor(props) {
@@ -88,7 +84,7 @@ export class FancyInput extends React.Component {
 
   render() {
     const inputStyle = {
-      'display': 'none'
+      display: 'none'
     };
 
     const preview = this.props.image ?
