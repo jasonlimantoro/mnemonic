@@ -34,22 +34,14 @@
 		@endcan
 
 		@can('delete', App\Post::class)
-			<div>
-				<form action="{{ route('posts.destroy', ['page' => $page->id, 'post' => $post->id ]) }}" method="POST" id={{ "form-delete-posts-" . $post->id  }}>
-					{{ method_field('DELETE') }}
-					<a 
-						href="" 
-						id="DeleteIcon" 
-						class="__react-root" 
-						data-form="posts-{{ $post->id }}"
-						role="button"
-						data-toggle="tooltip"
-						title="Delete this post"
-						data-placement="top"
-          >
-					</a>
-				</form>
-			</div>
+      <div
+        data-component="DeleteIcon"
+        data-prop-url="{{ route('posts.destroy', ['page' => $page->id, 'post' => $post->id ]) }}"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Delete this post"
+      >
+      </div>
 		@endcan
   </td>
 </tr>

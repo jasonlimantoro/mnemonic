@@ -11,7 +11,7 @@ const components = {
   SimpleInput
 };
 
-class AppBootstraper extends ReactHabitat.Bootstrapper {
+class AppBootstrapper extends ReactHabitat.Bootstrapper {
   constructor(){
     super();
     // Create a new container builder:
@@ -32,4 +32,4 @@ class AppBootstraper extends ReactHabitat.Bootstrapper {
 
 }
 
-export default new AppBootstraper();
+export default new AppBootstrapper();

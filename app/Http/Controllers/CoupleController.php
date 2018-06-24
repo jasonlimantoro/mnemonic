@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use JavaScript;
 use App\Couple;
 use App\Setting;
 use Illuminate\Http\Request;
@@ -21,15 +20,13 @@ class CoupleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Couple  $couple
      * @return \Illuminate\Http\Response
      */
     public function edit()
     {
-		JavaScript::put([
-			'canUpdate' => auth()->user()->can('update', Couple::class),
-		]);
-        return view('backend.wedding.couple');
+        $bride = Couple::bride();
+        $groom = Couple::groom();
+        return view('backend.wedding.couple', compact('bride', 'groom'));
     }
 
     /**

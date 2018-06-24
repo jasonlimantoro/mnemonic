@@ -1,30 +1,21 @@
 import React from "react";
-import {FancyInput} from "../containers/FormContainer";
+import {LinkButton} from "./Button";
 
-export const DeleteIcon = () => {
-    const style = {
-        'fontSize' : '24px',
-        'color': 'black'
-    };
-    const confirmDelete = (e) => {
-        e.preventDefault();
-        if (!confirm('Are you sure you want to delete?')){
-			return;
-		} 
-		let data = e.target.parentElement.getAttribute('data-form');
-		$('#form-delete-' + data).submit();
-    };
-    return <i className="fa fa-trash-o" style={style} onClick={confirmDelete}></i>
+export const DeleteIcon = ({ url }) => {
+  const confirmDelete = (e) => {
+    if (!confirm('Are you sure you want to delete?')) {
+      e.preventDefault();
+      return false;
+    }
+  };
+
+  return (
+    <form action={url} method="POST" onSubmit={confirmDelete}>
+      <input type="hidden" name="_method" value="DELETE"/>
+      <LinkButton submit style={{padding: 0}}>
+        <i className="fa fa-trash-o"></i>
+      </LinkButton>
+    </form>
+  );
 };
 
-export const IconAndLogoInput = () => (
-  <div>
-    <div className="col-md-4">
-      <FancyInput i={1} galleryInputName="favicon_from_gallery" newInputName="favicon_from_local"
-                  dusk="favicon-upload"/>
-    </div>
-    <div className="col-md-4">
-      <FancyInput i={2} galleryInputName="logo_from_gallery" newInputName="logo_from_local" dusk="logo-upload"/>
-    </div>
-  </div>
-);

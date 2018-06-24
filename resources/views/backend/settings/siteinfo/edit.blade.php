@@ -100,7 +100,22 @@
 					</div>
 				</div>
 				<div class="form-group clearfix">
-					@react("IconAndLogoInput")
+          <div class="col-md-4">
+            <div data-component="FancyInput"
+                 data-prop-gallery-input-name="favicon_from_gallery"
+                 data-prop-new-input-name="favicon_from_local"
+                 data-prop-i="1"
+            >
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div data-component="FancyInput"
+                 data-prop-gallery-input-name="logo_from_gallery"
+                 data-prop-new-input-name="logo_from_gallery"
+                 data-prop-i="2"
+            >
+            </div>
+          </div>
 				</div>
 				
 				{{-- Submit Button --}}
