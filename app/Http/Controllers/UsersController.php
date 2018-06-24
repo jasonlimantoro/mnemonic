@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Role;
 use App\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\GenericController as Controller;
 use App\Http\Requests\UsersRequest;
 
@@ -51,7 +50,7 @@ class UsersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param UsersRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(UsersRequest $request)
@@ -77,7 +76,7 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
@@ -92,8 +91,8 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param UsersRequest $request
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
     public function update(UsersRequest $request, User $user)
@@ -109,7 +108,7 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
