@@ -23,8 +23,7 @@
             <!-- Tab panes -->
             <div class="tab-content clearfix">
               <div role="tabpanel" class="tab-pane active" id="groom">
-                {{ Form::model($groom, ['route' => ['couple.update', $groom->id ], 'method' => 'DELETE']) }}
-
+                {{ Form::model($groom, ['route' => ['couple.update', $groom->id ], 'method' => 'PATCH']) }}
                 <div class="col-md-6">
                   {{-- name field --}}
                   <div class="form-group">
