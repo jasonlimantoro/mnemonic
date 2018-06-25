@@ -38,21 +38,9 @@
                     <a href="{{ route('albums.show', ['album' => $image->imageable->id ]) }}">
                       {{ $image->imageable->name }}
 										</a>
-										<div>
-											<form action="{{ route('images.destroy', ['image' => $image->id]) }}" method="POST" id={{ "form-delete-images-" . $image->id  }}>
-												{{ method_field('DELETE') }}
-												<a 
-													href="{{ route('images.destroy',['image' => $image->id ]) }}" 
-													id="DeleteIcon" 
-													class="__react-root" 
-													data-form="images-{{ $image->id }}"
-													role="button"
-													data-toggle="tooltip"
-													title="Delete this image"
-													data-placement="top"
-													>
-												</a>
-											</form>
+										<div data-component="DeleteIcon"
+                         data-prop-url="{{ route('images.destroy', ['image' => $image->id]) }}"
+                    >
 										</div>
                   @endslot
                 @endcomponent
