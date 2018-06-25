@@ -1,7 +1,7 @@
 import React from "react";
 import {Button} from "react-bootstrap";
 
-export const PrimaryButton = ({onClick, children, ...rest}) => {
+export const PrimaryButton = ({children, ...rest}) => {
   return (
     <Button bsStyle="primary" {...rest}>
       {children}
@@ -9,7 +9,7 @@ export const PrimaryButton = ({onClick, children, ...rest}) => {
   );
 };
 
-export const SuccessButton = ({onClick, children, ...rest}) => {
+export const SuccessButton = ({children, ...rest}) => {
   return (
     <Button bsStyle="success" {...rest}>
       {children}
@@ -49,9 +49,9 @@ export const LinkButton = ({submit, children, ...rest}) => {
   );
 };
 
-export const UnauthorizedButton = ({onClick, ...rest}) => {
+export const UnauthorizedButton = ({...rest}) => {
   return (
-    <Button onClick={onClick} disabled {...rest}>
+    <Button disabled {...rest}>
       Unauthorized
     </Button>
   );
