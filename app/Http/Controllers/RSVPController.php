@@ -142,8 +142,6 @@ class RSVPController extends Controller
         $token = $rsvp->token;
         $this->confirm->persist($token);
 
-        $this->flash('RSVP is successfully confirmed!');
-
         return redirect()->route('front.rsvp')->with('rsvp', $rsvp);
     }
 }
