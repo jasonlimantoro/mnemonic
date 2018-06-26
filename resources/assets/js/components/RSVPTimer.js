@@ -4,7 +4,7 @@ export class RSVPTimer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      event: new Date(weddingDate.date),
+      event: new Date(this.props.weddingDate.date),
       now: new Date(),
       seconds: "",
       minutes: "",
@@ -19,7 +19,7 @@ export class RSVPTimer extends React.Component {
 
   calculateDiffHumans() {
     let now = new Date();
-    var event = this.state.event;
+    let { event } = this.state;
     let diff = Math.abs(this.diffInMilliSeconds(event, now));
 
     let seconds = Math.floor(diff / 1000);
@@ -36,12 +36,13 @@ export class RSVPTimer extends React.Component {
   }
 
   tick() {
-    let diffHumans = this.calculateDiffHumans();
-    let seconds = diffHumans.seconds.toString().padStart(2, "0");
-    let minutes = diffHumans.minutes.toString().padStart(2, "0");
-    let hours = diffHumans.hours.toString().padStart(2, "0");
-    let days = diffHumans.days;
-    let now = diffHumans.now;
+    const { seconds, minutes, hours, days, now } = this.calculateDiffHumans();
+    // let diffHumans = this.calculateDiffHumans();
+    // let seconds = diffHumans.seconds.toString().padStart(2, "0");
+    // let minutes = diffHumans.minutes.toString().padStart(2, "0");
+    // let hours = diffHumans.hours.toString().padStart(2, "0");
+    // let days = diffHumans.days;
+    // let now = diffHumans.now;
 
     this.setState({
       seconds,
@@ -71,7 +72,7 @@ export class RSVPTimer extends React.Component {
 
   componentWillMount() {
     if (this.isApple()) {
-      let date = weddingDate.date;
+      let date = this.props.weddingDate;
       let dateString = this.convertDateForApple(date);
       let event = new Date(dateString);
       this.setState({ event });
@@ -94,15 +95,15 @@ export class RSVPTimer extends React.Component {
           Days
         </span>
         <span className="hours box-theme">
-          {hours} <br />
+          {hours.toString().padStart(2, "0")} <br />
           Hours
         </span>
         <span className="minutes box-theme">
-          {minutes} <br />
+          {minutes.toString().padStart(2, "0")} <br />
           Min
         </span>
         <span className="seconds box-theme">
-          {seconds} <br />
+          {seconds.toString().padStart(2, "0")} <br />
           Sec
         </span>
       </div>

@@ -57,6 +57,11 @@
 	}
 
 	&-bb {
+		&-slider {
+			.bb-slide:first-child {
+				margin-bottom: 20px;
+			}
+		}
 
 	}
 	&-vendors{

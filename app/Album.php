@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class Album extends Model
 {
     public $repo;
+    protected $with = ['images'];
 
     public function __construct(array $attributes = [])
     {

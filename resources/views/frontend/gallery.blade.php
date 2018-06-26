@@ -7,7 +7,10 @@
 		</div>
 		<div class="row row-center">
 			<div class="col-xs-10 col-center">
-				@react("AlbumSlider")
+        <div data-component="AlbumSlider"
+             data-prop-data="{{ $albums }}"
+        >
+        </div>
 			</div>
 		</div>
 	</div>

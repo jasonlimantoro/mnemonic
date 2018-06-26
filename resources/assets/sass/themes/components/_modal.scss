@@ -27,6 +27,7 @@
 			}
 		}
 		.modal-body {
+			text-align: center;
 			min-height: 500px;
 			margin: 15px;
 			z-index: 0;
@@ -40,6 +41,9 @@
 				height: 100%;
 				left: 0;
 				top: -5%;
+			}
+			table {
+				margin: 20px;
 			}
 		}
 	}

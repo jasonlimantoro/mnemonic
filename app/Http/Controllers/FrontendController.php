@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use JavaScript;
 use App\Page;
 use App\Event;
 use App\Couple;
+use App\Repositories\Albums;
 use App\Vendor;
 use App\Setting;
 use Carbon\Carbon;
@@ -28,45 +28,44 @@ class FrontendController extends Controller
     public function about(Posts $posts)
     {
         $posts = $posts->about()->paginate(6);
+
         return view('frontend.about', compact('posts'));
     }
 
-    public function gallery()
+    public function gallery(Albums $albums)
     {
-        return view('frontend.gallery');
+        $albums = $albums->categorized()->get();
+        return view('frontend.gallery', compact('albums'));
     }
 
     public function wedding()
     {
         $embed = Setting::getValueByKey('embed-video');
+
         $dates = Event::process()
             ->displayEventsGroupByDate();
-        $groom = Couple::groom();
-        $bride = Couple::bride();
-        $bbs = BridesBest::all();
-		$vendors = Vendor::all();
-		
-		JavaScript::put([
-			'bridesMaid' => BridesBest::bridesMaid(),
-			'bestMen' => BridesBest::bestMen(),
-		]);
 
-        return view('frontend.wedding', compact('embed', 'dates', 'groom', 'bride', 'bbs', 'vendors'));
+        $groom = Couple::groom();
+
+        $bride = Couple::bride();
+
+        $bridesMaid = BridesBest::bridesMaid();
+
+        $bestMen = BridesBest::bestMen();
+
+		$vendors = Vendor::all();
+
+        return view('frontend.wedding', compact('embed', 'dates', 'groom', 'bride', 'bbs', 'vendors', 'bridesMaid', 'bestMen'));
     }
 
     public function onlineRSVP()
     {
         $wedding = Event::wedding();
+
         $weddingDate = optional($wedding)->datetime;
+
         $isFuture = !empty($weddingDate) ? Carbon::now()->diffInSeconds($weddingDate, false) > 0 : null;
 
-        $rsvp = request()->session()->get('rsvp', null);
-        if (!is_null($weddingDate) || !is_null($rsvp)) {
-            JavaScript::put([
-                'weddingDate' => $weddingDate,
-                'rsvp' => $rsvp,
-            ]);
-        }
-        return view('frontend.online-rsvp', compact('wedding', 'isFuture', 'weddingDate', 'rsvp'));
+        return view('frontend.online-rsvp', compact('wedding', 'isFuture', 'weddingDate'));
     }
 }

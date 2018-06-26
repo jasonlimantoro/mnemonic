@@ -84,9 +84,15 @@
 				<p><i>Thank you for your support on our wedding</i></p>
 			</div>
 			
-			@include('jsvar')
-			<div class="col-xs-10 col-center">
-				@react("BridesBestSlider")
+			<div class="col-xs-10 col-center wedding-day-bb-slider">
+        <div data-component="BridesBestSlider"
+             data-prop-data="{{ $bridesMaid }}"
+        >
+        </div>
+        <div data-component="BridesBestSlider"
+             data-prop-data="{{ $bestMen }}"
+        >
+        </div>
 			</div>
 		</div>
 
