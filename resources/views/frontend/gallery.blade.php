@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master', ['pageTitle' => 'gallery'])
 
 @section('content')
 	<div class="container-fluid gallery-container">

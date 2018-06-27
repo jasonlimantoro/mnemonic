@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master', ['pageTitle' => 'Wedding Day'])
 
 @section('content')
 	<div class="container-fluid text-center wedding-day-container">

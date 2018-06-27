@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master', ['pageTitle' => 'RSVP'])
 
 @section('content')
 	@include('jsvar')

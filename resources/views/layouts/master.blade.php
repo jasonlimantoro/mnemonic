@@ -8,8 +8,9 @@
 
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<meta name="description" content="{{ $settings['site-seo']->meta_description }}"/>
+		<meta name="title" content="{{ $settings['site-seo']->meta_title }}" />
 
-		<title>{{ $settings['site-seo']->meta_title }}</title>
+		<title>{{ $settings['site-info']->title . ' - ' . ucfirst($pageTitle ?? '') }}</title>
 		<link rel="shortcut icon" type="image/png" href={{ $settings['site-info']->favicon }}/>
 
     <!-- Styles -->
