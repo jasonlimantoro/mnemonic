@@ -5,18 +5,18 @@
 		<div class="col-md-12">
 			@component('backend.layouts.breadcrumb', ['current' => 'Posts'])
 			@endcomponent
-			@component('backend.layouts.panel', [
-				'title' => $page->title
-				])
-				@can('create', App\Post::class)
-					@slot('addButton')
-						@component('backend.layouts.addButton', [
-							'item' => "Post", 
-							'url' => route('posts.create', ['page' => $page->id ])
-						])
-						@endcomponent
-					@endslot
-				@endcan
+			@component('backend.layouts.panel', ['title' => $page->title ])
+				@unless ($page->title === 'About Us')
+					@can('create', App\Post::class)
+						@slot('addButton')
+							@component('backend.layouts.addButton', [
+								'item' => "Post", 
+								'url' => route('posts.create', ['page' => $page->id ])
+							])
+							@endcomponent
+						@endslot
+					@endcan
+				@endunless
 
 				@slot('body')
 					@component('backend.layouts.query', [

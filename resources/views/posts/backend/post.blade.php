@@ -29,14 +29,16 @@
         <i class="fa fa-pencil-square-o"></i>
       </a>
 
-    @endcan
-
-    @can('delete', App\Post::class)
-      <div
-        data-component="DeleteIcon"
-        data-prop-url="{{ route('posts.destroy', ['page' => $page->id, 'post' => $post->id ]) }}"
-      >
-      </div>
-    @endcan
+		@endcan
+		
+		@unless ($page->title === 'About Us')
+			@can('delete', App\Post::class)
+				<div
+					data-component="DeleteIcon"
+					data-prop-url="{{ route('posts.destroy', ['page' => $page->id, 'post' => $post->id ]) }}"
+				>
+				</div>
+			@endcan
+		@endunless
   </td>
 </tr>
