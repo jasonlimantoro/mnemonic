@@ -24,9 +24,9 @@ class GroupEventByDateTest extends TestCase
             'datetime' => Carbon::yesterday(),
         ]);
 
-        $dates = Event::process()->getDistinctDate();
+		$dates = Event::process()->getDistinctDate();
 
-        $expected = [$first->first()->datetime, $second->datetime];
+        $expected = [$second->datetime, $first->first()->datetime];
 
         $this->assertEquals($expected, $dates);
     }
@@ -51,7 +51,7 @@ class GroupEventByDateTest extends TestCase
 
 
         $expected = [
-            $firstPretty => $first,
+			$firstPretty => $first,
             $secondPretty => collect([$second]),
         ];
 

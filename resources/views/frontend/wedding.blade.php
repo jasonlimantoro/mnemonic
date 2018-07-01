@@ -3,26 +3,30 @@
 @section('content')
 	<div class="container-fluid text-center wedding-day-container">
 		{{-- Overview Section --}}
-		<div class="row wedding-day-overview">
-			<div class="col-xs-12">
+		<div class="row row-center wedding-day-overview">
+			<div class="col-xs-10 col-center">
 				<div class="page-title">
 					<h1 class="color-theme font-theme">Wedding Day</h1>
 				</div>
 				@isset($embed)
-					<div class="embed-responsive embed-responsive-16by9">
-						<iframe class="embed-responsive-item" src="http://www.youtube.com/embed/{{ $embed->id }}"></iframe>
+					<div class="embed-video">
+						<div class="embed-responsive embed-responsive-16by9">
+							<iframe class="embed-responsive-item" src="http://www.youtube.com/embed/{{ $embed->id }}"></iframe>
+						</div>
 					</div>
 				@endisset
-				<div class="col-xs-12">
+				<div class="col-xs-12 col-center">
 					<h2>We would like to invite you to our marriage celebration</h2>
 				</div>
 				
 				<div class="col-sm-5 col-xs-12">
 					<div class="vip-container">
 						<h3 class="font-theme vip-name">{{ $groom->name }}</h3>
-						<span class="font-theme">Son of</span> <br>
-						<p>{{ $groom->father }} &</p>
-						<p>{{ $groom->mother }}</p>
+						<span class="font-theme vip-relation">Son of</span> <br>
+						<div class="vip-parent">
+							<p>{{ $groom->father }} &</p>
+							<p>{{ $groom->mother }}</p>
+						</div>
 						<img src="{{ $groom->image->url_cache }}" alt="vip" class="img-responsive inline-block">
 					</div>
 				</div>
@@ -31,9 +35,11 @@
 				<div class="col-sm-5 col-xs-12">
 					<div class="vip-container">
 						<h3 class="font-theme vip-name">{{ $bride->name }}</h3>
-						<span class="font-theme">Daughter of</span> <br>
-						<p>{{ $bride->father }} &</p>
-						<p>{{ $bride->mother }}</p>
+						<span class="font-theme vip-relation">Daughter of</span> <br>
+						<div class="vip-parent">
+							<p>{{ $bride->father }} &</p>
+							<p>{{ $bride->mother }}</p>
+						</div>
 						<img src="{{ $bride->image->url_cache }}" alt="vip" class="img-responsive inline-block">
 					</div>
 				</div>
@@ -81,10 +87,10 @@
 				<h1 class="font-theme color-theme">Bridesmaid & Bestman</h1>
 			</div>
 			<div class="wedding-day-bb-message">
-				<p><i>Thank you for your support on our wedding</i></p>
+				<p>Thank you for your support on our wedding</p>
 			</div>
 			
-			<div class="col-xs-10 col-center wedding-day-bb-slider">
+			<div class="col-xs-8 col-center wedding-day-bb-slider">
         <div data-component="BridesBestSlider"
              data-prop-data="{{ $bridesMaid }}"
         >

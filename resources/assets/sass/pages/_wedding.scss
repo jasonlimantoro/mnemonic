@@ -1,10 +1,20 @@
 .wedding-day{
 	&-overview {
 		padding: 30px;
+		.embed-video {
+			padding: auto 15px;
+		}
 		.vip-container {
 			.vip-name {
-				font-size: 22pt;
+				font-size: 2.5em;
+				font-weight: 900;
 				color: black;
+			}
+			.vip-relation {
+				font-size: 2em;
+			}
+			.vip-parent {
+				font-size: 1.5em;
 			}
 			span {
 				font-size: 14pt;
@@ -38,6 +48,9 @@
 			p {
 				font-size: 48pt;
 				margin: 40px auto;
+				@include general-query(mobile){
+					font-size: 40pt;
+				}
 				.time {
 					padding: 5px 15px;
 					background-color: #f2f2f2;
@@ -57,9 +70,19 @@
 	}
 
 	&-bb {
+		&-message > p {
+			font-style: italic;
+		}
 		&-slider {
 			.bb-slide:first-child {
 				margin-bottom: 20px;
+			}
+			.bb-name, .bb-description > p {
+				font-family: 'Times New Roman', serif;
+			}
+			.bb-description > p {
+				font-style: italic;
+				font-size: 16px;
 			}
 		}
 
