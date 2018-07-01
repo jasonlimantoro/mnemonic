@@ -1,10 +1,46 @@
 .navbar {
+	&.navbar-static-top {
+		background: $skin-blue;
+		* {
+			color: white;
+		}
+	}
 	margin-bottom: 0 !important;
 	.navbar-custom-menu {
 		ul {
-			li > a {
-				color: black;
-				padding: 15px 15px;
+			li {
+				a {
+					// color: black;
+					padding: 15px 15px;
+					&:hover {
+						background: rgba(0, 0, 0, 0.1);
+					}
+				}
+				&.open {
+					a {
+						background: rgba(0, 0, 0, 0.1);
+					}
+				}
+			}
+			.dropdown-menu {
+				padding: 0;
+				.user-header {
+					background: $skin-blue !important;
+					height: 175px;
+					width: 280px;
+					padding: 10px;
+					text-align: center;
+					.user-info {
+						margin-top: 15px;
+					}
+				}
+				.user-footer {
+					padding: 10px;
+					a {
+						color: black !important;
+					}
+				}
+				
 			}
 		}
 	}

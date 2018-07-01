@@ -9,20 +9,26 @@
         </a>
 
         <ul class="dropdown-menu">
-          <li>
-            <a href="{{ route('front.index') }}" target="_blank">Visit Website</a>
-          </li>
-          <li>
-            <a dusk="logout-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-									document.getElementById('logout-form').submit();">
-              Logout
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-              {{ csrf_field() }}
-            </form>
+          <li class="user-header">
+						<img src="/images/user.png" alt="user" class="circle" height="90" width="90">
+						<div class="user-info">
+							<p>{{ auth()->user()->role->name }}</p>
+						</div>
+					</li>
+          <li class="user-footer clearfix">
+						<div class="pull-right">
+							<a href="{{ route('front.index') }}" target="_blank" class="btn btn-default">Visit Website</a>
+	            <a dusk="logout-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+										document.getElementById('logout-form').submit();" class="btn btn-default">
+	              Logout
+	            </a>
+						</div>
           </li>
         </ul>
       </li>
     </ul>
   </div>
 </nav>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+	{{ csrf_field() }}
+</form>
