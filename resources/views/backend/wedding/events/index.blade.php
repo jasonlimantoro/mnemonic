@@ -27,9 +27,9 @@
           @component('layouts.table')
             @slot('tableHeader')
               <tr>
-                <th class="col title">Name</th>
-                <th class="col body">Description</th>
-                <th class="col action">Action</th>
+                <th class="col-xs-3 title">Name</th>
+                <th class="col-xs-6 body">Description</th>
+                <th class="col-xs-1 action">Action</th>
               </tr>
             @endslot
         

@@ -25,9 +25,9 @@
           @component('layouts.table')
             @slot('tableHeader')
               <tr>
-                <th class="col title">Name</th>
-                <th class="col body">Description</th>
-                <th class="col action">Action</th>
+                <th class="col-xs-3 title">Name</th>
+                <th class="col-xs-6 body">Description</th>
+                <th class="col-xs-1 action">Action</th>
               </tr>
             @endslot
 
@@ -47,7 +47,7 @@
                       href="{{ route('albums.show', ['album' => $album->id ]) }}"
                       role="button"
                       data-toggle="tooltip"
-                      title="See info about this album"
+                      title="Show info"
                       data-placement="top"
                     >
                       <i class="fa fa-info-circle"></i>
@@ -56,7 +56,7 @@
                       href="{{ route('albums.edit', ['album' => $album->id ]) }}"
                       role="button"
                       data-toggle="tooltip"
-                      title="Edit this album"
+                      title="Edit"
                       data-placement="top"
                     >
                       <i class="fa fa-pencil-square-o"></i>

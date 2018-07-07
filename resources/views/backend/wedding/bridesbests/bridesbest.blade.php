@@ -20,7 +20,7 @@
         href="{{ route('bridesmaid-bestmans.edit', ['bridesmaid-bestman' => $b->id ]) }}"
         role="button"
         data-toggle="tooltip"
-        title="Edit this bridesmaid-bestman"
+        title="Edit"
         data-placement="top"
       >
         <i class="fa fa-pencil-square-o"></i>

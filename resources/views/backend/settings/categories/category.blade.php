@@ -17,7 +17,7 @@
         href="{{ route('categories.edit', ['category' => $category->id ]) }}"
         role="button"
         data-toggle="tooltip"
-        title="Edit this category"
+        title="Edit"
         data-placement="top"
       >
         <i class="fa fa-pencil-square-o"></i>

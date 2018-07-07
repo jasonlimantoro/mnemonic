@@ -19,7 +19,7 @@
         href="{{ route('users.edit', ['user' => $user->id ]) }}"
         role="button"
         data-toggle="tooltip"
-        title="Edit this user"
+        title="Edit"
         data-placement="top"
       >
         <i class="fa fa-pencil-square-o"></i>

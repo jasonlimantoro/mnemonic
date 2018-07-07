@@ -12,8 +12,8 @@ export const DeleteIcon = ({ url }) => {
   return (
     <form action={url} method="POST" onSubmit={confirmDelete}>
       <input type="hidden" name="_method" value="DELETE"/>
-      <LinkButton submit style={{padding: 0}}>
-        <i className="fa fa-trash-o"></i>
+      <LinkButton type="submit" style={{ padding: 0 }} data-toggle="tooltip" title="Delete" data-placement="top">
+        <i className="fa fa-trash-o" style={{ fontSize: '24px', color: 'black' }}></i>
       </LinkButton>
     </form>
   );

@@ -13,7 +13,7 @@
         href="{{ route('carousel.images.show', ['carousel' => 1, 'image' => $image->id ]) }}"
         role="button"
         data-toggle="tooltip"
-        title="See info about this image"
+        title="Show info"
         data-placement="top"
       >
         <i class="fa fa-info-circle"></i>
@@ -26,7 +26,7 @@
         href="{{ route('carousel.images.edit', [ 'carousel' => 1, 'image' => $image->id ]) }}"
         role="button"
         data-toggle="tooltip"
-        title="Edit this image"
+        title="Edit"
         data-placement="top"
       >
         <i class="fa fa-pencil-square-o"></i>

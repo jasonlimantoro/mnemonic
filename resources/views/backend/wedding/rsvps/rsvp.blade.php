@@ -7,12 +7,12 @@
     @else
       {{ $rsvp->name }}
     @endif
-    <br>
-    {{ $rsvp->email }} <br>
-    {{ $rsvp->phone }}
+		<br>
 
-  </td>
-  <td class="data body">
+		<a href="mailto:{{ $rsvp->email }}">{{ $rsvp->email }}</a>
+		<br>
+		{{ $rsvp->phone }} 
+		<br>
     <small>RSVP Code : {{ str_pad($rsvp->id, 5, "#000", STR_PAD_LEFT) }}</small>
     <br>
     <small>Table Name: {{ $rsvp->table_name }}</small>
@@ -33,7 +33,7 @@
         href="{{ route('rsvps.edit', ['rsvp' => $rsvp->id ]) }}"
         role="button"
         data-toggle="tooltip"
-        title="Edit this rsvp"
+        title="Edit"
         data-placement="top"
       >
         <i class="fa fa-pencil-square-o"></i>
@@ -51,7 +51,7 @@
       @unless ($rsvp->reminded() or $rsvp->confirmed())
         <form action="{{ route('rsvps.remind', ['rsvp' => $rsvp->id]) }}" method="POST">
           <input type="hidden" name="email" value="{{ $rsvp->email }}">
-          <button type="submit" class="btn btn-danger btn-block">Send Reminder</button>
+          <button type="submit" class="btn btn-danger">Send Reminder</button>
         </form>
       @endunless
     @endcan

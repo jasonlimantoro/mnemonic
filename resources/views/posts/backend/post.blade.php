@@ -1,18 +1,18 @@
 <tr class="post">
   <td class="data title">
     <a href="{{ route('posts.edit', ['post' => $post->id, 'page' => $page->id ]) }}">
-      {{ $post->title }}
+      {{ $post->present()->limitField('title', 50) }}
     </a>
   </td>
   <td class="data body">
-    {!! $post->description !!}
+		{!! $post->present()->limitField('description', 200, '<h1><h2><h3><h4><strong><p>') !!}
   </td>
   <td class="data action">
     <a
       href="{{ route('posts.show', ['post' => $post->id, 'page' => $page->id ]) }}"
       role="button"
       data-toggle="tooltip"
-      title="See info about this post"
+      title="Show info"
       data-placement="top"
     >
       <i class="fa fa-info-circle"></i>
@@ -23,7 +23,7 @@
         href="{{ route('posts.edit', ['post' => $post->id, 'page' => $page->id ]) }}"
         role="button"
         data-toggle="tooltip"
-        title="Edit this post"
+        title="Edit"
         data-placement="top"
       >
         <i class="fa fa-pencil-square-o"></i>

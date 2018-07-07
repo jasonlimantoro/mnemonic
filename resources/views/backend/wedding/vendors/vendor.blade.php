@@ -9,9 +9,7 @@
     @endif
   </td>
   <td class="data body">
-    <span class="label label-default">
-			{{ optional($vendor->category)->name ?? 'None' }}
-		</span>
+		{{ optional($vendor->category)->name ?? 'None' }}
   </td>
   <td class="data action">
     @can('update', App\Vendor::class)
@@ -19,7 +17,7 @@
         href="{{ route('vendors.edit', ['vendor' => $vendor->id ]) }}"
         role="button"
         data-toggle="tooltip"
-        title="Edit this vendor"
+        title="Edit"
         data-placement="top"
       >
         <i class="fa fa-pencil-square-o"></i>

@@ -41,9 +41,9 @@ export const DangerButton = ({children, ...rest}) => {
   );
 };
 
-export const LinkButton = ({submit, children, ...rest}) => {
+export const LinkButton = ({children, ...rest}) => {
   return (
-    <Button bsStyle="link" type={submit ? 'submit' : 'button'} {...rest}>
+    <Button bsStyle="link" {...rest}>
       {children}
     </Button>
   );

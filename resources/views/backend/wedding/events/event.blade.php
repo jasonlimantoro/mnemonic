@@ -19,7 +19,7 @@
         href="{{ route('events.edit', ['event' => $event->id ]) }}"
         role="button"
         data-toggle="tooltip"
-        title="Edit this event"
+        title="Edit"
         data-placement="top"
       >
         <i class="fa fa-pencil-square-o"></i>

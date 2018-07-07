@@ -23,7 +23,7 @@
         href="{{ route('roles.edit', ['role' => $role->id ]) }}"
         role="button"
         data-toggle="tooltip"
-        title="Edit this role"
+        title="Edit"
         data-placement="top"
       >
         <i class="fa fa-pencil-square-o"></i>
