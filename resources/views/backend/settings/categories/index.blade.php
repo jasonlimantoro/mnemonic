@@ -12,7 +12,6 @@
 					@slot('addButton')
 						@component('backend.layouts.addButton', [
 							'url' => route('categories.create'),
-							'item' => 'Categories'
 						])
 						@endcomponent
 					@endslot

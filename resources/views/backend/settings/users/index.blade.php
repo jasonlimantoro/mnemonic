@@ -12,7 +12,6 @@
 					@slot('addButton')
 						@component('backend.layouts.addButton', [
 							'url' => route('users.create'),
-							'item' => 'Users'
 						])
 						@endcomponent
 					@endslot

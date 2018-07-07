@@ -10,7 +10,6 @@
 					@can('create', App\Post::class)
 						@slot('addButton')
 							@component('backend.layouts.addButton', [
-								'item' => "Post", 
 								'url' => route('posts.create', ['page' => $page->id ])
 							])
 							@endcomponent

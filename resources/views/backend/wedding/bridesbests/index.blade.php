@@ -11,7 +11,6 @@
 				@can('create', App\BridesBest::class)
 					@slot('addButton') 
 						@component('backend.layouts.addButton', [
-							'item' => 'Bridesmaid / Bestman',
 							'url' => route('bridesmaid-bestmans.create')
 						])
 						@endcomponent

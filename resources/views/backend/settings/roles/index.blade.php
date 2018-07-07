@@ -12,7 +12,6 @@
 					@slot('addButton')
 						@component('backend.layouts.addButton', [
 							'url' => route('roles.create'),
-							'item' => 'Roles'
 						])
 						@endcomponent
 					@endslot

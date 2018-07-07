@@ -12,7 +12,6 @@
 					@slot('addButton')
 						@component('backend.layouts.addButton', [
 							'url' => route('rsvps.create'),
-							'item' => 'RSVP'
 						])
 						@endcomponent
 					@endslot
