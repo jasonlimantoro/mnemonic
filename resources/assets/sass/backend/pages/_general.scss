@@ -5,3 +5,10 @@
 	justify-content: center;
 	align-items: center;
 }
+
+.container.backend {
+	padding: 0;
+	.row {
+		margin: 0;
+	}
+}

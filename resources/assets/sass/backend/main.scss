@@ -1,6 +1,7 @@
 // Helpers
 @import "../helpers/mixins";
 @import "helpers/variables";
+@import "helpers/placeholder";
 @import "helpers/utils";
 
 
@@ -23,9 +24,7 @@
 @import "components/header";
 @import "components/pagination";
 @import "components/panel";
-@import "components/sidebar";
 @import "components/table";
 @import "components/thumbnail";
 @import "components/alert";
 @import "components/icon";
-
