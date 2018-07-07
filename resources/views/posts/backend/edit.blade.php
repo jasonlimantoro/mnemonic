@@ -6,11 +6,11 @@
 			@component('backend.layouts.breadcrumb', ['current' => 'Posts'])
 			@endcomponent
 			@component('backend.layouts.panel', [
-				'title' => $page->title
+				'title' => $post->title
 			])
 				@slot('backButton')
 					@component('backend.layouts.backButton', [
-						'text' => 'Show All Posts in ' . $page->title,
+						'text' => 'All Posts in ' . $page->title,
 						'url' => route('posts.index', ['page' => $page->id])
 					])
 					@endcomponent
