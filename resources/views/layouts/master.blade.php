@@ -18,17 +18,12 @@
   </head>
   <body>
 
-		@frontend
-			@include('layouts.navbar')
-			<div class="web-container">
-				@yield('content')
-				@include('layouts.footer')
-			</div>
-		@else
+		@include('layouts.navbar')
+		<div class="web-container">
 			@yield('content')
-		@endfrontend
+			@include('layouts.footer')
+		</div>
     
-
     <!-- Scripts -->
     <script src="{{ asset('js/manifest.js')}}"></script>
     <script src="{{ asset('js/vendor.js')}}"></script>

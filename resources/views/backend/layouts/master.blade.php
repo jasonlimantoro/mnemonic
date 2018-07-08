@@ -16,17 +16,19 @@
   </head>
 
   <body>
-    <div class="wrapper">
-      @include('backend.layouts.sidebar')
-
-      <!-- Page Content Holder -->
-      <div class="container backend" id="content">
-				@include('backend.layouts.header')
-				@include('layouts.success')
-				@include('layouts.error')
-				@yield('content')
-      </div>
-    </div>
+		@auth
+			<div class="wrapper">
+				@include('backend.layouts.sidebar')
+				<div class="container backend" id="content">
+					@include('backend.layouts.header')
+					@include('backend.layouts.success')
+					@include('backend.layouts.error')
+					@yield('content')
+				</div>
+			</div>
+		@else
+			@yield('content')
+		@endauth
 
     {{--  Asset Scripts  --}}
     <script src="{{ asset('js/manifest.js') }}"></script>
