@@ -33,6 +33,8 @@
 	@endif
 
 	<div class="form-group">
-		@react("FancyInput")
+		{{-- @react("FancyInput") --}}
+		<div data-component="FancyInput">
+		</div>
 	</div>
 </div>

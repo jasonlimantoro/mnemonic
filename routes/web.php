@@ -85,7 +85,11 @@ Route::group([
         Route::resource('users', 'UsersController')->except('show');
 
         // Roles
-        Route::resource('roles', 'RolesController')->except('show');
+		Route::resource('roles', 'RolesController')->except('show');
+		
+		// Package
+		Route::get('package/edit', 'PackageController@edit')->name('package.edit');
+		Route::patch('package', 'PackageController@update')->name('package.update');
     });
 
 // previewing mailables in browser

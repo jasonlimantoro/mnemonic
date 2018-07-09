@@ -104,5 +104,8 @@
 				@endcan
       </ul>
 		</li>
+
+		<li class="header">Package</li>
+		<li><a href="{{ route('package.edit') }}" data-menu="menu">Default Values</a></li>
   </ul>
 </nav>
