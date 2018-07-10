@@ -35,7 +35,7 @@ class RSVPController extends Controller
     public function index()
     {
         $rsvps = RSVP::latest()->get();
-        return view('backend.wedding.rsvps.index', compact('rsvps'));
+        return view('backend.day.rsvps.index', compact('rsvps'));
     }
 
     /**
@@ -45,7 +45,7 @@ class RSVPController extends Controller
      */
     public function create()
     {
-        return view('backend.wedding.rsvps.create');
+        return view('backend.day.rsvps.create');
     }
 
     /**
@@ -75,7 +75,7 @@ class RSVPController extends Controller
      */
     public function show(RSVP $rsvp)
     {
-        return view('backend.wedding.rsvps.show', compact('rsvp'));
+        return view('backend.day.rsvps.show', compact('rsvp'));
     }
 
     /**
@@ -86,7 +86,7 @@ class RSVPController extends Controller
      */
     public function edit(RSVP $rsvp)
     {
-        return view('backend.wedding.rsvps.edit', compact('rsvp'));
+        return view('backend.day.rsvps.edit', compact('rsvp'));
     }
 
     /**

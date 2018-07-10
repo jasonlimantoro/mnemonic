@@ -3,27 +3,27 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
-			@component('backend.layouts.breadcrumb', ['current' => 'Bridesmaid & Bestman'])
+			@component('backend.layouts.breadcrumb', ['current' => 'Events'])
 			@endcomponent
       @component('backend.layouts.panel', [
-        'title' => 'Edit Bridesmaid and Bestman'
+        'title' => "Create a new event"
       ])
         @slot('backButton')
           @component('backend.layouts.backButton', [
-            'text' => 'All Bridesmaid and Bestmen',
-            'url' => route('bridesmaid-bestmans.index')
+            'text' => 'All Events',
+            'url' => route('events.index')
           ])
+            
           @endcomponent
         @endslot
 				@slot('body')
-					{{ Form::model($bridesBest, [
-						'route' => ['bridesmaid-bestmans.update', $bridesBest->id], 
-						'method' => 'PATCH', 
+					{{ Form::open([
+						'route' => 'events.store', 
 						'enctype' => 'multipart/form-data'
 						]) 
 					}}
-						@include('backend.wedding.bridesbests.form', [
-							'submitButtonText' => 'Update', 
+						@include('backend.day.events.form', [
+							'submitButtonText' => 'Publish Event'
 						])
 					{{ Form::close() }}
         @endslot

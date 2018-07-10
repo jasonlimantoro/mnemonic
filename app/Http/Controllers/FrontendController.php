@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Page;
 use App\Event;
-use App\Couple;
+use App\VIP;
 use App\Repositories\Albums;
 use App\Vendor;
 use App\Setting;
@@ -45,9 +45,9 @@ class FrontendController extends Controller
         $dates = Event::process()
             ->displayEventsGroupByDate();
 
-        $groom = Couple::groom();
+        $groom = VIP::groom();
 
-        $bride = Couple::bride();
+        $bride = VIP::bride();
 
         $bridesMaid = BridesBest::bridesMaid();
 

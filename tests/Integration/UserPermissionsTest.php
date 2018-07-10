@@ -17,11 +17,11 @@ class UserPermissionTest extends TestCase
     {
         $admin = factory(Role::class)->states('admin')->create();
 
-        $couplePermission = factory(Permission::class)->states('couple', 'incomplete')->create();
+        $vipPermission = factory(Permission::class)->states('vip', 'incomplete')->create();
         $postPermission = factory(Permission::class)->states('post', 'complete')->create();
 
         $admintoCouplePermissions = PermissionRole::create([
-            'permission_id' => $couplePermission->id,
+            'permission_id' => $vipPermission->id,
             'role_id' => $admin->id,
             'action' => [
                 'read' => true,
@@ -46,7 +46,7 @@ class UserPermissionTest extends TestCase
         $user->save();
 
         $this->assertEmpty(array_diff(
-            $user->permissibles('couple'),
+            $user->permissibles('vip'),
             ['read']
         ));
 

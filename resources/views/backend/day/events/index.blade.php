@@ -3,38 +3,38 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
-			@component('backend.layouts.breadcrumb', ['current' => 'Bridesmaid & Bestman'])
+			@component('backend.layouts.breadcrumb', ['current' => 'Events'])
 			@endcomponent
       @component('backend.layouts.panel', [
-        'title' => 'Bridesmaid and Bestman'
+        'title' => "Event"
 			])
-				@can('create', App\BridesBest::class)
-					@slot('addButton') 
+				@can('create', App\Event::class)
+					@slot('addButton')
 						@component('backend.layouts.addButton', [
-							'url' => route('bridesmaid-bestmans.create')
+							'url' => route('events.create'),
 						])
 						@endcomponent
-						
 					@endslot
 				@endcan
+
 				@slot('body')
 					@component('backend.layouts.query', [
 						'title' => 'Name',
-						'body' => 'Testimony'
+						'body' => 'Description'
 					]) 
 					@endcomponent
           @component('layouts.table')
             @slot('tableHeader')
               <tr>
-                <th class="col title">Name</th>
-                <th class="col body">Testimony</th>
-                <th class="col action">Action</th>
+                <th class="col-xs-3 title">Name</th>
+                <th class="col-xs-6 body">Description</th>
+                <th class="col-xs-1 action">Action</th>
               </tr>
             @endslot
         
             @slot('tableBody')
-              @foreach($bridesBests as $b)
-                @include('backend.wedding.bridesbests.bridesbest')
+              @foreach($events as $event)
+                @include('backend.day.events.event')
               @endforeach
             @endslot
         

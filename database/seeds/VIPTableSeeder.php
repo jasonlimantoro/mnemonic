@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CoupleTableSeeder extends Seeder
+class VIPTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class CoupleTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('couple')->insert(
+        DB::table('VIP')->insert(
             [
                 [
 					'name' => 'Victor Immanuel Rumende, S. Kom',

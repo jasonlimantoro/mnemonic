@@ -17,7 +17,7 @@
         @endslot
 				@slot('body')
 					{{ Form::open(['route' => 'vendors.store']) }}
-						@include('backend.wedding.vendors.form', [
+						@include('backend.day.vendors.form', [
 							'submitButtonText' => 'Add Vendor',
 						])
 					{{ Form::close() }}

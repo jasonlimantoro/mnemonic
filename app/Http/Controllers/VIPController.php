@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Couple;
+use App\VIP;
 use App\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\GenericController as Controller;
 
-class CoupleController extends Controller
+class VIPController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:read,App\Couple')->only('edit');
-        $this->middleware('can:update,App\Couple')->only('update');
+        $this->middleware('can:read,App\VIP')->only('edit');
+        $this->middleware('can:update,App\VIP')->only('update');
         $this->middleware('can:read-embed-video')->only('editVideo');
         $this->middleware('can:update-embed-video')->only('updateVideo');
     }
@@ -24,25 +24,25 @@ class CoupleController extends Controller
      */
     public function edit()
     {
-        $bride = Couple::bride();
-        $groom = Couple::groom();
-        return view('backend.wedding.couple', compact('bride', 'groom'));
+        $bride = VIP::bride();
+        $groom = VIP::groom();
+        return view('backend.day.vip.edit', compact('bride', 'groom'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Couple  $couple
+     * @param  \Illuminate\Http\Request $request
+     * @param VIP $vip
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Couple $couple)
+    public function update(Request $request, VIP $vip)
     {
         $this->validate($request, ['name' => 'required']);
 
-        $couple->updateRecord($request);
+        $vip->updateRecord($request);
 
-        $this->flash('Couple information is successfully updated!');
+        $this->flash('VIP information is successfully updated!');
 
         return back();
     }
@@ -50,7 +50,7 @@ class CoupleController extends Controller
     public function editVideo()
     {
         $embed = Setting::getValueByKey('embed-video');
-        return view('backend.wedding.couple.edit-video', compact('embed'));
+        return view('backend.day.vip.edit-video', compact('embed'));
     }
 
     public function updateVideo(Request $request)

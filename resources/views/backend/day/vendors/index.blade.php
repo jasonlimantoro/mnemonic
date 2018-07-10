@@ -3,32 +3,39 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
-			@component('backend.layouts.breadcrumb', ['current' => 'RSVP'])
+			@component('backend.layouts.breadcrumb', ['current' => 'Vendors'])
 			@endcomponent
       @component('backend.layouts.panel', [
-        'title' => "RSVP"
-			])
-				@can('create', App\RSVP::class)
+        'title' => "Vendors"
+      ])
+				@can('create', App\Vendor::class)
 					@slot('addButton')
 						@component('backend.layouts.addButton', [
-							'url' => route('rsvps.create'),
+							'url' => route('vendors.create'),
 						])
 						@endcomponent
 					@endslot
 				@endcan
 
 				@slot('body')
+					@component('backend.layouts.query', [
+						'title' => 'Name',
+						'body' => 'Category'
+					])
+							
+					@endcomponent
           @component('layouts.table')
             @slot('tableHeader')
               <tr>
-                <th class="col-xs-10 title">Identity</th>
+                <th class="col-xs-3 title">Name</th>
+                <th class="col-xs-6 body">Category</th>
                 <th class="col-xs-1 action">Action</th>
               </tr>
             @endslot
         
             @slot('tableBody')
-              @foreach($rsvps as $rsvp)
-                @include('backend.wedding.rsvps.rsvp')
+              @foreach($vendors as $vendor)
+                @include('backend.day.vendors.vendor')
               @endforeach
             @endslot
         
@@ -38,4 +45,3 @@
     </div>
   </div>
 @endsection
-

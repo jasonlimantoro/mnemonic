@@ -6,7 +6,7 @@
 			@component('backend.layouts.breadcrumb', ['current' => 'RSVP'])
 			@endcomponent
       @component('backend.layouts.panel', [
-        'title' => "Create a new RSVP"
+        'title' => "Edit a RSVP"
       ])
         @slot('backButton')
           @component('backend.layouts.backButton', [
@@ -16,8 +16,8 @@
           @endcomponent
         @endslot
 				@slot('body')
-					{{ Form::open(['route' => 'rsvps.store']) }}
-						@include('backend.wedding.rsvps.form', ['submitButtonText' => 'Add new RSVP'])
+					{{ Form::model($rsvp, ['route' => ['rsvps.update', $rsvp->id], 'method' => 'PATCH']) }}
+						@include('backend.day.rsvps.form', ['submitButtonText' => 'Update RSVP'])
 					{{ Form::close() }}
         @endslot
       @endcomponent

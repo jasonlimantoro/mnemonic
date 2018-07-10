@@ -17,7 +17,7 @@
         @endslot
 				@slot('body')
 					{{ Form::open(['route' => 'bridesmaid-bestmans.store', 'enctype' => 'multipart/form-data']) }}
-						@include('backend.wedding.bridesbests.form', [
+						@include('backend.day.bridesbests.form', [
 							'submitButtonText' => 'Publish', 
 						])
 					{{ Form::close() }}

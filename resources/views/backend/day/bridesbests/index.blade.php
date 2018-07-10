@@ -3,39 +3,38 @@
 @section('content')
   <div class="row">
     <div class="col-md-12">
-			@component('backend.layouts.breadcrumb', ['current' => 'Vendors'])
+			@component('backend.layouts.breadcrumb', ['current' => 'Bridesmaid & Bestman'])
 			@endcomponent
       @component('backend.layouts.panel', [
-        'title' => "Vendors"
-      ])
-				@can('create', App\Vendor::class)
-					@slot('addButton')
+        'title' => 'Bridesmaid and Bestman'
+			])
+				@can('create', App\BridesBest::class)
+					@slot('addButton') 
 						@component('backend.layouts.addButton', [
-							'url' => route('vendors.create'),
+							'url' => route('bridesmaid-bestmans.create')
 						])
 						@endcomponent
+						
 					@endslot
 				@endcan
-
 				@slot('body')
 					@component('backend.layouts.query', [
 						'title' => 'Name',
-						'body' => 'Category'
-					])
-							
+						'body' => 'Testimony'
+					]) 
 					@endcomponent
           @component('layouts.table')
             @slot('tableHeader')
               <tr>
-                <th class="col-xs-3 title">Name</th>
-                <th class="col-xs-6 body">Category</th>
-                <th class="col-xs-1 action">Action</th>
+                <th class="col title">Name</th>
+                <th class="col body">Testimony</th>
+                <th class="col action">Action</th>
               </tr>
             @endslot
         
             @slot('tableBody')
-              @foreach($vendors as $vendor)
-                @include('backend.wedding.vendors.vendor')
+              @foreach($bridesBests as $b)
+                @include('backend.day.bridesbests.bridesbest')
               @endforeach
             @endslot
         

@@ -3,10 +3,10 @@
 namespace Tests\Browser;
 
 use App\Post;
-use App\Couple;
+use App\VIP;
 use PagesTableSeeder;
 use ImagesTableSeeder;
-use CoupleTableSeeder;
+use VIPTableSeeder;
 use CarouselsTableSeeder;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
@@ -46,9 +46,9 @@ class FrontEndTest extends DuskTestCase
     {
 		$this->initializePage();
 
-		(new CoupleTableSeeder)->run();
-		$groom = Couple::groom();
-		$bride = Couple::bride();
+		(new VIPTableSeeder)->run();
+		$groom = VIP::groom();
+		$bride = VIP::bride();
 
         $this->browse(function (Browser $browser) use($groom, $bride) {
 			$browser->visit(new AboutPage)

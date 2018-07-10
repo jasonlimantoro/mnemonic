@@ -6,7 +6,7 @@ namespace App\Filters;
 use Intervention\Image\Image;
 use Intervention\Image\Filters\FilterInterface;
 
-class CoupleFilter implements FilterInterface
+class VIPFilter implements FilterInterface
 {
     const DEFAULT_WIDTH = 300;
     const DEFAULT_HEIGHT = 350;

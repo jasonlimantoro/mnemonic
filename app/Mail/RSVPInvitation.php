@@ -3,7 +3,7 @@
 namespace App\Mail;
 
 use App\RSVP;
-use App\Couple;
+use App\VIP;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -37,8 +37,8 @@ class RSVPInvitation extends Mailable
 		{
 			$url = route('rsvps.confirm', ['rsvp' => $this->rsvp->id, 'token' => $this->rsvp->token->token ]);
 		}
-		$groom = Couple::groom();
-		$bride = Couple::bride();
+		$groom = VIP::groom();
+		$bride = VIP::bride();
 		return $this->subject('Invitation to Wedding of ' . $groom->name . ' and ' . $bride->name)
 					->markdown('emails.RSVPInvitation')
 					->with(compact('groom', 'bride', 'url'));

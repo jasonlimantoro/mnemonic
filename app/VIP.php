@@ -2,12 +2,12 @@
 namespace App;
 
 use Illuminate\Http\Request;
-use App\Filters\CoupleFilter;
+use App\Filters\VIPFilter;
 
-class Couple extends Model
+class VIP extends Model
 {
 	// custom table name
-	protected $table = 'couple';
+	protected $table = 'VIP';
 	// no timestamps is needed
 	public $timestamps = false;
 	
@@ -30,7 +30,7 @@ class Couple extends Model
 
 	public function updateRecord(Request $request)
 	{
-        optional(Image::handleUpload($request, CoupleFilter::class, 'couple'))->addTo($this);
+        optional(Image::handleUpload($request, VIPFilter::class, 'vip'))->addTo($this);
         $this->update(
             $request->only(['name', 'father', 'mother'])
         );

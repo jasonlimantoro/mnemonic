@@ -23,7 +23,7 @@
 							'enctype'=>'multipart/form-data'
 							]) 
 					}}
-						@include('backend.wedding.events.form', [
+						@include('backend.day.events.form', [
 							'submitButtonText' => 'Update Event'
 						])
 					{{ Form::close() }}

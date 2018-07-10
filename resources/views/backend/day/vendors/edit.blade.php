@@ -18,7 +18,7 @@
         @endslot
 				@slot('body')
 					{{ Form::model($vendor, ['route' => ['vendors.update', $vendor->id], 'method' => 'PATCH']) }}
-						@include('backend.wedding.vendors.form', [
+						@include('backend.day.vendors.form', [
 							'submitButtonText' => 'Update Vendor',
 						])
 					{{ Form::close() }}

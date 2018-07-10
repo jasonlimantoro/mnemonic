@@ -46,9 +46,9 @@ Route::group([
 
         // wedding
         Route::prefix('wedding')->group(function () {
-            // couple
-            Route::resource('couple', 'CoupleController', ['only' => ['update']]);
-            Route::get('couple', 'CoupleController@edit')->name('couple.edit');
+            // vip
+            Route::resource('vip', 'VIPController', ['only' => ['update']]);
+            Route::get('vip/edit', 'VIPController@edit')->name('vip.edit');
 
             // Event
             Route::resource('events', 'EventsController')->except('show');
@@ -61,8 +61,8 @@ Route::group([
 			Route::resource('categories', 'CategoriesController')->except('show');
 			
 			// Youtube Video
-			Route::get('embed-video/edit', 'CoupleController@editVideo')->name('embedVideo.edit');
-			Route::patch('embed-video', 'CoupleController@updateVideo')->name('embedVideo.update');
+			Route::get('embed-video/edit', 'VIPController@editVideo')->name('embedVideo.edit');
+			Route::patch('embed-video', 'VIPController@updateVideo')->name('embedVideo.update');
 
             // RSVP
             Route::resource('rsvps', 'RSVPController')->except('show');

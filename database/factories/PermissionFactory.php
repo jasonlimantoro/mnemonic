@@ -9,7 +9,7 @@ $factory->define(Permission::class, function (Faker $faker) {
             'carousel images',
             'post',
             'gallery',
-			'couple',
+			'vip',
 			'embed_video',
             'event',
             'bridesmaid_bestman',
@@ -62,8 +62,8 @@ $factory->state(Permission::class, 'carousel images', [
 	'name' => 'carousel images'
 ]);
 
-$factory->state(Permission::class, 'couple', [
-	'name' => 'couple'
+$factory->state(Permission::class, 'vip', [
+	'name' => 'vip'
 ]);
 
 $factory->state(Permission::class, 'event', [

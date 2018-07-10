@@ -6,7 +6,7 @@
       @component('backend.layouts.breadcrumb', ['current' => 'Couple'])
       @endcomponent
       @component('backend.layouts.panel', [
-        'title' => "Couple Information"
+        'title' => "VIP Information"
       ])
 
         @slot('body')
@@ -23,7 +23,7 @@
             <!-- Tab panes -->
             <div class="tab-content clearfix">
               <div role="tabpanel" class="tab-pane active" id="groom">
-                {{ Form::model($groom, ['route' => ['couple.update', $groom->id ], 'method' => 'PATCH']) }}
+                {{ Form::model($groom, ['route' => ['vip.update', $groom->id ], 'method' => 'PATCH']) }}
                 <div class="col-md-6">
                   {{-- name field --}}
                   <div class="form-group">
@@ -45,7 +45,7 @@
 
                   {{-- Submit Button --}}
                   <div class="form-group">
-                    @can('update', App\Couple::class)
+                    @can('update', App\VIP::class)
                       {{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
                     @else
                       <button class="btn btn-default" disabled>Unauthorized</button>
@@ -79,7 +79,7 @@
               </div>
 
               <div role="tabpanel" class="tab-pane" id="bride">
-                {{ Form::model($bride, ['route' => ['couple.update', $bride->id ], 'method' => 'PATCH']) }}
+                {{ Form::model($bride, ['route' => ['vip.update', $bride->id ], 'method' => 'PATCH']) }}
                 <div class="col-md-6">
                   {{-- name field --}}
                   <div class="form-group">
@@ -101,7 +101,7 @@
 
                   {{-- Submit Button --}}
                   <div class="form-group">
-                    @can('update', App\Couple::class)
+                    @can('update', App\VIP::class)
                       {{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
                     @else
                       <button class="btn btn-default" disabled>Unauthorized</button>

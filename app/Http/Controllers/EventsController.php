@@ -27,7 +27,7 @@ class EventsController extends Controller
         $events = Event::filtersSearch(request(['search', 'order', 'method']))
                         ->latest()
                         ->get();
-        return view('backend.wedding.events.index', compact('events'));
+        return view('backend.day.events.index', compact('events'));
     }
 
     /**
@@ -37,7 +37,7 @@ class EventsController extends Controller
      */
     public function create()
     {
-        return view('backend.wedding.events.create');
+        return view('backend.day.events.create');
     }
 
     /**
@@ -67,7 +67,7 @@ class EventsController extends Controller
      */
     public function show(Event $event)
     {
-        return view('backend.wedding.events.show', compact('event'));
+        return view('backend.day.events.show', compact('event'));
     }
 
     /**
@@ -79,7 +79,7 @@ class EventsController extends Controller
     public function edit(Event $event)
     {
         $eventImage = optional($event->image)->url_cache;
-        return view('backend.wedding.events.edit', compact('event', 'eventImage'));
+        return view('backend.day.events.edit', compact('event', 'eventImage'));
     }
 
     /**

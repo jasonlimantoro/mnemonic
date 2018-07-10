@@ -23,12 +23,15 @@
 				</a>
 				<ul class="collapse list-unstyled" id="pageSubmenu">
 					<li><a href="{{ route('posts.index', ['page' => 1]) }}">Home</a></li>
-					<li><a href="{{ route('posts.index', ['page' => 2]) }}">About Us</a></li>
+					<li>
+            <a href="{{ route('posts.index', ['page' => 2]) }}">
+              About @mode('wedding') Us @else Me @endmode
+            </a>
+          </li>
 				</ul>
 			</li>
 		@endcan
-
-		@can('manage-gallery')
+    @can('manage-gallery')
 			<li>
 				<a href="#galleriesSubmenu" data-toggle="collapse" aria-expanded="false" data-menu="menu"><i class="fa fa-picture-o"></i>Galleries</a>
 				<ul class="collapse list-unstyled" id="galleriesSubmenu">
@@ -38,27 +41,32 @@
 			</li>
 		@endcan
     
-		<li class="header">Wedding</li>
+		<li class="header">
+      @mode('birthday') Birthday @else Wedding Day @endmode
+    </li>
 
     <li>
-      <a href="#weddingSubmenu" data-toggle="collapse" aria-expanded="false" data-menu="menu">Your Wedding Day </a>
+      <a href="#weddingSubmenu" data-toggle="collapse" aria-expanded="false" data-menu="menu">
+        Your @mode('wedding') Wedding Day @else Birthday @endmode
+      </a>
       <ul class="collapse list-unstyled" id="weddingSubmenu">
-				@can('read', App\Couple::class)
-					<li><a href="{{ route('couple.edit') }}">Couple</a></li>
+				@can('read', App\VIP::class)
+					<li><a href="{{ route('vip.edit') }}">VIP</a></li>
 				@endcan
 
 				@can('read', App\Event::class)
 					<li><a href="{{ route('events.index') }}">Event</a></li>
 				@endcan
 
-				@can('read', App\BridesBest::class)
-					<li><a href="{{ route('bridesmaid-bestmans.index') }}">Bridesmaid & Bestman</a></li>
-				@endcan
+        @mode('wedding')
+          @can('read', App\BridesBest::class)
+            <li><a href="{{ route('bridesmaid-bestmans.index') }}">Bridesmaid & Bestman</a></li>
+          @endcan
+        @endmode
 
 				@can('read-embed-video')
 					<li><a href="{{ route('embedVideo.edit') }}">Embed Video</a></li>
 				@endcan
-
 			</ul>
 		</li>
 		
