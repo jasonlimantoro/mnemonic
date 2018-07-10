@@ -3,7 +3,7 @@
 namespace App\Traits;
 
 
-trait Filterable
+trait FiltersResources
 {
     /**
      * @param $query

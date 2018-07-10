@@ -2,12 +2,12 @@
 
 namespace App;
 
-use App\Traits\Presentable;
+use App\Traits\PresentsField;
 use App\Presenters\PostPresenter;
 
 class Post extends Model
 {
-	use Presentable;
+	use PresentsField;
 	
 	protected $presenter = PostPresenter::class;
 

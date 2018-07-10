@@ -2,12 +2,12 @@
 
 namespace App;
 
-use App\Traits\Filterable;
+use App\Traits\FiltersResources;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class Model extends Eloquent
 {
-    use Filterable;
+    use FiltersResources;
 
     protected $guarded = [];
 }

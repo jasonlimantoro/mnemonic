@@ -2,13 +2,13 @@
 
 namespace App;
 
-use App\Traits\Filterable;
+use App\Traits\FiltersResources;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable, Filterable;
+    use Notifiable, FiltersResources;
 
     /**
      * The attributes that are mass assignable.

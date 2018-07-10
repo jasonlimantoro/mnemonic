@@ -4,7 +4,7 @@ namespace App\Traits;
 
 use Laracasts\Presenter\Exceptions\PresenterException;
 
-trait Presentable {
+trait PresentsField {
 
     /**
      * View presenter instance

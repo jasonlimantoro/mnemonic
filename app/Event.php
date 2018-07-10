@@ -3,13 +3,13 @@
 namespace App;
 
 use Carbon\Carbon;
-use App\Traits\Presentable;
+use App\Traits\PresentsField;
 use App\Presenters\EventPresenter;
 use Collective\Html\Eloquent\FormAccessible;
 
 class Event extends Model
 {
-    use FormAccessible, Presentable;
+    use FormAccessible, PresentsField;
 
 	protected $dates = ['datetime'];
 	protected $with = ['image'];
