@@ -30,10 +30,10 @@ class PackageController extends Controller
     {
        $request->validate(PackageSetting::getRules());
 
-       PackageSetting::updateValueByKey('resources-limit',
-           $request->only(PackageSetting::getResourcesLimitFields())
-       );
-       PackageSetting::updateValueByKey('other', $request->only(PackageSetting::getOtherFields()));
+       PackageSetting::updateManyValuesByKeys([
+           'resources-limit' => $request->only(PackageSetting::getResourcesLimitFields()),
+           'other' => $request->only(PackageSetting::getOtherFields()),
+       ]);
 
        $this->flash('Package settings are successfully updated');
 

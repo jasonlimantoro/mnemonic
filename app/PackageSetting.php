@@ -51,11 +51,18 @@ class PackageSetting extends Model
         return $this->update(['value' => $value]);
     }
 
+    public static function updateManyValuesByKeys($keyValuePairs)
+    {
+        foreach ($keyValuePairs as $key => $value) {
+           static::updateValueByKey($key, $value);
+        }
+    }
+
     public static function getFields()
     {
         return [
             'total_posts',
-            'total_photos',
+            'total_images',
             'total_albums',
             'total_rsvp',
             'total_rsvp_reminder',
@@ -67,7 +74,7 @@ class PackageSetting extends Model
     {
         return [
             'total_posts',
-            'total_photos',
+            'total_images',
             'total_albums',
             'total_rsvp',
             'total_rsvp_reminder',
