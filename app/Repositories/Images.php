@@ -7,7 +7,7 @@ use App\Album;
 
 class Images
 {
-    public function all()
+    public static function all()
     {
         return Image::where('imageable_type', Album::class)
                     ->with('imageable')
