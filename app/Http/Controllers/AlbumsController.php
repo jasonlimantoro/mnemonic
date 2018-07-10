@@ -14,6 +14,8 @@ class AlbumsController extends Controller
     public function __construct(Albums $albums)
     {
         $this->albums = $albums;
+
+        $this->middleware('package.albums')->only(['create', 'store']);
     }
 
     /**

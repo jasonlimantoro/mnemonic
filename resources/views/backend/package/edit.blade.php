@@ -17,10 +17,10 @@
           {{ Form::number('total_posts', $settings['resources-limit']->total_posts, ['class' => 'form-control', 'placeholder' => 'Enter Total Posts']) }}
         </div>
 
-        {{-- total_photos field --}}
+        {{-- total_images field --}}
         <div class="form-group">
-          {{ Form::label('total_photos', 'Total Photos:') }}
-          {{ Form::number('total_photos', $settings['resources-limit']->total_photos, ['class' => 'form-control', 'placeholder' => 'Enter Total Photos']) }}
+          {{ Form::label('total_images', 'Total Photos:') }}
+          {{ Form::number('total_images', $settings['resources-limit']->total_images, ['class' => 'form-control', 'placeholder' => 'Enter Total Images']) }}
         </div>
 
         {{-- total_albums field --}}

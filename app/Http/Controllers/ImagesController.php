@@ -18,6 +18,8 @@ class ImagesController extends Controller
     public function __construct(Images $images)
     {
         $this->images = $images;
+
+        $this->middleware('package.images')->only(['create', 'store']);
     }
 
     /**

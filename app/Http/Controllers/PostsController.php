@@ -7,8 +7,8 @@ use App\Page;
 use App\Image;
 use App\Filters\PostFilter;
 use App\Repositories\Posts;
-use App\Http\Middleware\CheckPage;
 use App\Http\Requests\PostsRequest;
+use App\Http\Middleware\CheckPage;
 use App\Http\Controllers\GenericController as Controller;
 
 class PostsController extends Controller
@@ -24,6 +24,7 @@ class PostsController extends Controller
 		$this->middleware('can:delete,App\Post')->only('destroy');
 
 		$this->middleware(CheckPage::class)->only(['create', 'store', 'delete']);
+		$this->middleware('package.posts')->only(['create', 'store']);
 	}
     /**
      * Display a listing of the resource.
