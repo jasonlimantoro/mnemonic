@@ -3,8 +3,12 @@
 namespace App;
 
 
+use App\Traits\KeysSettings;
+
 class PackageSetting extends Model
 {
+    use KeysSettings;
+
     public $timestamps = false;
     protected $table = 'package_settings';
 
@@ -17,45 +21,6 @@ class PackageSetting extends Model
     public function getValueAttribute($value)
     {
         return json_decode($value);
-    }
-
-
-    public static function byKey($key)
-    {
-        return static::where('key', $key)->first();
-    }
-
-    public static function getValueByKey($key)
-    {
-        return optional(static::byKey($key))->value;
-    }
-
-    public static function getValueByManyKeys(array $keys)
-    {
-        $values = [];
-        foreach ($keys as $key)
-        {
-            $values[$key] = static::getValueByKey($key);
-        }
-
-        return $values;
-    }
-
-    public static function updateValueByKey($key, $value)
-    {
-        return static::byKey($key)->updateValue($value);
-    }
-
-    public function updateValue($value)
-    {
-        return $this->update(['value' => $value]);
-    }
-
-    public static function updateManyValuesByKeys($keyValuePairs)
-    {
-        foreach ($keyValuePairs as $key => $value) {
-           static::updateValueByKey($key, $value);
-        }
     }
 
     public static function getFields()

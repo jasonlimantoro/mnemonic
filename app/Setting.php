@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Traits\IndexesJson;
+use App\Traits\KeysSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -9,11 +11,8 @@ use Illuminate\Support\Facades\Storage;
 
 class Setting extends Model
 {
-    /**
-     * Timestamp is not needed
-     *
-     * @var bool
-     */
+    use KeysSettings, IndexesJson;
+
 	public $timestamps = false;
 
 	public function getValueAttribute($value)
@@ -25,125 +24,7 @@ class Setting extends Model
 	{
 		$this->attributes['value'] = json_encode($value);
 	}
-    /**
-     *  Retrieve the record given the key
-     *
-     * @param string $key
-     * @return Setting|\Illuminate\Database\Eloquent\Model|null
-     */
-    public static function byKey($key)
-   	{
-	   return static::where('key', $key)->first();
-   	}
 
-    /**
-     * Retrieve the record's value
-     *
-     * @return mixed
-     */
-    public function getValue()
-   	{
-	   return $this->value;
-   	}
-
-    /**
-     * Retrieve the value of the record given the key
-     *
-     * @param string $key
-     * @return mixed
-     */
-    public static function getValueByKey($key)
-   	{
-        return optional(static::byKey($key))->getValue();
-	}
-
-    /**
-     * Retrieve the value of the record given many keys
-     *
-     * @param array $keys
-     * @return array
-     */
-
-	public static function getManyValueByKeys(array $keys)
-	{
-		return static::whereIn('key', $keys)
-					->pluck('value', 'key')
-					->toArray();
-	}
-
-    /**
-     * Retrieve the JSON Value given key
-     *
-     * @param string $keyField
-     * @param string $keyJSON
-     * @return string
-     */
-
-	public static function getJSONValueFromKeyField(string $keyField, string $keyJSON)
-	{
-		$json = static::getValueByKey($keyField);
-		return optional($json)->$keyJSON;
-	}
-
-	/**
-	 * Update the JSON Value given the key
-	 * 
-	 * @param string $keyField
-	 * @param array $attributes
-	 * @return void
-	 */
-
-	public static function updateJSONValueFromKeyField(string $keyField, array $attributes)
-	{
-		foreach ($attributes as $key => $value) {
-			static::byKey($keyField)->update(["value->${key}" => $value]);
-		}
-	}
-
-
-    /**
-     *  Update the value field
-     *
-     * @param mixed $value
-     * @return bool
-     */
-    public function updateValue($value)
-   	{
-	   return $this->update(['value' => $value]);
-   	}
-
-    /**
-     *  Update the record, given key, with the value
-     *
-     * @param string $key
-     * @param mixed $value
-     * @return mixed
-     */
-    public static function updateValueByKey(string $key, $value)
-   	{
-		if(!$updated = optional(static::byKey($key))->update(['value' => $value])){
-			return static::create([
-				'name' => title_case(preg_replace('/-/', ' ', $key)),
-				'key' => $key,
-				'value' => $value
-			]);
-		}
-		return $updated;
-	}
-
-	/**
-	 *	Update many records, given the attributes 
-	 *  
-	 * @param array $attributes
-	 * @return mixed
-	 */
-
-	public static function updateManyByKeys(array $attributes)
-	{
-		foreach ($attributes as $key => $value) {
-			static::updateValueByKey($key, $value);
-		}
-	}
 
 	public static function updateSiteInfo(Request $request)
 	{
