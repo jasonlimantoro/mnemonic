@@ -27,13 +27,14 @@ class RSVP extends Model
 		return !$this->confirmed();
 	}
 
-	public function reminded()
+	public function remindedEnough()
 	{
-		return $this->reminder_count > 0;
+	    $allowed = PackageSetting::getValueByKey('resources-limit')->total_rsvp_reminder;
+		return $this->reminder_count >= $allowed;
 	}
 
 	public function notReminded()
 	{
-		return !$this->reminded();
+		return !$this->remindedEnough();
 	}
 }

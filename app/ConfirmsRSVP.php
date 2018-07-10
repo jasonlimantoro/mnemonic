@@ -14,7 +14,7 @@ class ConfirmsRSVP
 	{
 		$this->invite($rsvp);
 
-		$rsvp->update(['reminder_count' => 1]);
+		$rsvp->increment('reminder_count');
 	}
 		
 	protected function createToken(RSVP $rsvp)
