@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PackageSetting;
 use App\VIP;
 use App\Setting;
 use Illuminate\Http\Request;
@@ -24,23 +25,34 @@ class VIPController extends Controller
      */
     public function edit()
     {
-        $bride = VIP::bride();
-        $groom = VIP::groom();
-        return view('backend.day.vip.edit', compact('bride', 'groom'));
+        $vips = PackageSetting::getValueByKey('other')->vip;
+        return view('backend.day.vip.edit', compact('vips'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param VIP $vip
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, VIP $vip)
+    public function update(Request $request)
     {
-        $this->validate($request, ['name' => 'required']);
+        $request->validate([
+            'groom_name' => 'required',
+            'bride_name' => 'required'
+        ]);
 
-        $vip->updateRecord($request);
+        PackageSetting::updateJSONValueFromKeyField('other', [
+            'vip->groom->name' => $request->groom_name,
+            'vip->groom->father' => $request->groom_father,
+            'vip->groom->mother' => $request->groom_mother,
+            'vip->groom->image' => $request->groom_gallery,
+
+            'vip->bride->name' => $request->bride_name,
+            'vip->bride->father' => $request->bride_father,
+            'vip->bride->mother' => $request->bride_mother,
+            'vip->bride->image' => $request->bride_gallery,
+        ]);
 
         $this->flash('VIP information is successfully updated!');
 
