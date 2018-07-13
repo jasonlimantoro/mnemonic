@@ -6,49 +6,54 @@ import {
   Row,
   Col
 } from "react-bootstrap";
-import {InputFile} from "./Form";
-import {DisplayImagesFromInputFile} from "./DisplayImage";
-import {RequestImages} from "./Request";
+import { InputFile } from "./Form";
+import axios from "axios";
+import { RequestImages } from "./Request";
+import { withInputChange } from "../contexts/InputValueContext";
+
 
 export class MediaTabs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       file: {},
-      page: 1
+      previewUrl: '',
     };
     this.handleSelect = this.handleSelect.bind(this);
-    this.changePage = this.changePage.bind(this);
-    this.addFile = this.addFile.bind(this);
-    this.offsetPage = this.offsetPage.bind(this);
+    this.uploadFile = this.uploadFile.bind(this);
   }
 
   handleSelect(key) {
     this.props.onSelect(key);
   }
 
-  changePage(newPage) {
+  uploadFile(file, previewUrl) {
     this.setState({
-      page: newPage
+      file,
+      previewUrl,
+    });
+    const formData = new FormData();
+    formData.append('vipImage', file, file.name);
+    axios
+    .post('/uploadAjax', formData)
+    .then(response => {
+      // const { image } = response.data;
+      // const { store } = this.props;
+      // store.dispatch({ type: 'UPDATE_INPUT', payload: image.url_cache });
+      // this.props.onChangeInput(image.url_cache);
+    })
+    .catch(err => {
+      console.log(err);
     });
   }
 
-  offsetPage(offset, max, min = 1) {
-    const currPage = this.state.page;
-    const newPage = currPage + offset;
-    if (newPage <= max && newPage >= min) {
-      this.setState(prevState => {
-        return {page: prevState.page + offset};
-      });
-    }
-  }
-
-  addFile(newFile) {
-    this.setState({
-      file: newFile
-    });
-  }
   render() {
+    const { previewUrl } = this.state;
+
+    const InputChangedRequest = withInputChange(RequestImages);
+
+    const previewImage = previewUrl ? <img src={previewUrl} alt="" className={"img-responsive"}/> : '';
+
     return (
       <Tab.Container
         id="tabs-with-dropdown"
@@ -57,37 +62,26 @@ export class MediaTabs extends React.Component {
       >
         <Row className="clearfix">
           <Col md={12}>
-            <Nav bsStyle="tabs" style={{marginBottom: 20}}>
+            <Nav bsStyle="tabs" style={{ marginBottom: 20 }}>
               <NavItem eventKey="uploads">Uploads</NavItem>
               <NavItem eventKey="gallery">Gallery</NavItem>
             </Nav>
           </Col>
           <Col md={12}>
-            <Tab.Content animation>
+            <Tab.Content mountOnEnter>
               <Tab.Pane eventKey="uploads">
                 Upload images from your local computer
                 <InputFile
                   label="Open file browser"
                   labelClass="btn btn-success"
                   name="image"
-                  onChange={this.addFile}
-                  i={this.props.i}
+                  onChange={this.uploadFile}
                 />
-                <DisplayImagesFromInputFile
-                  file={this.state.file}
-                  i={this.props.i}
-                  displayOutside
-                />
+                {previewImage}
               </Tab.Pane>
               <Tab.Pane eventKey="gallery">
                 Or, use your gallery instead!
-                <RequestImages
-                  source="/api/images"
-                  i={this.props.i}
-                  page={this.state.page}
-                  onChangePage={this.changePage}
-                  onChangeOffset={this.offsetPage}
-                />
+                <RequestImages source="/api/images"/>
               </Tab.Pane>
             </Tab.Content>
           </Col>

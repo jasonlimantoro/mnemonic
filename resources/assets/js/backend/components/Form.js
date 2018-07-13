@@ -86,13 +86,16 @@ export class InputFile extends React.Component {
   }
 
   handleChange(e) {
-    var files = e.target.files;
-    this.props.onChange(files);
+    e.preventDefault();
+    let file = e.target.files[0];
+    let reader = new FileReader();
 
-    // to pass the selected file into another input[type="file"] (if necessary, e.g. for CarouselForm)
-    if (document.getElementById('inputFileOutside' + '-' + this.props.i.toString())) {
-      document.getElementById('inputFileOutside' + '-' + this.props.i.toString()).files = files;
-    }
+    reader.onloadend = () => {
+      this.props.onChange(file, reader.result);
+    };
+
+    reader.readAsDataURL(file);
+
   }
 
   render() {

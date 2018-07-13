@@ -1,9 +1,11 @@
 import React from "react";
 
-import {InputFile} from "../components/Form";
-import {PrimaryButton} from "../components/Button";
-import {UploadModal} from "../components/Modal";
-import {DisplayImagesFromInputFile} from "../components/DisplayImage";
+import { InputFile } from "../components/Form";
+import { PrimaryButton } from "../components/Button";
+import { UploadModal } from "../components/Modal";
+import { DisplayImagesFromInputFile } from "../components/DisplayImage";
+import reducer from "../reducers/FancyInputReducer";
+import InputValueContext from "../contexts/InputValueContext";
 
 
 export class SimpleInput extends React.Component {
@@ -29,7 +31,7 @@ export class SimpleInput extends React.Component {
     const preview = this.props.image ?
       <img src={this.props.image} alt="image" className="img-responsive"/> : 'No file uploaded';
     return (
-      <div>
+      <React.Fragment>
         {/* new file */}
         <input type="file" name="image" id={"inputFileOutside" + '-' + this.props.i.toString()} style={inputStyle}/>
 
@@ -49,74 +51,67 @@ export class SimpleInput extends React.Component {
 
           <DisplayImagesFromInputFile file={this.state.file} i={this.props.i} displayOutside displayBelow={false}/>
         </div>
-      </div>
+      </React.Fragment>
 
     );
   }
-
 }
 
 SimpleInput.defaultProps = {
   i: 1
 };
 
+
 export class FancyInput extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       modalShow: false,
+      inputValue: this.props.initialInputValue,
+      dispatch: action => {
+        this.setState(state => reducer(state, action))
+      },
     };
-    this.closeModal = this.closeModal.bind(this);
-    this.showModal = this.showModal.bind(this);
-  }
-
-  closeModal() {
-    this.setState({
-      modalShow: false
-    });
-  }
-
-  showModal() {
-    this.setState({
-      modalShow: true
-    });
   }
 
   render() {
-    const inputStyle = {
-      display: 'none'
-    };
+    console.log('FANCYINPUT: RENDERING');
 
-    const preview = this.props.image ?
-      <img src={this.props.image} alt="image" className="img-responsive"/> : 'No file uploaded';
+    const { inputValue, dispatch } = this.state;
+
+    const { inputName, initialInputValue, dusk } = this.props;
+
+    const preview = inputValue !== initialInputValue ?
+      <img src={`/uploads/${inputValue}`} alt="image" className="img-responsive"/> : 'No file uploaded';
+
     return (
-      <div>
-        {/* old file */}
-        <input type="hidden" name={this.props.galleryInputName}
-               id={"inputGalleryImage" + '-' + this.props.i.toString()}/>
-        {/* new file */}
-        <input type="file" name={this.props.newInputName} id={"inputFileOutside" + '-' + this.props.i.toString()}
-               style={inputStyle}/>
+      <React.Fragment>
+        <input type="hidden" name={inputName} value={inputValue}/>
+
+        {/* preview */}
+        <div className="form-group">
+          <strong>New Image</strong>
+          <div className="new-image">{preview}</div>
+        </div>
 
         <div className="form-group">
-          {/* preview */}
-          <strong>New Image</strong>
-          <div id={"preview" + '-' + this.props.i.toString()} className="new-image">{preview}</div>
-        </div>
-        <div className="form-group">
-          <PrimaryButton dusk={this.props.dusk} onClick={this.showModal}>
+          <PrimaryButton dusk={dusk} onClick={() => dispatch({ type: 'SHOW_MODAL' })}>
             Upload Image
           </PrimaryButton>
         </div>
-        <UploadModal show={this.state.modalShow} onHide={this.closeModal} i={this.props.i}/>
-      </div>
+
+        <InputValueContext.Provider value={this.state}>
+          <UploadModal store={this.state}/>
+        </InputValueContext.Provider>
+
+      </React.Fragment>
     );
   }
 }
 
 FancyInput.defaultProps = {
-  i: 1,
-  galleryInputName: "gallery_image",
-  newInputName: "image",
-  dusk: ''
+  inputName: "gallery_image",
+  initialInputValue: "",
+  dusk: '',
 };

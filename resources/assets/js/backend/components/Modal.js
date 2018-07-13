@@ -1,5 +1,4 @@
 import React from "react";
-import Slider from "react-slick";
 import { Modal, Table } from "react-bootstrap";
 import { DangerButton } from "./Button";
 import { MediaTabs } from "./Tab";
@@ -8,7 +7,6 @@ export class UploadModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      file: {},
       tabKey: "uploads"
     };
     this.changeTab = this.changeTab.bind(this);
@@ -20,9 +18,11 @@ export class UploadModal extends React.Component {
     });
   }
   render() {
+    const { store, store : { dispatch } } = this.props;
     return (
       <Modal
-        {...this.props}
+        show={store.modalShow}
+        onHide={() => dispatch({ type: 'HIDE_MODAL' })}
         bsSize="large"
         aria-labelledby="contained-modal-title-lg"
       >
@@ -33,12 +33,10 @@ export class UploadModal extends React.Component {
           <MediaTabs
             tabKey={this.state.tabKey}
             onSelect={this.changeTab}
-            file={this.state.file}
-            i={this.props.i}
           />
         </Modal.Body>
         <Modal.Footer>
-          <DangerButton onClick={this.props.onHide}>
+          <DangerButton onClick={() => dispatch({ type: 'HIDE_MODAL' })}>
             Done
           </DangerButton>
         </Modal.Footer>
