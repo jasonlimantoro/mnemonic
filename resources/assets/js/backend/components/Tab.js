@@ -6,20 +6,25 @@ import {
   Row,
   Col
 } from "react-bootstrap";
+import Ajax from "../defaults/ajax";
+
 import { InputFile } from "./Form";
-import axios from "axios";
 import { RequestImages } from "./Request";
-import { withInputChange } from "../contexts/InputValueContext";
+import AjaxStatus from "./AjaxStatus";
 
 
 export class MediaTabs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      file: {},
       previewUrl: '',
+      loading: false,
+      status : '',
+      message: '',
+      showAlert: false,
     };
     this.handleSelect = this.handleSelect.bind(this);
+    this.hideAlert = this.hideAlert.bind(this);
     this.uploadFile = this.uploadFile.bind(this);
   }
 
@@ -27,30 +32,46 @@ export class MediaTabs extends React.Component {
     this.props.onSelect(key);
   }
 
-  uploadFile(file, previewUrl) {
+  hideAlert() {
     this.setState({
-      file,
-      previewUrl,
+      showAlert: false,
     });
+  }
+
+  uploadFile(file, previewUrl) {
     const formData = new FormData();
     formData.append('vipImage', file, file.name);
-    axios
-    .post('/uploadAjax', formData)
-    .then(response => {
-      // const { image } = response.data;
-      // const { store } = this.props;
-      // store.dispatch({ type: 'UPDATE_INPUT', payload: image.url_cache });
-      // this.props.onChangeInput(image.url_cache);
-    })
-    .catch(err => {
-      console.log(err);
+    this.setState({ loading: true, showAlert: false, }, () => {
+      Ajax
+        .post('/uploadAjax', formData)
+        .then(response => {
+          const { message } = response.data;
+          this.setState({
+            loading: false,
+            status: 'success',
+            previewUrl,
+            message,
+          });
+        })
+        .catch(err => {
+          const { message } = err.response.data;
+          this.setState({
+            loading: false,
+            status: 'error',
+            message,
+          });
+        })
+        .then(() => {
+          this.setState({
+            showAlert: true,
+          })
+        })
+      ;
     });
   }
 
   render() {
-    const { previewUrl } = this.state;
-
-    const InputChangedRequest = withInputChange(RequestImages);
+    const { previewUrl, loading, status, showAlert, message } = this.state;
 
     const previewImage = previewUrl ? <img src={previewUrl} alt="" className={"img-responsive"}/> : '';
 
@@ -77,7 +98,15 @@ export class MediaTabs extends React.Component {
                   name="image"
                   onChange={this.uploadFile}
                 />
-                {previewImage}
+                <AjaxStatus
+                  loading={loading}
+                  status={status}
+                  showAlert={showAlert}
+                  message={message}
+                  onDismiss={this.hideAlert}
+                />
+                {/*{previewImage}*/}
+
               </Tab.Pane>
               <Tab.Pane eventKey="gallery">
                 Or, use your gallery instead!

@@ -1,31 +1,24 @@
 import React from "react";
 import { Thumbnail } from "react-bootstrap";
+import { str_limit } from "../functionals/helper";
 
-function str_limit(str, length = 20, ending = "...") {
-  if (str.length > length) {
-    return str.substring(0, length) + ending;
-  } else {
-    return str;
-  }
-}
+
 export const ThumbnailGallery = (
   { id,
     isActive,
     sourceImage,
     title,
-    fileName,
-    description,
+    album,
     onToggleActive,
     store,
   }) => {
   const handleClick = (id) => {
     onToggleActive(id);
-    store.dispatch({ type: 'UPDATE_INPUT', payload: fileName});
+    store.dispatch({ type: 'UPDATE_INPUT', payload: title});
   };
-  const activeClass = isActive ? "active" : '';
   return (
     <Thumbnail
-      className={"thumbnail-gallery " + activeClass}
+      className={`thumbnail-gallery ${isActive ? 'active' : ''}`}
       onClick={() => handleClick(id)}
     >
       <div className="thumbnail-image">
@@ -33,7 +26,7 @@ export const ThumbnailGallery = (
       </div>
       Name: <strong>{str_limit(title)}</strong>
       <br />
-      Album: <strong>{description}</strong>
+      Album: <strong>{album}</strong>
     </Thumbnail>
   );
 };

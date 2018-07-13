@@ -41,6 +41,12 @@ abstract class CheckPackageSettings
     {
 
         if ($this->current() >= $this->allowed()){
+            if($request->ajax()){
+                $data = [
+                    'message' => 'Images count exceeded!',
+                ];
+                return response($data, 403);
+            }
             return back();
         }
         return $next($request);

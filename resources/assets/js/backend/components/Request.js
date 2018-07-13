@@ -119,9 +119,8 @@ export class RequestImages extends React.PureComponent {
                   id ={image.id}
                   isActive={isActive}
                   sourceImage={url_cache}
-                  fileName={file_name}
                   title={file_name}
-                  description={name}
+                  album={name}
                   onToggleActive={this.toggleActive}
                 />
               </div>

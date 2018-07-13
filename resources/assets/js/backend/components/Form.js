@@ -88,24 +88,25 @@ export class InputFile extends React.Component {
   handleChange(e) {
     e.preventDefault();
     let file = e.target.files[0];
-    let reader = new FileReader();
+    if(file) {
+      let reader = new FileReader();
 
-    reader.onloadend = () => {
-      this.props.onChange(file, reader.result);
-    };
-
-    reader.readAsDataURL(file);
-
+      reader.onloadend = () => {
+        this.props.onChange(file, reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
   render() {
+    const { label, labelClass, name } = this.props;
     return (
       <FieldGroup
         id="inputFile"
         type="file"
-        label={this.props.label}
-        labelClass={this.props.labelClass}
-        name={this.props.name}
+        label={label}
+        labelClass={labelClass}
+        name={name}
         style={{'opacity': 0, 'display': 'inline'}}
         onChange={this.handleChange}
       />

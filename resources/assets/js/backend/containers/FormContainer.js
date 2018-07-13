@@ -83,7 +83,7 @@ export class FancyInput extends React.Component {
     const { inputName, initialInputValue, dusk } = this.props;
 
     const preview = inputValue !== initialInputValue ?
-      <img src={`/uploads/${inputValue}`} alt="image" className="img-responsive"/> : 'No file uploaded';
+      <img src={`/uploads/${inputValue}`} alt="image" className="img-responsive" style={{ maxWidth: '50%'}}/> : 'No file uploaded';
 
     return (
       <React.Fragment>
