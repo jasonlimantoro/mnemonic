@@ -1,5 +1,5 @@
 @if($errors->any())
-  <div class="alert alert-danger alert-dismissable">
+  <div class="alert flash alert-danger alert-dismissable">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <ul>
       @foreach($errors->all() as $error)
