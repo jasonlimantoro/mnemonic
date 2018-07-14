@@ -30,10 +30,8 @@ class PackageController extends Controller
     {
        $request->validate(PackageSetting::getRules());
 
-       PackageSetting::updateManyValuesByKeys([
-           'resources-limit' => $request->only(PackageSetting::getResourcesLimitFields()),
-           'other' => $request->only(PackageSetting::getOtherFields()),
-       ]);
+       PackageSetting::updateJSONValueFromKeyField('resources-limit', $request->only(PackageSetting::getResourcesLimitFields()));
+       PackageSetting::updateJSONValueFromKeyField('other', [ 'mode' => $request->mode ]);
 
        $this->flash('Package settings are successfully updated');
 

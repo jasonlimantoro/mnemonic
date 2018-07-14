@@ -15,8 +15,10 @@ class PackageSettingServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $mode = PackageSetting::getValueByKey('other')->mode;
-        View::share('mode', $mode);
+        if ($this->app->environment() !== 'testing') {
+            $mode = PackageSetting::getValueByKey('other')->mode;
+            View::share('mode', $mode);
+        }
     }
 
     /**

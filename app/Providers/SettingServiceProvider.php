@@ -15,8 +15,11 @@ class SettingServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $values = Setting::getValueByManyKeys(['site-info', 'site-social', 'site-seo']);
-        View::share('settings', $values);
+        if ($this->app->environment() !== 'testing'){
+            $values = Setting::getValueByManyKeys(['site-info', 'site-social', 'site-seo']);
+            View::share('settings', $values);
+        }
+
     }
 
     /**

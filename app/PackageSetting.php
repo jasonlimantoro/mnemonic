@@ -2,12 +2,12 @@
 
 namespace App;
 
-
+use App\Traits\IndexesJson;
 use App\Traits\KeysSettings;
 
 class PackageSetting extends Model
 {
-    use KeysSettings;
+    use KeysSettings, IndexesJson;
 
     public $timestamps = false;
     protected $table = 'package_settings';
