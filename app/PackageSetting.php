@@ -88,4 +88,12 @@ class PackageSetting extends Model
         return $rules;
     }
 
+    public static function updatePackage($request)
+    {
+        static::updateJSONValueFromKeyField('resources-limit',
+            $request->only(static::getResourcesLimitFields())
+        );
+        static::updateJSONValueFromKeyField('other', $request->only('mode'));
+    }
+
 }

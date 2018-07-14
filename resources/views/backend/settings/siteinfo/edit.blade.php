@@ -80,8 +80,8 @@
 						<p>Favicon</p>
 						<strong>Current Image</strong>
 						<div class="current-image">
-							@if ($favicon = App\Setting::getJSONValueFromKeyField('site-info', 'favicon'))
-								<img src="{{ $favicon }}" alt="favicon" class="img-responsive">
+							@if ($favicon = $settings->favicon)
+								<img src="{{ url('/imagecache/logo/' . $favicon) }}" alt="favicon" class="img-responsive">
 							@else 
 								<p>No Image Uploaded</p>
 							@endif
@@ -91,8 +91,8 @@
 						<p>Logo</p>
 						<strong>Current Image</strong>
 						<div class="current-image">
-							@if ($logo = App\Setting::getJSONValueFromKeyField('site-info', 'logo'))
-								<img src="{{ $logo }}" alt="favicon" class="img-responsive">
+							@if ($logo = $settings->logo)
+								<img src="{{ url('/imagecache/logo/' . $logo) }}" alt="logo" class="img-responsive">
 							@else 
 								<p>No Image Uploaded</p>
 							@endif
@@ -102,17 +102,15 @@
 				<div class="form-group clearfix">
           <div class="col-md-4">
             <div data-component="FancyInput"
-                 data-prop-gallery-input-name="favicon_from_gallery"
-                 data-prop-new-input-name="favicon_from_local"
-                 data-prop-i="1"
+                 data-prop-initial-input-value="{{ $favicon }}"
+                 data-prop-input-name="favicon"
             >
             </div>
           </div>
           <div class="col-md-4">
             <div data-component="FancyInput"
-                 data-prop-gallery-input-name="logo_from_gallery"
-                 data-prop-new-input-name="logo_from_gallery"
-                 data-prop-i="2"
+                 data-prop-initial-input-value="{{ $logo }}"
+                 data-prop-input-name="logo"
             >
             </div>
           </div>

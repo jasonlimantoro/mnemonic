@@ -41,7 +41,7 @@
                 </p>
                 <div class="current-image">
                   @isset($vip->image)
-                    <img src="{{ $vip->image }}" alt="groom" class="img-responsive">
+                    <img src="{{ url('/imagecache/vip/'. $vip->image) }}" alt="vip" class="img-responsive">
                   @else
                     <p class="no-current-image">No image uploaded</p>
                   @endisset
@@ -49,17 +49,15 @@
               </div>
               <div class="form-group">
                 <div data-component="FancyInput"
-                     data-prop-new-input-name="{{ $role }}_image"
-                     data-prop-gallery-input-name="{{ $role }}_gallery"
-                     data-prop-gallery-input-value="{{ isset($vip->image) ? $vip->image : '' }}"
-                     data-prop-i={{ $loop->index }}
+                     data-prop-input-name="{{ $role }}_gallery"
+                     data-prop-initial-input-value="{{ isset($vip->image) ? $vip->image : '' }}"
                 >
                 </div>
               </div>
             </div>
           @endforeach
 
-          <div class="col-md-12">
+          <div class="col-xs-12">
             {{-- Submit Button --}}
             <div class="form-group">
               @can('update', App\VIP::class)

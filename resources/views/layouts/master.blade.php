@@ -11,7 +11,7 @@
 		<meta name="title" content="{{ $settings['site-seo']->meta_title }}" />
 
 		<title>{{ $settings['site-info']->title . ' - ' . ucfirst($pageTitle ?? '') }}</title>
-		<link rel="shortcut icon" type="image/png" href={{ $settings['site-info']->favicon }}/>
+		<link rel="shortcut icon" type="image/png" href={{ url('imagecache/logo/' . $settings['site-info']->favicon) }}/>
 
     <!-- Styles -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">

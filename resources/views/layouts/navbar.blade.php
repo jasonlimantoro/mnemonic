@@ -12,7 +12,7 @@
 						<span class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" href="{{ route('front.index') }}">
-						<img src="{{ $settings['site-info']->logo }}" alt="logo" class="img-responsive">
+						<img src="{{ url('/imagecache/logo/' . $settings['site-info']->logo) }}" alt="logo" class="img-responsive">
 					</a>
 				</div>
 			
@@ -43,7 +43,7 @@
 
 						<li class="hidden-xs">
 							<a href="/" class="navbar-logo-center">
-								<img src="{{ $settings['site-info']->logo }}" alt="logo" class="img-responsive">
+								<img src="{{ url('/imagecache/logo/' . $settings['site-info']->logo) }}" alt="logo" class="img-responsive">
 							</a>
 						</li>
 						<li>

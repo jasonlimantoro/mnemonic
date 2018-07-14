@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\PackageSetting;
-use Illuminate\Http\Request;
+use App\Http\Requests\PackageSettingsRequest;
 use App\Http\Controllers\GenericController as Controller;
 
 class PackageController extends Controller
@@ -23,15 +23,13 @@ class PackageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param PackageSettingsRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(PackageSettingsRequest $request)
     {
-       $request->validate(PackageSetting::getRules());
 
-       PackageSetting::updateJSONValueFromKeyField('resources-limit', $request->only(PackageSetting::getResourcesLimitFields()));
-       PackageSetting::updateJSONValueFromKeyField('other', [ 'mode' => $request->mode ]);
+       PackageSetting::updatePackage($request);
 
        $this->flash('Package settings are successfully updated');
 

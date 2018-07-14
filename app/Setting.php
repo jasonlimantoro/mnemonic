@@ -41,42 +41,12 @@ class Setting extends Model
                 'city' => $request->contact_city,
                 'country' => $request->contact_country,
                 'zip_code' => $request->contact_zip_code,
-			]
+			],
+            'logo' => $request->logo,
+            'favicon' => $request->favicon
 		]);
-
-		static::updateFaviconAndLogo($request);
 	}
 
-	public static function updateFaviconAndLogo(Request $request)
-	{
-        if ($favicon = $request->favicon_from_gallery) {
-			$image = Image::byName($favicon);
-			static::updateJSONValueFromKeyField('site-info', ['favicon' => $image->url_cache]);
-		} else if ($favicon = $request->file('favicon_from_local')) {
-			$faviconName = $favicon->getClientOriginalName();
-			$path = Storage::disk('uploads')->putFileAs('/', $favicon, $favicon->getClientOriginalName());
-			$image = Image::firstOrCreate([
-				'file_name' => $faviconName,
-				'url_asset' => url('uploads/' . $faviconName),
-				'url_cache' => url('imagecache/logo/' . $faviconName)
-			]);
-			static::updateJSONValueFromKeyField('site-info', ['favicon' => $image->url_cache]);
-		}
-
-        if ($logo = $request->logo_from_gallery) {
-			$image = Image::byName($logo);
-			static::updateJSONValueFromKeyField('site-info', ['logo' => $image->url_cache]);
-		} else if ($logo = $request->file('logo_from_local')) {
-			$logoName = $logo->getClientOriginalName();
-			$path = Storage::disk('uploads')->putFileAs('/', $logo, $logo->getClientOriginalName());
-			$image = Image::firstOrCreate([
-				'file_name' => $logoName,
-				'url_asset' => url('uploads/' . $logoName),
-				'url_cache' => url('imagecache/logo/' . $logoName)
-			]);
-			static::updateJSONValueFromKeyField('site-info', ['logo' => $image->url_cache]);
-		}
-	} 
 
 	public static function updateSiteSocial($social)
 	{
