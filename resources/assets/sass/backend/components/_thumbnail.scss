@@ -1,7 +1,12 @@
 .gallery-tab {
 	.thumbnail-gallery {
-		&:hover, &.active {
-			border: solid 1px red;
+		cursor: pointer;
+		&:hover {
+			@extend %box-shadow-light-grey;
+		}
+		&.active {
+			@extend %box-shadow-light-grey;
+			border: solid 1px $skin-blue;
 		}
 	}
 }
