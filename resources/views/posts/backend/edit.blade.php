@@ -20,8 +20,7 @@
 					{{ Form::model($post, [
 							'route' => ['posts.update', $page->id, $post->id], 
 							'method' => 'PATCH', 
-							'enctype' => 'multipart/form-data'
-						]) 
+						])
 					}}
 						@include('posts.backend.form', [
 							'submitButtonText' => 'Update Post',

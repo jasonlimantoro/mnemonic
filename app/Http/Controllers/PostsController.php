@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Page;
-use App\Image;
-use App\Filters\PostFilter;
 use App\Repositories\Posts;
 use App\Http\Requests\PostsRequest;
 use App\Http\Middleware\CheckPage;
@@ -13,8 +11,6 @@ use App\Http\Controllers\GenericController as Controller;
 
 class PostsController extends Controller
 {
-    public $filter = 'post';
-    public $filterClass = PostFilter::class;
 
 	public function __construct() 
 	{
@@ -45,6 +41,7 @@ class PostsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param Page $page
      * @return \Illuminate\Http\Response
      */
     public function create(Page $page)
@@ -61,9 +58,11 @@ class PostsController extends Controller
      */
     public function store(PostsRequest $request, Page $page)
     {
-		$post = $page->addPost($request->only(['title', 'description']));
-		
-		optional(Image::handleUpload($request, $this->filterClass, $this->filter))->addTo($post);
+        $file = $request->gallery_image;
+
+        $post = $page->addPost($request->only(['title', 'description']));
+
+        $post->addImage($file);
 
         $this->flash('Post is added succesfully');
 
@@ -94,16 +93,17 @@ class PostsController extends Controller
     {
 		$postImage = optional($post->image)->url_cache;
 
-		$page = $post->page;
-
         return view('posts.backend.edit', compact('post', 'page', 'postImage'));
     }
 
     public function update(PostsRequest $request, Page $page, Post $post)
     {
+
+        $file = $request->gallery_image;
+
 		$post->update($request->only(['title', 'description']));
-		
-		optional(Image::handleUpload($request, $this->filterClass, $this->filter))->addTo($post);
+
+		$post->addImage($file);
 
         $this->flash('Post updated successfully!');
 
@@ -120,7 +120,11 @@ class PostsController extends Controller
     public function destroy(Page $page, Post $post)
     {
         $post->delete();
+
+        $post->image()->delete();
+
         $this->flash('Post is deleted successfully');
+
         return back();
     }
 
