@@ -51,6 +51,7 @@
                 <div data-component="FancyInput"
                      data-prop-input-name="{{ $role }}_gallery"
                      data-prop-initial-input-value="{{ isset($vip->image) ? $vip->image : '' }}"
+                     data-prop-template="vip"
                 >
                 </div>
               </div>

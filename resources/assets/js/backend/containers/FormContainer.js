@@ -79,7 +79,7 @@ SimpleInput.propTypes = {
 };
 
 SimpleInput.defaultProps = {
-  template : "gallery",
+  template : "original",
 };
 
 const ModalWithContext = withFancyInput(UploadModal);
@@ -104,23 +104,22 @@ export class FancyInput extends React.Component {
     const { inputName, initialInputValue } = this.props;
 
     const preview = inputValue !== initialInputValue ?
-      <img src={`/uploads/${inputValue}`} alt="image" className="img-responsive" style={{ maxWidth: '50%'}}/> : 'No file uploaded';
+      <Image src={`/uploads/${inputValue}`} alt="image" responsive style={{ maxWidth: '50%'}}/> : 'No file uploaded';
 
     return (
       <React.Fragment>
         <input type="hidden" name={inputName} value={inputValue}/>
 
-        {/* preview */}
-        <div className="form-group">
-          <strong>New Image</strong>
+        <FormGroup controlId="preview">
+          <ControlLabel>New Image</ControlLabel>
           <div className="new-image">{preview}</div>
-        </div>
+        </FormGroup>
 
-        <div className="form-group">
+        <FormGroup>
           <PrimaryButton onClick={() => dispatch({ type: 'SHOW_MODAL' })}>
             Upload Image
           </PrimaryButton>
-        </div>
+        </FormGroup>
 
         <FancyInputContext.Provider value={this.state}>
           <ModalWithContext />
@@ -138,7 +137,7 @@ FancyInput.propTypes = {
 };
 
 FancyInput.defaultProps = {
-  template: "gallery",
+  template: "original",
   inputName: "gallery_image",
   initialInputValue: "",
 };

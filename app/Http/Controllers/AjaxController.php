@@ -16,13 +16,14 @@ class AjaxController extends Controller
     public function uploadAjax(Request $request)
     {
 
-        $file = $request->file('vipImage');
+        $file = $request->file('image');
         $file->storeAs('/', $file->getClientOriginalName(), 'uploads');
+        $template = $request->template ?: 'original';
 
         Image::firstOrCreate([
             'file_name' => $file->getClientOriginalName(),
             'url_asset' => url('uploads/' . $file->getClientOriginalName()),
-            'url_cache' => url('/imagecache/vip/' . $file->getClientOriginalName()),
+            'url_cache' => url("/imagecache/{$template}/{$file->getClientOriginalName()}"),
         ]);
 
         $response = [
