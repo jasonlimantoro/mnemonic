@@ -47,7 +47,7 @@ Route::group([
         // wedding
         Route::prefix('wedding')->group(function () {
             // vip
-            Route::resource('vip', 'VIPController', ['only' => ['update']]);
+            Route::patch('vip', 'VIPController@update')->name('vip.update');
             Route::get('vip/edit', 'VIPController@edit')->name('vip.edit');
 
             // Event
@@ -123,3 +123,4 @@ Route::name('front.')->group(function () {
 });
 
 Route::post('avatar', 'ImagesController@upload');
+Route::post('/uploadAjax', 'AjaxController@uploadAjax');
