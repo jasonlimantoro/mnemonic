@@ -16,7 +16,7 @@
           @endcomponent
         @endslot
         @slot('body')
-					{{ Form::open(['route' => ['carousel.images.store', 1], 'enctype' => 'multipart/form-data']) }}
+					{{ Form::open(['route' => ['carousel.images.store', 1]]) }}
 
 						@include('backend.website.carousel.form', ['submitButtonText' => 'Publish'])
 

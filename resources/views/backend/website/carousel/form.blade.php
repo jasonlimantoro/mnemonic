@@ -1,4 +1,7 @@
-@react("FancyInput")
+<div data-component="FancyInput"
+     data-prop-template="gallery"
+     data-prop-initial-input-value="{{ isset($image) ? $image->file_name : '' }}"
+></div>
 
 {{-- caption field --}}
 <div class="form-group">
