@@ -1,66 +1,88 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { FormGroup, ControlLabel, Image } from "react-bootstrap";
 
 import { InputFile } from "../components/Form";
 import { PrimaryButton } from "../components/Button";
 import { UploadModal } from "../components/Modal";
-import { DisplayImagesFromInputFile } from "../components/DisplayImage";
 import reducer from "../reducers/FancyInputReducer";
-import InputValueContext from "../contexts/InputValueContext";
+import FancyInputContext, { withFancyInput } from "../contexts/FancyInputContext";
+import AjaxStatus from "../components/AjaxStatus";
 
 
 export class SimpleInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      file: {}
+      file: {},
+      previewUrl: '',
+      loading: false,
+      showAlert: false,
+      status: '',
+      message: '',
     };
-    this.addFile = this.addFile.bind(this);
+    this.uploadFile = this.uploadFile.bind(this);
+    this.handleDismiss = this.handleDismiss.bind(this);
   }
 
-  addFile(newFile) {
+  uploadFile(file, previewUrl) {
+    this.setState({loading : true}, () => {
+      setTimeout(() => {
+        this.setState({
+          showAlert: true,
+          loading: false,
+          status: 'success',
+          message: 'Nice! The file is available for preview',
+          file,
+          previewUrl,
+        });
+      }, 1000);
+    });
+  }
+
+  handleDismiss() {
     this.setState({
-      file: newFile
+      showAlert : false,
     });
   }
 
   render() {
-    const inputStyle = {
-      display: 'none'
-    };
+    const { uploadFile, handleDismiss, state : {file, previewUrl, ...ajaxState}, props : {template} } = this;
 
-    const preview = this.props.image ?
-      <img src={this.props.image} alt="image" className="img-responsive"/> : 'No file uploaded';
+    const preview = previewUrl ?
+      <Image src={previewUrl} alt="image" responsive /> : 'No file uploaded';
+
     return (
       <React.Fragment>
-        {/* new file */}
-        <input type="file" name="image" id={"inputFileOutside" + '-' + this.props.i.toString()} style={inputStyle}/>
 
-        <div className="form-group">
-          {/* preview */}
-          <p><strong>New Image</strong></p>
-          <div id={"preview" + '-' + this.props.i.toString()} className="new-image">{preview}</div>
-        </div>
-        <div className="form-group">
-          <InputFile
-            label="Open file browser"
-            labelClass="btn btn-success"
-            name="image"
-            onChange={this.addFile}
-            i={this.props.i}
-          />
+        <input type="hidden" name="template" value={template}/>
 
-          <DisplayImagesFromInputFile file={this.state.file} i={this.props.i} displayOutside displayBelow={false}/>
-        </div>
+        <FormGroup controlId="preview">
+          <ControlLabel>New Image</ControlLabel>
+          <div className="new-image">{preview}</div>
+        </FormGroup>
+
+        <InputFile
+          label="Open file browser"
+          labelClass="btn btn-success"
+          name="image"
+          onChange={uploadFile}
+        />
+        <AjaxStatus {...ajaxState} onDismiss={handleDismiss}/>
       </React.Fragment>
-
     );
   }
 }
 
-SimpleInput.defaultProps = {
-  i: 1
+SimpleInput.propTypes = {
+  template: PropTypes.string,
 };
 
+SimpleInput.defaultProps = {
+  template : "gallery",
+};
+
+const ModalWithContext = withFancyInput(UploadModal);
 
 export class FancyInput extends React.Component {
   constructor(props) {
@@ -69,6 +91,7 @@ export class FancyInput extends React.Component {
     this.state = {
       modalShow: false,
       inputValue: this.props.initialInputValue,
+      template : this.props.template,
       dispatch: action => {
         this.setState(state => reducer(state, action))
       },
@@ -76,11 +99,9 @@ export class FancyInput extends React.Component {
   }
 
   render() {
-    console.log('FANCYINPUT: RENDERING');
-
     const { inputValue, dispatch } = this.state;
 
-    const { inputName, initialInputValue, dusk } = this.props;
+    const { inputName, initialInputValue } = this.props;
 
     const preview = inputValue !== initialInputValue ?
       <img src={`/uploads/${inputValue}`} alt="image" className="img-responsive" style={{ maxWidth: '50%'}}/> : 'No file uploaded';
@@ -96,22 +117,28 @@ export class FancyInput extends React.Component {
         </div>
 
         <div className="form-group">
-          <PrimaryButton dusk={dusk} onClick={() => dispatch({ type: 'SHOW_MODAL' })}>
+          <PrimaryButton onClick={() => dispatch({ type: 'SHOW_MODAL' })}>
             Upload Image
           </PrimaryButton>
         </div>
 
-        <InputValueContext.Provider value={this.state}>
-          <UploadModal store={this.state}/>
-        </InputValueContext.Provider>
+        <FancyInputContext.Provider value={this.state}>
+          <ModalWithContext />
+        </FancyInputContext.Provider>
 
       </React.Fragment>
     );
   }
 }
 
+FancyInput.propTypes = {
+  template: PropTypes.string,
+  inputName: PropTypes.string,
+  initialInputValue: PropTypes.string,
+};
+
 FancyInput.defaultProps = {
+  template: "gallery",
   inputName: "gallery_image",
   initialInputValue: "",
-  dusk: '',
 };

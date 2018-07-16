@@ -2,28 +2,27 @@ import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 
-import {ThumbnailGallery} from "./Thumbnail";
+import { Col, Row } from "react-bootstrap";
+import { ThumbnailGallery } from "./Thumbnail";
 import { SimplePagination } from "./Pagination";
-import { withInputChange } from "../contexts/InputValueContext";
+import { str_limit } from "../functionals/helper";
 
-export class RequestImages extends React.PureComponent {
+export class Images extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       images: [],
-      meta: [],
       totalPages: "",
-      links: [],
       selectedImage: '',
-      currentPage : 1,
+      currentPage: 1,
     };
-    this.toggleActive = this.toggleActive.bind(this);
+
+    this.handleClick = this.handleClick.bind(this);
     this.handleChangePage = this.handleChangePage.bind(this);
     this.handleOffsetPage = this.handleOffsetPage.bind(this);
   }
 
-  requestData() {
-    const { currentPage } = this.state;
+  requestData(page) {
     // cancel the previous request
     if (typeof this._source != typeof undefined) {
       this._source.cancel('Operation canceled due to new request.')
@@ -32,26 +31,22 @@ export class RequestImages extends React.PureComponent {
     // save the new request for cancellation
     this._source = axios.CancelToken.source();
 
+    const {source} = this.props;
+
     axios
-    .get(this.props.source, {
-      params: {
-        page: currentPage
-      },
+    .get(source, {
+      params: { page },
       cancelToken: this._source.token,
     })
     .then(result => {
-        const totalPages = Math.ceil(
-          result.data.meta.total / result.data.meta.per_page
-        );
-        const { meta, links, data } = result.data;
-        this.setState({
-          images: data,
-          meta,
-          totalPages,
-          links,
-        });
-      }
-    )
+      const { data } = result.data;
+      const { total, per_page } = result.data.meta;
+      const totalPages = Math.ceil(total / per_page);
+      this.setState({
+        images: data,
+        totalPages,
+      });
+    })
     .catch(err => {
       if (axios.isCancel(err)) {
         console.log('Request is cancelled', err);
@@ -62,17 +57,23 @@ export class RequestImages extends React.PureComponent {
     ;
   }
 
-  handleChangePage(currentPage) {
+  handleChangePage (currentPage) {
     this.setState({ currentPage });
-  }
+  };
 
-  handleOffsetPage(offset, max = this.state.totalPages, min = 1) {
+  handleOffsetPage (offset, max = this.state.totalPages, min = 1){
     const { currentPage } = this.state;
     const newPage = currentPage + offset;
     if (newPage <= max && newPage >= min) {
       this.setState({ currentPage: newPage });
     }
-  }
+  };
+
+  handleClick (id, name){
+    const { store: { dispatch } } = this.props;
+    this.toggleActive(id);
+    dispatch({ type: 'UPDATE_INPUT', payload: name });
+  };
 
   toggleActive(id) {
     this.setState({
@@ -81,54 +82,51 @@ export class RequestImages extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.requestData();
-    console.log('REQUESTIMAGE: MOUNTED');
+    const { currentPage } = this.state;
+    this.requestData(currentPage);
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { currentPage, totalPages } = this.state;
     if (currentPage !== prevState.currentPage) {
-      console.log('REQUESTIMAGE: UPDATED');
       // request data within the page range only
       if (currentPage <= totalPages && currentPage > 0) {
-        this.requestData();
+        this.requestData(currentPage);
       }
     }
   }
 
   componentWillUnmount() {
-    console.log("REQUESTIMAGE: UNMOUNTING");
     this._source && this._source.cancel();
   }
 
   render() {
-    console.log('REQUESTIMAGE : RENDERING');
-    const {totalPages, currentPage, images, selectedImage} = this.state;
-    const InputChangedThumbnail = withInputChange(ThumbnailGallery);
+    const { totalPages, currentPage, images, selectedImage } = this.state;
     return (
       <React.Fragment>
         <h1>Gallery</h1>
-        <div className="row gallery-tab">
+        <Row className="gallery-tab">
           {images.map(image => {
-            const isActive = selectedImage === image.id;
-            const { url_cache, file_name } = image.attributes;
-            const { name } = image.album.attributes;
-            return (
-              <div className="col-md-4 col-xs-6 thumbnail-container" key={image.id}>
-                <InputChangedThumbnail
-                  id ={image.id}
-                  isActive={isActive}
-                  sourceImage={url_cache}
-                  title={file_name}
-                  album={name}
-                  onToggleActive={this.toggleActive}
-                />
-              </div>
-            );
+              const isActive = selectedImage === image.id;
+              const { url_cache, file_name } = image.attributes;
+              const { name } = image.album.attributes;
+              return (
+                <Col
+                  md={4} xs={6}
+                  className="thumbnail-container"
+                  key={image.id}
+                  onClick={() => this.handleClick(image.id, file_name)}
+                >
+                  <ThumbnailGallery src={url_cache} className={`thumbnail-gallery ${isActive ? 'active' : ''}`}>
+                    <p>Name: <b>{str_limit(file_name)}</b></p>
+                    <p>Album: <b>{name}</b></p>
+                  </ThumbnailGallery>
+                </Col>
+              );
             }
           )}
-        </div>
-        <div className="row">
+        </Row>
+        <Row>
           <SimplePagination
             totalPages={parseInt(totalPages)}
             currentPage={currentPage}
@@ -136,13 +134,13 @@ export class RequestImages extends React.PureComponent {
             onChangeOffset={this.handleOffsetPage}
             optionalClass="gallery"
           />
-        </div>
+        </Row>
       </React.Fragment>
     );
   }
 }
 
-RequestImages.propTypes = {
+Images.propTypes = {
   source: PropTypes.string.isRequired,
   page: PropTypes.number,
   onChangePage: PropTypes.func,

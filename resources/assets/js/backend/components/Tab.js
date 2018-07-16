@@ -7,11 +7,13 @@ import {
   Col
 } from "react-bootstrap";
 import Ajax from "../defaults/ajax";
-
 import { InputFile } from "./Form";
-import { RequestImages } from "./Request";
+import { Images } from "./Request";
 import AjaxStatus from "./AjaxStatus";
+import { withFancyInput } from "../contexts/FancyInputContext";
 
+
+const ImagesWithContext = withFancyInput(Images);
 
 export class MediaTabs extends React.Component {
   constructor(props) {
@@ -39,8 +41,13 @@ export class MediaTabs extends React.Component {
   }
 
   uploadFile(file, previewUrl) {
+    const { template } = this.props.store;
+
     const formData = new FormData();
-    formData.append('vipImage', file, file.name);
+
+    formData.append('image', file, file.name);
+    formData.append('template', template);
+
     this.setState({ loading: true, showAlert: false, }, () => {
       Ajax
         .post('/uploadAjax', formData)
@@ -71,7 +78,8 @@ export class MediaTabs extends React.Component {
   }
 
   render() {
-    const { previewUrl, loading, status, showAlert, message } = this.state;
+    const { previewUrl, ...ajaxState } = this.state;
+
 
     const previewImage = previewUrl ? <img src={previewUrl} alt="" className={"img-responsive"}/> : '';
 
@@ -99,10 +107,7 @@ export class MediaTabs extends React.Component {
                   onChange={this.uploadFile}
                 />
                 <AjaxStatus
-                  loading={loading}
-                  status={status}
-                  showAlert={showAlert}
-                  message={message}
+                  {...ajaxState}
                   onDismiss={this.hideAlert}
                 />
                 {/*{previewImage}*/}
@@ -110,7 +115,7 @@ export class MediaTabs extends React.Component {
               </Tab.Pane>
               <Tab.Pane eventKey="gallery">
                 Or, use your gallery instead!
-                <RequestImages source="/api/images"/>
+                <ImagesWithContext source="/api/images"/>
               </Tab.Pane>
             </Tab.Content>
           </Col>

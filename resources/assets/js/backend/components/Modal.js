@@ -2,6 +2,10 @@ import React from "react";
 import { Modal, Table } from "react-bootstrap";
 import { DangerButton } from "./Button";
 import { MediaTabs } from "./Tab";
+import { withFancyInput } from "../contexts/FancyInputContext";
+
+
+const MediaWithContext = withFancyInput(MediaTabs);
 
 export class UploadModal extends React.Component {
   constructor(props) {
@@ -19,6 +23,7 @@ export class UploadModal extends React.Component {
   }
   render() {
     const { store, store : { dispatch } } = this.props;
+
     return (
       <Modal
         show={store.modalShow}
@@ -30,7 +35,7 @@ export class UploadModal extends React.Component {
           <Modal.Title id="contained-modal-title-lg"> Media </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MediaTabs
+          <MediaWithContext
             tabKey={this.state.tabKey}
             onSelect={this.changeTab}
           />
