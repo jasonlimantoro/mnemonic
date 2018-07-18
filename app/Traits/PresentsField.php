@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Presenters\EventPresenter;
 use Laracasts\Presenter\Exceptions\PresenterException;
 
 trait PresentsField {
@@ -35,6 +36,10 @@ trait PresentsField {
         return $this->presenterInstance;
     }
 
+
+    /**
+     * @return EventPresenter
+     */
     public static function process()
     {
         return (new static)->present();
