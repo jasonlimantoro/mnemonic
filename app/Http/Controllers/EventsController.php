@@ -48,11 +48,13 @@ class EventsController extends Controller
      */
     public function store(EventsRequest $request)
     {
+        $file = $request->gallery_image;
+
         $event = Event::create(
             $request->only(['name', 'description', 'location', 'datetime'])
 		);
-		
-		optional(Image::handleUpload($request, EventFilter::class, 'event'))->addTo($event);
+
+        $event->addImage($file);
 
         $this->flash('Event is successfully created!');
 
@@ -91,13 +93,15 @@ class EventsController extends Controller
      */
     public function update(EventsRequest $request, Event $event)
     {
-		
+
+        $file = $request->gallery_image;
+
 		$event->update(
 			request(['name', 'description', 'location', 'datetime'])
 		);
 
-		optional(Image::handleUpload($request, EventFilter::class, 'event'))->addTo($event);
-		
+		$event->addImage($file);
+
         $this->flash('Event is successfully updated!');
 
         return back();
@@ -111,9 +115,10 @@ class EventsController extends Controller
      */
     public function destroy(Event $event)
     {
-        $event->image()->delete();
-        $event->delete();
+        $event->deleteRecord();
+
         $this->flash('Event is successfully deleted!');
+
         return back();
     }
 }

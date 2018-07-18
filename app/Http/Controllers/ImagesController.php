@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Image;
 use App\Album;
-use App\Carousel;
 use App\Repositories\Images;
 use App\Repositories\Albums;
 use Illuminate\Http\Request;
@@ -53,53 +52,20 @@ class ImagesController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-           'image' => 'required|image',
-           'album' => 'required'
-        ];
+        $request->validate([
+            'image' => 'required|image',
+            'album' => 'required'
+        ]);
 
-        $this->validate($request, $rules);
+        $image = Image::upload($request);
 
-        $newImage = Image::handleUpload($request);
-        $album = Album::find($request->album)
-                        ->images()
-                        ->save($newImage);
+        Album::find($request->album)
+            ->images()
+            ->save($image);
 
         $this->flash('Image is successfully uploaded!');
 
         return redirect()->route('images.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Image  $image
-     * @param  \App\Carousel $carousel
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Carousel $carousel, Image $image)
-    {
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Carousel $carousel, Image $image)
-    {
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Image  $image
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Carousel $carousel, Image $image)
-    {
     }
 
     /**

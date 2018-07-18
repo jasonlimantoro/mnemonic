@@ -58,12 +58,7 @@ class CarouselImagesController extends Controller
     {
         $file = $request->gallery_image;
 
-        $image->update([
-            'file_name' => $file,
-            'url_asset' => url("uploads/${file}"),
-            'url_cache' => url("imagecache/gallery/${file}"),
-            'caption' => $request->caption,
-        ]);
+        $carousel->updateImage($image, $file, $request->only('caption'));
 
         $this->flash('Updated successfully!');
 
