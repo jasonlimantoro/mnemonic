@@ -5,7 +5,10 @@ import axios from "axios";
 import { Col, Row } from "react-bootstrap";
 import { ThumbnailGallery } from "./Thumbnail";
 import { SimplePagination } from "./Pagination";
+import Refresh from "./Refresh";
+
 import { str_limit } from "../functionals/helper";
+
 
 export class Images extends React.PureComponent {
   constructor(props) {
@@ -15,9 +18,11 @@ export class Images extends React.PureComponent {
       totalPages: "",
       selectedImage: '',
       currentPage: 1,
+      loading: false,
     };
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleRefresh = this.handleRefresh.bind(this);
     this.handleChangePage = this.handleChangePage.bind(this);
     this.handleOffsetPage = this.handleOffsetPage.bind(this);
   }
@@ -31,7 +36,7 @@ export class Images extends React.PureComponent {
     // save the new request for cancellation
     this._source = axios.CancelToken.source();
 
-    const {source} = this.props;
+    const { source } = this.props;
 
     axios
     .get(source, {
@@ -57,11 +62,11 @@ export class Images extends React.PureComponent {
     ;
   }
 
-  handleChangePage (currentPage) {
+  handleChangePage(currentPage) {
     this.setState({ currentPage });
   };
 
-  handleOffsetPage (offset, max = this.state.totalPages, min = 1){
+  handleOffsetPage(offset, max = this.state.totalPages, min = 1) {
     const { currentPage } = this.state;
     const newPage = currentPage + offset;
     if (newPage <= max && newPage >= min) {
@@ -69,11 +74,23 @@ export class Images extends React.PureComponent {
     }
   };
 
-  handleClick (id, name){
+  handleClick(id, name) {
     const { store: { dispatch } } = this.props;
     this.toggleActive(id);
     dispatch({ type: 'UPDATE_INPUT', payload: name });
   };
+
+  handleRefresh() {
+    const { currentPage } = this.state;
+    this.setState({ loading: true }, () => {
+      this.requestData(currentPage);
+      setTimeout(() => {
+        this.setState({
+          loading: false,
+        });
+      }, 1000);
+    });
+  }
 
   toggleActive(id) {
     this.setState({
@@ -101,9 +118,10 @@ export class Images extends React.PureComponent {
   }
 
   render() {
-    const { totalPages, currentPage, images, selectedImage } = this.state;
+    const { state : { totalPages, currentPage, images, selectedImage, loading }, handleRefresh, handleClick, } = this;
     return (
       <React.Fragment>
+        <Refresh loading={loading} onRefresh={handleRefresh}/>
         <h1>Gallery</h1>
         <Row className="gallery-tab">
           {images.map(image => {
@@ -115,7 +133,7 @@ export class Images extends React.PureComponent {
                   md={4} xs={6}
                   className="thumbnail-container"
                   key={image.id}
-                  onClick={() => this.handleClick(image.id, file_name)}
+                  onClick={() => handleClick(image.id, file_name)}
                 >
                   <ThumbnailGallery src={url_cache} className={`thumbnail-gallery ${isActive ? 'active' : ''}`}>
                     <p>Name: <b>{str_limit(file_name)}</b></p>
