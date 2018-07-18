@@ -3,14 +3,16 @@
 namespace App;
 
 use Carbon\Carbon;
+use App\Traits\HasOneImage;
 use App\Traits\PresentsField;
 use App\Presenters\EventPresenter;
 use Collective\Html\Eloquent\FormAccessible;
 
 class Event extends Model
 {
-    use FormAccessible, PresentsField;
+    use FormAccessible, PresentsField, HasOneImage;
 
+    public $filter = 'event';
 	protected $dates = ['datetime'];
 	protected $with = ['image'];
 	protected $presenter = EventPresenter::class;

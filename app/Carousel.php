@@ -2,11 +2,12 @@
 
 namespace App;
 
-use App\Filters\GalleryFilter;
+use App\Traits\HasManyImages;
 
 class Carousel extends Model
 {
-    public $filterClass = GalleryFilter::class;
+    use HasManyImages;
+
     public $filter = 'gallery';
 
 	public function images(){
@@ -15,18 +16,5 @@ class Carousel extends Model
     
     public function page(){
         return $this->belongsTo(Page::class);
-    }
-
-    public function addImage($filename, $attributes = [])
-    {
-       $imageAttr = [
-           'file_name' => $filename,
-           'url_asset' => url("uploads/${filename}"),
-           'url_cache' => url("imagecache/" . $this->filter . "/${filename}"),
-       ];
-
-       $completeAttr = array_merge($imageAttr, $attributes);
-
-       return $this->images()->create($completeAttr);
     }
 }

@@ -2,11 +2,14 @@
 
 namespace App;
 
-use Illuminate\Http\Request;
-use App\Filters\BridesBestFilter;
+use App\Traits\HasOneImage;
 
 class BridesBest extends Model
 {
+    use HasOneImage;
+
+    public $filter = 'bridesbest';
+
     protected $with = ['image'];
 
     public function image()
