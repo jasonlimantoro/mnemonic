@@ -28,7 +28,10 @@ class Album extends Model
 
     public function featuredImage()
     {
-        return $this->images->where('featured', 1)->first();
+        return $this
+            ->images()
+            ->where('featured', 1)
+            ->first();
     }
 
     public function scopeFilterId($query, $filters)
@@ -40,21 +43,19 @@ class Album extends Model
 
     public function uncategorizeImages()
     {
-        // assign all the images to uncategorized
-        $this->repo->uncategorized()
-                    ->images()
-                    ->saveMany($this->images);
+        foreach ($this->images as $image){
+            $image->featured = 0;
+            $this->repo->uncategorized()->images()->save($image);
+        }
+
         return $this;
     }
 
 
-    public function addFeaturedImage(Image $image)
+    public function addFeaturedImage($file)
     {
-        $imgAttr = $image->only(['file_name', 'url_asset', 'url_cache']);
-        $assignedAlbum = $image->album();
-        // not assigned to the current album
-        if (!is_null($assignedAlbum) && $assignedAlbum != $this) {
-            $this->images()->save($image);
+        if (! $file) {
+            return null;
         }
 
         $this->removeFeaturedImage();
