@@ -39,6 +39,9 @@ abstract class CheckPackageSettings
      */
     public function handle($request, Closure $next)
     {
+        if(app()->environment() === 'testing') {
+            return $next($request);
+        }
 
         if ($this->current() >= $this->allowed()){
             if($request->ajax()){
