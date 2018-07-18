@@ -31,9 +31,9 @@
           @component('layouts.table')
             @slot('tableHeader')
               <tr>
-                <th class="col title">Image</th>
-                <th class="col body">File</th>
-                <th class="col action">Action</th>
+                <th class="col-xs-3 title">Image</th>
+                <th class="col-xs-6 body">File</th>
+                <th class="col-xs-1 action">Action</th>
               </tr>
             @endslot
 
