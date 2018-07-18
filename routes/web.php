@@ -123,4 +123,4 @@ Route::name('front.')->group(function () {
 });
 
 Route::post('avatar', 'ImagesController@upload');
-Route::post('/uploadAjax', 'AjaxController@uploadAjax');
+Route::post('/uploadAjax', 'AjaxController@upload');

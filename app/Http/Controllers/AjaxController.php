@@ -13,14 +13,14 @@ class AjaxController extends Controller
         $this->middleware('package.images');
     }
 
-    public function uploadAjax(Request $request)
+    public function upload(Request $request)
     {
 
         $file = $request->file('image');
         $file->storeAs('/', $file->getClientOriginalName(), 'uploads');
         $template = $request->template ?: 'original';
 
-        Image::firstOrCreate([
+        $image = Image::firstOrCreate([
             'file_name' => $file->getClientOriginalName(),
             'url_asset' => url('uploads/' . $file->getClientOriginalName()),
             'url_cache' => url("/imagecache/{$template}/{$file->getClientOriginalName()}"),
@@ -30,6 +30,10 @@ class AjaxController extends Controller
             'message' => 'Upload success',
         ];
 
-        return Response::json($response);
+        if ($request->ajax()){
+            return Response::json($response);
+        }
+
+        return $image;
     }
 }
