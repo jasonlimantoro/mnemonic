@@ -67,9 +67,15 @@ class AlbumImagesController extends Controller
     public function edit(Albums $albums, Album $album, Image $image)
     {
 		$albums = $albums->toArray();
-		$selectedAlbum = $album;
+
+		$basename = $image->file_name;
+
+		$filename = pathinfo($basename, PATHINFO_FILENAME);
+
+		$ext = pathinfo($basename, PATHINFO_EXTENSION);
+
         return view('backend.website.albums.images.edit', 
-                compact('image', 'albums', 'selectedAlbum', 'album')
+                compact('image', 'albums', 'album', 'filename', 'ext')
         );
     }
 
@@ -84,16 +90,21 @@ class AlbumImagesController extends Controller
     public function update(Request $request, Album $album, Image $image)
     {
         $request->validate([
+            'file_name' => 'required',
             'album' => 'required'
         ]);
 
-		$targetAlbum = Album::find($request->album);
+        $oldbase = $image->file_name;
 
-		$targetAlbum->images()->save($image);
+        $newbase = $request->file_name . '.' . pathinfo($oldbase, PATHINFO_EXTENSION);
 
-		$this->flash('Changed from ' . $album->name . ' to ' . $targetAlbum->name);
+        $image->rename($oldbase, $newbase);
+
+        Album::find($request->album)->images()->save($image);
+
+		$this->flash('Image is updated successfully!');
 	
-        return redirect()->route('album.images.edit', ['album' => $targetAlbum->id, 'image' => $image->id]);
+        return redirect()->route('album.images.edit', ['album' => Album::find($request->album)->id, 'image' => $image->id]);
     }
 
     /**
