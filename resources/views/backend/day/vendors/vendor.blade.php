@@ -1,4 +1,4 @@
-<tr class="vendor">
+<tr>
   <td class="data title">
     @can('update', 'App\Vendor')
       <a href="{{ route('vendors.edit', ['vendor' => $vendor->id ]) }}">

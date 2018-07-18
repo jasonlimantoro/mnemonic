@@ -61,6 +61,4 @@
     @endslot
 
   @endcomponent
-
-
 @endsection

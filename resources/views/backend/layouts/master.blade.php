@@ -23,7 +23,11 @@
 					@include('backend.layouts.header')
 					@include('backend.layouts.success')
 					@include('backend.layouts.error')
-					@yield('content')
+					<div class="row">
+						<div class="col-md-12">
+							@yield('content')
+						</div>
+					</div>
 				</div>
 			</div>
 		@else

@@ -1,4 +1,4 @@
-<tr class="event">
+<tr>
   <td class="data title">
     @can('update', 'App\User')
       <a href="{{ route('users.edit', ['user' => $user->id ]) }}">

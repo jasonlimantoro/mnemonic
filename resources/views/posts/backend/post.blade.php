@@ -1,4 +1,4 @@
-<tr class="post">
+<tr>
   <td class="data title">
     <a href="{{ route('posts.edit', ['post' => $post->id, 'page' => $page->id ]) }}">
       {{ $post->present()->limitField('title', 50) }}

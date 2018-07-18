@@ -1,4 +1,4 @@
-<tr class="event">
+<tr>
   <td class="data title">
     @can('update', 'App\Role')
       <a href="{{ route('roles.edit', ['role' => $role->id ]) }}">
