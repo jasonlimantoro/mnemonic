@@ -3,8 +3,12 @@
 namespace App;
 
 
+use App\Traits\FiltersResources;
+
 class RSVP extends Model
 {
+    use FiltersResources;
+
 	protected $table = 'rsvps';
 
 	public static function byEmail($email)

@@ -34,7 +34,9 @@ class RSVPController extends Controller
      */
     public function index()
     {
-        $rsvps = RSVP::latest()->get();
+        $rsvps = RSVP::filtersSearch(request(['search', 'order', 'method']))
+                        ->latest()
+                        ->get();
         return view('backend.day.rsvps.index', compact('rsvps'));
     }
 
