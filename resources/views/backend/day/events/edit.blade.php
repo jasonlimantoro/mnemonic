@@ -20,8 +20,7 @@
 					{{ Form::model($event, [
 							'route' => ['events.update', $event->id], 
 							'method' => 'PATCH', 
-							'enctype'=>'multipart/form-data'
-							]) 
+							])
 					}}
 						@include('backend.day.events.form', [
 							'submitButtonText' => 'Update Event'

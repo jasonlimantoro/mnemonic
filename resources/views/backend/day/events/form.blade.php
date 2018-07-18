@@ -35,8 +35,8 @@
 	@isset($event)
 		<strong>Current Image</strong>
 		<div class="current-image">
-			@isset ($event->image)
-				<img src="{{ $event->image->url_cache }}" alt="event-image" class="img-responsive">
+			@isset ($eventImage)
+				<img src="{{ $eventImage }}" alt="event-image" class="img-responsive">
 			@else
 				<p>No image uploaded</p>
 			@endisset
@@ -44,6 +44,10 @@
 	@endisset
  
 	<div class="form-group">
-		@react("FancyInput")
+    <div data-component="FancyInput"
+         data-prop-template="event"
+         data-prop-initial-input-value="{{ isset($event) ? optional($event->image)->file_name : ''}}"
+    >
+    </div>
 	</div>
 </div>

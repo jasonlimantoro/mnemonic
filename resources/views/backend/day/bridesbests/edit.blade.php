@@ -19,8 +19,7 @@
 					{{ Form::model($bridesBest, [
 						'route' => ['bridesmaid-bestmans.update', $bridesBest->id], 
 						'method' => 'PATCH', 
-						'enctype' => 'multipart/form-data'
-						]) 
+						])
 					}}
 						@include('backend.day.bridesbests.form', [
 							'submitButtonText' => 'Update', 

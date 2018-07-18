@@ -20,7 +20,6 @@
 				@slot('body')
 
 					{{ Form::open(['route' => 'images.store', 'enctype' => 'multipart/form-data']) }}
-						{{--@react("SimpleInput")	--}}
             <div data-component="SimpleInput"
                  data-prop-template="gallery"
             >

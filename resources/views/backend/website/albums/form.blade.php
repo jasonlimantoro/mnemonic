@@ -22,11 +22,15 @@
 	@isset($album)
 		@if ($album->featuredImage() !== null)
 			<p>Featured Image: </p>
-			<img src="{{ $album->featuredImage()['url_cache'] }}" alt="featured-image" class="img-responsive featured-image">
+			<img src="{{ $album->featuredImage()->url_cache }}" alt="featured-image" class="img-responsive featured-image">
 		@else
 			<p>No Featured Image</p>		
 		@endif
 	@endisset
 	<h3>Upload Featured Image</h3>
-	@react("FancyInput")
+  <div data-component="FancyInput"
+       data-prop-template="gallery"
+       data-prop-initial-input-value="{{ isset($featureImageName) ? $featureImageName : '' }}"
+  >
+  </div>
 </div>

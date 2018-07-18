@@ -17,11 +17,7 @@
           @endcomponent
         @endslot
 				@slot('body')
-					{{ Form::open([
-						'route' => 'events.store', 
-						'enctype' => 'multipart/form-data'
-						]) 
-					}}
+					{{ Form::open([ 'route' => 'events.store']) }}
 						@include('backend.day.events.form', [
 							'submitButtonText' => 'Publish Event'
 						])

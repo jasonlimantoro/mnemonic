@@ -17,11 +17,14 @@
 					<p> Description: <strong>{{ $album->description }}</strong> </p>
 					{{ Form::open(['route' => ['album.images.store', $album->id], 'enctype' => 'multipart/form-data']) }}
 
-						@react("SimpleInput")
+            <div data-component="SimpleInput"
+                 data-prop-template="gallery"
+            >
+            </div>
 
 						{{-- Submit Button --}}
 						<div class="form-group">
-							{{ Form::submit('Publish', ['class' => 'btn btn-primary']) }}
+							{{ Form::submit('Create', ['class' => 'btn btn-primary']) }}
 						</div>
 					{{ Form::close() }}
 

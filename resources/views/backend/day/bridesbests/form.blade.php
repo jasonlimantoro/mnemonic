@@ -44,7 +44,9 @@
 			</div>
 		</div>
 	@endisset
-	<div class="form-group">
-		@react("FancyInput")
-	</div>
+  <div data-component="FancyInput"
+       data-prop-template="bridesbest"
+       data-prop-initial-input-value="{{ isset($bridesBestImageName) ? $bridesBestImageName : '' }}"
+  >
+  </div>
 </div>
