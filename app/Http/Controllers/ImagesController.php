@@ -86,10 +86,4 @@ class ImagesController extends Controller
 
         return back();
     }
-
-    public function upload(Request $request)
-    {
-		// for testing only
-        Image::handleUpload($request);
-    }
 }
