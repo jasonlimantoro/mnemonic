@@ -101,9 +101,11 @@ class RSVPController extends Controller
     public function update(RSVPRequest $request, RSVP $rsvp)
     {
         $rsvp->update(
-            $request->only(['name, email, phone, table_name, total_invitation'])
+            $request->only(['name', 'email', 'phone', 'table_name', 'total_invitation'])
         );
+
         $this->flash('RSVP data is updated successfully');
+
         return back();
     }
 
