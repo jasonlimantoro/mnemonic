@@ -11,6 +11,11 @@ class RSVP extends Model
 
 	protected $table = 'rsvps';
 
+    public function setNameAttribute($value)
+    {
+       $this->attributes['name'] = title_case($value);
+	}
+
 	public static function byEmail($email)
 	{
 		return static::where('email', $email)->firstOrFail();
