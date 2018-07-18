@@ -76,11 +76,7 @@ class ImagesController extends Controller
      */
     public function destroy(Image $image)
     {
-        // Delete from the filesystem
-        Storage::disk('uploads')->delete($image->file_name);
-
-        // Delete from the database
-        $image->delete();
+        $image->deleteRecord();
 
         $this->flash('Images are successfully deleted!');
 

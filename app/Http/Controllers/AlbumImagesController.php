@@ -117,9 +117,9 @@ class AlbumImagesController extends Controller
      */
     public function destroy(Album $album, Image $image)
     {
-		$image->delete();
+		$image->deleteRecord();
 
-		$this->flash('Image is successfully removed from ' . $album->name);
+		$this->flash('Image is successfully deleted');
 
 		return back();
     }
