@@ -101,7 +101,7 @@ class User extends Authenticatable
 	{
         $actions = [];
         $permission = $this->permissions()->whereName($permissionName);
-        if ($permission->get()->isNotEmpty()) {
+        if ($permission->exists()) {
             $actions = $permission->first()->pivot->action;
         }
         return $actions;

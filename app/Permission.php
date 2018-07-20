@@ -20,7 +20,7 @@ class Permission extends Model
 	{
 		$actions = [];
 		$role = $this->roles()->whereName($roleName);
-		if($role->get()->isNotEmpty()) {
+		if($role->exists()) {
 			$actions = $role->first()->pivot->action;
 		} 
 		return $actions;
@@ -29,7 +29,7 @@ class Permission extends Model
 	public function actionables(string $roleName)
 	{
 		$allowedActions = [];
-		if($role = $this->roles->isNotEmpty()){
+		if($role = $this->roles()->exists()){
 			$actions = $this->getActions($roleName);
 			$allowedActions = static::isActionable($actions);
 		}
@@ -39,7 +39,7 @@ class Permission extends Model
 	public function notActionables(string $roleName)
 	 {
 		$allowedActions = [];
-		if($role = $this->roles->isNotEmpty()){
+		if($role = $this->roles()->exists()){
 			$actions = $this->getActions($roleName);
 			$allowedActions = static::isNotActionable($actions);
 		}
@@ -59,7 +59,7 @@ class Permission extends Model
 	public function updateOrAttachPivot(Role $role, $attributes = [])
 	{
 		$roles = $this->roles();
-		if($roles->whereName($role->name)->get()->isEmpty()){
+		if($roles->whereName($role->name)->doesntExist()){
 			$roles->attach($role->id, ['action' => $attributes]);
 		} else {
 			$roles->updateExistingPivot($role->id, ['action' => $attributes]);

@@ -22,7 +22,7 @@ class Role extends Model
     {
         $actions = [];
         $permission = $this->permissions()->whereName($permissionName);
-        if ($permission->get()->isNotEmpty()) {
+        if ($permission->exists()) {
             $actions = $permission->first()->pivot->action;
         }
         return $actions;
@@ -31,7 +31,7 @@ class Role extends Model
     public function allowables(string $permissionName)
     {
         $allowedActions = [];
-        if ($this->permissions->isNotEmpty()) {
+        if ($this->permissions()->exists()) {
             $actions = $this->getActions($permissionName);
             $allowedActions = static::isAllowed($actions);
         }
@@ -41,7 +41,7 @@ class Role extends Model
     public function notAllowables(string $permissionName)
     {
         $allowedActions = [];
-        if ($this->permissions->isNotEmpty()) {
+        if ($this->permissions()->exists()) {
             $actions = $this->getActions($permissionName);
             $allowedActions = static::isNotAllowed($actions);
         }
