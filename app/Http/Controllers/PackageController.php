@@ -8,6 +8,14 @@ use App\Http\Controllers\GenericController as Controller;
 
 class PackageController extends Controller
 {
+    /**
+     * PackageController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('can:manage-package-settings');
+    }
+
 
     /**
      * Show the form for editing the specified resource.

@@ -87,6 +87,11 @@ class User extends Authenticatable
 		return $this->role->name === 'admin';
 	}
 
+    public function isSuper()
+    {
+       return $this->role->name === 'superadmin';
+	}
+
 	public function permissions()
 	{
 		return $this->role->permissions();

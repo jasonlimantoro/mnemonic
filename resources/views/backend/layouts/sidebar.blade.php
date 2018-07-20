@@ -113,7 +113,9 @@
       </ul>
 		</li>
 
-		<li class="header">Package</li>
-		<li><a href="{{ route('package.edit') }}" data-menu="menu">Default Values</a></li>
+    @can('manage-package-settings')
+      <li class="header">Package</li>
+      <li><a href="{{ route('package.edit') }}" data-menu="menu">Default Values</a></li>
+    @endcan
   </ul>
 </nav>
