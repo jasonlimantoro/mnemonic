@@ -31,7 +31,7 @@
 
 		@endcan
 		
-		@unless ($page->title === 'About Us')
+		@unless ($page->title === 'About')
 			@can('delete', App\Post::class)
 				<div
 					data-component="DeleteIcon"

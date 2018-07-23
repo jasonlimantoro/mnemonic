@@ -4,7 +4,7 @@
 	@component('backend.layouts.breadcrumb', ['current' => 'Posts'])
 	@endcomponent
 	@component('backend.layouts.panel', ['title' => $page->title ])
-		@unless ($page->title === 'About Us')
+		@unless ($page->title === 'About')
 			@can('create', App\Post::class)
 				@slot('addButton')
 					@component('backend.layouts.addButton', [

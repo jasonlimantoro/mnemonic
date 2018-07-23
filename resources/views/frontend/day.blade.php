@@ -6,7 +6,7 @@
 		<div class="row row-center wedding-day-overview">
 			<div class="col-xs-10 col-center">
 				<div class="page-title">
-					<h1 class="color-theme font-theme">Wedding Day</h1>
+					<h1 class="color-theme font-theme">{{ $mode === 'birthday' ? 'Birthday' : 'Wedding Day' }}</h1>
 				</div>
 				@isset($embed)
 					<div class="embed-video">
@@ -81,26 +81,28 @@
 		</div>
 
 		{{-- Bridesmaid Bestmen section --}}
-		<div class="row row-center wedding-day-bb">
-			
-			<div class="wedding-day-bb-title">
-				<h1 class="font-theme color-theme">Bridesmaid & Bestman</h1>
-			</div>
-			<div class="wedding-day-bb-message">
-				<p>Thank you for your support on our wedding</p>
-			</div>
-			
-			<div class="col-xs-8 col-center wedding-day-bb-slider">
-        <div data-component="BridesBestSlider"
-             data-prop-data="{{ $bridesMaid }}"
-        >
+    @mode('wedding')
+      <div class="row row-center wedding-day-bb">
+
+        <div class="wedding-day-bb-title">
+          <h1 class="font-theme color-theme">Bridesmaid & Bestman</h1>
         </div>
-        <div data-component="BridesBestSlider"
-             data-prop-data="{{ $bestMen }}"
-        >
+        <div class="wedding-day-bb-message">
+          <p>Thank you for your support on our wedding</p>
         </div>
-			</div>
-		</div>
+
+        <div class="col-xs-8 col-center wedding-day-bb-slider">
+          <div data-component="BridesBestSlider"
+               data-prop-data="{{ $bridesMaid }}"
+          >
+          </div>
+          <div data-component="BridesBestSlider"
+               data-prop-data="{{ $bestMen }}"
+          >
+          </div>
+        </div>
+      </div>
+    @endmode
 
 		{{-- Vendors section --}}
 		<div class="row row-center wedding-day-vendors">

@@ -15,7 +15,7 @@ class CheckPage
      */
     public function handle($request, Closure $next)
     {
-        if ($request->page->title === 'About Us') {
+        if ($request->page->title === 'About') {
             return back();
         }
         return $next($request);

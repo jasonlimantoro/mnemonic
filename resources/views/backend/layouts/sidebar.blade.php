@@ -19,13 +19,13 @@
 			<li>
 				<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" data-menu="menu">
 					<i class="glyphicon glyphicon-duplicate"></i>
-					Pages
+					Posts
 				</a>
 				<ul class="collapse list-unstyled" id="pageSubmenu">
 					<li><a href="{{ route('posts.index', ['page' => 1]) }}">Home</a></li>
 					<li>
             <a href="{{ route('posts.index', ['page' => 2]) }}">
-              About @mode('wedding') Us @else Me @endmode
+              About
             </a>
           </li>
 				</ul>

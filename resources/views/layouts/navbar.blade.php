@@ -32,7 +32,7 @@
 							</li>
 						<li>
 							<a href="{{ route('front.about') }}" 
-								 class="{{ Route::currentRouteNamed('front.about') ? 'active': '' }}">About Us
+								 class="{{ Route::currentRouteNamed('front.about') ? 'active': '' }}">About
 							</a>
 						</li>
 						<li>
@@ -47,8 +47,8 @@
 							</a>
 						</li>
 						<li>
-							<a href="{{ route('front.wedding') }}" 
-								 class="{{ Route::currentRouteNamed('front.wedding') ? 'active': '' }}">Wedding Day
+							<a href="{{ route('front.day') }}"
+								 class="{{ Route::currentRouteNamed('front.day') ? 'active': '' }}">@mode('birthday') Birthday @else Wedding Day @endmode
 							</a>
 						</li>
 						<li>

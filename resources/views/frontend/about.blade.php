@@ -5,7 +5,7 @@
 	<div class="container about-us-container">
 		<div class="col-md-12">
 			<div class="row page-title">
-				<h1 class="color-theme font-theme">About Us</h1>
+				<h1 class="color-theme font-theme">About</h1>
 			</div>
 			<div class="row">
 				@foreach($posts as $post)
