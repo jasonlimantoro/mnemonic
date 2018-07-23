@@ -4,7 +4,7 @@
   @component('backend.layouts.breadcrumb', ['current' => 'Couple'])
   @endcomponent
   @component('backend.layouts.panel', [
-    'title' => "VIP Information"
+    'title' => $mode === 'birthday' ? 'Birthday Person Information' : 'Couple Information'
   ])
 
     @slot('body')
@@ -13,7 +13,7 @@
         @php
           $role = $vip->gender === 'male' ? 'groom' : 'bride';
         @endphp
-        <div class="col-xs-12 col-md-6">
+        <div class="col-xs-12 {{ $mode === 'birthday' ? 'col-md-12' : 'col-md-6' }}">
           {{-- name field --}}
           <div class="form-group">
             {{ Form::label($role . '_name', 'Name:') }}
