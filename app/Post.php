@@ -9,7 +9,8 @@ use App\Presenters\PostPresenter;
 class Post extends Model
 {
 	use PresentsField, HasOneImage;
-	
+
+	public $presenter = PostPresenter::class;
 	public $filter = 'post';
 
     public function user()
