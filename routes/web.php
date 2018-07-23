@@ -45,7 +45,7 @@ Route::group([
         });
 
         // wedding
-        Route::prefix('wedding')->group(function () {
+        Route::prefix('day')->group(function () {
             // vip
             Route::patch('vip', 'VIPController@update')->name('vip.update');
             Route::get('vip/edit', 'VIPController@edit')->name('vip.edit');
