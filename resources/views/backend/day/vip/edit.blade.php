@@ -62,7 +62,7 @@
           @can('update', App\VIP::class)
             {{ Form::submit('Update', ['class' => 'btn btn-success']) }}
           @else
-            <button class="btn btn-default" disabled>Unauthorized</button>
+            {{ Form::unauthorizedButton() }}
           @endcan
         </div>
       </div>

@@ -47,7 +47,7 @@
 					@can('update-site-social')
 						{{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
 					@else
-						{!! Form::unauthorizedButton() !!}
+						{{ Form::unauthorizedButton() }}
 					@endcan
 				</div>
 
