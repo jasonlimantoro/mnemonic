@@ -34,7 +34,7 @@ class FrontendController extends Controller
 
     public function gallery(Albums $albums)
     {
-        $albums = $albums->categorized()->get();
+        $albums = $albums->categorized()->with('images')->get();
         return view('frontend.gallery', compact('albums'));
     }
 
@@ -53,7 +53,7 @@ class FrontendController extends Controller
 
         $bestMen = BridesBest::bestMen();
 
-		$vendors = Vendor::all();
+        $vendors = Vendor::all();
 
         return view('frontend.wedding', compact('embed', 'dates', 'groom', 'bride', 'bbs', 'vendors', 'bridesMaid', 'bestMen'));
     }
