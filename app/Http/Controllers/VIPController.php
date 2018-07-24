@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\PackageSetting;
-use App\VIP;
 use App\Setting;
+use App\PackageSetting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\GenericController as Controller;
 
@@ -21,17 +20,18 @@ class VIPController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param PackageSetting $setting
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit(PackageSetting $setting)
     {
-		$mode = PackageSetting::getValueByKey('other')->mode;
+		$mode = $setting->getValueByKey('other')->mode;
 
 		if ($mode === 'birthday') {
-			$vip = PackageSetting::getValueByKey('other')->vip->birthday_person;
+			$vip = $setting->getValueByKey('other')->vip->birthday_person;
 			return view('backend.day.vip.birthdayEdit', compact('vip'));
 		}
-        $vips = PackageSetting::getValueByKey('other')->vip;
+        $vips = $setting->getValueByKey('other')->vip;
         return view('backend.day.vip.weddingEdit', compact('vips'));
     }
 
@@ -39,15 +39,16 @@ class VIPController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
+     * @param PackageSetting $setting
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, PackageSetting $setting)
     {
-		if ($mode = PackageSetting::getValueByKey('other')->mode === 'birthday') {
+		if ($mode = $setting->getValueByKey('other')->mode === 'birthday') {
 			$request->validate([
 				'birthday_name' => 'required',
 			]);
-			PackageSetting::updateJSONValueFromKeyField('other', [
+			$setting->updateJSONValueFromKeyField('other', [
 				'vip' => [
 					'birthday_person' => [
 						'name' => $request->birthday_name,
@@ -62,7 +63,7 @@ class VIPController extends Controller
 				'groom_name' => 'required',
 				'bride_name' => 'required'
 			]);
-			PackageSetting::updateJSONValueFromKeyField('other', [
+			$setting->updateJSONValueFromKeyField('other', [
 				'vip' => [
 					'groom' => [
 						'name' => $request->groom_name,
