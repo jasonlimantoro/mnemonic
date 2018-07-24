@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use App\PackageSetting;
 use App\Http\Requests\PackageSettingsRequest;
 use App\Http\Controllers\GenericController as Controller;
+use App\Events\ModeChanged;
 
 class PackageController extends Controller
 {
+	public $setting;
+
     /**
      * PackageController constructor.
+     * @param PackageSetting $setting
      */
-    public function __construct()
+    public function __construct(PackageSetting $setting)
     {
-        $this->middleware('can:manage-package-settings');
+		$this->setting = $setting;
+		$this->middleware('can:manage-package-settings');
     }
 
 
@@ -24,7 +29,7 @@ class PackageController extends Controller
      */
     public function edit()
     {
-        $settings = PackageSetting::getValueByManyKeys(['resources-limit', 'other']);
+        $settings = $this->setting->getValueByManyKeys(['resources-limit', 'other']);
         return view('backend.package.edit', compact('settings'));
     }
 
@@ -36,8 +41,9 @@ class PackageController extends Controller
      */
     public function update(PackageSettingsRequest $request)
     {
-
-       PackageSetting::updatePackage($request);
+	   $this->setting->updatePackage($request);
+	   
+	   event(new ModeChanged($this->setting));
 
        $this->flash('Package settings are successfully updated');
 
