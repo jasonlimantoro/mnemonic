@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
             ImagesTableSeeder::class,
             CarouselsTableSeeder::class,
             AlbumsTableSeeder::class,
-            VIPTableSeeder::class,
             VendorsTableSeeder::class,
 			CategoriesTableSeeder::class,
 			RSVPTableSeeder::class,
