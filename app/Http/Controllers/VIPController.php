@@ -25,8 +25,14 @@ class VIPController extends Controller
      */
     public function edit()
     {
+		$mode = PackageSetting::getValueByKey('other')->mode;
+
+		if ($mode === 'birthday') {
+			$vip = PackageSetting::getValueByKey('other')->vip->birthday_person;
+			return view('backend.day.vip.birthdayEdit', compact('vip'));
+		}
         $vips = PackageSetting::getValueByKey('other')->vip;
-        return view('backend.day.vip.edit', compact('vips'));
+        return view('backend.day.vip.weddingEdit', compact('vips'));
     }
 
     /**
@@ -37,23 +43,43 @@ class VIPController extends Controller
      */
     public function update(Request $request)
     {
-        $request->validate([
-            'groom_name' => 'required',
-            'bride_name' => 'required'
-        ]);
-
-        PackageSetting::updateJSONValueFromKeyField('other', [
-            'vip->groom->name' => $request->groom_name,
-            'vip->groom->father' => $request->groom_father,
-            'vip->groom->mother' => $request->groom_mother,
-            'vip->groom->image' => $request->groom_gallery,
-
-            'vip->bride->name' => $request->bride_name,
-            'vip->bride->father' => $request->bride_father,
-            'vip->bride->mother' => $request->bride_mother,
-            'vip->bride->image' => $request->bride_gallery,
-        ]);
-
+		if ($mode = PackageSetting::getValueByKey('other')->mode === 'birthday') {
+			$request->validate([
+				'birthday_name' => 'required',
+			]);
+			PackageSetting::updateJSONValueFromKeyField('other', [
+				'vip' => [
+					'birthday_person' => [
+						'name' => $request->birthday_name,
+						'father' => $request->birthday_father,
+						'mother' => $request->birthday_mother,
+						'image' => $request->birthday_image,
+					]
+				], 
+			]);
+		} else {
+			$request->validate([
+				'groom_name' => 'required',
+				'bride_name' => 'required'
+			]);
+			PackageSetting::updateJSONValueFromKeyField('other', [
+				'vip' => [
+					'groom' => [
+						'name' => $request->groom_name,
+						'father' => $request->groom_father,
+						'mother' => $request->groom_mother,
+						'image' => $request->groom_image,
+					],
+					'bride' => [
+						'name' => $request->bride_name,
+						'father' => $request->bride_father,
+						'mother' => $request->bride_mother,
+						'image' => $request->bride_image,
+					]
+				],
+			]);
+		}
+		
         $this->flash('VIP information is successfully updated!');
 
         return back();

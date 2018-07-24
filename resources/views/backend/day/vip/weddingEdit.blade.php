@@ -4,7 +4,7 @@
   @component('backend.layouts.breadcrumb', ['current' => 'Couple'])
   @endcomponent
   @component('backend.layouts.panel', [
-    'title' => $mode === 'birthday' ? 'Birthday Person Information' : 'Couple Information'
+    'title' => 'Couple Information'
   ])
 
     @slot('body')
@@ -47,7 +47,7 @@
           </div>
           <div class="form-group">
             <div data-component="FancyInput"
-                 data-prop-input-name="{{ $role }}_gallery"
+                 data-prop-input-name="{{ $role }}_image"
                  data-prop-initial-input-value="{{ isset($vip->image) ? $vip->image : '' }}"
                  data-prop-template="vip"
             >
