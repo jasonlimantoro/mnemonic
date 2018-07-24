@@ -13,7 +13,8 @@ class VIPFilter implements FilterInterface
 
     /**
      * Creates new instance of filter
-     *
+     * @param null $width
+     * @param null $height
      */
     public function __construct($width = null, $height = null)
     {
@@ -29,7 +30,7 @@ class VIPFilter implements FilterInterface
      */
     public function applyFilter(Image $image)
     {
-        $image->resize($this->width, $this->height);
+        $image->fit($this->width, $this->height);
 
         return $image;
     }
