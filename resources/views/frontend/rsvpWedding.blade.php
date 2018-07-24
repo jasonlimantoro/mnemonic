@@ -28,7 +28,7 @@
 
           {{-- Submit Button --}}
           <div class="form-group">
-            {{ Form::submit('Submit', ['class' => 'btn btn-primary box-theme' , isset($wedding) ? '' : 'disabled' ]) }}
+            {{ Form::submit('Submit', ['class' => 'btn btn-primary box-theme' , isset($event) ? '' : 'disabled' ]) }}
           </div>
         </div>
         {{ Form::close() }}
@@ -38,18 +38,18 @@
       <div class="row rsvp-timer">
 
         <div class="rsvp-timer-header">
-          @isset($wedding)
+          @isset($event)
             <h3>
-              We {{ $isFuture ? 'will be married in ' : 'have been married since ' }}{{ $wedding->present()->prettyDatetime }}
+              We {{ $isFuture ? 'will be married in ' : 'have been married since ' }}{{ $event->present()->prettyDatetime }}
             </h3>
           @else
             <h3>No wedding event found</h3>
           @endisset
         </div>
 
-        @isset($weddingDate)
+        @isset($eventDate)
           <div data-component="RSVPTimer"
-               data-prop-wedding-date="{{ $weddingDate }}"
+               data-prop-wedding-date="{{ $eventDate }}"
           >
           </div>
         @endisset
@@ -60,7 +60,6 @@
           >
           </div>
         @endif
-        
       </div>
     </div>
   </div>

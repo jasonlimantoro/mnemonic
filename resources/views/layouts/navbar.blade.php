@@ -48,7 +48,7 @@
 						</li>
 						<li>
 							<a href="{{ route('front.day') }}"
-								 class="{{ Route::currentRouteNamed('front.day') ? 'active': '' }}">@mode('birthday') Birthday @else Wedding Day @endmode
+								 class="{{ Route::currentRouteNamed('front.day') ? 'active': '' }}">{{ $mode === 'birthday' ? 'Birthday' : 'Wedding Day' }}
 							</a>
 						</li>
 						<li>

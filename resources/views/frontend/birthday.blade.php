@@ -21,13 +21,13 @@
 				
 				<div class="col-xs-12 col-md-10 col-center">
 					<div class="vip-container">
-						<h3 class="font-theme vip-name">{{ $groom->name }}</h3>
+						<h3 class="font-theme vip-name">{{ $vip->name }}</h3>
 						<span class="font-theme vip-relation">Son of</span> <br>
 						<div class="vip-parent">
-							<p>{{ $groom->father }} &</p>
-							<p>{{ $groom->mother }}</p>
+							<p>{{ $vip->father }} &</p>
+							<p>{{ $vip->mother }}</p>
 						</div>
-						<img src="{{ $groom->image->url_cache }}" alt="vip" class="img-responsive inline-block">
+						<img src="{{ url('imagecache/vip/' . $vip->image) }}" alt="vip" class="img-responsive inline-block">
 					</div>
 				</div>
 			</div>
@@ -64,27 +64,6 @@
           </div>
         @endforeach
 			@endforeach
-		</div>
-
-		{{-- Vendors section --}}
-		<div class="row row-center wedding-day-vendors">
-			<div class="wedding-day-vendors">
-				<h1 class="font-theme color-theme">Our Vendors</h1>
-			</div>
-			<div class="col-md-4 col-center">
-				<div class="wedding-day-vendors-table">
-					@component('layouts.table')
-						@slot('tableBody')
-							@foreach ($vendors as $vendor)
-								<tr>
-									<td>{{ $vendor->name }}</td>
-									<td>: {{ optional($vendor->category)->name ?? 'None' }}</td>
-								</tr>
-							@endforeach
-						@endslot
-					@endcomponent
-				</div>
-			</div>
 		</div>
 	</div>
 @endsection

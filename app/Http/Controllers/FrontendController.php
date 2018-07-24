@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Page;
 use App\Event;
-use App\VIP;
-use App\Repositories\Albums;
 use App\Vendor;
 use App\Setting;
 use Carbon\Carbon;
 use App\BridesBest;
+use App\PackageSetting;
 use App\Repositories\Posts;
+use App\Repositories\Albums;
 
 class FrontendController extends Controller
 {
@@ -38,16 +38,23 @@ class FrontendController extends Controller
         return view('frontend.gallery', compact('albums'));
     }
 
-    public function day()
+    public function day(PackageSetting $setting)
     {
+        $mode = $setting->getValueByKey('other')->mode;
+
         $embed = Setting::getValueByKey('embed-video');
 
         $dates = Event::process()
             ->displayEventsGroupByDate();
 
-        $groom = VIP::groom();
+        if($mode === 'birthday') {
+            $vip = $setting->getJSONValueFromKeyField('other', 'vip')->birthday_person;
+            return view('frontend.birthday', compact('embed', 'dates', 'vip'));
+        }
 
-        $bride = VIP::bride();
+        $groom = $setting->getJsonValueFromKeyField('other', 'vip')->groom;
+
+        $bride = $setting->getJsonValueFromKeyField('other', 'vip')->bride;
 
         $bridesMaid = BridesBest::bridesMaid();
 
@@ -55,17 +62,23 @@ class FrontendController extends Controller
 
         $vendors = Vendor::all();
 
-        return view('frontend.day', compact('embed', 'dates', 'groom', 'bride', 'bbs', 'vendors', 'bridesMaid', 'bestMen'));
+        return view('frontend.wedding', compact('embed', 'dates', 'groom', 'bride', 'bbs', 'vendors', 'bridesMaid', 'bestMen'));
     }
 
-    public function onlineRSVP()
+    public function rsvp(PackageSetting $setting)
     {
-        $wedding = Event::wedding();
+        $mode = $setting->getValueByKey('other')->mode;
 
-        $weddingDate = optional($wedding)->datetime;
+        $event = Event::{$mode}();
 
-        $isFuture = !empty($weddingDate) ? Carbon::now()->diffInSeconds($weddingDate, false) > 0 : null;
+        $eventDate = optional($event)->datetime;
 
-        return view('frontend.online-rsvp', compact('wedding', 'isFuture', 'weddingDate'));
+        $isFuture = !empty($eventDate) ? Carbon::now()->diffInSeconds($eventDate, false) > 0 : null;
+
+        if ($mode === 'birthday'){
+            return view('frontend.rsvpBirthday', compact('event', 'eventDate', 'isFuture'));
+        }
+
+        return view('frontend.rsvpWedding', compact('event', 'eventDate', 'isFuture'));
     }
 }

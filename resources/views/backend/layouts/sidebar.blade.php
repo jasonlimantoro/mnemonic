@@ -41,47 +41,51 @@
 			</li>
 		@endcan
     
-		<li class="header">
-      @mode('birthday') Birthday @else Wedding Day @endmode
-    </li>
+		<li class="header">Your Day</li>
 
     <li>
       <a href="#weddingSubmenu" data-toggle="collapse" aria-expanded="false" data-menu="menu">
-        Your @mode('wedding') Wedding Day @else Birthday @endmode
+        {{ $mode === 'birthday' ? 'Birthday' : 'Wedding Day' }}
       </a>
       <ul class="collapse list-unstyled" id="weddingSubmenu">
 				@can('read', App\VIP::class)
-					<li><a href="{{ route('vip.edit') }}">VIP</a></li>
+					<li>
+            <a href="{{ route('vip.edit') }}">
+              {{ $mode === 'birthday' ? 'Birthday Person' : 'Couple' }}
+            </a>
+          </li>
 				@endcan
 
 				@can('read', App\Event::class)
 					<li><a href="{{ route('events.index') }}">Event</a></li>
 				@endcan
 
-        @mode('wedding')
+        @if($mode === 'wedding')
           @can('read', App\BridesBest::class)
             <li><a href="{{ route('bridesmaid-bestmans.index') }}">Bridesmaid & Bestman</a></li>
           @endcan
-        @endmode
+        @endif
 
 				@can('read-embed-video')
 					<li><a href="{{ route('embedVideo.edit') }}">Embed Video</a></li>
 				@endcan
 			</ul>
 		</li>
-		
-		<li>
-      <a href="#vendorSubMenu" data-toggle="collapse" aria-expanded="false" data-menu="menu">Vendors</a>
-      <ul class="collapse list-unstyled" id="vendorSubMenu">
-				@can('read', App\Vendor::class)
-					<li><a href="{{ route('vendors.index') }}">Vendor Lists</a></li>
-				@endcan
 
-				@can('read', App\Category::class)
-					<li><a href="{{ route('categories.index') }}">Manage Categories</a></li>
-				@endcan
-      </ul>
-		</li>
+    @if($mode === 'wedding')
+      <li>
+        <a href="#vendorSubMenu" data-toggle="collapse" aria-expanded="false" data-menu="menu">Vendors</a>
+        <ul class="collapse list-unstyled" id="vendorSubMenu">
+          @can('read', App\Vendor::class)
+            <li><a href="{{ route('vendors.index') }}">Vendor Lists</a></li>
+          @endcan
+
+          @can('read', App\Category::class)
+            <li><a href="{{ route('categories.index') }}">Manage Categories</a></li>
+          @endcan
+        </ul>
+      </li>
+    @endif
 
 		@can('read', App\RSVP::class)
 			<li><a href="{{ route('rsvps.index') }}" data-menu="menu">RSVP</a></li>

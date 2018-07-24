@@ -17,6 +17,7 @@ class Event extends Model
 	protected $with = ['image'];
 	protected $presenter = EventPresenter::class;
 
+
     public function image()
     {
         return $this->morphOne(Image::class, 'imageable');
@@ -53,7 +54,7 @@ class Event extends Model
     {
         return Carbon::parse($value)->format('Y-m-d\TH:i');
 	}
-	
+
 	public static function byName($name)
 	{
 		return static::whereName($name)->first();
@@ -63,4 +64,9 @@ class Event extends Model
 	{
 		return static::where('name', 'like', '%wedding%')->first();
 	}
+
+    public static function birthday()
+    {
+        return static::where('name', 'like', '%birthday%')->first();
+    }
 }

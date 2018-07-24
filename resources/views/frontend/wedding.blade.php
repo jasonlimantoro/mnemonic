@@ -27,7 +27,7 @@
 							<p>{{ $groom->father }} &</p>
 							<p>{{ $groom->mother }}</p>
 						</div>
-						<img src="{{ $groom->image->url_cache }}" alt="vip" class="img-responsive inline-block">
+						<img src="{{ url('imagecache/vip/' . $groom->image) }}" alt="vip" class="img-responsive inline-block">
 					</div>
 				</div>
 				<div class="col-sm-2 hidden-xs link">&</div>
@@ -40,7 +40,7 @@
 							<p>{{ $bride->father }} &</p>
 							<p>{{ $bride->mother }}</p>
 						</div>
-						<img src="{{ $bride->image->url_cache }}" alt="vip" class="img-responsive inline-block">
+						<img src="{{ url('imagecache/vip/' . $bride->image ) }}" alt="vip" class="img-responsive inline-block">
 					</div>
 				</div>
 			</div>
