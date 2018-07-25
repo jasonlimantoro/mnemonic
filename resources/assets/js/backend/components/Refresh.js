@@ -1,15 +1,20 @@
 import React from "react";
+import styled from "styled-components";
+import StyledIcon from "../styles/icon";
+
+const StyledRefresh = StyledIcon.extend`
+	cursor: pointer;
+`;
 
 const Refresh = ({loading, onRefresh }) => (
   <div>
     {loading ? "Refreshing..." : "Refresh"}{" "}
-    <i className={`fa fa-refresh ${loading ? 'fa-spin' : ''}`}
-       onClick={onRefresh}
-       style={{ cursor: "pointer", fontSize: "24px"}}
+		<StyledRefresh 
+			className={`fa fa-refresh ${loading ? 'fa-spin' : ''}`}
+      onClick={onRefresh}
     >
-    </i>
+    </StyledRefresh>
   </div>
 );
 
 export default Refresh;
-

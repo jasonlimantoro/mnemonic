@@ -1,8 +1,10 @@
 import React from "react";
+import styled from "styled-components";
+
 import {Table} from "react-bootstrap";
 
-export const RSVPTable = ({data}) => (
-  <Table>
+const RSVPTable = ({data, ...rest}) => (
+  <Table {...rest}>
     <tbody>
     <tr>
       <td> RSVP No</td>
@@ -44,4 +46,12 @@ export const RSVPTable = ({data}) => (
   </Table>
 
 );
+
+export const StyledRSVPTable = styled(RSVPTable)`
+  margin: 20px;
+  td {
+    border: none !important;
+    text-align: left;
+  }
+`;
 

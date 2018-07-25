@@ -1,10 +1,10 @@
 import ReactHabitat from "react-habitat";
-import {RSVPModal} from "./components/Modal";
+import {StyledRSVPModal} from "./components/Modal";
 import {RSVPTimer} from "./components/RSVPTimer";
 import {AlbumSlider, BridesBestSlider} from "./components/Slider";
 
 const components = {
-  RSVPModal,
+  StyledRSVPModal,
   RSVPTimer,
   AlbumSlider,
   BridesBestSlider

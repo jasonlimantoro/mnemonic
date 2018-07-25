@@ -1,16 +1,15 @@
 import React from "react";
-import {GalleryModal} from "./Modal";
-import ImageSlide from "./Slide";
+import {StyledGalleryModal} from "./Modal";
+import StyledImageSlide from "./Slide";
 
 const DisplayImages = ({ data, showModal }) => {
   if (data.show){
     const slides = data.items.map((image, index) => {
       return (
-        <ImageSlide 
+        <StyledImageSlide
 					key={index}
 					url={image.url_cache}
-					containerClass={'col-md-4 cursor-pointer'}
-					imageClass={'image-album'}
+					className={'col-md-4'}
 					onClick={() => showModal(index)}
         />
       );
@@ -20,7 +19,7 @@ const DisplayImages = ({ data, showModal }) => {
       <div>
         <h2 className="font-theme color-theme">{data.album.name}</h2>
         {slides}
-        <GalleryModal heading={data.album.name} />
+        <StyledGalleryModal heading={data.album.name} />
       </div>
     );
   } else {

@@ -1,9 +1,12 @@
 import React from "react";
+import StyledIcon from "../styles/icon";
+
+const StyledLoading = StyledIcon.extend``
 
 const Loading = () => (
   <div>
-    <i style={{fontSize: '24px'}} className="fa fa-spinner fa-spin"></i>
-    Loading
+		<StyledLoading className="fa fa-spinner fa-spin"></StyledLoading> 
+			Loading
   </div>
 );
 

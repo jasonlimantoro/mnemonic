@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { Col, Row } from "react-bootstrap";
 import { ThumbnailGallery } from "./Thumbnail";
-import { SimplePagination } from "./Pagination";
+import { StyledPagination } from "./Pagination";
 import Refresh from "./Refresh";
 
 import { str_limit } from "../functionals/helper";
@@ -118,43 +118,44 @@ export class Images extends React.PureComponent {
   }
 
   render() {
-    const { state : { totalPages, currentPage, images, selectedImage, loading }, handleRefresh, handleClick, } = this;
-    return (
-      <React.Fragment>
-        <Refresh loading={loading} onRefresh={handleRefresh}/>
-        <h1>Gallery</h1>
-        <Row className="gallery-tab">
-          {images.map(image => {
-              const isActive = selectedImage === image.id;
-              const { url_cache, file_name } = image.attributes;
-              const { name } = image.album.attributes;
-              return (
-                <Col
-                  md={4} xs={6}
-                  className="thumbnail-container"
-                  key={image.id}
-                  onClick={() => handleClick(image.id, file_name)}
-                >
-                  <ThumbnailGallery src={url_cache} className={`thumbnail-gallery ${isActive ? 'active' : ''}`}>
-                    <p>Name: <b>{str_limit(file_name)}</b></p>
-                    <p>Album: <b>{name}</b></p>
-                  </ThumbnailGallery>
-                </Col>
-              );
-            }
-          )}
-        </Row>
-        <Row>
-          <SimplePagination
-            totalPages={parseInt(totalPages)}
-            currentPage={currentPage}
-            onChangePage={this.handleChangePage}
-            onChangeOffset={this.handleOffsetPage}
-            optionalClass="gallery"
-          />
-        </Row>
-      </React.Fragment>
-    );
+    const {
+      state : { totalPages, currentPage, images, selectedImage, loading },
+      handleRefresh,
+      handleClick,
+    } = this;
+    return <React.Fragment>
+      <Refresh loading={loading} onRefresh={handleRefresh}/>
+      <h1>Gallery</h1>
+      <Row>
+        {images.map(image => {
+            const active = selectedImage === image.id;
+            const { url_cache, file_name } = image.attributes;
+            const { name } = image.album.attributes;
+            return (
+              <Col
+                md={4} xs={6}
+                key={image.id}
+                onClick={() => handleClick(image.id, file_name)}
+              >
+                <ThumbnailGallery src={url_cache} active={active}>
+                  <p>Name: <b>{str_limit(file_name)}</b></p>
+                  <p>Album: <b>{name}</b></p>
+                </ThumbnailGallery>
+              </Col>
+            );
+          }
+        )}
+      </Row>
+      <Row>
+        <StyledPagination
+          totalPages={parseInt(totalPages)}
+          currentPage={currentPage}
+          onChangePage={this.handleChangePage}
+          onChangeOffset={this.handleOffsetPage}
+          optionalClass="gallery"
+        />
+      </Row>
+    </React.Fragment>;
   }
 }
 

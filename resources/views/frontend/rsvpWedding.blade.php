@@ -55,7 +55,7 @@
         @endisset
 
         @if(session('rsvp'))
-          <div data-component="RSVPModal"
+          <div data-component="StyledRSVPModal"
                data-prop-rsvp="{{ session('rsvp') }}"
           >
           </div>

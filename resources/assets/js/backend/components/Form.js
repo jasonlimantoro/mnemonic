@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
+
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 
 const FieldGroup = ({ id, label, labelClass, ...props }) => {
@@ -12,7 +14,7 @@ const FieldGroup = ({ id, label, labelClass, ...props }) => {
 };
 
 
-export const InputFile = ({ onChange, ...rest }) => {
+const InputFile = ({ onChange, ...rest }) => {
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -30,7 +32,6 @@ export const InputFile = ({ onChange, ...rest }) => {
     <FieldGroup
       id="inputFile"
       type="file"
-      style={{ 'opacity': 0, 'display': 'inline' }}
       onChange={handleChange}
       {...rest}
     />
@@ -43,3 +44,9 @@ InputFile.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func
 };
+
+export const StyledInput = styled(InputFile)`
+  opacity: 0;
+  display: inline !important;
+`;
+

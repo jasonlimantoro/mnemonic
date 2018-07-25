@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FormGroup, ControlLabel, Image } from "react-bootstrap";
 
-import { InputFile } from "../components/Form";
+import { StyledInput } from "../components/Form";
 import { PrimaryButton } from "../components/Button";
 import { UploadModal } from "../components/Modal";
 import reducer from "../reducers/FancyInputReducer";
@@ -62,7 +62,7 @@ export class SimpleInput extends React.Component {
           <div className="new-image">{preview}</div>
         </FormGroup>
 
-        <InputFile
+        <StyledInput
           label="Open file browser"
           labelClass="btn btn-success"
           name="image"

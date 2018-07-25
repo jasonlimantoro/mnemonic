@@ -1,12 +1,18 @@
 import React from "react";
 import Slider from "react-slick";
+import styled from "styled-components";
+
 import { Modal } from "react-bootstrap";
-import { RSVPTable } from "./Table";
+import { StyledRSVPTable } from "./Table";
 import { ModalImagesContext } from "./Slider";
 import defaultSettings from "../utils/SliderSettings";
-import ImageSlide from "./Slide";
 
-export const GalleryModal = ({ heading }) => {
+import StyledImageSlide from "./Slide";
+import { screenMdMin } from "../backend/styles/breakpoints";
+import { goldDark, goldGradient } from "../backend/styles/color";
+
+
+const GalleryModal = ({ heading, ...rest }) => {
   return (
     <ModalImagesContext.Consumer>
       {({ modal, hideModal, images }) => {
@@ -20,11 +26,11 @@ export const GalleryModal = ({ heading }) => {
         const countItems = images.length;
         const items = images.map((item, index) => {
           return (
-            <ImageSlide key={item.id} url={item.url_cache}>
+            <StyledImageSlide key={item.id} url={item.url_cache}>
               <span style={{ float: "right" }}>
                 {index + 1} / {countItems}
               </span>
-            </ImageSlide>
+            </StyledImageSlide>
           );
         });
         return (
@@ -32,12 +38,13 @@ export const GalleryModal = ({ heading }) => {
             show={modal.show}
             onHide={hideModal}
             bsSize="large"
-            className="gallery-modal"
+            {...rest}
           >
             <Modal.Header closeButton>
               <Modal.Title
-                className="font-theme modal-album-title"
+                className="font-theme"
                 componentClass="h1"
+                style={{ color: goldDark }}
               >
                 Album: {heading}
               </Modal.Title>
@@ -52,7 +59,21 @@ export const GalleryModal = ({ heading }) => {
   );
 };
 
-export class RSVPModal extends React.Component {
+export const StyledGalleryModal = styled(GalleryModal)`
+  top: 25%;
+	bottom: auto;
+	@media(min-width: ${screenMdMin}){
+    top: 0;	
+	}
+	.modal-content {
+	  background-color: #f6e397
+	}
+	.slick-dots {
+	  position: static;
+	}
+`;
+
+class RSVPModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -75,12 +96,12 @@ export class RSVPModal extends React.Component {
   }
 
   render() {
-    const { rsvp } = this.props;
+    const { rsvp, ...rest } = this.props;
     return (
       <Modal
         show={this.state.modalShow}
         onHide={this.closeModal}
-        className={"rsvp-success-modal"}
+        {...rest}
       >
         <Modal.Header closeButton/>
 
@@ -91,11 +112,12 @@ export class RSVPModal extends React.Component {
           </h2>
           <div className="row-center">
             <div className="col-xs-12 col-center">
-              <RSVPTable data={rsvp}/>
+              <StyledRSVPTable data={rsvp}/>
             </div>
             <button
-              className="btn btn-theme dismiss-modal"
+              className="btn btn-theme"
               onClick={this.closeModal}
+              style={{ minWidth: 150 }}
             >
               Ok
             </button>
@@ -105,3 +127,40 @@ export class RSVPModal extends React.Component {
     );
   }
 }
+
+export const StyledRSVPModal = styled(RSVPModal)`
+  color: ${goldDark};
+  .modal-content {
+    ${goldGradient}
+  } 
+	.modal-header {
+    .close {
+      position: absolute;
+      background: #ffffff;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      top: -10px;
+      right: -10px;
+      opacity: 1;
+      margin-top: -2px;
+    }
+	}
+  .modal-body {
+    text-align: center;
+    min-height: 500px;
+    margin: 15px;
+    z-index: 0;
+    &:before {
+      content: " ";
+      position: absolute;
+      z-index: -1;
+      background: url('/images/bg-rsvp-modal.png');
+      background-size: 100% 100%;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: -5%;
+    }
+  }
+`;

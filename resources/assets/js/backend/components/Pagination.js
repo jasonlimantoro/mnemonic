@@ -1,6 +1,14 @@
 import React from "react";
+import styled from "styled-components";
 
-export const SimplePagination = ({ currentPage, optionalClass, totalPages, onChangeOffset, onChangePage }) => {
+const SimplePagination = ({
+  currentPage,
+  optionalClass,
+  totalPages,
+  onChangeOffset,
+  onChangePage,
+  className,
+}) => {
 
   const handleChangeOffset = (e, offset) => {
     e.preventDefault();
@@ -27,7 +35,7 @@ export const SimplePagination = ({ currentPage, optionalClass, totalPages, onCha
     );
   }
   return (
-    <ul className={"pagination " + optionalClass}>
+    <ul className={"pagination " + className}>
       <li className={currentPage === 1 ? "disabled" : ""}>
         <a
           href="#"
@@ -50,3 +58,8 @@ export const SimplePagination = ({ currentPage, optionalClass, totalPages, onCha
     </ul>
   );
 };
+
+export const StyledPagination = styled(SimplePagination)`
+  padding-left: 15px;
+`;
+

@@ -7,7 +7,7 @@ import {
   Col
 } from "react-bootstrap";
 import Ajax from "../defaults/ajax";
-import { InputFile } from "./Form";
+import { StyledInput } from "./Form";
 import { Images } from "./Request";
 import AjaxStatus from "./AjaxStatus";
 import { withFancyInput } from "../contexts/FancyInputContext";
@@ -100,7 +100,7 @@ export class MediaTabs extends React.Component {
             <Tab.Content mountOnEnter>
               <Tab.Pane eventKey="uploads">
                 Upload images from your local computer
-                <InputFile
+                <StyledInput
                   label="Open file browser"
                   labelClass="btn btn-success"
                   name="image"

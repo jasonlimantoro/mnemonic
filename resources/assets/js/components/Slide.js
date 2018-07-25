@@ -1,14 +1,21 @@
 import React from "react";
+import { Image } from "react-bootstrap";
 
-const ImageSlide = ({ url, containerClass, imageClass, children, ...rest }) => {
+import styled from "styled-components";
+
+
+const ImageSlide = ({ url, imageClass, children, ...rest }) => {
   return (
-   <div className={containerClass} {...rest}>
-     <div className={imageClass}>
-       <img src={url} alt={'image'} className={'img-responsive'}/>
-     </div>
+   <div {...rest}>
+     <Image src={url} alt={'image'} responsive/>
      {children}
    </div>
   );
 };
 
-export default ImageSlide;
+const StyledImageSlide = styled(ImageSlide)`
+  cursor: pointer;
+  padding: 15px;
+`;
+
+export default StyledImageSlide;
