@@ -20,27 +20,12 @@ const StyledThumbnail = styled(Thumbnail)`
   `}
 `;
 
-const StyledImageContainer = styled.div`
-	text-align: center;
-	position: relative;
-	height: 200px;
-	overflow: hidden;
-	img {
-		display: inline-block;
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		width: auto;
-		transform: translate(-50%, -50%);
-	}	
-`;
-
 export const ThumbnailGallery = ({ src, children, active }) => {
   return (
     <StyledThumbnail active={active ? 1 : 0}>
-      <StyledImageContainer>
+      <div className="thumbnail-image">
         <Image src={src} alt="thumbnail-image" responsive/>
-      </StyledImageContainer>
+      </div>
       {children}
     </StyledThumbnail>
   );
