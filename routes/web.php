@@ -98,6 +98,26 @@ Route::get('/mailable', function () {
     return new App\Mail\RSVPInvitation($rsvp);
 });
 
+// Previewing rsvp confirmation
+Route::get('/confirmed', function() {
+  $rsvp = \App\RSVP::first();
+
+  $mode = \App\PackageSetting::getValueByKey('other')->mode;
+
+  if($mode === 'birthday'){
+      $birthday = \App\PackageSetting::getValueByKey('other')->vip->birthday_person;
+      return view('rsvps.confirmed', compact('birthday'));
+  }
+
+  $groom = \App\PackageSetting::getValueByKey('other')->vip->groom;
+  $bride = \App\PackageSetting::getValueByKey('other')->vip->bride;
+  return view('rsvps.confirmed', compact('rsvp', 'groom', 'bride'));
+
+});
+
+// Previewing rsvpConfirmation email
+
+
 // rsvp confirmation
 Route::get('rsvps/{rsvp}/token/{token}/confirm', 'RSVPController@confirm')->name('rsvps.confirm');
 Route::post('rsvps/confirm', 'RSVPController@confirmFromFront')->name('rsvps.confirmFromFront');

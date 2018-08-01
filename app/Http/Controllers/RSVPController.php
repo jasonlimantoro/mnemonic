@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PackageSetting;
 use App\RSVP;
 use App\RSVPToken;
 use App\ConfirmsRSVP;
@@ -131,10 +132,20 @@ class RSVPController extends Controller
         return back();
     }
 
-    public function confirm(RSVP $rsvp, RSVPToken $token)
+    public function confirm(RSVP $rsvp, RSVPToken $token, PackageSetting $setting)
     {
         $this->confirm->persist($token);
-        return view('emails.RSVPconfirmed', compact('rsvp'));
+
+        $mode = $setting->getValueByKey('other')->mode;
+
+        if($mode === 'birthday'){
+            $birthday = $setting->getValueByKey('other')->vip->birthday_person;
+            return view('rsvps.confirmed', compact('rsvp','birthday'));
+        }
+
+        $groom = $setting->getValueByKey('other')->vip->groom;
+        $bride = $setting->getValueByKey('other')->vip->bride;
+        return view('rsvps.confirmed', compact('rsvp', 'groom', 'bride'));
     }
 
     public function confirmFromFront(Request $request)
