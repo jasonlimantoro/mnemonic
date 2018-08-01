@@ -51,12 +51,14 @@ class RSVPInvitation extends Mailable
                         ->with(compact('vip', 'url', 'event'));
         }
 
+        $hm = Event::holyMatrimony();
+
 		$groom = $setting->getJSONValueFromKeyField('other', 'vip')->groom;
 
 		$bride = $setting->getJSONValueFromKeyField('other', 'vip')->bride;
 
 		return $this->subject('Invitation to Wedding of ' . $groom->name . ' and ' . $bride->name)
-					->markdown('emails.wedding.RSVPInvitation')
-					->with(compact('groom', 'bride', 'url', 'event'));
+					->view('emails.wedding.RSVPInvitation')
+					->with(compact('groom', 'bride', 'url', 'event', 'hm'));
     }
 }
