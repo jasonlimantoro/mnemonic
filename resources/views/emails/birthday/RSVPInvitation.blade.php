@@ -2,10 +2,8 @@
 # Good Day!
 
 Dear {{ $rsvp->name }}, <br>
-You are invited to the wedding of <br>
-<h1>{{ $groom->name }}</h1>
-and
-<h1>{{ $bride->name }}</h1>
+You are invited to the birthday party of <br>
+<h1>{{ $vip->name }}</h1>
 
 <h3>Your RSVP information</h3>
 @component('mail::panel', ['url' => ''])

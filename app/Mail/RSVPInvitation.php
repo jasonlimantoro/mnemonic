@@ -2,12 +2,12 @@
 
 namespace App\Mail;
 
+use App\Event;
 use App\RSVP;
-use App\VIP;
+use App\PackageSetting;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class RSVPInvitation extends Mailable
 {
@@ -18,7 +18,7 @@ class RSVPInvitation extends Mailable
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param RSVP $rsvp
      */
     public function __construct(RSVP $rsvp)
     {
@@ -28,19 +28,35 @@ class RSVPInvitation extends Mailable
     /**
      * Build the message.
      *
+     * @param PackageSetting $setting
      * @return $this
      */
-    public function build()
+    public function build(PackageSetting $setting)
     {
 		$url = '/';
-		if($this->rsvp->token()->count())
-		{
+		if($this->rsvp->token()->exists()) {
 			$url = route('rsvps.confirm', ['rsvp' => $this->rsvp->id, 'token' => $this->rsvp->token->token ]);
 		}
-		$groom = VIP::groom();
-		$bride = VIP::bride();
+
+		$mode = $setting->getJSONValueFromKeyField('other', 'mode');
+
+		$event = Event::{$mode}();
+
+		if ($mode === 'birthday'){
+
+		    $vip = $setting->getJSONValueFromKeyField('other', 'vip')->birthday_person;
+
+		    return $this->subject("Invitation to " . $vip->name . "'s birthday party" )
+                        ->markdown('emails.birthday.RSVPInvitation')
+                        ->with(compact('vip', 'url', 'event'));
+        }
+
+		$groom = $setting->getJSONValueFromKeyField('other', 'vip')->groom;
+
+		$bride = $setting->getJSONValueFromKeyField('other', 'vip')->bride;
+
 		return $this->subject('Invitation to Wedding of ' . $groom->name . ' and ' . $bride->name)
-					->markdown('emails.RSVPInvitation')
-					->with(compact('groom', 'bride', 'url'));
+					->markdown('emails.wedding.RSVPInvitation')
+					->with(compact('groom', 'bride', 'url', 'event'));
     }
 }

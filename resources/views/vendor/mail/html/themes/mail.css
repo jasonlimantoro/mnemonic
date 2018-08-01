@@ -1,3 +1,9 @@
+/* Variables */
+:root {
+    --main-bg-color: #fcfbe8;
+    --main-text-color: black;
+}
+
 /* Base */
 
 body, body *:not(html):not(style):not(br):not(tr):not(code) {
@@ -6,8 +12,8 @@ body, body *:not(html):not(style):not(br):not(tr):not(code) {
 }
 
 body {
-    background-color: #f5f8fa;
-    color: #74787E;
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
     height: 100%;
     hyphens: auto;
     line-height: 1.4;
@@ -26,7 +32,6 @@ ul,
 ol,
 blockquote {
     line-height: 1.4;
-    text-align: left;
 }
 
 a {
@@ -38,37 +43,32 @@ a img {
 }
 
 /* Typography */
+h1, h2, h3, p {
+    font-family: serif;
+}
 
 h1 {
-    color: #2F3133;
-    font-size: 19px;
+    font-size: 36pt;
     font-weight: bold;
     margin-top: 0;
-    text-align: left;
 }
 
 h2 {
-    color: #2F3133;
     font-size: 16px;
     font-weight: bold;
     margin-top: 0;
-    text-align: left;
 }
 
 h3 {
-    color: #2F3133;
     font-size: 14px;
     font-weight: bold;
     margin-top: 0;
-    text-align: left;
 }
 
 p {
-    color: #74787E;
     font-size: 16px;
     line-height: 1.5em;
     margin-top: 0;
-    text-align: left;
 }
 
 p.sub {
@@ -82,7 +82,7 @@ img {
 /* Layout */
 
 .wrapper {
-    background-color: #f5f8fa;
+    background-color: var(--main-bg-color);
     margin: 0;
     padding: 0;
     width: 100%;
@@ -108,7 +108,7 @@ img {
 }
 
 .header a {
-    color: red;
+    color: #3c8dbc;
     font-size: 19px;
     font-weight: bold;
     text-decoration: none;
@@ -118,7 +118,7 @@ img {
 /* Body */
 
 .body {
-    background-color: #FFFFFF;
+    background-color: var(--main-bg-color);
     border-bottom: 1px solid #EDEFF2;
     border-top: 1px solid #EDEFF2;
     margin: 0;
@@ -133,7 +133,7 @@ img {
     background-color: #FFFFFF;
     margin: 0 auto;
     padding: 0;
-    width: 570px;
+    width: 80%;
     -premailer-cellpadding: 0;
     -premailer-cellspacing: 0;
     -premailer-width: 570px;
@@ -195,6 +195,8 @@ img {
 
 .content-cell {
     padding: 35px;
+    background-color: var(--main-bg-color);
+    text-align: center;
 }
 
 /* Buttons */
