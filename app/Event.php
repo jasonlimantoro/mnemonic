@@ -65,6 +65,11 @@ class Event extends Model
 		return static::where('name', 'like', '%wedding%')->first();
 	}
 
+    public static function holyMatrimony()
+    {
+        return static::where('name', 'like', '%holy%')->first();
+	}
+
     public static function birthday()
     {
         return static::where('name', 'like', '%birthday%')->first();
