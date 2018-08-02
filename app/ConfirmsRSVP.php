@@ -7,25 +7,48 @@ use Illuminate\Support\Facades\Mail;
 
 class ConfirmsRSVP
 {
-	public function invite(RSVP $rsvp)
+    /**
+     * Send an invitation email to RSVP
+     *
+     * @param RSVP $rsvp
+     */
+    public function invite(RSVP $rsvp)
 	{
 		$this->createToken($rsvp)
 			 ->send();
 	}
 
-	public function postRemind(RSVP $rsvp)
+    /**
+     * Send invitation and increment the reminder count
+     *
+     * @param RSVP $rsvp
+     */
+    public function postRemind(RSVP $rsvp)
 	{
 		$this->invite($rsvp);
 
 		$rsvp->increment('reminder_count');
 	}
-		
-	protected function createToken(RSVP $rsvp)
+
+    /**
+     * Generate a unique token for RSVP
+     *
+     * @param RSVP $rsvp
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    protected function createToken(RSVP $rsvp)
 	{
 		return RSVPToken::generateFor($rsvp);
 	}
 
-	public function persist(RSVPToken $token)
+    /**
+     * Confirm the RSVP and delete the unique token
+     *
+     * @param RSVPToken $token
+     * @return $this
+     * @throws \Exception
+     */
+    public function persist(RSVPToken $token)
 	{
 		$token->rsvp()
 			  ->update(['status'=> 'confirmed']);
