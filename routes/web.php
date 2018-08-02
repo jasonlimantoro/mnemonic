@@ -116,6 +116,10 @@ Route::get('/reserved', function() {
 });
 
 // Previewing rsvpConfirmation email
+Route::get('/mailable/reservation', function (){
+   $rsvp = \App\RSVP::first();
+   return new App\Mail\RSVPReservation($rsvp);
+});
 
 
 // rsvp confirmation

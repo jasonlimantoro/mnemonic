@@ -134,18 +134,20 @@ class RSVPController extends Controller
 
     public function confirm(RSVP $rsvp, RSVPToken $token, PackageSetting $setting)
     {
-        $this->confirm->persist($token);
+        $this->confirm
+            ->persist($token)
+            ->reserve($rsvp);
 
         $mode = $setting->getValueByKey('other')->mode;
 
         if($mode === 'birthday'){
             $birthday = $setting->getValueByKey('other')->vip->birthday_person;
-            return view('rsvps.confirmed', compact('rsvp','birthday'));
+            return view('rsvps.reserved', compact('rsvp','birthday'));
         }
 
         $groom = $setting->getValueByKey('other')->vip->groom;
         $bride = $setting->getValueByKey('other')->vip->bride;
-        return view('rsvps.confirmed', compact('rsvp', 'groom', 'bride'));
+        return view('rsvps.reserved', compact('rsvp', 'groom', 'bride'));
     }
 
     public function confirmFromFront(Request $request)
@@ -158,7 +160,9 @@ class RSVPController extends Controller
         $id = (int) ($request->rsvp);
         $rsvp = RSVP::find($id);
         $token = $rsvp->token;
-        $this->confirm->persist($token);
+        $this->confirm
+            ->persist($token)
+            ->reserve($rsvp);
 
         return redirect()->route('front.rsvp')->with('rsvp', $rsvp);
     }
