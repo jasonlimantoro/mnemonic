@@ -99,19 +99,19 @@ Route::get('/mailable', function () {
 });
 
 // Previewing rsvp confirmation
-Route::get('/confirmed', function() {
+Route::get('/reserved', function() {
   $rsvp = \App\RSVP::first();
 
   $mode = \App\PackageSetting::getValueByKey('other')->mode;
 
   if($mode === 'birthday'){
       $birthday = \App\PackageSetting::getValueByKey('other')->vip->birthday_person;
-      return view('rsvps.confirmed', compact('birthday'));
+      return view('rsvps.reserved', compact('birthday'));
   }
 
   $groom = \App\PackageSetting::getValueByKey('other')->vip->groom;
   $bride = \App\PackageSetting::getValueByKey('other')->vip->bride;
-  return view('rsvps.confirmed', compact('rsvp', 'groom', 'bride'));
+  return view('rsvps.reserved', compact('rsvp', 'groom', 'bride'));
 
 });
 
