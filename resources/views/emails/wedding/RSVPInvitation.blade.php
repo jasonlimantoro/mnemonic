@@ -1263,7 +1263,7 @@
   </div>
 
   <div class="row justify-content-center text-center">
-    <p> Visit our <a href="/" target="_blank">site</a> </p>
+    <p>Visit our <a href="{{ env('APP_URL') }}" target="_blank">site</a></p>
   </div>
 
 </div>

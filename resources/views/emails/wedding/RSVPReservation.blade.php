@@ -1084,6 +1084,7 @@
           @endslot
         @endcomponent
         <p>Thank you for your reservation, please keep this information.</p>
+        <p>Visit our <a href="{{ env('APP_URL') }}" target="_blank">site</a></p>
       </div>
     </div>
   </div>
