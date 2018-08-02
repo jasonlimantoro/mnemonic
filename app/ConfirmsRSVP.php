@@ -2,7 +2,10 @@
 
 namespace App;
 
-class ConfirmsRSVP 
+use App\Mail\RSVPReservation;
+use Illuminate\Support\Facades\Mail;
+
+class ConfirmsRSVP
 {
 	public function invite(RSVP $rsvp)
 	{
@@ -27,5 +30,17 @@ class ConfirmsRSVP
 		$token->rsvp()
 			  ->update(['status'=> 'confirmed']);
 		$token->delete();
+
+		return $this;
+	}
+
+    /**
+     * Send a reservation email to RSVP
+     *
+     * @param RSVP $rsvp
+     */
+    public function reserve(RSVP $rsvp)
+    {
+        Mail::to($rsvp)->send(new RSVPReservation($rsvp));
 	}
 }
