@@ -93,9 +93,15 @@ Route::group([
     });
 
 // previewing mailables in browser
-Route::get('/mailable', function () {
+Route::get('/mailable/invitation', function () {
     $rsvp = \App\RSVP::find(1);
     return new App\Mail\RSVPInvitation($rsvp);
+});
+
+// Previewing rsvpConfirmation email
+Route::get('/mailable/reservation', function (){
+   $rsvp = \App\RSVP::first();
+   return new App\Mail\RSVPReservation($rsvp);
 });
 
 // Previewing rsvp confirmation
@@ -114,13 +120,6 @@ Route::get('/reserved', function() {
   return view('rsvps.reserved', compact('rsvp', 'groom', 'bride'));
 
 });
-
-// Previewing rsvpConfirmation email
-Route::get('/mailable/reservation', function (){
-   $rsvp = \App\RSVP::first();
-   return new App\Mail\RSVPReservation($rsvp);
-});
-
 
 // rsvp confirmation
 Route::get('rsvps/{rsvp}/token/{token}/confirm', 'RSVPController@confirm')->name('rsvps.confirm');
