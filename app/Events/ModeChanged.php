@@ -9,21 +9,21 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use App\PackageSetting;
 
 class ModeChanged
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
 	public $mode;
+
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param string $mode
      */
-    public function __construct(PackageSetting $setting)
+    public function __construct(string $mode)
     {
-        $this->mode = $setting->getValueByKey('other')->mode;
+        $this->mode = $mode;
     }
 
     /**

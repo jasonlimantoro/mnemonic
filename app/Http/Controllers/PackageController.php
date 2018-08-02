@@ -9,7 +9,7 @@ use App\Events\ModeChanged;
 
 class PackageController extends Controller
 {
-	public $setting;
+    public $setting;
 
     /**
      * PackageController constructor.
@@ -17,8 +17,8 @@ class PackageController extends Controller
      */
     public function __construct(PackageSetting $setting)
     {
-		$this->setting = $setting;
-		$this->middleware('can:manage-package-settings');
+        $this->setting = $setting;
+        $this->middleware('can:manage-package-settings');
     }
 
 
@@ -41,12 +41,18 @@ class PackageController extends Controller
      */
     public function update(PackageSettingsRequest $request)
     {
-	   $this->setting->updatePackage($request);
-	   
-	   event(new ModeChanged($this->setting));
+        $oldMode = $this->setting->getValueByKey('other')->mode;
 
-       $this->flash('Package settings are successfully updated');
+        $newMode = $request->mode;
 
-       return back();
+        if (strtolower($oldMode) !== strtolower($newMode)) {
+            event(new ModeChanged($newMode));
+        }
+
+        $this->setting->updatePackage($request);
+
+        $this->flash('Package settings are successfully updated');
+
+        return back();
     }
 }
