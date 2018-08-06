@@ -40,7 +40,7 @@ class FrontendController extends Controller
 
     public function day(PackageSetting $setting)
     {
-        $mode = $setting->getValueByKey('other')->mode;
+        $mode = $setting->getMode();
 
         $embed = Setting::getValueByKey('embed-video');
 
@@ -67,7 +67,7 @@ class FrontendController extends Controller
 
     public function rsvp(PackageSetting $setting)
     {
-        $mode = $setting->getValueByKey('other')->mode;
+        $mode = $setting->getMode();
 
         $event = Event::{$mode}();
 

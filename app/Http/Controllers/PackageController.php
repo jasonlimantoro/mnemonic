@@ -41,7 +41,7 @@ class PackageController extends Controller
      */
     public function update(PackageSettingsRequest $request)
     {
-        $oldMode = $this->setting->getValueByKey('other')->mode;
+        $oldMode = $this->setting->getMode();
 
         $newMode = $request->mode;
 
