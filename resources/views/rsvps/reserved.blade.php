@@ -32,7 +32,11 @@
   <div class="row full-height justify-content-center align-items-center">
     <div class="col-sm">
       <h1>
-        The Wedding of {{ strtok($groom->name, " ") }} and {{ strtok($bride->name, " ") }}
+        @if($mode === 'birthday')
+          The Birthday of {{ strtok($vip->birthday_person->name, " ") }}
+        @else
+          The Wedding of {{ strtok($vip->groom->name, " ") }} and {{ strtok($vip->bride->name, " ") }}
+        @endif
       </h1>
       <div class="alert alert-success text-center" role="alert">
         We have confirmed your reservation and sent you the following details to <a href="mailto:{{ $rsvp->email }}">{{ $rsvp->email }}</a>!

@@ -1224,17 +1224,17 @@
   </div>
 
   <div class="row flex-column justify-content-center text-center vip">
-    <h1>{{ $groom->name }}</h1>
+    <h1>{{ $vip->groom->name }}</h1>
     <small>Son of</small>
-    <b>{{ $groom->father }}</b>
-    <b>{{ $groom->mother }}</b>
+    <b>{{ $vip->groom->father }}</b>
+    <b>{{ $vip->groom->mother }}</b>
 
     <p class="and">And</p>
 
-    <h1>{{ $bride->name }}</h1>
+    <h1>{{ $vip->bride->name }}</h1>
     <small>Daughter of</small>
-    <b>{{ $bride->father }}</b>
-    <b>{{ $bride->mother }}</b>
+    <b>{{ $vip->bride->father }}</b>
+    <b>{{ $vip->bride->mother }}</b>
   </div>
 
   <div class="row justify-content-center event">

@@ -11,9 +11,9 @@ use Illuminate\Queue\SerializesModels;
 
 class RSVPInvitation extends Mailable
 {
-	use Queueable, SerializesModels;
-	
-	public $rsvp;
+    use Queueable, SerializesModels;
+
+    public $rsvp;
 
     /**
      * Create a new message instance.
@@ -22,7 +22,7 @@ class RSVPInvitation extends Mailable
      */
     public function __construct(RSVP $rsvp)
     {
-		$this->rsvp = $rsvp;
+        $this->rsvp = $rsvp;
     }
 
     /**
@@ -33,32 +33,24 @@ class RSVPInvitation extends Mailable
      */
     public function build(PackageSetting $setting)
     {
-		$url = '/';
-		if($this->rsvp->token()->exists()) {
-			$url = route('rsvps.confirm', ['rsvp' => $this->rsvp->id, 'token' => $this->rsvp->token->token ]);
-		}
-
-		$mode = $setting->getJSONValueFromKeyField('other', 'mode');
-
-		$event = Event::{$mode}();
-
-		if ($mode === 'birthday'){
-
-		    $vip = $setting->getJSONValueFromKeyField('other', 'vip')->birthday_person;
-
-		    return $this->subject("Invitation to " . $vip->name . "'s birthday party" )
-                        ->markdown('emails.birthday.RSVPInvitation')
-                        ->with(compact('vip', 'url', 'event'));
+        $url = '/';
+        if ($this->rsvp->token()->exists()) {
+            $url = route('rsvps.confirm', ['rsvp' => $this->rsvp->id, 'token' => $this->rsvp->token->token]);
         }
+
+        $mode = $setting->getMode();
+
+        $event = Event::{$mode}();
 
         $hm = Event::holyMatrimony();
 
-		$groom = $setting->getJSONValueFromKeyField('other', 'vip')->groom;
+        $vip = $setting->getVip();
 
-		$bride = $setting->getJSONValueFromKeyField('other', 'vip')->bride;
+        $subject = $mode === 'birthday' ? 'Invitation to birthday of ' . $vip->birthday_person->name :
+            'Invitation to wedding of ' . $vip->groom->name . ' and ' . $vip->bride->name;
 
-		return $this->subject('Invitation to Wedding of ' . $groom->name . ' and ' . $bride->name)
-					->view('emails.wedding.RSVPInvitation')
-					->with(compact('groom', 'bride', 'url', 'event', 'hm'));
+        return $this->subject($subject)
+                    ->view("emails.${mode}.RSVPInvitation")
+                    ->with(compact('vip', 'url', 'event', 'hm'));
     }
 }

@@ -1048,7 +1048,13 @@
 <div class="container">
   <div class="row justify-content-center align-items-center full-height">
     <div class="col">
-      <h1>The Wedding of {{ strtok($groom->name, " ") }} and {{ strtok($bride->name, " ") }}</h1>
+      <h1>
+        @if($mode === 'birthday')
+          The Birthday of {{ strtok($vip->birthday_person, " ") }}
+        @else
+          The Wedding of {{ strtok($vip->groom->name, " ") }} and {{ strtok($vip->bride->name, " ") }}
+        @endif
+      </h1>
       <div class="table-responsive">
         @component('layouts.table')
           @slot('tableBody')

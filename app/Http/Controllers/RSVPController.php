@@ -138,16 +138,9 @@ class RSVPController extends Controller
             ->persist($token)
             ->reserve($rsvp);
 
-        $mode = $setting->getValueByKey('other')->mode;
+        $vip = $setting->getVip();
 
-        if($mode === 'birthday'){
-            $birthday = $setting->getValueByKey('other')->vip->birthday_person;
-            return view('rsvps.reserved', compact('rsvp','birthday'));
-        }
-
-        $groom = $setting->getValueByKey('other')->vip->groom;
-        $bride = $setting->getValueByKey('other')->vip->bride;
-        return view('rsvps.reserved', compact('rsvp', 'groom', 'bride'));
+        return view("rsvps.reserved", compact('rsvp', 'vip'));
     }
 
     public function confirmFromFront(Request $request)

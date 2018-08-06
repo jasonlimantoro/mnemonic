@@ -108,16 +108,9 @@ Route::get('/mailable/reservation', function (){
 Route::get('/reserved', function() {
   $rsvp = \App\RSVP::first();
 
-  $mode = \App\PackageSetting::getValueByKey('other')->mode;
+  $vip = \App\PackageSetting::getVip();
 
-  if($mode === 'birthday'){
-      $birthday = \App\PackageSetting::getValueByKey('other')->vip->birthday_person;
-      return view('rsvps.reserved', compact('birthday'));
-  }
-
-  $groom = \App\PackageSetting::getValueByKey('other')->vip->groom;
-  $bride = \App\PackageSetting::getValueByKey('other')->vip->bride;
-  return view('rsvps.reserved', compact('rsvp', 'groom', 'bride'));
+  return view("rsvps.reserved", compact('rsvp', 'vip'));
 
 });
 

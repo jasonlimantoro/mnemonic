@@ -32,14 +32,8 @@ class RSVPReservation extends Mailable
      */
     public function build(PackageSetting $setting)
     {
-        $mode = $setting->getValueByKey('other')->mode;
-        if ($mode === 'birthday') {
-            return null;
-        }
-        $groom = $setting->getValueByKey('other')->vip->groom;
-        $bride = $setting->getValueByKey('other')->vip->bride;
-        return $this->subject('RSVP Confirmation')
-                    ->view('emails.wedding.RSVPReservation')
-                    ->with(compact('bride', 'groom'));
+        $vip = $setting->getVip();
+        return $this->subject("RSVP Confirmation")
+                    ->view("emails.RSVPReservation", compact('vip'));
     }
 }
