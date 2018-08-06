@@ -47,14 +47,11 @@ class FrontendController extends Controller
         $dates = Event::process()
             ->displayEventsGroupByDate();
 
+        $vip = $setting->getVip();
+
         if($mode === 'birthday') {
-            $vip = $setting->getJSONValueFromKeyField('other', 'vip')->birthday_person;
             return view('frontend.birthday', compact('embed', 'dates', 'vip'));
         }
-
-        $groom = $setting->getJsonValueFromKeyField('other', 'vip')->groom;
-
-        $bride = $setting->getJsonValueFromKeyField('other', 'vip')->bride;
 
         $bridesMaid = BridesBest::bridesMaid();
 
@@ -62,7 +59,7 @@ class FrontendController extends Controller
 
         $vendors = Vendor::all();
 
-        return view('frontend.wedding', compact('embed', 'dates', 'groom', 'bride', 'bbs', 'vendors', 'bridesMaid', 'bestMen'));
+        return view('frontend.wedding', compact('embed', 'dates', 'vip', 'bbs', 'vendors', 'bridesMaid', 'bestMen'));
     }
 
     public function rsvp(PackageSetting $setting)

@@ -21,13 +21,13 @@
 				
 				<div class="col-xs-12 col-md-10 col-center">
 					<div class="vip-container">
-						<h3 class="font-theme vip-name">{{ $vip->name }}</h3>
+						<h3 class="font-theme vip-name">{{ $vip->birthday_person->name }}</h3>
 						<span class="font-theme vip-relation">Son of</span> <br>
 						<div class="vip-parent">
-							<p>{{ $vip->father }} &</p>
-							<p>{{ $vip->mother }}</p>
+							<p>{{ $vip->birthday_person->father }} &</p>
+							<p>{{ $vip->birthday_person->mother }}</p>
 						</div>
-						<img src="{{ url('imagecache/vip/' . $vip->image) }}" alt="vip" class="img-responsive inline-block">
+						<img src="{{ url('imagecache/vip/' . $vip->birthday_person->image) }}" alt="vip" class="img-responsive inline-block">
 					</div>
 				</div>
 			</div>
