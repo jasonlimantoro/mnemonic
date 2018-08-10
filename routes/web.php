@@ -94,7 +94,7 @@ Route::group([
 
 // previewing mailables in browser
 Route::get('/mailable/invitation', function () {
-    $rsvp = \App\RSVP::find(1);
+    $rsvp = \App\RSVP::first();
     return new App\Mail\RSVPInvitation($rsvp);
 });
 
