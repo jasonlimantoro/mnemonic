@@ -14,4 +14,7 @@ webpack.mix.js
 _ide_helper.php
 .eslintrc.json
 .php_cs*
+
 public/
+!public/index.php
+!public/.htaccess
