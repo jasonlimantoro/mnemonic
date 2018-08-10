@@ -10,13 +10,11 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .env*
-public/uploads/*
-public/images_sample/*
-public/temp/
-public/js/
-public/css/
-public/mix-manifest.json
 webpack.mix.js
 _ide_helper.php
 .eslintrc.json
 .php_cs*
+
+public/
+!public/index.php
+!public/.htaccess
