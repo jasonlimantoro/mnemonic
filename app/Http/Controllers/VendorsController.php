@@ -32,7 +32,7 @@ class VendorsController extends Controller
         $vendors = Vendor::filtersSearch(request(['search', 'order', 'method']))
                         ->latest()
                         ->get();
-        return view('backend.wedding.vendors.index', compact('vendors'));
+        return view('backend.day.vendors.index', compact('vendors'));
     }
 
     /**
@@ -42,7 +42,7 @@ class VendorsController extends Controller
      */
     public function create()
     {
-        return view('backend.wedding.vendors.create', with([
+        return view('backend.day.vendors.create', with([
             'categories' => $this->categoriesToArray
         ]));
     }
@@ -73,7 +73,7 @@ class VendorsController extends Controller
      */
     public function show(Vendor $vendor)
     {
-        return view('backend.wedding.vendors.show', compact('vendor'));
+        return view('backend.day.vendors.show', compact('vendor'));
     }
 
     /**
@@ -84,7 +84,7 @@ class VendorsController extends Controller
      */
     public function edit(Vendor $vendor)
     {
-        return view('backend.wedding.vendors.edit', with([
+        return view('backend.day.vendors.edit', with([
             'categories' => $this->categoriesToArray,
             'vendor' => $vendor,
         ]));

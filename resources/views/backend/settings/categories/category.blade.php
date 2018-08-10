@@ -1,49 +1,35 @@
 <tr class="event">
-  <td class="data-table title">
-		@can('update', 'App\Category')
-			<a href="{{ route('categories.edit', ['category' => $category->id ]) }}">
-				{{ $category->name }} 
-			</a>
-		@else
-			{{ $category->name }} 
-		@endif
+  <td class="data title">
+    @can('update', 'App\Category')
+      <a href="{{ route('categories.edit', ['category' => $category->id ]) }}">
+        {{ $category->name }}
+      </a>
+    @else
+      {{ $category->name }}
+    @endif
   </td>
-  <td class="data-table body">
+  <td class="data body">
     {{ $category->description }}
   </td>
-  <td class="data-table text-center">
-		@can('update', App\Category::class)
-			<div>
-				<a 
-					href="{{ route('categories.edit', ['category' => $category->id ]) }}" 
-					id="EditIcon" 
-					class="__react-root" 
-					role="button"
-					data-toggle="tooltip"
-					title="Edit this category"
-					data-placement="top"
-					>
-				</a>
-			</div>
-		@endcan
+  <td class="data action">
+    @can('update', App\Category::class)
+      <a
+        href="{{ route('categories.edit', ['category' => $category->id ]) }}"
+        role="button"
+        data-toggle="tooltip"
+        title="Edit"
+        data-placement="top"
+      >
+        <i class="fa fa-pencil-square-o"></i>
+      </a>
 
-		@can('delete', App\Category::class)
-			<div>
-			<form action="{{ route('categories.destroy', [ 'category' => $category->id ]) }}" method="POST" id={{ "form-delete-categories-" . $category->id  }}>
-				{{ method_field('DELETE') }}
-				<a 
-					href="" 
-					id="DeleteIcon" 
-					class="__react-root" 
-					data-form="categories-{{ $category->id }}"
-					role="button"
-					data-toggle="tooltip"
-					title="Delete this category"
-					data-placement="top"
-					>
-				</a>
-			</form>
-			</div>
-		@endcan
+    @endcan
+
+    @can('delete', App\Category::class)
+      <div data-component="DeleteIcon"
+           data-prop-url="{{ route('categories.destroy', [ 'category' => $category->id ]) }}"
+      >
+      </div>
+    @endcan
   </td>
 </tr>

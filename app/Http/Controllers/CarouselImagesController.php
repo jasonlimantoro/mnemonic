@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\GenericController as Controller;
-use Illuminate\Http\Request;
-use App\Carousel;
 use App\Image;
+use App\Carousel;
+use Illuminate\Http\Request;
+use App\Http\Controllers\GenericController as Controller;
 
 class CarouselImagesController extends Controller
 {
@@ -34,21 +34,14 @@ class CarouselImagesController extends Controller
 
     public function store(Request $request, Carousel $carousel)
     {
-        $rules = [
-            'image' => 'required_if:gallery_image,""|image'
-        ];
-        $customMessages = [
-            'image.required_if' => 'Please upload a new image or use one from your existing gallery!'
-        ];
-        $this->validate($request, $rules, $customMessages);
 
-        $image = Image::handleUpload($request)
-                        ->addTo($carousel);
+        $file = $request->gallery_image;
 
-        $image->update(request(['caption']));
+        $carousel->addImage($file, $request->only('caption'));
 
         $this->flash('Image is successfully uploaded to the carousel!');
-        return redirect()->route('carousels.index', ['carousel' => 1]);
+
+        return redirect()->route('carousel.images.index', ['carousel' => 1]);
     }
 
     public function show(Carousel $carousel, Image $image)
@@ -63,16 +56,9 @@ class CarouselImagesController extends Controller
 
     public function update(Request $request, Carousel $carousel, Image $image)
     {
-        $rules = [
-            'image' => 'image',
-        ];
-        $this->validate($request, $rules);
+        $file = $request->gallery_image;
 
-        if ($carouselImage = Image::handleUpload($request)) {
-            $carouselImage->addTo($carousel, $image);
-        }
-
-        $image->update(request(['caption']));
+        $carousel->updateImage($image, $file, $request->only('caption'));
 
         $this->flash('Updated successfully!');
 
@@ -81,7 +67,7 @@ class CarouselImagesController extends Controller
 
     public function destroy(Carousel $carousel, Image $image)
     {
-        $carousel->removeImage($image);
+        $image->delete();
 
         $this->flash('Image is successfully removed from the carousel!');
 

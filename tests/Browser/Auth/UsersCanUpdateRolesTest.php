@@ -19,7 +19,7 @@ class UsersCanUpdateRolesTest extends DuskTestCase
     public function testUpdateRolesTest()
     {
 		factory(Permission::class)->states('carousel images', 'complete')->create();
-		factory(Permission::class)->states('couple', 'incomplete')->create();
+		factory(Permission::class)->states('vip', 'incomplete')->create();
 		factory(Permission::class)->states('user', 'complete')->create();
 
 		$adminRole = factory(Role::class)->states('admin')->create();

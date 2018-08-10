@@ -27,7 +27,7 @@ class EventsController extends Controller
         $events = Event::filtersSearch(request(['search', 'order', 'method']))
                         ->latest()
                         ->get();
-        return view('backend.wedding.events.index', compact('events'));
+        return view('backend.day.events.index', compact('events'));
     }
 
     /**
@@ -37,7 +37,7 @@ class EventsController extends Controller
      */
     public function create()
     {
-        return view('backend.wedding.events.create');
+        return view('backend.day.events.create');
     }
 
     /**
@@ -48,11 +48,13 @@ class EventsController extends Controller
      */
     public function store(EventsRequest $request)
     {
+        $file = $request->gallery_image;
+
         $event = Event::create(
             $request->only(['name', 'description', 'location', 'datetime'])
 		);
-		
-		optional(Image::handleUpload($request, EventFilter::class, 'event'))->addTo($event);
+
+        $event->addImage($file);
 
         $this->flash('Event is successfully created!');
 
@@ -67,7 +69,7 @@ class EventsController extends Controller
      */
     public function show(Event $event)
     {
-        return view('backend.wedding.events.show', compact('event'));
+        return view('backend.day.events.show', compact('event'));
     }
 
     /**
@@ -79,7 +81,7 @@ class EventsController extends Controller
     public function edit(Event $event)
     {
         $eventImage = optional($event->image)->url_cache;
-        return view('backend.wedding.events.edit', compact('event', 'eventImage'));
+        return view('backend.day.events.edit', compact('event', 'eventImage'));
     }
 
     /**
@@ -91,13 +93,15 @@ class EventsController extends Controller
      */
     public function update(EventsRequest $request, Event $event)
     {
-		
+
+        $file = $request->gallery_image;
+
 		$event->update(
 			request(['name', 'description', 'location', 'datetime'])
 		);
 
-		optional(Image::handleUpload($request, EventFilter::class, 'event'))->addTo($event);
-		
+		$event->addImage($file);
+
         $this->flash('Event is successfully updated!');
 
         return back();
@@ -111,9 +115,10 @@ class EventsController extends Controller
      */
     public function destroy(Event $event)
     {
-        $event->image()->delete();
-        $event->delete();
+        $event->deleteRecord();
+
         $this->flash('Event is successfully deleted!');
+
         return back();
     }
 }

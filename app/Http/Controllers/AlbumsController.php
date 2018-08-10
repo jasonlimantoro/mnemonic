@@ -14,6 +14,8 @@ class AlbumsController extends Controller
     public function __construct(Albums $albums)
     {
         $this->albums = $albums;
+
+        $this->middleware('package.albums')->only(['create', 'store']);
     }
 
     /**
@@ -45,12 +47,18 @@ class AlbumsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param AlbumsRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(AlbumsRequest $request)
     {
-        Album::createRecord($request);
+        $file = $request->gallery_image;
+
+        $album = Album::create($request->only(['name', 'description']));
+
+        $album->addFeaturedImage($file);
+
+        //Album::createRecord($request);
 
         $this->flash('Album is created successfully!');
 
@@ -67,7 +75,7 @@ class AlbumsController extends Controller
     {
         $images = $album->images;
 
-        return view('backend.website.albums.show', compact(['images', 'album']));
+        return view('backend.website.albums.show', compact('images', 'album'));
     }
 
     /**
@@ -78,12 +86,20 @@ class AlbumsController extends Controller
      */
     public function edit(Album $album)
     {
-        return view('backend.website.albums.edit', compact('album'));
+        $featuredImage = optional($album->featuredImage())->url_cache;
+
+        $featuredImageName = optional($album->featuredImage())->file_name;
+
+        return view('backend.website.albums.edit', compact('album', 'featuredImage', 'featuredImageName'));
     }
 
     public function update(AlbumsRequest $request, Album $album)
     {
-        $album->updateRecord($request);
+        $file = $request->gallery_image;
+
+        $album->update($request->only(['name', 'description']));
+
+        $album->addFeaturedImage($file);
 
         $this->flash('Album is updated successfully!');
 

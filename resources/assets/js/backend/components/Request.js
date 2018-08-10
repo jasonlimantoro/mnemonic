@@ -1,123 +1,165 @@
 import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-import { ThumbnailGallery } from "./Thumbnail";
-import { SelectForm } from "./Form";
-import { SimplePagination } from "./Pagination";
 
-export class RequestImages extends React.Component {
+import { Col, Row } from "react-bootstrap";
+import { ThumbnailGallery } from "./Thumbnail";
+import { StyledPagination } from "./Pagination";
+import Refresh from "./Refresh";
+
+import { str_limit } from "../functionals/helper";
+
+
+export class Images extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       images: [],
-      meta: [],
       totalPages: "",
-      links: [],
-      selectedImage: {
-        id: null
-      }
+      selectedImage: '',
+      currentPage: 1,
+      loading: false,
     };
+
     this.handleClick = this.handleClick.bind(this);
+    this.handleRefresh = this.handleRefresh.bind(this);
     this.handleChangePage = this.handleChangePage.bind(this);
-    this.handleOffset = this.handleOffset.bind(this);
+    this.handleOffsetPage = this.handleOffsetPage.bind(this);
   }
 
-  requestData(newPage) {
+  requestData(page) {
+    // cancel the previous request
+    if (typeof this._source != typeof undefined) {
+      this._source.cancel('Operation canceled due to new request.')
+    }
+
+    // save the new request for cancellation
+    this._source = axios.CancelToken.source();
+
+    const { source } = this.props;
+
     axios
-      .get(this.props.source, {
-        params: {
-          page: newPage
-        }
-      })
-      .then(
-        function(result) {
-          const totalPages = Math.ceil(
-            result.data.meta.total / result.data.meta.per_page
-          );
-          this.setState({
-            images: result.data.data,
-            meta: result.data.meta,
-            totalPages: totalPages,
-            links: result.data.links
-          });
-        }.bind(this)
-      );
+    .get(source, {
+      params: { page },
+      cancelToken: this._source.token,
+    })
+    .then(result => {
+      const { data } = result.data;
+      const { total, per_page } = result.data.meta;
+      const totalPages = Math.ceil(total / per_page);
+      this.setState({
+        images: data,
+        totalPages,
+      });
+    })
+    .catch(err => {
+      if (axios.isCancel(err)) {
+        console.log('Request is cancelled', err);
+      } else {
+        console.log(err);
+      }
+    })
+    ;
   }
 
-  handleChangePage(page) {
-    this.props.onChangePage(page);
-  }
+  handleChangePage(currentPage) {
+    this.setState({ currentPage });
+  };
 
-  handleOffset(offset) {
-    this.props.onChangeOffset(offset, this.state.totalPages);
-  }
+  handleOffsetPage(offset, max = this.state.totalPages, min = 1) {
+    const { currentPage } = this.state;
+    const newPage = currentPage + offset;
+    if (newPage <= max && newPage >= min) {
+      this.setState({ currentPage: newPage });
+    }
+  };
 
-  handleClick(image) {
-    this.setState({
-      selectedImage: image
+  handleClick(id, name) {
+    const { store: { dispatch } } = this.props;
+    this.toggleActive(id);
+    dispatch({ type: 'UPDATE_INPUT', payload: name });
+  };
+
+  handleRefresh() {
+    const { currentPage } = this.state;
+    this.setState({ loading: true }, () => {
+      this.requestData(currentPage);
+      setTimeout(() => {
+        this.setState({
+          loading: false,
+        });
+      }, 1000);
     });
-    const fileName = image.attributes.file_name;
-    document.getElementById(
-      "inputGalleryImage" + "-" + this.props.i.toString()
-    ).value = fileName;
+  }
+
+  toggleActive(id) {
+    this.setState({
+      selectedImage: id
+    });
   }
 
   componentDidMount() {
-    this.requestData(this.props.page);
+    const { currentPage } = this.state;
+    this.requestData(currentPage);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.page != nextProps.page) {
+  componentDidUpdate(prevProps, prevState) {
+    const { currentPage, totalPages } = this.state;
+    if (currentPage !== prevState.currentPage) {
       // request data within the page range only
-      if (nextProps.page <= this.state.totalPages && nextProps.page > 0) {
-        this.requestData(nextProps.page);
+      if (currentPage <= totalPages && currentPage > 0) {
+        this.requestData(currentPage);
       }
     }
   }
 
+  componentWillUnmount() {
+    this._source && this._source.cancel();
+  }
+
   render() {
-    return (
-      <div>
-        <h1>Gallery</h1>
-        <div className="row gallery-tab">
-          {this.state.images.map(
-            function(image) {
-              const isActive = this.state.selectedImage.id == image.id;
-              return (
-                <div className="col-md-4 col-xs-6" key={image.id}>
-                  <div
-                    className="thumbnail-container"
-                    onClick={() => this.handleClick(image)}
-                  >
-                    <ThumbnailGallery
-                      selectedImage={this.state.selectedImage}
-                      isActive={isActive}
-                      sourceImage={image.attributes.url_cache}
-                      title={image.attributes.file_name}
-                      description={image.album.attributes.name}
-                      i={this.props.i}
-                    />
-                  </div>
-                </div>
-              );
-            }.bind(this)
-          )}
-        </div>
-        <div className="row">
-          <SimplePagination
-            totalPages={parseInt(this.state.totalPages)}
-            currentPage={this.props.page}
-            onChangePage={this.handleChangePage}
-            onChangeOffset={this.handleOffset}
-            optionalClass="gallery"
-          />
-        </div>
-      </div>
-    );
+    const {
+      state : { totalPages, currentPage, images, selectedImage, loading },
+      handleRefresh,
+      handleClick,
+    } = this;
+    return <React.Fragment>
+      <Refresh loading={loading} onRefresh={handleRefresh}/>
+      <h1>Gallery</h1>
+      <Row>
+        {images.map(image => {
+            const active = selectedImage === image.id;
+            const { url_cache, file_name } = image.attributes;
+            const { name } = image.album.attributes;
+            return (
+              <Col
+                md={4} xs={6}
+                key={image.id}
+                onClick={() => handleClick(image.id, file_name)}
+              >
+                <ThumbnailGallery src={url_cache} active={active}>
+                  <p>Name: <b>{str_limit(file_name)}</b></p>
+                  <p>Album: <b>{name}</b></p>
+                </ThumbnailGallery>
+              </Col>
+            );
+          }
+        )}
+      </Row>
+      <Row>
+        <StyledPagination
+          totalPages={parseInt(totalPages)}
+          currentPage={currentPage}
+          onChangePage={this.handleChangePage}
+          onChangeOffset={this.handleOffsetPage}
+          optionalClass="gallery"
+        />
+      </Row>
+    </React.Fragment>;
   }
 }
 
-RequestImages.propTypes = {
+Images.propTypes = {
   source: PropTypes.string.isRequired,
   page: PropTypes.number,
   onChangePage: PropTypes.func,

@@ -1,45 +1,32 @@
 import React from "react";
-import { Grid, Row, Col, Thumbnail, Button } from "react-bootstrap";
-import { DisplayImagesFromSelectedGallery } from "./DisplayImage";
+import styled, { css } from "styled-components";
+import { Thumbnail, Image } from "react-bootstrap";
+import { skinBlue } from "../styles/color";
 
-export class ThumbnailGallery extends React.Component {
-  constructor(props) {
-    super(props);
+const shadow = css`
+	box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+	outline: 0;
+`;
+const StyledThumbnail = styled(Thumbnail)`
+  cursor: pointer; 
+  
+  :hover {
+		${shadow}
   }
+  
+	${({ active }) => active && `
+		border : solid 1px ${skinBlue};
+		${shadow}
+  `}
+`;
 
-  str_limit(str, length = 20, ending = "...") {
-    if (str.length > length) {
-      return str.substring(0, length) + ending;
-    } else {
-      return str;
-    }
-  }
-
-  render() {
-		const isActive = this.props.isActive;
-		const activeClass = isActive ? "active" : '';
-    return (
-      <Thumbnail
-        className={"thumbnail-gallery " + activeClass}
-      >
-				<div className="thumbnail-image">
-					<img src={this.props.sourceImage} alt="thumbnail-image" className="img-responsive"/>
-				</div>
-        Name: <strong>{this.str_limit(this.props.title)}</strong>
-        <br />
-        Album: <strong>{this.props.description}</strong>
-        {isActive ? (
-          <DisplayImagesFromSelectedGallery
-            file={this.props.selectedImage}
-            i={this.props.i}
-            fromGallery
-          />
-        ) : null}
-      </Thumbnail>
-    );
-  }
-}
-
-ThumbnailGallery.defaultProps = {
-  description: null
+export const ThumbnailGallery = ({ src, children, active }) => {
+  return (
+    <StyledThumbnail active={active ? 1 : 0}>
+      <div className="thumbnail-image">
+        <Image src={src} alt="thumbnail-image" responsive/>
+      </div>
+      {children}
+    </StyledThumbnail>
+  );
 };

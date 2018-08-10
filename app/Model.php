@@ -2,12 +2,19 @@
 
 namespace App;
 
-use App\Traits\Filterable;
+use App\Traits\FiltersResources;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
+
+/**
+ * @mixin \Eloquent
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ */
 class Model extends Eloquent
 {
-    use Filterable;
+    use FiltersResources;
+
+    public $filter = 'original';
 
     protected $guarded = [];
 }

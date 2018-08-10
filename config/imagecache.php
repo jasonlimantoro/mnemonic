@@ -57,7 +57,7 @@ return array(
         'large' => 'Intervention\Image\Templates\Large',
 		'gallery' => 'App\Filters\GalleryFilter',
 		'logo' => 'App\Filters\LogoFilter',
-		'couple' => 'App\Filters\CoupleFilter',
+		'vip' => 'App\Filters\VIPFilter',
 		'bridesbest' => 'App\Filters\BridesBestFilter',
 		'event' => 'App\Filters\EventFilter',
         'post' => 'App\Filters\PostFilter',

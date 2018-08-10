@@ -3,11 +3,17 @@
 namespace App;
 
 use App\Repositories\Albums;
-use Illuminate\Http\Request;
+use App\Traits\HasManyImages;
 
 class Album extends Model
 {
+    use HasManyImages;
+
     public $repo;
+
+    public $filter = 'gallery';
+
+    protected $with = ['images'];
 
     public function __construct(array $attributes = [])
     {
@@ -22,7 +28,10 @@ class Album extends Model
 
     public function featuredImage()
     {
-        return $this->images->where('featured', 1)->first();
+        return $this
+            ->images()
+            ->where('featured', 1)
+            ->first();
     }
 
     public function scopeFilterId($query, $filters)
@@ -34,32 +43,36 @@ class Album extends Model
 
     public function uncategorizeImages()
     {
-        // assign all the images to uncategorized
-        $this->repo->uncategorized()
-                    ->images()
-                    ->saveMany($this->images);
+        foreach ($this->images as $image){
+            $image->featured = 0;
+            $this->repo->uncategorized()->images()->save($image);
+        }
+
         return $this;
     }
 
-    public function addImage($image)
-    {
-        $this->images()->create($image);
-    }
 
-    public function addFeaturedImage(Image $image)
+    public function addFeaturedImage($file)
     {
-        $imgAttr = $image->only(['file_name', 'url_asset', 'url_cache']);
-        $assignedAlbum = $image->album();
-        // not assigned to the current album
-        if (!is_null($assignedAlbum) && $assignedAlbum != $this) {
-            $this->images()->save($image);
+        if (! $file) {
+            return null;
         }
-        $this->removeFeaturedImage()
-             ->images()
-             ->updateorCreate(
-                $imgAttr,
-                ['featured' => 1]
-            );
+
+        $this->removeFeaturedImage();
+
+        $imageAttr = [
+            'file_name' => $file,
+            'url_asset' => url("uploads/${file}"),
+            'url_cache' => url("imagecache/" . $this->filter . "/${file}"),
+        ];
+
+        $image = Image::where($imageAttr)->first();
+
+        $image->featured = 1;
+
+        $image->imageable()->associate($this);
+
+        $image->save();
 
         return $this;
     }
@@ -69,28 +82,12 @@ class Album extends Model
         return !is_null($this->featuredImage());
     }
 
-    protected function removeFeaturedImage()
+    public function removeFeaturedImage()
     {
         if ($this->hasFeaturedImage()) {
             $this->featuredImage()
                  ->update(['featured' => 0]);
         }
         return $this;
-	}
-	
-	public static function createRecord(Request $request)
-	{
-		$album = static::create($request->only(['name', 'description']));
-        if ($newFeaturedImage = Image::handleUpload($request)) {
-            $album->addFeaturedImage($newFeaturedImage);
-        }
-	}
-
-	public function updateRecord(Request $request)
-	{
-        $this->update($request->only(['name', 'description']));
-        if ($newFeaturedImage = Image::handleUpload($request)) {
-            $this->addFeaturedImage($newFeaturedImage);
-        }
 	}
 }

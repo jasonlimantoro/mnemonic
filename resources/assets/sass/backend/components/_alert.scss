@@ -1,3 +1,5 @@
 .alert {
-	margin-top: 22px;
+	&.flash {
+		margin: 15px;
+	}
 }

@@ -19,7 +19,7 @@ class SettingsByKeyTest extends TestCase
 
     public function testGetValuByKeysMany()
     {
-		$settings = Setting::getManyValueByKeys(['site-info', 'site-social']);
+		$settings = Setting::getValueByManyKeys(['site-info', 'site-social']);
 
         $data = [
             'site-info' => Setting::getValuebyKey('site-info'),
@@ -54,9 +54,9 @@ class SettingsByKeyTest extends TestCase
             'some-setting' => $someSettings,
         ];
 
-        Setting::updateManyByKeys($updatedData);
+        Setting::updateManyValuesByKeys($updatedData);
 
-		$result = Setting::getManyValueByKeys(['site-info', 'some-setting']);
+		$result = Setting::getValueByManyKeys(['site-info', 'some-setting']);
 		
 		$this->assertEquals($site, $result['site-info']);
 		$this->assertEquals($someSettings, $result['some-setting']);

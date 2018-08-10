@@ -12,7 +12,7 @@ class RolePolicy
 
 	public function before($user, $ability)
 	{
-		if($user->isAdmin()){
+		if($user->isSuper()){
 			return true;
 		}
 	}

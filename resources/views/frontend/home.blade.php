@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master', ['pageTitle' => 'home'])
 
 @section('content')
 	@if (!$slides->isEmpty())

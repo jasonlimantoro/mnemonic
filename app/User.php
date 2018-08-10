@@ -2,12 +2,13 @@
 
 namespace App;
 
+use App\Traits\FiltersResources;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, FiltersResources;
 
     /**
      * The attributes that are mass assignable.
@@ -86,6 +87,11 @@ class User extends Authenticatable
 		return $this->role->name === 'admin';
 	}
 
+    public function isSuper()
+    {
+       return $this->role->name === 'superadmin';
+	}
+
 	public function permissions()
 	{
 		return $this->role->permissions();
@@ -95,7 +101,7 @@ class User extends Authenticatable
 	{
         $actions = [];
         $permission = $this->permissions()->whereName($permissionName);
-        if ($permission->get()->isNotEmpty()) {
+        if ($permission->exists()) {
             $actions = $permission->first()->pivot->action;
         }
         return $actions;

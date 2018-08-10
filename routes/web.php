@@ -24,7 +24,7 @@ Route::group([
         Route::group([
         'prefix' => 'gallery',
         'middleware' => 'can:manage-gallery'
-		], function () {
+    ], function () {
 			// images
 			Route::resource('images', 'ImagesController');
 			// albums
@@ -45,10 +45,10 @@ Route::group([
         });
 
         // wedding
-        Route::prefix('wedding')->group(function () {
-            // couple
-            Route::resource('couple', 'CoupleController', ['only' => ['update']]);
-            Route::get('couple', 'CoupleController@edit')->name('couple.edit');
+        Route::prefix('day')->group(function () {
+            // vip
+            Route::patch('vip', 'VIPController@update')->name('vip.update');
+            Route::get('vip/edit', 'VIPController@edit')->name('vip.edit');
 
             // Event
             Route::resource('events', 'EventsController')->except('show');
@@ -61,8 +61,8 @@ Route::group([
 			Route::resource('categories', 'CategoriesController')->except('show');
 			
 			// Youtube Video
-			Route::get('embed-video/edit', 'CoupleController@editVideo')->name('embedVideo.edit');
-			Route::patch('embed-video', 'CoupleController@updateVideo')->name('embedVideo.update');
+			Route::get('embed-video/edit', 'VIPController@editVideo')->name('embedVideo.edit');
+			Route::patch('embed-video', 'VIPController@updateVideo')->name('embedVideo.update');
 
             // RSVP
             Route::resource('rsvps', 'RSVPController')->except('show');
@@ -85,7 +85,33 @@ Route::group([
         Route::resource('users', 'UsersController')->except('show');
 
         // Roles
-        Route::resource('roles', 'RolesController')->except('show');
+		Route::resource('roles', 'RolesController')->except('show');
+
+		// Package
+		Route::get('package/edit', 'PackageController@edit')->name('package.edit');
+		Route::patch('package', 'PackageController@update')->name('package.update');
+    });
+
+// previewing mailables in browser
+Route::get('/mailable/invitation', function () {
+    $rsvp = \App\RSVP::first();
+    return new App\Mail\RSVPInvitation($rsvp);
+});
+
+// Previewing rsvpConfirmation email
+Route::get('/mailable/reservation', function (){
+   $rsvp = \App\RSVP::first();
+   return new App\Mail\RSVPReservation($rsvp);
+});
+
+// Previewing rsvp confirmation
+Route::get('/reserved', function() {
+  $rsvp = \App\RSVP::first();
+
+  $vip = \App\PackageSetting::getVip();
+
+  return view("rsvps.reserved", compact('rsvp', 'vip'));
+
 });
 
 // rsvp confirmation
@@ -104,10 +130,12 @@ Auth::routes();
 
 // Pages
 Route::name('front.')->group(function () {
-    Route::get('wedding-day', 'FrontendController@wedding')->name('wedding');
-    Route::get('about-us', 'FrontendController@about')->name('about');
+    Route::get('day', 'FrontendController@day')->name('day');
+    Route::get('about', 'FrontendController@about')->name('about');
     Route::get('gallery', 'FrontendController@gallery')->name('gallery');
-    Route::get('rsvp', 'FrontendController@onlineRSVP')->name('rsvp');
+    Route::get('rsvp', 'FrontendController@rsvp')->name('rsvp');
 	Route::get('posts/{post}', 'PostsController@read')->name('posts.read');
     Route::get('/', 'FrontendController@home')->name('index');
 });
+
+Route::post('/uploadAjax', 'AjaxController@upload');

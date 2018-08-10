@@ -5,7 +5,7 @@
 		{{ Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Enter Title']) }}
 	</div>
 	
-	<div class="__react-root" id="InitializeEditor"></div>
+	@react("InitializeEditor")
 	{{-- description field --}}
 	<div class="form-group">
 		{{ Form::label('description', 'Description:') }}
@@ -33,6 +33,10 @@
 	@endif
 
 	<div class="form-group">
-		<div class="__react-root" id="FancyInput"></div>
+		<div data-component="FancyInput"
+         data-prop-template="post"
+         data-prop-initial-input-value="{{ isset($post) ? optional($post->image)->file_name : '' }}"
+    >
+		</div>
 	</div>
 </div>

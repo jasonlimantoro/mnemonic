@@ -8,26 +8,22 @@
 
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<meta name="description" content="{{ $settings['site-seo']->meta_description }}"/>
+		<meta name="title" content="{{ $settings['site-seo']->meta_title }}" />
 
-		<title>{{ $settings['site-seo']->meta_title }}</title>
-		<link rel="shortcut icon" type="image/png" href={{ $settings['site-info']->favicon }}/>
+		<title>{{ $settings['site-info']->title . ' - ' . ucfirst($pageTitle ?? '') }}</title>
+		<link rel="shortcut icon" type="image/png" href={{ url('imagecache/logo/' . $settings['site-info']->favicon) }}/>
 
     <!-- Styles -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
   </head>
   <body>
 
-		@frontend
-			@include('layouts.navbar')
-			<div class="web-container">
-				@yield('content')
-				@include('layouts.footer')
-			</div>
-		@else
+		@include('layouts.navbar')
+		<div class="web-container">
 			@yield('content')
-		@endfrontend
+			@include('layouts.footer')
+		</div>
     
-
     <!-- Scripts -->
     <script src="{{ asset('js/manifest.js')}}"></script>
     <script src="{{ asset('js/vendor.js')}}"></script>

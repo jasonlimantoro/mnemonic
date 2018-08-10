@@ -5,7 +5,7 @@ namespace Tests\Integration;
 use App\Image;
 use App\Event;
 use App\Album;
-use App\Couple;
+use App\VIP;
 use App\Carousel;
 use App\BridesBest;
 use Tests\TestCase;
@@ -19,7 +19,7 @@ class AssignImageToOwnersTest extends TestCase
         Event::class,
         BridesBest::class,
 		Carousel::class,
-		Couple::class,
+		VIP::class,
 		Album::class
     ];
 

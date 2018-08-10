@@ -12,7 +12,7 @@
 						<span class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" href="{{ route('front.index') }}">
-						<img src="{{ $settings['site-info']->logo }}" alt="logo" class="img-responsive">
+						<img src="{{ url('/imagecache/logo/' . $settings['site-info']->logo) }}" alt="logo" class="img-responsive">
 					</a>
 				</div>
 			
@@ -32,7 +32,7 @@
 							</li>
 						<li>
 							<a href="{{ route('front.about') }}" 
-								 class="{{ Route::currentRouteNamed('front.about') ? 'active': '' }}">About Us
+								 class="{{ Route::currentRouteNamed('front.about') ? 'active': '' }}">About
 							</a>
 						</li>
 						<li>
@@ -43,12 +43,12 @@
 
 						<li class="hidden-xs">
 							<a href="/" class="navbar-logo-center">
-								<img src="{{ $settings['site-info']->logo }}" alt="logo" class="img-responsive">
+								<img src="{{ url('/imagecache/logo/' . $settings['site-info']->logo) }}" alt="logo" class="img-responsive">
 							</a>
 						</li>
 						<li>
-							<a href="{{ route('front.wedding') }}" 
-								 class="{{ Route::currentRouteNamed('front.wedding') ? 'active': '' }}">Wedding Day
+							<a href="{{ route('front.day') }}"
+								 class="{{ Route::currentRouteNamed('front.day') ? 'active': '' }}">{{ $mode === 'birthday' ? 'Birthday' : 'Wedding Day' }}
 							</a>
 						</li>
 						<li>
@@ -56,17 +56,16 @@
 								 class="{{ Route::currentRouteNamed('front.rsvp') ? 'active': '' }}">Online RSVP
 							</a>
 						</li>
-						<li class="visible-xs"><a href="{{ route('admin') }}">Backend</a></li>
-					</ul>
-
-					<ul class="nav navbar-nav navbar-right visible-md visible-lg">
 						@auth
-						{{--  if user is authenticated  --}}
-							<li>
-								<a href="{{ route('admin') }}" target="_blank">Backend</a>
-							</li>
+							<li class="visible-xs"><a href="{{ route('admin') }}" target="_blank">Backend</a></li>
 						@endauth
 					</ul>
+
+					@auth
+						<ul class="nav navbar-nav navbar-right visible-md visible-lg">
+							<li><a href="{{ route('admin') }}" target="_blank">Backend</a></li>
+						</ul>
+					@endauth
 				</div> <!-- /.navbar-collapse -->
 			</div>
 		</div>

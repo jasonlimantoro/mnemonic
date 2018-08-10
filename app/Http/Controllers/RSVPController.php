@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PackageSetting;
 use App\RSVP;
 use App\RSVPToken;
 use App\ConfirmsRSVP;
@@ -17,11 +18,14 @@ class RSVPController extends Controller
 
     public function __construct(ConfirmsRSVP $confirm)
     {
+        $this->confirm = $confirm;
+
         $this->middleware('can:read,App\RSVP')->except(['confirm', 'confirmFromFront']);
         $this->middleware('can:create,App\RSVP')->only(['create', 'store']);
         $this->middleware('can:update,App\RSVP')->only(['edit', 'update', 'remind']);
         $this->middleware('can:delete,App\RSVP')->only('destroy');
-        $this->confirm = $confirm;
+
+        $this->middleware('package.rsvp')->only(['create', 'store']);
     }
 
     /**
@@ -31,8 +35,10 @@ class RSVPController extends Controller
      */
     public function index()
     {
-        $rsvps = RSVP::latest()->get();
-        return view('backend.wedding.rsvps.index', compact('rsvps'));
+        $rsvps = RSVP::filtersSearch(request(['search', 'order', 'method']))
+                        ->latest()
+                        ->get();
+        return view('backend.day.rsvps.index', compact('rsvps'));
     }
 
     /**
@@ -42,7 +48,7 @@ class RSVPController extends Controller
      */
     public function create()
     {
-        return view('backend.wedding.rsvps.create');
+        return view('backend.day.rsvps.create');
     }
 
     /**
@@ -72,7 +78,7 @@ class RSVPController extends Controller
      */
     public function show(RSVP $rsvp)
     {
-        return view('backend.wedding.rsvps.show', compact('rsvp'));
+        return view('backend.day.rsvps.show', compact('rsvp'));
     }
 
     /**
@@ -83,7 +89,7 @@ class RSVPController extends Controller
      */
     public function edit(RSVP $rsvp)
     {
-        return view('backend.wedding.rsvps.edit', compact('rsvp'));
+        return view('backend.day.rsvps.edit', compact('rsvp'));
     }
 
     /**
@@ -96,9 +102,11 @@ class RSVPController extends Controller
     public function update(RSVPRequest $request, RSVP $rsvp)
     {
         $rsvp->update(
-            $request->only(['name, email, phone, table_name, total_invitation'])
+            $request->only(['name', 'email', 'phone', 'table_name', 'total_invitation'])
         );
+
         $this->flash('RSVP data is updated successfully');
+
         return back();
     }
 
@@ -124,10 +132,15 @@ class RSVPController extends Controller
         return back();
     }
 
-    public function confirm(RSVP $rsvp, RSVPToken $token)
+    public function confirm(RSVP $rsvp, RSVPToken $token, PackageSetting $setting)
     {
-        $this->confirm->persist($token);
-        return view('emails.RSVPconfirmed', compact('rsvp'));
+        $this->confirm
+            ->persist($token)
+            ->reserve($rsvp);
+
+        $vip = $setting->getVip();
+
+        return view("rsvps.reserved", compact('rsvp', 'vip'));
     }
 
     public function confirmFromFront(Request $request)
@@ -140,9 +153,9 @@ class RSVPController extends Controller
         $id = (int) ($request->rsvp);
         $rsvp = RSVP::find($id);
         $token = $rsvp->token;
-        $this->confirm->persist($token);
-
-        $this->flash('RSVP is successfully confirmed!');
+        $this->confirm
+            ->persist($token)
+            ->reserve($rsvp);
 
         return redirect()->route('front.rsvp')->with('rsvp', $rsvp);
     }

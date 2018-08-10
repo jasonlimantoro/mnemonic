@@ -3,17 +3,20 @@
 namespace App;
 
 use Carbon\Carbon;
-use App\Traits\Presentable;
+use App\Traits\HasOneImage;
+use App\Traits\PresentsField;
 use App\Presenters\EventPresenter;
 use Collective\Html\Eloquent\FormAccessible;
 
 class Event extends Model
 {
-    use FormAccessible, Presentable;
+    use FormAccessible, PresentsField, HasOneImage;
 
+    public $filter = 'event';
 	protected $dates = ['datetime'];
 	protected $with = ['image'];
 	protected $presenter = EventPresenter::class;
+
 
     public function image()
     {
@@ -51,7 +54,7 @@ class Event extends Model
     {
         return Carbon::parse($value)->format('Y-m-d\TH:i');
 	}
-	
+
 	public static function byName($name)
 	{
 		return static::whereName($name)->first();
@@ -61,4 +64,14 @@ class Event extends Model
 	{
 		return static::where('name', 'like', '%wedding%')->first();
 	}
+
+    public static function holyMatrimony()
+    {
+        return static::where('name', 'like', '%holy%')->first();
+	}
+
+    public static function birthday()
+    {
+        return static::where('name', 'like', '%birthday%')->first();
+    }
 }

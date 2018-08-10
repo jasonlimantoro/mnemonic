@@ -1,14 +1,16 @@
 import React from "react";
-import Slider from "react-slick";
 import { Modal, Table } from "react-bootstrap";
 import { DangerButton } from "./Button";
 import { MediaTabs } from "./Tab";
+import { withFancyInput } from "../contexts/FancyInputContext";
+
+
+const MediaWithContext = withFancyInput(MediaTabs);
 
 export class UploadModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      file: {},
       tabKey: "uploads"
     };
     this.changeTab = this.changeTab.bind(this);
@@ -20,9 +22,12 @@ export class UploadModal extends React.Component {
     });
   }
   render() {
+    const { store, store : { dispatch } } = this.props;
+
     return (
       <Modal
-        {...this.props}
+        show={store.modalShow}
+        onHide={() => dispatch({ type: 'HIDE_MODAL' })}
         bsSize="large"
         aria-labelledby="contained-modal-title-lg"
       >
@@ -30,15 +35,15 @@ export class UploadModal extends React.Component {
           <Modal.Title id="contained-modal-title-lg"> Media </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MediaTabs
+          <MediaWithContext
             tabKey={this.state.tabKey}
             onSelect={this.changeTab}
-            file={this.state.file}
-            i={this.props.i}
           />
         </Modal.Body>
         <Modal.Footer>
-          <DangerButton text="Done" onClick={this.props.onHide} />
+          <DangerButton onClick={() => dispatch({ type: 'HIDE_MODAL' })}>
+            Done
+          </DangerButton>
         </Modal.Footer>
       </Modal>
     );
@@ -129,63 +134,6 @@ export class RSVPModal extends React.Component {
             >
               Ok
             </button>
-          </Modal.Body>
-        </Modal>
-      </div>
-    );
-  }
-}
-
-export class GalleryModal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleHide = this.handleHide.bind(this);
-  }
-
-  handleHide() {
-    this.props.hide();
-  }
-
-  render() {
-    var settings = {
-      useTransform: false,
-      infinite: true,
-      speed: 500,
-      dots: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      initialSlide: this.props.index,
-    };
-    let countItems = this.props.items.length;
-    let items = this.props.items.map((item, index) => {
-      return (
-        <div key={item.id}>
-          <img
-            src={item.attributes.url_cache}
-            alt={"image-" + item.id}
-            className="img-responsive"
-          />
-          <span style={{ float: "right" }}>
-            {index + 1} / {countItems}
-          </span>
-        </div>
-      );
-    });
-    return (
-      <div>
-        <Modal
-          show={this.props.show}
-          onHide={this.handleHide}
-          bsSize="large"
-					className="gallery-modal"
-        >
-          <Modal.Header closeButton> 
-						<Modal.Title className="font-theme modal-album-title" componentClass="h1">
-							Album: {this.props.heading}
-						</Modal.Title>
-					</Modal.Header>
-          <Modal.Body>
-            <Slider {...settings}>{items}</Slider>
           </Modal.Body>
         </Modal>
       </div>

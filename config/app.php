@@ -181,6 +181,7 @@ return [
 		App\Providers\FormMacroServiceProvider::class,
 		App\Providers\BladeServiceProvider::class,
         App\Providers\SettingServiceProvider::class,
+        App\Providers\PackageSettingServiceProvider::class,
 		Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
 
     ],

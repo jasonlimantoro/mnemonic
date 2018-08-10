@@ -17,7 +17,7 @@ class PermissionsTableSeeder extends Seeder
             'carousel images',
             'post',
             'gallery',
-            'couple',
+            'vip',
             'event',
             'bridesmaid_bestman',
             'vendor',
@@ -43,7 +43,7 @@ class PermissionsTableSeeder extends Seeder
 		];
 
 		$incomplete = [
-			'couple',
+			'vip',
 			'embed_video',
 			'site_info',
 			'site_social',

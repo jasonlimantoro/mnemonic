@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-		<title>{{ config('app.name', 'Laravel') }}</title>
+		<title>{{ config('app.name', 'Laravel') . ' | Admin' }}</title>
 		<link rel="shortcut icon" type="image/png" href="/images/logo.png"/>
 
     <!-- Styles -->
@@ -16,46 +16,28 @@
   </head>
 
   <body>
-    <div class="wrapper">
-      @include('backend.layouts.sidebar')
-
-      <!-- Page Content Holder -->
-      <div class="container backend" id="content">
-				@include('backend.layouts.header')
-				@include('layouts.success')
-				@include('layouts.error')
-				@yield('content')
-      </div>
-    </div>
+		@auth
+			<div class="wrapper">
+				@include('backend.layouts.sidebar')
+				<div class="container backend" id="content">
+					@include('backend.layouts.header')
+					@include('backend.layouts.success')
+					@include('backend.layouts.error')
+					<div class="row">
+						<div class="col-md-12">
+							@yield('content')
+						</div>
+					</div>
+				</div>
+			</div>
+		@else
+			@yield('content')
+		@endauth
 
     {{--  Asset Scripts  --}}
-    <script src="{{ asset('js/manifest.js')}}"></script>
-		<script src="{{ asset('js/vendor.js')}}"></script>
+    <script src="{{ asset('js/manifest.js') }}"></script>
+		<script src="{{ asset('js/vendor.js') }}"></script>
 		<script src="{{ asset('js/backend/main.js') }}"></script>
-
-    {{--  General scripts  --}}
-    <script>
-      $(document).ready(function () {
-
-        $('#sidebarCollapse').on('click', function () {
-          $('#sidebar').toggleClass('active');
-        }); 
-        // get the current page
-        path = window.location.href;
-
-        // if path is empty
-        if (path == '') {
-          path = 'http://mnemonic.dev/admin';
-        }
-        
-        // sidebar is targeted
-        target = $('#sidebar li a[href="'+ path + '"]').parents('li');
-
-        target.addClass('active');
-
-        $('[data-toggle="tooltip"]').tooltip();   
-      });
-		</script>
 
 		@yield('scripts')
   </body>

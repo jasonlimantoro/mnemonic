@@ -1,10 +1,22 @@
 import React from "react";
+import styled from "styled-components";
+
+const StyledSpan = styled.span`
+	width: 150px;
+  border: 2px solid white;
+  border-radius: 15px;
+  font-size: 25pt;
+  padding: 0 15px;
+  margin: 0 15px;
+  display: inline-block;
+`;
+
 
 export class RSVPTimer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      event: new Date(weddingDate.date),
+      event: new Date(this.props.weddingDate.date),
       now: new Date(),
       seconds: "",
       minutes: "",
@@ -13,15 +25,14 @@ export class RSVPTimer extends React.Component {
     };
   }
 
-  diffInMilliSeconds(dt1, dt2) {
+  static diffInMilliSeconds(dt1, dt2) {
     return dt2.getTime() - dt1.getTime();
   }
 
   calculateDiffHumans() {
     let now = new Date();
-    var event = this.state.event;
-    let diff = Math.abs(this.diffInMilliSeconds(event, now));
-
+    let { event } = this.state;
+    let diff = Math.abs(RSVPTimer.diffInMilliSeconds(event, now));
     let seconds = Math.floor(diff / 1000);
     let minutes = Math.floor(seconds / 60);
     let hours = Math.floor(minutes / 60);
@@ -36,12 +47,7 @@ export class RSVPTimer extends React.Component {
   }
 
   tick() {
-    let diffHumans = this.calculateDiffHumans();
-    let seconds = diffHumans.seconds.toString().padStart(2, "0");
-    let minutes = diffHumans.minutes.toString().padStart(2, "0");
-    let hours = diffHumans.hours.toString().padStart(2, "0");
-    let days = diffHumans.days;
-    let now = diffHumans.now;
+    const { seconds, minutes, hours, days, now } = this.calculateDiffHumans();
 
     this.setState({
       seconds,
@@ -52,7 +58,7 @@ export class RSVPTimer extends React.Component {
     });
   }
 
-  isApple() {
+  static isApple() {
     return navigator.userAgent.match(/(iPhone|iPod|iPad|Safari)/) !== null;
   }
 
@@ -61,18 +67,16 @@ export class RSVPTimer extends React.Component {
    * @param {string} date // yyyy-mm-dd hh:mm:ss...
    * @return {string} // mm/dd/yy hh:mm:ss
    */
-  convertDateForApple(date) {
+  static convertDateForApple(date) {
     let dateParts = date.substring(0, 10).split("-");
     let timePart = date.substr(11, 5);
-    let newDate =
-      dateParts[1] + "/" + dateParts[2] + "/" + dateParts[0] + " " + timePart;
-    return newDate;
+    return `${dateParts[1]}/${dateParts[2]}/${dateParts[0]} ${timePart}`;
   }
 
   componentWillMount() {
-    if (this.isApple()) {
-      let date = weddingDate.date;
-      let dateString = this.convertDateForApple(date);
+    if (RSVPTimer.isApple()) {
+      let date = this.props.weddingDate;
+      let dateString = RSVPTimer.convertDateForApple(date);
       let event = new Date(dateString);
       this.setState({ event });
     }
@@ -89,22 +93,22 @@ export class RSVPTimer extends React.Component {
     const { days, hours, minutes, seconds } = this.state;
     return (
       <div>
-        <span className="days box-theme">
+        <StyledSpan className={"box-theme"}>
           {days} <br />
           Days
-        </span>
-        <span className="hours box-theme">
-          {hours} <br />
+        </StyledSpan>
+        <StyledSpan className={"box-theme"}>
+          {hours.toString().padStart(2, "0")} <br />
           Hours
-        </span>
-        <span className="minutes box-theme">
-          {minutes} <br />
+        </StyledSpan>
+        <StyledSpan className={"box-theme"}>
+          {minutes.toString().padStart(2, "0")} <br />
           Min
-        </span>
-        <span className="seconds box-theme">
-          {seconds} <br />
+        </StyledSpan>
+        <StyledSpan className={"box-theme"}>
+          {seconds.toString().padStart(2, "0")} <br />
           Sec
-        </span>
+        </StyledSpan>
       </div>
     );
   }

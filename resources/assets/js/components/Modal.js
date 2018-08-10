@@ -1,152 +1,166 @@
 import React from "react";
 import Slider from "react-slick";
-import { Modal, Table } from "react-bootstrap";
+import styled from "styled-components";
+
+import { Modal } from "react-bootstrap";
+import { StyledRSVPTable } from "./Table";
+import { ModalImagesContext } from "./Slider";
+import defaultSettings from "../utils/SliderSettings";
+
+import StyledImageSlide from "./Slide";
+import { screenMdMin } from "../backend/styles/breakpoints";
+import { goldDark, goldGradient } from "../backend/styles/color";
 
 
-export class GalleryModal extends React.Component {
+const GalleryModal = ({ heading, ...rest }) => {
+  return (
+    <ModalImagesContext.Consumer>
+      {({ modal, hideModal, images }) => {
+        const settings = {
+          ...defaultSettings,
+          slidesToShow: 1,
+          dots: true,
+          initialSlide: modal.indexImage,
+          responsive: [],
+        };
+        const countItems = images.length;
+        const items = images.map((item, index) => {
+          return (
+            <StyledImageSlide key={item.id} url={item.url_cache}>
+              <span style={{ float: "right" }}>
+                {index + 1} / {countItems}
+              </span>
+            </StyledImageSlide>
+          );
+        });
+        return (
+          <Modal
+            show={modal.show}
+            onHide={hideModal}
+            bsSize="large"
+            {...rest}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title
+                className="font-theme"
+                componentClass="h1"
+                style={{ color: goldDark }}
+              >
+                Album: {heading}
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Slider {...settings}>{items}</Slider>
+            </Modal.Body>
+          </Modal>
+        );
+      }}
+    </ModalImagesContext.Consumer>
+  );
+};
+
+export const StyledGalleryModal = styled(GalleryModal)`
+  top: 25%;
+	bottom: auto;
+	@media(min-width: ${screenMdMin}){
+    top: 0;	
+	}
+	.modal-content {
+	  background-color: #f6e397
+	}
+	.slick-dots {
+	  position: static;
+	}
+`;
+
+class RSVPModal extends React.Component {
   constructor(props) {
     super(props);
-    this.handleHide = this.handleHide.bind(this);
+    this.state = {
+      modalShow: true
+    };
+    this.closeModal = this.closeModal.bind(this);
+    this.showModal = this.showModal.bind(this);
   }
 
-  handleHide() {
-    this.props.hide();
+  closeModal() {
+    this.setState({
+      modalShow: false
+    });
+  }
+
+  showModal() {
+    this.setState({
+      modalShow: true
+    });
   }
 
   render() {
-    var settings = {
-      useTransform: false,
-      infinite: true,
-			speed: 500,
-			dots: true,
-      slidesToShow: 1,
-			slidesToScroll: 1,
-			initialSlide: this.props.index,
-    };
-    let countItems = this.props.items.length;
-    let items = this.props.items.map((item, index) => {
-      return (
-        <div key={item.id}>
-          <img
-            src={item.attributes.url_cache}
-            alt={"image-" + item.id}
-            className="img-responsive"
-          />
-          <span style={{ float: "right" }}>
-            {index + 1} / {countItems}
-          </span>
-        </div>
-      );
-    });
+    const { rsvp, ...rest } = this.props;
     return (
-      <div>
-        <Modal
-          show={this.props.show}
-          onHide={this.handleHide}
-          bsSize="large"
-					className="gallery-modal"
-        >
-          <Modal.Header closeButton> 
-						<Modal.Title className="font-theme modal-album-title" componentClass="h1">
-							Album: {this.props.heading}
-						</Modal.Title>
-					</Modal.Header>
-          <Modal.Body>
-            <Slider {...settings}>{items}</Slider>
-          </Modal.Body>
-        </Modal>
-      </div>
+      <Modal
+        show={this.state.modalShow}
+        onHide={this.closeModal}
+        {...rest}
+      >
+        <Modal.Header closeButton/>
+
+        <Modal.Body>
+          <h2>
+            Thank You! <br/>
+            Here are the confirmation details:
+          </h2>
+          <div className="row-center">
+            <div className="col-xs-12 col-center">
+              <StyledRSVPTable data={rsvp}/>
+            </div>
+            <button
+              className="btn btn-theme"
+              onClick={this.closeModal}
+              style={{ minWidth: 150 }}
+            >
+              Ok
+            </button>
+          </div>
+        </Modal.Body>
+      </Modal>
     );
   }
 }
 
-export class RSVPModal extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            modalShow: true,
-            rsvp: rsvp
-        };
-        this.closeModal = this.closeModal.bind(this);
-        this.showModal = this.showModal.bind(this);
+export const StyledRSVPModal = styled(RSVPModal)`
+  color: ${goldDark};
+  .modal-content {
+    ${goldGradient}
+  } 
+	.modal-header {
+    .close {
+      position: absolute;
+      background: #ffffff;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      top: -10px;
+      right: -10px;
+      opacity: 1;
+      margin-top: -2px;
     }
-
-    closeModal() {
-        this.setState({
-            modalShow: false
-        });
+	}
+  .modal-body {
+    text-align: center;
+    min-height: 500px;
+    margin: 15px;
+    z-index: 0;
+    &:before {
+      content: " ";
+      position: absolute;
+      z-index: -1;
+      background: url('/images/bg-rsvp-modal.png');
+      background-size: 100% 100%;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: -5%;
     }
-
-    showModal() {
-        this.setState({
-            modalShow: true
-        });
-    }
-    render() {
-        return (
-            <div>
-                <Modal
-                    show={this.state.modalShow}
-                    onHide={this.closeModal}
-                    container={this}
-                >
-                    <Modal.Header closeButton />
-
-                    <Modal.Body>
-                        <h2>Thank You! Here are the confirmation details</h2>
-                        <div className="row-center">
-                            <div className="col-xs-12 col-center">
-                                <Table>
-                                    <tbody>
-                                    <tr>
-                                        <td> RSVP No </td>
-                                        <td>
-                                            {" "}
-                                            : #{this.state.rsvp.id.toString().padStart(4, "0")}{" "}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Attendee </td>
-                                        <td> : {this.state.rsvp.name} </td>
-                                    </tr>
-                                    {this.state.rsvp.table_name ? (
-                                        <tr>
-                                            <td> Name of Table </td>
-                                            <td> : {this.state.rsvp.table_name} </td>
-                                        </tr>
-                                    ) : (
-                                        ""
-                                    )}
-                                    <tr>
-                                        <td> Table for </td>
-                                        <td> : {this.state.rsvp.total_invitation} </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Email </td>
-                                        <td> : {this.state.rsvp.email} </td>
-                                    </tr>
-
-                                    {this.state.rsvp.phone ? (
-                                        <tr>
-                                            <td> Phone </td>
-                                            <td> : {this.state.rsvp.phone} </td>
-                                        </tr>
-                                    ) : (
-                                        ""
-                                    )}
-                                    </tbody>
-                                </Table>
-                            </div>
-                        </div>
-                        <button
-                            className="btn btn-theme dismiss-modal"
-                            onClick={this.closeModal}
-                        >
-                            Ok
-                        </button>
-                    </Modal.Body>
-                </Modal>
-            </div>
-        );
-    }
-}
+  }
+`;

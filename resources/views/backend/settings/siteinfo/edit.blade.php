@@ -80,8 +80,8 @@
 						<p>Favicon</p>
 						<strong>Current Image</strong>
 						<div class="current-image">
-							@if ($favicon = App\Setting::getJSONValueFromKeyField('site-info', 'favicon'))
-								<img src="{{ $favicon }}" alt="favicon" class="img-responsive">
+							@if ($favicon = $settings->favicon)
+								<img src="{{ url('/imagecache/logo/' . $favicon) }}" alt="favicon" class="img-responsive">
 							@else 
 								<p>No Image Uploaded</p>
 							@endif
@@ -91,8 +91,8 @@
 						<p>Logo</p>
 						<strong>Current Image</strong>
 						<div class="current-image">
-							@if ($logo = App\Setting::getJSONValueFromKeyField('site-info', 'logo'))
-								<img src="{{ $logo }}" alt="favicon" class="img-responsive">
+							@if ($logo = $settings->logo)
+								<img src="{{ url('/imagecache/logo/' . $logo) }}" alt="logo" class="img-responsive">
 							@else 
 								<p>No Image Uploaded</p>
 							@endif
@@ -100,7 +100,20 @@
 					</div>
 				</div>
 				<div class="form-group clearfix">
-					<div class="__react-root" id="IconAndLogoInput"></div>
+          <div class="col-md-4">
+            <div data-component="FancyInput"
+                 data-prop-initial-input-value="{{ $favicon }}"
+                 data-prop-input-name="favicon"
+            >
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div data-component="FancyInput"
+                 data-prop-initial-input-value="{{ $logo }}"
+                 data-prop-input-name="logo"
+            >
+            </div>
+          </div>
 				</div>
 				
 				{{-- Submit Button --}}
@@ -108,7 +121,7 @@
 					@can('update-site-info')
 						{{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
 					@else
-						{!! Form::unauthorizedButton() !!}
+						{{ Form::unauthorizedButton() }}
 					@endcan
 				</div>
 			{{ Form::close() }}

@@ -1,4 +1,4 @@
-{{ Form::open(['url' => url()->current(), 'class'=>'form-inline', 'method' => 'get']) }} 
+{{ Form::open(['url' => url()->current(), 'class'=>'form-inline form-filter', 'method' => 'get']) }} 
 
 	{{-- search field --}}
 	<div class="form-group">

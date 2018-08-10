@@ -26,7 +26,7 @@ class BridesBestsController extends Controller
         $bridesBests = BridesBest::filtersSearch(request(['search', 'order', 'method']))
                                 ->latest()
                                 ->get();
-        return view('backend.wedding.bridesbests.index', compact('bridesBests'));
+        return view('backend.day.bridesbests.index', compact('bridesBests'));
     }
 
     /**
@@ -36,7 +36,7 @@ class BridesBestsController extends Controller
      */
     public function create()
     {
-        return view('backend.wedding.bridesbests.create');
+        return view('backend.day.bridesbests.create');
     }
 
     /**
@@ -47,7 +47,11 @@ class BridesBestsController extends Controller
      */
     public function store(BridesBestsRequest $request)
     {
-		BridesBest::createRecord($request);
+        $file = $request->gallery_image;
+
+        $bridesBest = BridesBest::create($request->only(['name', 'testimony', 'ig_account', 'gender']));
+
+        $bridesBest->addImage($file);
 
 		$this->flash('Bridesmaid / Bestman is successfully created!');
 
@@ -64,7 +68,7 @@ class BridesBestsController extends Controller
     {
         $bridesBestImage = optional($bridesmaid_bestman->image)->url_cache;
         $role = $bridesmaid_bestman->gender == 'female' ? 'Bridesmaid' : 'Bestman';
-        return view('backend.wedding.bridesbests.show', with([
+        return view('backend.day.bridesbests.show', with([
             'bridesBest' => $bridesmaid_bestman,
             'bridesBestImage' => $bridesBestImage,
             'role' => $role
@@ -81,9 +85,12 @@ class BridesBestsController extends Controller
     {
 		$bridesBestImage = optional($bridesmaid_bestman->image)->url_cache;
 
-        return view('backend.wedding.bridesbests.edit', with([
+		$bridesBestImageName = optional($bridesmaid_bestman->image)->file_name;
+
+        return view('backend.day.bridesbests.edit', with([
             'bridesBest' => $bridesmaid_bestman,
-            'bridesBestImage' => $bridesBestImage
+            'bridesBestImage' => $bridesBestImage,
+            'bridesBestImageName' => $bridesBestImageName,
         ]));
     }
 
@@ -96,8 +103,11 @@ class BridesBestsController extends Controller
      */
     public function update(BridesBestsRequest $request, BridesBest $bridesmaid_bestman)
     {
+        $file = $request->gallery_image;
 
-		$bridesmaid_bestman->updateRecord($request);
+        $bridesmaid_bestman->update($request->only(['name', 'testimony', 'ig_account', 'gender']));
+
+		$bridesmaid_bestman->addImage($file);
 
         $this->flash('Bridesmaid / Bestman information is successfully updated!');
 
@@ -112,9 +122,10 @@ class BridesBestsController extends Controller
      */
     public function destroy(BridesBest $bridesmaid_bestman)
     {
-        $bridesmaid_bestman->image()->delete();
-        $bridesmaid_bestman->delete();
+        $bridesmaid_bestman->deleteRecord();
+
         $this->flash('Bridesmaid / Bestman is successfully deleted!');
+
         return back();
     }
 }

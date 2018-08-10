@@ -3,7 +3,7 @@
 namespace Tests\Integration;
 
 use App\RSVP;
-use App\Couple;
+use App\VIP;
 use App\RSVPToken;
 use Tests\TestCase;
 use App\ConfirmsRSVP;
@@ -34,8 +34,8 @@ class InteractsWithRSVPTest extends TestCase
 
         // generate necessary data
         $rsvp = factory(RSVP::class)->states('pending')->create();
-        $groom = factory(Couple::class)->states('male')->create();
-        $bride = factory(Couple::class)->states('female')->create();
+        $groom = factory(VIP::class)->states('male')->create();
+        $bride = factory(VIP::class)->states('female')->create();
 
         // perform the invitation
         $this->confirm->invite($rsvp);

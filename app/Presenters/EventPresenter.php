@@ -21,6 +21,9 @@ class EventPresenter extends BasePresenter
     public function getDistinctDate()
     {
 		return $this->distinct()
+			->without('image')
+			->oldest('datetime')
+			->get(['datetime'])
 			->pluck('datetime')
             ->toArray();
 	}

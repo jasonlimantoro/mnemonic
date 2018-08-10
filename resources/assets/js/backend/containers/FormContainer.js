@@ -1,212 +1,143 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { FormGroup, ControlLabel, Image } from "react-bootstrap";
 
-// Custom Components
-import { SearchBox, RadioButton, InputFile } from "../components/Form";
+import { StyledInput } from "../components/Form";
 import { PrimaryButton } from "../components/Button";
 import { UploadModal } from "../components/Modal";
-import { DisplayImagesFromInputFile } from "../components/DisplayImage";
-import { CoupleTabs } from "../components/Tab";
+import reducer from "../reducers/FancyInputReducer";
+import FancyInputContext, { withFancyInput } from "../contexts/FancyInputContext";
+import AjaxStatus from "../components/AjaxStatus";
 
 
-export class Search extends React.Component {
+export class SimpleInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      'searchValue' : '',
-      'selectedOption' : 'title',
-      'placeholder': 'Search title'
-    }
-    this.changeSearchValue = this.changeSearchValue.bind(this);
-    this.changeSelectedOption = this.changeSelectedOption.bind(this);
+      file: {},
+      previewUrl: '',
+      loading: false,
+      showAlert: false,
+      status: '',
+      message: '',
+    };
+    this.uploadFile = this.uploadFile.bind(this);
+    this.handleDismiss = this.handleDismiss.bind(this);
   }
 
-  changeSearchValue(newValue) {
-    const searchValue = newValue;
-    this.setState({ searchValue });
-    this.filter(searchValue);
-  }
-
-  changeSelectedOption (newOption) {
-    const selectedOption = newOption;
-    const placeholder = "Search " + newOption;
-    this.setState({ selectedOption, placeholder });
-  }
-
-  filter(value) {
-    var value = value.toUpperCase(); // the value to be searched
-    var table = document.getElementsByClassName('table')[0];
-    var tr = table.getElementsByTagName('tr');
-    var columnIndex = this.state.selectedOption === 'title' ? 0 : 1;
-    for (let i = 1; i < tr.length; i++) {
-      var td = tr[i].getElementsByClassName('data-table')[columnIndex];
-      if (td) {
-        if (td.innerText.toUpperCase().indexOf(value) > -1) {
-          tr[i].style.display = '';
-        }
-        else {
-          tr[i].style.display = 'none';
-				}
-      }
-    }
-  }
-
-  render() {
-    const selected = this.state.selectedOption;
-    return (
-      <div>
-        <SearchBox 
-          onChange={this.changeSearchValue} 
-          value={this.state.searchValue} 
-          placeholder={this.state.placeholder}
-        />
-        <RadioButton 
-          onChange = {this.changeSelectedOption}
-          selectedOption = {selected}
-        />
-      </div>
-    )
-  }
-}
-
-export class CoupleForm extends React.Component{
-  constructor(props){
-    super(props);
-  }
-
-  render(){
-    return (
-      <CoupleTabs />
-    );
-  }
-}
-
-export class SimpleInput extends React.Component
-{
-  constructor(props)
-  {
-    super(props);
-    this.state = {
-      file : {} 
-    }
-    this.addFile = this.addFile.bind(this);
-  }
-
-  addFile(newFile) {
-    this.setState({
-      file: newFile
+  uploadFile(file, previewUrl) {
+    this.setState({loading : true}, () => {
+      setTimeout(() => {
+        this.setState({
+          showAlert: true,
+          loading: false,
+          status: 'success',
+          message: 'Nice! The file is available for preview',
+          file,
+          previewUrl,
+        });
+      }, 1000);
     });
   }
 
-  render()
-  {
-    const inputStyle = {
-      'display' : 'none'
-    };
-    
-    const preview = this.props.image ? <img src={this.props.image} alt="image" className="img-responsive" /> : 'No file uploaded';
-    return (
-      <div>
-        {/* new file */}
-        <input type="file" name="image" id={"inputFileOutside" + '-' + this.props.i.toString()} style={inputStyle} />
-
-        <div className="form-group">
-          {/* preview */}
-          <p><strong>New Image</strong></p>
-          <div id={"preview" + '-' + this.props.i.toString() } className="new-image">{preview}</div>
-        </div>
-        <div className="form-group">
-          <InputFile 
-            label = "Open file browser"
-            labelClass = "btn btn-success"
-            name = "image"
-            onChange = {this.addFile}
-            i={this.props.i}
-          />
-
-          <DisplayImagesFromInputFile file={this.state.file} i={this.props.i} displayOutside displayBelow={false} />
-        </div>
-      </div>
-
-    );
+  handleDismiss() {
+    this.setState({
+      showAlert : false,
+    });
   }
 
+  render() {
+    const { uploadFile, handleDismiss, state : {file, previewUrl, ...ajaxState}, props : {template} } = this;
+
+    const preview = previewUrl ?
+      <Image src={previewUrl} alt="image" responsive /> : 'No file uploaded';
+
+    return (
+      <React.Fragment>
+
+        <input type="hidden" name="template" value={template}/>
+
+        <FormGroup controlId="preview">
+          <ControlLabel>New Image</ControlLabel>
+          <div className="new-image">{preview}</div>
+        </FormGroup>
+
+        <StyledInput
+          label="Open file browser"
+          labelClass="btn btn-success"
+          name="image"
+          onChange={uploadFile}
+        />
+        <AjaxStatus {...ajaxState} onDismiss={handleDismiss}/>
+      </React.Fragment>
+    );
+  }
 }
 
+SimpleInput.propTypes = {
+  template: PropTypes.string,
+};
+
 SimpleInput.defaultProps = {
-  i: 1
-}
+  template : "original",
+};
+
+const ModalWithContext = withFancyInput(UploadModal);
 
 export class FancyInput extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      modalShow : false,
-    };
-    this.closeModal = this.closeModal.bind(this);
-    this.showModal = this.showModal.bind(this);
-  }
-  closeModal() {
-    this.setState({
-      modalShow : false
-    });
-  }
 
-  showModal() {
-    this.setState({
-      modalShow : true
-    });
+    this.state = {
+      modalShow: false,
+      inputValue: this.props.initialInputValue,
+      template : this.props.template,
+      dispatch: action => {
+        this.setState(state => reducer(state, action))
+      },
+    };
   }
 
   render() {
-    const inputStyle = {
-      'display' : 'none'
-    };
-    
-    const preview = this.props.image ? <img src={this.props.image} alt="image" className="img-responsive" /> : 'No file uploaded';
-    return (
-      <div>
-        {/* old file */}
-        <input type="hidden" name={this.props.galleryInputName} id={"inputGalleryImage" + '-' + this.props.i.toString()} />
-        {/* new file */}
-        <input type="file" name={this.props.newInputName} id={"inputFileOutside" + '-' + this.props.i.toString()} style={inputStyle} />
+    const { inputValue, dispatch } = this.state;
 
-        <div className="form-group">
-          {/* preview */}
-          <strong>New Image</strong>
-          <div id={"preview" + '-' + this.props.i.toString() } className="new-image">{preview}</div>
-        </div>
-        <div className="form-group">
-          <PrimaryButton dusk={this.props.dusk} text="Upload Image" onClick={this.showModal} />
-        </div>
-        <UploadModal show={this.state.modalShow} onHide={this.closeModal} i={this.props.i} />
-      </div>
+    const { inputName, initialInputValue } = this.props;
+
+    const preview = inputValue !== initialInputValue ?
+      <Image src={`/uploads/${inputValue}`} alt="image" responsive style={{ maxWidth: '50%'}}/> : 'No file uploaded';
+
+    return (
+      <React.Fragment>
+        <input type="hidden" name={inputName} value={inputValue}/>
+
+        <FormGroup controlId="preview">
+          <ControlLabel>New Image</ControlLabel>
+          <div className="new-image">{preview}</div>
+        </FormGroup>
+
+        <FormGroup>
+          <PrimaryButton onClick={() => dispatch({ type: 'SHOW_MODAL' })}>
+            Upload Image
+          </PrimaryButton>
+        </FormGroup>
+
+        <FancyInputContext.Provider value={this.state}>
+          <ModalWithContext />
+        </FancyInputContext.Provider>
+
+      </React.Fragment>
     );
   }
 }
-FancyInput.defaultProps = {
-	i : 1,
-	galleryInputName :  "gallery_image",
-	newInputName : "image",
-	dusk : ''
-}
 
-export class IconAndLogoInput extends React.Component
-{
-	constructor(props)
-	{
-		super(props);
-	}
-	render()
-	{
-		return (
-			<div>
-					<div className="col-md-4">
-						<FancyInput i={1} galleryInputName="favicon_from_gallery" newInputName="favicon_from_local" dusk="favicon-upload" />
-					</div>
-					<div className="col-md-4">
-						<FancyInput i={2} galleryInputName="logo_from_gallery" newInputName="logo_from_local" dusk="logo-upload" />
-					</div>
-			</div>
-		);
-	}
-}
+FancyInput.propTypes = {
+  template: PropTypes.string,
+  inputName: PropTypes.string,
+  initialInputValue: PropTypes.string,
+};
+
+FancyInput.defaultProps = {
+  template: "original",
+  inputName: "gallery_image",
+  initialInputValue: "",
+};
