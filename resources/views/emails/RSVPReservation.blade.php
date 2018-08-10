@@ -1050,7 +1050,7 @@
     <div class="col">
       <h1>
         @if($mode === 'birthday')
-          The Birthday of {{ strtok($vip->birthday_person, " ") }}
+          The Birthday of {{ strtok($vip->birthday_person->name, " ") }}
         @else
           The Wedding of {{ strtok($vip->groom->name, " ") }} and {{ strtok($vip->bride->name, " ") }}
         @endif
