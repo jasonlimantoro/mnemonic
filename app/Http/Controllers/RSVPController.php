@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PackageSetting;
 use App\RSVP;
 use App\RSVPToken;
 use App\ConfirmsRSVP;
@@ -131,10 +132,15 @@ class RSVPController extends Controller
         return back();
     }
 
-    public function confirm(RSVP $rsvp, RSVPToken $token)
+    public function confirm(RSVP $rsvp, RSVPToken $token, PackageSetting $setting)
     {
-        $this->confirm->persist($token);
-        return view('emails.RSVPconfirmed', compact('rsvp'));
+        $this->confirm
+            ->persist($token)
+            ->reserve($rsvp);
+
+        $vip = $setting->getVip();
+
+        return view("rsvps.reserved", compact('rsvp', 'vip'));
     }
 
     public function confirmFromFront(Request $request)
@@ -147,7 +153,9 @@ class RSVPController extends Controller
         $id = (int) ($request->rsvp);
         $rsvp = RSVP::find($id);
         $token = $rsvp->token;
-        $this->confirm->persist($token);
+        $this->confirm
+            ->persist($token)
+            ->reserve($rsvp);
 
         return redirect()->route('front.rsvp')->with('rsvp', $rsvp);
     }

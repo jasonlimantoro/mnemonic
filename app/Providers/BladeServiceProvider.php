@@ -20,10 +20,6 @@ class BladeServiceProvider extends ServiceProvider
 			return Route::currentRouteNamed('front*');
 		});
 
-		Blade::if('mode', function ($mode){
-		    return PackageSetting::getValueByKey('other')->mode === $mode;
-        });
-
 		Blade::directive('react', function ($component) {
 			return "<?php echo '<div data-component={$component}></div>'; ?>";
         });

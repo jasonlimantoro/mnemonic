@@ -21,26 +21,26 @@
 				
 				<div class="col-sm-5 col-xs-12">
 					<div class="vip-container">
-						<h3 class="font-theme vip-name">{{ $groom->name }}</h3>
+						<h3 class="font-theme vip-name">{{ $vip->groom->name }}</h3>
 						<span class="font-theme vip-relation">Son of</span> <br>
 						<div class="vip-parent">
-							<p>{{ $groom->father }} &</p>
-							<p>{{ $groom->mother }}</p>
+							<p>{{ $vip->groom->father }} &</p>
+							<p>{{ $vip->groom->mother }}</p>
 						</div>
-						<img src="{{ url('imagecache/vip/' . $groom->image) }}" alt="vip" class="img-responsive inline-block">
+						<img src="{{ url('imagecache/vip/' . $vip->groom->image) }}" alt="vip" class="img-responsive inline-block">
 					</div>
 				</div>
 				<div class="col-sm-2 hidden-xs link">&</div>
 	
 				<div class="col-sm-5 col-xs-12">
 					<div class="vip-container">
-						<h3 class="font-theme vip-name">{{ $bride->name }}</h3>
+						<h3 class="font-theme vip-name">{{ $vip->bride->name }}</h3>
 						<span class="font-theme vip-relation">Daughter of</span> <br>
 						<div class="vip-parent">
-							<p>{{ $bride->father }} &</p>
-							<p>{{ $bride->mother }}</p>
+							<p>{{ $vip->bride->father }} &</p>
+							<p>{{ $vip->bride->mother }}</p>
 						</div>
-						<img src="{{ url('imagecache/vip/' . $bride->image ) }}" alt="vip" class="img-responsive inline-block">
+						<img src="{{ url('imagecache/vip/' . $vip->bride->image ) }}" alt="vip" class="img-responsive inline-block">
 					</div>
 				</div>
 			</div>

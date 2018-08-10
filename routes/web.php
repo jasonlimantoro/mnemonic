@@ -93,9 +93,25 @@ Route::group([
     });
 
 // previewing mailables in browser
-Route::get('/mailable', function () {
-    $rsvp = \App\RSVP::find(1);
+Route::get('/mailable/invitation', function () {
+    $rsvp = \App\RSVP::first();
     return new App\Mail\RSVPInvitation($rsvp);
+});
+
+// Previewing rsvpConfirmation email
+Route::get('/mailable/reservation', function (){
+   $rsvp = \App\RSVP::first();
+   return new App\Mail\RSVPReservation($rsvp);
+});
+
+// Previewing rsvp confirmation
+Route::get('/reserved', function() {
+  $rsvp = \App\RSVP::first();
+
+  $vip = \App\PackageSetting::getVip();
+
+  return view("rsvps.reserved", compact('rsvp', 'vip'));
+
 });
 
 // rsvp confirmation

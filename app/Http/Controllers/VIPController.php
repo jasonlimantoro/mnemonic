@@ -9,8 +9,14 @@ use App\Http\Controllers\GenericController as Controller;
 
 class VIPController extends Controller
 {
-    public function __construct()
+    public $package;
+    public $setting;
+
+    public function __construct(PackageSetting $package, Setting $setting)
     {
+        $this->package = $package;
+        $this->setting = $setting;
+
         $this->middleware('can:read,App\VIP')->only('edit');
         $this->middleware('can:update,App\VIP')->only('update');
         $this->middleware('can:read-embed-video')->only('editVideo');
@@ -20,41 +26,37 @@ class VIPController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param PackageSetting $setting
      * @return \Illuminate\Http\Response
      */
-    public function edit(PackageSetting $setting)
+    public function edit()
     {
-		$mode = $setting->getValueByKey('other')->mode;
+		$mode = $this->package->getMode();
 
-		if ($mode === 'birthday') {
-			$vip = $setting->getValueByKey('other')->vip->birthday_person;
-			return view('backend.day.vip.birthdayEdit', compact('vip'));
-		}
-        $vips = $setting->getValueByKey('other')->vip;
-        return view('backend.day.vip.weddingEdit', compact('vips'));
+		$vip = $this->package->getVip();
+
+		return view("backend.day.vip.${mode}.edit", compact("vip"));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param PackageSetting $setting
+     *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PackageSetting $setting)
+    public function update(Request $request)
     {
-		if ($mode = $setting->getValueByKey('other')->mode === 'birthday') {
+		if ($mode = $this->package->getMode() === 'birthday') {
 			$request->validate([
-				'birthday_name' => 'required',
+				'vip_name' => 'required',
 			]);
-			$setting->updateJSONValueFromKeyField('other', [
+			$this->package->updateJSONValueFromKeyField('other', [
 				'vip' => [
 					'birthday_person' => [
-						'name' => $request->birthday_name,
-						'father' => $request->birthday_father,
-						'mother' => $request->birthday_mother,
-						'image' => $request->birthday_image,
+						'name' => $request->vip_name,
+						'father' => $request->vip_father,
+						'mother' => $request->vip_mother,
+						'image' => $request->vip_image,
 					]
 				], 
 			]);
@@ -63,7 +65,7 @@ class VIPController extends Controller
 				'groom_name' => 'required',
 				'bride_name' => 'required'
 			]);
-			$setting->updateJSONValueFromKeyField('other', [
+			$this->package->updateJSONValueFromKeyField('other', [
 				'vip' => [
 					'groom' => [
 						'name' => $request->groom_name,
@@ -88,7 +90,7 @@ class VIPController extends Controller
 
     public function editVideo()
     {
-        $embed = Setting::getValueByKey('embed-video');
+        $embed = $this->setting->getValueByKey('embed-video');
         return view('backend.day.vip.edit-video', compact('embed'));
     }
 
@@ -98,7 +100,7 @@ class VIPController extends Controller
             'embed_url' => 'required'
         ]);
 
-        Setting::updateValueByKey('embed-video', [
+        $this->setting->updateValueByKey('embed-video', [
             'url' => $request->embed_url,
             'id' => getYoutubeId($request->embed_url)
         ]);

@@ -2,45 +2,55 @@
 
 namespace App\Mail;
 
+use App\Event;
 use App\RSVP;
-use App\VIP;
+use App\PackageSetting;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class RSVPInvitation extends Mailable
 {
-	use Queueable, SerializesModels;
-	
-	public $rsvp;
+    use Queueable, SerializesModels;
+
+    public $rsvp;
 
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param RSVP $rsvp
      */
     public function __construct(RSVP $rsvp)
     {
-		$this->rsvp = $rsvp;
+        $this->rsvp = $rsvp;
     }
 
     /**
      * Build the message.
      *
+     * @param PackageSetting $setting
      * @return $this
      */
-    public function build()
+    public function build(PackageSetting $setting)
     {
-		$url = '/';
-		if($this->rsvp->token()->count())
-		{
-			$url = route('rsvps.confirm', ['rsvp' => $this->rsvp->id, 'token' => $this->rsvp->token->token ]);
-		}
-		$groom = VIP::groom();
-		$bride = VIP::bride();
-		return $this->subject('Invitation to Wedding of ' . $groom->name . ' and ' . $bride->name)
-					->markdown('emails.RSVPInvitation')
-					->with(compact('groom', 'bride', 'url'));
+        $url = '/';
+        if ($this->rsvp->token()->exists()) {
+            $url = route('rsvps.confirm', ['rsvp' => $this->rsvp->id, 'token' => $this->rsvp->token->token]);
+        }
+
+        $mode = $setting->getMode();
+
+        $event = Event::{$mode}();
+
+        $hm = Event::holyMatrimony();
+
+        $vip = $setting->getVip();
+
+        $subject = $mode === 'birthday' ? 'Invitation to birthday of ' . $vip->birthday_person->name :
+            'Invitation to wedding of ' . $vip->groom->name . ' and ' . $vip->bride->name;
+
+        return $this->subject($subject)
+                    ->view("emails.${mode}.RSVPInvitation")
+                    ->with(compact('vip', 'url', 'event', 'hm'));
     }
 }
