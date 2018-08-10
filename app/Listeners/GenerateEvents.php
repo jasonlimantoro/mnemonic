@@ -28,13 +28,16 @@ class GenerateEvents
     {
 		Event::truncate();
         if ($event->mode === 'birthday') {
-			factory(Event::class)->states('birthday')->create([
+			Event::create([
+			    'name' => 'Birthday',
 				'description' => '<p>My Sweet 17<sup>th</sup> Birthday</p>',
 				'location' => '<h1>Ciputra Hall</h1>
-				<p><iframe style="border: 0;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.5333354647355!2d112.64923681484791!3d-7.293813473719349!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fdb8e8945a79%3A0x51e8391b9e46d18f!2sCiputra+Hall!5e0!3m2!1sen!2ssg!4v1532399155696" width="600" height="450" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>'
+				<p><iframe style="border: 0;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.5333354647355!2d112.64923681484791!3d-7.293813473719349!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fdb8e8945a79%3A0x51e8391b9e46d18f!2sCiputra+Hall!5e0!3m2!1sen!2ssg!4v1532399155696" width="600" height="450" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>',
+                'datetime' => Carbon::now()->subMonth(),
 			]);
 		} else {
-			factory(Event::class)->states('wedding')->create([
+			Event::create([
+			    'name' => 'Wedding',
 				'description' => '<p>"Wherefore they are no more twain, but one flesh.</p>
 				<p>What therefore God hath joined together, let no man put asunder"</p>
 				<p>Matthew 19:6</p>',
@@ -47,7 +50,8 @@ class GenerateEvents
 				'datetime' => Carbon::now()->subMonth(),
 			]);
 
-			factory(Event::class)->states('holymatrimony')->create([
+			Event::create([
+			    'name' => 'Holy Matrimony',
 				'description' => '<p>"Wherefore they are no more twain, but one flesh.</p>
 				<p>What therefore God hath joined together, let no man put asunder"</p>
 				<p>Matthew 19:6</p>',
