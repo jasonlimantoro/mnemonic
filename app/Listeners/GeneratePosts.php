@@ -35,7 +35,8 @@ class GeneratePosts
             $post->deleteRecord();
         }
 
-        $first = factory(Post::class)->create([
+        $first = Post::create([
+            'user_id' => auth()->user()->id,
             'page_id' => 2,
             'title' => 'Victor Immanuel Rumende, S. Kom',
             'description' => '<p>Surabaya, 21 Juni 1990</p> <p>SMPK Angelus Custos, Surabaya</p> <p>SMAK Frateran Surabaya</p> <p>Multimedia, Universitas Surabaya</p>',
@@ -48,7 +49,8 @@ class GeneratePosts
         ]);
 
          if ($event->mode === 'wedding') {
-            $second = factory(Post::class)->create([
+            $second = Post::create([
+                'user_id' => auth()->user()->id,
                 'page_id' => 2,
                 'title' => 'Lenny Kurniawati Ligadjaja, S. E',
                 'description' => '<p>Surabaya, 03 Maret 1992</p> <p>SMPK St. Agnes, Surabaya.</p> <p>SMAK St. Agnes, Surabaya.</p> <p>Pariwisata, Universitas Kristen Petra.</p>'
