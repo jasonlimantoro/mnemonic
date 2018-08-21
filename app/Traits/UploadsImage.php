@@ -43,13 +43,11 @@ trait UploadsImage
 
         Storage::disk('uploads')->move($old, $new);
 
-        $this->update([
+        return tap($this)->update([
             'file_name' => $new,
             'url_asset' => url("uploads/${new}"),
             'url_cache' => url("imagecache/gallery/${new}"),
         ]);
-
-        return $this;
     }
 
     public function deleteRecord()
