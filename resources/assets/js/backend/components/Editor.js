@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 
 import tinymce from 'tinymce';
+import styled from "styled-components";
 
 import { FieldGroup } from "./Form";
 
@@ -45,4 +46,8 @@ Editor.propTypes = {
   defaultValue: PropTypes.string,
 };
 
-export default Editor;
+const StyledEditor = styled(Editor)`
+ height: 30vh !important;
+`;
+
+export default StyledEditor;
