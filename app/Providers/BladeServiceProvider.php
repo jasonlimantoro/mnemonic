@@ -19,10 +19,6 @@ class BladeServiceProvider extends ServiceProvider
 		Blade::if('frontend', function (){
 			return Route::currentRouteNamed('front*');
 		});
-
-		Blade::directive('react', function ($component) {
-			return "<?php echo '<div data-component={$component}></div>'; ?>";
-        });
     }
 
     /**

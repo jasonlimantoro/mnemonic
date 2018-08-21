@@ -4,13 +4,13 @@
 		{{ Form::label('title', 'Title:') }}
 		{{ Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Enter Title']) }}
 	</div>
-	
-	@react("InitializeEditor")
-	{{-- description field --}}
-	<div class="form-group">
-		{{ Form::label('description', 'Description:') }}
-		{{ Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Enter Description']) }}
-	</div>
+
+  <div data-component="Editor"
+       data-prop-name="description"
+       data-prop-label="Description"
+       data-prop-default-value="{!! $post->description !!}"
+  >
+  </div>
 
 	{{-- Submit Button --}}
 	<div class="form-group">

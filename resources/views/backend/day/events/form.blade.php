@@ -6,17 +6,20 @@
 	</div>
 
 	{{-- description field --}}
-	@react("InitializeEditor")
-	<div class="form-group">
-		{{ Form::label('description', 'Event Description') }}
-		{{ Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Enter Description']) }}
-	</div>
+  <div data-component="Editor"
+       data-prop-name="description"
+       data-prop-label="Description"
+       data-prop-default-value="{!! $event->description !!}"
+  >
+  </div>
 
 	{{-- location field --}}
-	<div class="form-group">
-		{{ Form::label('location', 'Event Location') }}
-		{{ Form::textarea('location', null, ['class' => 'form-control', 'placeholder' => 'Enter Location']) }}
-	</div>
+  <div data-component="Editor"
+       data-prop-name="location"
+       data-prop-label="Location"
+       data-prop-default-value="{{ $event->location }}"
+  >
+  </div>
 
 
 	<div class="form-group">
