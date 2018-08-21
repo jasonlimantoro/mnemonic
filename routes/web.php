@@ -138,4 +138,3 @@ Route::name('front.')->group(function () {
     Route::get('/', 'FrontendController@home')->name('index');
 });
 
-Route::post('/uploadAjax', 'AjaxController@upload');

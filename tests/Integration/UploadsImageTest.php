@@ -14,7 +14,7 @@ class UploadsImageTest extends TestCase
         Storage::fake('uploads');
         $file = UploadedFile::fake()->image('avatar.jpg');
 
-        $response = $this->ajaxPost( '/uploadAjax', [
+        $response = $this->ajaxPost( 'api/upload', [
             'image' => $file
         ]);
 

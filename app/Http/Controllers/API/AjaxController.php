@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use App\Traits\UploadsImage;
+use App\Http\Controllers\Controller;
+
 
 class AjaxController extends Controller
 {
