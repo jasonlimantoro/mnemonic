@@ -34,7 +34,7 @@
 
 	<div class="form-group">
 		<div data-component="FancyInput"
-         data-prop-template="post"
+         data-prop-template="{{ $template ?? 'post' }}"
          data-prop-initial-input-value="{{ isset($post) ? optional($post->image)->file_name : '' }}"
     >
 		</div>

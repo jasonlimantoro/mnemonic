@@ -8,6 +8,7 @@ use App\Repositories\Posts;
 use App\Http\Requests\PostsRequest;
 use App\Http\Middleware\CheckPage;
 use App\Http\Controllers\GenericController as Controller;
+use test\Mockery\Adapter\Phpunit\BaseClassStub;
 
 class PostsController extends Controller
 {
@@ -78,7 +79,6 @@ class PostsController extends Controller
      */
     public function show(Page $page, Post $post)
     {
-        $page = $post->page;
         return view('posts.backend.show', compact('post', 'page'));
     }
 
@@ -93,7 +93,9 @@ class PostsController extends Controller
     {
 		$postImage = optional($post->image)->url_cache;
 
-        return view('posts.backend.edit', compact('post', 'page', 'postImage'));
+        $template = $page->title === 'About' ? 'vip' : 'post';
+
+        return view('posts.backend.edit', compact('post', 'page', 'postImage', 'template'));
     }
 
     public function update(PostsRequest $request, Page $page, Post $post)
@@ -101,9 +103,11 @@ class PostsController extends Controller
 
         $file = $request->gallery_image;
 
-		$post->update($request->only(['title', 'description']));
+        $template = $page->title === 'About' ? 'vip' : 'post';
 
-		$post->addImage($file);
+        tap($post)
+            ->update($request->only(['title', 'description']))
+            ->addImage($file, $template);
 
         $this->flash('Post updated successfully!');
 
