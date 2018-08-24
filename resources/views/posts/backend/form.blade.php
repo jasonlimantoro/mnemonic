@@ -8,7 +8,7 @@
   <div data-component="Editor"
        data-prop-name="description"
        data-prop-label="Description"
-       data-prop-default-value="{!! $post->description !!}"
+       data-prop-default-value="{{ isset($post) ? $post->description : '' }}"
   >
   </div>
 
