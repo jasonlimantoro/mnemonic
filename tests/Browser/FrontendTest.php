@@ -2,7 +2,7 @@
 
 namespace Tests\Browser;
 
-use App\Post;
+use App\Models\Post;
 use App\VIP;
 use PagesTableSeeder;
 use ImagesTableSeeder;

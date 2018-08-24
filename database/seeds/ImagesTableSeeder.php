@@ -21,7 +21,7 @@ class ImagesTableSeeder extends Seeder
                     'url_asset' => url('/uploads/engagement-1.jpg'),
 					'url_cache' => url('/imagecache/gallery/engagement-1.jpg'),
 					'imageable_id' => 1,
-					'imageable_type' => 'App\Album',
+					'imageable_type' => 'App\Models\Album',
                     'created_at' => NOW(),
                     'updated_at' => NOW()
                 ],
@@ -32,7 +32,7 @@ class ImagesTableSeeder extends Seeder
                     'url_asset' => url('/uploads/engagement-1.jpg'),
 					'url_cache' => url('/imagecache/gallery/engagement-1.jpg'),
 					'imageable_id' => 2,
-					'imageable_type' => 'App\Carousel',
+					'imageable_type' => 'App\Models\Carousel',
                     'created_at' => NOW(),
                     'updated_at' => NOW()
                 ],
@@ -43,7 +43,7 @@ class ImagesTableSeeder extends Seeder
                     'url_asset' => url('/uploads/engagement-2.jpg'),
 					'url_cache' => url('/imagecache/gallery/engagement-2.jpg'),
 					'imageable_id' => 2,
-					'imageable_type' => 'App\Album',
+					'imageable_type' => 'App\Models\Album',
                     'created_at' => NOW(),
                     'updated_at' => NOW()
                 ],
@@ -54,7 +54,7 @@ class ImagesTableSeeder extends Seeder
                     'url_asset' => url('/uploads/wisuda-1.png'),
                     'url_cache' => url('/imagecache/gallery/wisuda-1.png'),
 					'imageable_id' => 3,
-					'imageable_type' => 'App\Album',
+					'imageable_type' => 'App\Models\Album',
                     'created_at' => NOW(),
                     'updated_at' => NOW()
                 ],
@@ -65,7 +65,7 @@ class ImagesTableSeeder extends Seeder
                     'url_asset' => url('/uploads/victor-lenny-2.jpg'),
                     'url_cache' => url('/imagecache/gallery/victor-lenny-2.jpg'),
 					'imageable_id' => 2,
-					'imageable_type' => 'App\Album',
+					'imageable_type' => 'App\Models\Album',
                     'created_at' => NOW(),
                     'updated_at' => NOW()
                 ],
@@ -76,7 +76,7 @@ class ImagesTableSeeder extends Seeder
                     'url_asset' => url('/uploads/victor-lenny-2.jpg'),
                     'url_cache' => url('/imagecache/gallery/victor-lenny-2.jpg'),
 					'imageable_id' => 1,
-					'imageable_type' => 'App\Carousel',
+					'imageable_type' => 'App\Models\Carousel',
                     'created_at' => NOW(),
                     'updated_at' => NOW()
                 ],
@@ -87,7 +87,7 @@ class ImagesTableSeeder extends Seeder
                     'url_asset' => url('/uploads/victor-lenny-3.jpg'),
                     'url_cache' => url('/imagecache/gallery/victor-lenny-3.jpg'),
 					'imageable_id' => 2,
-					'imageable_type' => 'App\Album',
+					'imageable_type' => 'App\Models\Album',
                     'created_at' => NOW(),
                     'updated_at' => NOW()
                 ],
@@ -98,7 +98,7 @@ class ImagesTableSeeder extends Seeder
                     'url_asset' => url('/uploads/victor-lenny-3.jpg'),
                     'url_cache' => url('/imagecache/gallery/victor-lenny-3.jpg'),
 					'imageable_id' => 1,
-					'imageable_type' => 'App\Carousel',
+					'imageable_type' => 'App\Models\Carousel',
                     'created_at' => NOW(),
                     'updated_at' => NOW()
                 ],
@@ -109,7 +109,7 @@ class ImagesTableSeeder extends Seeder
                     'url_asset' => url('/uploads/avatar2.png'),
                     'url_cache' => url('/imagecache/gallery/avatar2.png'),
 					'imageable_id' => 4,
-					'imageable_type' => 'App\Album',
+					'imageable_type' => 'App\Models\Album',
                     'created_at' => NOW(),
                     'updated_at' => NOW()
                 ],
@@ -120,7 +120,7 @@ class ImagesTableSeeder extends Seeder
                     'url_asset' => url('/uploads/victor-lenny-1.jpg'),
                     'url_cache' => url('/imagecache/gallery/victor-lenny-1.jpg'),
 					'imageable_id' => 2,
-					'imageable_type' => 'App\Album',
+					'imageable_type' => 'App\Models\Album',
                     'created_at' => NOW(),
                     'updated_at' => NOW()
                 ],
@@ -131,7 +131,7 @@ class ImagesTableSeeder extends Seeder
                     'url_asset' => url('/uploads/victor-lenny-1.jpg'),
                     'url_cache' => url('/imagecache/gallery/victor-lenny-1.jpg'),
 					'imageable_id' => 1,
-					'imageable_type' => 'App\Carousel',
+					'imageable_type' => 'App\Models\Carousel',
                     'created_at' => NOW(),
                     'updated_at' => NOW()
 				],

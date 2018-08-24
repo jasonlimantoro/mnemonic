@@ -1,12 +1,11 @@
 <?php
 
-namespace App;
-
+namespace App\Models;
 
 use App\Traits\FiltersResources;
 
 /**
- * App\RSVP
+ * App\Models\RSVP
  *
  * @property int $id
  * @property string $name
@@ -18,18 +17,18 @@ use App\Traits\FiltersResources;
  * @property int $reminder_count
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- * @property-read \App\RSVPToken $token
- * @method static \Illuminate\Database\Eloquent\Builder|\App\RSVP filtersSearch($filters, $nameColumn = 'name')
- * @method static \Illuminate\Database\Eloquent\Builder|\App\RSVP whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\RSVP whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\RSVP whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\RSVP whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\RSVP wherePhone($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\RSVP whereReminderCount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\RSVP whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\RSVP whereTableName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\RSVP whereTotalInvitation($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\RSVP whereUpdatedAt($value)
+ * @property-read \App\Models\RSVPToken $token
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RSVP filtersSearch($filters, $nameColumn = 'name')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RSVP whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RSVP whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RSVP whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RSVP whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RSVP wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RSVP whereReminderCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RSVP whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RSVP whereTableName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RSVP whereTotalInvitation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RSVP whereUpdatedAt($value)
  *
  */
 class RSVP extends Model

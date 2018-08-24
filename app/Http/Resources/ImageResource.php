@@ -3,7 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
-use App\Album;
+use App\Models\Album;
 
 class ImageResource extends Resource
 {

@@ -3,8 +3,8 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use App\RSVPToken;
-use App\RSVP;
+use App\Models\RSVPToken;
+use App\Models\RSVP;
 
 class TokenFound implements Rule
 {

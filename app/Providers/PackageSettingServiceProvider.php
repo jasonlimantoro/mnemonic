@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\PackageSetting;
+use App\Models\PackageSetting;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 

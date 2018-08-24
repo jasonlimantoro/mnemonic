@@ -6,7 +6,7 @@
 	@component('backend.layouts.panel', [
 		'title' => "Users"
 	])
-		@can('create', App\User::class)
+		@can('create', App\Models\User::class)
 			@slot('addButton')
 				@component('backend.layouts.addButton', [
 					'url' => route('users.create'),

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\PackageSetting;
+use App\Models\PackageSetting;
 use App\Http\Requests\PackageSettingsRequest;
 use App\Http\Controllers\GenericController as Controller;
 use App\Events\ModeChanged;

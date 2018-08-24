@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\PackageSetting;
+use App\Models\PackageSetting;
 use Closure;
 
 abstract class CheckPackageSettings

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Image;
-use App\Album;
+use App\Models\Image;
+use App\Models\Album;
 use App\Repositories\Images;
 use App\Repositories\Albums;
 use Illuminate\Http\Request;
@@ -71,7 +71,7 @@ class ImagesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Image  $image
+     * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
     public function destroy(Image $image)

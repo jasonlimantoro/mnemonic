@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use App\Setting;
+use App\Models\Setting;
 use SettingsTableSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

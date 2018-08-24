@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Album;
+use App\Models\Album;
 use App\Repositories\Albums;
 use App\Http\Requests\AlbumsRequest;
 use App\Http\Controllers\GenericController as Controller;
@@ -68,7 +68,7 @@ class AlbumsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Album  $album
+     * @param  \App\Models\Album  $album
      * @return \Illuminate\Http\Response
      */
     public function show(Album $album)
@@ -81,7 +81,7 @@ class AlbumsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Album  $album
+     * @param  \App\Models\Album  $album
      * @return \Illuminate\Http\Response
      */
     public function edit(Album $album)
@@ -109,7 +109,7 @@ class AlbumsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Album $album
+     * @param  \App\Models\Album $album
      * @return \Illuminate\Http\Response
      */
     public function destroy(Album $album)

@@ -2,12 +2,12 @@
 
 namespace Tests\Integration;
 
-use App\Image;
-use App\Event;
-use App\Album;
+use App\Models\Image;
+use App\Models\Event;
+use App\Models\Album;
 use App\VIP;
-use App\Carousel;
-use App\BridesBest;
+use App\Models\Carousel;
+use App\Models\BridesBest;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

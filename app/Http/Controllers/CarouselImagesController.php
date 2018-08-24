@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Image;
-use App\Carousel;
+use App\Models\Image;
+use App\Models\Carousel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\GenericController as Controller;
 

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Image;
-use App\BridesBest;
+use App\Models\Image;
+use App\Models\BridesBest;
 use App\Http\Requests\BridesBestsRequest;
 use App\Http\Controllers\GenericController as Controller;
 
@@ -98,7 +98,7 @@ class BridesBestsController extends Controller
      * Update the specified resource in storage.
      *
      * @param BridesBestsRequest $request
-     * @param  \App\BridesBest $bridesmaid_bestman
+     * @param  \App\Models\BridesBest $bridesmaid_bestman
      * @return \Illuminate\Http\Response
      */
     public function update(BridesBestsRequest $request, BridesBest $bridesmaid_bestman)
@@ -117,7 +117,7 @@ class BridesBestsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\BridesBest  $bridesmaid_bestman
+     * @param  \App\Models\BridesBest  $bridesmaid_bestman
      * @return \Illuminate\Http\Response
      */
     public function destroy(BridesBest $bridesmaid_bestman)

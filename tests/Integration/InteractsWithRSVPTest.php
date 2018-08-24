@@ -2,9 +2,9 @@
 
 namespace Tests\Integration;
 
-use App\RSVP;
+use App\Models\RSVP;
 use App\VIP;
-use App\RSVPToken;
+use App\Models\RSVPToken;
 use Tests\TestCase;
 use App\ConfirmsRSVP;
 use App\Mail\RSVPInvitation;

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\PackageSetting;
-use App\RSVP;
-use App\RSVPToken;
+use App\Models\PackageSetting;
+use App\Models\RSVP;
+use App\Models\RSVPToken;
 use App\ConfirmsRSVP;
 use App\Rules\TokenFound;
 use App\Rules\Unconfirmed;
@@ -20,10 +20,10 @@ class RSVPController extends Controller
     {
         $this->confirm = $confirm;
 
-        $this->middleware('can:read,App\RSVP')->except(['confirm', 'confirmFromFront']);
-        $this->middleware('can:create,App\RSVP')->only(['create', 'store']);
-        $this->middleware('can:update,App\RSVP')->only(['edit', 'update', 'remind']);
-        $this->middleware('can:delete,App\RSVP')->only('destroy');
+        $this->middleware('can:read,App\Models\RSVP')->except(['confirm', 'confirmFromFront']);
+        $this->middleware('can:create,App\Models\RSVP')->only(['create', 'store']);
+        $this->middleware('can:update,App\Models\RSVP')->only(['edit', 'update', 'remind']);
+        $this->middleware('can:delete,App\Models\RSVP')->only('destroy');
 
         $this->middleware('package.rsvp')->only(['create', 'store']);
     }
@@ -73,7 +73,7 @@ class RSVPController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\RSVP  $rsvp
+     * @param  \App\Models\RSVP  $rsvp
      * @return \Illuminate\Http\Response
      */
     public function show(RSVP $rsvp)
@@ -84,7 +84,7 @@ class RSVPController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\RSVP  $rsvp
+     * @param  \App\Models\RSVP  $rsvp
      * @return \Illuminate\Http\Response
      */
     public function edit(RSVP $rsvp)
@@ -96,7 +96,7 @@ class RSVPController extends Controller
      * Update the specified resource in storage.
      *
      * @param RSVPRequest $request
-     * @param  \App\RSVP $rsvp
+     * @param  \App\Models\RSVP $rsvp
      * @return \Illuminate\Http\Response
      */
     public function update(RSVPRequest $request, RSVP $rsvp)
@@ -113,7 +113,7 @@ class RSVPController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\RSVP  $rsvp
+     * @param  \App\Models\RSVP  $rsvp
      * @return \Illuminate\Http\Response
      */
     public function destroy(RSVP $rsvp)

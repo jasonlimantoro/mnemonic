@@ -2,9 +2,9 @@
 
 namespace Tests\Browser\Auth;
 
-use App\Role;
-use App\User;
-use App\Permission;
+use App\Models\Role;
+use App\Models\User;
+use App\Models\Permission;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Tests\Browser\Pages\RolesPage;

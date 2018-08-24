@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Vendor;
-use App\Category;
+use App\Models\Vendor;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\GenericController as Controller;
 
@@ -13,10 +13,10 @@ class VendorsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('can:read,App\Vendor');
-        $this->middleware('can:create,App\Vendor')->only(['create', 'store']);
-        $this->middleware('can:update,App\Vendor')->only(['edit', 'update']);
-        $this->middleware('can:delete,App\Vendor')->only('destroy');
+        $this->middleware('can:read,App\Models\Vendor');
+        $this->middleware('can:create,App\Models\Vendor')->only(['create', 'store']);
+        $this->middleware('can:update,App\Models\Vendor')->only(['edit', 'update']);
+        $this->middleware('can:delete,App\Models\Vendor')->only('destroy');
 
         $this->categories = Category::all();
         $this->categoriesToArray = $this->categories->pluck('name', 'id')->toArray();
@@ -68,7 +68,7 @@ class VendorsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Vendor  $vendor
+     * @param  \App\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
     public function show(Vendor $vendor)
@@ -79,7 +79,7 @@ class VendorsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Vendor  $vendor
+     * @param  \App\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
     public function edit(Vendor $vendor)
@@ -94,7 +94,7 @@ class VendorsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Vendor  $vendor
+     * @param  \App\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Vendor $vendor)
@@ -113,7 +113,7 @@ class VendorsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Vendor  $vendor
+     * @param  \App\Models\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
     public function destroy(Vendor $vendor)

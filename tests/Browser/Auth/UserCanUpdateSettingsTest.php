@@ -2,9 +2,9 @@
 
 namespace Tests\Browser\Auth;
 
-use App\User;
-use App\Image;
-use App\Setting;
+use App\Models\User;
+use App\Models\Image;
+use App\Models\Setting;
 use SettingsTableSeeder;
 use Laravel\Dusk\Browser;
 use Tests\Browser\Pages\SettingsPage;

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Image;
-use App\Album;
+use App\Models\Image;
+use App\Models\Album;
 use App\Repositories\Albums;
 use Illuminate\Http\Request;
 use App\Http\Controllers\GenericController as Controller;
@@ -48,7 +48,7 @@ class AlbumImagesController extends Controller
      * Display the specified resource.
      *
      * @param Album $album
-     * @param  \App\Image $image
+     * @param  \App\Models\Image $image
      * @return \Illuminate\Http\Response
      */
     public function show(Album $album, Image $image)
@@ -61,7 +61,7 @@ class AlbumImagesController extends Controller
      *
      * @param Albums $albums
      * @param Album $album
-     * @param  \App\Image $image
+     * @param  \App\Models\Image $image
      * @return \Illuminate\Http\Response
      */
     public function edit(Albums $albums, Album $album, Image $image)
@@ -84,7 +84,7 @@ class AlbumImagesController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param Album $album
-     * @param  \App\Image $image
+     * @param  \App\Models\Image $image
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Album $album, Image $image)
@@ -111,7 +111,7 @@ class AlbumImagesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Album $album
-     * @param  \App\Image $image
+     * @param  \App\Models\Image $image
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */

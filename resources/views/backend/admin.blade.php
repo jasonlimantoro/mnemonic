@@ -13,19 +13,19 @@
 				<div class="col-md-6">
 					<h3> Wedding </h3>
 					<ul>
-						@can('read', App\Event::class)
+						@can('read', \App\Models\Event::class)
 							<li><a href="{{ route('events.index')}}">Manage Events</a></li>
 						@endcan
 
-						@can('read', App\BridesBest::class)
+						@can('read', \App\Models\BridesBest::class)
 							<li><a href="{{ route('bridesmaid-bestmans.index')}}">Add Bridesmaid and Bestmen</a></li>
 						@endcan
 
-						@can('read', App\RSVP::class)
+						@can('read', App\Models\RSVP::class)
 							<li><a href="{{ route('rsvps.index')}}">Add your RSVP</a></li>
 						@endcan
 
-						@can('read', App\Vendor::class)
+						@can('read', App\Models\Vendor::class)
 							<li><a href="{{ route('vendors.index')}}">Add your vendor list</a></li>
 						@endcan
 					</ul>

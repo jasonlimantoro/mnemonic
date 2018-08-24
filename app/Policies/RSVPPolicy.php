@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
-use App\RSVP;
+use App\Models\User;
+use App\Models\RSVP;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class RSVPPolicy
@@ -13,7 +13,7 @@ class RSVPPolicy
     /**
      * Determine whether the user can view the rSVP.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function read(User $user)
@@ -24,7 +24,7 @@ class RSVPPolicy
     /**
      * Determine whether the user can create rSVPs.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -35,7 +35,7 @@ class RSVPPolicy
     /**
      * Determine whether the user can update the rSVP.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function update(User $user)
@@ -46,7 +46,7 @@ class RSVPPolicy
     /**
      * Determine whether the user can delete the rSVP.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function delete(User $user)

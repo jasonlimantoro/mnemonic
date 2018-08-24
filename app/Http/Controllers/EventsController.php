@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Event;
-use App\Image;
+use App\Models\Event;
+use App\Models\Image;
 use App\Filters\EventFilter;
 use App\Http\Requests\EventsRequest;
 use App\Http\Controllers\GenericController as Controller;
@@ -12,10 +12,10 @@ class EventsController extends Controller
 {
 	public function __construct()
 	{
-		$this->middleware('can:read,App\Event');
-		$this->middleware('can:create,App\Event')->only(['create', 'store']);
-		$this->middleware('can:update,App\Event')->only(['edit', 'update']);
-		$this->middleware('can:delete,App\Event')->only('destroy');
+		$this->middleware('can:read,App\Models\Event');
+		$this->middleware('can:create,App\ModelsEvent')->only(['create', 'store']);
+		$this->middleware('can:update,App\Models\Event')->only(['edit', 'update']);
+		$this->middleware('can:delete,App\Models\Event')->only('destroy');
 	}
     /**
      * Display a listing of the resource.
@@ -64,7 +64,7 @@ class EventsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Event  $event
+     * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
     public function show(Event $event)
@@ -75,7 +75,7 @@ class EventsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Event  $event
+     * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
     public function edit(Event $event)
@@ -88,7 +88,7 @@ class EventsController extends Controller
      * Update the specified resource in storage.
      *
      * @param EventsRequest $request
-     * @param  \App\Event $event
+     * @param  \App\Models\Event $event
      * @return \Illuminate\Http\Response
      */
     public function update(EventsRequest $request, Event $event)
@@ -110,7 +110,7 @@ class EventsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Event  $event
+     * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
     public function destroy(Event $event)

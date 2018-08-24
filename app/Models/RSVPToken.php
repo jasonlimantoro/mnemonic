@@ -1,25 +1,25 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Mail\RSVPInvitation;
 use Illuminate\Support\Facades\Mail;
 
 /**
- * App\RSVPToken
+ * App\Models\RSVPToken
  *
  * @property int $id
  * @property int $rsvp_id
  * @property string $token
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- * @property-read \App\RSVP $rsvp
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model filtersSearch($filters, $nameColumn = 'name')
- * @method static \Illuminate\Database\Eloquent\Builder|\App\RSVPToken whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\RSVPToken whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\RSVPToken whereRsvpId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\RSVPToken whereToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\RSVPToken whereUpdatedAt($value)
+ * @property-read \App\Models\RSVP $rsvp
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model filtersSearch($filters, $nameColumn = 'name')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RSVPToken whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RSVPToken whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RSVPToken whereRsvpId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RSVPToken whereToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\RSVPToken whereUpdatedAt($value)
  *
  */
 class RSVPToken extends Model

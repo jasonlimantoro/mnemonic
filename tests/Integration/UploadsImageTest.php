@@ -2,7 +2,7 @@
 
 namespace Tests\Integration;
 
-use App\Image;
+use App\Models\Image;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;

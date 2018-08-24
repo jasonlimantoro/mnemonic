@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Traits\UploadsImage;
 use App\Repositories\Albums;
@@ -20,17 +20,17 @@ use App\Repositories\Albums;
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $imageable
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model filtersSearch($filters, $nameColumn = 'name')
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Image whereCaption($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Image whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Image whereFeatured($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Image whereFileName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Image whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Image whereImageableId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Image whereImageableType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Image whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Image whereUrlAsset($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Image whereUrlCache($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model filtersSearch($filters, $nameColumn = 'name')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ whereCaption($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ whereFeatured($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ whereFileName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ whereImageableId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ whereImageableType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ whereUrlAsset($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ whereUrlCache($value)
  *
  */
 class Image extends Model

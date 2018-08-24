@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Repositories\Albums;
 use App\Traits\HasManyImages;
@@ -13,14 +13,14 @@ use App\Traits\HasManyImages;
  * @property string|null $description
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Image[] $images
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Album filterId($filters)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model filtersSearch($filters, $nameColumn = 'name')
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Album whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Album whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Album whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Album whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Album whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Image[] $images
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Album filterId($filters)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model filtersSearch($filters, $nameColumn = 'name')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Album whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Album whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Album whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Album whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Album whereUpdatedAt($value)
  *
  */
 class Album extends Model

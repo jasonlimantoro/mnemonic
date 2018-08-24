@@ -2,9 +2,9 @@
 
 namespace App\Mail;
 
-use App\Event;
-use App\RSVP;
-use App\PackageSetting;
+use App\Models\Event;
+use App\Models\RSVP;
+use App\Models\PackageSetting;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -18,7 +18,7 @@ class RSVPInvitation extends Mailable
     /**
      * Create a new message instance.
      *
-     * @param RSVP $rsvp
+     * @param \App\Models\RSVP $rsvp
      */
     public function __construct(RSVP $rsvp)
     {

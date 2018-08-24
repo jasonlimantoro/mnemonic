@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Image;
-use App\Album;
+use App\Models\Image;
+use App\Models\Album;
 
 class Images
 {
@@ -17,11 +17,11 @@ class Images
 
     public static function withAlbum()
     {
-        return Image::where('imageable_type', 'App\Album');
+        return Image::where('imageable_type', 'App\Models\Album');
     }
 
     public static function withoutAlbum()
     {
-        return Image::where('imageable_type', '!=', 'App\Album');
+        return Image::where('imageable_type', '!=', 'App\Models\Album');
     }
 }

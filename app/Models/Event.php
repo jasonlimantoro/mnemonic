@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Carbon\Carbon;
 use App\Traits\HasOneImage;
@@ -9,7 +9,7 @@ use App\Presenters\EventPresenter;
 use Collective\Html\Eloquent\FormAccessible;
 
 /**
- * App\Event
+ * App\Models\Event
  *
  * @property int $id
  * @property string $name
@@ -19,15 +19,15 @@ use Collective\Html\Eloquent\FormAccessible;
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read mixed $date_time_object
- * @property-read \App\Image $image
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model filtersSearch($filters, $nameColumn = 'name')
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereDatetime($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereLocation($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereUpdatedAt($value)
+ * @property-read \App\Models\Image $image
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model filtersSearch($filters, $nameColumn = 'name')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Event whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Event whereDatetime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Event whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Event whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Event whereLocation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Event whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Event whereUpdatedAt($value)
  *
  */
 class Event extends Model

@@ -1,20 +1,20 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Traits\IndexesJson;
 use App\Traits\KeysSettings;
 
 /**
- * App\PackageSetting
+ * App\Models\PackageSetting
  *
  * @property int $id
  * @property string $key
  * @property string $value
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Model filtersSearch($filters, $nameColumn = 'name')
- * @method static \Illuminate\Database\Eloquent\Builder|\App\PackageSetting whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\PackageSetting whereKey($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\PackageSetting whereValue($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model filtersSearch($filters, $nameColumn = 'name')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ whereKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ whereValue($value)
  *
  */
 class PackageSetting extends Model

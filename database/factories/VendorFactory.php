@@ -1,9 +1,9 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\Category;
+use App\Models\Category;
 
-$factory->define(App\Vendor::class, function (Faker $faker) {
+$factory->define(\App\Models\Vendor::class, function (Faker $faker) {
     return [
         'name' => $faker->word,
         'category_id' => function () {

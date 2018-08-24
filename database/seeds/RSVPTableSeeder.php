@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\RSVP;
+use App\Models\RSVP;
 
 class RSVPTableSeeder extends Seeder
 {

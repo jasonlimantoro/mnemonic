@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
-use App\BridesBest;
+use App\Models\User;
+use App\Models\BridesBest;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class BridesBestPolicy
@@ -13,7 +13,7 @@ class BridesBestPolicy
     /**
      * Determine whether the user can view the bridesBest.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function read(User $user)
@@ -24,7 +24,7 @@ class BridesBestPolicy
     /**
      * Determine whether the user can create bridesBests.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -35,8 +35,8 @@ class BridesBestPolicy
     /**
      * Determine whether the user can update the bridesBest.
      *
-     * @param  \App\User  $user
-     * @param  \App\BridesBest  $bridesBest
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\BridesBest  $bridesBest
      * @return mixed
      */
     public function update(User $user)
@@ -47,8 +47,8 @@ class BridesBestPolicy
     /**
      * Determine whether the user can delete the bridesBest.
      *
-     * @param  \App\User  $user
-     * @param  \App\BridesBest  $bridesBest
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\BridesBest  $bridesBest
      * @return mixed
      */
     public function delete(User $user)

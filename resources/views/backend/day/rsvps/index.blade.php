@@ -6,7 +6,7 @@
   @component('backend.layouts.panel', [
     'title' => "RSVP"
 	])
-    @can('create', App\RSVP::class)
+    @can('create', App\Models\RSVP::class)
       @slot('addButton')
         @component('backend.layouts.addButton', [
           'url' => route('rsvps.create'),

@@ -1,9 +1,9 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\Album;
+use App\Models\Album;
 
-$factory->define(App\Image::class, function (Faker $faker) {
+$factory->define(\App\Models\Image::class, function (Faker $faker) {
     return [
         'caption' => $faker->sentence,
         'file_name' => $faker->word . '.jpg',
@@ -12,6 +12,6 @@ $factory->define(App\Image::class, function (Faker $faker) {
 		'imageable_id' => function(){
 			return factory(Album::class)->create()->id;
 		},  
-		'imageable_type' => 'App\\Album',
+		'imageable_type' => 'App\\Models\\Album',
     ];
 });

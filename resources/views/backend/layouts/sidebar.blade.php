@@ -15,7 +15,7 @@
 			<li><a href="{{ route('carousel.images.index', ['carousel' => 1]) }}" data-menu="menu">Main Carousel</a></li>
 		@endcan
 
-		@can('read', App\Post::class)
+		@can('read', App\Models\Post::class)
 			<li>
 				<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" data-menu="menu">
 					<i class="glyphicon glyphicon-duplicate"></i>
@@ -56,12 +56,12 @@
           </li>
 				@endcan
 
-				@can('read', App\Event::class)
+				@can('read', \App\Models\Event::class)
 					<li><a href="{{ route('events.index') }}">Event</a></li>
 				@endcan
 
         @if($mode === 'wedding')
-          @can('read', App\BridesBest::class)
+          @can('read', \App\Models\BridesBest::class)
             <li><a href="{{ route('bridesmaid-bestmans.index') }}">Bridesmaid & Bestman</a></li>
           @endcan
         @endif
@@ -76,18 +76,18 @@
       <li>
         <a href="#vendorSubMenu" data-toggle="collapse" aria-expanded="false" data-menu="menu">Vendors</a>
         <ul class="collapse list-unstyled" id="vendorSubMenu">
-          @can('read', App\Vendor::class)
+          @can('read', App\Models\Vendor::class)
             <li><a href="{{ route('vendors.index') }}">Vendor Lists</a></li>
           @endcan
 
-          @can('read', App\Category::class)
+          @can('read', \App\Models\Category::class)
             <li><a href="{{ route('categories.index') }}">Manage Categories</a></li>
           @endcan
         </ul>
       </li>
     @endif
 
-		@can('read', App\RSVP::class)
+		@can('read', App\Models\RSVP::class)
 			<li><a href="{{ route('rsvps.index') }}" data-menu="menu">RSVP</a></li>
 		@endcan
     
@@ -107,11 +107,11 @@
     <li>
       <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false" data-menu="menu"><i class="fa fa-user"></i>Users & Roles </a>
       <ul class="collapse list-unstyled" id="adminSubmenu">
-				@can('read', App\User::class)
+				@can('read', App\Models\User::class)
 					<li><a href="{{ route('users.index') }}">Manage Users</a></li>
 				@endcan
 
-				@can('read', App\Role::class)
+				@can('read', App\Models\Role::class)
 					<li><a href="{{ route('roles.index') }}">Manage Roles</a></li>
 				@endcan
       </ul>

@@ -2,8 +2,8 @@
 
 namespace Tests\Browser\Auth;
 
-use App\User;
-use App\Setting;
+use App\Models\User;
+use App\Models\Setting;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Tests\Browser\Pages\SEOPage;

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
-use App\Page;
+use App\Models\Post;
+use App\Models\Page;
 use App\Repositories\Posts;
 use App\Http\Requests\PostsRequest;
 use App\Http\Middleware\CheckPage;
@@ -15,10 +15,10 @@ class PostsController extends Controller
 
 	public function __construct() 
 	{
-		$this->middleware('can:read,App\Post')->except('read');
-		$this->middleware('can:create,App\Post')->only(['create', 'store']);
-		$this->middleware('can:update,App\Post')->only(['edit', 'update']);
-		$this->middleware('can:delete,App\Post')->only('destroy');
+		$this->middleware('can:read,App\Models\Post')->except('read');
+		$this->middleware('can:create,App\Models\Post')->only(['create', 'store']);
+		$this->middleware('can:update,App\Models\Post')->only(['edit', 'update']);
+		$this->middleware('can:delete,App\Models\Post')->only('destroy');
 
 		$this->middleware(CheckPage::class)->only(['create', 'store', 'delete']);
 		$this->middleware('package.posts')->only(['create', 'store']);
@@ -26,7 +26,7 @@ class PostsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param Page $page
+     * @param \App\Models\Page $page
      *
      * @return \Illuminate\Http\Response
      */
@@ -42,7 +42,7 @@ class PostsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param Page $page
+     * @param \App\Models\Page $page
      * @return \Illuminate\Http\Response
      */
     public function create(Page $page)
@@ -54,7 +54,7 @@ class PostsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param PostsRequest $request
-     * @param Page $page
+     * @param \App\Models\Page $page
      * @return \Illuminate\Http\Response
      */
     public function store(PostsRequest $request, Page $page)
@@ -73,7 +73,7 @@ class PostsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Page $page
+     * @param \App\Models\Page $page
      * @param Post $post
      * @return \Illuminate\Http\Response
      */
@@ -85,7 +85,7 @@ class PostsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Page $page
+     * @param \App\Models\Page $page
      * @param Post $post
      * @return \Illuminate\Http\Response
      */
@@ -117,7 +117,7 @@ class PostsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Page $page
+     * @param \App\Models\Page $page
      * @param Post $post
      * @return \Illuminate\Http\Response
      */

@@ -15,7 +15,7 @@
     {!! $b->testimony !!}
   </td>
   <td class="data action">
-    @can('update', App\BridesBest::class)
+    @can('update', \App\Models\BridesBest::class)
       <a
         href="{{ route('bridesmaid-bestmans.edit', ['bridesmaid-bestman' => $b->id ]) }}"
         role="button"
@@ -27,7 +27,7 @@
       </a>
     @endcan
 
-    @can('delete', App\BridesBest::class)
+    @can('delete', \App\Models\BridesBest::class)
       <div data-component="DeleteIcon"
            data-prop-url="{{ route('bridesmaid-bestmans.destroy', [ 'bridesmaid-bestman' => $b->id ]) }}"
       >

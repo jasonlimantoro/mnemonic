@@ -3,7 +3,7 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use App\RSVP;
+use App\Models\RSVP;
 
 class Unconfirmed implements Rule
 {

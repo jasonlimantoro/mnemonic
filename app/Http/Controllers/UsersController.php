@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Role;
-use App\User;
+use App\Models\Role;
+use App\Models\User;
 use App\Http\Controllers\GenericController as Controller;
 use App\Http\Requests\UsersRequest;
 
@@ -14,10 +14,10 @@ class UsersController extends Controller
 	
 	public function __construct(Role $roles)
 	{
-		$this->middleware('can:read,App\User');
-		$this->middleware('can:create,App\User')->only(['create', 'store']);
-		$this->middleware('can:update,App\User')->only(['edit', 'update']);
-		$this->middleware('can:delete,App\User')->only('destroy');
+		$this->middleware('can:read,App\Models\User');
+		$this->middleware('can:create,App\Models\User')->only(['create', 'store']);
+		$this->middleware('can:update,App\Models\User')->only(['edit', 'update']);
+		$this->middleware('can:delete,App\Models\User')->only('destroy');
 
 		$this->roles = $roles;
 		$this->rolesToArray = $this->roles->pluck('name', 'id')->toArray();
@@ -108,7 +108,7 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)

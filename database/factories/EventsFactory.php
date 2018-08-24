@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Event::class, function (Faker $faker) {
+$factory->define(\App\Models\Event::class, function (Faker $faker) {
     return [
 		'name' => $faker->words($nb = 3, $asText = true),
 		'description' => $faker->sentence(),
@@ -11,14 +11,14 @@ $factory->define(App\Event::class, function (Faker $faker) {
 	];
 });
 
-$factory->state(App\Event::class, 'birthday', [
+$factory->state(\App\Models\Event::class, 'birthday', [
 	'name' => 'Birthday'
 ]);
 
-$factory->state(App\Event::class, 'wedding', [
+$factory->state(\App\Models\Event::class, 'wedding', [
 	'name' => 'Wedding Reception'
 ]);
 
-$factory->state(App\Event::class, 'holymatrimony', [
+$factory->state(\App\Models\Event::class, 'holymatrimony', [
 	'name' => 'Holy Matrimony'
 ]);

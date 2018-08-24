@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Page;
-use App\Event;
-use App\Vendor;
-use App\Setting;
+use App\Models\Page;
+use App\Models\Event;
+use App\Models\Vendor;
+use App\Models\Setting;
 use Carbon\Carbon;
-use App\BridesBest;
-use App\PackageSetting;
+use App\Models\BridesBest;
+use App\Models\PackageSetting;
 use App\Repositories\Posts;
 use App\Repositories\Albums;
 
