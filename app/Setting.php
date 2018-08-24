@@ -9,6 +9,20 @@ use Illuminate\Support\Facades\Storage;
 
 
 
+/**
+ * App\Setting
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $key
+ * @property string|null $value
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model filtersSearch($filters, $nameColumn = 'name')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Setting whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Setting whereKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Setting whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Setting whereValue($value)
+ *
+ */
 class Setting extends Model
 {
     use KeysSettings, IndexesJson;

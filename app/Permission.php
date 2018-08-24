@@ -3,6 +3,25 @@
 namespace App;
 
 
+/**
+ * App\Permission
+ *
+ * @property int $id
+ * @property string $name
+ * @property array $action
+ * @property string $description
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Role[] $roles
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model filtersSearch($filters, $nameColumn = 'name')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Permission whereAction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Permission whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Permission whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Permission whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Permission whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Permission whereUpdatedAt($value)
+ *
+ */
 class Permission extends Model
 {
 	protected $casts = [

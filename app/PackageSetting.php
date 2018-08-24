@@ -5,6 +5,18 @@ namespace App;
 use App\Traits\IndexesJson;
 use App\Traits\KeysSettings;
 
+/**
+ * App\PackageSetting
+ *
+ * @property int $id
+ * @property string $key
+ * @property string $value
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model filtersSearch($filters, $nameColumn = 'name')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PackageSetting whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PackageSetting whereKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PackageSetting whereValue($value)
+ *
+ */
 class PackageSetting extends Model
 {
     use KeysSettings, IndexesJson;
