@@ -15,15 +15,14 @@ class CreateImagesTable extends Migration
     {
 		Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('file_name');
-            $table->string('url_asset');
-            $table->string('url_cache');
-            $table->boolean('featured')->default(0);
+            $table->string('name');
+            $table->string('url');
+            $table->boolean('featured')->nullable();
 			$table->string('caption')->nullable();
-			$table->integer('imageable_id')->default(4);
-			$table->string('imageable_type')->default('App\\\Album');
-			$table->index(['imageable_id', 'imageable_type']);
             $table->timestamps();
+
+            $table->index(['id', 'name']);
+
         });
     }
 
