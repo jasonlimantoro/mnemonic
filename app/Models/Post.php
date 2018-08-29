@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasManyImages;
 use App\Traits\HasOneImage;
 use App\Traits\PresentsField;
 use App\Presenters\PostPresenter;
@@ -16,7 +17,7 @@ use App\Presenters\PostPresenter;
  * @property string $description
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- * @property-read \App\Models\Image $image
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Image[] $images
  * @property-read \App\Models\Page $page
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model filtersSearch($filters, $nameColumn = 'name')
@@ -31,10 +32,9 @@ use App\Presenters\PostPresenter;
  */
 class Post extends Model
 {
-	use PresentsField, HasOneImage;
+	use PresentsField, HasManyImages;
 
 	public $presenter = PostPresenter::class;
-	public $filter = 'post';
 
     public function user()
     {
@@ -46,8 +46,13 @@ class Post extends Model
         return $this->belongsTo(Page::class);
     }
 
+    public function images()
+    {
+        return $this->morphToMany(Image::class, 'imageable');
+    }
+
     public function image()
     {
-        return $this->morphOne(Image::class, 'imageable');
+        return $this->images()->first();
     }
 }

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Post;
 use App\Models\Page;
 use App\Repositories\Posts;
 use App\Http\Requests\PostsRequest;
 use App\Http\Middleware\CheckPage;
 use App\Http\Controllers\GenericController as Controller;
-use test\Mockery\Adapter\Phpunit\BaseClassStub;
 
 class PostsController extends Controller
 {
@@ -91,11 +91,9 @@ class PostsController extends Controller
      */
     public function edit(Page $page, Post $post)
     {
-		$postImage = optional($post->image)->url_cache;
+		$postImage = $post->images->first();
 
-        $template = $page->title === 'About' ? 'vip' : 'post';
-
-        return view('posts.backend.edit', compact('post', 'page', 'postImage', 'template'));
+        return view('posts.backend.edit', compact('post', 'page', 'postImage'));
     }
 
     public function update(PostsRequest $request, Page $page, Post $post)
@@ -103,11 +101,11 @@ class PostsController extends Controller
 
         $file = $request->gallery_image;
 
-        $template = $page->title === 'About' ? 'vip' : 'post';
+        $image = Image::where('name', $file)->first();
 
         tap($post)
             ->update($request->only(['title', 'description']))
-            ->addImage($file, $template);
+            ->images()->sync([$image->id]);
 
         $this->flash('Post updated successfully!');
 

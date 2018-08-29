@@ -9,20 +9,22 @@ use App\Http\Controllers\GenericController as Controller;
 
 class CarouselImagesController extends Controller
 {
-    public function __construct()
+    public $images;
+
+    public function __construct(Image $images)
     {
         $this->middleware('can:read-carousel-image');
         $this->middleware('can:create-carousel-image')->only(['create', 'store']);
         $this->middleware('can:update-carousel-image')->only(['edit', 'update']);
         $this->middleware('can:delete-carousel-image')->only('destroy');
 
-        // All uploaded images
-        $this->images = Image::where('imageable_type', Carousel::class)->oldest()->get();
+        $this->images = $images;
+
     }
 
     public function index(Carousel $carousel)
     {
-        $images = $carousel->images()->oldest()->get();
+        $images = $carousel->images()->oldest('updated_at')->get();
 
         return view('backend.website.carousel.index', compact('images'));
     }
@@ -37,7 +39,11 @@ class CarouselImagesController extends Controller
 
         $file = $request->gallery_image;
 
-        $carousel->addImage($file, $request->only('caption'));
+        $image = $this->images->whereName($file)->first();
+
+        $image->update($request->only('caption'));
+
+        $carousel->images()->save($image);
 
         $this->flash('Image is successfully uploaded to the carousel!');
 
@@ -58,18 +64,24 @@ class CarouselImagesController extends Controller
     {
         $file = $request->gallery_image;
 
-        $carousel->updateImage($image, $file, $request->only('caption'));
+        $newImage = $this->images->whereName($file)->first();
+
+        if($newImage->id !== $image->id){
+            $carousel->images()->toggle([$newImage->id, $image->id]);
+        }
+
+        $newImage->update($request->only('caption'));
 
         $this->flash('Updated successfully!');
 
-        return back();
+        return redirect()->route('carousel.images.edit', ['carousel' => 1, 'image' => $newImage->id]);
     }
 
     public function destroy(Carousel $carousel, Image $image)
     {
-        $image->delete();
+        $carousel->images()->detach($image);
 
-        $this->flash('Image is successfully removed from the carousel!');
+        $this->flash('Image is successfully detached from the carousel!');
 
         return back();
     }

@@ -24,7 +24,7 @@
 			<p><strong>Current Image</strong></p>
 			<div class="current-image">
 				@isset ($postImage)
-					<img src="{{ $postImage }}" alt="event" class="img-responsive">
+          <img src="{{ $postImage->urlCache('post') }}" alt="event" class="img-responsive">
 				@else
 					<p>No Image uploaded</p>
 				@endisset	
@@ -34,8 +34,7 @@
 
 	<div class="form-group">
 		<div data-component="FancyInput"
-         data-prop-template="{{ $template ?? 'post' }}"
-         data-prop-initial-input-value="{{ isset($post) ? optional($post->image)->file_name : '' }}"
+         data-prop-initial-input-value="{{ isset($postImage) ? $postImage->name : '' }}"
     >
 		</div>
 	</div>

@@ -15,7 +15,7 @@
       @endcomponent
     @endslot
     @slot('body')
-      <img src="{{ $image->url_cache }}" alt="image" class="img-responsive">
+      <img src="{{ $image->urlCache('gallery') }}" alt="image" class="img-responsive">
 
 			{{ Form::model($image, [
 					'route' => ['carousel.images.update', 1, $image->id], 

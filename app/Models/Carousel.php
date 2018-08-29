@@ -18,7 +18,7 @@ use App\Traits\HasManyImages;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Carousel whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Carousel wherePageId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Carousel whereUpdatedAt($value)
- *
+ * @mixin \Eloquent
  */
 class Carousel extends Model
 {
@@ -26,11 +26,13 @@ class Carousel extends Model
 
     public $filter = 'gallery';
 
-	public function images(){
-		return $this->morphMany(Image::class, 'imageable');
-	}
-    
-    public function page(){
+    public function images()
+    {
+        return $this->morphToMany(Image::class, 'imageable');
+    }
+
+    public function page()
+    {
         return $this->belongsTo(Page::class);
     }
 }

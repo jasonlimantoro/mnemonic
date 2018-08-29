@@ -12,7 +12,7 @@
 			@slot('carouselSlides')
 				@foreach($slides as $slide)
           <div class="item {{ $loop->first ? 'active' : '' }}">
-						<img src="{{ $slide->url_cache }}" alt="slide" class="img-responsive">
+						<img src="{{ $slide->urlCache() }}" alt="slide" class="img-responsive">
 						<div class="carousel-caption">
 							{{ $slide->caption }}
 						</div>

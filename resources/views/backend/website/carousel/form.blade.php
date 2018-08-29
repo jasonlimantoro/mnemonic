@@ -1,6 +1,6 @@
 <div data-component="FancyInput"
      data-prop-template="gallery"
-     data-prop-initial-input-value="{{ isset($image) ? $image->file_name : '' }}"
+     data-prop-initial-input-value="{{ isset($image) ? $image->name : '' }}"
 ></div>
 
 {{-- caption field --}}
