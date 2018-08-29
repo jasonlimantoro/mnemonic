@@ -49,9 +49,9 @@
               <p class="font-theme"> {!! $event->description !!} </p>
             </div>
   
-            @if ($event->image)
+            @if ($event->image())
               <div class="col-xs-12 wedding-day-events-image">
-                <img src="{{ $event->image->url_cache }}" alt="event" class="img-responsive inline-block">
+                <img src="{{ $event->image()->urlCache("event") }}" alt="event" class="img-responsive inline-block">
               </div>
             @endif
             

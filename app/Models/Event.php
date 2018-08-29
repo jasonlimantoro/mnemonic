@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasManyImages;
 use Carbon\Carbon;
 use App\Traits\HasOneImage;
 use App\Traits\PresentsField;
@@ -19,7 +20,7 @@ use Collective\Html\Eloquent\FormAccessible;
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property-read mixed $date_time_object
- * @property-read \App\Models\Image $image
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Image[] $images
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model filtersSearch($filters, $nameColumn = 'name')
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Event whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Event whereDatetime($value)
@@ -32,17 +33,22 @@ use Collective\Html\Eloquent\FormAccessible;
  */
 class Event extends Model
 {
-    use FormAccessible, PresentsField, HasOneImage;
+    use FormAccessible, PresentsField, HasManyImages;
 
     public $filter = 'event';
 	protected $dates = ['datetime'];
-	protected $with = ['image'];
+	protected $with = ['images'];
 	protected $presenter = EventPresenter::class;
 
 
+    public function images()
+    {
+        return $this->morphToMany(Image::class, 'imageable');
+    }
+
     public function image()
     {
-        return $this->morphOne(Image::class, 'imageable');
+        return $this->images()->first();
     }
 
 	public function setDatetimeAttribute($date)

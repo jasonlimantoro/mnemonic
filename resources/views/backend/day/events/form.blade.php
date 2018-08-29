@@ -9,7 +9,7 @@
   <div data-component="Editor"
        data-prop-name="description"
        data-prop-label="Description"
-       data-prop-default-value="{!! $event->description !!}"
+       data-prop-default-value="{!!isset($event) ? $event->description : '' !!}"
   >
   </div>
 
@@ -17,7 +17,7 @@
   <div data-component="Editor"
        data-prop-name="location"
        data-prop-label="Location"
-       data-prop-default-value="{{ $event->location }}"
+       data-prop-default-value="{{ isset($event) ? $event->location : '' }}"
   >
   </div>
 
@@ -49,7 +49,7 @@
 	<div class="form-group">
     <div data-component="FancyInput"
          data-prop-template="event"
-         data-prop-initial-input-value="{{ isset($event) ? optional($event->image)->file_name : ''}}"
+         data-prop-initial-input-value="{{ isset($event) ? optional($event->image())->name : ''}}"
     >
     </div>
 	</div>

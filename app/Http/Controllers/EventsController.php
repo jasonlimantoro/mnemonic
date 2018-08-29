@@ -13,7 +13,7 @@ class EventsController extends Controller
 	public function __construct()
 	{
 		$this->middleware('can:read,App\Models\Event');
-		$this->middleware('can:create,App\ModelsEvent')->only(['create', 'store']);
+		$this->middleware('can:create,App\Models\Event')->only(['create', 'store']);
 		$this->middleware('can:update,App\Models\Event')->only(['edit', 'update']);
 		$this->middleware('can:delete,App\Models\Event')->only('destroy');
 	}
@@ -80,7 +80,8 @@ class EventsController extends Controller
      */
     public function edit(Event $event)
     {
-        $eventImage = optional($event->image)->url_cache;
+        $eventImage = optional($event->image())->urlCache("event");
+
         return view('backend.day.events.edit', compact('event', 'eventImage'));
     }
 
@@ -96,11 +97,13 @@ class EventsController extends Controller
 
         $file = $request->gallery_image;
 
-		$event->update(
-			request(['name', 'description', 'location', 'datetime'])
-		);
+        $image = Image::whereName($file)->first();
 
-		$event->addImage($file);
+        tap($event)
+            ->update(
+			    $request->only(['name', 'description', 'location', 'datetime'])
+            )
+            ->images()->sync([$image->id]);
 
         $this->flash('Event is successfully updated!');
 
