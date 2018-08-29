@@ -27,8 +27,6 @@ class Album extends Model
 {
     use HasManyImages;
 
-    public $repo;
-
     public $filter = 'gallery';
 
     public function images()
@@ -54,8 +52,9 @@ class Album extends Model
     public function uncategorizeImages()
     {
         foreach ($this->images as $image){
-            $image->featured = 0;
-            $this->repo->uncategorized()->images()->save($image);
+            $image->featured = null;
+            $image->save();
+            $image->albums()->sync([Albums::uncategorized()->id]);
         }
 
         return $this;

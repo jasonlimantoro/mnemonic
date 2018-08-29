@@ -59,8 +59,8 @@ class Image extends Model
 
     public function isFeatured()
     {
-        return $this->featured;
-	}
+        return $this->featured === '*';
+    }
 
 	/**
 	 * Assign image with given attributes to Uncategorized Album

@@ -58,8 +58,6 @@ class AlbumsController extends Controller
 
         $album->addFeaturedImage($file);
 
-        //Album::createRecord($request);
-
         $this->flash('Album is created successfully!');
 
         return redirect()->route('albums.index');
@@ -86,9 +84,9 @@ class AlbumsController extends Controller
      */
     public function edit(Album $album)
     {
-        $featuredImage = optional($album->featuredImage())->url_cache;
+        $featuredImage = optional($album->featuredImage())->urlCache('gallery');
 
-        $featuredImageName = optional($album->featuredImage())->file_name;
+        $featuredImageName = optional($album->featuredImage())->name;
 
         return view('backend.website.albums.edit', compact('album', 'featuredImage', 'featuredImageName'));
     }

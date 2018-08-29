@@ -35,7 +35,7 @@ class AlbumImagesController extends Controller
             'image' => 'required|image'
         ]);
 
-        $image = Image::upload($request);
+        $image = Image::upload($request, false);
 
         $album->images()->save($image);
 
