@@ -1,16 +1,18 @@
 import React from "react";
-import {StyledGalleryModal} from "./Modal";
+import { StyledGalleryModal } from "./Modal";
 import StyledImageSlide from "./Slide";
+import { urlCache } from "../backend/functionals/helper";
 
-const DisplayImages = ({ data, showModal }) => {
-  if (data.show){
+const DisplayImages = ({ data, showModal, imageRoute }) => {
+  if (data.show) {
     const slides = data.items.map((image, index) => {
+      const url = urlCache(imageRoute, 'gallery', image.name);
       return (
         <StyledImageSlide
-					key={index}
-					url={image.url_cache}
-					className={'col-md-4'}
-					onClick={() => showModal(index)}
+          key={index}
+          url={url}
+          className={'col-md-4'}
+          onClick={() => showModal(index)}
         />
       );
     });

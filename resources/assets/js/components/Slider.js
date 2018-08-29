@@ -5,6 +5,7 @@ import { Image } from "react-bootstrap";
 import DisplayImages from "./DisplayImages";
 import defaultSettings from "../utils/SliderSettings";
 import StyledImageSlide from "./Slide";
+import { urlCache } from "../backend/functionals/helper";
 
 export const ModalImagesContext = React.createContext();
 
@@ -69,11 +70,11 @@ export class AlbumSlider extends React.Component {
 
   render() {
     const { albums, images, modal } = this.state;
+    const { imageRoute } = this.props;
 
     const slides = albums.map(album => {
       const featured = album.images.filter(image => image.featured)[0];
-      const url = featured ? featured.url_cache : "";
-
+      const url = featured ? urlCache(imageRoute, 'gallery', featured.name) : "";
       return (
         <StyledImageSlide
           key={album.id}
@@ -88,14 +89,15 @@ export class AlbumSlider extends React.Component {
     const provider = {
       modal,
       hideModal: this.hideModal,
-      images: images.items
+      images: images.items,
+      imageRoute,
     };
 
     return (
       <React.Fragment>
         <Slider {...defaultSettings}>{slides}</Slider>
         <ModalImagesContext.Provider value={provider}>
-          <DisplayImages data={images} showModal={this.showModal} />
+          <DisplayImages data={images} showModal={this.showModal} imageRoute={imageRoute} />
         </ModalImagesContext.Provider>
       </React.Fragment>
     );
@@ -106,7 +108,7 @@ export const BridesBestSlider = ({ data, imageRoute }) => {
   const bridesMaidSlides = data.map(item => (
     <StyledImageSlide
       key={item.id}
-      url={`${process.env.MIX_APP_URL}/${imageRoute}/bridesbest/${item.image.file_name}`}
+      url={urlCache(imageRoute, 'bridesbest', item.image.name)}
     >
       <h3 className="bb-name">{item.name}</h3>
       <div 
@@ -133,9 +135,5 @@ export const BridesBestSlider = ({ data, imageRoute }) => {
     className: "bb-slide"
   };
   return <Slider {...settings}>{bridesMaidSlides}</Slider>;
-};
-
-BridesBestSlider.propTypes = {
-  data: PropTypes.string,
 };
 

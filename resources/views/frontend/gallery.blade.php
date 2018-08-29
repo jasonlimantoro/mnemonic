@@ -8,6 +8,7 @@
 		<div class="row row-center">
 			<div class="col-xs-10 col-center">
         <div data-component="AlbumSlider"
+             data-prop-image-route="{{ config('imagecache.route') }}"
              data-prop-data="{{ $albums }}"
         >
         </div>
