@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\HasOneImage;
+use App\Traits\HasManyImages;
 
 /**
  * App\BridesBest
@@ -14,7 +14,7 @@ use App\Traits\HasOneImage;
  * @property string $gender
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
- * @property-read \App\Models\Image $image
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Image[] $images
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model filtersSearch($filters, $nameColumn = 'name')
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BridesBest whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BridesBest whereGender($value)
@@ -23,19 +23,22 @@ use App\Traits\HasOneImage;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BridesBest whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BridesBest whereTestimony($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\BridesBest whereUpdatedAt($value)
- *
+ * @mixin \Eloquent
  */
 class BridesBest extends Model
 {
-    use HasOneImage;
+    use HasManyImages;
 
-    public $filter = 'bridesbest';
+    protected $with = ['images'];
 
-    protected $with = ['image'];
+    public function images()
+    {
+        return $this->morphToMany(Image::class, 'imageable');
+    }
 
     public function image()
     {
-        return $this->morphOne(Image::class, 'imageable');
+        return $this->images()->first();
     }
 
     public static function bridesMaid()

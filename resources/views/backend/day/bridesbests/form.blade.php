@@ -9,7 +9,7 @@
   <div data-component="Editor"
        data-prop-name="testimony"
        data-prop-label="Testimony"
-       data-prop-default-value="{{ $bridesBest->testimony }}"
+       data-prop-default-value="{{ isset($bridesBest) ? $bridesBest->testimony : '' }}"
   >
   </div>
 

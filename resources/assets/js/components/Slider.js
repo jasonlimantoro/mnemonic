@@ -105,10 +105,12 @@ export class AlbumSlider extends React.Component {
 }
 
 export const BridesBestSlider = ({ data, imageRoute }) => {
-  const bridesMaidSlides = data.map(item => (
+  const bridesMaidSlides = data.map(item => {
+    const name = item.images.length ? item.images[0].name : '';
+    return (
     <StyledImageSlide
       key={item.id}
-      url={urlCache(imageRoute, 'bridesbest', item.image.name)}
+      url={urlCache(imageRoute, 'bridesbest', name)}
     >
       <h3 className="bb-name">{item.name}</h3>
       <div 
@@ -129,7 +131,7 @@ export const BridesBestSlider = ({ data, imageRoute }) => {
         </div>
       </div>
     </StyledImageSlide>
-  ));
+  )});
   const settings = {
     ...defaultSettings,
     className: "bb-slide"

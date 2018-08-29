@@ -6,10 +6,12 @@ import styled from "styled-components";
 
 const ImageSlide = ({ url, imageClass, children, ...rest }) => {
   return (
-   <div {...rest}>
-     <Image src={url} alt={'image'} responsive/>
-     {children}
-   </div>
+    <div {...rest}>
+      {url ? <Image src={url} alt={'image'} responsive/> :
+        <i>No Image</i>
+      }
+      {children}
+    </div>
   );
 };
 
