@@ -79,6 +79,11 @@ class CarouselImagesController extends Controller
 
     public function destroy(Carousel $carousel, Image $image)
     {
+
+        $image->caption = null;
+
+        $image->save();
+
         $carousel->images()->detach($image);
 
         $this->flash('Image is successfully detached from the carousel!');
