@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Slider from "react-slick";
 import { Image } from "react-bootstrap";
 import DisplayImages from "./DisplayImages";
@@ -101,11 +102,11 @@ export class AlbumSlider extends React.Component {
   }
 }
 
-export const BridesBestSlider = ({ data }) => {
+export const BridesBestSlider = ({ data, imageRoute }) => {
   const bridesMaidSlides = data.map(item => (
     <StyledImageSlide
       key={item.id}
-      url={item.image.url_cache}
+      url={`${process.env.MIX_APP_URL}/${imageRoute}/bridesbest/${item.image.file_name}`}
     >
       <h3 className="bb-name">{item.name}</h3>
       <div 
@@ -133,3 +134,8 @@ export const BridesBestSlider = ({ data }) => {
   };
   return <Slider {...settings}>{bridesMaidSlides}</Slider>;
 };
+
+BridesBestSlider.propTypes = {
+  data: PropTypes.string,
+};
+
