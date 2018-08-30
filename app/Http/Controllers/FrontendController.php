@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\AlbumCollection;
 use App\Models\Page;
 use App\Models\Event;
 use App\Models\Vendor;
@@ -34,8 +35,7 @@ class FrontendController extends Controller
 
     public function gallery(Albums $albums)
     {
-        $albums = $albums->categorized()->with('images')->get();
-        return view('frontend.gallery', compact('albums'));
+        return view('frontend.gallery');
     }
 
     public function day(PackageSetting $setting)

@@ -17,8 +17,6 @@ class CreateImagesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('url');
-            $table->char('featured')->nullable();
-			$table->string('caption')->nullable();
             $table->timestamps();
 
             $table->index(['id', 'name']);

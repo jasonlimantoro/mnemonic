@@ -17,6 +17,8 @@ class CreateImageablesTable extends Migration
 			$table->unsignedInteger('image_id');
 			$table->unsignedInteger('imageable_id');
 			$table->string('imageable_type');
+			$table->char('featured')->nullable();
+			$table->string('caption')->nullable();
 
 			$table->foreign('image_id')
 			      ->references('id')

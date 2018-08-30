@@ -20,7 +20,7 @@
       {{-- featured field --}}
       <div class="form-group">
         {{ Form::label('featured', 'Set this image as featured') }}
-        {{ Form::checkbox('featured', 'yes', false) }}
+        {{ Form::checkbox('featured', '*', false) }}
       </div>
 
       {{-- Submit Button --}}

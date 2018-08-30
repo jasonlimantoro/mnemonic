@@ -1,5 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
+import PropTypes from "prop-types";
+
 import styled from "styled-components";
 
 import { Modal } from "react-bootstrap";
@@ -27,7 +29,7 @@ const GalleryModal = ({ heading, ...rest }) => {
         const countItems = images.length;
         const items = images.map((item, index) => {
           return (
-            <StyledImageSlide key={item.id} url={urlCache(imageRoute, 'gallery', item.name)}>
+            <StyledImageSlide key={item.id} url={urlCache(imageRoute, 'gallery', item.attributes.name)}>
               <span style={{ float: "right" }}>
                 {index + 1} / {countItems}
               </span>
@@ -58,6 +60,10 @@ const GalleryModal = ({ heading, ...rest }) => {
       }}
     </ModalImagesContext.Consumer>
   );
+};
+
+GalleryModal.propTypes = {
+  heading : PropTypes.string.isRequired,
 };
 
 export const StyledGalleryModal = styled(GalleryModal)`

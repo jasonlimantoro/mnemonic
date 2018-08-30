@@ -37,7 +37,7 @@
           {{-- featured field --}}
           <div class="form-group">
             {{ Form::label('featured', 'Set this as featured:') }}
-            {{ Form::checkbox('featured', 'yes', $image->isFeatured()) }}
+            {{ Form::checkbox('featured', '*', $image->isFeatured()) }}
           </div>
 
           {{-- Submit Button --}}

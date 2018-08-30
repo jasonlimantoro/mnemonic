@@ -31,7 +31,7 @@ class Image extends Model
 
     public function albums()
     {
-        return $this->morphedByMany(Album::class, 'imageable');
+        return $this->morphedByMany(Album::class, 'imageable')->withPivot('featured');
     }
 
     public function bridesBests()
@@ -56,7 +56,7 @@ class Image extends Model
 
     public function isFeatured()
     {
-        return $this->featured === '*';
+        return $this->albums()->first()->pivot->featured === '*';
     }
 
     public function urlCache($template = "original")

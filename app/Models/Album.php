@@ -31,15 +31,12 @@ class Album extends Model
 
     public function images()
     {
-        return $this->morphToMany(Image::class, 'imageable');
+        return $this->morphToMany(Image::class, 'imageable')->withPivot('featured');
     }
 
     public function featuredImage()
     {
-        return $this
-            ->images()
-            ->where('featured', '*')
-            ->first();
+        return $this->images()->wherePivot('featured', '*')->first();
     }
 
     public function scopeFilterId($query, $filters)
@@ -52,27 +49,32 @@ class Album extends Model
     public function uncategorizeImages()
     {
         foreach ($this->images as $image){
-            $image->featured = null;
-            $image->save();
-            $image->albums()->sync([Albums::uncategorized()->id]);
+            $image->albums()->sync([Albums::uncategorized()->id => ['featured' => null]]);
         }
 
         return $this;
     }
 
 
-    public function addFeaturedImage($file)
+    /**
+     * Add featured image for this album
+     *
+     * @param string|Image $image
+     * @return $this|null
+     */
+    public function addFeaturedImage($image)
     {
-        if (! $file) {
+        if (! $image) {
             return null;
         }
 
         $this->removeFeaturedImage();
 
-        $image = Image::whereName($file)->first();
-        $image->featured = '*';
-        $image->save();
-        $image->albums()->sync([$this->id]);
+        if (is_string($image)){
+            $image = Image::whereName($image)->first();
+        }
+
+        $image->albums()->sync([$this->id => ['featured' => '*']]);
 
         return $this;
     }
@@ -84,9 +86,8 @@ class Album extends Model
 
     public function removeFeaturedImage()
     {
-        if ($this->hasFeaturedImage()) {
-            $this->featuredImage()
-                 ->update(['featured' => null]);
+        if($image = $this->featuredImage()){
+            $this->images()->updateExistingPivot($image->id, ['featured' => null]);
         }
         return $this;
 	}

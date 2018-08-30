@@ -41,7 +41,7 @@
               <td>
                 <img src="{{ $image->urlCache('gallery') }}" alt="image" class="img-responsive">
               </td>
-              <td>{{ $image->name }}</td>
+              <td>{{ $image->name }} @if($image->isFeatured()) <strong>(Featured)</strong> @endif </td>
               <td class="data action">
                 <a
                   href="{{ route('album.images.show', ['album' => $album->id, 'image' => $image->id])}}"

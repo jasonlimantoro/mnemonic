@@ -37,7 +37,13 @@ class AlbumImagesController extends Controller
 
         $image = Image::upload($request, false);
 
-        $album->images()->save($image);
+        if($request->featured === '*'){
+            $album->removeFeaturedImage();
+        }
+
+        $album->images()->save($image, [
+            'featured' => $request->featured,
+        ]);
 
         $this->flash('Image is uploaded successfuly!');
 
@@ -98,7 +104,13 @@ class AlbumImagesController extends Controller
 
         $newAlbum = Album::find($request->album);
 
-        $image->albums()->updateExistingPivot($album->id, ['imageable_id' => $newAlbum->id]);
+        $newAlbum->removeFeaturedImage();
+
+        $image->albums()->updateExistingPivot($album->id, [
+            'imageable_id' => $newAlbum->id,
+            'featured' => $request->featured,
+        ]);
+
 
 		$this->flash('Image is updated successfully!');
 	
