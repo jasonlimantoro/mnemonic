@@ -7,7 +7,6 @@ use App\Models\Album;
 use App\Repositories\Images;
 use App\Repositories\Albums;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\GenericController as Controller;
 
 class ImagesController extends Controller
@@ -28,9 +27,8 @@ class ImagesController extends Controller
      */
     public function index()
     {
-        return view('backend.website.galleries.index', with([
-            'images' => $this->images->all()
-        ]));
+        $images = $this->images->all();
+        return view('backend.website.galleries.index', compact('images'));
     }
 
     /**
@@ -57,11 +55,11 @@ class ImagesController extends Controller
             'album' => 'required'
         ]);
 
-        $image = Image::upload($request);
+        $image = Image::upload($request, false);
 
         Album::find($request->album)
-            ->images()
-            ->save($image);
+             ->removeFeaturedImage()
+             ->addImage($image, $request->only('featured'));
 
         $this->flash('Image is successfully uploaded!');
 

@@ -12,19 +12,22 @@
       @endcomponent
     @endslot
     @slot('body')
-			<p> Description: <strong>{{ $album->description }}</strong> </p>
+			<p> Description: {{ strip_tags($album->description) }} </p>
 			{{ Form::open(['route' => ['album.images.store', $album->id], 'enctype' => 'multipart/form-data']) }}
 
-        <div data-component="SimpleInput"
-             data-prop-template="gallery"
-        >
-        </div>
+        <div data-component="SimpleInput"></div>
 
-				{{-- Submit Button --}}
-				<div class="form-group">
-					{{ Form::submit('Create', ['class' => 'btn btn-primary']) }}
-				</div>
-			{{ Form::close() }}
+      {{-- featured field --}}
+      <div class="form-group">
+        {{ Form::label('featured', 'Set this image as featured') }}
+        {{ Form::checkbox('featured', 'yes', false) }}
+      </div>
+
+      {{-- Submit Button --}}
+      <div class="form-group">
+        {{ Form::submit('Create', ['class' => 'btn btn-primary']) }}
+      </div>
+      {{ Form::close() }}
 
     @endslot
   @endcomponent

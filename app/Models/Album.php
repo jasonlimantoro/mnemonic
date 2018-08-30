@@ -31,24 +31,16 @@ class Album extends Model
 
     public $filter = 'gallery';
 
-    protected $with = ['images'];
-
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-        $this->repo = new Albums;
-    }
-
     public function images()
     {
-        return $this->morphMany(Image::class, 'imageable');
+        return $this->morphToMany(Image::class, 'imageable');
     }
 
     public function featuredImage()
     {
         return $this
             ->images()
-            ->where('featured', 1)
+            ->where('featured', '*')
             ->first();
     }
 
@@ -78,19 +70,10 @@ class Album extends Model
 
         $this->removeFeaturedImage();
 
-        $imageAttr = [
-            'file_name' => $file,
-            'url_asset' => url("uploads/${file}"),
-            'url_cache' => url("imagecache/" . $this->filter . "/${file}"),
-        ];
-
-        $image = Image::where($imageAttr)->first();
-
-        $image->featured = 1;
-
-        $image->imageable()->associate($this);
-
+        $image = Image::whereName($file)->first();
+        $image->featured = '*';
         $image->save();
+        $image->albums()->sync([$this->id]);
 
         return $this;
     }
@@ -104,7 +87,7 @@ class Album extends Model
     {
         if ($this->hasFeaturedImage()) {
             $this->featuredImage()
-                 ->update(['featured' => 0]);
+                 ->update(['featured' => null]);
         }
         return $this;
 	}

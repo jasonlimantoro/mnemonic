@@ -73,7 +73,7 @@ export class AlbumSlider extends React.Component {
     const { imageRoute } = this.props;
 
     const slides = albums.map(album => {
-      const featured = album.images.filter(image => image.featured)[0];
+      const featured = album.images.filter(image => image.featured === '*')[0];
       const url = featured ? urlCache(imageRoute, 'gallery', featured.name) : "";
       return (
         <StyledImageSlide

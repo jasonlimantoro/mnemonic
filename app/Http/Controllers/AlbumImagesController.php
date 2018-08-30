@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ImageRequest;
 use App\Models\Image;
 use App\Models\Album;
 use App\Repositories\Albums;
@@ -68,7 +69,7 @@ class AlbumImagesController extends Controller
     {
 		$albums = $albums->toArray();
 
-		$basename = $image->file_name;
+		$basename = $image->name;
 
 		$filename = pathinfo($basename, PATHINFO_FILENAME);
 
@@ -82,29 +83,26 @@ class AlbumImagesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param ImageRequest $request
      * @param Album $album
      * @param  \App\Models\Image $image
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Album $album, Image $image)
+    public function update(ImageRequest $request, Album $album, Image $image)
     {
-        $request->validate([
-            'file_name' => 'required',
-            'album' => 'required'
-        ]);
+        $oldbase = $image->name;
 
-        $oldbase = $image->file_name;
-
-        $newbase = $request->file_name . '.' . pathinfo($oldbase, PATHINFO_EXTENSION);
+        $newbase = $request->name . '.' . pathinfo($oldbase, PATHINFO_EXTENSION);
 
         $image->rename($oldbase, $newbase);
 
-        Album::find($request->album)->images()->save($image);
+        $newAlbum = Album::find($request->album);
+
+        $image->albums()->updateExistingPivot($album->id, ['imageable_id' => $newAlbum->id]);
 
 		$this->flash('Image is updated successfully!');
 	
-        return redirect()->route('album.images.edit', ['album' => Album::find($request->album)->id, 'image' => $image->id]);
+        return redirect()->route('album.images.edit', ['album' => $newAlbum->id, 'image' => $image->id]);
     }
 
     /**
@@ -117,7 +115,7 @@ class AlbumImagesController extends Controller
      */
     public function destroy(Album $album, Image $image)
     {
-		$image->deleteRecord();
+        $image->deleteRecord();
 
 		$this->flash('Image is successfully deleted');
 
