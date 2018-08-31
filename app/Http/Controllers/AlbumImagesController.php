@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ImageRequest;
 use App\Models\Image;
 use App\Models\Album;
 use App\Repositories\Albums;
 use Illuminate\Http\Request;
+use App\Http\Requests\ImageRequest;
 use App\Http\Controllers\GenericController as Controller;
 
 class AlbumImagesController extends Controller
@@ -37,13 +37,11 @@ class AlbumImagesController extends Controller
 
         $image = Image::upload($request, false);
 
-        if($request->featured === '*'){
+        if ($request->featured === '*') {
             $album->removeFeaturedImage();
         }
 
-        $album->images()->save($image, [
-            'featured' => $request->featured,
-        ]);
+        $album->addImage($image, $request->only('featured'));
 
         $this->flash('Image is uploaded successfuly!');
 
@@ -73,16 +71,16 @@ class AlbumImagesController extends Controller
      */
     public function edit(Albums $albums, Album $album, Image $image)
     {
-		$albums = $albums->toArray();
+        $albums = $albums->toArray();
 
-		$basename = $image->name;
+        $basename = $image->name;
 
-		$filename = pathinfo($basename, PATHINFO_FILENAME);
+        $filename = pathinfo($basename, PATHINFO_FILENAME);
 
-		$ext = pathinfo($basename, PATHINFO_EXTENSION);
+        $ext = pathinfo($basename, PATHINFO_EXTENSION);
 
-        return view('backend.website.albums.images.edit', 
-                compact('image', 'albums', 'album', 'filename', 'ext')
+        return view('backend.website.albums.images.edit',
+            compact('image', 'albums', 'album', 'filename', 'ext')
         );
     }
 
@@ -100,20 +98,19 @@ class AlbumImagesController extends Controller
 
         $newbase = $request->name . '.' . pathinfo($oldbase, PATHINFO_EXTENSION);
 
-        $image->rename($oldbase, $newbase);
+        $newImage = $image->rename($oldbase, $newbase);
 
         $newAlbum = Album::find($request->album);
 
         $newAlbum->removeFeaturedImage();
 
-        $image->albums()->updateExistingPivot($album->id, [
+        $album->updateImage($newImage, [
             'imageable_id' => $newAlbum->id,
             'featured' => $request->featured,
         ]);
 
+        $this->flash('Image is updated successfully!');
 
-		$this->flash('Image is updated successfully!');
-	
         return redirect()->route('album.images.edit', ['album' => $newAlbum->id, 'image' => $image->id]);
     }
 
@@ -129,8 +126,8 @@ class AlbumImagesController extends Controller
     {
         $image->deleteRecord();
 
-		$this->flash('Image is successfully deleted');
+        $this->flash('Image is successfully deleted');
 
-		return back();
+        return back();
     }
 }

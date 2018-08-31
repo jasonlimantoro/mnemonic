@@ -6,43 +6,62 @@ use App\Models\Image;
 
 trait HasManyImages
 {
-    public function addImage($file, $attributes = [])
+
+    /**
+     *
+     * Attach image to this model
+     * @param $image
+     * @param array $pivotAttributes
+     * @return Image|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|null|object
+     */
+    public function addImage($image, $pivotAttributes = [])
     {
-        if (!$file){
+        if (!$image){
             return null;
         }
 
-        $imageAttr = [
-            'file_name' => $file,
-            'url_asset' => url("uploads/${file}"),
-            'url_cache' => url("imagecache/" . $this->filter . "/${file}"),
-        ];
+        if(is_string($image)){
+            $image = Image::whereName($image)->first();
+        }
 
-        $completeAttr = array_merge($imageAttr, $attributes);
+        $this->images()->save($image, $pivotAttributes);
 
-        return $this->images()->create($completeAttr);
+        return $image;
     }
 
-    public function updateImage(Image $image, $file, $attributes = [])
+    /**
+     *
+     * Update given image
+     *
+     * @param mixed $image
+     * @param array $pivotAttributes
+     * @return Image|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|null|object
+     */
+
+    public function updateImage($image, $pivotAttributes = [])
     {
-        if (!$file){
+        if(!$image){
            return null;
         }
 
-        $imageAttr = [
-            'file_name' => $file,
-            'url_asset' => url("uploads/${file}"),
-            'url_cache' => url("imagecache/" . $this->filter . "/${file}"),
-        ];
+        if (is_string($image)){
+            $image = Image::whereName($image)->first();
+        }
 
-        $completeAttr = array_merge($imageAttr, $attributes);
+        $this->images()->updateExistingPivot($image->id, $pivotAttributes);
 
-        return $image->update($completeAttr);
+        return $image;
     }
 
+    /**
+     * Delete record along with the associated images
+     *
+     * @return mixed
+     */
     public function deleteRecord()
     {
-        $this->images()->delete();
+        $this->images()->detach();
+
         return $this->delete();
     }
 }

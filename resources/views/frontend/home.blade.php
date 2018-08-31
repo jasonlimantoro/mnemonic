@@ -14,7 +14,7 @@
           <div class="item {{ $loop->first ? 'active' : '' }}">
 						<img src="{{ $slide->urlCache() }}" alt="slide" class="img-responsive">
 						<div class="carousel-caption">
-							{{ $slide->caption }}
+							{{ $slide->caption() }}
 						</div>
 					</div>
 				@endforeach

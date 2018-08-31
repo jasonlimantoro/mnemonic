@@ -4,7 +4,7 @@
   </td>
 
   <td class="data">
-    @include('backend.layouts.caption')
+    {{ $image->caption() }}
   </td>
 
   <td class="data action">

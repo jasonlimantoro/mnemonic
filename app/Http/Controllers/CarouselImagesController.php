@@ -9,16 +9,13 @@ use App\Http\Controllers\GenericController as Controller;
 
 class CarouselImagesController extends Controller
 {
-    public $images;
 
-    public function __construct(Image $images)
+    public function __construct()
     {
         $this->middleware('can:read-carousel-image');
         $this->middleware('can:create-carousel-image')->only(['create', 'store']);
         $this->middleware('can:update-carousel-image')->only(['edit', 'update']);
         $this->middleware('can:delete-carousel-image')->only('destroy');
-
-        $this->images = $images;
 
     }
 
@@ -39,11 +36,7 @@ class CarouselImagesController extends Controller
 
         $file = $request->gallery_image;
 
-        $image = $this->images->whereName($file)->first();
-
-        $image->update($request->only('caption'));
-
-        $carousel->images()->save($image);
+        $carousel->addImage($file, $request->only('caption'));
 
         $this->flash('Image is successfully uploaded to the carousel!');
 
@@ -64,13 +57,7 @@ class CarouselImagesController extends Controller
     {
         $file = $request->gallery_image;
 
-        $newImage = $this->images->whereName($file)->first();
-
-        if($newImage->id !== $image->id){
-            $carousel->images()->toggle([$newImage->id, $image->id]);
-        }
-
-        $newImage->update($request->only('caption'));
+        $newImage = $carousel->updateImage($file, $request->only('caption'));
 
         $this->flash('Updated successfully!');
 
@@ -79,10 +66,6 @@ class CarouselImagesController extends Controller
 
     public function destroy(Carousel $carousel, Image $image)
     {
-
-        $image->caption = null;
-
-        $image->save();
 
         $carousel->images()->detach($image);
 

@@ -6,7 +6,7 @@
 {{-- caption field --}}
 <div class="form-group">
 	{{ Form::label('caption', 'Enter caption:') }}
-	{{ Form::textarea('caption', null, ['class' => 'form-control show', 'placeholder' => 'Enter Caption']) }}
+	{{ Form::textarea('caption', isset($image) ? $image->caption() : null, ['class' => 'form-control show', 'placeholder' => 'Enter Caption']) }}
 </div>
 
 {{-- Submit Button --}}

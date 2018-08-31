@@ -41,7 +41,7 @@ class Image extends Model
 
     public function carousels()
     {
-        return $this->morphedByMany(Carousel::class, 'imageable');
+        return $this->morphedByMany(Carousel::class, 'imageable')->withPivot('caption');
     }
 
     public function events()
@@ -57,6 +57,11 @@ class Image extends Model
     public function isFeatured()
     {
         return $this->albums()->first()->pivot->featured === '*';
+    }
+
+    public function caption()
+    {
+        return $this->carousels()->first()->pivot->caption;
     }
 
     public function urlCache($template = "original")

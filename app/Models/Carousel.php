@@ -28,7 +28,7 @@ class Carousel extends Model
 
     public function images()
     {
-        return $this->morphToMany(Image::class, 'imageable');
+        return $this->morphToMany(Image::class, 'imageable')->withPivot('caption');
     }
 
     public function page()
