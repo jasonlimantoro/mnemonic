@@ -11,6 +11,11 @@ use App\Http\Controllers\GenericController as Controller;
 
 class AlbumImagesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('package.images')->only(['create', 'store']);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
