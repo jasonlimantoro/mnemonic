@@ -21,11 +21,13 @@ namespace App\Models;
  */
 class Page extends Model
 {
-    public function posts() {
+    public function posts()
+    {
         return $this->hasMany(Post::class);
     }
 
-    public function carousel(){
+    public function carousel()
+    {
         return $this->hasOne(Carousel::class);
     }
 
@@ -33,6 +35,7 @@ class Page extends Model
     {
         return static::where('title', 'like', '%home%')->first();
     }
+
     public static function about()
     {
         return static::where('title', 'like', '%about%')->first();
@@ -44,8 +47,9 @@ class Page extends Model
      * @param array $attributes
      * @return Post
      */
-    public function addPost(array $attributes) {
-		$attributes['user_id'] = auth()->user()->id;
-		return $this->posts()->create($attributes);
+    public function addPost(array $attributes)
+    {
+        $attributes['user_id'] = auth()->user()->id;
+        return $this->posts()->create($attributes);
     }
 }
