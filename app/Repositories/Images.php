@@ -3,14 +3,13 @@
 namespace App\Repositories;
 
 use App\Models\Image;
-use App\Models\Album;
 
 class Images
 {
     public static function all()
     {
-        return Image::where('imageable_type', Album::class)
-                    ->with('imageable')
+        return Image::has('albums')
+                    ->with('albums')
                     ->latest()
                     ->paginate(9);
     }
