@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use App\Traits\HasManyImages;
+use App\Traits\HasImages;
 use Carbon\Carbon;
-use App\Traits\HasOneImage;
 use App\Traits\PresentsField;
 use App\Presenters\EventPresenter;
 use Collective\Html\Eloquent\FormAccessible;
@@ -33,7 +32,7 @@ use Collective\Html\Eloquent\FormAccessible;
  */
 class Event extends Model
 {
-    use FormAccessible, PresentsField, HasManyImages;
+    use FormAccessible, PresentsField, HasImages;
 
     public $filter = 'event';
 	protected $dates = ['datetime'];

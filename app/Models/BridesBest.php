@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\HasManyImages;
+use App\Traits\HasImages;
 
 /**
  * App\BridesBest
@@ -27,7 +27,7 @@ use App\Traits\HasManyImages;
  */
 class BridesBest extends Model
 {
-    use HasManyImages;
+    use HasImages;
 
     protected $with = ['images'];
 

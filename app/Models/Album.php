@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Repositories\Albums;
-use App\Traits\HasManyImages;
+use App\Traits\HasImages;
 
 /**
  * App\Album
@@ -25,7 +25,7 @@ use App\Traits\HasManyImages;
  */
 class Album extends Model
 {
-    use HasManyImages;
+    use HasImages;
 
     public $filter = 'gallery';
 

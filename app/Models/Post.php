@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\HasManyImages;
-use App\Traits\HasOneImage;
+use App\Traits\HasImages;
 use App\Traits\PresentsField;
 use App\Presenters\PostPresenter;
 
@@ -32,7 +31,7 @@ use App\Presenters\PostPresenter;
  */
 class Post extends Model
 {
-	use PresentsField, HasManyImages;
+	use PresentsField, HasImages;
 
 	public $presenter = PostPresenter::class;
 

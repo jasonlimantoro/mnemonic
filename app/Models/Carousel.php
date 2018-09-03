@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\HasManyImages;
+use App\Traits\HasImages;
 
 /**
  * App\Carousel
@@ -22,7 +22,7 @@ use App\Traits\HasManyImages;
  */
 class Carousel extends Model
 {
-    use HasManyImages;
+    use HasImages;
 
     public $filter = 'gallery';
 
