@@ -101,7 +101,7 @@ class PostsController extends Controller
 
         $file = $request->gallery_image;
 
-        $image = Image::where('name', $file)->first();
+        $image = Image::whereName($file)->first();
 
         tap($post)
             ->update($request->only(['title', 'description']))
@@ -121,9 +121,7 @@ class PostsController extends Controller
      */
     public function destroy(Page $page, Post $post)
     {
-        $post->delete();
-
-        $post->image()->delete();
+        $post->deleteRecord();
 
         $this->flash('Post is deleted successfully');
 
