@@ -100,9 +100,7 @@ class EventsController extends Controller
         $image = Image::whereName($file)->first();
 
         tap($event)
-            ->update(
-			    $request->only(['name', 'description', 'location', 'datetime'])
-            )
+            ->update($request->only(['name', 'description', 'location', 'datetime']))
             ->images()->sync([$image->id]);
 
         $this->flash('Event is successfully updated!');
