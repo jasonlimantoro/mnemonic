@@ -1,6 +1,6 @@
 <tr class="event">
   <td class="data title">
-    @can('update', 'App\Category')
+    @can('update', 'App\Models\Category')
       <a href="{{ route('categories.edit', ['category' => $category->id ]) }}">
         {{ $category->name }}
       </a>
@@ -12,7 +12,7 @@
     {{ $category->description }}
   </td>
   <td class="data action">
-    @can('update', App\Category::class)
+    @can('update', \App\Models\Category::class)
       <a
         href="{{ route('categories.edit', ['category' => $category->id ]) }}"
         role="button"
@@ -25,7 +25,7 @@
 
     @endcan
 
-    @can('delete', App\Category::class)
+    @can('delete', \App\Models\Category::class)
       <div data-component="DeleteIcon"
            data-prop-url="{{ route('categories.destroy', [ 'category' => $category->id ]) }}"
       >

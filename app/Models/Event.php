@@ -1,26 +1,53 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use App\Traits\HasImages;
 use Carbon\Carbon;
-use App\Traits\HasOneImage;
 use App\Traits\PresentsField;
 use App\Presenters\EventPresenter;
 use Collective\Html\Eloquent\FormAccessible;
 
+/**
+ * App\Models\Event
+ *
+ * @property int $id
+ * @property string $name
+ * @property string|null $description
+ * @property string $location
+ * @property \Carbon\Carbon $datetime
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read mixed $date_time_object
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Image[] $images
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model filtersSearch($filters, $nameColumn = 'name')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Event whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Event whereDatetime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Event whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Event whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Event whereLocation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Event whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Event whereUpdatedAt($value)
+ *
+ */
 class Event extends Model
 {
-    use FormAccessible, PresentsField, HasOneImage;
+    use FormAccessible, PresentsField, HasImages;
 
     public $filter = 'event';
 	protected $dates = ['datetime'];
-	protected $with = ['image'];
+	protected $with = ['images'];
 	protected $presenter = EventPresenter::class;
 
 
+    public function images()
+    {
+        return $this->morphToMany(Image::class, 'imageable');
+    }
+
     public function image()
     {
-        return $this->morphOne(Image::class, 'imageable');
+        return $this->images()->first();
     }
 
 	public function setDatetimeAttribute($date)

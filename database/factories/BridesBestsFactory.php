@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\BridesBest::class, function (Faker $faker) {
+$factory->define(\App\Models\BridesBest::class, function (Faker $faker) {
 	$firstName = $faker->firstName();
 	$lastName = $faker->lastName();
     return [

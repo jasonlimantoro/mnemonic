@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\PackageSetting;
+use App\Models\PackageSetting;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -27,7 +27,7 @@ class RSVPReservation extends Mailable
     /**
      * Build the message.
      *
-     * @param PackageSetting $setting
+     * @param \App\Models\PackageSetting $setting
      * @return $this
      */
     public function build(PackageSetting $setting)

@@ -1,5 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
+import PropTypes from "prop-types";
+
 import styled from "styled-components";
 
 import { Modal } from "react-bootstrap";
@@ -10,12 +12,13 @@ import defaultSettings from "../utils/SliderSettings";
 import StyledImageSlide from "./Slide";
 import { screenMdMin } from "../backend/styles/breakpoints";
 import { goldDark, goldGradient } from "../backend/styles/color";
+import { urlCache } from "../backend/functionals/helper";
 
 
 const GalleryModal = ({ heading, ...rest }) => {
   return (
     <ModalImagesContext.Consumer>
-      {({ modal, hideModal, images }) => {
+      {({ modal, hideModal, images, imageRoute }) => {
         const settings = {
           ...defaultSettings,
           slidesToShow: 1,
@@ -26,7 +29,7 @@ const GalleryModal = ({ heading, ...rest }) => {
         const countItems = images.length;
         const items = images.map((item, index) => {
           return (
-            <StyledImageSlide key={item.id} url={item.url_cache}>
+            <StyledImageSlide key={item.id} url={urlCache(imageRoute, 'gallery', item.attributes.name)}>
               <span style={{ float: "right" }}>
                 {index + 1} / {countItems}
               </span>
@@ -57,6 +60,10 @@ const GalleryModal = ({ heading, ...rest }) => {
       }}
     </ModalImagesContext.Consumer>
   );
+};
+
+GalleryModal.propTypes = {
+  heading : PropTypes.string.isRequired,
 };
 
 export const StyledGalleryModal = styled(GalleryModal)`

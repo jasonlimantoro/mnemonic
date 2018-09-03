@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 
-const FieldGroup = ({ id, label, labelClass, ...props }) => {
+export const FieldGroup = ({ id, label, labelClass, ...props }) => {
   return (
     <FormGroup controlId={id}>
       <ControlLabel className={labelClass}>{label}</ControlLabel>

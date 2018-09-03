@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Setting;
-use App\PackageSetting;
+use App\Models\Setting;
+use App\Models\PackageSetting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\GenericController as Controller;
 

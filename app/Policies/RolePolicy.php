@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
-use App\Role;
+use App\Models\User;
+use App\Models\Role;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class RolePolicy
@@ -19,7 +19,7 @@ class RolePolicy
     /**
      * Determine whether the user can view the role.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function read(User $user)
@@ -30,7 +30,7 @@ class RolePolicy
     /**
      * Determine whether the user can create roles.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -41,7 +41,7 @@ class RolePolicy
     /**
      * Determine whether the user can update the role.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function update(User $user)
@@ -52,7 +52,7 @@ class RolePolicy
     /**
      * Determine whether the user can delete the role.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return mixed
      */
     public function delete(User $user)

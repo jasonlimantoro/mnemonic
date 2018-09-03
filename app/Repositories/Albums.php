@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Album;
+use App\Models\Album;
 
 class Albums 
 {

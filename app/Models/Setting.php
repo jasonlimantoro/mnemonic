@@ -1,14 +1,26 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Traits\IndexesJson;
 use App\Traits\KeysSettings;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 
-
+/**
+ * App\Models\Setting
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $key
+ * @property string|null $value
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Model filtersSearch($filters, $nameColumn = 'name')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Setting whereValue($value)
+ *
+ */
 class Setting extends Model
 {
     use KeysSettings, IndexesJson;

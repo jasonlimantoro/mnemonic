@@ -6,7 +6,7 @@
   @component('backend.layouts.panel', [
     'title' => "Roles"
   ])
-    @can('create', App\Role::class)
+    @can('create', App\Models\Role::class)
       @slot('addButton')
         @component('backend.layouts.addButton', [
           'url' => route('roles.create'),

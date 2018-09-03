@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Page;
-use App\Event;
-use App\Vendor;
-use App\Setting;
+use App\Http\Resources\AlbumCollection;
+use App\Models\Page;
+use App\Models\Event;
+use App\Models\Vendor;
+use App\Models\Setting;
 use Carbon\Carbon;
-use App\BridesBest;
-use App\PackageSetting;
+use App\Models\BridesBest;
+use App\Models\PackageSetting;
 use App\Repositories\Posts;
 use App\Repositories\Albums;
 
@@ -27,15 +28,14 @@ class FrontendController extends Controller
 
     public function about(Posts $posts)
     {
-        $posts = $posts->about()->paginate(6);
+        $posts = $posts->about()->get();
 
         return view('frontend.about', compact('posts'));
     }
 
     public function gallery(Albums $albums)
     {
-        $albums = $albums->categorized()->with('images')->get();
-        return view('frontend.gallery', compact('albums'));
+        return view('frontend.gallery');
     }
 
     public function day(PackageSetting $setting)

@@ -1,9 +1,9 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\PermissionRole;
-use App\Permission;
-use App\Role;
+use App\Models\PermissionRole;
+use App\Models\Permission;
+use App\Models\Role;
 
 
 $factory->define(PermissionRole::class, function (Faker $faker) {

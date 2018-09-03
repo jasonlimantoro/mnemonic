@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Post;
+use App\Models\Post;
 use App\Events\ModeChanged;
 use App\Repositories\Posts;
 

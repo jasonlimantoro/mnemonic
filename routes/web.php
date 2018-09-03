@@ -94,21 +94,21 @@ Route::group([
 
 // previewing mailables in browser
 Route::get('/mailable/invitation', function () {
-    $rsvp = \App\RSVP::first();
+    $rsvp = \App\Models\RSVP::first();
     return new App\Mail\RSVPInvitation($rsvp);
 });
 
 // Previewing rsvpConfirmation email
 Route::get('/mailable/reservation', function (){
-   $rsvp = \App\RSVP::first();
+   $rsvp = \App\Models\RSVP::first();
    return new App\Mail\RSVPReservation($rsvp);
 });
 
 // Previewing rsvp confirmation
 Route::get('/reserved', function() {
-  $rsvp = \App\RSVP::first();
+  $rsvp = \App\Models\RSVP::first();
 
-  $vip = \App\PackageSetting::getVip();
+  $vip = \App\Models\PackageSetting::getVip();
 
   return view("rsvps.reserved", compact('rsvp', 'vip'));
 
@@ -138,4 +138,3 @@ Route::name('front.')->group(function () {
     Route::get('/', 'FrontendController@home')->name('index');
 });
 
-Route::post('/uploadAjax', 'AjaxController@upload');

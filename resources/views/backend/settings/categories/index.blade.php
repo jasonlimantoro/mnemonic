@@ -6,7 +6,7 @@
   @component('backend.layouts.panel', [
     'title' => "Categories"
 	])
-		@can('create', App\Category::class)
+		@can('create', \App\Models\Category::class)
 			@slot('addButton')
 				@component('backend.layouts.addButton', [
 					'url' => route('categories.create'),

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Image;
+use App\Models\Image;
 use App\Repositories\Images;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -38,7 +38,7 @@ class ImagesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Image $image
+     * @param  \App\Models\Image $image
      * @return ImageResource
      */
     public function show(Image $image)
@@ -51,7 +51,7 @@ class ImagesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Image  $image
+     * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Image $image)
@@ -62,7 +62,7 @@ class ImagesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Image  $image
+     * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
     public function destroy(Image $image)

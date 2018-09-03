@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Image;
-use App\Album;
+use App\Models\Image;
+use App\Models\Album;
 use App\Repositories\Images;
 use App\Repositories\Albums;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\GenericController as Controller;
 
 class ImagesController extends Controller
@@ -28,9 +27,8 @@ class ImagesController extends Controller
      */
     public function index()
     {
-        return view('backend.website.galleries.index', with([
-            'images' => $this->images->all()
-        ]));
+        $images = $this->images->all();
+        return view('backend.website.galleries.index', compact('images'));
     }
 
     /**
@@ -57,11 +55,11 @@ class ImagesController extends Controller
             'album' => 'required'
         ]);
 
-        $image = Image::upload($request);
+        $image = Image::upload($request, false);
 
         Album::find($request->album)
-            ->images()
-            ->save($image);
+             ->removeFeaturedImage()
+             ->addImage($image, $request->only('featured'));
 
         $this->flash('Image is successfully uploaded!');
 
@@ -71,7 +69,7 @@ class ImagesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Image  $image
+     * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
     public function destroy(Image $image)

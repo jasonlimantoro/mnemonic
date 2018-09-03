@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Role;
-use App\Permission;
+use App\Models\Role;
+use App\Models\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\GenericController as Controller;
 
@@ -11,10 +11,10 @@ class RolesController extends Controller
 {
 	public function __construct()
 	{
-		$this->middleware('can:read,App\Role');
-		$this->middleware('can:create,App\Role')->only(['create', 'store']);
-		$this->middleware('can:update,App\Role')->only(['edit', 'update']);
-		$this->middleware('can:delete,App\Role')->only('destroy');	
+		$this->middleware('can:read,App\Models\Role');
+		$this->middleware('can:create,App\Models\Role')->only(['create', 'store']);
+		$this->middleware('can:update,App\Models\Role')->only(['edit', 'update']);
+		$this->middleware('can:delete,App\Models\Role')->only('destroy');
 	}
     /**
      * Display a listing of the resource.
@@ -74,7 +74,7 @@ class RolesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Role  $role
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
     public function edit(Role $role)
@@ -87,7 +87,7 @@ class RolesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Role  $role
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Role $role)
@@ -108,7 +108,7 @@ class RolesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Role  $role
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
     public function destroy(Role $role)

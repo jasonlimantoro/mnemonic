@@ -6,11 +6,12 @@
 	</div>
 
 	{{-- testimony field --}}
-	@react("InitializeEditor")
-	<div class="form-group">
-		{{ Form::label('testimony', 'Testimony:') }}
-		{{ Form::textarea('testimony', null, ['class' => 'form-control', 'placeholder' => 'Enter Testimony']) }}
-	</div>
+  <div data-component="Editor"
+       data-prop-name="testimony"
+       data-prop-label="Testimony"
+       data-prop-default-value="{{ isset($bridesBest) ? $bridesBest->testimony : '' }}"
+  >
+  </div>
 
 	{{-- ig_account field --}}
 	<div class="form-group">

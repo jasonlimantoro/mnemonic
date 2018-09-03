@@ -24,7 +24,7 @@
 
     @slot('body')
       <p>
-        Description: <strong>{!! $album->description !!}</strong>
+        Description: <strong>{{ strip_tags($album->description) }}</strong>
       </p>
       @component('layouts.table')
         @slot('tableHeader')
@@ -39,9 +39,9 @@
           @foreach($images as $image)
             <tr>
               <td>
-                <img src="{{ $image->url_cache }}" alt="image" class="img-responsive">
+                <img src="{{ $image->urlCache('gallery') }}" alt="image" class="img-responsive">
               </td>
-              <td>{{ $image->file_name }}</td>
+              <td>{{ $image->name }} @if($image->isFeatured()) <strong>(Featured)</strong> @endif </td>
               <td class="data action">
                 <a
                   href="{{ route('album.images.show', ['album' => $album->id, 'image' => $image->id])}}"

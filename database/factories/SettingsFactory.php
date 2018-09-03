@@ -1,9 +1,9 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\Setting;
+use App\Models\Setting;
 
-$factory->define(App\Setting::class, function (Faker $faker) {
+$factory->define(\App\Models\Setting::class, function (Faker $faker) {
     return [
 		'name' => $faker->word,
 		'key' => $faker->word,

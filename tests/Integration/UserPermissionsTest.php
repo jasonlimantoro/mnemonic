@@ -2,10 +2,10 @@
 
 namespace Tests\Integration;
 
-use App\User;
-use App\Role;
-use App\Permission;
-use App\PermissionRole;
+use App\Models\User;
+use App\Models\Role;
+use App\Models\Permission;
+use App\Models\PermissionRole;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

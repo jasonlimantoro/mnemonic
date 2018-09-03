@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -15,14 +15,14 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         \App\VIP::class => \App\Policies\VIPPolicy::class,
-		\App\Post::class => \App\Policies\PostPolicy::class,
-		\App\RSVP::class => \App\Policies\RSVPPolicy::class,
-		\App\User::class => \App\Policies\UserPolicy::class,
-		\App\Role::class => \App\Policies\RolePolicy::class,
-		\App\Event::class => \App\Policies\EventPolicy::class,
-		\App\Vendor::class => \App\Policies\VendorPolicy::class,
-		\App\Category::class => \App\Policies\CategoryPolicy::class,
-		\App\BridesBest::class => \App\Policies\BridesBestPolicy::class,
+		\App\Models\Post::class => \App\Policies\PostPolicy::class,
+		\App\Models\RSVP::class => \App\Policies\RSVPPolicy::class,
+		\App\Models\User::class => \App\Policies\UserPolicy::class,
+		\App\Models\Role::class => \App\Policies\RolePolicy::class,
+		\App\Models\Event::class => \App\Policies\EventPolicy::class,
+		\App\Models\Vendor::class => \App\Policies\VendorPolicy::class,
+		\App\Models\Category::class => \App\Policies\CategoryPolicy::class,
+		\App\Models\BridesBest::class => \App\Policies\BridesBestPolicy::class,
     ];
 
     /**

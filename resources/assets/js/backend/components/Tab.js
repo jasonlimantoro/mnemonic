@@ -50,7 +50,7 @@ export class MediaTabs extends React.Component {
 
     this.setState({ loading: true, showAlert: false, }, () => {
       Ajax
-        .post('/uploadAjax', formData)
+        .post('/api/upload', formData)
         .then(response => {
           const { message } = response.data;
           this.setState({

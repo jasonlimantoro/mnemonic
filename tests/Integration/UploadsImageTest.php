@@ -2,7 +2,7 @@
 
 namespace Tests\Integration;
 
-use App\Image;
+use App\Models\Image;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -14,7 +14,7 @@ class UploadsImageTest extends TestCase
         Storage::fake('uploads');
         $file = UploadedFile::fake()->image('avatar.jpg');
 
-        $response = $this->ajaxPost( '/uploadAjax', [
+        $response = $this->ajaxPost( 'api/upload', [
             'image' => $file
         ]);
 

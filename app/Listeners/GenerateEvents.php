@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Event;
+use App\Models\Event;
 use Carbon\Carbon;
 use App\Events\ModeChanged;
 

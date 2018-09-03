@@ -2,8 +2,8 @@
 
 namespace Tests\Integration;
 
-use App\Image;
-use App\Album;
+use App\Models\Image;
+use App\Models\Album;
 use Tests\TestCase;
 use App\Repositories\Images;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -42,7 +42,7 @@ class ImageRelationships extends TestCase
     {
         $image = factory(Image::class, 2)->create();
         $another = factory(Image::class, 3)->create([
-            'imageable_type' => 'App\Carousel'
+            'imageable_type' => 'App\Models\Carousel'
         ]);
 
         $withAlbum = Images::withAlbum()->get();

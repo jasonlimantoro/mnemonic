@@ -1,6 +1,6 @@
 <tr>
   <td class="data title">
-    @can('update', 'App\RSVP')
+    @can('update', 'App\Models\RSVP')
       <a href="{{ route('rsvps.edit', ['rsvp' => $rsvp->id ]) }}">
         {{ $rsvp->name }}
       </a>
@@ -28,7 +28,7 @@
     @endif
   </td>
   <td class="data action">
-    @can('update', App\RSVP::class)
+    @can('update', App\Models\RSVP::class)
       <a
         href="{{ route('rsvps.edit', ['rsvp' => $rsvp->id ]) }}"
         role="button"
@@ -41,13 +41,13 @@
 
     @endcan
 
-    @can('delete', App\RSVP::class)
+    @can('delete', App\Models\RSVP::class)
       <div data-component="DeleteIcon"
            data-prop-url="{{ route('rsvps.destroy', [ 'rsvp' => $rsvp->id ]) }}"
       >
       </div>
     @endcan
-    @can('update', App\RSVP::class)
+    @can('update', App\Models\RSVP::class)
       @unless ($rsvp->remindedEnough() or $rsvp->confirmed())
         <form action="{{ route('rsvps.remind', ['rsvp' => $rsvp->id]) }}" method="POST">
           <input type="hidden" name="email" value="{{ $rsvp->email }}">

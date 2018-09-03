@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Image;
-use App\Carousel;
+use App\Models\Image;
+use App\Models\Carousel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\GenericController as Controller;
 
 class CarouselImagesController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('can:read-carousel-image');
@@ -16,13 +17,11 @@ class CarouselImagesController extends Controller
         $this->middleware('can:update-carousel-image')->only(['edit', 'update']);
         $this->middleware('can:delete-carousel-image')->only('destroy');
 
-        // All uploaded images
-        $this->images = Image::where('imageable_type', Carousel::class)->oldest()->get();
     }
 
     public function index(Carousel $carousel)
     {
-        $images = $carousel->images()->oldest()->get();
+        $images = $carousel->images()->oldest('updated_at')->get();
 
         return view('backend.website.carousel.index', compact('images'));
     }
@@ -58,18 +57,19 @@ class CarouselImagesController extends Controller
     {
         $file = $request->gallery_image;
 
-        $carousel->updateImage($image, $file, $request->only('caption'));
+        $newImage = $carousel->updateImage($file, $request->only('caption'));
 
         $this->flash('Updated successfully!');
 
-        return back();
+        return redirect()->route('carousel.images.edit', ['carousel' => 1, 'image' => $newImage->id]);
     }
 
     public function destroy(Carousel $carousel, Image $image)
     {
-        $image->delete();
 
-        $this->flash('Image is successfully removed from the carousel!');
+        $carousel->images()->detach($image);
+
+        $this->flash('Image is successfully detached from the carousel!');
 
         return back();
     }

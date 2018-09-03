@@ -5,7 +5,7 @@
 	@endcomponent
 	@component('backend.layouts.panel', ['title' => $page->title ])
 		@unless ($page->title === 'About')
-			@can('create', App\Post::class)
+			@can('create', App\Models\Post::class)
 				@slot('addButton')
 					@component('backend.layouts.addButton', [
 						'url' => route('posts.create', ['page' => $page->id ])

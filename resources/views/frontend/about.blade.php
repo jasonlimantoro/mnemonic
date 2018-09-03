@@ -19,18 +19,13 @@
 							</div>
 						</div>
 						<div class="col-md-4 post-image">
-							@isset($post->image)
-								<img src="{{ $post->image->url_cache }}" alt="{{ $post->title }}" class="img-responsive"> 
-							@endisset
+							@if(null !== $post->image())
+								<img src="{{ $post->image()->urlCache("vip") }}" alt="{{ $post->title }}" class="img-responsive">
+							@endif
 						</div>
 					</div>
 				@endforeach
 			</div>
-      <div class="row row-center">
-        <div class="col-md-4 col-center post-pagination">
-          {{ $posts->links() }}
-        </div>
-      </div>
 		</div>
 	</div>
 @endsection

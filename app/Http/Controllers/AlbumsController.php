@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Album;
+use App\Models\Album;
 use App\Repositories\Albums;
 use App\Http\Requests\AlbumsRequest;
 use App\Http\Controllers\GenericController as Controller;
@@ -58,8 +58,6 @@ class AlbumsController extends Controller
 
         $album->addFeaturedImage($file);
 
-        //Album::createRecord($request);
-
         $this->flash('Album is created successfully!');
 
         return redirect()->route('albums.index');
@@ -68,7 +66,7 @@ class AlbumsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Album  $album
+     * @param  \App\Models\Album  $album
      * @return \Illuminate\Http\Response
      */
     public function show(Album $album)
@@ -81,14 +79,14 @@ class AlbumsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Album  $album
+     * @param  \App\Models\Album  $album
      * @return \Illuminate\Http\Response
      */
     public function edit(Album $album)
     {
-        $featuredImage = optional($album->featuredImage())->url_cache;
+        $featuredImage = optional($album->featuredImage())->urlCache('gallery');
 
-        $featuredImageName = optional($album->featuredImage())->file_name;
+        $featuredImageName = optional($album->featuredImage())->name;
 
         return view('backend.website.albums.edit', compact('album', 'featuredImage', 'featuredImageName'));
     }
@@ -109,7 +107,7 @@ class AlbumsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Album $album
+     * @param  \App\Models\Album $album
      * @return \Illuminate\Http\Response
      */
     public function destroy(Album $album)

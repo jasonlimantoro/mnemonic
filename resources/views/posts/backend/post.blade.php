@@ -18,7 +18,7 @@
       <i class="fa fa-info-circle"></i>
     </a>
 
-    @can('update', App\Post::class)
+    @can('update', App\Models\Post::class)
       <a
         href="{{ route('posts.edit', ['post' => $post->id, 'page' => $page->id ]) }}"
         role="button"
@@ -32,7 +32,7 @@
 		@endcan
 		
 		@unless ($page->title === 'About')
-			@can('delete', App\Post::class)
+			@can('delete', App\Models\Post::class)
 				<div
 					data-component="DeleteIcon"
 					data-prop-url="{{ route('posts.destroy', ['page' => $page->id, 'post' => $post->id ]) }}"

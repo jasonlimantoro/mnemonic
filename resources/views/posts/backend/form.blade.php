@@ -4,13 +4,13 @@
 		{{ Form::label('title', 'Title:') }}
 		{{ Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Enter Title']) }}
 	</div>
-	
-	@react("InitializeEditor")
-	{{-- description field --}}
-	<div class="form-group">
-		{{ Form::label('description', 'Description:') }}
-		{{ Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Enter Description']) }}
-	</div>
+
+  <div data-component="Editor"
+       data-prop-name="description"
+       data-prop-label="Description"
+       data-prop-default-value="{{ isset($post) ? $post->description : '' }}"
+  >
+  </div>
 
 	{{-- Submit Button --}}
 	<div class="form-group">
@@ -24,7 +24,7 @@
 			<p><strong>Current Image</strong></p>
 			<div class="current-image">
 				@isset ($postImage)
-					<img src="{{ $postImage }}" alt="event" class="img-responsive">
+          <img src="{{ $postImage->urlCache('post') }}" alt="event" class="img-responsive">
 				@else
 					<p>No Image uploaded</p>
 				@endisset	
@@ -34,8 +34,7 @@
 
 	<div class="form-group">
 		<div data-component="FancyInput"
-         data-prop-template="post"
-         data-prop-initial-input-value="{{ isset($post) ? optional($post->image)->file_name : '' }}"
+         data-prop-initial-input-value="{{ isset($postImage) ? $postImage->name : '' }}"
     >
 		</div>
 	</div>

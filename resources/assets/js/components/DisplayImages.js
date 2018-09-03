@@ -1,16 +1,20 @@
 import React from "react";
-import {StyledGalleryModal} from "./Modal";
-import StyledImageSlide from "./Slide";
+import PropTypes from "prop-types";
 
-const DisplayImages = ({ data, showModal }) => {
-  if (data.show){
+import { StyledGalleryModal } from "./Modal";
+import StyledImageSlide from "./Slide";
+import { urlCache } from "../backend/functionals/helper";
+
+const DisplayImages = ({ data, showModal, imageRoute }) => {
+  if (data.show) {
     const slides = data.items.map((image, index) => {
+      const url = urlCache(imageRoute, 'gallery', image.attributes.name);
       return (
         <StyledImageSlide
-					key={index}
-					url={image.url_cache}
-					className={'col-md-4'}
-					onClick={() => showModal(index)}
+          key={index}
+          url={url}
+          className={'col-md-4'}
+          onClick={() => showModal(index)}
         />
       );
     });
@@ -25,6 +29,22 @@ const DisplayImages = ({ data, showModal }) => {
   } else {
     return null;
   }
+};
+
+DisplayImages.propTypes = {
+  data : PropTypes.shape({
+    show: PropTypes.bool,
+    album: PropTypes.shape({
+      id: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+      ]),
+      name: PropTypes.string,
+    }).isRequired,
+    items: PropTypes.array,
+  }),
+  showModal : PropTypes.func.isRequired,
+  imageRoute: PropTypes.string.isRequired,
 };
 
 export default DisplayImages;

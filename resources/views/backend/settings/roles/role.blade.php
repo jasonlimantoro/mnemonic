@@ -1,6 +1,6 @@
 <tr>
   <td class="data title">
-    @can('update', 'App\Role')
+    @can('update', 'App\Models\Role')
       <a href="{{ route('roles.edit', ['role' => $role->id ]) }}">
         {{ $role->name }}
       </a>
@@ -18,7 +18,7 @@
     </ul>
   </td>
   <td class="data action">
-    @can('update', App\Role::class)
+    @can('update', App\Models\Role::class)
       <a
         href="{{ route('roles.edit', ['role' => $role->id ]) }}"
         role="button"
@@ -30,7 +30,7 @@
       </a>
     @endcan
 
-    @can('delete', App\Role::class)
+    @can('delete', App\Models\Role::class)
       <div data-component="DeleteIcon"
            data-prop-url="{{ route('roles.destroy', [ 'role' => $role->id ]) }}"
       >

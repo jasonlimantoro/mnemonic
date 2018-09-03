@@ -129,17 +129,16 @@ export class Images extends React.PureComponent {
       <Row>
         {images.map(image => {
             const active = selectedImage === image.id;
-            const { url_cache, file_name } = image.attributes;
-            const { name } = image.album.attributes;
+            const { attributes : { url, name }, albums } = image;
             return (
               <Col
                 md={4} xs={6}
                 key={image.id}
-                onClick={() => handleClick(image.id, file_name)}
+                onClick={() => handleClick(image.id, name)}
               >
-                <ThumbnailGallery src={url_cache} active={active}>
-                  <p>Name: <b>{str_limit(file_name)}</b></p>
-                  <p>Album: <b>{name}</b></p>
+                <ThumbnailGallery src={url} active={active}>
+                  <p>Name: <b>{str_limit(name)}</b></p>
+                  <p>Album: {albums.map(album => ( `${album.attributes.name}, `))}  </p>
                 </ThumbnailGallery>
               </Col>
             );

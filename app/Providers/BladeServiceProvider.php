@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\PackageSetting;
+use App\Models\PackageSetting;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -19,10 +19,6 @@ class BladeServiceProvider extends ServiceProvider
 		Blade::if('frontend', function (){
 			return Route::currentRouteNamed('front*');
 		});
-
-		Blade::directive('react', function ($component) {
-			return "<?php echo '<div data-component={$component}></div>'; ?>";
-        });
     }
 
     /**

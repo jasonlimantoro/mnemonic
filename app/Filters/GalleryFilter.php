@@ -13,7 +13,8 @@ class GalleryFilter implements FilterInterface
 
     /**
      * Creates new instance of filter
-     *
+     * @param int $width
+     * @param int $height
      */
     public function __construct($width = 2000, $height = 1000)
     {

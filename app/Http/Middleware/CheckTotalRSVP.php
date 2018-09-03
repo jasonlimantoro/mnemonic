@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\RSVP;
+use App\Models\RSVP;
 
 class CheckTotalRSVP extends CheckPackageSettings
 {

@@ -22,4 +22,5 @@ Route::namespace('API')->name('api.')->group(function () {
         'images' => 'ImagesController',
         'albums' => 'AlbumsController'
     ]);
+    Route::post('upload', 'AjaxController@upload')->name('upload');
 });

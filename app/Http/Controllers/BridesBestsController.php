@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Image;
-use App\BridesBest;
+use App\Models\Image;
+use App\Models\BridesBest;
 use App\Http\Requests\BridesBestsRequest;
 use App\Http\Controllers\GenericController as Controller;
 
@@ -11,10 +11,10 @@ class BridesBestsController extends Controller
 {
 	public function __construct()
 	{
-		$this->middleware('can:read,App\BridesBest');
-		$this->middleware('can:create,App\BridesBest')->only(['create', 'store']);
-		$this->middleware('can:update,App\BridesBest')->only(['edit', 'update']);
-		$this->middleware('can:delete,App\BridesBest')->only('destroy');
+		$this->middleware('can:read,App\Models\BridesBest');
+		$this->middleware('can:create,App\Models\BridesBest')->only(['create', 'store']);
+		$this->middleware('can:update,App\Models\BridesBest')->only(['edit', 'update']);
+		$this->middleware('can:delete,App\Models\BridesBest')->only('destroy');
 	}
     /**
      * Display a listing of the resource.
@@ -83,9 +83,9 @@ class BridesBestsController extends Controller
      */
     public function edit(BridesBest $bridesmaid_bestman)
     {
-		$bridesBestImage = optional($bridesmaid_bestman->image)->url_cache;
+		$bridesBestImage = optional($bridesmaid_bestman->image())->urlCache('bridesbest');
 
-		$bridesBestImageName = optional($bridesmaid_bestman->image)->file_name;
+		$bridesBestImageName = optional($bridesmaid_bestman->image())->name;
 
         return view('backend.day.bridesbests.edit', with([
             'bridesBest' => $bridesmaid_bestman,
@@ -98,16 +98,18 @@ class BridesBestsController extends Controller
      * Update the specified resource in storage.
      *
      * @param BridesBestsRequest $request
-     * @param  \App\BridesBest $bridesmaid_bestman
+     * @param  \App\Models\BridesBest $bridesmaid_bestman
      * @return \Illuminate\Http\Response
      */
     public function update(BridesBestsRequest $request, BridesBest $bridesmaid_bestman)
     {
         $file = $request->gallery_image;
 
-        $bridesmaid_bestman->update($request->only(['name', 'testimony', 'ig_account', 'gender']));
+        $image = Image::whereName($file)->first();
 
-		$bridesmaid_bestman->addImage($file);
+        tap($bridesmaid_bestman)
+            ->update($request->only(['name', 'testimony', 'ig_account', 'gender']))
+            ->images()->sync([$image->id]);
 
         $this->flash('Bridesmaid / Bestman information is successfully updated!');
 
@@ -117,7 +119,7 @@ class BridesBestsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\BridesBest  $bridesmaid_bestman
+     * @param  \App\Models\BridesBest  $bridesmaid_bestman
      * @return \Illuminate\Http\Response
      */
     public function destroy(BridesBest $bridesmaid_bestman)

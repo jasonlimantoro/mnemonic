@@ -1,10 +1,10 @@
 <tr>
   <td class="data">
-    <img src="{{ $image->url_cache }}" alt="carousel-image" class="img-responsive">
+    <img src="{{ $image->urlCache('gallery') }}" alt="carousel-image" class="img-responsive">
   </td>
 
   <td class="data">
-    @include('backend.layouts.caption')
+    {{ $image->caption() }}
   </td>
 
   <td class="data action">

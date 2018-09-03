@@ -2,14 +2,15 @@
 
 namespace App\Traits;
 
-use App\Image;
+use App\Models\Image;
+use App\Repositories\Albums;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 trait UploadsImage
 {
 
-    public static function upload(Request $request)
+    public static function upload(Request $request, $uncategorized = true)
     {
 
         $file = $request->file('image');
@@ -18,13 +19,15 @@ trait UploadsImage
 
         $file->storeAs('/', $name, 'uploads');
 
-        $template = $request->template ?: 'original';
 
         $image = Image::firstOrCreate([
-            'file_name' => $name ,
-            'url_asset' => url('uploads/' . $name),
-            'url_cache' => url("/imagecache/{$template}/{$name}"),
+            'name' => $name ,
+            'url' => url('uploads/' . $name),
         ]);
+
+        if ($uncategorized){
+            $image->albums()->save(Albums::uncategorized());
+        }
 
         if ($request->ajax()){
             return response()->json([
@@ -38,23 +41,20 @@ trait UploadsImage
     public function rename($old, $new)
     {
         if($old === $new) {
-            return null;
+            return $this;
         }
 
         Storage::disk('uploads')->move($old, $new);
 
-        $this->update([
-            'file_name' => $new,
-            'url_asset' => url("uploads/${new}"),
-            'url_cache' => url("imagecache/gallery/${new}"),
+        return tap($this)->update([
+            'name' => $new,
+            'url' => url("uploads/${new}"),
         ]);
-
-        return $this;
     }
 
     public function deleteRecord()
     {
-        Storage::disk('uploads')->delete($this->file_name);
+        Storage::disk('uploads')->delete($this->name);
 
         return $this->delete();
     }

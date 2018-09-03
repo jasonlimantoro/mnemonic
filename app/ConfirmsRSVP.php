@@ -3,6 +3,8 @@
 namespace App;
 
 use App\Mail\RSVPReservation;
+use App\Models\RSVP;
+use App\Models\RSVPToken;
 use Illuminate\Support\Facades\Mail;
 
 class ConfirmsRSVP

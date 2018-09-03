@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories;
 
-use App\Post;
+use App\Models\Post;
 
 class Posts
 {

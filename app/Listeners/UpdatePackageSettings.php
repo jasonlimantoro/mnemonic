@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\PackageSetting;
+use App\Models\PackageSetting;
 use App\Events\ModeChanged;
 
 class UpdatePackageSettings

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Album;
+use App\Models\Album;
 use App\Repositories\Albums;
 use App\Http\Resources\AlbumCollection;
 

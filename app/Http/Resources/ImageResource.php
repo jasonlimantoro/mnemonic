@@ -3,7 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
-use App\Album;
+use App\Models\Album;
 
 class ImageResource extends Resource
 {
@@ -18,12 +18,11 @@ class ImageResource extends Resource
         return [
             'id' => $this->id,
             'attributes' => [
-                'file_name' => $this->file_name,
-                'url_asset' => $this->url_asset,
-                'url_cache' => $this->url_cache,
-                'featured' => $this->featured,
+                'name' => $this->name,
+                'url' => $this->url,
             ],
-            'album' => new AlbumResource($this->whenLoaded('imageable')),
+            'featured' => $this->albums()->first()->pivot->featured,
+            'albums' => new AlbumCollection($this->whenLoaded('albums')),
             'links' => [
                 'self' => route('api.images.show', ['image' => $this->id])
             ]

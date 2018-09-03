@@ -28,6 +28,12 @@
 					{{ Form::select('album', $albums, null, ['class' => 'form-control']) }}
 				</div>
 
+        {{-- featured field --}}
+        <div class="form-group">
+          {{ Form::label('featured', 'Set this image as featured:') }}
+          {{ Form::checkbox('featured', '*', false) }}
+        </div>
+
 				{{-- Submit Button --}}
 				<div class="form-group">
 					{{ Form::submit('Upload Image', ['class' => 'btn btn-primary']) }}

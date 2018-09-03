@@ -6,7 +6,7 @@
   @component('backend.layouts.panel', [
     'title' => 'Bridesmaid and Bestman'
 	])
-		@can('create', App\BridesBest::class)
+		@can('create', \App\Models\BridesBest::class)
 			@slot('addButton') 
 				@component('backend.layouts.addButton', [
 					'url' => route('bridesmaid-bestmans.create')

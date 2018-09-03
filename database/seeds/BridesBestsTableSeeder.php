@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\BridesBest;
+use App\Models\BridesBest;
 
 class BridesBestsTableSeeder extends Seeder
 {

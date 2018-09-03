@@ -6,7 +6,7 @@
   @component('backend.layouts.panel', [
     'title' => "Event"
 	])
-		@can('create', App\Event::class)
+		@can('create', \App\Models\Event::class)
 			@slot('addButton')
 				@component('backend.layouts.addButton', [
 					'url' => route('events.create'),
