@@ -17,7 +17,5 @@ class Model extends Eloquent
 {
     use FiltersResources;
 
-    public $filter = 'original';
-
     protected $guarded = [];
 }
