@@ -57,9 +57,13 @@ class ImagesController extends Controller
 
         $image = Image::upload($request, false);
 
-        Album::find($request->album)
-             ->removeFeaturedImage()
-             ->addImage($image, $request->only('featured'));
+        $album = Album::find($request->album);
+
+        if ($request->featured === '*'){
+            $album->removeFeaturedImage();
+        }
+
+        $album->addImage($image, $request->only('featured'));
 
         $this->flash('Image is successfully uploaded!');
 
