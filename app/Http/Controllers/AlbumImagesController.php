@@ -107,7 +107,9 @@ class AlbumImagesController extends Controller
 
         $newAlbum = Album::find($request->album);
 
-        $newAlbum->removeFeaturedImage();
+        if ($request->featured === '*'){
+            $newAlbum->removeFeaturedImage();
+        }
 
         $album->updateImage($newImage, [
             'imageable_id' => $newAlbum->id,
