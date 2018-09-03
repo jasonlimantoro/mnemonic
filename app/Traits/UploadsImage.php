@@ -41,7 +41,7 @@ trait UploadsImage
     public function rename($old, $new)
     {
         if($old === $new) {
-            return null;
+            return $this;
         }
 
         Storage::disk('uploads')->move($old, $new);
