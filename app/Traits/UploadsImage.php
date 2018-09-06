@@ -15,7 +15,10 @@ trait UploadsImage
 
         $file = $request->file('image');
 
-        $name = $file->getClientOriginalName();
+        $name =
+            date("Y-m-d_H_i_s_") .
+            $file->getClientOriginalName()
+        ;
 
         $file->storeAs('/', $name, 'uploads');
 
