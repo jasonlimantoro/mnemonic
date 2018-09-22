@@ -25,7 +25,7 @@ class ImageRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required',  new UniqueFileBaseName($this->image->id) ],
+            'name' => ['required',  new UniqueFileBaseName ],
             'album' => 'required'
         ];
     }
