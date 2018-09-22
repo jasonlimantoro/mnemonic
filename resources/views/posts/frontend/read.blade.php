@@ -1,15 +1,15 @@
-@extends('layouts.master')
+@extends('layouts.master', ['pageTitle' => 'Post'])
 
 @section('content')
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-md-8 post-container">
         <h1 class="color-theme text-center post-title">{{ $post->title }}</h1>
-        @isset($post->image)
+        @if($post->image())
           <div class="post-image">
-            <img src="{{ $post->image->url_cache }}" alt="post-image" class="img-responsive">
+            <img src="{{ $post->image()->urlCache('post') }}" alt="post-image" class="img-responsive">
           </div>
-        @endisset
+        @endif
         <div class="blog-post">
           <p>{!! $post->description !!}</p>
         </div>
