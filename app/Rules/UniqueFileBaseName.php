@@ -2,22 +2,11 @@
 
 namespace App\Rules;
 
-use App\Models\Image;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\Validation\Rule;
 
 class UniqueFileBaseName implements Rule
 {
-    public $ignoreId;
-    /**
-     * Create a new rule instance.
-     *
-     * @return void
-     */
-    public function __construct($ignordId)
-    {
-        $this->ignoreId = $ignordId;
-    }
-
     /**
      * Determine if the validation rule passes.
      *
@@ -28,9 +17,7 @@ class UniqueFileBaseName implements Rule
     public function passes($attribute, $value)
     {
         // if no matching name is found, passes
-        return !Image::where('name', 'like', "${value}.%")
-                     ->where('id', '!=', $this->ignoreId)
-                     ->count();
+        return empty(preg_grep("/${value}./i", Storage::disk('uploads')->allFiles()));
     }
 
     /**
@@ -40,6 +27,6 @@ class UniqueFileBaseName implements Rule
      */
     public function message()
     {
-        return ':attribute must be unique!';
+        return ':attribute already exists. Choose a different :attribute!';
     }
 }
