@@ -23,10 +23,16 @@
         >
         </div>
 				{{-- album field --}}
-				<div class="form-group">
-					{{ Form::label('album', 'Assign to Album:') }}
-					{{ Form::select('album', $albums, null, ['class' => 'form-control']) }}
-				</div>
+      <div class="form-group">
+        <label for="album">Assign to album: </label>
+        <select name="album_id" id="album" class="form-control">
+          <option disabled>Select Album</option>
+          <option value="">Uncategorized</option>
+          @foreach($albums as $album)
+            <option value="{{ $album->id }}">{{ $album->name }}</option>
+          @endforeach
+        </select>
+      </div>
 
         {{-- featured field --}}
         <div class="form-group">

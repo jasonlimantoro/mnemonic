@@ -3,9 +3,11 @@
 @section('content')
   @component('backend.layouts.breadcrumb', ['current' => 'Albums'])
   @endcomponent
-  @component('backend.layouts.panel', [
-    'title' => "Album: " . $album->name
-  ])
+  @component('backend.layouts.panel')
+    @slot('title')
+      Album : {{ isset($album) ? $album->name : 'Uncategorized' }}
+    @endslot
+
     @slot('backButton')
       @component('backend.layouts.backButton', [
         'text' => 'All Albums',
@@ -14,18 +16,19 @@
       @endcomponent
     @endslot
 
-    @slot('addButton')
-      @component('backend.layouts.addButton', [
-        'url' => route('album.images.create', ['album' => $album->id ]),
-        'item' => 'images'
-      ])
-      @endcomponent
-    @endslot
+    @isset($album)
+      @slot('addButton')
+        @component('backend.layouts.addButton', [
+          'url' => route('album.images.create', ['album' => $album->id ]),
+        ])
+        @endcomponent
+      @endslot
+    @endisset
 
     @slot('body')
-      <p>
-        Description: <strong>{{ strip_tags($album->description) }}</strong>
-      </p>
+      @isset($album)
+        <p>Description: <strong>{{ strip_tags($album->description) }}</strong> </p>
+      @endisset
       @component('layouts.table')
         @slot('tableHeader')
           <tr>
@@ -44,7 +47,7 @@
               <td>{{ $image->name }} @if($image->isFeatured()) <strong>(Featured)</strong> @endif </td>
               <td class="data action">
                 <a
-                  href="{{ route('album.images.show', ['album' => $album->id, 'image' => $image->id])}}"
+                  href="{{ route('images.show', ['image' => $image->id])}}"
                   role="button"
                   data-toggle="tooltip"
                   title="See info about this image"
@@ -54,7 +57,7 @@
                 </a>
 
                 <a
-                  href="{{ route('album.images.edit', ['album' => $album->id, 'image' => $image->id])}}"
+                  href="{{ route('images.edit', ['image' => $image->id])}}"
                   role="button"
                   data-toggle="tooltip"
                   title="Assign this image to another album"
@@ -64,7 +67,7 @@
                 </a>
 
                 <div data-component="DeleteIcon"
-                     data-prop-url="{{ route('album.images.destroy', ['album' => $album->id, 'image' => $image->id]) }}"
+                     data-prop-url="{{ route('images.destroy', ['image' => $image->id]) }}"
                 >
                 </div>
 

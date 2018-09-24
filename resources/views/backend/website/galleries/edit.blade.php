@@ -6,8 +6,8 @@
   ])
     @slot('backButton')
       @component('backend.layouts.backButton', [
-        'text' => $album->name,
-        'url' => route('albums.show', [ 'album' => $album->id ])
+        'text' => $image->album->name,
+        'url' => route('albums.show', ['album' => $image->album->id ])
       ])
       @endcomponent
     @endslot
@@ -15,9 +15,9 @@
     @slot('body')
       <div class="row">
         <div class="col-xs-12 col-md-6">
-          <p>From album: <strong>{{ $album->name }}</strong></p>
+          <p>From album: <strong>{{ $image->album->name }}</strong></p>
 
-          {{ Form::open(['route' => ['album.images.update', $album->id, $image->id], 'method' => 'PATCH']) }}
+          {{ Form::open(['route' => ['images.update', $image->id], 'method' => 'PATCH']) }}
 
           {{-- name field --}}
           <div class="form-group">
@@ -30,8 +30,14 @@
 
           {{-- album field --}}
           <div class="form-group">
-            {{ Form::label('album', 'Assign to Album:') }}
-            {{ Form::select('album', $albums, $album->id, ['class' => 'form-control']) }}
+            <label for="album">Album: </label>
+            <select name="album_id" id="album" class="form-control">
+              <option disabled>Select Album</option>
+              <option value="">Uncategorized</option>
+              @foreach($albums as $album)
+                <option value="{{ $album->id }}" {{ $album->id === $image->album->id ? 'selected' : '' }}>{{ $album->name }}</option>
+              @endforeach
+            </select>
           </div>
 
           {{-- featured field --}}

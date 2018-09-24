@@ -26,7 +26,6 @@ trait UploadsImage
         $image = Image::firstOrCreate([
             'name' => $name ,
             'url' => url('uploads/' . $name),
-            'album_id' => (Albums::uncategorized())->id,
         ]);
 
         if ($request->ajax()){

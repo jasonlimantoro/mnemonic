@@ -32,7 +32,7 @@ class Image extends Model
     public function album()
     {
         return $this->belongsTo(Album::class)->withDefault([
-            'title' => 'Uncategorized'
+            'name' => 'Uncategorized'
         ]);
     }
 

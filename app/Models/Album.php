@@ -49,9 +49,11 @@ class Album extends Model
     public function uncategorizeImages()
     {
         foreach ($this->images as $image){
-            $image->albums()->sync([Albums::uncategorized()->id => ['featured' => null]]);
+            $image->update([
+                'album_id' => null,
+                'featured' => null,
+            ]);
         }
-
         return $this;
     }
 
