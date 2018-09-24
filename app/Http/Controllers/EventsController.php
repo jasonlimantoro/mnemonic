@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Image;
-use App\Filters\EventFilter;
 use App\Http\Requests\EventsRequest;
 use App\Http\Controllers\GenericController as Controller;
 
@@ -95,13 +94,9 @@ class EventsController extends Controller
     public function update(EventsRequest $request, Event $event)
     {
 
-        $file = $request->gallery_image;
+        $event->update($request->only(['name', 'description', 'location', 'datetime']));
 
-        $image = Image::whereName($file)->first();
-
-        tap($event)
-            ->update($request->only(['name', 'description', 'location', 'datetime']))
-            ->images()->sync([$image->id]);
+        $event->syncImage($request->gallery_image);
 
         $this->flash('Event is successfully updated!');
 
@@ -119,6 +114,15 @@ class EventsController extends Controller
         $event->deleteRecord();
 
         $this->flash('Event is successfully deleted!');
+
+        return back();
+    }
+
+    public function removeImage(Event $event)
+    {
+        $event->images()->detach();
+
+        $this->flash('Image is successfully detached');
 
         return back();
     }

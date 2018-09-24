@@ -53,6 +53,22 @@ trait HasImages
         return $image;
     }
 
+    public function syncImage($image)
+    {
+        if(!$image){
+            return null;
+        }
+
+        if (is_string($image)){
+            $image = Image::whereName($image)->first();
+        }
+
+        $this->images()->sync([$image->id]);
+
+        return $image;
+
+    }
+
     /**
      * Delete record along with the associated images
      *
