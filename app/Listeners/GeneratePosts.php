@@ -35,32 +35,20 @@ class GeneratePosts
             $post->deleteRecord();
         }
 
-        $first = Post::create([
+        Post::create([
             'user_id' => auth()->user()->id,
             'page_id' => 2,
             'title' => 'Victor Immanuel Rumende, S. Kom',
             'description' => '<p>Surabaya, 21 Juni 1990</p> <p>SMPK Angelus Custos, Surabaya</p> <p>SMAK Frateran Surabaya</p> <p>Multimedia, Universitas Surabaya</p>',
         ]);
 
-        $first->image()->create([
-            'file_name' => 'groom.jpg',
-            'url_asset' => url('uploads/groom.jpg'),
-            'url_cache' => url('imagecache/vip/groom.jpg')
-        ]);
-
          if ($event->mode === 'wedding') {
-            $second = Post::create([
+            Post::create([
                 'user_id' => auth()->user()->id,
                 'page_id' => 2,
                 'title' => 'Lenny Kurniawati Ligadjaja, S. E',
                 'description' => '<p>Surabaya, 03 Maret 1992</p> <p>SMPK St. Agnes, Surabaya.</p> <p>SMAK St. Agnes, Surabaya.</p> <p>Pariwisata, Universitas Kristen Petra.</p>'
             ]);
-
-             $second->image()->create([
-                 'file_name' => 'bride.jpg',
-                 'url_asset' => url('uploads/bride.jpg'),
-                 'url_cache' => url('imagecache/vip/bride.jpg')
-             ]);
         }
     }
 }
