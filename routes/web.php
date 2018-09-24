@@ -42,6 +42,7 @@ Route::group([
         // posts
         Route::prefix('/pages/{page}')->group(function () {
             Route::resource('posts', 'PostsController');
+            Route::delete('posts/{post}/remove-image', 'PostsController@removeImage')->name('posts.remove-image');
         });
 
         // wedding
@@ -52,9 +53,11 @@ Route::group([
 
             // Event
             Route::resource('events', 'EventsController')->except('show');
+            Route::delete('events/{event}/remove-image', 'EventsController@removeImage')->name('events.remove-image');
 
             // Bridesmaid-Bestman
             Route::resource('bridesmaid-bestmans', 'BridesBestsController')->except('show');
+            Route::delete('bridesmaid-bestmans/{bridesmaid_bestman}/remove-image', 'BridesBestsController@removeImage')->name('bridesmaid-bestmans.remove-image');
 
             // Vendors
             Route::resource('vendors', 'VendorsController')->except('show');

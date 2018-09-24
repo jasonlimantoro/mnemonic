@@ -128,9 +128,9 @@ class BridesBestsController extends Controller
         return back();
     }
 
-    public function removeImage(BridesBest $bridesBest)
+    public function removeImage(BridesBest $bridesmaid_bestman)
     {
-        $bridesBest->images()->detach();
+        $bridesmaid_bestman->images()->detach();
 
         $this->flash('Image is successfully detached');
 

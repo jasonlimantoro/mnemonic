@@ -1,11 +1,14 @@
 import ReactHabitat from "react-habitat";
 import { DeleteIcon } from "./components/Icon";
+import { DeleteButton } from "./components/Button";
+
 import { FancyInput, SimpleInput } from "./containers/FormContainer";
 import Editor from "./components/Editor";
 
 
 const components = {
   DeleteIcon,
+  DeleteButton,
   FancyInput,
   Editor,
   SimpleInput
