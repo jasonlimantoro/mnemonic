@@ -28,13 +28,13 @@ Route::group([
 			// images
 			Route::resource('images', 'ImagesController');
 			// albums
-			Route::resource('albums', 'AlbumsController');
+			Route::resource('albums', 'AlbumsController')->except(['show']);
+            Route::get('albums/show/{album?}', 'AlbumsController@show')->name('albums.show');
 
 			// album images
 			Route::prefix('albums/{album}')->group(function () {
 				Route::name('album.')->group(function () {
-					Route::resource('images', 'AlbumImagesController', ['except' => ['index']]);
-					// assigned the route name to album.images.[edit, update, show, ...]
+					Route::resource('images', 'AlbumImagesController', ['only' => ['create', 'store']]);
 				});
 			});
 		});

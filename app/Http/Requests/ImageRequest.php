@@ -27,7 +27,7 @@ class ImageRequest extends FormRequest
     {
         return [
             'name' => ['required',  new UniqueFileBaseName($this->image->id) ],
-            'album' => 'required'
+            //'album' => 'required'
         ];
     }
 }

@@ -2,12 +2,12 @@
 
 @section('content')
   @component('backend.layouts.panel', [
-    'title' => $image->file_name
+    'title' => $image->name
   ])
     @slot('backButton')
       @component('backend.layouts.backButton', [
-        'text' => $album->name,
-        'url' => route('albums.show', ['album' => $album->id]) 
+        'text' => $image->album->name,
+        'url' => route('albums.show', ['album' => $image->album->id])
       ])
         
       @endcomponent
@@ -15,11 +15,11 @@
 
     @slot('body')
       <p>
-        From album: <strong>{{ $album->name }}</strong> 
+        From album: <strong>{{ $image->album->name }}</strong>
       </p>
       
       <p>
-        <img src="{{ $image->url_cache }}" alt="image_album" class="img-responsive">
+        <img src="{{ $image->urlCache('gallery') }}" alt="image_album" class="img-responsive">
       </p>
       Uploaded on {{ $image->created_at->toDayDateTimeString() }}
     @endslot

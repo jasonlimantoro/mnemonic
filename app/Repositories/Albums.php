@@ -40,19 +40,13 @@ class Albums
 
 
     /**
-     * @return Album|null
-     */
-    public static function uncategorized()
-	{
-		return static::withoutImages()->where('name', 'Uncategorized')->first();
-	}
-
-    /**
      * @return array
      */
     public static function toArray()
 	{
-		return static::all()->pluck('name', 'id')->toArray();
+		$array = static::all()->pluck('name', 'id')->toArray();
+		$array[null] = 'Uncategorized';
+		return $array;
 	}
 
     /**
