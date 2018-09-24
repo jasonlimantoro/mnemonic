@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 trait UploadsImage
 {
 
-    public static function upload(Request $request, $uncategorized = true)
+    public static function upload(Request $request)
     {
 
         $file = $request->file('image');
@@ -26,11 +26,8 @@ trait UploadsImage
         $image = Image::firstOrCreate([
             'name' => $name ,
             'url' => url('uploads/' . $name),
+            'album_id' => (Albums::uncategorized())->id,
         ]);
-
-        if ($uncategorized){
-            $image->albums()->save(Albums::uncategorized());
-        }
 
         if ($request->ajax()){
             return response()->json([

@@ -8,8 +8,7 @@ class Images
 {
     public static function all()
     {
-        return Image::has('albums')
-                    ->with('albums')
+        return Image::with('album')
                     ->latest()
                     ->paginate(9);
     }

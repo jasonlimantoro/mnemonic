@@ -40,7 +40,7 @@ class AlbumImagesController extends Controller
             'image' => 'required|image'
         ]);
 
-        $image = Image::upload($request, false);
+        $image = Image::upload($request);
 
         if ($request->featured === '*') {
             $album->removeFeaturedImage();
@@ -111,10 +111,7 @@ class AlbumImagesController extends Controller
             $newAlbum->removeFeaturedImage();
         }
 
-        $album->updateImage($newImage, [
-            'imageable_id' => $newAlbum->id,
-            'featured' => $request->featured,
-        ]);
+        $newAlbum->addImage($newImage, $request->only(['featured']));
 
         $this->flash('Image is updated successfully!');
 

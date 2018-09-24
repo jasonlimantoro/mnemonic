@@ -15,11 +15,16 @@ class CreateImagesTable extends Migration
     {
 		Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('album_id');
             $table->string('name');
             $table->string('url');
             $table->timestamps();
 
             $table->index(['id', 'name']);
+            $table->foreign('album_id')
+                ->references('id')
+                ->on('albums')
+            ;
 
         });
     }

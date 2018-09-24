@@ -63,7 +63,7 @@ class ImagesController extends Controller
             $album->removeFeaturedImage();
         }
 
-        $album->addImage($image, $request->only('featured'));
+        $album->addImage($image, $request->only(['featured']));
 
         $this->flash('Image is successfully uploaded!');
 

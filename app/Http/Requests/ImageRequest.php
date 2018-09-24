@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Rules\UniqueFileBaseName;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ImageRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class ImageRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required',  new UniqueFileBaseName ],
+            'name' => ['required',  new UniqueFileBaseName($this->image->id) ],
             'album' => 'required'
         ];
     }

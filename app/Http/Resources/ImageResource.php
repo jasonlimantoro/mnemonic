@@ -20,9 +20,9 @@ class ImageResource extends Resource
             'attributes' => [
                 'name' => $this->name,
                 'url' => $this->url,
+                'featured' => $this->featured,
             ],
-            'featured' => $this->albums()->first()->pivot->featured,
-            'albums' => new AlbumCollection($this->whenLoaded('albums')),
+            'album' => new AlbumResource($this->whenLoaded('album')),
             'links' => [
                 'self' => route('api.images.show', ['image' => $this->id])
             ]
