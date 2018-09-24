@@ -28,11 +28,6 @@ export class Images extends React.PureComponent {
   }
 
   requestData(page) {
-    // cancel the previous request
-    if (typeof this._source != typeof undefined) {
-      this._source.cancel('Operation canceled due to new request.')
-    }
-
     // save the new request for cancellation
     this._source = axios.CancelToken.source();
 
@@ -129,7 +124,7 @@ export class Images extends React.PureComponent {
       <Row>
         {images.map(image => {
             const active = selectedImage === image.id;
-            const { attributes : { url, name }, albums } = image;
+            const { attributes : { url, name }, album } = image;
             return (
               <Col
                 md={4} xs={6}
@@ -138,7 +133,7 @@ export class Images extends React.PureComponent {
               >
                 <ThumbnailGallery src={url} active={active}>
                   <p>Name: <b>{str_limit(name)}</b></p>
-                  <p>Album: {albums.map(album => ( `${album.attributes.name}, `))}  </p>
+                  <p>Album: {album.attributes.name}</p>
                 </ThumbnailGallery>
               </Col>
             );
