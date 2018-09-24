@@ -12,3 +12,10 @@ export function urlCache(imageRoute, filter, name){
   }
   return `${process.env.MIX_APP_URL}/${imageRoute}/${filter}/${name}`;
 }
+
+export function confirmAction (e, msg = 'Are you sure?'){
+  if (!confirm(msg)){
+    e.preventDefault();
+    return false;
+  }
+}

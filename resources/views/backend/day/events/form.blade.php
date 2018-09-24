@@ -36,14 +36,22 @@
 	</div>
  
 	@isset($event)
-		<strong>Current Image</strong>
-		<div class="current-image">
-			@isset ($eventImage)
-				<img src="{{ $eventImage }}" alt="event-image" class="img-responsive">
-			@else
-				<p>No image uploaded</p>
-			@endisset
-		</div>
+    <div class="form-group">
+      <strong>Current Image</strong>
+      <div class="current-image">
+        @isset ($eventImage)
+          <img src="{{ $eventImage }}" alt="event-image" class="img-responsive">
+        @else
+          <p>No image uploaded</p>
+        @endisset
+      </div>
+    </div>
+    <div data-component="DeleteButton"
+         data-prop-url="{{ route('events.remove-image', ['event' => $event->id]) }}"
+         data-prop-text="Remove Image"
+         data-prop-has-image="{{ $event->images()->count() }}"
+    >
+    </div>
 	@endisset
  
 	<div class="form-group">

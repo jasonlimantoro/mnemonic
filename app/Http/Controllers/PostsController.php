@@ -129,4 +129,13 @@ class PostsController extends Controller
         $homePosts = $posts->home()->paginate(6);
         return view('posts.frontend.read', compact('post', 'homePosts'));
     }
+
+    public function removeImage(Page $page, Post $post)
+    {
+        $post->images()->detach();
+
+        $this->flash('Image is detached successfully');
+
+        return back();
+    }
 }

@@ -1,7 +1,8 @@
 import React from "react";
-import {Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { confirmAction } from "../functionals/helper";
 
-export const PrimaryButton = ({children, ...rest}) => {
+export const PrimaryButton = ({ children, ...rest }) => {
   return (
     <Button bsStyle="primary" {...rest}>
       {children}
@@ -9,7 +10,7 @@ export const PrimaryButton = ({children, ...rest}) => {
   );
 };
 
-export const SuccessButton = ({children, ...rest}) => {
+export const SuccessButton = ({ children, ...rest }) => {
   return (
     <Button bsStyle="success" {...rest}>
       {children}
@@ -17,7 +18,7 @@ export const SuccessButton = ({children, ...rest}) => {
   );
 };
 
-export const InfoButton = ({children, ...rest}) => {
+export const InfoButton = ({ children, ...rest }) => {
   return (
     <Button bsStyle="info" {...rest}>
       {children}
@@ -25,7 +26,7 @@ export const InfoButton = ({children, ...rest}) => {
   );
 };
 
-export const WarningButton = ({children, ...rest}) => {
+export const WarningButton = ({ children, ...rest }) => {
   return (
     <Button bsStyle="warning" {...rest}>
       {children}
@@ -33,7 +34,7 @@ export const WarningButton = ({children, ...rest}) => {
   );
 };
 
-export const DangerButton = ({children, ...rest}) => {
+export const DangerButton = ({ children, ...rest }) => {
   return (
     <Button bsStyle="danger" {...rest}>
       {children}
@@ -41,7 +42,7 @@ export const DangerButton = ({children, ...rest}) => {
   );
 };
 
-export const LinkButton = ({children, ...rest}) => {
+export const LinkButton = ({ children, ...rest }) => {
   return (
     <Button bsStyle="link" {...rest}>
       {children}
@@ -49,10 +50,21 @@ export const LinkButton = ({children, ...rest}) => {
   );
 };
 
-export const UnauthorizedButton = ({...rest}) => {
+export const UnauthorizedButton = ({ ...rest }) => {
   return (
     <Button disabled {...rest}>
       Unauthorized
     </Button>
   );
+};
+
+export const DeleteButton = ({ url, text, hasImage, ...rest }) => {
+  return (
+    <form action={url} method="POST" onSubmit={(e) => confirmAction(e)}>
+      <input type="hidden" name="_method" value="DELETE"/>
+      <DangerButton type="submit" {...rest} disabled={hasImage === '0'}>
+        {text}
+      </DangerButton>
+    </form>
+  )
 };
