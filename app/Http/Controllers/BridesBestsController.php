@@ -103,13 +103,10 @@ class BridesBestsController extends Controller
      */
     public function update(BridesBestsRequest $request, BridesBest $bridesmaid_bestman)
     {
-        $file = $request->gallery_image;
 
-        $image = Image::whereName($file)->first();
+        $bridesmaid_bestman->update($request->only(['name', 'testimony', 'ig_account', 'gender']));
 
-        tap($bridesmaid_bestman)
-            ->update($request->only(['name', 'testimony', 'ig_account', 'gender']))
-            ->images()->sync([$image->id]);
+        $bridesmaid_bestman->syncImage($request->gallery_image);
 
         $this->flash('Bridesmaid / Bestman information is successfully updated!');
 
@@ -127,6 +124,15 @@ class BridesBestsController extends Controller
         $bridesmaid_bestman->deleteRecord();
 
         $this->flash('Bridesmaid / Bestman is successfully deleted!');
+
+        return back();
+    }
+
+    public function removeImage(BridesBest $bridesBest)
+    {
+        $bridesBest->images()->detach();
+
+        $this->flash('Image is successfully detached');
 
         return back();
     }

@@ -99,13 +99,9 @@ class PostsController extends Controller
     public function update(PostsRequest $request, Page $page, Post $post)
     {
 
-        $file = $request->gallery_image;
+        $post->update($request->only(['title', 'description']));
 
-        $image = Image::whereName($file)->first();
-
-        tap($post)
-            ->update($request->only(['title', 'description']))
-            ->images()->sync([$image->id]);
+        $post->syncImage($request->gallery_image);
 
         $this->flash('Post updated successfully!');
 
