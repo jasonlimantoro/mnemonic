@@ -70,16 +70,6 @@ class RSVPController extends Controller
         return redirect()->route('rsvps.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\RSVP  $rsvp
-     * @return \Illuminate\Http\Response
-     */
-    public function show(RSVP $rsvp)
-    {
-        return view('backend.day.rsvps.show', compact('rsvp'));
-    }
 
     /**
      * Show the form for editing the specified resource.

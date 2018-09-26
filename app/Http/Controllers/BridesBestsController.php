@@ -59,23 +59,6 @@ class BridesBestsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param BridesBest $bridesmaid_bestman
-     * @return \Illuminate\Http\Response
-     */
-    public function show(BridesBest $bridesmaid_bestman)
-    {
-        $bridesBestImage = optional($bridesmaid_bestman->image)->url_cache;
-        $role = $bridesmaid_bestman->gender == 'female' ? 'Bridesmaid' : 'Bestman';
-        return view('backend.day.bridesbests.show', with([
-            'bridesBest' => $bridesmaid_bestman,
-            'bridesBestImage' => $bridesBestImage,
-            'role' => $role
-        ]));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param BridesBest $bridesmaid_bestman
