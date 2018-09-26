@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Repositories\Albums;
 use App\Traits\HasImages;
 
 /**
@@ -27,7 +26,18 @@ class Album extends Model
 {
     use HasImages;
 
-    public $filter = 'gallery';
+    const DEFAULT_NAME = 'Uncategorized';
+
+
+    public static function default()
+    {
+        return new self(['name' => self::DEFAULT_NAME]);
+    }
+
+    public function isDefault()
+    {
+        return $this->name === self::DEFAULT_NAME;
+    }
 
     public function images()
     {

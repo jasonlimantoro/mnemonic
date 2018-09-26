@@ -74,6 +74,7 @@ class AlbumsController extends Controller
             $images = $album->images;
         } else {
             $images = Image::doesntHave('album')->get();
+            $album =  Album::default();
         }
 
         return view('backend.website.albums.show', compact('images', 'album'));
