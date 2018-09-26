@@ -2,7 +2,7 @@
 
 @section('content')
 	@component('backend.layouts.breadcrumb', ['current' => $rsvp->name])
-    <li><a href="{{ route('rsvps.index') }}">RSVP</a></li>
+    <li><a href="{{ subdomainRoute('rsvps.index') }}">RSVP</a></li>
 	@endcomponent
   @component('backend.layouts.panel', [
     'title' => "Edit a RSVP"

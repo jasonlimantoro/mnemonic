@@ -1,6 +1,6 @@
 <tr>
   <td class="data title">
-    <a href="{{ route('posts.edit', ['post' => $post->id, 'page' => $page->id ]) }}">
+    <a href="{{ subdomainRoute('posts.edit', ['post' => $post->id, 'page' => $page->id ]) }}">
       {{ $post->present()->limitField('title', 50) }}
     </a>
   </td>
@@ -9,7 +9,7 @@
   </td>
   <td class="data action">
     <a
-      href="{{ route('posts.show', ['post' => $post->id, 'page' => $page->id ]) }}"
+      href="{{ subdomainRoute('posts.show', ['post' => $post->id, 'page' => $page->id ]) }}"
       role="button"
       data-toggle="tooltip"
       title="Show info"
@@ -20,7 +20,7 @@
 
     @can('update', App\Models\Post::class)
       <a
-        href="{{ route('posts.edit', ['post' => $post->id, 'page' => $page->id ]) }}"
+        href="{{ subdomainRoute('posts.edit', ['post' => $post->id, 'page' => $page->id ]) }}"
         role="button"
         data-toggle="tooltip"
         title="Edit"
@@ -35,7 +35,7 @@
 			@can('delete', App\Models\Post::class)
 				<div
 					data-component="DeleteIcon"
-					data-prop-url="{{ route('posts.destroy', ['page' => $page->id, 'post' => $post->id ]) }}"
+					data-prop-url="{{ subdomainRoute('posts.destroy', ['page' => $page->id, 'post' => $post->id ]) }}"
 				>
 				</div>
 			@endcan

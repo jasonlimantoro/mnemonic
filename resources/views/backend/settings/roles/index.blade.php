@@ -9,7 +9,7 @@
     @can('create', App\Models\Role::class)
       @slot('addButton')
         @component('backend.layouts.addButton', [
-          'url' => route('roles.create'),
+          'url' => subdomainRoute('roles.create'),
         ])
         @endcomponent
       @endslot

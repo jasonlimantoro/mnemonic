@@ -13,7 +13,7 @@
         </h3>
 
 
-        {{ Form::open(['route' => 'rsvps.confirmFromFront', 'method' => 'POST']) }}
+        {{ Form::open(['route' => ['rsvps.confirmFromFront', env('APP_SUBDOMAIN')], 'method' => 'POST']) }}
         <div class="col-sm-6 col-xs-12 col-center">
           @include('layouts.error')
           {{-- rsvp field --}}

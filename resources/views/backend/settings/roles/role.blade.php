@@ -1,7 +1,7 @@
 <tr>
   <td class="data title">
     @can('update', 'App\Models\Role')
-      <a href="{{ route('roles.edit', ['role' => $role->id ]) }}">
+      <a href="{{ subdomainRoute('roles.edit', ['role' => $role->id ]) }}">
         {{ $role->name }}
       </a>
     @else
@@ -20,7 +20,7 @@
   <td class="data action">
     @can('update', App\Models\Role::class)
       <a
-        href="{{ route('roles.edit', ['role' => $role->id ]) }}"
+        href="{{ subdomainRoute('roles.edit', ['role' => $role->id ]) }}"
         role="button"
         data-toggle="tooltip"
         title="Edit"
@@ -32,7 +32,7 @@
 
     @can('delete', App\Models\Role::class)
       <div data-component="DeleteIcon"
-           data-prop-url="{{ route('roles.destroy', [ 'role' => $role->id ]) }}"
+           data-prop-url="{{ subdomainRoute('roles.destroy', [ 'role' => $role->id ]) }}"
       >
       </div>
     @endcan

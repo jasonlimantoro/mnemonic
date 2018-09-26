@@ -33,3 +33,14 @@ if (!function_exists('getYoutubeId')) {
         return $id;
     }
 }
+
+if (!function_exists('subdomainRoute')){
+    function subdomainRoute($name, $params = [])
+    {
+        if (request()->getHttpHost() !== env('APP_URL') && ! isset($params['subdomain'])){
+            // in a subdomain
+            $params['subdomain'] = env('APP_SUBDOMAIN');
+        }
+        return route($name, $params);
+    }
+}

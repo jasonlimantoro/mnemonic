@@ -10,7 +10,7 @@
   <td class="data action">
     @can('read-carousel-image')
       <a
-        href="{{ route('carousel.images.show', ['carousel' => 1, 'image' => $image->id ]) }}"
+        href="{{ subdomainRoute('carousel.images.show', ['carousel' => 1, 'image' => $image->id ]) }}"
         role="button"
         data-toggle="tooltip"
         title="Show info"
@@ -23,7 +23,7 @@
 
     @can('update-carousel-image')
       <a
-        href="{{ route('carousel.images.edit', [ 'carousel' => 1, 'image' => $image->id ]) }}"
+        href="{{ subdomainRoute('carousel.images.edit', [ 'carousel' => 1, 'image' => $image->id ]) }}"
         role="button"
         data-toggle="tooltip"
         title="Edit"
@@ -36,7 +36,7 @@
 
     @can('delete-carousel-image')
       <div data-component="DeleteIcon"
-           data-prop-url="{{ route('carousel.images.destroy', ['carousel' => 1, 'image' => $image->id]) }}"
+           data-prop-url="{{ subdomainRoute('carousel.images.destroy', ['carousel' => 1, 'image' => $image->id]) }}"
       >
       </div>
     @endcan

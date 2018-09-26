@@ -2,9 +2,9 @@
 
 @section('content')
   @component('backend.layouts.breadcrumb', ['current' => $image->name ])
-    <li><a href="{{ route('images.index') }}">Galleries</a></li>
-    <li><a href="{{ route('albums.index') }}">Albums</a></li>
-    <li><a href="{{ route('albums.show', ['album' => $image->album->id]) }}">{{ $image->album->name }}</a></li>
+    <li><a href="{{ subdomainRoute('images.index') }}">Galleries</a></li>
+    <li><a href="{{ subdomainRoute('albums.index') }}">Albums</a></li>
+    <li><a href="{{ subdomainRoute('albums.show', ['album' => $image->album->id]) }}">{{ $image->album->name }}</a></li>
   @endcomponent
   @component('backend.layouts.panel', [
     'title' => "Edit Image"
@@ -14,7 +14,7 @@
         <div class="col-xs-12 col-md-6">
           <p>From album: <strong>{{ $image->album->name }}</strong></p>
 
-          {{ Form::open(['route' => ['images.update', $image->id], 'method' => 'PATCH']) }}
+          {{ Form::open(['route' => ['images.update', env('APP_SUBDOMAIN'), $image->id], 'method' => 'PATCH']) }}
 
           {{-- name field --}}
           <div class="form-group">

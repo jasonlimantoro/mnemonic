@@ -47,7 +47,7 @@
       </div>
     </div>
     <div data-component="DeleteButton"
-         data-prop-url="{{ route('events.remove-image', ['event' => $event->id]) }}"
+         data-prop-url="{{ subdomainRoute('events.remove-image', ['event' => $event->id]) }}"
          data-prop-text="Remove Image"
          data-prop-has-image="{{ $event->images()->count() }}"
     >

@@ -2,16 +2,19 @@
 
 @section('content')
   @component('backend.layouts.breadcrumb', ['current' => 'Upload'])
-    <li><a href="{{ route('images.index') }}">Galleries</a></li>
-    <li><a href="{{ route('albums.index') }}">Albums</a></li>
-    <li><a href="{{ route('albums.show', ['album' => $album->id]) }}">{{ $album->name }}</a></li>
+    <li><a href="{{ subdomainRoute('images.index') }}">Galleries</a></li>
+    <li><a href="{{ subdomainRoute('albums.index') }}">Albums</a></li>
+    <li><a href="{{ subdomainRoute('albums.show', ['album' => $album->id]) }}">{{ $album->name }}</a></li>
   @endcomponent
   @component('backend.layouts.panel', [
     'title' => 'Album: ' . $album->name
   ])
     @slot('body')
 			<p> Description: {{ strip_tags($album->description) }} </p>
-			{{ Form::open(['route' => ['album.images.store', $album->id], 'enctype' => 'multipart/form-data']) }}
+			{{ Form::open([
+			  'route' => ['album.images.store', env('APP_SUBDOMAIN'), $album->id],
+			  'enctype' => 'multipart/form-data'])
+			}}
 
         <div data-component="SimpleInput"></div>
 

@@ -9,7 +9,7 @@
     'title' => 'Package Setting'
   ])
     @slot('body')
-      {{ Form::open(['route' => 'package.update', 'method' => 'PATCH']) }}
+      {{ Form::open(['route' => ['package.update', env('APP_SUBDOMAIN')], 'method' => 'PATCH']) }}
 
         {{-- total_post field --}}
         <div class="form-group">

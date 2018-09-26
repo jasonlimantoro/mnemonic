@@ -9,7 +9,7 @@
     @can('create', App\Models\RSVP::class)
       @slot('addButton')
         @component('backend.layouts.addButton', [
-          'url' => route('rsvps.create'),
+          'url' => subdomainRoute('rsvps.create'),
         ])
         @endcomponent
       @endslot

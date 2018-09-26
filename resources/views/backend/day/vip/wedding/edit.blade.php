@@ -8,7 +8,7 @@
   ])
 
     @slot('body')
-      {{ Form::open(['route' => 'vip.update', 'method' => 'PATCH', 'enctype' => 'multipart/form-data']) }}
+      {{ Form::open(['route' => ['vip.update',env('APP_SUBDOMAIN') ], 'method' => 'PATCH', 'enctype' => 'multipart/form-data']) }}
       @php
         $role = 'groom';
       @endphp

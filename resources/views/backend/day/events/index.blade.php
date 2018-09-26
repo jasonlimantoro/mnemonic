@@ -9,7 +9,7 @@
 		@can('create', \App\Models\Event::class)
 			@slot('addButton')
 				@component('backend.layouts.addButton', [
-					'url' => route('events.create'),
+					'url' => subdomainRoute('events.create'),
 				])
 				@endcomponent
 			@endslot

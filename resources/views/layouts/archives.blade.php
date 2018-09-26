@@ -1,7 +1,7 @@
 <ul>
   @foreach($homePosts as $homePost)
     <li>
-      <a href="{{ route('front.posts.read', ['post' => $homePost->id ]) }}">
+      <a href="{{ subdomainRoute('front.posts.read', ['post' => $homePost->id ]) }}">
         {{ $homePost->title }}
       </a>
     </li>

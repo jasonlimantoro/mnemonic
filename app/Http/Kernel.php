@@ -62,5 +62,6 @@ class Kernel extends HttpKernel
         'package.albums' => Middleware\CheckTotalAlbums::class,
         'package.images' => Middleware\CheckTotalImages::class,
         'package.rsvp' => Middleware\CheckTotalRSVP::class,
+        'subdomain' => Middleware\Subdomain::class,
     ];
 }

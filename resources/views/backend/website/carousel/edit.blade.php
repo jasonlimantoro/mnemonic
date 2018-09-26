@@ -2,7 +2,7 @@
 
 @section('content')
 	@component('backend.layouts.breadcrumb', ['current' => $image->name])
-   <li><a href="{{ route('carousel.images.index', ['carousel' => 1]) }}">Carousel</a></li>
+   <li><a href="{{ subdomainRoute('carousel.images.index', ['carousel' => 1]) }}">Carousel</a></li>
 	@endcomponent
   @component('backend.layouts.panel', [
     'title' => "Main Carousel"

@@ -6,7 +6,7 @@
 @endif
 <p> {!! str_limit(strip_tags($post->description, "<h1><h2><h3><h4><p><i><span><b><img>"), 1000, '...') !!} </p>
 <p>
-  <a href="{{ route('front.posts.read', ['post' => $post->id ]) }}">
+  <a href="{{ subdomainRoute('front.posts.read', ['post' => $post->id, 'subdomain' => env('APP_SUBDOMAIN') ]) }}">
     Read More
   </a>
 </p>

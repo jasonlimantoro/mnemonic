@@ -17,8 +17,8 @@
 					</li>
           <li class="user-footer clearfix">
 						<div class="pull-right">
-							<a href="{{ route('front.index') }}" target="_blank" class="btn btn-default">Visit Website</a>
-	            <a dusk="logout-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+							<a href="{{ subdomainRoute('front.index') }}" target="_blank" class="btn btn-default">Visit Website</a>
+	            <a dusk="logout-link" href="{{ subdomainRoute('logout') }}" onclick="event.preventDefault();
 										document.getElementById('logout-form').submit();" class="btn btn-default">
 	              Logout
 	            </a>
@@ -29,6 +29,6 @@
     </ul>
   </div>
 </nav>
-<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+<form id="logout-form" action="{{ subdomainRoute('logout') }}" method="POST" style="display: none;">
 	{{ csrf_field() }}
 </form>

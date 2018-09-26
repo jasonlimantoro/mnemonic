@@ -1,4 +1,8 @@
-{{ Form::open(['url' => url()->current(), 'class'=>'form-inline form-filter', 'method' => 'get']) }} 
+{{ Form::open([
+  'url' => [url()->current(), env('APP_SUBDOMAIN') ],
+  'class'=>'form-inline form-filter',
+  'method' => 'get'])
+}}
 
 	{{-- search field --}}
 	<div class="form-group">

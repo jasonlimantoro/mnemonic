@@ -31,7 +31,7 @@
 			</div>
 		</div>
     <div data-component="DeleteButton"
-         data-prop-url="{{ route('posts.remove-image', ['page' => $page->id, 'post' => $post->id]) }}"
+         data-prop-url="{{ subdomainRoute('posts.remove-image', ['page' => $page->id, 'post' => $post->id]) }}"
          data-prop-text="Remove Image"
          data-prop-has-image="{{ $post->images()->count() }}"
     >

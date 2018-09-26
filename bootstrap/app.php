@@ -26,6 +26,7 @@ $app = new Illuminate\Foundation\Application(
 |
 */
 
+
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
     App\Http\Kernel::class
@@ -41,6 +42,8 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+//$app->bind('router', \Illuminate\Support\Facades\Route::class);
+require __DIR__.'/environment.php';
 /*
 |--------------------------------------------------------------------------
 | Return The Application

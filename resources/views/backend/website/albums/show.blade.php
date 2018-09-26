@@ -2,14 +2,14 @@
 
 @section('content')
   @component('backend.layouts.breadcrumb', ['current' => $album->name])
-    <li><a href="{{ route('images.index') }}">Galleries</a></li>
-    <li><a href="{{ route('albums.index') }}">Albums</a></li>
+    <li><a href="{{ subdomainRoute('images.index') }}">Galleries</a></li>
+    <li><a href="{{ subdomainRoute('albums.index') }}">Albums</a></li>
   @endcomponent
   @component('backend.layouts.panel', ['title' => $album->name ])
     @unless($album->isDefault())
       @slot('addButton')
         @component('backend.layouts.addButton', [
-          'url' => route('album.images.create', ['album' => $album->id ]),
+          'url' => subdomainRoute('album.images.create', ['album' => $album->id ]),
         ])
         @endcomponent
       @endslot
@@ -35,7 +35,7 @@
               <td>{{ $image->name }} @if($image->isFeatured()) <strong>(Featured)</strong> @endif </td>
               <td class="data action">
                 <a
-                  href="{{ route('images.show', ['image' => $image->id])}}"
+                  href="{{ subdomainRoute('images.show', ['image' => $image->id])}}"
                   role="button"
                   data-toggle="tooltip"
                   title="See info about this image"
@@ -45,7 +45,7 @@
                 </a>
 
                 <a
-                  href="{{ route('images.edit', ['image' => $image->id])}}"
+                  href="{{ subdomainRoute('images.edit', ['image' => $image->id])}}"
                   role="button"
                   data-toggle="tooltip"
                   title="Assign this image to another album"
@@ -55,7 +55,7 @@
                 </a>
 
                 <div data-component="DeleteIcon"
-                     data-prop-url="{{ route('images.destroy', ['image' => $image->id]) }}"
+                     data-prop-url="{{ subdomainRoute('images.destroy', ['image' => $image->id]) }}"
                 >
                 </div>
 
