@@ -59,23 +59,6 @@ class BridesBestsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param BridesBest $bridesmaid_bestman
-     * @return \Illuminate\Http\Response
-     */
-    public function show(BridesBest $bridesmaid_bestman)
-    {
-        $bridesBestImage = optional($bridesmaid_bestman->image)->url_cache;
-        $role = $bridesmaid_bestman->gender == 'female' ? 'Bridesmaid' : 'Bestman';
-        return view('backend.day.bridesbests.show', with([
-            'bridesBest' => $bridesmaid_bestman,
-            'bridesBestImage' => $bridesBestImage,
-            'role' => $role
-        ]));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param BridesBest $bridesmaid_bestman
@@ -103,13 +86,10 @@ class BridesBestsController extends Controller
      */
     public function update(BridesBestsRequest $request, BridesBest $bridesmaid_bestman)
     {
-        $file = $request->gallery_image;
 
-        $image = Image::whereName($file)->first();
+        $bridesmaid_bestman->update($request->only(['name', 'testimony', 'ig_account', 'gender']));
 
-        tap($bridesmaid_bestman)
-            ->update($request->only(['name', 'testimony', 'ig_account', 'gender']))
-            ->images()->sync([$image->id]);
+        $bridesmaid_bestman->syncImage($request->gallery_image);
 
         $this->flash('Bridesmaid / Bestman information is successfully updated!');
 
@@ -127,6 +107,15 @@ class BridesBestsController extends Controller
         $bridesmaid_bestman->deleteRecord();
 
         $this->flash('Bridesmaid / Bestman is successfully deleted!');
+
+        return back();
+    }
+
+    public function removeImage(BridesBest $bridesmaid_bestman)
+    {
+        $bridesmaid_bestman->images()->detach();
+
+        $this->flash('Image is successfully detached');
 
         return back();
     }

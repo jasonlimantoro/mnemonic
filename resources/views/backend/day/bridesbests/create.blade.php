@@ -1,18 +1,12 @@
 @extends('backend.layouts.master')
 
 @section('content')
-	@component('backend.layouts.breadcrumb', ['current' => 'Bridesmaid & Bestman'])
+	@component('backend.layouts.breadcrumb', ['current' => 'Create'])
+    <li><a href="{{ route('bridesmaid-bestmans.index') }}">Bridesmaid & Bestmen</a></li>
 	@endcomponent
   @component('backend.layouts.panel', [
     'title' => 'Edit Bridesmaid and Bestman'
   ])
-    @slot('backButton')
-      @component('backend.layouts.backButton', [
-        'text' => 'All Bridesmaid and Bestmen',
-        'url' => route('bridesmaid-bestmans.index')
-      ])
-      @endcomponent
-    @endslot
 		@slot('body')
 			{{ Form::open(['route' => 'bridesmaid-bestmans.store', 'enctype' => 'multipart/form-data']) }}
 				@include('backend.day.bridesbests.form', [

@@ -46,16 +46,6 @@ class CategoriesController extends Controller
 		
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-       return view('backend.settings.categories.show', compact('category')); 
-    }
 
     /**
      * Show the form for editing the specified resource.

@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('content')
-	@component('backend.layouts.breadcrumb', ['current' => 'Gallery'])
+	@component('backend.layouts.breadcrumb', ['current' => 'Galleries'])
 	@endcomponent
   @component('backend.layouts.panel')
     @slot('title')
@@ -28,14 +28,14 @@
 
               @slot('thumbnailCaption')
 								Name: 
-								<a href="{{ route('album.images.edit', ['album' => $image->albums->first()->id, 'image' => $image->id]) }}">
+								<a href="{{ route('images.edit', ['image' => $image->id]) }}">
 									{{ str_limit($image->name, 30) }}
 								</a>
                 
                 <br>
                 Album: 
-                <a href="{{ route('albums.show', ['album' => $image->albums->first()->id ]) }}">
-                  {{ $image->albums->first()->name }}
+                <a href="{{ route('albums.show', ['album' => $image->album->id ]) }}">
+                  {{ $image->album->name }}
 								</a>
 								<div data-component="DeleteIcon"
                      data-prop-url="{{ route('images.destroy', ['image' => $image->id]) }}"

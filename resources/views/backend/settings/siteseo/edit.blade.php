@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('content')
-	@component('backend.layouts.breadcrumb', ['current' => 'Site Info'])
+	@component('backend.layouts.breadcrumb', ['current' => 'Site SEO'])
 	@endcomponent
 	@component('backend.layouts.panel', ['title' => 'Site SEO'])
 		@slot('body')

@@ -29,9 +29,11 @@ class Image extends Model
 {
     use UploadsImage;
 
-    public function albums()
+    public function album()
     {
-        return $this->morphedByMany(Album::class, 'imageable')->withPivot('featured');
+        return $this->belongsTo(Album::class)->withDefault([
+            'name' => 'Uncategorized'
+        ]);
     }
 
     public function bridesBests()
@@ -56,7 +58,7 @@ class Image extends Model
 
     public function isFeatured()
     {
-        return $this->albums()->first()->pivot->featured === '*';
+        return $this->featured === '*';
     }
 
     public function caption()

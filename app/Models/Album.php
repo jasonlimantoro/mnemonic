@@ -31,12 +31,12 @@ class Album extends Model
 
     public function images()
     {
-        return $this->morphToMany(Image::class, 'imageable')->withPivot('featured');
+        return $this->hasMany(Image::class);
     }
 
     public function featuredImage()
     {
-        return $this->images()->wherePivot('featured', '*')->first();
+        return $this->images()->where('featured', '*')->first();
     }
 
     public function scopeFilterId($query, $filters)
@@ -49,9 +49,11 @@ class Album extends Model
     public function uncategorizeImages()
     {
         foreach ($this->images as $image){
-            $image->albums()->sync([Albums::uncategorized()->id => ['featured' => null]]);
+            $image->update([
+                'album_id' => null,
+                'featured' => null,
+            ]);
         }
-
         return $this;
     }
 
@@ -74,7 +76,7 @@ class Album extends Model
             $image = Image::whereName($image)->first();
         }
 
-        $image->albums()->sync([$this->id => ['featured' => '*']]);
+        $this->addImage($image, ['featured' => '*']);
 
         return $this;
     }
@@ -87,8 +89,18 @@ class Album extends Model
     public function removeFeaturedImage()
     {
         if($image = $this->featuredImage()){
-            $this->images()->updateExistingPivot($image->id, ['featured' => null]);
+            $image->featured = null;
+            $image->save();
         }
         return $this;
 	}
+
+	public function addImage(Image $image, $attr = [])
+    {
+        $this->images()->save($image);
+
+        $image->update($attr);
+
+        return $image;
+    }
 }

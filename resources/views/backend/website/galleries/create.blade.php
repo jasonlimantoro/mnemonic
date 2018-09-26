@@ -1,20 +1,12 @@
 @extends('backend.layouts.master')
 
 @section('content')
-	@component('backend.layouts.breadcrumb', ['current' => 'Gallery'])
+	@component('backend.layouts.breadcrumb', ['current' => 'Create'])
+    <li><a href="{{ route('images.index') }}">Galleries</a></li>
 	@endcomponent
   @component('backend.layouts.panel', [
-    'title' => "Gallery"
+    'title' => "Upload Image"
   ])
-    @slot('backButton')
-      @component('backend.layouts.backButton', [
-        'text' => 'Show all galleries',
-        'url' => route('images.index')
-      ])
-        
-      @endcomponent
-    @endslot
-
 		@slot('body')
 
 			{{ Form::open(['route' => 'images.store', 'enctype' => 'multipart/form-data']) }}
@@ -23,10 +15,16 @@
         >
         </div>
 				{{-- album field --}}
-				<div class="form-group">
-					{{ Form::label('album', 'Assign to Album:') }}
-					{{ Form::select('album', $albums, null, ['class' => 'form-control']) }}
-				</div>
+      <div class="form-group">
+        <label for="album">Assign to album: </label>
+        <select name="album_id" id="album" class="form-control">
+          <option disabled>Select Album</option>
+          <option value="">Uncategorized</option>
+          @foreach($albums as $album)
+            <option value="{{ $album->id }}">{{ $album->name }}</option>
+          @endforeach
+        </select>
+      </div>
 
         {{-- featured field --}}
         <div class="form-group">

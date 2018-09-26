@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Album;
+use App\Models\Image;
 use App\Repositories\Albums;
 use App\Http\Requests\AlbumsRequest;
 use App\Http\Controllers\GenericController as Controller;
@@ -26,11 +27,9 @@ class AlbumsController extends Controller
     public function index()
     {
         $categorizedAlbums = $this->albums->filtered()->latest()->get();
-        $uncategorizedAlbum = $this->albums->uncategorized();
         return view('backend.website.albums.index')
                 ->with([
                     'albums' => $categorizedAlbums,
-                    'uncategorizedAlbum' => $uncategorizedAlbum,
                 ]);
     }
 
@@ -69,9 +68,13 @@ class AlbumsController extends Controller
      * @param  \App\Models\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function show(Album $album)
+    public function show(Album $album = null)
     {
-        $images = $album->images;
+        if ($album){
+            $images = $album->images;
+        } else {
+            $images = Image::doesntHave('album')->get();
+        }
 
         return view('backend.website.albums.show', compact('images', 'album'));
     }

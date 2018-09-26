@@ -99,13 +99,9 @@ class PostsController extends Controller
     public function update(PostsRequest $request, Page $page, Post $post)
     {
 
-        $file = $request->gallery_image;
+        $post->update($request->only(['title', 'description']));
 
-        $image = Image::whereName($file)->first();
-
-        tap($post)
-            ->update($request->only(['title', 'description']))
-            ->images()->sync([$image->id]);
+        $post->syncImage($request->gallery_image);
 
         $this->flash('Post updated successfully!');
 
@@ -132,5 +128,14 @@ class PostsController extends Controller
     {
         $homePosts = $posts->home()->paginate(6);
         return view('posts.frontend.read', compact('post', 'homePosts'));
+    }
+
+    public function removeImage(Page $page, Post $post)
+    {
+        $post->images()->detach();
+
+        $this->flash('Image is detached successfully');
+
+        return back();
     }
 }

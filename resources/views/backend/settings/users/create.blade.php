@@ -1,16 +1,10 @@
 @extends('backend.layouts.master')
 
 @section('content')
-	@component('backend.layouts.breadcrumb', ['current' => 'Users'])
+	@component('backend.layouts.breadcrumb', ['current' => 'Create'])
+    <li><a href="{{ route('users.index') }}">Users</a></li>
 	@endcomponent
 	@component('backend.layouts.panel', ['title' => 'Manage Users'])
-		@slot('backButton')
-			@component('backend.layouts.backButton', [
-				'text' => 'All Users',
-				'url' => route('users.index')
-			])
-			@endcomponent
-		@endslot
 		@slot('body')
 			{{ Form::open(['route' => 'users.store']) }}
 				@include('backend.settings.users.form', ['submitButtonText' => 'Create User'])
