@@ -66,17 +66,6 @@ class VendorsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Vendor  $vendor
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Vendor $vendor)
-    {
-        return view('backend.day.vendors.show', compact('vendor'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Vendor  $vendor
