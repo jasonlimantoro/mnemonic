@@ -2,6 +2,7 @@
 
 @section('content')
   @component('backend.layouts.breadcrumb', ['current' => 'Albums'])
+    <li><a href="{{ route('images.index') }}">Galleries</a></li>
   @endcomponent
   @component('backend.layouts.panel', [
     'title' => 'Albums'

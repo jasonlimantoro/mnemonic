@@ -1,19 +1,12 @@
 @extends('backend.layouts.master')
 
 @section('content')
-	@component('backend.layouts.breadcrumb', ['current' => 'Vendor Categories'])
+	@component('backend.layouts.breadcrumb', ['current' => 'Create'])
+    <li><a href="{{ route('categories.index') }}">Vendor Categories</a></li>
 	@endcomponent
   @component('backend.layouts.panel', [
     'title' => "Create a new category"
   ])
-    @slot('backButton')
-      @component('backend.layouts.backButton', [
-        'text' => 'All Categories',
-        'url' => route('categories.index')
-      ])
-        
-      @endcomponent
-    @endslot
 		@slot('body')
 			{{ Form::open(['route' => 'categories.store']) }}
 				@include('backend.settings.categories.form', ['submitButtonText' => 'Add Category'])

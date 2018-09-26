@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('content')
-	@component('backend.layouts.breadcrumb', ['current' => 'Main Carousel'])
+	@component('backend.layouts.breadcrumb', ['current' => 'Carousel'])
 	@endcomponent
   @component('backend.layouts.panel', [
     'title' => "Carousel"

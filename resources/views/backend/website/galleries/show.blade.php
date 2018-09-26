@@ -1,17 +1,14 @@
 @extends('backend.layouts.master')
 
 @section('content')
+  @component('backend.layouts.breadcrumb', ['current' => $image->name])
+    <li><a href="{{ route('images.index') }}">Galleries</a></li>
+    <li><a href="{{ route('albums.index') }}">Albums</a></li>
+    <li><a href="{{ route('albums.show', ['album' => $image->album->id ]) }}">{{ $image->album->name }}</a></li>
+  @endcomponent
   @component('backend.layouts.panel', [
     'title' => $image->name
   ])
-    @slot('backButton')
-      @component('backend.layouts.backButton', [
-        'text' => $image->album->name,
-        'url' => route('albums.show', ['album' => $image->album->id])
-      ])
-        
-      @endcomponent
-    @endslot
 
     @slot('body')
       <p>
@@ -21,7 +18,6 @@
       <p>
         <img src="{{ $image->urlCache('gallery') }}" alt="image_album" class="img-responsive">
       </p>
-      Uploaded on {{ $image->created_at->toDayDateTimeString() }}
     @endslot
   @endcomponent
 @endsection

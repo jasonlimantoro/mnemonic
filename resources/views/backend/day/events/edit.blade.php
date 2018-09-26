@@ -1,19 +1,12 @@
 @extends('backend.layouts.master')
 
 @section('content')
-	@component('backend.layouts.breadcrumb', ['current' => 'Events'])
+	@component('backend.layouts.breadcrumb', ['current' => $event->name])
+    <li><a href="{{ route('events.index') }}">Events</a></li>
 	@endcomponent
   @component('backend.layouts.panel', [
     'title' => "Event: " . $event->name
   ])
-    @slot('backButton')
-      @component('backend.layouts.backButton', [
-        'text' => 'All Events',
-        'url' => route('events.index'),
-      ])
-        
-      @endcomponent 
-    @endslot 
 		@slot('body')
 			{{ Form::model($event, [
 					'route' => ['events.update', $event->id], 

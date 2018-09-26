@@ -1,17 +1,10 @@
 @extends('backend.layouts.master')
 
 @section('content')
-	@component('backend.layouts.breadcrumb', ['current' => 'Users'])
+	@component('backend.layouts.breadcrumb', ['current' => $user->name])
+    <li><a href="{{ route('users.index') }}">Users</a></li>
 	@endcomponent
 	@component('backend.layouts.panel', ['title' => 'Manage Users'])
-		@slot('backButton')
-			@component('backend.layouts.backButton', [
-				'text' => 'All users',
-				'url' => route('users.index')
-			])
-				
-			@endcomponent
-		@endslot
 		@slot('body')
 			{{ Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'PATCH']) }}
 				@include('backend.settings.users.form', ['submitButtonText' => 'Update User'])
