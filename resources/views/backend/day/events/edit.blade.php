@@ -2,7 +2,7 @@
 
 @section('content')
 	@component('backend.layouts.breadcrumb', ['current' => $event->name])
-    <li><a href="{{ route('events.index') }}">Events</a></li>
+    <li><a href="{{ subdomainRoute('events.index') }}">Events</a></li>
 	@endcomponent
   @component('backend.layouts.panel', [
     'title' => "Event: " . $event->name

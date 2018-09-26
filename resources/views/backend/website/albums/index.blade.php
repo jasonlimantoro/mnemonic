@@ -2,14 +2,14 @@
 
 @section('content')
   @component('backend.layouts.breadcrumb', ['current' => 'Albums'])
-    <li><a href="{{ route('images.index') }}">Galleries</a></li>
+    <li><a href="{{ subdomainRoute('images.index') }}">Galleries</a></li>
   @endcomponent
   @component('backend.layouts.panel', [
     'title' => 'Albums'
   ])
     @slot('addButton')
       @component('backend.layouts.addButton', [
-        'url' => route('albums.create'),
+        'url' => subdomainRoute('albums.create'),
       ])
       @endcomponent
     @endslot
@@ -35,7 +35,7 @@
           @endforeach
           <tr>
             <td class="data title">
-              <a href="{{ route('albums.show') }}"> Uncategorized </a>
+              <a href="{{ subdomainRoute('albums.show') }}"> Uncategorized </a>
             </td>
             <td class="data body"><i>No description</i></td>
             <td class="text-center data action">No action</td>

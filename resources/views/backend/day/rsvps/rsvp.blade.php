@@ -1,7 +1,7 @@
 <tr>
   <td class="data title">
     @can('update', 'App\Models\RSVP')
-      <a href="{{ route('rsvps.edit', ['rsvp' => $rsvp->id ]) }}">
+      <a href="{{ subdomainRoute('rsvps.edit', ['rsvp' => $rsvp->id ]) }}">
         {{ $rsvp->name }}
       </a>
     @else
@@ -30,7 +30,7 @@
   <td class="data action">
     @can('update', App\Models\RSVP::class)
       <a
-        href="{{ route('rsvps.edit', ['rsvp' => $rsvp->id ]) }}"
+        href="{{ subdomainRoute('rsvps.edit', ['rsvp' => $rsvp->id ]) }}"
         role="button"
         data-toggle="tooltip"
         title="Edit"
@@ -43,13 +43,13 @@
 
     @can('delete', App\Models\RSVP::class)
       <div data-component="DeleteIcon"
-           data-prop-url="{{ route('rsvps.destroy', [ 'rsvp' => $rsvp->id ]) }}"
+           data-prop-url="{{ subdomainRoute('rsvps.destroy', [ 'rsvp' => $rsvp->id ]) }}"
       >
       </div>
     @endcan
     @can('update', App\Models\RSVP::class)
       @unless ($rsvp->remindedEnough() or $rsvp->confirmed())
-        <form action="{{ route('rsvps.remind', ['rsvp' => $rsvp->id]) }}" method="POST">
+        <form action="{{ subdomainRoute('rsvps.remind', ['rsvp' => $rsvp->id]) }}" method="POST">
           <input type="hidden" name="email" value="{{ $rsvp->email }}">
           <button type="submit" class="btn btn-danger">Send Reminder</button>
         </form>

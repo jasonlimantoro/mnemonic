@@ -10,7 +10,7 @@
     @slot('addButton')
 			@component('backend.layouts.addButton', [
 				'item' => 'Images',
-				'url' => route('images.create')
+				'url' => subdomainRoute('images.create')
 			])
 			@endcomponent
     @endslot
@@ -28,17 +28,17 @@
 
               @slot('thumbnailCaption')
 								Name: 
-								<a href="{{ route('images.edit', ['image' => $image->id]) }}">
+								<a href="{{ subdomainRoute('images.edit', ['image' => $image->id]) }}">
 									{{ str_limit($image->name, 30) }}
 								</a>
                 
                 <br>
                 Album: 
-                <a href="{{ route('albums.show', ['album' => $image->album->id ]) }}">
+                <a href="{{ subdomainRoute('albums.show', ['album' => $image->album->id ]) }}">
                   {{ $image->album->name }}
 								</a>
 								<div data-component="DeleteIcon"
-                     data-prop-url="{{ route('images.destroy', ['image' => $image->id]) }}"
+                     data-prop-url="{{ subdomainRoute('images.destroy', ['image' => $image->id]) }}"
                 >
 								</div>
               @endslot

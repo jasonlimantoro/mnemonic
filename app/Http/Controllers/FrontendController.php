@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\AlbumCollection;
 use App\Models\Page;
 use App\Models\Event;
 use App\Models\Vendor;

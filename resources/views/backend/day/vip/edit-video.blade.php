@@ -9,9 +9,12 @@
 	])
 		@slot('body')
 			<p>
-				This embed video will appear on the <a href="{{ route('front.day') }}" target="_blank">wedding page</a> of the website
+				This embed video will appear on the <a href="{{ subdomainRoute('front.day') }}" target="_blank">wedding page</a> of the website
 			</p>
-			{{ Form::open(['route' => 'embedVideo.update', 'method' => 'PATCH']) }}
+			{{ Form::open([
+			  'route' => ['embedVideo.update', env('APP_SUBDOMAIN')],
+			  'method' => 'PATCH'])
+			}}
 				{{-- embed_url field --}}
 				<div class="form-group">
 					{{ Form::label('embed_url', 'YouTube Video Url:') }}

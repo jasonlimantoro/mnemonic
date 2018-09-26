@@ -2,7 +2,7 @@
 
 @section('content')
 	@component('backend.layouts.breadcrumb', ['current' =>  $post->title ])
-    <li><a href="{{ route('posts.index', ['page' => $page->id]) }}">{{ $page->title }}</a></li>
+    <li><a href="{{ subdomainRoute('posts.index', ['page' => $page->id]) }}">{{ $page->title }}</a></li>
 	@endcomponent
   @component('backend.layouts.panel', [
     'title' => $post->page->title

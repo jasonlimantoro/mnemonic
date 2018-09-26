@@ -2,7 +2,7 @@
 
 @section('content')
 	@component('backend.layouts.breadcrumb', ['current' => $user->name])
-    <li><a href="{{ route('users.index') }}">Users</a></li>
+    <li><a href="{{ subdomainRoute('users.index') }}">Users</a></li>
 	@endcomponent
 	@component('backend.layouts.panel', ['title' => 'Manage Users'])
 		@slot('body')

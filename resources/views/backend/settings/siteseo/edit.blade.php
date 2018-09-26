@@ -5,7 +5,7 @@
 	@endcomponent
 	@component('backend.layouts.panel', ['title' => 'Site SEO'])
 		@slot('body')
-			{{ Form::open(['route' => 'siteseo.update', 'method' => 'PATCH']) }}
+			{{ Form::open(['route' => ['siteseo.update', env('APP_SUBDOMAIN')], 'method' => 'PATCH']) }}
 				{{-- meta_title field --}}
 				<div class="form-group">
 					{{ Form::label('meta_title', 'Meta Title:') }}

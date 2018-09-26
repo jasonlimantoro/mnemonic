@@ -2,7 +2,7 @@
 
 @section('content')
 	@component('backend.layouts.breadcrumb', ['current' => $category->name])
-    <li><a href="{{ route('categories.index') }}">Vendor Categories</a></li>
+    <li><a href="{{ subdomainRoute('categories.index') }}">Vendor Categories</a></li>
 	@endcomponent
   @component('backend.layouts.panel', [
     'title' => "Edit a category"

@@ -9,7 +9,7 @@
 		@can('create', \App\Models\BridesBest::class)
 			@slot('addButton') 
 				@component('backend.layouts.addButton', [
-					'url' => route('bridesmaid-bestmans.create')
+					'url' => subdomainRoute('bridesmaid-bestmans.create')
 				])
 				@endcomponent
 				

@@ -2,9 +2,9 @@
 
 @section('content')
   @component('backend.layouts.breadcrumb', ['current' => $image->name])
-    <li><a href="{{ route('images.index') }}">Galleries</a></li>
-    <li><a href="{{ route('albums.index') }}">Albums</a></li>
-    <li><a href="{{ route('albums.show', ['album' => $image->album->id ]) }}">{{ $image->album->name }}</a></li>
+    <li><a href="{{ subdomainRoute('images.index') }}">Galleries</a></li>
+    <li><a href="{{ subdomainRoute('albums.index') }}">Albums</a></li>
+    <li><a href="{{ subdomainRoute('albums.show', ['album' => $image->album->id ]) }}">{{ $image->album->name }}</a></li>
   @endcomponent
   @component('backend.layouts.panel', [
     'title' => $image->name

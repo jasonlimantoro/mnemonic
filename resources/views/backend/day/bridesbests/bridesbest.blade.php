@@ -1,6 +1,6 @@
 <tr>
   <td class="data title">
-    <a href="{{ route('bridesmaid-bestmans.edit', ['bridesmaid-bestman' => $b->id ]) }}">
+    <a href="{{ subdomainRoute('bridesmaid-bestmans.edit', ['bridesmaid-bestman' => $b->id ]) }}">
       {{ $b->name }}
     </a>
     <p>
@@ -17,7 +17,7 @@
   <td class="data action">
     @can('update', \App\Models\BridesBest::class)
       <a
-        href="{{ route('bridesmaid-bestmans.edit', ['bridesmaid-bestman' => $b->id ]) }}"
+        href="{{ subdomainRoute('bridesmaid-bestmans.edit', ['bridesmaid-bestman' => $b->id ]) }}"
         role="button"
         data-toggle="tooltip"
         title="Edit"
@@ -29,7 +29,7 @@
 
     @can('delete', \App\Models\BridesBest::class)
       <div data-component="DeleteIcon"
-           data-prop-url="{{ route('bridesmaid-bestmans.destroy', [ 'bridesmaid-bestman' => $b->id ]) }}"
+           data-prop-url="{{ subdomainRoute('bridesmaid-bestmans.destroy', [ 'bridesmaid-bestman' => $b->id ]) }}"
       >
       </div>
     @endcan

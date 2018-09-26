@@ -2,14 +2,14 @@
 
 @section('content')
 	@component('backend.layouts.breadcrumb', ['current' => 'Create'])
-    <li><a href="{{ route('images.index') }}">Galleries</a></li>
+    <li><a href="{{ subdomainRoute('images.index') }}">Galleries</a></li>
 	@endcomponent
   @component('backend.layouts.panel', [
     'title' => "Upload Image"
   ])
 		@slot('body')
 
-			{{ Form::open(['route' => 'images.store', 'enctype' => 'multipart/form-data']) }}
+			{{ Form::open(['route' => ['images.store', env('APP_SUBDOMAIN')], 'enctype' => 'multipart/form-data']) }}
         <div data-component="SimpleInput"
              data-prop-template="gallery"
         >

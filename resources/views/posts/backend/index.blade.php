@@ -8,7 +8,7 @@
 			@can('create', App\Models\Post::class)
 				@slot('addButton')
 					@component('backend.layouts.addButton', [
-						'url' => route('posts.create', ['page' => $page->id ])
+						'url' => subdomainRoute('posts.create', ['page' => $page->id ])
 					])
 					@endcomponent
 				@endslot

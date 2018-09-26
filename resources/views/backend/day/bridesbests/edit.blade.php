@@ -2,7 +2,7 @@
 
 @section('content')
 	@component('backend.layouts.breadcrumb', ['current' => $bridesBest->name ])
-    <li><a href="{{ route('bridesmaid-bestmans.index') }}">Bridesmaid & Bestmen</a></li>
+    <li><a href="{{ subdomainRoute('bridesmaid-bestmans.index') }}">Bridesmaid & Bestmen</a></li>
 	@endcomponent
   @component('backend.layouts.panel', [
     'title' => 'Edit Bridesmaid and Bestman'

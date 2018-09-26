@@ -1,7 +1,7 @@
 <tr>
   <td class="data title">
     @can('update', 'App\Models\Event')
-      <a href="{{ route('events.edit', ['event' => $event->id ]) }}">
+      <a href="{{ subdomainRoute('events.edit', ['event' => $event->id ]) }}">
         {{ $event->name }}
       </a>
     @else
@@ -16,7 +16,7 @@
   <td class="data action">
     @can('update', \App\Models\Event::class)
       <a
-        href="{{ route('events.edit', ['event' => $event->id ]) }}"
+        href="{{ subdomainRoute('events.edit', ['event' => $event->id ]) }}"
         role="button"
         data-toggle="tooltip"
         title="Edit"
@@ -28,7 +28,7 @@
 
     @can('delete', \App\Models\Event::class)
       <div data-component="DeleteIcon"
-           data-prop-url="{{ route('events.destroy', [ 'event' => $event->id ]) }}"
+           data-prop-url="{{ subdomainRoute('events.destroy', [ 'event' => $event->id ]) }}"
       >
       </div>
     @endcan

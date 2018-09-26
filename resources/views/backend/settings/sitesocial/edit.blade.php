@@ -5,7 +5,7 @@
 	@endcomponent
 	@component('backend.layouts.panel', ['title' => 'Site Social Media'])
 		@slot('body')
-			{{ Form::open(['route' => 'sitesocial.update', 'method' => 'PATCH']) }}
+			{{ Form::open(['route' => ['sitesocial.update', env('APP_SUBDOMAIN')], 'method' => 'PATCH']) }}
 				{{-- google_plus field --}}
 				<div class="form-group">
 					{{ Form::label('google_plus', 'Google Plus:') }}

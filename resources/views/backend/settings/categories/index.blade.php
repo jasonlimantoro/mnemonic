@@ -9,7 +9,7 @@
 		@can('create', \App\Models\Category::class)
 			@slot('addButton')
 				@component('backend.layouts.addButton', [
-					'url' => route('categories.create'),
+					'url' => subdomainRoute('categories.create'),
 				])
 				@endcomponent
 			@endslot

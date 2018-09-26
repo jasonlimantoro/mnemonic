@@ -8,7 +8,7 @@
   ])
 
     @slot('body')
-      {{ Form::open(['route' => 'vip.update', 'method' => 'PATCH']) }}
+      {{ Form::open(['route' => ['vip.update', env('APP_SUBDOMAIN')], 'method' => 'PATCH']) }}
         <div class="col-xs-12">
           {{-- name field --}}
           <div class="form-group">

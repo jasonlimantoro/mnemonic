@@ -2,7 +2,7 @@
 
 @section('content')
   @component('backend.layouts.breadcrumb', ['current' => $role->name])
-    <li><a href="{{ route('roles.index') }}">Roles</a></li>
+    <li><a href="{{ subdomainRoute('roles.index') }}">Roles</a></li>
   @endcomponent
 	@component('backend.layouts.panel', [
 		'title' => "Edit Role"

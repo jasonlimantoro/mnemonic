@@ -2,7 +2,7 @@
 
 @section('content')
 	@component('backend.layouts.breadcrumb', ['current' => $vendor->name])
-    <li><a href="{{ route('vendors.index') }}">Vendors</a></li>
+    <li><a href="{{ subdomainRoute('vendors.index') }}">Vendors</a></li>
 	@endcomponent
   @component('backend.layouts.panel', [
     'title' => "Edit a vendor"
