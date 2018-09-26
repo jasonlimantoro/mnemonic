@@ -5,24 +5,18 @@
     <li><a href="{{ route('images.index') }}">Galleries</a></li>
     <li><a href="{{ route('albums.index') }}">Albums</a></li>
   @endcomponent
-  @component('backend.layouts.panel')
-    @slot('title')
-      Album: {{ isset($album) ? $album->name : 'Uncategorized' }}
-    @endslot
-
-    @isset($album)
+  @component('backend.layouts.panel', ['title' => $album->name ])
+    @unless($album->isDefault())
       @slot('addButton')
         @component('backend.layouts.addButton', [
           'url' => route('album.images.create', ['album' => $album->id ]),
         ])
         @endcomponent
       @endslot
-    @endisset
+    @endunless
 
     @slot('body')
-      @isset($album)
-        <p>Description: <strong>{{ strip_tags($album->description) }}</strong> </p>
-      @endisset
+      <p>Description: <strong>{{ strip_tags($album->description) }}</strong> </p>
       @component('layouts.table')
         @slot('tableHeader')
           <tr>
