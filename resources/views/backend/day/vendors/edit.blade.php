@@ -1,19 +1,12 @@
 @extends('backend.layouts.master')
 
 @section('content')
-	@component('backend.layouts.breadcrumb', ['current' => 'Vendors'])
+	@component('backend.layouts.breadcrumb', ['current' => $vendor->name])
+    <li><a href="{{ route('vendors.index') }}">Vendors</a></li>
 	@endcomponent
   @component('backend.layouts.panel', [
     'title' => "Edit a vendor"
   ])
-    @slot('backButton')
-      @component('backend.layouts.backButton', [
-        'text' => 'All Vendors',
-        'url' => route('vendors.index')
-      ])
-        
-      @endcomponent
-    @endslot
 		@slot('body')
 			{{ Form::model($vendor, ['route' => ['vendors.update', $vendor->id], 'method' => 'PATCH']) }}
 				@include('backend.day.vendors.form', [

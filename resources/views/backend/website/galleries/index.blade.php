@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('content')
-	@component('backend.layouts.breadcrumb', ['current' => 'Gallery'])
+	@component('backend.layouts.breadcrumb', ['current' => 'Galleries'])
 	@endcomponent
   @component('backend.layouts.panel')
     @slot('title')

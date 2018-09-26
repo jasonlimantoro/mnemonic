@@ -1,17 +1,14 @@
 @extends('backend.layouts.master')
 
 @section('content')
+  @component('backend.layouts.breadcrumb', ['current' => $image->name ])
+    <li><a href="{{ route('images.index') }}">Galleries</a></li>
+    <li><a href="{{ route('albums.index') }}">Albums</a></li>
+    <li><a href="{{ route('albums.show', ['album' => $image->album->id]) }}">{{ $image->album->name }}</a></li>
+  @endcomponent
   @component('backend.layouts.panel', [
-    'title' => "Edit Album Image"
+    'title' => "Edit Image"
   ])
-    @slot('backButton')
-      @component('backend.layouts.backButton', [
-        'text' => $image->album->name,
-        'url' => route('albums.show', ['album' => $image->album->id ])
-      ])
-      @endcomponent
-    @endslot
-
     @slot('body')
       <div class="row">
         <div class="col-xs-12 col-md-6">

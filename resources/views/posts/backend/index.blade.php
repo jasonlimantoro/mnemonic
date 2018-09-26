@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('content')
-	@component('backend.layouts.breadcrumb', ['current' => 'Posts'])
+	@component('backend.layouts.breadcrumb', ['current' => 'Home'])
 	@endcomponent
 	@component('backend.layouts.panel', ['title' => $page->title ])
 		@unless ($page->title === 'About')

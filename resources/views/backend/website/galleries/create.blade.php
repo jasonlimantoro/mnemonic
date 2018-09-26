@@ -1,20 +1,12 @@
 @extends('backend.layouts.master')
 
 @section('content')
-	@component('backend.layouts.breadcrumb', ['current' => 'Gallery'])
+	@component('backend.layouts.breadcrumb', ['current' => 'Create'])
+    <li><a href="{{ route('images.index') }}">Galleries</a></li>
 	@endcomponent
   @component('backend.layouts.panel', [
-    'title' => "Gallery"
+    'title' => "Upload Image"
   ])
-    @slot('backButton')
-      @component('backend.layouts.backButton', [
-        'text' => 'Show all galleries',
-        'url' => route('images.index')
-      ])
-        
-      @endcomponent
-    @endslot
-
 		@slot('body')
 
 			{{ Form::open(['route' => 'images.store', 'enctype' => 'multipart/form-data']) }}

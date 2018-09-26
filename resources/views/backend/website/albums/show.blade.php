@@ -1,19 +1,13 @@
 @extends('backend.layouts.master')
 
 @section('content')
-  @component('backend.layouts.breadcrumb', ['current' => 'Albums'])
+  @component('backend.layouts.breadcrumb', ['current' => $album->name])
+    <li><a href="{{ route('images.index') }}">Galleries</a></li>
+    <li><a href="{{ route('albums.index') }}">Albums</a></li>
   @endcomponent
   @component('backend.layouts.panel')
     @slot('title')
-      Album : {{ isset($album) ? $album->name : 'Uncategorized' }}
-    @endslot
-
-    @slot('backButton')
-      @component('backend.layouts.backButton', [
-        'text' => 'All Albums',
-        'url' => route('albums.index')
-      ])
-      @endcomponent
+      Album: {{ isset($album) ? $album->name : 'Uncategorized' }}
     @endslot
 
     @isset($album)

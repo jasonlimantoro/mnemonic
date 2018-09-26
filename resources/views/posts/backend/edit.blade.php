@@ -1,19 +1,12 @@
 @extends('backend.layouts.master')
 
 @section('content')
-	@component('backend.layouts.breadcrumb', ['current' => 'Posts'])
+	@component('backend.layouts.breadcrumb', ['current' => $post->title ])
+    <li><a href="{{ route('posts.index', ['page' => $page->id]) }}">{{ $page->title }}</a></li>
 	@endcomponent
 	@component('backend.layouts.panel', [
 		'title' => $post->title
 	])
-		@slot('backButton')
-			@component('backend.layouts.backButton', [
-				'text' => 'All Posts in ' . $page->title,
-				'url' => route('posts.index', ['page' => $page->id])
-			])
-			@endcomponent
-		@endslot
-
 		@slot('body')
 			{{ Form::model($post, [
 					'route' => ['posts.update', $page->id, $post->id], 
