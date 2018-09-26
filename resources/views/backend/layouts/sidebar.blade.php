@@ -12,7 +12,7 @@
 		<li class="header">Website</li>
 
 		@can('read-carousel-image')
-			<li><a href="{{ route('carousel.images.index', ['carousel' => 1]) }}" data-menu="menu">Main Carousel</a></li>
+			<li><a href="{{ route('carousel.images.index', ['carousel' => 1]) }}" data-menu="menu">Carousel</a></li>
 		@endcan
 
 		@can('read', App\Models\Post::class)
